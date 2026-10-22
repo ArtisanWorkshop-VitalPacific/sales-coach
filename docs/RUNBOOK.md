@@ -56,7 +56,7 @@ Switch to *Manager* or *Owner* view, tap the TV icon (or go to `/training-day`).
 
 Rough numbers for one 5-minute practice call in Claude mode with the standard preset:
 
-- Claude: about $0.25, most of it the Opus 5.5 coach review. Haiku 5.5 listening and Sonnet 5.5 speaking cost a few cents.
+- Claude: about $0.30, most of it the Opus 5.5 coach review (run in fast mode so it finishes in seconds). Haiku 5.5 listening and Sonnet 5.5 speaking cost a few cents.
 - ElevenLabs: about 1,500 characters of customer voice per call, billed by your ElevenLabs plan.
 - Vercel: the app is light. Turns and voices are short serverless calls.
 
