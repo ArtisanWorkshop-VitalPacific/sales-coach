@@ -1,0 +1,11 @@
+packages:
+  - apps/*
+  - packages/*
+
+onlyBuiltDependencies:
+  - "@biomejs/biome"
+  - esbuild
+  - sharp
+  - "@livekit/rtc-node"
+  - onnxruntime-node
+  - protobufjs

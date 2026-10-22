@@ -1,0 +1,71 @@
+id: minimal-responses
+version: 1
+name: One-word answers
+kind: behavior
+group: silence
+skill: listening
+summary: >-
+  The customer goes flat and answers in one or two words for a few turns,
+  without saying why.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [discovery, findings, options]
+  chance: 0.4
+priority: 40
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    For your next few replies, answer in one to four words and volunteer
+    nothing. You are not angry. You are either not following, not convinced,
+    or thinking about something else, and you do not say which. Open up again
+    only if the tech stops explaining and asks an open question about what you
+    think, or checks whether it makes sense. If they keep talking, stay flat.
+  lines:
+    - Mm-hm.
+    - Yeah. Okay.
+    - Sure, I guess.
+    - Okay. Got it.
+  followUps:
+    - Yeah, I heard you. Anything else?
+    - Okay. So what's next?
+  tone: guarded
+  delayMs: 900
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [asked_open_question, checked_understanding, asked_about_concern, re_engaged]
+  failIf:
+    anyBehaviors: [rambled]
+  pass: >-
+    The tech notices the short answers, stops explaining, and asks an open
+    question or checks what the customer is thinking.
+  fail: >-
+    The tech keeps talking through the one-word answers, or takes "okay" as
+    agreement and moves on to the price.
+coaching:
+  why: >-
+    One-word answers mean the customer has stopped engaging, even when they are
+    polite about it. "Okay" often means "I'm not following" or "I'm not sure,"
+    not "yes." If you keep talking, they stop listening, and you never learn
+    what is stopping them.
+  modelResponse: >-
+    Let me stop there, I've been doing most of the talking. What are you
+    thinking so far? If something I said didn't make sense, or you're not sure
+    about it, that's exactly what I want to hear. I'd rather slow down than
+    have you feel rushed.
+  commonMistakes:
+    - Taking "okay" as agreement and moving on to the price
+    - Explaining the same thing again in more detail
+    - Asking more yes-or-no questions that get more one-word answers
+    - Talking faster to get through it
+tags: [silence, listening]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Lines are shorter than the usual 5-word minimum on purpose. One-word answers are the move.
+    - The intent covers several replies. Check that the runtime keeps the flat style for the whole evaluation window.

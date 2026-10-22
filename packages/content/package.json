@@ -1,0 +1,24 @@
+{
+  "name": "@sales-coach/content",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The content library: personas, moves, scenarios, drills, rubric, company specs. YAML in, validated JSON bundle out.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./bundle.json": "./generated/bundle.json"
+  },
+  "scripts": {
+    "validate": "tsx scripts/build.ts validate",
+    "validate:strict": "tsx scripts/build.ts validate --strict",
+    "build": "tsx scripts/build.ts build",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@sales-coach/engine": "workspace:*"
+  },
+  "devDependencies": {
+    "yaml": "^2.8.0",
+    "zod": "^4.6.7"
+  }
+}

@@ -1,0 +1,20 @@
+node_modules/
+.next/
+dist/
+out/
+coverage/
+.turbo/
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+!.env.example
+.DS_Store
+.vercel
+# Embedded Postgres data for local demo mode
+.data/
+apps/web/.data/
+# Test bench output (reports are regenerated)
+apps/testbench/reports/*
+!apps/testbench/reports/.gitkeep
+!apps/testbench/reports/latest-scripted.md

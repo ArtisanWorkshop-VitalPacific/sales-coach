@@ -1,0 +1,86 @@
+# Machine-readable registry. Keep in sync with REGISTRY.md.
+# The validator checks every cross-reference against these lists.
+personas:
+  - margaret-retiree
+  - devin-researcher
+  - ruiz-couple
+  - rick-landlord
+  - tasha-burned
+  - brian-today
+  - rosa-spanish
+  - morgan-first-home
+  - paul-engineer
+  - jen-busy-parent
+  - greg-selling
+  - linda-warranty
+objections:
+  price: [too-expensive, can-you-do-better, just-the-cheap-fix, what-am-i-paying-for, didnt-budget-for-this, quoted-less-on-the-phone, charge-me-hourly, paid-less-last-time]
+  timing: [need-to-think-about-it, talk-to-my-spouse, can-it-wait, next-paycheck, let-me-call-you-back, ask-my-son]
+  trust: [you-always-upsell, how-do-i-know-its-broken, last-company-ripped-me-off, are-you-on-commission, show-me-in-writing, bad-review-online]
+  competition: [need-three-bids, brother-in-law-plumber, found-it-cheaper, big-box-install, handyman-can-do-it]
+  scope: [just-repair-it, do-i-need-the-code-stuff, selling-soon, ill-do-part-myself, bigger-than-needed, only-fix-what-i-called-for]
+  financing: [dont-do-financing, whats-the-catch, monthly-still-too-much, credit-is-bad]
+  membership: [memberships-are-a-scam, dont-need-maintenance, home-warranty-covers-it, what-do-i-actually-get, ill-just-call-when-it-breaks]
+behaviors:
+  silence: [silence-after-price, thinks-out-loud, minimal-responses]
+  disruption: [interrupts-how-much, phone-call-hold-on, half-listening, spouse-walks-in, background-chaos]
+  confusion: [mishears-the-price, mixes-up-terms, repeats-answered-objection]
+  misplaced-confidence: [neighbor-said, watched-a-video, i-know-what-it-is]
+  probe: [tests-your-honesty, would-you-do-this, catches-false-claim]
+  intensity: [goes-cold, angry-about-last-company, quiet-money-worry]
+scenarios:
+  - wh-tank-no-hot-water
+  - wh-tank-landlord-tenant
+  - wh-tankless-upgrade-question
+  - wh-repair-or-replace-9yr
+  - wh-heat-pump-rebate
+  - wh-warranty-claim-denied
+  - wh-first-home-rumbling
+  - wh-tankless-descale
+  - drain-kitchen-recurring
+  - drain-main-line-roots
+  - drain-simple-snake
+  - sewer-camera-before-sale
+  - slab-leak-detection
+  - repipe-galvanized
+  - prv-high-pressure
+  - toilet-running-old
+  - faucet-install-bad-valves
+  - hard-water-softener
+  - drinking-water-filtration
+  - gas-smell-flex-line
+  - disposal-jammed-old
+  - main-shutoff-seized
+  - wh-code-upgrades-rental
+  - maintenance-visit-anode
+  - second-opinion-quote
+  - burst-pipe-after-hours
+  - remodel-rough-in
+  - wh-replacement-spanish
+  - tank-vs-tankless-family
+  - hydro-jet-rental
+drills:
+  - first-thirty-seconds
+  - five-discovery-questions
+  - explain-the-finding
+  - show-what-you-found
+  - three-options
+  - say-the-price
+  - hold-the-silence
+  - three-bids
+  - the-spouse-stall
+  - the-cheap-fix
+  - the-relative-plumber
+  - monthly-number
+  - membership-ask
+  - ask-for-the-decision
+  - leave-well-on-a-no
+  - correct-without-condescending
+  - come-back-from-a-distraction
+  - bring-in-the-second-decision-maker
+  - your-own-house
+  - catch-the-detail
+companies:
+  - gardner-plumbing
+  - sos-plumbing-air
+  - demo-company

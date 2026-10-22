@@ -1,0 +1,70 @@
+id: background-chaos
+version: 1
+name: Dog barking in the background
+kind: behavior
+group: disruption
+skill: listening
+summary: >-
+  A dog starts barking and the customer is pulled away for a moment, missing
+  what the tech just said.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [discovery, findings, options]
+  chance: 0.35
+priority: 30
+maxUses: 2
+delivery:
+  act: distracted
+  intent: >-
+    A dog starts barking in the background and takes your attention away. Deal
+    with it in one short, distracted line, then turn back to the tech. You
+    missed the last thing they said, and you may be a little embarrassed about
+    the noise. Pay full attention again if the tech pauses, stays relaxed, and
+    repeats the key point briefly.
+  lines:
+    - Sorry, hang on. Quiet! Sorry. What were you saying?
+    - Oh my gosh, that dog. Sorry, go ahead.
+    - Hold on, I can't hear you over the barking. Okay, sorry.
+    - "[chuckles] Sorry, sorry. Hush! Okay, where were you?"
+  followUps:
+    - Sorry, I missed that last part. Can you say it again?
+  tone: distracted
+  delayMs: 1000
+  soundCue: dog-bark
+  audioTags: [chuckles]
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    anyBehaviors: [re_engaged, checked_understanding]
+  failIf:
+    anyBehaviors: [showed_impatience, rambled]
+  pass: >-
+    The tech stops talking for the noise, stays relaxed, and briefly repeats
+    the last key point once the customer is back.
+  fail: >-
+    The tech talks over the noise as if nothing happened, or shows irritation
+    at the interruption.
+coaching:
+  why: >-
+    Noise is normal in a home, and customers are often embarrassed by it. How
+    you handle it shows whether you are patient with their house and their
+    life. Anything you said during the noise was not heard, so say it again
+    briefly.
+  modelResponse: >-
+    (Stops talking while the dog barks and waits for the customer to turn
+    back.) "No problem at all, take your time. So, the short version of what I
+    was saying: (the key point in one sentence). Does that make sense so far?"
+  commonMistakes:
+    - Raising your voice to talk over the noise
+    - Going on with the explanation while the customer deals with the dog
+    - Sighing or making a comment about the dog
+    - Assuming the customer heard what you said during the barking
+tags: [disruption, listening]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Uses dog-bark. The lines do not say whose dog it is, so they work for most homes.
+    - Margaret has a cat, not a dog (movePreference 0.5). For her the voice writer should treat it as a neighbor's dog and pick a line that fits.

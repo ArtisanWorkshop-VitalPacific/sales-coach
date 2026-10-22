@@ -1,0 +1,87 @@
+id: need-three-bids
+version: 1
+name: I need three bids
+kind: objection
+group: competition
+skill: objections
+summary: The customer says they always get three quotes before deciding.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.8
+priority: 60
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you never decide on something like this without getting at least three
+    quotes. Be polite and matter of fact, not hostile. Do not explain the real
+    reason unless the tech asks a good question about it.
+  lines:
+    - I appreciate it, but I always get three bids before I do anything like this.
+    - This seems fine, I just want to get a couple more quotes first.
+    - My rule is three quotes. Nothing personal.
+    - Let me see what a couple other companies say and I'll get back to you.
+  followUps:
+    - I hear you, but I still want to compare.
+    - That's what everybody says, though.
+  tone: neutral
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They want proof they are getting a fair price and fear being overcharged.
+    More quotes are a way to feel safe, not a goal in itself.
+  resolvedBy:
+    - Asking what they want to learn from the other bids
+    - Showing how the price is built and what is included
+    - Offering a written, itemized estimate they can compare line by line
+    - Respecting the choice and making it easy to come back
+  resolvingBehaviors:
+    - asked_about_concern
+    - justified_value
+    - showed_evidence
+    - honest_answer
+    - left_well
+  hardenedBy:
+    - pressured
+    - discounted_unprompted
+    - argued
+    - showed_impatience
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [asked_about_concern, justified_value, left_well]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, discounted_unprompted, argued, showed_impatience]
+  pass: >-
+    The tech respects the choice, asks what the customer wants to compare, and
+    makes the estimate easy to compare: itemized, in writing, with what is included.
+  fail: >-
+    The tech drops the price to stop them shopping, pushes for a decision now, or
+    argues that other companies are worse.
+coaching:
+  why: >-
+    Three bids is almost never about three bids. It is about feeling sure the
+    price is fair. Cutting the price confirms their fear that it was padded.
+  modelResponse: >-
+    That makes sense, it's a real decision. Can I ask what you'll be comparing,
+    mostly price, or what's included? Let me put everything in writing, line by
+    line, so it's easy to hold up against the others. And if you have any
+    questions about theirs, call me. I'll tell you straight.
+  commonMistakes:
+    - Dropping the price on the spot
+    - Saying other companies cut corners
+    - Asking for the decision again without answering the worry
+tags: [core, competition]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Gold example objection move.

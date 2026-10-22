@@ -1,0 +1,1629 @@
+{
+ "version": "0.1.0+ea3e4b90054b",
+ "hash": "ea3e4b90054b",
+ "builtAt": "2026-10-22T08:34:42.088Z",
+ "personas": [
+  {
+   "id": "margaret-retiree",
+   "version": 1,
+   "name": "Margaret Ellis",
+   "shortName": "Margaret",
+   "age": 71,
+   "archetype": "Retiree on a fixed income",
+   "card": "Retired school secretary. Lives alone in the house she has owned for 34 years. Polite, careful, and slow to decide.",
+   "background": "Margaret worked 28 years as the front office secretary at an elementary school and retired nine years ago. Her husband Harold passed four years ago; he handled the house. She lives on Social Security and a small pension, about $2,900 a month, and keeps a savings cushion she is afraid to touch. Her son Kevin lives two hours away and she does not want to bother him. She has a cat named Biscuit who hides under the bed when strangers come in. She is gracious with tradespeople and offers coffee, but she has been talked into things before (a $4,000 roof coating she later learned she did not need) and she still feels foolish about it. She does not like to talk about money and gets quiet when a number surprises her.",
+   "home": {
+    "type": "Single-story ranch house",
+    "yearBuilt": 1979,
+    "notes": [
+     "Water heater in the garage next to the washer",
+     "Original copper supply lines"
+    ]
+   },
+   "household": [
+    "Margaret, 71",
+    "Biscuit, a gray cat"
+   ],
+   "language": "en",
+   "speech": {
+    "pace": "slow",
+    "register": "Polite, warm, a little formal. Says please and thank you. Never swears.",
+    "fillers": [
+     "well",
+     "oh dear",
+     "let me see",
+     "I suppose"
+    ],
+    "habits": [
+     "Trails off when she is worried instead of saying so directly",
+     "Calls the tech \"young man\" or \"dear\" once she warms up",
+     "Brings up Harold when talking about the house",
+     "Repeats a number back slowly when it surprises her"
+    ],
+    "sampleLines": [
+     "Oh, come in, come in. Watch out for the cat, she's around here somewhere.",
+     "Harold always took care of these things. I'm afraid I don't know much about it.",
+     "Well, that's... that's quite a bit more than I was expecting.",
+     "I suppose I'd like to think it over, if that's all right.",
+     "Would you like some coffee? I just made a pot."
+    ],
+    "audioTags": [
+     "hesitates",
+     "sighs",
+     "chuckles"
+    ]
+   },
+   "voice": {
+    "gender": "female",
+    "ageRange": "65 to 75",
+    "accent": "General American, soft",
+    "voiceDesignPrompt": "A gentle, warm woman in her early seventies with a soft General American accent. Unhurried and polite, with a slight tremble when she is unsure.",
+    "browserVoiceHints": [
+     "Samantha",
+     "Karen",
+     "Google US English",
+     "Female"
+    ],
+    "rate": 0.9,
+    "pitch": 1.05
+   },
+   "knowledge": "low",
+   "values": [
+    "Not being taken advantage of again",
+    "Keeping her savings intact",
+    "Doing things the way Harold would have",
+    "Being treated with respect, not rushed"
+   ],
+   "hidden": {
+    "realConcern": {
+     "id": "outliving-savings",
+     "description": "She is afraid of draining the savings she needs for the rest of her life, and embarrassed to admit how tight money is. The price itself is not the real problem; not knowing if she can afford it without touching savings is.",
+     "revealLine": "Well, to be honest with you, I'm on a fixed income. I have some savings, but I'm scared to dip into it. I don't know how long it has to last me.",
+     "revealAtTrust": 62,
+     "resolvedBy": [
+      "Treating the money worry with dignity, not pity",
+      "Showing an honest lower-cost option that is safe",
+      "Explaining financing as a specific monthly number that fits her budget",
+      "Never pushing her to decide on the spot"
+     ]
+    },
+    "budgetCeiling": 1800,
+    "monthlyCeiling": 95,
+    "startingTrust": 48,
+    "urgency": 55,
+    "decisionMaker": "self",
+    "decisionThreshold": 58,
+    "objections": [
+     {
+      "moveId": "too-expensive",
+      "strength": 55
+     },
+     {
+      "moveId": "ask-my-son",
+      "strength": 40
+     },
+     {
+      "moveId": "need-to-think-about-it",
+      "strength": 45
+     }
+    ],
+    "facts": [
+     {
+      "id": "harold-handled-house",
+      "text": "My husband Harold always handled the house. He passed four years ago.",
+      "revealWhen": {
+       "topics": [
+        "history",
+        "household",
+        "home"
+       ]
+      },
+      "useValue": "A strong tech explains things plainly and offers to walk her through it, without making her feel she should already know."
+     },
+     {
+      "id": "biscuit-the-cat",
+      "text": "That's Biscuit. She hides when people come in, don't mind her.",
+      "revealWhen": {
+       "topics": [],
+       "afterTurn": 1
+      },
+      "useValue": "Remembering the cat (keeping the garage door closed, working quietly) shows care and builds trust fast."
+     },
+     {
+      "id": "roof-coating-regret",
+      "text": "A man sold me a roof coating a few years back. Four thousand dollars. I found out later I didn't need it at all.",
+      "revealWhen": {
+       "topics": [
+        "previous-work",
+        "history"
+       ],
+       "minTrust": 50
+      },
+      "useValue": "Explains her caution. A strong tech shows the evidence and offers the honest lower-cost option first."
+     },
+     {
+      "id": "son-kevin-far-away",
+      "text": "My son Kevin lives up in Bakersfield. I hate to bother him with these things.",
+      "revealWhen": {
+       "topics": [
+        "household",
+        "budget"
+       ]
+      },
+      "useValue": "If she says she wants to ask Kevin, a strong tech offers to call him or send him the written options, instead of pressing her."
+     }
+    ]
+   },
+   "sensitivity": {
+    "pressured": 1.6,
+    "condescended": 1.5,
+    "used_jargon": 1.4,
+    "explained_plainly": 1.3,
+    "showed_evidence": 1.3,
+    "used_customer_detail": 1.2,
+    "framed_monthly": 1.3
+   },
+   "movePreferences": {
+    "silence-after-price": 3,
+    "quiet-money-worry": 3,
+    "thinks-out-loud": 2,
+    "mishears-the-price": 2,
+    "interrupts-how-much": 0,
+    "angry-about-last-company": 0,
+    "background-chaos": 0.5
+   },
+   "openingLines": [
+    "Oh, hello. You must be from the plumbing company. Come in, please.",
+    "Hi there, thank you for coming so quickly. It's in the garage, through here.",
+    "Oh good, you're here. I've been without hot water since yesterday morning."
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Gold example persona. Every other persona follows this level of detail."
+    ]
+   }
+  }
+ ],
+ "moves": [
+  {
+   "id": "need-three-bids",
+   "version": 1,
+   "name": "I need three bids",
+   "kind": "objection",
+   "group": "competition",
+   "skill": "objections",
+   "summary": "The customer says they always get three quotes before deciding.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.8
+   },
+   "priority": 60,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say you never decide on something like this without getting at least three quotes. Be polite and matter of fact, not hostile. Do not explain the real reason unless the tech asks a good question about it.",
+    "lines": [
+     "I appreciate it, but I always get three bids before I do anything like this.",
+     "This seems fine, I just want to get a couple more quotes first.",
+     "My rule is three quotes. Nothing personal.",
+     "Let me see what a couple other companies say and I'll get back to you."
+    ],
+    "followUps": [
+     "I hear you, but I still want to compare.",
+     "That's what everybody says, though."
+    ],
+    "tone": "neutral",
+    "delayMs": 700,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They want proof they are getting a fair price and fear being overcharged. More quotes are a way to feel safe, not a goal in itself.",
+    "resolvedBy": [
+     "Asking what they want to learn from the other bids",
+     "Showing how the price is built and what is included",
+     "Offering a written, itemized estimate they can compare line by line",
+     "Respecting the choice and making it easy to come back"
+    ],
+    "resolvingBehaviors": [
+     "asked_about_concern",
+     "justified_value",
+     "showed_evidence",
+     "honest_answer",
+     "left_well"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "discounted_unprompted",
+     "argued",
+     "showed_impatience"
+    ],
+    "defaultStrength": 50
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "asked_about_concern",
+      "justified_value",
+      "left_well"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "discounted_unprompted",
+      "argued",
+      "showed_impatience"
+     ]
+    },
+    "pass": "The tech respects the choice, asks what the customer wants to compare, and makes the estimate easy to compare: itemized, in writing, with what is included.",
+    "fail": "The tech drops the price to stop them shopping, pushes for a decision now, or argues that other companies are worse."
+   },
+   "coaching": {
+    "why": "Three bids is almost never about three bids. It is about feeling sure the price is fair. Cutting the price confirms their fear that it was padded.",
+    "modelResponse": "That makes sense, it's a real decision. Can I ask what you'll be comparing, mostly price, or what's included? Let me put everything in writing, line by line, so it's easy to hold up against the others. And if you have any questions about theirs, call me. I'll tell you straight.",
+    "commonMistakes": [
+     "Dropping the price on the spot",
+     "Saying other companies cut corners",
+     "Asking for the decision again without answering the worry"
+    ]
+   },
+   "tags": [
+    "core",
+    "competition"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Gold example objection move."
+    ]
+   }
+  },
+  {
+   "id": "background-chaos",
+   "version": 1,
+   "name": "Dog barking in the background",
+   "kind": "behavior",
+   "group": "disruption",
+   "skill": "listening",
+   "summary": "A dog starts barking and the customer is pulled away for a moment, missing what the tech just said.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "discovery",
+     "findings",
+     "options"
+    ],
+    "afterBehaviors": [],
+    "when": {},
+    "chance": 0.35
+   },
+   "priority": 30,
+   "maxUses": 2,
+   "delivery": {
+    "act": "distracted",
+    "intent": "A dog starts barking in the background and takes your attention away. Deal with it in one short, distracted line, then turn back to the tech. You missed the last thing they said, and you may be a little embarrassed about the noise. Pay full attention again if the tech pauses, stays relaxed, and repeats the key point briefly.",
+    "lines": [
+     "Sorry, hang on. Quiet! Sorry. What were you saying?",
+     "Oh my gosh, that dog. Sorry, go ahead.",
+     "Hold on, I can't hear you over the barking. Okay, sorry.",
+     "[chuckles] Sorry, sorry. Hush! Okay, where were you?"
+    ],
+    "followUps": [
+     "Sorry, I missed that last part. Can you say it again?"
+    ],
+    "tone": "distracted",
+    "delayMs": 1000,
+    "soundCue": "dog-bark",
+    "audioTags": [
+     "chuckles"
+    ],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 1,
+    "passIf": {
+     "anyBehaviors": [
+      "re_engaged",
+      "checked_understanding"
+     ],
+     "allBehaviors": []
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "showed_impatience",
+      "rambled"
+     ]
+    },
+    "pass": "The tech stops talking for the noise, stays relaxed, and briefly repeats the last key point once the customer is back.",
+    "fail": "The tech talks over the noise as if nothing happened, or shows irritation at the interruption."
+   },
+   "coaching": {
+    "why": "Noise is normal in a home, and customers are often embarrassed by it. How you handle it shows whether you are patient with their house and their life. Anything you said during the noise was not heard, so say it again briefly.",
+    "modelResponse": "(Stops talking while the dog barks and waits for the customer to turn back.) \"No problem at all, take your time. So, the short version of what I was saying: (the key point in one sentence). Does that make sense so far?\"",
+    "commonMistakes": [
+     "Raising your voice to talk over the noise",
+     "Going on with the explanation while the customer deals with the dog",
+     "Sighing or making a comment about the dog",
+     "Assuming the customer heard what you said during the barking"
+    ]
+   },
+   "tags": [
+    "disruption",
+    "listening"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Uses dog-bark. The lines do not say whose dog it is, so they work for most homes.",
+     "Margaret has a cat, not a dog (movePreference 0.5). For her the voice writer should treat it as a neighbor's dog and pick a line that fits."
+    ]
+   }
+  },
+  {
+   "id": "half-listening",
+   "version": 1,
+   "name": "Half listening",
+   "kind": "behavior",
+   "group": "disruption",
+   "skill": "listening",
+   "summary": "The customer keeps checking their phone while the tech explains and misses what was just said.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "findings",
+     "options"
+    ],
+    "afterBehaviors": [],
+    "when": {},
+    "chance": 0.4
+   },
+   "priority": 35,
+   "maxUses": 1,
+   "delivery": {
+    "act": "distracted",
+    "intent": "You are only half listening. You keep looking at your phone. Answer vaguely, or admit you missed what the tech just said. You are not rude, just busy. Give full attention again only if the tech pauses, gets your attention, and gives you the short version. If they keep explaining at full length, stay distracted.",
+    "lines": [
+     "Sorry, I was reading a text. What did you say?",
+     "Mm-hm. Wait, sorry, say that last part again?",
+     "Yeah, sorry, I'm listening. Go ahead.",
+     "Huh? Sorry, I missed that. My phone keeps going off."
+    ],
+    "followUps": [
+     "Sorry. What's the short version?",
+     "Okay, so what do I actually need to do?"
+    ],
+    "tone": "distracted",
+    "delayMs": 700,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "re_engaged",
+      "checked_understanding"
+     ],
+     "allBehaviors": []
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "rambled",
+      "showed_impatience"
+     ]
+    },
+    "pass": "The tech notices the customer is distracted, pauses, gives the main point in one or two sentences, and checks that the customer is following.",
+    "fail": "The tech keeps explaining at full length to someone who is not listening, or makes a pointed comment about the customer's phone."
+   },
+   "coaching": {
+    "why": "If the customer is not listening, nothing you explain will be remembered when it is time to decide. Talking longer does not fix it. A pause and a short version get their attention back without making them feel scolded.",
+    "modelResponse": "No worries, I know you've got a lot going on. Here's the short version: (the main point in one sentence). That's the main thing you need to know. Do you want me to keep going now, or should I give you a minute to finish that first?",
+    "commonMistakes": [
+     "Explaining at full length as if they heard everything",
+     "Waiting in an obvious way until they put the phone down",
+     "Saying \"Am I boring you?\" or another sarcastic comment",
+     "Moving on to the price while they are still distracted"
+    ]
+   },
+   "tags": [
+    "disruption",
+    "listening"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "No sound cue. The distraction is the customer's phone screen, not a sound."
+    ]
+   }
+  },
+  {
+   "id": "interrupts-how-much",
+   "version": 1,
+   "name": "Cuts in to ask how much",
+   "kind": "behavior",
+   "group": "disruption",
+   "skill": "price",
+   "summary": "While the tech is still explaining, the customer cuts in and asks how much it is.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "findings",
+     "options"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": false
+    },
+    "chance": 0.5
+   },
+   "priority": 60,
+   "maxUses": 1,
+   "delivery": {
+    "act": "interrupt",
+    "intent": "Cut in while the tech is still explaining. You are not angry. You just want to know the cost before you hear the details. Ask how much it is. If they give a number or a clear range, say okay and let them go on. If they dodge, say \"it depends\" with no number, or keep explaining, ask again a little more firmly.",
+    "lines": [
+     "Sorry to cut you off. So how much is it?",
+     "Okay, okay. So how much is it?",
+     "So how much is it? Just ballpark.",
+     "Sorry, before you get into all that. So how much is it?"
+    ],
+    "followUps": [
+     "Just a ballpark. I won't hold you to it.",
+     "Okay, but what's the number?"
+    ],
+    "tone": "rushed",
+    "delayMs": 0,
+    "interruptAfterMs": 9000,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 1,
+    "passIf": {
+     "anyBehaviors": [
+      "stated_price",
+      "explained_plainly"
+     ],
+     "allBehaviors": []
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "showed_impatience",
+      "rambled"
+     ]
+    },
+    "pass": "The tech calmly answers right away with a number or a clear range in plain words, then says briefly what decides the final price.",
+    "fail": "The tech sounds annoyed at being cut off, says \"I'm getting to that,\" or keeps explaining without giving any number."
+   },
+   "coaching": {
+    "why": "A customer who cuts in for the price is telling you what they need first. Making them wait sounds like you are hiding the number, and they stop listening until they hear it. A clear range answers the question, and then they are ready to hear the explanation.",
+    "modelResponse": "Fair question. Depending on which option you pick, it runs from about (lowest option price) to about (highest option price), everything included. The difference comes down to what each one includes. Give me one minute and I'll show you which one fits what you told me.",
+    "commonMistakes": [
+     "Saying \"I'm getting to that\" and continuing the explanation",
+     "Answering \"it depends\" with no number at all",
+     "Getting flustered and offering a discount before they even react",
+     "Saying the number quickly at the end of a long sentence"
+    ]
+   },
+   "tags": [
+    "disruption",
+    "price",
+    "timing"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Fires only before a price has been stated. The runtime cuts in once the tech has talked for 9 seconds.",
+     "A clear range counts as a pass. Check that perception tags a plainly stated range as stated_price."
+    ]
+   }
+  },
+  {
+   "id": "minimal-responses",
+   "version": 1,
+   "name": "One-word answers",
+   "kind": "behavior",
+   "group": "silence",
+   "skill": "listening",
+   "summary": "The customer goes flat and answers in one or two words for a few turns, without saying why.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "discovery",
+     "findings",
+     "options"
+    ],
+    "afterBehaviors": [],
+    "when": {},
+    "chance": 0.4
+   },
+   "priority": 40,
+   "maxUses": 1,
+   "delivery": {
+    "act": "react",
+    "intent": "For your next few replies, answer in one to four words and volunteer nothing. You are not angry. You are either not following, not convinced, or thinking about something else, and you do not say which. Open up again only if the tech stops explaining and asks an open question about what you think, or checks whether it makes sense. If they keep talking, stay flat.",
+    "lines": [
+     "Mm-hm.",
+     "Yeah. Okay.",
+     "Sure, I guess.",
+     "Okay. Got it."
+    ],
+    "followUps": [
+     "Yeah, I heard you. Anything else?",
+     "Okay. So what's next?"
+    ],
+    "tone": "guarded",
+    "delayMs": 900,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "asked_open_question",
+      "checked_understanding",
+      "asked_about_concern",
+      "re_engaged"
+     ],
+     "allBehaviors": []
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "rambled"
+     ]
+    },
+    "pass": "The tech notices the short answers, stops explaining, and asks an open question or checks what the customer is thinking.",
+    "fail": "The tech keeps talking through the one-word answers, or takes \"okay\" as agreement and moves on to the price."
+   },
+   "coaching": {
+    "why": "One-word answers mean the customer has stopped engaging, even when they are polite about it. \"Okay\" often means \"I'm not following\" or \"I'm not sure,\" not \"yes.\" If you keep talking, they stop listening, and you never learn what is stopping them.",
+    "modelResponse": "Let me stop there, I've been doing most of the talking. What are you thinking so far? If something I said didn't make sense, or you're not sure about it, that's exactly what I want to hear. I'd rather slow down than have you feel rushed.",
+    "commonMistakes": [
+     "Taking \"okay\" as agreement and moving on to the price",
+     "Explaining the same thing again in more detail",
+     "Asking more yes-or-no questions that get more one-word answers",
+     "Talking faster to get through it"
+    ]
+   },
+   "tags": [
+    "silence",
+    "listening"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Lines are shorter than the usual 5-word minimum on purpose. One-word answers are the move.",
+     "The intent covers several replies. Check that the runtime keeps the flat style for the whole evaluation window."
+    ]
+   }
+  },
+  {
+   "id": "phone-call-hold-on",
+   "version": 1,
+   "name": "Takes a phone call",
+   "kind": "behavior",
+   "group": "disruption",
+   "skill": "listening",
+   "summary": "The customer's phone rings, they say \"hold on,\" step away for about 12 seconds, and come back having lost track of the conversation.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "discovery",
+     "findings",
+     "options"
+    ],
+    "afterBehaviors": [],
+    "when": {},
+    "chance": 0.35
+   },
+   "priority": 45,
+   "maxUses": 1,
+   "delivery": {
+    "act": "distracted",
+    "intent": "Your phone rings. Say \"hold on,\" say you need to take it, and step away. You are gone for the whole hold. When you come back, apologize and ask where you were. You have lost track of what the tech was saying. Pay full attention again only if the tech gives you a short recap and checks in. If they pick up in the middle of a sentence, ask them to back up.",
+    "lines": [
+     "Oh, sorry, hold on. I need to take this.",
+     "Hold on one second. I've been waiting on this call.",
+     "Sorry, hold on. Let me just see who this is.",
+     "Hold on, I gotta grab this real quick. Sorry."
+    ],
+    "followUps": [
+     "Sorry about that. Where were we?",
+     "Wait, sorry, back up. What did you say was wrong with it?"
+    ],
+    "tone": "distracted",
+    "delayMs": 1500,
+    "holdSilenceMs": 12000,
+    "soundCue": "phone-ring",
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "re_engaged"
+     ],
+     "allBehaviors": []
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "showed_impatience",
+      "rambled"
+     ]
+    },
+    "pass": "When the customer comes back, the tech welcomes them back, recaps the main point in a sentence or two, and checks in before going on.",
+    "fail": "The tech sounds annoyed by the wait, picks up mid-sentence as if nothing happened, or starts over from the beginning at full length."
+   },
+   "coaching": {
+    "why": "After a phone call, the customer has forgotten most of what you said and is still thinking about the call. If you continue where you stopped, they nod along without following. A short recap gets their attention back on the job and shows you respect their time.",
+    "modelResponse": "(Stays quiet while they are on the phone.) When they come back: \"No problem at all. Quick recap: I found what's causing the problem, and I was about to show you a couple of ways to fix it. Does that still make sense? Any questions before I keep going?\"",
+    "commonMistakes": [
+     "Picking up mid-sentence as if they never left",
+     "Saying \"As I was saying\" in a tired voice",
+     "Talking to the customer while they are on the phone",
+     "Re-explaining everything from the start at full length"
+    ]
+   },
+   "tags": [
+    "disruption",
+    "recovery",
+    "core"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The customer is away for holdSilenceMs. The runtime speaks followUps[0] when the hold ends, so keep it first.",
+     "Pass is judged on the tech's turns after the customer returns. A short \"take your time\" during the hold is fine."
+    ]
+   }
+  },
+  {
+   "id": "silence-after-price",
+   "version": 1,
+   "name": "Goes quiet after the price",
+   "kind": "behavior",
+   "group": "silence",
+   "skill": "price",
+   "summary": "The customer says nothing for about six seconds after hearing the price.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price"
+    ],
+    "afterBehaviors": [
+     "stated_price"
+    ],
+    "when": {},
+    "chance": 0.7
+   },
+   "priority": 85,
+   "maxUses": 1,
+   "delivery": {
+    "act": "silence",
+    "intent": "Say nothing. You are taking in the number. When the silence ends, react honestly to the price from your own situation, in one short sentence.",
+    "lines": [
+     "Hm. Okay.",
+     "That's... a lot.",
+     "Okay. Let me think about that for a second.",
+     "[exhales] Wow."
+    ],
+    "followUps": [
+     "So that's the total? Everything?"
+    ],
+    "tone": "thoughtful",
+    "delayMs": 0,
+    "holdSilenceMs": 6000,
+    "audioTags": [
+     "exhales"
+    ],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 1,
+    "passIf": {
+     "anyBehaviors": [],
+     "allBehaviors": [],
+     "minSilenceMs": 4000
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "filled_silence",
+      "discounted_unprompted",
+      "hedged_price"
+     ]
+    },
+    "pass": "The tech waits at least four seconds without restating, justifying, or lowering the price.",
+    "fail": "The tech speaks within four seconds, especially to justify, apologize for, or discount the price."
+   },
+   "coaching": {
+    "why": "The silence belongs to the customer. They are doing math, not rejecting you. Filling it tells them the price is soft, and a discount offered into silence costs you money and trust at the same time.",
+    "modelResponse": "(Says the price, then waits. Counts to five. Lets the customer speak first.) When they do: \"Take your time. What questions do you have?\"",
+    "commonMistakes": [
+     "Justifying the price before they react",
+     "Saying \"but we can do financing\" in the first two seconds",
+     "Offering a discount into the silence"
+    ]
+   },
+   "tags": [
+    "core",
+    "timing"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Gold example behavior move. Pass and fail are measured from timing, not by a model."
+    ]
+   }
+  },
+  {
+   "id": "spouse-walks-in",
+   "version": 1,
+   "name": "Spouse walks in",
+   "kind": "behavior",
+   "group": "disruption",
+   "skill": "close",
+   "summary": "The other decision-maker walks in partway through, has missed everything, and asks whether it is bad.",
+   "difficultyMin": 2,
+   "personas": [
+    "ruiz-couple",
+    "morgan-first-home",
+    "jen-busy-parent"
+   ],
+   "trigger": {
+    "phases": [
+     "findings",
+     "options",
+     "price"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "secondaryPresent": false
+    },
+    "chance": 0.5
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "probe",
+    "intent": "You are the other decision-maker in the house, and you just walked in partway through. You missed everything so far. Ask what is going on and whether it is bad. You will not agree to anything you do not understand. Become friendlier if the tech recaps for you in plain words and asks what you think. Get guarded if they keep talking only to your partner, re-explain everything at length, or push for a decision.",
+    "lines": [
+     "Hey, sorry, I just got home. What's going on? Is it bad?",
+     "What's the plumber saying? Is it bad?",
+     "Okay, I'm here. Can somebody catch me up? How bad is it?",
+     "Wait, what did I miss? Are we talking a lot of money?"
+    ],
+    "followUps": [
+     "Hang on, can you explain that part to me too?",
+     "Okay, but what does that actually mean for us?"
+    ],
+    "tone": "anxious",
+    "delayMs": 1200,
+    "soundCue": "footsteps",
+    "audioTags": [],
+    "speaker": "secondary"
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "included_second_person"
+     ],
+     "allBehaviors": []
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "rambled",
+      "pressured"
+     ]
+    },
+    "pass": "The tech greets the second person, gives a short, plain recap of what they found, and asks for their questions or input.",
+    "fail": "The tech keeps talking only to the first person, re-explains everything at length, or pushes for a decision before the second person is caught up."
+   },
+   "coaching": {
+    "why": "The person who walks in late often has an equal say, and they heard none of your explanation. If they are not caught up, the answer will be \"we need to talk about it.\" A short recap for them is part of closing, not a delay.",
+    "modelResponse": "Hi, I'm (name), nice to meet you. Here's the short version so you're caught up: I found what's causing the problem, I showed it to (partner's name), and there are a couple of ways to fix it. Before I go on, what questions do you have? I want you both to be comfortable with whatever you decide.",
+    "commonMistakes": [
+     "Nodding at the second person and going on with the first",
+     "Re-explaining everything from the start at full length",
+     "Asking for the decision before the second person is caught up",
+     "Treating the second person's questions as a stall"
+    ]
+   },
+   "tags": [
+    "disruption",
+    "second-decision-maker",
+    "core"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Spoken by the secondary person. Limited to the personas that define one.",
+     "Lines avoid assuming the tech's gender."
+    ]
+   }
+  },
+  {
+   "id": "thinks-out-loud",
+   "version": 1,
+   "name": "Thinks out loud",
+   "kind": "behavior",
+   "group": "silence",
+   "skill": "listening",
+   "summary": "After hearing the options, the customer starts weighing them out loud, stops mid-sentence, and goes quiet for a few seconds.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price"
+    ],
+    "afterBehaviors": [
+     "presented_options"
+    ],
+    "when": {},
+    "chance": 0.5
+   },
+   "priority": 80,
+   "maxUses": 1,
+   "delivery": {
+    "act": "react",
+    "intent": "Start weighing the options out loud, then stop in the middle of the sentence and go quiet while you think. Do not finish the thought and do not ask a question yet. If the tech waits, finish the thought yourself in one short sentence that says what you are actually weighing. If the tech jumps in, say you were still thinking.",
+    "lines": [
+     "So the cheaper one fixes it for now, but if it happens again, then...",
+     "Okay. So if we went with the second one, that would mean...",
+     "[thoughtful] Hm. The longer warranty's nice, but then again, if we...",
+     "So the basic one would get us by, and then later we could maybe..."
+    ],
+    "followUps": [
+     "Sorry, I was just thinking it through. I'm trying to figure out what makes sense for us.",
+     "Hang on, I wasn't done. I was still working that out."
+    ],
+    "tone": "thoughtful",
+    "delayMs": 800,
+    "holdSilenceMs": 3500,
+    "audioTags": [
+     "thoughtful"
+    ],
+    "speaker": "primary"
+   },
+   "evaluate": {
+    "windowTurns": 1,
+    "passIf": {
+     "anyBehaviors": [],
+     "allBehaviors": [],
+     "minSilenceMs": 2500
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "filled_silence",
+      "interrupted_customer"
+     ]
+    },
+    "pass": "The tech lets the unfinished thought sit for at least two and a half seconds and lets the customer finish it.",
+    "fail": "The tech finishes the customer's sentence, starts selling an option, or talks while the customer is still thinking."
+   },
+   "coaching": {
+    "why": "A customer thinking out loud is making the decision in front of you. If you finish the sentence for them, you replace their reasoning with yours and they stop sharing it. If you wait, they tell you exactly what they are weighing.",
+    "modelResponse": "(Stays quiet for at least three seconds and lets the customer finish.) If they stay quiet: \"Take your time. What part are you weighing?\" Then listens to the whole answer before saying anything about the options, and answers the part they named.",
+    "commonMistakes": [
+     "Finishing the customer's sentence for them",
+     "Jumping in to sell the option they seemed to be leaning away from",
+     "Filling the pause with more details about the options",
+     "Asking \"So which one?\" before they finish thinking"
+    ]
+   },
+   "tags": [
+    "silence",
+    "timing",
+    "listening"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Pass and fail are measured from timing. The runtime speaks the line first, then holds the silence.",
+     "followUps[0] completes the thought, so it also works if the runtime speaks it when the hold ends. followUps[1] is for a tech who jumped in."
+    ]
+   }
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "wh-tank-no-hot-water",
+   "version": 1,
+   "title": "12-year-old tank, no hot water",
+   "trade": "plumbing",
+   "jobType": "water-heater-replacement",
+   "difficulty": 2,
+   "personaId": "margaret-retiree",
+   "alternatePersonas": [
+    "linda-warranty",
+    "morgan-first-home"
+   ],
+   "briefing": "Service call. Homeowner reports no hot water since yesterday morning. 40-gallon gas tank water heater in the garage. Not a member.",
+   "situation": "The 12-year-old 40-gallon gas tank has failed. There is rust and water at the base of the tank and the burner will not stay lit because water has soaked the combustion chamber. Replacement is the honest recommendation. A repair is not realistic because the tank itself is leaking. The installation also needs a thermal expansion tank and new seismic straps to meet current code.",
+   "equipment": [
+    {
+     "item": "40-gallon atmospheric gas water heater",
+     "ageYears": 12,
+     "notes": "Rust at the base, water on the floor, burner will not stay lit"
+    }
+   ],
+   "findings": [
+    {
+     "id": "tank-leaking",
+     "text": "The tank is leaking from the bottom. Once a tank leaks, it cannot be repaired.",
+     "severity": "urgent"
+    },
+    {
+     "id": "no-expansion-tank",
+     "text": "There is no thermal expansion tank. Current code requires one on a new install.",
+     "severity": "major"
+    },
+    {
+     "id": "straps-loose",
+     "text": "The seismic straps are loose and only one is attached.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-tank",
+     "label": "Replace the water heater",
+     "rationale": "The tank is leaking and cannot be repaired."
+    },
+    {
+     "id": "expansion-tank",
+     "label": "Add a thermal expansion tank",
+     "rationale": "Required by code on a new installation."
+    },
+    {
+     "id": "seismic-straps",
+     "label": "Install two new seismic straps",
+     "rationale": "Required by code in California."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "whole-house-repipe",
+     "label": "Whole-house repipe",
+     "why": "The copper supply lines are in good condition. Nothing points to a repipe."
+    },
+    {
+     "id": "tankless-required",
+     "label": "Saying a tankless unit is required",
+     "why": "Tankless is an option, not a requirement. A tank replacement is a sound choice."
+    },
+    {
+     "id": "water-softener",
+     "label": "Water softener",
+     "why": "Nothing in this call points to hard water damage. Recommending one is an upsell."
+    }
+   ],
+   "options": [
+    {
+     "id": "standard-40",
+     "label": "40-gallon standard gas, 6-year warranty",
+     "price": 1890,
+     "monthly": 49,
+     "includes": [
+      "New 40-gallon gas water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "premium-40",
+     "label": "40-gallon high-recovery gas, 10-year warranty",
+     "price": 2490,
+     "monthly": 65,
+     "includes": [
+      "Everything in the standard option",
+      "Longer 10-year tank and parts warranty",
+      "Faster hot water recovery",
+      "Shutoff valve replacement"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "tankless",
+     "label": "Tankless gas, 12-year warranty",
+     "price": 4650,
+     "monthly": 119,
+     "includes": [
+      "Tankless gas water heater",
+      "New gas line and venting",
+      "Permit and haul-away"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Find out what matters to the customer, explain the finding plainly, present options, state the price, handle the objection that follows, and ask for a decision.",
+   "passBar": 70,
+   "tags": [
+    "water-heater",
+    "core",
+    "starter"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Gold example scenario. Prices are placeholders inside public Riverside County ranges; each company's price book replaces them."
+    ]
+   }
+  }
+ ],
+ "rubric": {
+  "id": "base",
+  "version": 1,
+  "name": "Sales Coach base rubric",
+  "passBar": 70,
+  "skills": [
+   {
+    "id": "frame",
+    "name": "Set the frame",
+    "description": "Opens the visit well: introduces themselves, tells the customer what will happen and how long it takes, and sets the expectation that options come before any work.",
+    "weight": 0.8,
+    "base": 40,
+    "positive": [
+     {
+      "behavior": "set_frame",
+      "points": 45,
+      "cap": 45
+     },
+     {
+      "behavior": "acknowledged_feeling",
+      "points": 10,
+      "cap": 10
+     },
+     {
+      "behavior": "asked_open_question",
+      "points": 5,
+      "cap": 5
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "interrupted_customer",
+      "points": 10
+     },
+     {
+      "behavior": "pressured",
+      "points": 15
+     },
+     {
+      "behavior": "rambled",
+      "points": 10
+     }
+    ],
+    "requiresPhase": "door",
+    "levels": {
+     "excellent": "Clear, warm frame in the first 30 seconds. The customer knows what happens next.",
+     "solid": "Introduces themselves and explains the visit, but misses that options come first.",
+     "developing": "Walks straight to the equipment without setting expectations."
+    }
+   },
+   {
+    "id": "discovery",
+    "name": "Discovery",
+    "description": "Learns about the person, not just the problem: history, how they use the system, who lives there, what matters to them, what they are worried about.",
+    "weight": 1.2,
+    "base": 30,
+    "positive": [
+     {
+      "behavior": "asked_open_question",
+      "points": 10,
+      "cap": 30
+     },
+     {
+      "behavior": "asked_follow_up",
+      "points": 8,
+      "cap": 16
+     },
+     {
+      "behavior": "reflected_back",
+      "points": 8,
+      "cap": 16
+     },
+     {
+      "behavior": "acknowledged_feeling",
+      "points": 6,
+      "cap": 12
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "interrupted_customer",
+      "points": 8
+     },
+     {
+      "behavior": "rambled",
+      "points": 8
+     }
+    ],
+    "levels": {
+     "excellent": "Three or more open questions, follows up, and reflects back what they heard.",
+     "solid": "Asks some good questions but moves to the diagnosis before understanding the person.",
+     "developing": "Asks yes or no questions only, or none."
+    }
+   },
+   {
+    "id": "findings",
+    "name": "Findings in plain language",
+    "description": "Explains what they found in words a homeowner understands, shows the evidence, and checks that it made sense.",
+    "weight": 1,
+    "base": 35,
+    "positive": [
+     {
+      "behavior": "explained_plainly",
+      "points": 15,
+      "cap": 30
+     },
+     {
+      "behavior": "showed_evidence",
+      "points": 15,
+      "cap": 15
+     },
+     {
+      "behavior": "checked_understanding",
+      "points": 10,
+      "cap": 20
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "used_jargon",
+      "points": 10
+     },
+     {
+      "behavior": "bluffed",
+      "points": 15
+     },
+     {
+      "behavior": "condescended",
+      "points": 10
+     }
+    ],
+    "requiresPhase": "findings",
+    "levels": {
+     "excellent": "Shows the problem, explains it simply, and checks understanding.",
+     "solid": "Explains clearly but does not show the evidence or check in.",
+     "developing": "Uses trade terms the customer does not know, or skips the explanation."
+    }
+   },
+   {
+    "id": "options",
+    "name": "Options",
+    "description": "Presents real choices, tied to what the customer said matters, with an honest recommendation.",
+    "weight": 1,
+    "base": 40,
+    "positive": [
+     {
+      "behavior": "presented_options",
+      "points": 30,
+      "cap": 30
+     },
+     {
+      "behavior": "tied_options_to_needs",
+      "points": 12,
+      "cap": 24
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "single_option_only",
+      "points": 20
+     },
+     {
+      "behavior": "recommended_unneeded_work",
+      "points": 25
+     }
+    ],
+    "requiresPhase": "options",
+    "levels": {
+     "excellent": "Two or three options, each tied to something the customer said.",
+     "solid": "Presents options but as a menu, not connected to the customer.",
+     "developing": "One take-it-or-leave-it option."
+    }
+   },
+   {
+    "id": "price",
+    "name": "Price composure",
+    "description": "States the price once, clearly, without apology, and lets the customer react without filling the silence or discounting.",
+    "weight": 1.2,
+    "base": 40,
+    "positive": [
+     {
+      "behavior": "stated_price",
+      "points": 20,
+      "cap": 20
+     },
+     {
+      "behavior": "held_silence",
+      "points": 20,
+      "cap": 20
+     },
+     {
+      "behavior": "justified_value",
+      "points": 10,
+      "cap": 20
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "hedged_price",
+      "points": 15
+     },
+     {
+      "behavior": "discounted_unprompted",
+      "points": 25
+     },
+     {
+      "behavior": "filled_silence",
+      "points": 15
+     }
+    ],
+    "requiresPhase": "price",
+    "levels": {
+     "excellent": "Clean number, holds the silence, explains value when asked.",
+     "solid": "Clear number but fills the silence or over-explains.",
+     "developing": "Apologizes for the price or discounts before the customer reacts."
+    }
+   },
+   {
+    "id": "objections",
+    "name": "Objection handling",
+    "description": "Finds the concern behind the objection and answers that, calmly, without arguing, caving, or repeating themselves.",
+    "weight": 1.4,
+    "base": 30,
+    "positive": [
+     {
+      "behavior": "asked_about_concern",
+      "points": 12,
+      "cap": 24
+     },
+     {
+      "behavior": "addressed_concern",
+      "points": 12,
+      "cap": 36
+     },
+     {
+      "behavior": "new_angle",
+      "points": 10,
+      "cap": 20
+     },
+     {
+      "behavior": "corrected_respectfully",
+      "points": 10,
+      "cap": 20
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "argued",
+      "points": 15
+     },
+     {
+      "behavior": "showed_impatience",
+      "points": 15
+     },
+     {
+      "behavior": "repeated_same_answer",
+      "points": 10
+     },
+     {
+      "behavior": "caved",
+      "points": 15
+     },
+     {
+      "behavior": "pressured",
+      "points": 10
+     }
+    ],
+    "requiresPhase": "objections",
+    "levels": {
+     "excellent": "Asks what is behind it, answers the real worry, stays calm on repeats.",
+     "solid": "Answers the stated objection but not the concern behind it.",
+     "developing": "Argues, caves, or repeats the same answer louder."
+    }
+   },
+   {
+    "id": "listening",
+    "name": "Listening and recall",
+    "description": "Catches the details the customer drops and uses them later. Stays with the customer through interruptions.",
+    "weight": 1,
+    "base": 40,
+    "positive": [
+     {
+      "behavior": "used_customer_detail",
+      "points": 20,
+      "cap": 40
+     },
+     {
+      "behavior": "reflected_back",
+      "points": 6,
+      "cap": 12
+     },
+     {
+      "behavior": "re_engaged",
+      "points": 12,
+      "cap": 12
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "interrupted_customer",
+      "points": 10
+     },
+     {
+      "behavior": "rambled",
+      "points": 10
+     }
+    ],
+    "levels": {
+     "excellent": "Brings back a detail the customer mentioned and uses it in the recommendation.",
+     "solid": "Listens well in the moment but does not use what they heard.",
+     "developing": "Talks over the customer or misses what they said."
+    }
+   },
+   {
+    "id": "close",
+    "name": "Asking for the decision",
+    "description": "Recaps the recommendation, asks clearly for a decision, includes every decision maker, and leaves well when the answer is no or not yet.",
+    "weight": 1.2,
+    "base": 35,
+    "positive": [
+     {
+      "behavior": "asked_for_decision",
+      "points": 30,
+      "cap": 30
+     },
+     {
+      "behavior": "recapped_value",
+      "points": 12,
+      "cap": 12
+     },
+     {
+      "behavior": "included_second_person",
+      "points": 10,
+      "cap": 10
+     },
+     {
+      "behavior": "left_well",
+      "points": 15,
+      "cap": 15
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "pressured",
+      "points": 20
+     }
+    ],
+    "requiresPhase": "price",
+    "levels": {
+     "excellent": "Recaps, asks one clear question, and handles the answer gracefully.",
+     "solid": "Asks for the decision but without a recap, or asks twice.",
+     "developing": "Never asks, or pressures."
+    }
+   },
+   {
+    "id": "membership-financing",
+    "name": "Membership and financing",
+    "description": "Offers financing as a specific monthly number and the membership with benefits that matter to this customer, with dignity and no pressure.",
+    "weight": 0.8,
+    "base": 40,
+    "positive": [
+     {
+      "behavior": "offered_financing",
+      "points": 15,
+      "cap": 15
+     },
+     {
+      "behavior": "framed_monthly",
+      "points": 15,
+      "cap": 15
+     },
+     {
+      "behavior": "offered_membership",
+      "points": 15,
+      "cap": 15
+     },
+     {
+      "behavior": "explained_membership_value",
+      "points": 15,
+      "cap": 15
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "pressured",
+      "points": 10
+     }
+    ],
+    "requiresPhase": "price",
+    "levels": {
+     "excellent": "A monthly number and relevant membership benefits, offered once, calmly.",
+     "solid": "Mentions financing or membership but generically.",
+     "developing": "Never mentions either, or pushes them."
+    }
+   },
+   {
+    "id": "integrity",
+    "name": "Integrity and respect",
+    "description": "Recommends only what the home needs, answers honestly, never pressures, and treats the customer as capable.",
+    "weight": 1.4,
+    "base": 80,
+    "positive": [
+     {
+      "behavior": "honest_answer",
+      "points": 10,
+      "cap": 20
+     }
+    ],
+    "negative": [
+     {
+      "behavior": "recommended_unneeded_work",
+      "points": 40
+     },
+     {
+      "behavior": "bluffed",
+      "points": 30
+     },
+     {
+      "behavior": "pressured",
+      "points": 20
+     },
+     {
+      "behavior": "condescended",
+      "points": 20
+     },
+     {
+      "behavior": "caved",
+      "points": 10
+     }
+    ],
+    "levels": {
+     "excellent": "Honest, no pressure, recommends only what is needed.",
+     "solid": "Honest, with a moment of pressure or a careless claim.",
+     "developing": "Pushes unneeded work, bluffs, or pressures."
+    }
+   }
+  ],
+  "levels": [
+   {
+    "id": "apprentice",
+    "name": "Apprentice",
+    "requirement": "Every tech starts here.",
+    "examDifficulty": 1,
+    "examPassBar": 0
+   },
+   {
+    "id": "advisor",
+    "name": "Advisor",
+    "requirement": "Pass a difficulty 2 exam with 70 or better.",
+    "examDifficulty": 2,
+    "examPassBar": 70
+   },
+   {
+    "id": "senior-advisor",
+    "name": "Senior Advisor",
+    "requirement": "Pass a difficulty 4 exam with 75 or better.",
+    "examDifficulty": 4,
+    "examPassBar": 75
+   },
+   {
+    "id": "master",
+    "name": "Master",
+    "requirement": "Pass a difficulty 5 exam with 80 or better and 90 or better on integrity.",
+    "examDifficulty": 5,
+    "examPassBar": 80
+   }
+  ],
+  "review": {
+   "status": "draft",
+   "author": "Claude",
+   "notes": [
+    "Point values are a starting calibration. Tune them against the 100 human-rated sessions in month 1."
+   ]
+  }
+ },
+ "drills": [
+  {
+   "id": "hold-the-silence",
+   "version": 1,
+   "order": 7,
+   "title": "The silence after price",
+   "stage": "price",
+   "skill": "price",
+   "durationSec": 120,
+   "why": "Here is the moment that costs techs more money than any other. You say the price, and the customer goes quiet. Most people can't stand that quiet. Within two or three seconds they start talking: explaining the price, apologizing for it, offering financing, or worse, knocking a hundred dollars off. Every one of those tells the customer the number was soft. Here is what is really happening in that silence. The customer is doing math. They are thinking about their budget, their week, what their spouse will say. They are not rejecting you. The silence belongs to them. Your job is to say the price clearly, once, and then wait. Count to five in your head if you have to. Let them speak first. When they do, you will learn exactly what they are worried about, and that is the conversation you actually need to have. In this drill, you will say the price, and the customer will go quiet. Hold it.",
+   "demo": [
+    {
+     "speaker": "tech",
+     "text": "For the standard option, everything included, it comes to eighteen ninety."
+    },
+    {
+     "speaker": "customer",
+     "text": "(six seconds of silence) Hm. That's more than I was hoping."
+    },
+    {
+     "speaker": "tech",
+     "text": "I understand. What were you hoping it would be closer to?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, I don't know. I'm on a fixed income, you see."
+    },
+    {
+     "speaker": "tech",
+     "text": "Thank you for telling me. Let's look at what fits. Would a monthly number help?"
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "price",
+   "priorContext": "The tech has already introduced themselves, asked about the water heater's history, shown Margaret the leak at the base of the tank, and explained in plain words why it has to be replaced. Margaret understands and is waiting to hear the price for the standard option.",
+   "forcedMoves": [
+    "silence-after-price"
+   ],
+   "customerOpener": "All right. So what is this going to cost me?",
+   "techPrompt": "Say the price for the standard option, $1,890, then stop talking.",
+   "passCriteria": [
+    "State the price once, clearly, without apologizing",
+    "Wait at least four seconds before speaking again",
+    "When the customer speaks, ask about their reaction before defending the price"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Gold example drill."
+    ]
+   }
+  }
+ ],
+ "companies": []
+}

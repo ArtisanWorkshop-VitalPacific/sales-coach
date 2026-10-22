@@ -1,0 +1,95 @@
+id: wh-tank-no-hot-water
+version: 1
+title: 12-year-old tank, no hot water
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 2
+personaId: margaret-retiree
+alternatePersonas: [linda-warranty, morgan-first-home]
+briefing: >-
+  Service call. Homeowner reports no hot water since yesterday morning. 40-gallon
+  gas tank water heater in the garage. Not a member.
+situation: >-
+  The 12-year-old 40-gallon gas tank has failed. There is rust and water at the
+  base of the tank and the burner will not stay lit because water has soaked the
+  combustion chamber. Replacement is the honest recommendation. A repair is not
+  realistic because the tank itself is leaking. The installation also needs a
+  thermal expansion tank and new seismic straps to meet current code.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 12
+    notes: Rust at the base, water on the floor, burner will not stay lit
+findings:
+  - id: tank-leaking
+    text: The tank is leaking from the bottom. Once a tank leaks, it cannot be repaired.
+    severity: urgent
+  - id: no-expansion-tank
+    text: There is no thermal expansion tank. Current code requires one on a new install.
+    severity: major
+  - id: straps-loose
+    text: The seismic straps are loose and only one is attached.
+    severity: minor
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is leaking and cannot be repaired.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code on a new installation.
+  - id: seismic-straps
+    label: Install two new seismic straps
+    rationale: Required by code in California.
+unjustifiedWork:
+  - id: whole-house-repipe
+    label: Whole-house repipe
+    why: The copper supply lines are in good condition. Nothing points to a repipe.
+  - id: tankless-required
+    label: Saying a tankless unit is required
+    why: Tankless is an option, not a requirement. A tank replacement is a sound choice.
+  - id: water-softener
+    label: Water softener
+    why: Nothing in this call points to hard water damage. Recommending one is an upsell.
+options:
+  - id: standard-40
+    label: 40-gallon standard gas, 6-year warranty
+    price: 1890
+    monthly: 49
+    includes:
+      - New 40-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+    recommended: true
+  - id: premium-40
+    label: 40-gallon high-recovery gas, 10-year warranty
+    price: 2490
+    monthly: 65
+    includes:
+      - Everything in the standard option
+      - Longer 10-year tank and parts warranty
+      - Faster hot water recovery
+      - Shutoff valve replacement
+  - id: tankless
+    label: Tankless gas, 12-year warranty
+    price: 4650
+    monthly: 119
+    includes:
+      - Tankless gas water heater
+      - New gas line and venting
+      - Permit and haul-away
+startPhase: door
+moves:
+  allowed: '*'
+  forced: []
+  excluded: []
+  density: 2
+goal: >-
+  Find out what matters to the customer, explain the finding plainly, present
+  options, state the price, handle the objection that follows, and ask for a decision.
+passBar: 70
+tags: [water-heater, core, starter]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Gold example scenario. Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.

@@ -1,0 +1,241 @@
+id: base
+version: 1
+name: Sales Coach base rubric
+passBar: 70
+# Scoring: each skill starts at its base, adds points for positive behaviors (each up to
+# its cap), and subtracts points for negative behaviors. Clamped to 0 to 100. A skill whose
+# required phase never happened is not scored. The Coach model reviews and adjusts these
+# scores with evidence; the deterministic score is the floor of trust.
+skills:
+  - id: frame
+    name: Set the frame
+    description: >-
+      Opens the visit well: introduces themselves, tells the customer what will happen
+      and how long it takes, and sets the expectation that options come before any work.
+    weight: 0.8
+    base: 40
+    requiresPhase: door
+    positive:
+      - { behavior: set_frame, points: 45, cap: 45 }
+      - { behavior: acknowledged_feeling, points: 10, cap: 10 }
+      - { behavior: asked_open_question, points: 5, cap: 5 }
+    negative:
+      - { behavior: interrupted_customer, points: 10 }
+      - { behavior: pressured, points: 15 }
+      - { behavior: rambled, points: 10 }
+    levels:
+      excellent: Clear, warm frame in the first 30 seconds. The customer knows what happens next.
+      solid: Introduces themselves and explains the visit, but misses that options come first.
+      developing: Walks straight to the equipment without setting expectations.
+
+  - id: discovery
+    name: Discovery
+    description: >-
+      Learns about the person, not just the problem: history, how they use the system,
+      who lives there, what matters to them, what they are worried about.
+    weight: 1.2
+    base: 30
+    positive:
+      - { behavior: asked_open_question, points: 10, cap: 30 }
+      - { behavior: asked_follow_up, points: 8, cap: 16 }
+      - { behavior: reflected_back, points: 8, cap: 16 }
+      - { behavior: acknowledged_feeling, points: 6, cap: 12 }
+    negative:
+      - { behavior: interrupted_customer, points: 8 }
+      - { behavior: rambled, points: 8 }
+    levels:
+      excellent: Three or more open questions, follows up, and reflects back what they heard.
+      solid: Asks some good questions but moves to the diagnosis before understanding the person.
+      developing: Asks yes or no questions only, or none.
+
+  - id: findings
+    name: Findings in plain language
+    description: >-
+      Explains what they found in words a homeowner understands, shows the evidence, and
+      checks that it made sense.
+    weight: 1.0
+    base: 35
+    requiresPhase: findings
+    positive:
+      - { behavior: explained_plainly, points: 15, cap: 30 }
+      - { behavior: showed_evidence, points: 15, cap: 15 }
+      - { behavior: checked_understanding, points: 10, cap: 20 }
+    negative:
+      - { behavior: used_jargon, points: 10 }
+      - { behavior: bluffed, points: 15 }
+      - { behavior: condescended, points: 10 }
+    levels:
+      excellent: Shows the problem, explains it simply, and checks understanding.
+      solid: Explains clearly but does not show the evidence or check in.
+      developing: Uses trade terms the customer does not know, or skips the explanation.
+
+  - id: options
+    name: Options
+    description: >-
+      Presents real choices, tied to what the customer said matters, with an honest
+      recommendation.
+    weight: 1.0
+    base: 40
+    requiresPhase: options
+    positive:
+      - { behavior: presented_options, points: 30, cap: 30 }
+      - { behavior: tied_options_to_needs, points: 12, cap: 24 }
+    negative:
+      - { behavior: single_option_only, points: 20 }
+      - { behavior: recommended_unneeded_work, points: 25 }
+    levels:
+      excellent: Two or three options, each tied to something the customer said.
+      solid: Presents options but as a menu, not connected to the customer.
+      developing: One take-it-or-leave-it option.
+
+  - id: price
+    name: Price composure
+    description: >-
+      States the price once, clearly, without apology, and lets the customer react
+      without filling the silence or discounting.
+    weight: 1.2
+    base: 40
+    requiresPhase: price
+    positive:
+      - { behavior: stated_price, points: 20, cap: 20 }
+      - { behavior: held_silence, points: 20, cap: 20 }
+      - { behavior: justified_value, points: 10, cap: 20 }
+    negative:
+      - { behavior: hedged_price, points: 15 }
+      - { behavior: discounted_unprompted, points: 25 }
+      - { behavior: filled_silence, points: 15 }
+    levels:
+      excellent: Clean number, holds the silence, explains value when asked.
+      solid: Clear number but fills the silence or over-explains.
+      developing: Apologizes for the price or discounts before the customer reacts.
+
+  - id: objections
+    name: Objection handling
+    description: >-
+      Finds the concern behind the objection and answers that, calmly, without arguing,
+      caving, or repeating themselves.
+    weight: 1.4
+    base: 30
+    requiresPhase: objections
+    positive:
+      - { behavior: asked_about_concern, points: 12, cap: 24 }
+      - { behavior: addressed_concern, points: 12, cap: 36 }
+      - { behavior: new_angle, points: 10, cap: 20 }
+      - { behavior: corrected_respectfully, points: 10, cap: 20 }
+    negative:
+      - { behavior: argued, points: 15 }
+      - { behavior: showed_impatience, points: 15 }
+      - { behavior: repeated_same_answer, points: 10 }
+      - { behavior: caved, points: 15 }
+      - { behavior: pressured, points: 10 }
+    levels:
+      excellent: Asks what is behind it, answers the real worry, stays calm on repeats.
+      solid: Answers the stated objection but not the concern behind it.
+      developing: Argues, caves, or repeats the same answer louder.
+
+  - id: listening
+    name: Listening and recall
+    description: >-
+      Catches the details the customer drops and uses them later. Stays with the customer
+      through interruptions.
+    weight: 1.0
+    base: 40
+    positive:
+      - { behavior: used_customer_detail, points: 20, cap: 40 }
+      - { behavior: reflected_back, points: 6, cap: 12 }
+      - { behavior: re_engaged, points: 12, cap: 12 }
+    negative:
+      - { behavior: interrupted_customer, points: 10 }
+      - { behavior: rambled, points: 10 }
+    levels:
+      excellent: Brings back a detail the customer mentioned and uses it in the recommendation.
+      solid: Listens well in the moment but does not use what they heard.
+      developing: Talks over the customer or misses what they said.
+
+  - id: close
+    name: Asking for the decision
+    description: >-
+      Recaps the recommendation, asks clearly for a decision, includes every decision
+      maker, and leaves well when the answer is no or not yet.
+    weight: 1.2
+    base: 35
+    requiresPhase: price
+    positive:
+      - { behavior: asked_for_decision, points: 30, cap: 30 }
+      - { behavior: recapped_value, points: 12, cap: 12 }
+      - { behavior: included_second_person, points: 10, cap: 10 }
+      - { behavior: left_well, points: 15, cap: 15 }
+    negative:
+      - { behavior: pressured, points: 20 }
+    levels:
+      excellent: Recaps, asks one clear question, and handles the answer gracefully.
+      solid: Asks for the decision but without a recap, or asks twice.
+      developing: Never asks, or pressures.
+
+  - id: membership-financing
+    name: Membership and financing
+    description: >-
+      Offers financing as a specific monthly number and the membership with benefits that
+      matter to this customer, with dignity and no pressure.
+    weight: 0.8
+    base: 40
+    requiresPhase: price
+    positive:
+      - { behavior: offered_financing, points: 15, cap: 15 }
+      - { behavior: framed_monthly, points: 15, cap: 15 }
+      - { behavior: offered_membership, points: 15, cap: 15 }
+      - { behavior: explained_membership_value, points: 15, cap: 15 }
+    negative:
+      - { behavior: pressured, points: 10 }
+    levels:
+      excellent: A monthly number and relevant membership benefits, offered once, calmly.
+      solid: Mentions financing or membership but generically.
+      developing: Never mentions either, or pushes them.
+
+  - id: integrity
+    name: Integrity and respect
+    description: >-
+      Recommends only what the home needs, answers honestly, never pressures, and treats
+      the customer as capable.
+    weight: 1.4
+    base: 80
+    positive:
+      - { behavior: honest_answer, points: 10, cap: 20 }
+    negative:
+      - { behavior: recommended_unneeded_work, points: 40 }
+      - { behavior: bluffed, points: 30 }
+      - { behavior: pressured, points: 20 }
+      - { behavior: condescended, points: 20 }
+      - { behavior: caved, points: 10 }
+    levels:
+      excellent: Honest, no pressure, recommends only what is needed.
+      solid: Honest, with a moment of pressure or a careless claim.
+      developing: Pushes unneeded work, bluffs, or pressures.
+
+levels:
+  - id: apprentice
+    name: Apprentice
+    requirement: Every tech starts here.
+    examDifficulty: 1
+    examPassBar: 0
+  - id: advisor
+    name: Advisor
+    requirement: Pass a difficulty 2 exam with 70 or better.
+    examDifficulty: 2
+    examPassBar: 70
+  - id: senior-advisor
+    name: Senior Advisor
+    requirement: Pass a difficulty 4 exam with 75 or better.
+    examDifficulty: 4
+    examPassBar: 75
+  - id: master
+    name: Master
+    requirement: Pass a difficulty 5 exam with 80 or better and 90 or better on integrity.
+    examDifficulty: 5
+    examPassBar: 80
+
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Point values are a starting calibration. Tune them against the 100 human-rated sessions in month 1.

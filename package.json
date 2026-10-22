@@ -1,0 +1,32 @@
+{
+  "name": "sales-coach",
+  "private": true,
+  "description": "Voice practice for home service technicians. Real techs, AI customers.",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @sales-coach/web dev",
+    "build": "pnpm content:build && pnpm design:build && pnpm --filter @sales-coach/web build",
+    "agent:dev": "pnpm --filter @sales-coach/agent dev",
+    "content:build": "pnpm --filter @sales-coach/content build",
+    "content:validate": "pnpm --filter @sales-coach/content validate",
+    "design:build": "pnpm --filter @sales-coach/design build",
+    "testbench": "pnpm --filter @sales-coach/testbench run bench",
+    "db:generate": "pnpm --filter @sales-coach/db generate",
+    "db:migrate": "pnpm --filter @sales-coach/db migrate",
+    "db:seed": "pnpm --filter @sales-coach/db seed",
+    "typecheck": "pnpm -r --parallel typecheck",
+    "test": "pnpm -r test",
+    "lint": "biome check .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.2",
+    "@types/node": "^22.15.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}

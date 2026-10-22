@@ -1,0 +1,73 @@
+id: thinks-out-loud
+version: 1
+name: Thinks out loud
+kind: behavior
+group: silence
+skill: listening
+summary: >-
+  After hearing the options, the customer starts weighing them out loud, stops
+  mid-sentence, and goes quiet for a few seconds.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [options, price]
+  afterBehaviors: [presented_options]
+  chance: 0.5
+priority: 80
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    Start weighing the options out loud, then stop in the middle of the
+    sentence and go quiet while you think. Do not finish the thought and do not
+    ask a question yet. If the tech waits, finish the thought yourself in one
+    short sentence that says what you are actually weighing. If the tech jumps
+    in, say you were still thinking.
+  lines:
+    - So the cheaper one fixes it for now, but if it happens again, then...
+    - Okay. So if we went with the second one, that would mean...
+    - "[thoughtful] Hm. The longer warranty's nice, but then again, if we..."
+    - So the basic one would get us by, and then later we could maybe...
+  followUps:
+    - Sorry, I was just thinking it through. I'm trying to figure out what makes sense for us.
+    - Hang on, I wasn't done. I was still working that out.
+  tone: thoughtful
+  delayMs: 800
+  holdSilenceMs: 3500
+  audioTags: [thoughtful]
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    minSilenceMs: 2500
+  failIf:
+    anyBehaviors: [filled_silence, interrupted_customer]
+  pass: >-
+    The tech lets the unfinished thought sit for at least two and a half
+    seconds and lets the customer finish it.
+  fail: >-
+    The tech finishes the customer's sentence, starts selling an option, or
+    talks while the customer is still thinking.
+coaching:
+  why: >-
+    A customer thinking out loud is making the decision in front of you. If you
+    finish the sentence for them, you replace their reasoning with yours and
+    they stop sharing it. If you wait, they tell you exactly what they are
+    weighing.
+  modelResponse: >-
+    (Stays quiet for at least three seconds and lets the customer finish.) If
+    they stay quiet: "Take your time. What part are you weighing?" Then listens
+    to the whole answer before saying anything about the options, and answers
+    the part they named.
+  commonMistakes:
+    - Finishing the customer's sentence for them
+    - Jumping in to sell the option they seemed to be leaning away from
+    - Filling the pause with more details about the options
+    - Asking "So which one?" before they finish thinking
+tags: [silence, timing, listening]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Pass and fail are measured from timing. The runtime speaks the line first, then holds the silence.
+    - followUps[0] completes the thought, so it also works if the runtime speaks it when the hold ends. followUps[1] is for a tech who jumped in.

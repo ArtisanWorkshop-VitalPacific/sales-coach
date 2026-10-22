@@ -1,0 +1,16 @@
+{
+  "name": "@sales-coach/design",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Design tokens for Sales Coach: one source for web, iOS, and Android.",
+  "exports": {
+    ".": "./generated/tokens.ts",
+    "./tokens.css": "./generated/tokens.css",
+    "./tokens.json": "./tokens.json"
+  },
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  }
+}

@@ -1,0 +1,62 @@
+id: silence-after-price
+version: 1
+name: Goes quiet after the price
+kind: behavior
+group: silence
+skill: price
+summary: The customer says nothing for about six seconds after hearing the price.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price]
+  afterBehaviors: [stated_price]
+  chance: 0.7
+priority: 85
+maxUses: 1
+delivery:
+  act: silence
+  intent: >-
+    Say nothing. You are taking in the number. When the silence ends, react
+    honestly to the price from your own situation, in one short sentence.
+  lines:
+    - Hm. Okay.
+    - That's... a lot.
+    - Okay. Let me think about that for a second.
+    - "[exhales] Wow."
+  followUps:
+    - So that's the total? Everything?
+  tone: thoughtful
+  delayMs: 0
+  holdSilenceMs: 6000
+  audioTags: [exhales]
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    minSilenceMs: 4000
+  failIf:
+    anyBehaviors: [filled_silence, discounted_unprompted, hedged_price]
+  pass: >-
+    The tech waits at least four seconds without restating, justifying, or
+    lowering the price.
+  fail: >-
+    The tech speaks within four seconds, especially to justify, apologize for,
+    or discount the price.
+coaching:
+  why: >-
+    The silence belongs to the customer. They are doing math, not rejecting you.
+    Filling it tells them the price is soft, and a discount offered into silence
+    costs you money and trust at the same time.
+  modelResponse: >-
+    (Says the price, then waits. Counts to five. Lets the customer speak first.)
+    When they do: "Take your time. What questions do you have?"
+  commonMistakes:
+    - Justifying the price before they react
+    - Saying "but we can do financing" in the first two seconds
+    - Offering a discount into the silence
+tags: [core, timing]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Gold example behavior move. Pass and fail are measured from timing, not by a model.

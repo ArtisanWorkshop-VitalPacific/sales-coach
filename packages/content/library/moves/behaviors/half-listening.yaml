@@ -1,0 +1,69 @@
+id: half-listening
+version: 1
+name: Half listening
+kind: behavior
+group: disruption
+skill: listening
+summary: >-
+  The customer keeps checking their phone while the tech explains and misses
+  what was just said.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [findings, options]
+  chance: 0.4
+priority: 35
+maxUses: 1
+delivery:
+  act: distracted
+  intent: >-
+    You are only half listening. You keep looking at your phone. Answer
+    vaguely, or admit you missed what the tech just said. You are not rude,
+    just busy. Give full attention again only if the tech pauses, gets your
+    attention, and gives you the short version. If they keep explaining at
+    full length, stay distracted.
+  lines:
+    - Sorry, I was reading a text. What did you say?
+    - Mm-hm. Wait, sorry, say that last part again?
+    - Yeah, sorry, I'm listening. Go ahead.
+    - Huh? Sorry, I missed that. My phone keeps going off.
+  followUps:
+    - Sorry. What's the short version?
+    - Okay, so what do I actually need to do?
+  tone: distracted
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [re_engaged, checked_understanding]
+  failIf:
+    anyBehaviors: [rambled, showed_impatience]
+  pass: >-
+    The tech notices the customer is distracted, pauses, gives the main point
+    in one or two sentences, and checks that the customer is following.
+  fail: >-
+    The tech keeps explaining at full length to someone who is not listening,
+    or makes a pointed comment about the customer's phone.
+coaching:
+  why: >-
+    If the customer is not listening, nothing you explain will be remembered
+    when it is time to decide. Talking longer does not fix it. A pause and a
+    short version get their attention back without making them feel scolded.
+  modelResponse: >-
+    No worries, I know you've got a lot going on. Here's the short version:
+    (the main point in one sentence). That's the main thing you need to know.
+    Do you want me to keep going now, or should I give you a minute to finish
+    that first?
+  commonMistakes:
+    - Explaining at full length as if they heard everything
+    - Waiting in an obvious way until they put the phone down
+    - Saying "Am I boring you?" or another sarcastic comment
+    - Moving on to the price while they are still distracted
+tags: [disruption, listening]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - No sound cue. The distraction is the customer's phone screen, not a sound.

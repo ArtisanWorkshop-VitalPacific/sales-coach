@@ -1,0 +1,76 @@
+id: spouse-walks-in
+version: 1
+name: Spouse walks in
+kind: behavior
+group: disruption
+skill: close
+summary: >-
+  The other decision-maker walks in partway through, has missed everything, and
+  asks whether it is bad.
+difficultyMin: 2
+personas: [ruiz-couple, morgan-first-home, jen-busy-parent]
+trigger:
+  phases: [findings, options, price]
+  when:
+    secondaryPresent: false
+  chance: 0.5
+priority: 50
+maxUses: 1
+delivery:
+  act: probe
+  intent: >-
+    You are the other decision-maker in the house, and you just walked in
+    partway through. You missed everything so far. Ask what is going on and
+    whether it is bad. You will not agree to anything you do not understand.
+    Become friendlier if the tech recaps for you in plain words and asks what
+    you think. Get guarded if they keep talking only to your partner,
+    re-explain everything at length, or push for a decision.
+  lines:
+    - Hey, sorry, I just got home. What's going on? Is it bad?
+    - What's the plumber saying? Is it bad?
+    - Okay, I'm here. Can somebody catch me up? How bad is it?
+    - Wait, what did I miss? Are we talking a lot of money?
+  followUps:
+    - Hang on, can you explain that part to me too?
+    - Okay, but what does that actually mean for us?
+  tone: anxious
+  delayMs: 1200
+  soundCue: footsteps
+  audioTags: []
+  speaker: secondary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [included_second_person]
+  failIf:
+    anyBehaviors: [rambled, pressured]
+  pass: >-
+    The tech greets the second person, gives a short, plain recap of what they
+    found, and asks for their questions or input.
+  fail: >-
+    The tech keeps talking only to the first person, re-explains everything at
+    length, or pushes for a decision before the second person is caught up.
+coaching:
+  why: >-
+    The person who walks in late often has an equal say, and they heard none
+    of your explanation. If they are not caught up, the answer will be "we
+    need to talk about it." A short recap for them is part of closing, not a
+    delay.
+  modelResponse: >-
+    Hi, I'm (name), nice to meet you. Here's the short version so you're
+    caught up: I found what's causing the problem, I showed it to (partner's
+    name), and there are a couple of ways to fix it. Before I go on, what
+    questions do you have? I want you both to be comfortable with whatever you
+    decide.
+  commonMistakes:
+    - Nodding at the second person and going on with the first
+    - Re-explaining everything from the start at full length
+    - Asking for the decision before the second person is caught up
+    - Treating the second person's questions as a stall
+tags: [disruption, second-decision-maker, core]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Spoken by the secondary person. Limited to the personas that define one.
+    - Lines avoid assuming the tech's gender.

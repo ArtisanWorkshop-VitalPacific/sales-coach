@@ -1,0 +1,73 @@
+id: phone-call-hold-on
+version: 1
+name: Takes a phone call
+kind: behavior
+group: disruption
+skill: listening
+summary: >-
+  The customer's phone rings, they say "hold on," step away for about 12
+  seconds, and come back having lost track of the conversation.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [discovery, findings, options]
+  chance: 0.35
+priority: 45
+maxUses: 1
+delivery:
+  act: distracted
+  intent: >-
+    Your phone rings. Say "hold on," say you need to take it, and step away.
+    You are gone for the whole hold. When you come back, apologize and ask
+    where you were. You have lost track of what the tech was saying. Pay full
+    attention again only if the tech gives you a short recap and checks in. If
+    they pick up in the middle of a sentence, ask them to back up.
+  lines:
+    - Oh, sorry, hold on. I need to take this.
+    - Hold on one second. I've been waiting on this call.
+    - Sorry, hold on. Let me just see who this is.
+    - Hold on, I gotta grab this real quick. Sorry.
+  followUps:
+    - Sorry about that. Where were we?
+    - Wait, sorry, back up. What did you say was wrong with it?
+  tone: distracted
+  delayMs: 1500
+  holdSilenceMs: 12000
+  soundCue: phone-ring
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [re_engaged]
+  failIf:
+    anyBehaviors: [showed_impatience, rambled]
+  pass: >-
+    When the customer comes back, the tech welcomes them back, recaps the main
+    point in a sentence or two, and checks in before going on.
+  fail: >-
+    The tech sounds annoyed by the wait, picks up mid-sentence as if nothing
+    happened, or starts over from the beginning at full length.
+coaching:
+  why: >-
+    After a phone call, the customer has forgotten most of what you said and
+    is still thinking about the call. If you continue where you stopped, they
+    nod along without following. A short recap gets their attention back on
+    the job and shows you respect their time.
+  modelResponse: >-
+    (Stays quiet while they are on the phone.) When they come back: "No
+    problem at all. Quick recap: I found what's causing the problem, and I was
+    about to show you a couple of ways to fix it. Does that still make sense?
+    Any questions before I keep going?"
+  commonMistakes:
+    - Picking up mid-sentence as if they never left
+    - Saying "As I was saying" in a tired voice
+    - Talking to the customer while they are on the phone
+    - Re-explaining everything from the start at full length
+tags: [disruption, recovery, core]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The customer is away for holdSilenceMs. The runtime speaks followUps[0] when the hold ends, so keep it first.
+    - Pass is judged on the tech's turns after the customer returns. A short "take your time" during the hold is fine.

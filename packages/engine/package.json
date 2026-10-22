@@ -1,0 +1,29 @@
+{
+  "name": "@sales-coach/engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The customer engine: content schemas, hidden state, Director, perception, voice writing, coaching.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts",
+    "./claude": "./src/providers/claude/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "peerDependencies": {
+    "@anthropic-ai/sdk": "^1.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@anthropic-ai/sdk": { "optional": true }
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^1.1.0",
+    "vitest": "^3.2.0"
+  }
+}

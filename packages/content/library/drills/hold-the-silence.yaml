@@ -1,0 +1,51 @@
+id: hold-the-silence
+version: 1
+order: 7
+title: The silence after price
+stage: price
+skill: price
+durationSec: 120
+why: >-
+  Here is the moment that costs techs more money than any other. You say the
+  price, and the customer goes quiet. Most people can't stand that quiet. Within
+  two or three seconds they start talking: explaining the price, apologizing for
+  it, offering financing, or worse, knocking a hundred dollars off. Every one of
+  those tells the customer the number was soft. Here is what is really happening
+  in that silence. The customer is doing math. They are thinking about their
+  budget, their week, what their spouse will say. They are not rejecting you. The
+  silence belongs to them. Your job is to say the price clearly, once, and then
+  wait. Count to five in your head if you have to. Let them speak first. When they
+  do, you will learn exactly what they are worried about, and that is the
+  conversation you actually need to have. In this drill, you will say the price,
+  and the customer will go quiet. Hold it.
+demo:
+  - speaker: tech
+    text: For the standard option, everything included, it comes to eighteen ninety.
+  - speaker: customer
+    text: (six seconds of silence) Hm. That's more than I was hoping.
+  - speaker: tech
+    text: I understand. What were you hoping it would be closer to?
+  - speaker: customer
+    text: Well, I don't know. I'm on a fixed income, you see.
+  - speaker: tech
+    text: Thank you for telling me. Let's look at what fits. Would a monthly number help?
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: price
+priorContext: >-
+  The tech has already introduced themselves, asked about the water heater's
+  history, shown Margaret the leak at the base of the tank, and explained in
+  plain words why it has to be replaced. Margaret understands and is waiting to
+  hear the price for the standard option.
+forcedMoves: [silence-after-price]
+customerOpener: All right. So what is this going to cost me?
+techPrompt: Say the price for the standard option, $1,890, then stop talking.
+passCriteria:
+  - State the price once, clearly, without apologizing
+  - Wait at least four seconds before speaking again
+  - When the customer speaks, ask about their reaction before defending the price
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Gold example drill.
