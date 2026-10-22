@@ -157,8 +157,10 @@ describe('jobContext', () => {
       { item: 'PRV', ageYears: 18 },
     ]);
     expect(ctx.isMember).toBe(true);
-    expect(ctx.priorDeclinedEstimates).toEqual(['Water heater flush for ($189), Mar 2024', 'Expansion tank ($326), Jan 2025']);
-    expect(ctx.summary).toContain('no hot water');
+    expect(ctx.priorDeclinedEstimates).toEqual(['Water heater flush for Margaret ($189), Mar 2024', 'Expansion tank ($326), Jan 2025']);
+    expect(ctx.summary).toBe(
+      'the customer reports no hot water, water on garage floor. Call Margaret at (removed). Address (removed). Son Kevin may call.',
+    );
   });
 
   it('never carries last names, phones, emails, addresses, ZIPs, or access codes', async () => {
@@ -189,7 +191,8 @@ describe('mapping helpers', () => {
     expect(splitName({ name: 'Ellis, Margaret', type: 'Residential' })).toEqual({ first: 'Margaret', others: ['Ellis'] });
     expect(splitName({ name: 'Mrs. Margaret Ellis', type: 'Residential' }).first).toBe('Margaret');
     expect(splitName({ name: 'Acme Property Group', type: 'Commercial' }).first).toBeUndefined();
-    expect(scrubText('Call Bob Smith at 951-555-0142, bob@x.co, 12 Elm St 92562', ['Smith'])).toBe('Call Bob at,,');
+    expect(scrubText('Call Bob Smith at 951-555-0142, bob@x.co, 12 Elm St 92562', ['Smith'])).toBe('Call Bob at (removed)');
+    expect(scrubText('Lives at 9 Oak Ln, Temecula, CA. Lockbox code 1234.')).toBe('Lives at (removed).');
   });
 
   it('computes equipment age in whole years', () => {

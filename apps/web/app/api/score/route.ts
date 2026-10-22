@@ -5,7 +5,8 @@ import { serverAdapters } from '@/lib/server/engine';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-export const maxDuration = 300;
+// 60 seconds fits every Vercel plan. The coach runs in fast mode to finish well inside it.
+export const maxDuration = 60;
 
 /** The Coach: Claude reviews the whole call. Falls back to the rubric score without a key. */
 export async function POST(req: Request) {
@@ -23,7 +24,9 @@ export async function POST(req: Request) {
   const coach = record.kind === 'exam' ? (adapters.examCoach ?? adapters.coach) : adapters.coach;
   if (!coach) return NextResponse.json({ debrief: scoreRecord(record, index) });
   try {
-    const debrief = await coach.debrief(record, index, req.signal);
+    // Leave room to answer with the quick score if the review runs long.
+    const signal = AbortSignal.any([req.signal, AbortSignal.timeout(52_000)]);
+    const debrief = await coach.debrief(record, index, signal);
     return NextResponse.json({ debrief });
   } catch (e) {
     console.error('[api/score]', e);

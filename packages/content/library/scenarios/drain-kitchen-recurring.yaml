@@ -1,0 +1,110 @@
+id: drain-kitchen-recurring
+version: 1
+title: Kitchen sink keeps clogging
+trade: plumbing
+jobType: drain-cleaning
+difficulty: 2
+personaId: jen-busy-parent
+alternatePersonas: [morgan-first-home, brian-today]
+briefing: >-
+  Service call. Kitchen sink backed up this morning with standing water in both
+  sides. Customer says it is the third clog this year. Two-story home on a slab.
+  Not a member.
+situation: >-
+  The 2-inch ABS kitchen drain clogs every two to three months because grease and
+  food paste coat the inside of the pipe. The tech opens the line with a small
+  cable through the cleanout behind the trap so the sinks drain, then runs a
+  camera to see why it keeps coming back. A cable punches a path through the
+  buildup and the sink drains again, but the coating stays on the walls and the
+  line closes up within weeks. That is what happened after the last two clearings
+  (one by another company in the spring, one with a store-bought snake in the
+  summer). The pipe itself is sound: no cracks, no roots, no low spots. Hydro
+  jetting scours the pipe wall back to full size, and a camera pass afterward
+  proves it. Jetting is the honest recommendation because the history and the
+  footage both show buildup along the whole run, not a single blockage. Replacing
+  or relining the line is not justified. The customer works from home with two
+  kids under six and wants one clear recommendation she can trust, quickly.
+equipment:
+  - item: 2-inch ABS kitchen drain, about 32 feet to the main
+    ageYears: 27
+    notes: Cleanout tee behind the trap. Pipe sound, heavily coated with grease.
+  - item: Garbage disposal
+    notes: Works normally. Used several times a day.
+findings:
+  - id: grease-coating
+    text: >-
+      The camera shows a thick layer of grease and food paste on the pipe walls for
+      most of the 32 feet to the main. In places the opening is down to about half
+      the pipe.
+    severity: major
+  - id: cable-only-opens
+    text: >-
+      The cable opened a path through the clog, but the coating is still on the
+      walls. That is why the last two clearings only lasted a few weeks.
+    severity: major
+  - id: pipe-sound
+    text: The pipe has no cracks, roots, or low spots. The problem is buildup, not damage.
+    severity: info
+  - id: grease-and-starch-use
+    text: >-
+      Cooking grease and starchy scraps like rice, pasta, and potato peels go down
+      the disposal most days. That feeds the buildup.
+    severity: minor
+justifiedWork:
+  - id: hydro-jet-kitchen-line
+    label: Hydro jet the kitchen line
+    rationale: >-
+      Three clogs this year and camera footage of grease along the whole run. Jetting
+      removes the coating. A cable only opens a path through it.
+  - id: camera-after-jetting
+    label: Camera the line after jetting
+    rationale: Confirms the pipe is clean and sound, and gives the customer video of the result.
+  - id: disposal-habits
+    label: Explain what to keep out of the disposal
+    rationale: Grease and starchy scraps cause the buildup. Without a change the line will coat again.
+unjustifiedWork:
+  - id: replace-kitchen-line
+    label: Replacing or relining the kitchen drain
+    why: The camera shows sound pipe with no cracks, roots, or sags. Jetting removes the buildup.
+  - id: new-disposal
+    label: Replacing the garbage disposal
+    why: The disposal works normally. How it is used, not the unit, causes the buildup.
+  - id: main-line-jetting
+    label: Jetting the main sewer line
+    why: Every other drain in the house runs freely. Nothing points to a main line problem.
+options:
+  - id: cable-only
+    label: Cable clearing only
+    price: 265
+    includes:
+      - Kitchen line opened with a cable machine today
+      - Camera look to find the cause
+      - Both sinks and the disposal tested
+      - The grease coating stays on the pipe walls
+  - id: hydro-jet-and-camera
+    label: Hydro jet and camera
+    price: 625
+    includes:
+      - Everything in the cable option
+      - Hydro jet the full kitchen line to the main
+      - Camera video of the clean line sent to you
+      - A short list of what to keep out of the disposal
+    recommended: true
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [just-the-cheap-fix]
+  excluded: []
+  density: 2
+goal: >-
+  Use the camera footage to explain why the clog keeps coming back, recommend
+  jetting as one clear choice with the cable option shown honestly, and ask for a
+  decision without pressure.
+passBar: 70
+tags: [drain, kitchen, hydro-jet, camera, recurring]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Assumes the camera look on a repeat clog is part of the cable price. Adjust if the company charges it separately.

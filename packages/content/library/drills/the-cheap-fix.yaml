@@ -8,15 +8,16 @@ durationSec: 120
 why: >-
   This moment comes when the customer says, "Just do the cheapest thing." Most
   techs get it wrong in one of two ways. Some pitch the bigger option again, or
-  tell a worst-case story to scare the customer off the basic one. Others agree to anything to keep the job, even skipping a code item
-  to hit a number. Here's what is really going on. Choosing the cheapest option
-  is a fair decision, and customers often have reasons they haven't told you.
-  What they want to know is simple: will the cheap option actually work, or will
-  I be paying again next year? So answer that question honestly. If the basic
-  option is safe and does the job, say so, state the trade-off once, and respect
-  the choice. If the shortcut they want isn't safe or isn't to code, say no
-  plainly and give the reason. Then do the basic job well. In this drill, Rick
-  wants the bare minimum. Tell him honestly what that is.
+  tell a worst-case story to scare the customer off the basic one. Others agree
+  to anything to keep the job, even skipping a code item to get the price down.
+  Here's what is really going on. Choosing the cheapest option is a fair
+  decision, and customers often have reasons they haven't told you. What they
+  want to know is simple: will the cheap option actually work, or will I be
+  paying again next year? So answer that question honestly. If the basic option
+  is safe and does the job, say so, state the trade-off once, and respect the
+  choice. If the shortcut they want isn't safe or isn't to code, say no plainly
+  and give the reason. Then do the basic job well. In this drill, Rick wants the
+  bare minimum. Tell him honestly what that is.
 demo:
   - speaker: customer
     text: Look, what's the bare minimum to get them hot water today?

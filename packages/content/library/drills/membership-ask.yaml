@@ -1,0 +1,57 @@
+id: membership-ask
+version: 1
+order: 13
+title: The membership ask
+stage: close
+skill: membership-financing
+durationSec: 120
+why: >-
+  This is the moment you offer the membership. Most techs get it wrong in one of
+  three ways. Some skip it because it feels like a sales pitch. Some read every
+  benefit off a card. Some push it the same way, every time, to every customer.
+  Here's what is going on for the customer. Many people have signed up for plans
+  they never used or couldn't cancel, and they remember it. When they hear
+  "membership," they want two answers. What does it do for my house? Is it worth
+  the money? A long list answers neither. So offer it once, plainly, and connect
+  it to today's visit. Name the two or three benefits that matter for this home.
+  Put it in numbers: what it costs, and what it would have saved today. Say what
+  it doesn't cover. Then let them decide, and accept a no. In this drill,
+  Margaret's sink drains again. Offer the membership and answer her question.
+demo:
+  - speaker: tech
+    text: It's draining fine now. Before I go, can I tell you about our maintenance plan? It takes a minute, and there's no pressure.
+  - speaker: customer
+    text: Well, all right. What would I actually get for it?
+  - speaker: tech
+    text: For your house, three things. Once a year we check the whole system, the water heater, the drains, and the shutoff valves. You get priority when something breaks, and a member discount on repairs.
+  - speaker: customer
+    text: And would it have saved me anything today?
+  - speaker: tech
+    text: Yes, some. I'll show you the exact number on your bill. It doesn't pay for new equipment, though. Would you like it, or would you rather think it over?
+  - speaker: customer
+    text: Well, I'd like someone checking on things. Harold always did that.
+scenarioId: drain-simple-snake
+personaId: margaret-retiree
+startPhase: wrapup
+priorContext: >-
+  Margaret called because her bathroom sink drained slowly for a week and then
+  stopped. The tech cleared the clog and ran water to test it, and the sink
+  drains normally now. The price for the job was explained and agreed before
+  the work started. Margaret is not a member of any maintenance plan, and
+  nobody has mentioned one to her yet.
+forcedMoves: [what-do-i-actually-get]
+customerOpener: Oh, listen to that. It drains right away now. Thank you, dear.
+techPrompt: The sink is fixed. Offer the membership once, plainly. When Margaret asks what she gets, name what matters for her house.
+passCriteria:
+  - Offer the membership once, plainly, without pressure
+  - Name two or three benefits that matter for her house, not the full list
+  - Say what it would have saved her today and what it does not cover
+  - Accept her answer without pushing
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Starts in wrapup so Margaret's too-expensive, which fires only in price, objections, and close, stays quiet. what-do-i-actually-get fires on the turn the tech offers the membership.
+    - The demo names generic benefits (yearly check, priority, member discount). Company specs supply the real ones, the price, and the cancel terms.
+    - Margaret brings up Harold herself in the last line. The tech should not use her late husband to sell the plan.
+    - Written before drain-simple-snake existed. Check the priorContext against it.

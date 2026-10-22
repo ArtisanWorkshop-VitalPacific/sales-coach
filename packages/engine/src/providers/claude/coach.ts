@@ -64,6 +64,7 @@ export class ClaudeCoach {
     const params = {
       model: c.model,
       max_tokens: c.maxTokens,
+      ...(c.speed ? { speed: c.speed } : {}),
       ...(c.thinking ? { thinking: c.thinking } : {}),
       system: coachSystem(),
       messages: [{ role: 'user' as const, content: coachUser(record, index, base) }],

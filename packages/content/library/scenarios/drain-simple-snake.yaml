@@ -1,0 +1,99 @@
+id: drain-simple-snake
+version: 1
+title: Bathroom sink clog, simple clear
+trade: plumbing
+jobType: drain-cleaning
+difficulty: 1
+personaId: margaret-retiree
+alternatePersonas: [linda-warranty, rosa-spanish]
+briefing: >-
+  Service call. Hall bathroom sink has been draining slowly for weeks and stopped
+  completely last night. Single-story home built in 1979. Not a member.
+situation: >-
+  A simple clog. Hair and soap scum are packed around the pop-up stopper and in the
+  trap. The tech pulls and cleans the stopper and runs a hand cable through the
+  trap and the short branch line, and the sink drains at full speed. Every other
+  drain in the house (tub, both toilets, kitchen, laundry) runs freely, so there is
+  no main line or vent problem. The honest work is the simple clear, done today at
+  the lowest price. The stopper is old and sticks, so replacing the pop-up assembly
+  is a small, optional add-on. Hydro jetting or a camera inspection is not
+  justified. The company membership can be mentioned once, briefly, as optional,
+  and she should never feel the repair depends on it. She lives on a fixed income
+  and has been sold work she did not need before.
+equipment:
+  - item: Bathroom sink pop-up drain assembly, chrome
+    ageYears: 20
+    notes: Stopper sticks and does not seal well. No leaks.
+  - item: Hall bathroom sink trap and branch line
+    ageYears: 47
+    notes: Packed with hair and soap scum. Pipe in good condition.
+findings:
+  - id: hair-clog
+    text: Hair and soap scum are packed around the stopper and in the trap. That is the whole clog.
+    severity: minor
+  - id: other-drains-fine
+    text: >-
+      The tub, both toilets, the kitchen, and the laundry all drain normally.
+      Nothing points to a problem further down the line.
+    severity: info
+  - id: sticky-stopper
+    text: The pop-up stopper sticks and does not seal well. It still works. Replacing it is optional.
+    severity: minor
+  - id: drains-after-clearing
+    text: After the clearing, a full basin drains in a few seconds.
+    severity: info
+justifiedWork:
+  - id: clear-sink-drain
+    label: Clean the stopper and clear the trap and branch with a hand cable
+    rationale: This removes the whole clog. The sink drains normally afterward.
+  - id: full-basin-test
+    label: Test with a full basin and check the other drains
+    rationale: Confirms the clog is gone and the rest of the system drains.
+  - id: hair-prevention
+    label: Show her how to keep hair out of the drain
+    rationale: A simple strainer and cleaning the stopper every few months prevent the next clog.
+unjustifiedWork:
+  - id: hydro-jetting
+    label: Hydro jetting the drain lines
+    why: One hair clog at the stopper, and every other drain runs freely. Jetting is not needed.
+  - id: camera-inspection
+    label: Camera inspection of the drain or sewer
+    why: Nothing points to a problem past the trap. A camera would not change the repair.
+  - id: main-line-cleaning
+    label: Cleaning the main sewer line
+    why: The main is not involved. All other fixtures drain normally.
+options:
+  - id: clear-drain
+    label: Clear the sink drain
+    price: 185
+    includes:
+      - Remove and clean the pop-up stopper
+      - Clear the trap and branch line with a hand cable
+      - Full-basin test and a check of the other drains
+      - A simple hair strainer
+    recommended: true
+  - id: clear-and-new-pop-up
+    label: Clear the drain and replace the pop-up
+    price: 285
+    includes:
+      - Everything in the clear option
+      - New pop-up drain body, stopper, and pivot rod
+      - New gaskets at the drain
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [tests-your-honesty]
+  excluded: []
+  density: 1
+goal: >-
+  Clear the drain at the lowest honest price and answer her questions without
+  suggesting extra work. Mention the membership once as optional, never as a
+  condition of the repair.
+passBar: 65
+tags: [drain, bathroom, starter, membership, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Membership details come from the company spec; the scenario only asks that it be mentioned once as optional.

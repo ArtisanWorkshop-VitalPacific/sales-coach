@@ -1,0 +1,125 @@
+id: drain-main-line-roots
+version: 1
+title: Main line backup, roots in a clay sewer
+trade: plumbing
+jobType: sewer-repair
+difficulty: 4
+personaId: ruiz-couple
+alternatePersonas: [greg-selling, paul-engineer]
+briefing: >-
+  Service call. Toilets and the hall tub are backing up, and sewage came up in the
+  shower drain this morning. Single-story home built in 1968. Exterior cleanout by
+  the front hose bib. Not a member.
+situation: >-
+  The 4-inch clay sewer lateral is blocked by tree roots. The tech clears it with a
+  cable and root-cutting head through the front cleanout, and the house drains
+  again. The camera then shows roots entering at two joints about 38 and 44 feet
+  out, under the front lawn near a mature Modesto ash, and the joint at 44 feet is
+  offset and cracked. The rest of the clay line, from the house to 35 feet and from
+  47 feet to the city sewer at about 70 feet, has tight joints with no roots or
+  sags. Clearing restores flow today, but roots grow back through open joints,
+  usually within six to eighteen months. A spot repair that replaces about 10 feet
+  of clay with PVC at the damaged joints is the honest recommendation. It fixes the
+  cause, and the rest of the line does not need work. Lining the whole line is a
+  real option but not needed based on the footage. Carlos wants the cheapest fix
+  and brings up his brother-in-law, who is a plumber. Elena wants it done right
+  once. Money is tight after a car repair.
+equipment:
+  - item: 4-inch clay sewer lateral, about 70 feet to the city sewer
+    ageYears: 58
+    notes: Roots at two joints near the ash tree. One joint offset and cracked. Rest of the line sound.
+  - item: Exterior sewer cleanout at the front of the house
+    notes: Good access for clearing and camera work.
+findings:
+  - id: roots-at-two-joints
+    text: >-
+      Roots are growing into the line at two joints about 38 and 44 feet from the
+      cleanout, under the front lawn near the ash tree. They caused today's backup.
+    severity: major
+  - id: cracked-offset-joint
+    text: >-
+      The joint at 44 feet is offset about half an inch and cracked. Roots and soil
+      get in there, and no amount of clearing closes it.
+    severity: major
+  - id: rest-of-line-sound
+    text: >-
+      The rest of the clay line has tight joints with no roots, cracks, or sags,
+      from the house to 35 feet and from 47 feet to the city connection.
+    severity: info
+  - id: line-cleared-today
+    text: The line is clear and draining after the root cutting. The house is usable today.
+    severity: info
+justifiedWork:
+  - id: clear-roots
+    label: Clear the line with a root cutter
+    rationale: The house was backing up. Clearing restores use today.
+  - id: spot-repair-root-section
+    label: Replace about 10 feet of clay with PVC at the root-damaged joints
+    rationale: Removes the open, cracked joints where roots get in. The camera shows the rest of the line is sound.
+  - id: camera-after-repair
+    label: Camera the line after the repair
+    rationale: Confirms the new section and both connections are clean and sloped correctly.
+  - id: sewer-permit
+    label: Permit and inspection for the sewer repair
+    rationale: Sewer line repairs require a permit and inspection.
+unjustifiedWork:
+  - id: lining-required
+    label: Saying the whole line must be lined
+    why: >-
+      The camera shows tight, root-free joints on both sides of the damaged section.
+      Lining is a choice, not a need.
+  - id: full-lateral-replacement
+    label: Digging up and replacing the entire lateral
+    why: Only one 10-foot section is damaged. Excavating 70 feet of yard is not justified.
+  - id: interior-drain-replacement
+    label: Replacing the drain lines inside the house
+    why: The backup came from roots in the yard. Every interior drain ran clear once the lateral was open.
+options:
+  - id: clear-only
+    label: Root clearing only
+    price: 495
+    includes:
+      - Cable and root-cutter clearing done today
+      - Camera video of the full line
+      - Roots will grow back, usually within 6 to 18 months
+  - id: spot-repair
+    label: Spot repair of the root section
+    price: 5400
+    monthly: 135
+    includes:
+      - Root clearing done today
+      - Excavate and replace about 10 feet of clay with PVC
+      - Shielded couplings at both ends
+      - Permit and inspection
+      - Backfill and compaction
+      - Camera video after the repair
+    recommended: true
+  - id: full-lining
+    label: Trenchless lining of the full lateral
+    price: 13800
+    monthly: 345
+    includes:
+      - Root clearing done today
+      - Hydro jet the line to prepare it for lining
+      - Epoxy liner from the cleanout to the city connection
+      - No excavation in the lawn
+      - Permit and camera video after lining
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [brother-in-law-plumber]
+  excluded: []
+  density: 3
+goal: >-
+  Show the footage so both Carlos and Elena understand why the line backed up, and
+  present clearing, spot repair, and lining honestly. Recommend the spot repair,
+  handle the brother-in-law without arguing, and help them decide together.
+passBar: 75
+tags: [drain, sewer, roots, camera, joint-decision]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Spot repair price assumes about 4 feet of depth in a lawn with no concrete to cut.
+    - Verify local permit rules and whether the city owns any part of the lateral in the public right of way.

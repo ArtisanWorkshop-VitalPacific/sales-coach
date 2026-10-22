@@ -2,10 +2,11 @@
  * Model configuration by role. Change models here, not in prompts.
  *
  * standard  Haiku 5.5 listens (fast structured perception), Sonnet 5.5 speaks as the customer.
- * max       Opus 5.5 in fast mode plays the customer. Highest quality, about 3x the cost.
+ * max       Sonnet 5.5 listens, Opus 5.5 in fast mode plays the customer. Highest quality, about 3x the cost.
  * economy   Haiku 5.5 for load tests and the test bench.
  *
- * The Coach always runs on Opus 5.5 at high effort; certification exams use Fable 5.1.
+ * The Coach runs on Opus 5.5 in fast mode so a full review fits a 60-second serverless call;
+ * certification exams use Fable 5.1.
  */
 export type ModelPreset = 'standard' | 'max' | 'economy';
 
@@ -28,14 +29,14 @@ export const PRESETS: Record<ModelPreset, RoleConfig> = {
   standard: {
     perceive: { model: 'claude-haiku-5-5', effort: 'low', thinking: { type: 'disabled' }, maxTokens: 900 },
     write: { model: 'claude-sonnet-5-5', effort: 'low', thinking: { type: 'between_tools' }, maxTokens: 300 },
-    coach: { model: 'claude-opus-5-5', effort: 'high', maxTokens: 12000 },
-    exam: { model: 'claude-fable-5-1', effort: 'high', maxTokens: 16000 },
+    coach: { model: 'claude-opus-5-5', effort: 'medium', speed: 'fast', maxTokens: 10000 },
+    exam: { model: 'claude-fable-5-1', effort: 'medium', maxTokens: 12000 },
   },
   max: {
     perceive: { model: 'claude-sonnet-5-5', effort: 'low', thinking: { type: 'between_tools' }, maxTokens: 900 },
     write: { model: 'claude-opus-5-5', effort: 'low', speed: 'fast', maxTokens: 800 },
-    coach: { model: 'claude-opus-5-5', effort: 'high', maxTokens: 12000 },
-    exam: { model: 'claude-fable-5-1', effort: 'high', maxTokens: 16000 },
+    coach: { model: 'claude-opus-5-5', effort: 'high', speed: 'fast', maxTokens: 12000 },
+    exam: { model: 'claude-fable-5-1', effort: 'medium', maxTokens: 12000 },
   },
   economy: {
     perceive: { model: 'claude-haiku-5-5', effort: 'low', thinking: { type: 'disabled' }, maxTokens: 900 },

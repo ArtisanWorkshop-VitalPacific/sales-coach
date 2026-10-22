@@ -22,10 +22,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Content library
         run: pnpm content:validate
-      - name: Content bundle is up to date
-        run: |
-          pnpm content:build
-          git diff --quiet -- packages/content/generated/bundle.json ':(exclude)packages/content/generated/bundle.json' || true
+      - name: Content bundle builds
+        run: pnpm content:build
       - name: Typecheck
         run: pnpm typecheck
       - name: Unit tests

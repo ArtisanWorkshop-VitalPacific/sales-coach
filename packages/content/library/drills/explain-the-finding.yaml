@@ -43,7 +43,7 @@ priorContext: >-
   news.
 forcedMoves: []
 customerOpener: You were out there a while. Is it bad news? Can you fix it?
-techPrompt: Margaret asks what you found. Explain the leak in plain words, what's wrong, why it happened, and what it means for her.
+techPrompt: Margaret asks what you found. In plain words, tell her what's wrong, why it happened, and what it means for her.
 passCriteria:
   - Explain what is wrong, why it happened, and what it means for her
   - Use no trade terms without explaining them in the same sentence

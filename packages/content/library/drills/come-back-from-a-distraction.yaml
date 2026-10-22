@@ -1,0 +1,54 @@
+id: come-back-from-a-distraction
+version: 1
+order: 17
+title: Re-engaging after a distraction
+stage: recovery
+skill: listening
+durationSec: 150
+why: >-
+  This moment comes when the customer gets called away in the middle of your
+  explanation. A phone call, a kid, someone at the door. Most techs handle the
+  return badly. Some pick up mid-sentence as if nothing happened. Some sigh, or
+  say, "As I was saying." Some start the whole explanation over at full length.
+  Here's what is going on for the customer. When they come back, they've lost
+  most of what you said, and they're still thinking about the call. They feel
+  bad for making you wait. If you go on from where you stopped, they'll nod
+  without following, and later they won't be able to explain it to anyone. So
+  while they're away, stop and wait. When they come back, welcome them back
+  warmly. Recap the main point in a sentence or two. Check that it still makes
+  sense, then go on. In this drill, Jen's phone rings while you're explaining.
+  Bring her back.
+demo:
+  - speaker: customer
+    text: Sorry about that. Where were we?
+  - speaker: tech
+    text: No problem at all. Real quick, here's where we were. The camera showed the inside of the pipe is coated with buildup, so snaking only opens a small hole and it clogs again.
+  - speaker: customer
+    text: Oh, right. Okay. So that's why Dan's fix didn't hold.
+  - speaker: tech
+    text: Exactly. Does that part make sense? Any questions before I tell you how to clean it out so it stays clear?
+  - speaker: customer
+    text: No, that makes sense. Go ahead, I'm listening now.
+scenarioId: drain-kitchen-recurring
+personaId: jen-busy-parent
+startPhase: findings
+priorContext: >-
+  Jen's kitchen sink has clogged several times this year. Her husband Dan
+  snaked it twice himself, and it came back both times. The tech ran a camera
+  down the kitchen drain line and found why it keeps clogging, but has not
+  explained it to Jen yet. Jen works from home, her two-year-old Theo is home
+  today, and she is expecting a work call.
+forcedMoves: [phone-call-hold-on]
+customerOpener: Sorry, sorry. Okay, I'm here. What did the camera show?
+techPrompt: Explain what the camera showed. When Jen takes a call, wait. When she's back, recap in a sentence or two and check in.
+passCriteria:
+  - Stop talking while she is on the phone
+  - Welcome her back with no sign of impatience
+  - Recap the main point in a sentence or two and check she is following
+  - Go on without starting over at full length
+review:
+  status: draft
+  author: Claude
+  notes:
+    - phone-call-hold-on fires on the first customer turn in findings, because none of Jen's objections are due before options or a decision ask. The runtime speaks the move's first followUp when she returns, which matches the first demo line.
+    - Written before drain-kitchen-recurring existed. Check the camera finding in the demo against it.

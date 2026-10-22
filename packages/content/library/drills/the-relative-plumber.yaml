@@ -1,0 +1,57 @@
+id: the-relative-plumber
+version: 1
+order: 11
+title: '"My brother-in-law is a plumber"'
+stage: objections
+skill: objections
+durationSec: 150
+why: >-
+  This moment comes when the customer says, "My brother-in-law is a plumber."
+  Most techs get defensive. Some question the relative's skill or license. Some
+  list everything that could go wrong. Some drop the price to compete with
+  family. All of it puts the customer in the position of defending someone they
+  love. Here's what is really going on. Family loyalty is real, and the customer
+  isn't trying to insult you. Often money is tight, and the relative is how they
+  can afford the work. What they need to know is whether this is a job their
+  relative can actually do. So speak well of the relative. Say plainly what this
+  job takes: what you found, and what fixing it involves, like the permit and
+  the equipment. Offer your camera video and written findings so the relative
+  can see exactly what you saw. Keep your recommendation and your price. In this
+  drill, Carlos says his brother-in-law Tony could do it. Help him compare
+  fairly.
+demo:
+  - speaker: customer
+    text: Honestly, my brother-in-law's a plumber. He could probably do this for a lot less.
+  - speaker: tech
+    text: That's great to have family in the trade. What kind of work does he do?
+  - speaker: customer
+    text: New construction, mostly. He's good, he's just busy.
+  - speaker: tech
+    text: Then he knows plumbing. This one's a repair on an old clay line under a tree, and it takes a permit, an inspection, and the right equipment. I'll send you the camera video so Tony can see exactly what I saw.
+  - speaker: customer
+    text: Okay. Yeah, he'd want to see that first.
+  - speaker: tech
+    text: If he can take it on, great. If not, you have my estimate in writing. Just give me a call.
+scenarioId: drain-main-line-roots
+personaId: ruiz-couple
+startPhase: objections
+priorContext: >-
+  The Ruiz family's main sewer line backed up. The tech ran a camera through the
+  line and found tree roots growing into the old clay pipe under the ash tree in
+  the front yard. Carlos watched the video on the screen with the tech. The tech
+  presented the repair options with prices and recommended one. Carlos's
+  sister's husband, Tony, does plumbing for a builder that puts up new houses.
+forcedMoves: [brother-in-law-plumber]
+customerOpener: Okay. So it's roots, right where the ash tree is. I saw it on the screen.
+techPrompt: Carlos says his brother-in-law Tony could do it for less. Respect Tony, explain what the job takes, and offer the camera video.
+passCriteria:
+  - Speak well of Tony without questioning his skill or license
+  - Explain plainly what this repair involves, such as the permit and the equipment
+  - Offer the camera video and written findings so Tony can see the problem
+  - Keep your recommendation and price without discounting to compete
+review:
+  status: draft
+  author: Claude
+  notes:
+    - brother-in-law-plumber is Carlos's strongest objection (55) and fires on the first customer turn in objections. If the tech asks for a decision first and the price is over Carlos's $1,500 ceiling, too-expensive comes instead.
+    - Written before drain-main-line-roots existed. Check the camera finding and the repair method in the priorContext and demo against it.
