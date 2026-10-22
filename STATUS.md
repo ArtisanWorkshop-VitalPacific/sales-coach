@@ -69,9 +69,30 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 - Decide on the Vercel plan. Hobby is for personal, non-commercial use and only protects preview URLs; a Pro team lets Gardner and SOS owners sign in.
 - Brand review with SRV LAB.
 
+## The library
+
+12 personas, 40 plumbing objections in 7 groups, 20 customer behaviors (silences, step-aways, interruptions, misunderstandings, misplaced confidence, the spouse walking in), 30 scenarios, 20 drills, the base rubric (10 skills, 4 levels), and specs for Gardner, SOS, and Summit (fictional). All validated, all `draft` for review.
+
 ## Quality checks run
 
-- Engine unit tests (scripted calls end to end, snapshot and restore, Claude adapters with a faked client).
+- **Customer test bench: PASS.** 1,680 scripted calls across all 30 scenarios and 20 drills, three technician levels, two difficulties, six seeds. Expert techs get a yes 91 percent of the time and score 89; solid techs 74 percent and 72; novices 0 percent and 29. Persistence without progress never became a yes (314 repeat asks). Recommending unneeded work never ended in a yes. No state out of range, no em dashes or AI mentions in customer lines. Report: `apps/testbench/reports/latest-scripted.md`.
+- Engine unit tests: scripted calls end to end, snapshot and restore, Claude adapters against a faked client. ServiceTitan client tests including a no-personal-data test.
 - Content validator: schemas, cross-references, no em dashes, no AI mentions in customer lines.
-- Customer test bench: see `apps/testbench/reports/latest-scripted.md`.
-- Production build of the web app and a browser run on a phone-sized screen: onboarding, practice, briefing, a full typed call, end, debrief.
+- A clean clone installs and builds with the exact Vercel commands.
+- Browser runs on a phone-sized screen: onboarding, practice, briefing, a full call, a drill (price, held silence, pass), Spanish, debriefs, team, portal, design system, dark mode.
+
+## Known gaps
+
+- **Latency in Claude mode** is about 2 to 3 seconds from the end of your sentence to the customer's voice (listen, think, speak, then voice). Natural for an in-home pause, slower than a phone call. Live mode is the path to sub-second.
+- **Demo mode's listening is rules-based.** It misses some upsells ("replace the pressure regulator") and occasionally flags an honest line. Claude mode reads meaning, not keywords.
+- **The scripted expert in the test bench never offers a membership**, so membership moves are lightly tested.
+- **ServiceTitan endpoint paths** are from the public API layout; the developer docs needed a login, so query filters are marked "verify" in code.
+- **The database** schema and migration are generated but have not run against a live Neon database.
+- **The Live mode agent** typechecks against LiveKit Agents 1.9.3; it has not run (no LiveKit keys).
+
+## Content notes from the overnight review
+
+- Jen's persona says Dan tried to fix the drain twice, which conflicts with the drain-kitchen-recurring scenario. Pick one.
+- hard-water-softener recommends the $2,350 softener over the $285 descale. Lower the tested hardness if descale-only should win.
+- Code rules cited in scenarios need a licensed eye: the 80 psi regulator rule, 2-inch shower drains, anti-scald valves, expansion tanks.
+- Remodel prices are estimates (no public range). The slab leak scenario does not price the leak detection visit.

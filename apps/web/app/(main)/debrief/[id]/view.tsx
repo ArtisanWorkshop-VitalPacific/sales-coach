@@ -68,6 +68,8 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
     ? `/call?drill=${d.fix.tryAgain.drillId}${companyQ}`
     : `/call?scenario=${s.scenarioId}&d=${s.difficulty}${companyQ}${d.fix.tryAgain?.moveId ? `&retry=${d.fix.tryAgain.moveId}` : ''}`;
   const againHref = s.drillId ? `/call?drill=${s.drillId}${companyQ}` : `/call?scenario=${s.scenarioId}&d=${s.difficulty}${companyQ}`;
+  const drill = s.drillId ? index.drills.get(s.drillId) : undefined;
+  const focus = drill ? d.skills.find((k) => k.skillId === drill.skill) : undefined;
   const winTurn = d.win.turnId ? turnText.get(d.win.turnId) : undefined;
   const fixTurn = d.fix.turnId ? turnText.get(d.fix.turnId) : undefined;
 
@@ -86,10 +88,22 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
           </span>
         </div>
         <div className="mt-8">
-          <Ring value={d.overall} size={tv ? 220 : 180} stroke={tv ? 16 : 14} sublabel={`Pass at ${d.passBar}`} />
+          {drill ? (
+            <Ring
+              value={d.passed ? 100 : (focus?.score ?? d.overall)}
+              size={tv ? 220 : 180}
+              stroke={tv ? 16 : 14}
+              label={d.passed ? <Check size={tv ? 84 : 68} strokeWidth={2.4} className="mx-auto text-positive" /> : <span className="t-title">Again</span>}
+              sublabel={focus ? `${focus.name}${focus.score !== null ? ` ${focus.score}` : ''}` : 'Drill'}
+            />
+          ) : (
+            <Ring value={d.overall} size={tv ? 220 : 180} stroke={tv ? 16 : 14} sublabel={`Pass at ${d.passBar}`} />
+          )}
         </div>
-        <h1 className="t-display mt-6 text-ink">{d.passed ? (d.overall >= d.passBar + 15 ? 'Strong call.' : 'You passed.') : 'Not yet. Close.'}</h1>
-        <p className="t-body-lg mt-2 text-ink-3">{decisionLine(s.personaName, s.record.decision)}</p>
+        <h1 className="t-display mt-6 text-ink">
+          {drill ? (d.passed ? 'Nailed it.' : 'One more rep.') : d.passed ? (d.overall >= d.passBar + 15 ? 'Strong call.' : 'You passed.') : 'Not yet. Close.'}
+        </h1>
+        <p className="t-body-lg mt-2 text-ink-3">{drill ? drill.title : decisionLine(s.personaName, s.record.decision)}</p>
         <div className="mt-5 flex items-center gap-2">
           {coaching ? (
             <Chip tone="voice">
