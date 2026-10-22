@@ -80,7 +80,7 @@ Every file has a `review.status` (`draft`, `reviewed`, `approved`). Everything w
 
 1. Create a LiveKit Cloud project. Set `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`, plus `ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY`, `DEEPGRAM_API_KEY` on the agent host.
 2. On the host: `pnpm install && pnpm rebuild onnxruntime-node && pnpm agent:dev` (or `pnpm --filter @sales-coach/agent start` in production; LiveKit Cloud Agents or any container works).
-3. The web client for Live mode is the next build step (see STATUS.md).
+3. Add the same three `LIVEKIT_*` variables in Vercel and redeploy. The call screen then offers **Try Live mode**, which opens `/live` for the same customer.
 
 ### Shared storage (Neon Postgres)
 `packages/db` holds the schema and the first migration. Create a Neon database, set `DATABASE_URL`, then `pnpm db:migrate` and `pnpm db:seed`. Wiring the app to save calls there instead of on the device is a listed next step.

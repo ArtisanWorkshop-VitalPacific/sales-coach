@@ -28,7 +28,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 | --- | --- | --- |
 | Vercel project | The repo is ready to import (`apps/web/vercel.json` sets everything). Creating it from here needed a one-time permission click from you in Vercel. | Two options in the morning note: approve the link, or import in about three minutes (docs/RUNBOOK.md, section 1). |
 | Keys | None were available to me, so Claude and ElevenLabs paths are tested offline with a faked client, not against the live APIs. | Add the two keys in Vercel and redeploy. First real call is the real test. |
-| Live mode (LiveKit, sub-second voice) | Agent worker in `apps/agent`. | LiveKit Cloud project, agent host, and the browser client for Live mode. |
+| Live mode (LiveKit, sub-second voice) | Agent worker in `apps/agent` and the browser side at `/live` (token route, captions, end-of-call record). The call screen offers it once LiveKit keys are set. | LiveKit Cloud project and an agent host; first live run. |
 | Accounts (Clerk) | Not wired. The Tech / Manager / Owner switch is a demo control; Vercel login or the passcode protects the app. | Add Clerk, map users to companies and roles. |
 | Shared storage (Neon) | Schema and migration in `packages/db`. Calls are stored on each device for now. | Create the database, save calls and assignments server-side, real team console. |
 | ServiceTitan | Client in `packages/servicetitan` (first names only). "Rehearse your next job" uses a fictional sample job. | Developer app credentials from ServiceTitan, then wire the next appointment into the home screen. |

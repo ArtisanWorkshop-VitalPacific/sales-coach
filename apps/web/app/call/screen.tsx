@@ -107,7 +107,19 @@ export function CallScreen(props: Props) {
   return (
     <div data-theme="dark" className="relative min-h-dvh overflow-hidden bg-[#000] text-[#f5f5f7]">
       {controller ? (
-        <LiveCall controller={controller} spec={spec} tv={!!props.tv} saving={saving} settings={settings} setSettings={setSettings} />
+        <LiveCall
+          controller={controller}
+          spec={spec}
+          tv={!!props.tv}
+          saving={saving}
+          settings={settings}
+          setSettings={setSettings}
+          liveHref={
+            caps?.live && !props.job
+              ? `/live?${spec.drill ? `drill=${spec.drill.id}` : `scenario=${spec.scenario.id}`}&d=${spec.difficulty}${spec.company ? `&c=${spec.company.id}` : ''}`
+              : null
+          }
+        />
       ) : (
         <div className="grid min-h-dvh place-items-center">
           <div className="h-2 w-24 animate-pulse rounded-full bg-[#2c2c2e]" />
@@ -163,7 +175,9 @@ function LiveCall({
   saving,
   settings,
   setSettings,
+  liveHref,
 }: {
+  liveHref: string | null;
   controller: CallController;
   spec: NonNullable<ReturnType<typeof buildSessionSpec>>;
   tv: boolean;
@@ -303,6 +317,11 @@ function LiveCall({
               <span>·</span>
               <span>{st.micAvailable ? 'Mic ready' : 'Typing mode'}</span>
             </div>
+            {liveHref && (
+              <Link href={liveHref} className="text-[13px] text-[#c8a0ff] hover:underline">
+                Try Live mode (instant voice)
+              </Link>
+            )}
             {!st.micAvailable && (
               <p className="max-w-sm text-center text-[13px] text-[#86868b]">
                 This browser cannot listen. Use Chrome or Safari for voice, or type your replies.
