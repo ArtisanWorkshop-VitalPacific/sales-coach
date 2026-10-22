@@ -78,8 +78,15 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 - **Customer test bench: PASS.** 1,680 scripted calls across all 30 scenarios and 20 drills, three technician levels, two difficulties, six seeds. Expert techs get a yes 91 percent of the time and score 89; solid techs 74 percent and 72; novices 0 percent and 29. Persistence without progress never became a yes (314 repeat asks). Recommending unneeded work never ended in a yes. No state out of range, no em dashes or AI mentions in customer lines. Report: `apps/testbench/reports/latest-scripted.md`.
 - Engine unit tests: scripted calls end to end, snapshot and restore, Claude adapters against a faked client. ServiceTitan client tests including a no-personal-data test.
 - Content validator: schemas, cross-references, no em dashes, no AI mentions in customer lines.
+- An independent review of the Claude path before first use. All six findings are fixed: structured outputs no longer fail on one stray value, rejected API settings are remembered instead of retried every turn, each turn has strict time limits, the call loop ignores stale playback, the voice has start and length timeouts, and iPhone and Safari play whole audio files.
 - A clean clone installs and builds with the exact Vercel commands.
 - Browser runs on a phone-sized screen: onboarding, practice, briefing, a full call, a drill (price, held silence, pass), Spanish, debriefs, team, portal, design system, dark mode.
+
+## Test these first on an iPhone
+
+- Hands-free listening may need a tap on the mic each turn. Safari only lets a page listen after a tap. The call screen asks for the tap when it is needed.
+- Use headphones or AirPods. Right after the mic closes, an iPhone can play the customer through the earpiece instead of the speaker.
+- In Settings > General > Keyboard, Enable Dictation must be on for the browser to hear you.
 
 ## Known gaps
 
