@@ -391,8 +391,18 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
     return d;
   }
 
-  // 2. The tech asked for the decision.
+  // 2. The tech asked for the decision. A forced objection still waiting comes out first.
   if (behaviors.has('asked_for_decision') && state.decision !== 'yes') {
+    const waiting = state.objections.find(
+      (o) => o.status === 'latent' && spec.forcedMoves.includes(o.moveId) && index.move(o.moveId)?.trigger.when.decisionAsked !== false,
+    );
+    if (waiting) {
+      const d = voiceObjection(ctx, waiting, 'Forced objection before the decision');
+      if (d) {
+        d.intent = `You are not ready to say yes yet. ${d.intent}`;
+        return d;
+      }
+    }
     const d = decisionDirective(ctx, evaluateDecision(state, spec));
     if (d) return d;
   }
@@ -453,7 +463,7 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   const ambient = pickAmbient(ctx, behaviors);
   if (ambient) {
     if (ambient.delivery.act === 'interrupt' && ambient.delivery.interruptAfterMs) {
-      markUsed(ctx, ambient);
+      // Armed, not used: it only counts once the tech talks long enough for it to fire.
       d.armInterrupt = { afterMs: ambient.delivery.interruptAfterMs, moveId: ambient.id, lines: ambient.delivery.lines };
       d.why += `; armed ${ambient.id}`;
     } else {

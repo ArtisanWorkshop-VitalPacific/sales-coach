@@ -261,6 +261,9 @@ export class CustomerSession {
     this.transcript.push(turn);
     this.directives.push({ turnId: turn.id, directive: d });
     this.recordMove(armed.moveId, turn.id);
+    this.state.movesUsed[armed.moveId] = (this.state.movesUsed[armed.moveId] ?? 0) + 1;
+    this.state.lastMoveTurn = this.state.turn;
+    this.state.movesFired += 1;
     this.lastCustomerMoveId = armed.moveId;
     return this.toCustomerTurn(turn, d);
   }
@@ -425,7 +428,6 @@ export class CustomerSession {
     this.armed = d.armInterrupt
       ? { afterMs: d.armInterrupt.afterMs, moveId: d.armInterrupt.moveId, text: this.rng.pick(d.armInterrupt.lines) ?? 'So how much?' }
       : null;
-    if (d.armInterrupt) this.state.movesUsed[d.armInterrupt.moveId] = this.state.movesUsed[d.armInterrupt.moveId] ?? 1;
     this.lastCustomerMoveId = d.moveId;
     this.lastCustomerObjectionId = d.objectionId;
     if (d.end) this.state.ended = true;

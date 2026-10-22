@@ -193,7 +193,7 @@ export function perceiveText(input: PerceptionInput): Perception {
     const common = new Set(
       [...sc.justifiedWork.map((w) => w.label), ...sc.options.map((o) => o.label), ...sc.findings.map((f) => f.text)].flatMap(keyWords),
     );
-    const generic = ['saying', 'required', 'whole', 'house', 'water', 'unit', 'system', 'replacement', 'replace', 'full', 'entire', 'must', 'needs', 'line', 'adding', 'install', 'installing', 'with'];
+    const generic = ['saying', 'required', 'whole', 'house', 'water', 'unit', 'system', 'replacement', 'replace', 'replaced', 'replacing', 'full', 'entire', 'must', 'needs', 'line', 'adding', 'install', 'installed', 'installing', 'with', 'upgrade', 'upgrading', 'brand', 'everything', 'today'];
     const tl = t.toLowerCase();
     for (const u of sc.unjustifiedWork) {
       const kws = keyWords(u.label).filter((w) => !generic.includes(w) && !common.has(w));

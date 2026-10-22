@@ -68,13 +68,17 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
     if (fired) continue;
     const why = forcedEligible(rec, index, id);
     if (!why) continue;
+    // Interrupts are armed by time (the tech talking past afterMs). Text mode only simulates
+    // speech length, so a missing interrupt is reported but does not fail the bench.
+    const interrupt = index.move(id)?.delivery.act === 'interrupt';
     // A novice call that collapsed into a flat "no" is reported, but does not fail the bench.
     const collapsed = r.spec.level === 'novice' && rec.decision === 'no';
-    v(
-      collapsed ? 'soft' : 'hard',
-      collapsed ? 'forced-move-fires-collapsed-call' : 'forced-move-fires',
-      `${id} never fired, though ${why}`,
-    );
+    const rule = interrupt
+      ? 'forced-interrupt-untestable-in-text'
+      : collapsed
+        ? 'forced-move-fires-collapsed-call'
+        : 'forced-move-fires';
+    v(interrupt || collapsed ? 'soft' : 'hard', rule, `${id} never fired, though ${why}`);
   }
 
   // 3. Persistence without progress never turns into a yes.
@@ -155,10 +159,26 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
   return out;
 }
 
+const PHASES = [
+  'door',
+  'discovery',
+  'findings',
+  'options',
+  'price',
+  'objections',
+  'close',
+  'wrapup',
+];
+const phaseAt = (p: string) => PHASES.indexOf(p);
+
 /**
- * Why a forced move could have fired in this call, or null when its trigger never came up.
- * Forced moves skip the random chance, not the trigger, so the trigger has to be met at some
- * point in the call: right phase, trust and the other state conditions.
+ * Why a forced move should have fired in this call, or null when it never became due.
+ * Mirrors the engine's forced-move rules: a forced move skips the random chance and the mood
+ * conditions (trust, engagement, understanding), and once its first trigger phase is reached it
+ * stays due until wrapup. Fact conditions (price stated, options shown, membership offered,
+ * decision asked, spouse present) still apply. Reactive moves need their tech behavior first, so
+ * a move that answers a behavior this level never does (catches-false-claim needs a bluff) is
+ * skipped.
  */
 function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): string | null {
   const m = index.move(id);
@@ -178,29 +198,17 @@ function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): st
   ) {
     return null;
   }
-  const order = [
-    'door',
-    'discovery',
-    'findings',
-    'options',
-    'price',
-    'objections',
-    'close',
-    'wrapup',
-  ];
-  const at = (p: string) => order.indexOf(p);
+  const first = t.phases.length ? Math.min(...t.phases.map(phaseAt)) : 0;
   const points = rec.timeline.filter(
     (p) =>
-      (t.phases.length === 0 || t.phases.includes(p.phase)) &&
-      (w.trustBelow === undefined || p.trust < w.trustBelow) &&
-      (w.trustAbove === undefined || p.trust > w.trustAbove) &&
-      (w.engagementBelow === undefined || p.engagement < w.engagementBelow) &&
-      (w.understandingBelow === undefined || p.understanding < w.understandingBelow) &&
-      (w.priceStated !== true || at(p.phase) >= at('price')) &&
-      (w.priceStated !== false || at(p.phase) < at('price')) &&
-      (w.optionsPresented !== true || at(p.phase) >= at('options')),
+      phaseAt(p.phase) >= first &&
+      p.phase !== 'wrapup' &&
+      (w.priceStated !== true || phaseAt(p.phase) >= phaseAt('price')) &&
+      (w.priceStated !== false || phaseAt(p.phase) < phaseAt('price')) &&
+      (w.optionsPresented !== true || phaseAt(p.phase) >= phaseAt('options')),
   );
-  if (points.length === 0) return null;
+  // Due for at least two tech turns: the director had a free turn to play it.
+  if (points.length < 2) return null;
   if (w.decisionAsked === true) {
     // Decision-time objections can only come up while the customer is weighing a yes.
     // A call that collapsed straight into "no" never gets there.
@@ -217,7 +225,7 @@ function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): st
     return `the tech did ${t.afterBehaviors.join('/')} ("${hit.text.slice(0, 60)}")`;
   }
   const phases = [...new Set(points.map((p) => p.phase))].join(', ');
-  return `its trigger was met in ${points.length} state point(s) (${phases})`;
+  return `it was due for ${points.length} tech turns (${phases})`;
 }
 
 const isProgress = (b: BehaviorId) =>
