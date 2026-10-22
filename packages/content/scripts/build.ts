@@ -34,7 +34,7 @@ const library = join(root, 'library');
 
 const args = process.argv.slice(2);
 const mode = args[0] === 'build' ? 'build' : 'validate';
-const strict = args.includes('--strict') || mode === 'build-strict';
+const strict = args.includes('--strict');
 const onlyIdx = args.indexOf('--only');
 const only = onlyIdx >= 0 ? args[onlyIdx + 1] : undefined;
 
