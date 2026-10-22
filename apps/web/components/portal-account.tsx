@@ -8,6 +8,7 @@ import { BANDS, OVERAGE_PER_MINUTE, quote, SEMINAR_PER_DAY, type TierId, TIERS, 
 import { useProfile } from '@/lib/store';
 import { useCapabilities } from '@/lib/use-capabilities';
 import { Button, Card, Chip, cn, Section, Skeleton } from './ui';
+import { HealthCheck } from './portal-health';
 
 /* ================================================================ Billing */
 
@@ -424,6 +425,7 @@ function IntegrationCard({ i, caps, loaded }: { i: Integration; caps: Capabiliti
       <p className="t-callout mt-2 text-ink-2">{i.unlocks}</p>
       {!on && <p className="t-caption mt-1 text-ink-4">{i.off}</p>}
       {on && caps && i.extra?.(caps)}
+      {on && (i.id === 'claude' || i.id === 'voice') && <HealthCheck kind={i.id} />}
       <div className="mt-auto pt-5">
         {on ? (
           <details className="group">

@@ -25,7 +25,7 @@ Your Claude key pays for every call, so lock the door.
 1. Vercel > your project > **Settings > Environment Variables**.
 2. **Add New**: name, value, environments *Production* and *Preview*. Save.
 3. **Deployments** > the latest deployment > **...** > **Redeploy**. Keys apply on the next deploy.
-4. Check it: open the app, switch to *Owner view* (top right), go to **Portal > Setup**. Claude and Voices should read *On*. On the call screen the chip reads *Claude · Voice*.
+4. Check it: open the app, switch to *Owner view* (top right), go to **Portal > Setup**. Claude and ElevenLabs should read *On*. Tap **Run a live test** on each: every model should answer *OK* with its response time. On the call screen the chip reads *Claude · Voice*.
 
 Where to get them:
 

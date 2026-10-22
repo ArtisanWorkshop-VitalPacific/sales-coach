@@ -19,5 +19,5 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|icon.svg|favicon.ico|robots.txt).*)'],
+  matcher: ['/((?!_next/static|_next/image|icon.svg|apple-icon.png|manifest.webmanifest|favicon.ico|robots.txt).*)'],
 };
