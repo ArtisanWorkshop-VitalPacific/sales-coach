@@ -135,7 +135,7 @@ function Timer({ since }: { since: number | null }) {
   );
 }
 
-function statusLine(st: CallState, first: string) {
+function statusLine(st: CallState, first: string, typing: boolean) {
   switch (st.status) {
     case 'ready':
       return 'Ready when you are';
@@ -148,7 +148,7 @@ function statusLine(st: CallState, first: string) {
     case 'hold':
       return st.holdKind === 'away' ? `${first} stepped away` : `${first} is quiet`;
     case 'listening':
-      return st.techSpeaking ? 'Listening' : st.micOn || !st.micAvailable ? 'Your turn' : 'Your turn. Tap the mic.';
+      return st.techSpeaking ? 'Listening' : st.micOn || !st.micAvailable || typing ? 'Your turn' : 'Your turn. Tap the mic.';
     case 'ended':
       return 'Call ended';
     case 'error':
@@ -234,7 +234,7 @@ function LiveCall({
         </Orb>
         <h1 className={cn('mt-8 font-semibold tracking-[-0.02em]', tv ? 'text-[44px]' : 'text-[28px]')}>{p.name}</h1>
         <p className={cn('mt-1 text-[#a1a1a6]', tv ? 'text-[22px]' : 'text-[15px]')}>
-          {st.status === 'thinking' ? <Dots /> : statusLine(st, first)}
+          {st.status === 'thinking' ? <Dots /> : statusLine(st, first, typing)}
         </p>
         {!live && (
           <div className="reveal mt-8 max-w-md">
@@ -273,7 +273,9 @@ function LiveCall({
         </div>
       )}
 
-      {st.notice && <p className="mb-3 text-center text-[13px] text-[#ffb340]">{st.notice}</p>}
+      {st.notice && !(typing && st.notice.startsWith('Tap the mic')) && (
+        <p className="mb-3 text-center text-[13px] text-[#ffb340]">{st.notice}</p>
+      )}
       {st.error && (
         <div className="mb-3 text-center text-[14px] text-[#ff6961]">
           {st.error}{' '}
