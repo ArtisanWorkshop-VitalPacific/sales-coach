@@ -43,6 +43,6 @@ export { type LineWriter, type Perceiver, type PerceptionInput, type WriteInput,
 export { CustomerSession, type SessionOptions, type SessionSnapshot, type TechTurnInput } from './session';
 export { HeuristicPerceiver, perceiveText } from './heuristic/perceiver';
 export { ScriptedWriter } from './heuristic/writer';
-export { scoreRecord, tryAgainFor, phaseAtTurn } from './coach/score';
+export { passedFor, phaseAtTurn, scoreRecord, tryAgainFor } from './coach/score';
 export { Debrief, Evidence, SkillScore } from './coach/types';
 export { clamp, createRng, extractDollarAmounts, newId, sayDollars, similarity, wordCount } from './util';

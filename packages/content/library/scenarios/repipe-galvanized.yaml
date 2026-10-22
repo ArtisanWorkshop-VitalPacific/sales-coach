@@ -1,0 +1,138 @@
+id: repipe-galvanized
+version: 1
+title: 1960s galvanized pipe, low water pressure
+trade: plumbing
+jobType: repipe
+difficulty: 5
+personaId: paul-engineer
+alternatePersonas: [devin-researcher, tasha-burned]
+briefing: >-
+  Service call. Low water pressure throughout the house, worst at the back
+  bathroom, and rusty water after the water has sat overnight. Single-story home on
+  a raised foundation, built in 1962. Not a member.
+situation: >-
+  The supply lines are the original galvanized steel. Static pressure at the front
+  hose bib is 64 psi, so the city supply is fine. The loss happens under flow,
+  because rust has built up inside the pipe. A 3/4-inch section the tech removes at
+  the water heater has an inside opening of about 0.3 inches, down from about 0.82
+  when new. The kitchen faucet flows 1.1 gallons per minute against its 1.8 rating,
+  and the back shower drops to 0.8 when the kitchen runs. There have been two
+  pinhole leaks in the crawlspace in six years, both clamped. The copper service
+  line from the meter was replaced in 2005 and is in good shape. The honest
+  recommendation is a whole-house repipe with PEX-A. Replacing only the main trunk
+  helps the kitchen but leaves corroded branches that keep restricting flow and
+  leaking. Copper is a sound choice at a higher price. The customer is a retired
+  aerospace engineer who wants measurements, will check every claim, and will catch
+  anything overstated, such as made-up lifespans or code requirements.
+equipment:
+  - item: Galvanized steel water supply lines
+    ageYears: 64
+    notes: Original. Heavy rust inside. Two clamped pinhole leaks in the crawlspace.
+  - item: Copper water service line from the meter
+    ageYears: 21
+    notes: Replaced in 2005. Holds 64 psi with no leaks.
+  - item: Cast iron drain lines
+    ageYears: 64
+    notes: Drain freely. Not part of this call.
+findings:
+  - id: static-pressure-normal
+    text: Static pressure at the front hose bib is 64 psi. The city supply and the service line are fine.
+    severity: info
+  - id: flow-restricted
+    text: >-
+      The kitchen faucet flows 1.1 gallons per minute against its 1.8 rating, and the
+      back shower drops to 0.8 when the kitchen runs. The pipe is restricting flow.
+    severity: major
+  - id: pipe-section-choked
+    text: >-
+      A 3/4-inch section removed at the water heater has an inside opening of about
+      0.3 inches, down from about 0.82 when new. Rust fills the rest.
+    severity: major
+  - id: pinhole-history
+    text: >-
+      Two pinhole leaks in the crawlspace in six years, both clamped. Galvanized pipe
+      corrodes from the inside, so more leaks are likely.
+    severity: major
+  - id: rusty-water
+    text: Water runs brown for a few seconds after sitting overnight.
+    severity: minor
+justifiedWork:
+  - id: pex-repipe
+    label: Whole-house repipe with PEX-A
+    rationale: >-
+      Every branch is galvanized and restricted. Replacing all of it restores flow and
+      ends the leaks. PEX-A costs less than copper and suits the crawlspace layout.
+  - id: new-fixture-stops
+    label: New shutoff valves at every fixture
+    rationale: The old valves come out with the old pipe.
+  - id: electrical-bond
+    label: Check and restore the electrical bond
+    rationale: >-
+      Metal water pipe is often part of the home's electrical bonding. When it is
+      replaced with plastic, the bond has to be kept as code requires.
+  - id: repipe-permit
+    label: Permit and inspection
+    rationale: A repipe requires a plumbing permit and inspection.
+unjustifiedWork:
+  - id: service-line-replacement
+    label: Replacing the copper service line from the meter
+    why: It was replaced in 2005 and holds 64 psi with no leaks.
+  - id: drain-replacement
+    label: Replacing the drain lines
+    why: The drains run freely and were not part of the complaint. Nothing points to a drain problem.
+  - id: treatment-to-protect-pipes
+    label: Selling a softener or filter to protect the new pipes
+    why: PEX-A does not need water treatment to last. A softener is a separate choice about hard water.
+options:
+  - id: trunk-only
+    label: Main trunk and kitchen branch only
+    price: 4600
+    monthly: 115
+    includes:
+      - Replace the main trunk from the service line to the first branch tee
+      - Replace the kitchen branch
+      - PEX-A with expansion fittings
+      - Permit and inspection
+      - Bathroom and laundry branches stay galvanized
+  - id: pex-repipe
+    label: Whole-house PEX-A repipe
+    price: 11600
+    monthly: 290
+    includes:
+      - All hot and cold supply lines replaced with PEX-A
+      - New shutoff valves at every fixture
+      - New main shutoff ball valve
+      - Electrical bond checked and restored
+      - Drywall openings patched and primed
+      - Permit and inspection
+    recommended: true
+  - id: copper-repipe
+    label: Whole-house type L copper repipe
+    price: 14900
+    monthly: 373
+    includes:
+      - All hot and cold supply lines replaced with type L copper
+      - New shutoff valves at every fixture
+      - New main shutoff ball valve
+      - Drywall openings patched and primed
+      - Permit and inspection
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [catches-false-claim]
+  excluded: []
+  density: 3
+goal: >-
+  Give him the measurements behind the recommendation, compare partial, PEX, and
+  copper accurately, and recommend the PEX repipe without overstating anything.
+  Answer technical questions straight, including saying you will find out when you
+  do not know.
+passBar: 80
+tags: [repipe, galvanized, pressure, analytical, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Confirm the bonding wording with a licensed electrician. Techs should only say the bond will be checked and restored.
+    - Confirm the PEX-A brand and warranty terms each company installs before techs quote them.

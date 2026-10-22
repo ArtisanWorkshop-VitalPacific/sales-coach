@@ -27,7 +27,7 @@ demo:
   - speaker: customer
     text: New construction, mostly. He's good, he's just busy.
   - speaker: tech
-    text: Then he knows plumbing. This one's a repair on an old clay line under a tree, and it takes a permit, an inspection, and the right equipment. I'll send you the camera video so Tony can see exactly what I saw.
+    text: Then he knows plumbing. This one means digging up about ten feet of old clay sewer pipe under the lawn and replacing it, with a permit and an inspection. I'll send you the camera video so Tony can see exactly what I saw.
   - speaker: customer
     text: Okay. Yeah, he'd want to see that first.
   - speaker: tech
@@ -36,22 +36,26 @@ scenarioId: drain-main-line-roots
 personaId: ruiz-couple
 startPhase: objections
 priorContext: >-
-  The Ruiz family's main sewer line backed up. The tech ran a camera through the
-  line and found tree roots growing into the old clay pipe under the ash tree in
-  the front yard. Carlos watched the video on the screen with the tech. The tech
-  presented the repair options with prices and recommended one. Carlos's
-  sister's husband, Tony, does plumbing for a builder that puts up new houses.
+  The Ruiz family's main sewer line backed up this morning. The tech cleared it
+  with a root cutter, so the house drains again for now, then ran a camera and
+  found roots growing into two joints of the old clay line about 40 feet out,
+  under the front lawn near the ash tree. One of those joints is cracked and
+  offset. The rest of the line is sound. Carlos watched the video with the tech.
+  The tech presented three options, root clearing only for $495, a spot repair
+  that replaces about 10 feet of the line for $5,400, and lining the whole line
+  for $13,800, and recommended the spot repair. Carlos's sister's husband, Tony,
+  does plumbing for a builder that puts up new houses.
 forcedMoves: [brother-in-law-plumber]
 customerOpener: Okay. So it's roots, right where the ash tree is. I saw it on the screen.
 techPrompt: Carlos says his brother-in-law Tony could do it for less. Respect Tony, explain what the job takes, and offer the camera video.
 passCriteria:
   - Speak well of Tony without questioning his skill or license
-  - Explain plainly what this repair involves, such as the permit and the equipment
+  - Explain plainly what this repair involves, such as the digging, the permit, and the inspection
   - Offer the camera video and written findings so Tony can see the problem
   - Keep your recommendation and price without discounting to compete
 review:
   status: draft
   author: Claude
   notes:
-    - brother-in-law-plumber is Carlos's strongest objection (55) and fires on the first customer turn in objections. If the tech asks for a decision first and the price is over Carlos's $1,500 ceiling, too-expensive comes instead.
-    - Written before drain-main-line-roots existed. Check the camera finding and the repair method in the priorContext and demo against it.
+    - brother-in-law-plumber is Carlos's strongest objection, and drain-main-line-roots forces it too, so it fires on the first customer turn in objections. If the tech asks for a decision first, $5,400 is over Carlos's $1,500 ceiling, so too-expensive comes instead.
+    - The priorContext and demo follow the scenario's findings and its spot-repair recommendation. The scenario says the house was built in 1968 and the persona says 1976, so the drill does not name a year.

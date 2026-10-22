@@ -1,0 +1,104 @@
+id: toilet-running-old
+version: 1
+title: Running toilet, repair or replace
+trade: plumbing
+jobType: toilet-repair
+difficulty: 1
+personaId: linda-warranty
+alternatePersonas: [margaret-retiree, rosa-spanish]
+briefing: >-
+  Service call. Hall bathroom toilet refills on its own every few minutes, and the
+  customer hears it at night. The toilet is about 25 years old. Single-story home.
+  Not a member.
+situation: >-
+  The toilet runs because the flapper is warped and leaks water into the bowl, and
+  the original fill valve is slow to shut off. A dye test shows color in the bowl
+  in about ten minutes with no flushing. The porcelain has no cracks, the toilet
+  does not rock, and the floor at the base is dry, so the wax seal is fine. A tank
+  rebuild (new flapper, fill valve, and supply line) is the honest recommendation.
+  Replacing the toilet is a fair choice if she wants a newer, lower-flow model, but
+  it is not needed. The customer has a home warranty and expects it to cover this.
+  Home warranties usually require calling the warranty company, paying its service
+  fee, and waiting for its own contractor. An honest tech tells her that if her
+  plan covers toilet repairs, using it may cost her less than this repair, and
+  lets her choose.
+equipment:
+  - item: 1.6-gallon two-piece toilet
+    ageYears: 25
+    notes: Porcelain sound. Original flapper and fill valve.
+  - item: Toilet shutoff valve
+    ageYears: 25
+    notes: Closes fully, no drips.
+findings:
+  - id: flapper-leaking
+    text: >-
+      The flapper is warped and lets water leak into the bowl. A dye test shows color
+      in the bowl in about ten minutes with no flushing.
+    severity: major
+  - id: fill-valve-slow
+    text: The original fill valve is slow to shut off and hisses while it refills.
+    severity: minor
+  - id: toilet-sound
+    text: >-
+      No cracks in the tank or bowl, the toilet does not rock, and the floor around
+      it is dry. The toilet itself is in good shape.
+    severity: info
+  - id: wasted-water
+    text: A flapper leak like this wastes water around the clock, and it shows up on the water bill.
+    severity: minor
+justifiedWork:
+  - id: rebuild-tank
+    label: Rebuild the tank with a new flapper, fill valve, and supply line
+    rationale: Fixes the leak and the slow refill. The toilet itself is sound.
+  - id: dye-test-after
+    label: Dye test after the repair
+    rationale: Proves the leak is gone.
+  - id: explain-warranty
+    label: Explain plainly how home warranty claims usually work
+    rationale: She can decide whether her plan or this repair costs her less.
+unjustifiedWork:
+  - id: replace-toilet
+    label: Saying the toilet needs to be replaced
+    why: The porcelain is sound. A flapper and fill valve, about $20 in parts, fix the problem.
+  - id: pull-and-reseal
+    label: Pulling the toilet to replace the wax seal
+    why: The toilet does not rock and the base is dry. The seal is fine.
+  - id: other-toilet
+    label: Rebuilding or replacing the other toilet
+    why: The other toilet does not run. Nothing points to a problem there.
+options:
+  - id: rebuild
+    label: Rebuild the tank
+    price: 245
+    includes:
+      - New flapper and fill valve
+      - New braided supply line
+      - Water level and chain adjusted
+      - Dye test to confirm the fix
+    recommended: true
+  - id: replace
+    label: Replace with a new 1.28-gallon toilet
+    price: 795
+    includes:
+      - New 1.28-gallon-per-flush toilet
+      - New wax seal and closet bolts
+      - New supply line
+      - Haul-away of the old toilet
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [home-warranty-covers-it]
+  excluded: []
+  density: 1
+goal: >-
+  Show her the dye test and recommend the tank rebuild over a replacement. Explain
+  plainly how home warranties usually work so she can choose the cheaper path for
+  her.
+passBar: 65
+tags: [toilet, repair-or-replace, warranty, starter, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Warranty service fees and coverage vary by plan. Techs should not quote her plan's terms, only explain how warranties usually work and suggest she check.

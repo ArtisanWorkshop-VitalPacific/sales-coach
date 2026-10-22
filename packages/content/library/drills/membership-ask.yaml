@@ -27,17 +27,18 @@ demo:
   - speaker: customer
     text: And would it have saved me anything today?
   - speaker: tech
-    text: Yes, some. I'll show you the exact number on your bill. It doesn't pay for new equipment, though. Would you like it, or would you rather think it over?
+    text: A little, yes. I'll show you the exact amount on your bill. It doesn't pay for new equipment, though. Would you like it, or would you rather think it over?
   - speaker: customer
     text: Well, I'd like someone checking on things. Harold always did that.
 scenarioId: drain-simple-snake
 personaId: margaret-retiree
 startPhase: wrapup
 priorContext: >-
-  Margaret called because her bathroom sink drained slowly for a week and then
-  stopped. The tech cleared the clog and ran water to test it, and the sink
-  drains normally now. The price for the job was explained and agreed before
-  the work started. Margaret is not a member of any maintenance plan, and
+  Margaret's hall bathroom sink drained slowly for weeks and stopped completely
+  last night. Before starting, the tech offered two options and she chose the
+  basic clearing for $185. The tech cleaned the hair and soap out of the stopper
+  and the trap, and a full basin now drains in a few seconds. The other drains
+  in the house are fine. Margaret is not a member of any maintenance plan, and
   nobody has mentioned one to her yet.
 forcedMoves: [what-do-i-actually-get]
 customerOpener: Oh, listen to that. It drains right away now. Thank you, dear.
@@ -54,4 +55,4 @@ review:
     - Starts in wrapup so Margaret's too-expensive, which fires only in price, objections, and close, stays quiet. what-do-i-actually-get fires on the turn the tech offers the membership.
     - The demo names generic benefits (yearly check, priority, member discount). Company specs supply the real ones, the price, and the cancel terms.
     - Margaret brings up Harold herself in the last line. The tech should not use her late husband to sell the plan.
-    - Written before drain-simple-snake existed. Check the priorContext against it.
+    - drain-simple-snake asks that the membership be mentioned once, as optional, and never tied to the repair. The pass criteria test exactly that. Its forced tests-your-honesty does not fire in wrapup.

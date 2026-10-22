@@ -1,7 +1,7 @@
 import type Anthropic from '@anthropic-ai/sdk';
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 import { z } from 'zod';
-import { scoreRecord, tryAgainFor } from '../../coach/score';
+import { passedFor, scoreRecord, tryAgainFor } from '../../coach/score';
 import type { Debrief, SkillScore } from '../../coach/types';
 import type { ContentIndex } from '../../content';
 import type { SessionRecord } from '../../record';
@@ -113,7 +113,7 @@ export function mergeDebrief(
   return {
     ...base,
     overall,
-    passed: overall >= base.passBar,
+    passed: passedFor(record, index, overall, base.passBar, moves),
     skills,
     moves,
     win: { skillId: out.win.skillId, turnId: validTurn(out.win.turnId), text: out.win.text },

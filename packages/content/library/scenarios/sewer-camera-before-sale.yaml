@@ -1,0 +1,127 @@
+id: sewer-camera-before-sale
+version: 1
+title: Sewer camera before selling finds a belly
+trade: plumbing
+jobType: sewer-inspection
+difficulty: 3
+personaId: greg-selling
+alternatePersonas: [rick-landlord, paul-engineer]
+briefing: >-
+  Scheduled sewer camera inspection. Homeowner plans to sell in a couple of years
+  and wants to know the condition of the line before a buyer's inspector does.
+  Single-story home built in 1987. No backups reported.
+situation: >-
+  The tech runs the camera from the exterior cleanout to the city sewer, about 62
+  feet. The 4-inch ABS line has a belly, a sag where the soil settled, from about
+  34 to 41 feet. The low spot holds about an inch and a half of water, and toilet
+  paper is collecting at its downstream end. There are no roots, cracks, or
+  separated joints, and the house has never backed up. The belly is not an
+  emergency. A hydro jet clears the paper and lowers the chance of a clog, and the
+  video and written report give the owner what he needs to plan. The honest
+  recommendation is to clean the sag, replace the cracked cleanout cap, keep the
+  report, and camera the line again before listing. A spot repair is a fair choice
+  if he wants a clean scope for buyers, but it is not urgent. Lining does not fix a
+  belly because the liner follows the sag. California sellers disclose known
+  defects; the law does not require this repair before a sale, and disclosure
+  questions belong with his agent. He does not want to put money into a house he
+  will not enjoy.
+equipment:
+  - item: 4-inch ABS sewer lateral, about 62 feet to the city sewer
+    ageYears: 39
+    notes: Belly from 34 to 41 feet. No roots, cracks, or separated joints.
+  - item: Exterior cleanout at the front of the house
+    ageYears: 39
+    notes: Cap is cracked.
+findings:
+  - id: belly-34-to-41
+    text: >-
+      The line sags between about 34 and 41 feet. The low spot holds about an inch
+      and a half of water in a 4-inch pipe.
+    severity: major
+  - id: paper-collecting
+    text: >-
+      Toilet paper is collecting at the low end of the sag. Left alone, it can build
+      up into a clog.
+    severity: minor
+  - id: no-roots-or-cracks
+    text: No roots, cracks, or separated joints anywhere in the line.
+    severity: info
+  - id: cracked-cleanout-cap
+    text: The cleanout cap is cracked. It is a small part and an easy fix.
+    severity: minor
+  - id: no-backups
+    text: The house has never backed up, and every drain runs freely today.
+    severity: info
+justifiedWork:
+  - id: camera-report
+    label: Camera inspection with video and a written report
+    rationale: >-
+      What he booked. The video, the sag's location and depth, and a written repair
+      estimate give him what he needs to plan for the sale.
+  - id: jet-the-sag
+    label: Hydro jet the line to clear the paper in the sag
+    rationale: Removes the buildup that could turn into a clog, at modest cost while the cleanout is open.
+  - id: replace-cleanout-cap
+    label: Replace the cracked cleanout cap
+    rationale: Keeps dirt and water out of the line. Small part.
+  - id: recheck-before-listing
+    label: Camera the line again before listing
+    rationale: Shows whether the sag is stable and gives a current video for the sale.
+unjustifiedWork:
+  - id: lining-for-belly
+    label: Trenchless lining to fix the belly
+    why: A liner takes the shape of the existing pipe, so it does not remove a sag. It would not solve this problem.
+  - id: full-lateral-replacement
+    label: Replacing the whole sewer lateral
+    why: Only one 7-foot section sags. The rest of the line is sound.
+  - id: repair-required-to-sell
+    label: Saying he must repair the line before he can sell
+    why: >-
+      Sellers disclose known defects; the law does not require this repair. Buyers
+      may ask for a repair or a credit, and that is his decision.
+options:
+  - id: report-only
+    label: Inspection and report only
+    price: 325
+    includes:
+      - Camera inspection from the cleanout to the city sewer
+      - Video file and written report
+      - Location and depth of the sag marked
+      - Written estimate for a spot repair
+  - id: clean-and-monitor
+    label: Inspection, clean the sag, new cleanout cap
+    price: 720
+    includes:
+      - Everything in the report option
+      - Hydro jet the line to clear the paper in the sag
+      - New cleanout cap
+      - Reminder to camera the line again before listing
+    recommended: true
+  - id: spot-repair-now
+    label: Spot repair the sag now
+    price: 5300
+    monthly: 133
+    includes:
+      - Everything in the report option
+      - Excavate and relay about 8 feet of line at the correct slope
+      - Permit and inspection
+      - Backfill and compaction
+      - Camera video after the repair
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [selling-soon]
+  excluded: []
+  density: 2.5
+goal: >-
+  Show the footage, explain the sag plainly, and give him an honest picture of what
+  it means for a sale. Recommend the modest option that fits his two-year plan and
+  ask for a decision.
+passBar: 72
+tags: [drain, sewer, camera, belly, selling]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Confirm the disclosure wording techs should use. Techs should send disclosure questions to the seller's agent rather than give legal advice.

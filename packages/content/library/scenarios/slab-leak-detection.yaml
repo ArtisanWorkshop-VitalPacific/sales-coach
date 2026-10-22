@@ -1,0 +1,128 @@
+id: slab-leak-detection
+version: 1
+title: High water bill, hot line leaking under the slab
+trade: plumbing
+jobType: slab-leak-repair
+difficulty: 4
+personaId: tasha-burned
+alternatePersonas: [paul-engineer, margaret-retiree]
+briefing: >-
+  Leak detection call. Water bill jumped from about $90 to $260 in one billing
+  cycle, and the customer hears water running when everything is off. Single-story
+  home on a slab, built in 1977. Not a member.
+situation: >-
+  The hot water line under the slab has a pinhole leak. With every fixture off, the
+  meter's leak indicator turns steadily. Closing the cold inlet valve at the water
+  heater stops it, which puts the leak on the hot side. A pressure test shows the
+  cold side holds with no drop. Acoustic listening finds the loudest point under
+  the hallway tile about 6 feet from the hall bathroom, and a thermal camera shows
+  a warm patch in the same spot. The home has its original soft copper lines under
+  the slab. A spot repair means breaking through the hallway tile and concrete. It
+  fixes this leak, but the same 49-year-old hot line can leak somewhere else later,
+  and tile replacement is extra. Rerouting the hot line through the attic with PEX
+  takes the hot water out of the slab for good and leaves the floor alone. The
+  reroute is the honest recommendation for this home, with the spot repair shown as
+  a fair lower-cost choice. A whole-house repipe is not justified. The customer
+  works night shifts as an ER nurse and was overcharged by another company, so she
+  will want to see the proof at every step.
+equipment:
+  - item: Soft copper water lines under the slab
+    ageYears: 49
+    notes: Original. Hot line leaking under the hallway. Cold side tests tight.
+  - item: 40-gallon gas water heater in the garage
+    ageYears: 5
+    notes: Works normally. Not part of the problem.
+  - item: Porcelain tile in the hallway
+    ageYears: 6
+    notes: Matching replacement tile may be hard to find.
+findings:
+  - id: meter-indicator-turning
+    text: With every fixture off, the meter's leak indicator keeps turning. Water is leaving the pipes somewhere.
+    severity: major
+  - id: hot-side-isolated
+    text: Closing the cold inlet at the water heater stops the meter. The leak is on the hot water side.
+    severity: major
+  - id: leak-located-hallway
+    text: >-
+      Listening equipment and a thermal camera put the leak under the hallway tile,
+      about 6 feet from the hall bathroom door. The tile is warm there.
+    severity: urgent
+  - id: cold-side-tight
+    text: The cold side held pressure for 30 minutes with no drop. It is not leaking.
+    severity: info
+  - id: original-copper
+    text: >-
+      The lines under the slab are the original 1977 soft copper. Hot lines under a
+      slab fail most often, and this one can develop more pinholes over time.
+    severity: minor
+justifiedWork:
+  - id: reroute-hot-line
+    label: Reroute the hot line through the attic with PEX
+    rationale: Stops the leak and takes the hot water out of the slab, where the next leak on this old line would be.
+  - id: spot-repair-hallway
+    label: Spot repair under the hallway
+    rationale: >-
+      A fair lower-cost way to stop this leak. It means breaking tile and concrete,
+      and the rest of the hot line under the slab stays in service.
+  - id: verify-after-repair
+    label: Recheck the meter and pressure after the repair
+    rationale: Proves the leak is stopped.
+unjustifiedWork:
+  - id: whole-house-repipe
+    label: Whole-house repipe
+    why: Only the hot line under the slab leaks. The cold side held pressure and the rest of the plumbing is fine.
+  - id: cold-line-must-go
+    label: Saying the cold line is leaking or must be rerouted now
+    why: The cold side passed the pressure test. Rerouting it is a choice for later, not a need.
+  - id: new-water-heater
+    label: Replacing the water heater
+    why: The 5-year-old water heater works normally. The leak is in the pipe under the floor.
+options:
+  - id: spot-repair
+    label: Spot repair under the hallway
+    price: 2950
+    monthly: 74
+    includes:
+      - Open about a 2-by-2-foot section of hallway tile and slab
+      - Repair the leak in the hot line
+      - Pressure test before closing
+      - Concrete patch
+      - Tile replacement not included
+  - id: reroute-hot
+    label: Reroute the hot line through the attic
+    price: 3900
+    monthly: 98
+    includes:
+      - New PEX hot line from the water heater through the attic to each fixture
+      - Old hot line under the slab capped and abandoned
+      - Small drywall openings patched and primed, texture and paint not included
+      - Permit and inspection
+      - Pressure test and meter check
+    recommended: true
+  - id: reroute-both
+    label: Reroute hot and cold lines through the attic
+    price: 5800
+    monthly: 145
+    includes:
+      - Everything in the hot line reroute
+      - New PEX cold line through the attic to each fixture
+      - All water lines out of the slab
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [how-do-i-know-its-broken]
+  excluded: []
+  density: 3
+goal: >-
+  Show her the proof step by step (meter, isolation, pressure test, listening and
+  thermal readings) and explain spot repair versus reroute in plain words.
+  Recommend the reroute without pushing, ask for a decision, and respect a no.
+passBar: 75
+tags: [leak, slab, detection, reroute, trust]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - The leak detection fee is not in the options. Companies charge it separately or credit it toward the repair; set it per price book.
+    - Homeowner's insurance often covers access and resulting damage but not the pipe itself, and policies vary. Techs should not promise coverage.

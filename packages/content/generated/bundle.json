@@ -1,7 +1,7 @@
 {
- "version": "0.1.0+3c426235baa7",
- "hash": "3c426235baa7",
- "builtAt": "2026-10-22T08:55:54.263Z",
+ "version": "0.1.0+b64e5a2473e0",
+ "hash": "b64e5a2473e0",
+ "builtAt": "2026-10-22T09:12:44.068Z",
  "personas": [
   {
    "id": "brian-today",
@@ -8678,6 +8678,714 @@
  ],
  "scenarios": [
   {
+   "id": "drain-kitchen-recurring",
+   "version": 1,
+   "title": "Kitchen sink keeps clogging",
+   "trade": "plumbing",
+   "jobType": "drain-cleaning",
+   "difficulty": 2,
+   "personaId": "jen-busy-parent",
+   "alternatePersonas": [
+    "morgan-first-home",
+    "brian-today"
+   ],
+   "briefing": "Service call. Kitchen sink backed up this morning with standing water in both sides. Customer says it is the third clog this year. Two-story home on a slab. Not a member.",
+   "situation": "The 2-inch ABS kitchen drain clogs every two to three months because grease and food paste coat the inside of the pipe. The tech opens the line with a small cable through the cleanout behind the trap so the sinks drain, then runs a camera to see why it keeps coming back. A cable punches a path through the buildup and the sink drains again, but the coating stays on the walls and the line closes up within weeks. That is what happened after the last two clearings (one by another company in the spring, one with a store-bought snake in the summer). The pipe itself is sound: no cracks, no roots, no low spots. Hydro jetting scours the pipe wall back to full size, and a camera pass afterward proves it. Jetting is the honest recommendation because the history and the footage both show buildup along the whole run, not a single blockage. Replacing or relining the line is not justified. The customer works from home with two kids under six and wants one clear recommendation she can trust, quickly.",
+   "equipment": [
+    {
+     "item": "2-inch ABS kitchen drain, about 32 feet to the main",
+     "ageYears": 27,
+     "notes": "Cleanout tee behind the trap. Pipe sound, heavily coated with grease."
+    },
+    {
+     "item": "Garbage disposal",
+     "notes": "Works normally. Used several times a day."
+    }
+   ],
+   "findings": [
+    {
+     "id": "grease-coating",
+     "text": "The camera shows a thick layer of grease and food paste on the pipe walls for most of the 32 feet to the main. In places the opening is down to about half the pipe.",
+     "severity": "major"
+    },
+    {
+     "id": "cable-only-opens",
+     "text": "The cable opened a path through the clog, but the coating is still on the walls. That is why the last two clearings only lasted a few weeks.",
+     "severity": "major"
+    },
+    {
+     "id": "pipe-sound",
+     "text": "The pipe has no cracks, roots, or low spots. The problem is buildup, not damage.",
+     "severity": "info"
+    },
+    {
+     "id": "grease-and-starch-use",
+     "text": "Cooking grease and starchy scraps like rice, pasta, and potato peels go down the disposal most days. That feeds the buildup.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "hydro-jet-kitchen-line",
+     "label": "Hydro jet the kitchen line",
+     "rationale": "Three clogs this year and camera footage of grease along the whole run. Jetting removes the coating. A cable only opens a path through it."
+    },
+    {
+     "id": "camera-after-jetting",
+     "label": "Camera the line after jetting",
+     "rationale": "Confirms the pipe is clean and sound, and gives the customer video of the result."
+    },
+    {
+     "id": "disposal-habits",
+     "label": "Explain what to keep out of the disposal",
+     "rationale": "Grease and starchy scraps cause the buildup. Without a change the line will coat again."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "replace-kitchen-line",
+     "label": "Replacing or relining the kitchen drain",
+     "why": "The camera shows sound pipe with no cracks, roots, or sags. Jetting removes the buildup."
+    },
+    {
+     "id": "new-disposal",
+     "label": "Replacing the garbage disposal",
+     "why": "The disposal works normally. How it is used, not the unit, causes the buildup."
+    },
+    {
+     "id": "main-line-jetting",
+     "label": "Jetting the main sewer line",
+     "why": "Every other drain in the house runs freely. Nothing points to a main line problem."
+    }
+   ],
+   "options": [
+    {
+     "id": "cable-only",
+     "label": "Cable clearing only",
+     "price": 265,
+     "includes": [
+      "Kitchen line opened with a cable machine today",
+      "Camera look to find the cause",
+      "Both sinks and the disposal tested",
+      "The grease coating stays on the pipe walls"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "hydro-jet-and-camera",
+     "label": "Hydro jet and camera",
+     "price": 625,
+     "includes": [
+      "Everything in the cable option",
+      "Hydro jet the full kitchen line to the main",
+      "Camera video of the clean line sent to you",
+      "A short list of what to keep out of the disposal"
+     ],
+     "recommended": true
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "just-the-cheap-fix"
+    ],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Use the camera footage to explain why the clog keeps coming back, recommend jetting as one clear choice with the cable option shown honestly, and ask for a decision without pressure.",
+   "passBar": 70,
+   "tags": [
+    "drain",
+    "kitchen",
+    "hydro-jet",
+    "camera",
+    "recurring"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Assumes the camera look on a repeat clog is part of the cable price. Adjust if the company charges it separately."
+    ]
+   }
+  },
+  {
+   "id": "drain-main-line-roots",
+   "version": 1,
+   "title": "Main line backup, roots in a clay sewer",
+   "trade": "plumbing",
+   "jobType": "sewer-repair",
+   "difficulty": 4,
+   "personaId": "ruiz-couple",
+   "alternatePersonas": [
+    "greg-selling",
+    "paul-engineer"
+   ],
+   "briefing": "Service call. Toilets and the hall tub are backing up, and sewage came up in the shower drain this morning. Single-story home built in 1968. Exterior cleanout by the front hose bib. Not a member.",
+   "situation": "The 4-inch clay sewer lateral is blocked by tree roots. The tech clears it with a cable and root-cutting head through the front cleanout, and the house drains again. The camera then shows roots entering at two joints about 38 and 44 feet out, under the front lawn near a mature Modesto ash, and the joint at 44 feet is offset and cracked. The rest of the clay line, from the house to 35 feet and from 47 feet to the city sewer at about 70 feet, has tight joints with no roots or sags. Clearing restores flow today, but roots grow back through open joints, usually within six to eighteen months. A spot repair that replaces about 10 feet of clay with PVC at the damaged joints is the honest recommendation. It fixes the cause, and the rest of the line does not need work. Lining the whole line is a real option but not needed based on the footage. Carlos wants the cheapest fix and brings up his brother-in-law, who is a plumber. Elena wants it done right once. Money is tight after a car repair.",
+   "equipment": [
+    {
+     "item": "4-inch clay sewer lateral, about 70 feet to the city sewer",
+     "ageYears": 58,
+     "notes": "Roots at two joints near the ash tree. One joint offset and cracked. Rest of the line sound."
+    },
+    {
+     "item": "Exterior sewer cleanout at the front of the house",
+     "notes": "Good access for clearing and camera work."
+    }
+   ],
+   "findings": [
+    {
+     "id": "roots-at-two-joints",
+     "text": "Roots are growing into the line at two joints about 38 and 44 feet from the cleanout, under the front lawn near the ash tree. They caused today's backup.",
+     "severity": "major"
+    },
+    {
+     "id": "cracked-offset-joint",
+     "text": "The joint at 44 feet is offset about half an inch and cracked. Roots and soil get in there, and no amount of clearing closes it.",
+     "severity": "major"
+    },
+    {
+     "id": "rest-of-line-sound",
+     "text": "The rest of the clay line has tight joints with no roots, cracks, or sags, from the house to 35 feet and from 47 feet to the city connection.",
+     "severity": "info"
+    },
+    {
+     "id": "line-cleared-today",
+     "text": "The line is clear and draining after the root cutting. The house is usable today.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "clear-roots",
+     "label": "Clear the line with a root cutter",
+     "rationale": "The house was backing up. Clearing restores use today."
+    },
+    {
+     "id": "spot-repair-root-section",
+     "label": "Replace about 10 feet of clay with PVC at the root-damaged joints",
+     "rationale": "Removes the open, cracked joints where roots get in. The camera shows the rest of the line is sound."
+    },
+    {
+     "id": "camera-after-repair",
+     "label": "Camera the line after the repair",
+     "rationale": "Confirms the new section and both connections are clean and sloped correctly."
+    },
+    {
+     "id": "sewer-permit",
+     "label": "Permit and inspection for the sewer repair",
+     "rationale": "Sewer line repairs require a permit and inspection."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "lining-required",
+     "label": "Saying the whole line must be lined",
+     "why": "The camera shows tight, root-free joints on both sides of the damaged section. Lining is a choice, not a need."
+    },
+    {
+     "id": "full-lateral-replacement",
+     "label": "Digging up and replacing the entire lateral",
+     "why": "Only one 10-foot section is damaged. Excavating 70 feet of yard is not justified."
+    },
+    {
+     "id": "interior-drain-replacement",
+     "label": "Replacing the drain lines inside the house",
+     "why": "The backup came from roots in the yard. Every interior drain ran clear once the lateral was open."
+    }
+   ],
+   "options": [
+    {
+     "id": "clear-only",
+     "label": "Root clearing only",
+     "price": 495,
+     "includes": [
+      "Cable and root-cutter clearing done today",
+      "Camera video of the full line",
+      "Roots will grow back, usually within 6 to 18 months"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "spot-repair",
+     "label": "Spot repair of the root section",
+     "price": 5400,
+     "monthly": 135,
+     "includes": [
+      "Root clearing done today",
+      "Excavate and replace about 10 feet of clay with PVC",
+      "Shielded couplings at both ends",
+      "Permit and inspection",
+      "Backfill and compaction",
+      "Camera video after the repair"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "full-lining",
+     "label": "Trenchless lining of the full lateral",
+     "price": 13800,
+     "monthly": 345,
+     "includes": [
+      "Root clearing done today",
+      "Hydro jet the line to prepare it for lining",
+      "Epoxy liner from the cleanout to the city connection",
+      "No excavation in the lawn",
+      "Permit and camera video after lining"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "brother-in-law-plumber"
+    ],
+    "excluded": [],
+    "density": 3
+   },
+   "goal": "Show the footage so both Carlos and Elena understand why the line backed up, and present clearing, spot repair, and lining honestly. Recommend the spot repair, handle the brother-in-law without arguing, and help them decide together.",
+   "passBar": 75,
+   "tags": [
+    "drain",
+    "sewer",
+    "roots",
+    "camera",
+    "joint-decision"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Spot repair price assumes about 4 feet of depth in a lawn with no concrete to cut.",
+     "Verify local permit rules and whether the city owns any part of the lateral in the public right of way."
+    ]
+   }
+  },
+  {
+   "id": "drain-simple-snake",
+   "version": 1,
+   "title": "Bathroom sink clog, simple clear",
+   "trade": "plumbing",
+   "jobType": "drain-cleaning",
+   "difficulty": 1,
+   "personaId": "margaret-retiree",
+   "alternatePersonas": [
+    "linda-warranty",
+    "rosa-spanish"
+   ],
+   "briefing": "Service call. Hall bathroom sink has been draining slowly for weeks and stopped completely last night. Single-story home built in 1979. Not a member.",
+   "situation": "A simple clog. Hair and soap scum are packed around the pop-up stopper and in the trap. The tech pulls and cleans the stopper and runs a hand cable through the trap and the short branch line, and the sink drains at full speed. Every other drain in the house (tub, both toilets, kitchen, laundry) runs freely, so there is no main line or vent problem. The honest work is the simple clear, done today at the lowest price. The stopper is old and sticks, so replacing the pop-up assembly is a small, optional add-on. Hydro jetting or a camera inspection is not justified. The company membership can be mentioned once, briefly, as optional, and she should never feel the repair depends on it. She lives on a fixed income and has been sold work she did not need before.",
+   "equipment": [
+    {
+     "item": "Bathroom sink pop-up drain assembly, chrome",
+     "ageYears": 20,
+     "notes": "Stopper sticks and does not seal well. No leaks."
+    },
+    {
+     "item": "Hall bathroom sink trap and branch line",
+     "ageYears": 47,
+     "notes": "Packed with hair and soap scum. Pipe in good condition."
+    }
+   ],
+   "findings": [
+    {
+     "id": "hair-clog",
+     "text": "Hair and soap scum are packed around the stopper and in the trap. That is the whole clog.",
+     "severity": "minor"
+    },
+    {
+     "id": "other-drains-fine",
+     "text": "The tub, both toilets, the kitchen, and the laundry all drain normally. Nothing points to a problem further down the line.",
+     "severity": "info"
+    },
+    {
+     "id": "sticky-stopper",
+     "text": "The pop-up stopper sticks and does not seal well. It still works. Replacing it is optional.",
+     "severity": "minor"
+    },
+    {
+     "id": "drains-after-clearing",
+     "text": "After the clearing, a full basin drains in a few seconds.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "clear-sink-drain",
+     "label": "Clean the stopper and clear the trap and branch with a hand cable",
+     "rationale": "This removes the whole clog. The sink drains normally afterward."
+    },
+    {
+     "id": "full-basin-test",
+     "label": "Test with a full basin and check the other drains",
+     "rationale": "Confirms the clog is gone and the rest of the system drains."
+    },
+    {
+     "id": "hair-prevention",
+     "label": "Show her how to keep hair out of the drain",
+     "rationale": "A simple strainer and cleaning the stopper every few months prevent the next clog."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "hydro-jetting",
+     "label": "Hydro jetting the drain lines",
+     "why": "One hair clog at the stopper, and every other drain runs freely. Jetting is not needed."
+    },
+    {
+     "id": "camera-inspection",
+     "label": "Camera inspection of the drain or sewer",
+     "why": "Nothing points to a problem past the trap. A camera would not change the repair."
+    },
+    {
+     "id": "main-line-cleaning",
+     "label": "Cleaning the main sewer line",
+     "why": "The main is not involved. All other fixtures drain normally."
+    }
+   ],
+   "options": [
+    {
+     "id": "clear-drain",
+     "label": "Clear the sink drain",
+     "price": 185,
+     "includes": [
+      "Remove and clean the pop-up stopper",
+      "Clear the trap and branch line with a hand cable",
+      "Full-basin test and a check of the other drains",
+      "A simple hair strainer"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "clear-and-new-pop-up",
+     "label": "Clear the drain and replace the pop-up",
+     "price": 285,
+     "includes": [
+      "Everything in the clear option",
+      "New pop-up drain body, stopper, and pivot rod",
+      "New gaskets at the drain"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "tests-your-honesty"
+    ],
+    "excluded": [],
+    "density": 1
+   },
+   "goal": "Clear the drain at the lowest honest price and answer her questions without suggesting extra work. Mention the membership once as optional, never as a condition of the repair.",
+   "passBar": 65,
+   "tags": [
+    "drain",
+    "bathroom",
+    "starter",
+    "membership",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Membership details come from the company spec; the scenario only asks that it be mentioned once as optional."
+    ]
+   }
+  },
+  {
+   "id": "drinking-water-filtration",
+   "version": 1,
+   "title": "Drinking water filter question, in Spanish",
+   "trade": "plumbing",
+   "jobType": "water-treatment",
+   "difficulty": 2,
+   "personaId": "rosa-spanish",
+   "alternatePersonas": [
+    "margaret-retiree",
+    "morgan-first-home"
+   ],
+   "briefing": "Customer asked about a filter for drinking water. She speaks Spanish at home and some English; this call is in Spanish. Single-story home. Not a member.",
+   "situation": "The customer buys bottled water, about $40 a month in 5-gallon jugs, because she does not like the taste of the tap water and is not sure it is safe. The water district's annual report shows the tap water meets state and federal drinking water standards. A TDS meter at the kitchen tap reads about 540 parts per million. That measures dissolved minerals; it is not a safety test, and an honest tech says so. A simple under-sink reverse osmosis system is the honest recommendation. It improves taste, removes most dissolved minerals and many contaminants such as lead and arsenic, and replaces the bottled water. It does not treat shower or laundry water, it sends some water down the drain while it filters, and its filters need changing on a schedule, about $120 a year. A whole-house system or a UV light is not justified on city water. She usually has her daughter help with decisions like this and is careful about agreeing to something she cannot fully check.",
+   "equipment": [
+    {
+     "item": "Kitchen sink with a single-hole faucet",
+     "notes": "Spare soap dispenser hole can hold a drinking water faucet. Room under the sink for a tank."
+    }
+   ],
+   "findings": [
+    {
+     "id": "tds-reading",
+     "text": "A TDS meter at the kitchen tap reads about 540 parts per million. That measures dissolved minerals, mostly calcium and magnesium. It is not a safety test.",
+     "severity": "info"
+    },
+    {
+     "id": "meets-standards",
+     "text": "The water district's annual report shows the tap water meets state and federal drinking water standards.",
+     "severity": "info"
+    },
+    {
+     "id": "chlorine-taste",
+     "text": "She notices a chlorine taste. Cities add disinfectant on purpose to keep the water safe, and a carbon stage removes the taste.",
+     "severity": "minor"
+    },
+    {
+     "id": "bottled-water-cost",
+     "text": "She spends about $40 a month on bottled water.",
+     "severity": "info"
+    },
+    {
+     "id": "room-under-sink",
+     "text": "There is room under the sink for an RO tank, and the spare soap dispenser hole can hold the faucet.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "under-sink-ro",
+     "label": "Install an under-sink reverse osmosis system",
+     "rationale": "Matches what she wants, better-tasting drinking water at the kitchen sink instead of bottled water."
+    },
+    {
+     "id": "explain-ro-limits",
+     "label": "Explain what RO does and does not do",
+     "rationale": "It treats drinking water at one faucet only, sends some water to the drain, and needs filter changes. She should know that before she agrees."
+    },
+    {
+     "id": "quote-in-writing",
+     "label": "Leave the price and filter schedule in writing",
+     "rationale": "She wants to check with her daughter. A written quote lets her verify it."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "whole-house-filtration",
+     "label": "Whole-house filtration",
+     "why": "No test shows a problem with the water used for bathing or laundry. Her concern is drinking water."
+    },
+    {
+     "id": "uv-light",
+     "label": "A UV light system",
+     "why": "UV treats bacteria in well water. City water is already disinfected."
+    },
+    {
+     "id": "softener",
+     "label": "A water softener",
+     "why": "She did not ask about scale, and a softener does not improve drinking water."
+    }
+   ],
+   "options": [
+    {
+     "id": "carbon-filter",
+     "label": "Under-sink carbon filter",
+     "price": 325,
+     "includes": [
+      "Under-sink carbon filter with its own faucet",
+      "Removes chlorine taste and odor",
+      "Filter change about every 6 months",
+      "Does not remove dissolved minerals"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "under-sink-ro",
+     "label": "Under-sink reverse osmosis system",
+     "price": 850,
+     "includes": [
+      "Reverse osmosis system with storage tank",
+      "Drinking water faucet in the spare sink hole",
+      "TDS test before and after",
+      "Written filter schedule, about $120 a year"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "whole-house-plus-ro",
+     "label": "Whole-house filter plus reverse osmosis",
+     "price": 4800,
+     "monthly": 120,
+     "includes": [
+      "Everything in the reverse osmosis option",
+      "Whole-house carbon filter at the main line"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "show-me-in-writing"
+    ],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Hold the conversation in Spanish, explain plainly what the TDS reading means and what an RO system does and does not do, and recommend the under-sink RO. Put it in writing and make it easy for her to check with her daughter.",
+   "passBar": 70,
+   "tags": [
+    "water-treatment",
+    "reverse-osmosis",
+    "spanish",
+    "trust"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "The call is in Spanish. Briefing and option labels stay in English for the tech's screen; confirm whether Spanish labels are wanted.",
+     "RO claims should match the NSF/ANSI 58 certification of the unit each company installs. Confirm local TDS values."
+    ]
+   }
+  },
+  {
+   "id": "faucet-install-bad-valves",
+   "version": 1,
+   "title": "Customer's faucet, failing shutoff valves",
+   "trade": "plumbing",
+   "jobType": "faucet-install",
+   "difficulty": 1,
+   "personaId": "brian-today",
+   "alternatePersonas": [
+    "jen-busy-parent",
+    "devin-researcher"
+   ],
+   "briefing": "Scheduled install. Customer bought a new pull-down kitchen faucet and wants it installed today. Two-story home built in 1994. Not a member.",
+   "situation": "The faucet is fine and the install is simple. Under the sink, the two original multi-turn shutoff valves are failing. The hot valve does not close all the way and water keeps flowing, and the cold valve's stem leaks when it is turned. To do the install, the tech has to shut off the water to the whole house at the main. The honest recommendation is to replace both shutoffs with quarter-turn valves while the water is already off, because otherwise the new faucet sits on valves that cannot stop the water when it matters. Installing the faucet on the old valves is a fair choice if he declines, and the tech should say plainly what that risk is. The customer is short on time with guests arriving this weekend, interrupts to ask the price, and called for a faucet install, not more work.",
+   "equipment": [
+    {
+     "item": "Customer-supplied pull-down kitchen faucet",
+     "ageYears": 0,
+     "notes": "New in the box. Single-hole with a deck plate."
+    },
+    {
+     "item": "Two multi-turn shutoff valves under the kitchen sink",
+     "ageYears": 32,
+     "notes": "Hot will not close fully. Cold stem leaks when turned."
+    },
+    {
+     "item": "Old kitchen faucet",
+     "notes": "To be removed and hauled away."
+    }
+   ],
+   "findings": [
+    {
+     "id": "hot-valve-wont-close",
+     "text": "The hot shutoff under the sink does not close all the way. Water keeps flowing with the handle turned off.",
+     "severity": "major"
+    },
+    {
+     "id": "cold-valve-stem-leak",
+     "text": "The cold shutoff leaks at the stem when it is turned. It may keep dripping after the install.",
+     "severity": "major"
+    },
+    {
+     "id": "main-off-needed",
+     "text": "To swap the faucet safely, the water to the whole house has to be shut off at the main.",
+     "severity": "info"
+    },
+    {
+     "id": "faucet-and-sink-fine",
+     "text": "The new faucet and the sink are in good shape. It is a single-hole install with a deck plate.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "install-faucet",
+     "label": "Install the customer's faucet",
+     "rationale": "What he called for. The faucet and sink are ready."
+    },
+    {
+     "id": "replace-both-shutoffs",
+     "label": "Replace both shutoff valves with quarter-turn valves",
+     "rationale": "One will not shut off and the other leaks. The water is already off, so this is the time to do it."
+    },
+    {
+     "id": "leak-test",
+     "label": "Leak test at full pressure",
+     "rationale": "Confirms the faucet and every connection are dry."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "all-house-shutoffs",
+     "label": "Replacing every shutoff valve in the house",
+     "why": "Only the kitchen valves were tested and found failing. The others were not part of the job."
+    },
+    {
+     "id": "sink-drain-work",
+     "label": "Replacing the sink drain and trap",
+     "why": "The drain and trap are dry and drain normally."
+    },
+    {
+     "id": "filtration-add-on",
+     "label": "Adding a water filtration system with the faucet",
+     "why": "He did not ask about water quality, and nothing points to a problem."
+    }
+   ],
+   "options": [
+    {
+     "id": "install-only",
+     "label": "Install the faucet only",
+     "price": 295,
+     "includes": [
+      "Remove and haul away the old faucet",
+      "Install your new faucet with new supply lines",
+      "Water shut off at the main during the install",
+      "Leak test",
+      "Old shutoff valves stay in place"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "install-and-shutoffs",
+     "label": "Install the faucet and replace both shutoffs",
+     "price": 595,
+     "includes": [
+      "Everything in the install option",
+      "Two new quarter-turn shutoff valves",
+      "Leak test of the new valves at full pressure"
+     ],
+     "recommended": true
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "only-fix-what-i-called-for"
+    ],
+    "excluded": [],
+    "density": 1
+   },
+   "goal": "Show him the hot valve that will not shut off, keep it short, and recommend replacing both valves while the water is off. State the price clearly and let him decide.",
+   "passBar": 65,
+   "tags": [
+    "faucet",
+    "shutoff-valves",
+    "install",
+    "starter",
+    "time-pressure"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Valve price assumes about $150 each when done during the install. Confirm against the company's price book."
+    ]
+   }
+  },
+  {
    "id": "gas-smell-flex-line",
    "version": 1,
    "title": "Gas smell at the water heater",
@@ -8830,6 +9538,165 @@
    }
   },
   {
+   "id": "hard-water-softener",
+   "version": 1,
+   "title": "Scale buildup and the softener question",
+   "trade": "plumbing",
+   "jobType": "water-treatment",
+   "difficulty": 3,
+   "personaId": "morgan-first-home",
+   "alternatePersonas": [
+    "ruiz-couple",
+    "margaret-retiree"
+   ],
+   "briefing": "Service call. White crust on faucets and showerheads and spots on dishes. The homeowners want to know whether they need a water softener. First home, bought last year. Built in 2003, with a softener loop in the garage.",
+   "situation": "The water is hard. A test at the kitchen tap reads 16 grains per gallon, which explains the crust on fixtures, the spotting on dishes, and scale building up inside the water heater over time. Nothing is damaged yet: no leaks, no failed fixtures, and the water heater works normally. The builder put a softener loop with a bypass in the garage, so a standard softener is a simple install. A neighbor bought a $6,800 package (softener, whole-house carbon filter, and drinking water system) and told them they need the same. The honest recommendation is a correctly sized standard softener on the existing loop, the modest fix for hard water. A descale and flush is a fair low-cost choice if they want to wait. The whole-house filter and the drinking water system do nothing for hardness, and the water district's annual report shows the water meets drinking water standards. The couple drained their savings on the down payment and are worried about making an expensive first-home mistake.",
+   "equipment": [
+    {
+     "item": "Softener loop with bypass valve in the garage",
+     "ageYears": 23,
+     "notes": "Installed by the builder. Never used."
+    },
+    {
+     "item": "40-gallon gas water heater",
+     "ageYears": 7,
+     "notes": "Works normally. A test flush shows some scale."
+    },
+    {
+     "item": "Kitchen and bathroom faucets and showerheads",
+     "notes": "White scale on aerators and showerheads."
+    }
+   ],
+   "findings": [
+    {
+     "id": "hardness-16-grains",
+     "text": "The water tests at 16 grains per gallon. That is very hard water, common in this area.",
+     "severity": "minor"
+    },
+    {
+     "id": "scale-on-fixtures",
+     "text": "White scale on the faucet aerators and showerheads, and spots on dishes. So far it is cosmetic.",
+     "severity": "minor"
+    },
+    {
+     "id": "no-damage-yet",
+     "text": "No leaks, no failed fixtures, and the water heater works normally. Nothing has been damaged by the scale yet.",
+     "severity": "info"
+    },
+    {
+     "id": "loop-ready",
+     "text": "The builder installed a softener loop with a bypass in the garage. A softener connects there without new piping.",
+     "severity": "info"
+    },
+    {
+     "id": "water-meets-standards",
+     "text": "The water district's annual report shows the water meets drinking water standards. Hardness is not a health issue.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "standard-softener",
+     "label": "Install a correctly sized standard softener on the existing loop",
+     "rationale": "A softener is the only thing that stops hard water scale. A single-tank unit handles 16 grains for this household."
+    },
+    {
+     "id": "descale-and-flush",
+     "label": "Descale fixtures and flush the water heater",
+     "rationale": "Removes the existing buildup at low cost. A fair choice if they want to wait on a softener."
+    },
+    {
+     "id": "explain-add-ons",
+     "label": "Explain what the filter and drinking water add-ons do and do not do",
+     "rationale": "Neither one does anything for hardness. The couple should know that before spending on them."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "whole-house-filter",
+     "label": "Whole-house carbon filtration",
+     "why": "No test shows a contaminant problem, and a carbon filter does nothing for hardness."
+    },
+    {
+     "id": "oversized-softener",
+     "label": "An oversized or premium dual-tank softener",
+     "why": "A standard single-tank unit handles 16 grains for a two-person home. A bigger system adds cost without benefit."
+    },
+    {
+     "id": "water-heater-for-scale",
+     "label": "Replacing the water heater because of scale",
+     "why": "It works normally. A flush removes the scale that is there now."
+    }
+   ],
+   "options": [
+    {
+     "id": "descale-flush",
+     "label": "Descale and flush",
+     "price": 285,
+     "includes": [
+      "Flush the water heater",
+      "Descale or replace faucet aerators and showerheads",
+      "Written hardness result",
+      "Tips to keep scale down"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "standard-softener",
+     "label": "Standard softener on your existing loop",
+     "price": 2350,
+     "monthly": 59,
+     "includes": [
+      "Single-tank softener sized for 16 grains",
+      "Connected to the existing loop and bypass",
+      "Drain line with a proper air gap",
+      "Set-up and the first bags of salt",
+      "Hardness test after the install"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "full-package",
+     "label": "Softener, whole-house filter, and drinking water system",
+     "price": 5950,
+     "monthly": 149,
+     "includes": [
+      "Everything in the softener option",
+      "Whole-house carbon filter",
+      "Under-sink reverse osmosis drinking water system"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "neighbor-said"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Test the water, answer the softener question honestly, and recommend the standard softener instead of the full package. Make sure they understand what each option does and does not do before asking which they prefer.",
+   "passBar": 72,
+   "tags": [
+    "water-treatment",
+    "softener",
+    "upsell-risk",
+    "first-home",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Confirm the typical hardness for the service area against the local water district's annual report.",
+     "Some California agencies restrict salt-based softeners that discharge to the sewer. Confirm local rules before techs recommend one."
+    ]
+   }
+  },
+  {
    "id": "maintenance-visit-anode",
    "version": 1,
    "title": "Member tune-up finds a worn anode",
@@ -8954,6 +9821,325 @@
      "No monthly numbers because both options are under most financing minimums.",
      "memberships-are-a-scam is excluded because the customer is already a member.",
      "Confirm a powered anode does not affect the tank warranty for the brands each company installs."
+    ]
+   }
+  },
+  {
+   "id": "prv-high-pressure",
+   "version": 1,
+   "title": "110 psi and a failing pressure regulator",
+   "trade": "plumbing",
+   "jobType": "prv-replacement",
+   "difficulty": 2,
+   "personaId": "devin-researcher",
+   "alternatePersonas": [
+    "paul-engineer",
+    "morgan-first-home"
+   ],
+   "briefing": "Service call. Customer says the relief valve on the water heater drips and the pipes bang when the washer shuts off. He asked for a quote to replace the water heater. Two-story home built in 2001. Not a member.",
+   "situation": "The water heater is fine. Static pressure at the hose bib reads 110 psi. Code requires a pressure regulator when static pressure is over 80 psi, and most homes are set between 50 and 70. The original 25-year-old regulator at the front of the house has failed, and turning its adjusting screw does not change the reading. The high pressure makes the relief valve on the 6-year-old water heater open and drip, causes the banging, and makes the toilet fill valves hiss. The honest fix is a new regulator set to about 60 psi, then resetting the expansion tank's air charge and rechecking the relief valve once pressure is down. The customer read online that a dripping relief valve means the water heater is failing, and he is confident about it. Replacing the water heater is not justified.",
+   "equipment": [
+    {
+     "item": "3/4-inch pressure regulator at the front hose bib",
+     "ageYears": 25,
+     "notes": "Original. Adjusting screw has no effect. House side reads 110 psi."
+    },
+    {
+     "item": "50-gallon gas water heater in the garage",
+     "ageYears": 6,
+     "notes": "Works normally. Relief valve drips into the drain pan."
+    },
+    {
+     "item": "2-gallon thermal expansion tank",
+     "ageYears": 6,
+     "notes": "Air charge low at 40 psi. Can be reset to match the new pressure."
+    }
+   ],
+   "findings": [
+    {
+     "id": "pressure-110",
+     "text": "Static pressure at the hose bib is 110 psi. Code requires a regulator when pressure is over 80.",
+     "severity": "major"
+    },
+    {
+     "id": "regulator-failed",
+     "text": "The 25-year-old pressure regulator has failed. Turning the adjusting screw does not lower the reading.",
+     "severity": "major"
+    },
+    {
+     "id": "relief-valve-drip",
+     "text": "The relief valve on the water heater drips because the pressure is too high, not because the water heater is failing.",
+     "severity": "minor"
+    },
+    {
+     "id": "water-heater-fine",
+     "text": "The 6-year-old water heater has no leaks, lights normally, and heats normally.",
+     "severity": "info"
+    },
+    {
+     "id": "expansion-tank-low",
+     "text": "The expansion tank's air charge is low. It can be reset to match the new pressure.",
+     "severity": "minor"
+    },
+    {
+     "id": "fill-valves-and-banging",
+     "text": "The toilet fill valves hiss and the pipes bang when the washer shuts off. Both are signs of high pressure.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-regulator",
+     "label": "Replace the pressure regulator and set it to about 60 psi",
+     "rationale": "The regulator has failed and pressure is 30 psi over the code limit."
+    },
+    {
+     "id": "reset-expansion-tank",
+     "label": "Reset the expansion tank's air charge",
+     "rationale": "The tank has to match the house pressure to do its job."
+    },
+    {
+     "id": "recheck-relief-valve",
+     "label": "Recheck the relief valve after pressure is down",
+     "rationale": "Most stop dripping once pressure is normal. If it still drips, the valve itself needs replacing."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "replace-water-heater",
+     "label": "Replacing the water heater",
+     "why": "It is 6 years old and works normally. The drip comes from high pressure."
+    },
+    {
+     "id": "replace-all-fill-valves",
+     "label": "Replacing all the toilet fill valves",
+     "why": "They hiss because of the pressure. Most go quiet once pressure is normal."
+    },
+    {
+     "id": "repipe",
+     "label": "Repiping the house",
+     "why": "The copper lines show no leaks or corrosion. High pressure is the problem, and the regulator fixes it."
+    }
+   ],
+   "options": [
+    {
+     "id": "regulator-only",
+     "label": "Replace the pressure regulator",
+     "price": 650,
+     "includes": [
+      "New lead-free 3/4-inch pressure regulator with a union",
+      "Set to about 60 psi and checked with a gauge",
+      "Expansion tank air charge reset to match",
+      "Relief valve rechecked after pressure drops"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "regulator-plus",
+     "label": "Regulator, new relief valve, and hammer arrestors",
+     "price": 895,
+     "includes": [
+      "Everything in the regulator option",
+      "New relief valve on the water heater",
+      "Water hammer arrestors at the washer valves"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "i-know-what-it-is"
+    ],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Show him the 110 psi reading, correct his water heater theory respectfully with the evidence, and recommend the regulator instead of the replacement he asked for. State the price clearly and ask for a decision.",
+   "passBar": 70,
+   "tags": [
+    "pressure",
+    "prv",
+    "water-heater",
+    "misplaced-confidence",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "California Plumbing Code requires a regulator when static pressure exceeds 80 psi (section 608.2 in recent editions). Confirm the section before techs quote it."
+    ]
+   }
+  },
+  {
+   "id": "repipe-galvanized",
+   "version": 1,
+   "title": "1960s galvanized pipe, low water pressure",
+   "trade": "plumbing",
+   "jobType": "repipe",
+   "difficulty": 5,
+   "personaId": "paul-engineer",
+   "alternatePersonas": [
+    "devin-researcher",
+    "tasha-burned"
+   ],
+   "briefing": "Service call. Low water pressure throughout the house, worst at the back bathroom, and rusty water after the water has sat overnight. Single-story home on a raised foundation, built in 1962. Not a member.",
+   "situation": "The supply lines are the original galvanized steel. Static pressure at the front hose bib is 64 psi, so the city supply is fine. The loss happens under flow, because rust has built up inside the pipe. A 3/4-inch section the tech removes at the water heater has an inside opening of about 0.3 inches, down from about 0.82 when new. The kitchen faucet flows 1.1 gallons per minute against its 1.8 rating, and the back shower drops to 0.8 when the kitchen runs. There have been two pinhole leaks in the crawlspace in six years, both clamped. The copper service line from the meter was replaced in 2005 and is in good shape. The honest recommendation is a whole-house repipe with PEX-A. Replacing only the main trunk helps the kitchen but leaves corroded branches that keep restricting flow and leaking. Copper is a sound choice at a higher price. The customer is a retired aerospace engineer who wants measurements, will check every claim, and will catch anything overstated, such as made-up lifespans or code requirements.",
+   "equipment": [
+    {
+     "item": "Galvanized steel water supply lines",
+     "ageYears": 64,
+     "notes": "Original. Heavy rust inside. Two clamped pinhole leaks in the crawlspace."
+    },
+    {
+     "item": "Copper water service line from the meter",
+     "ageYears": 21,
+     "notes": "Replaced in 2005. Holds 64 psi with no leaks."
+    },
+    {
+     "item": "Cast iron drain lines",
+     "ageYears": 64,
+     "notes": "Drain freely. Not part of this call."
+    }
+   ],
+   "findings": [
+    {
+     "id": "static-pressure-normal",
+     "text": "Static pressure at the front hose bib is 64 psi. The city supply and the service line are fine.",
+     "severity": "info"
+    },
+    {
+     "id": "flow-restricted",
+     "text": "The kitchen faucet flows 1.1 gallons per minute against its 1.8 rating, and the back shower drops to 0.8 when the kitchen runs. The pipe is restricting flow.",
+     "severity": "major"
+    },
+    {
+     "id": "pipe-section-choked",
+     "text": "A 3/4-inch section removed at the water heater has an inside opening of about 0.3 inches, down from about 0.82 when new. Rust fills the rest.",
+     "severity": "major"
+    },
+    {
+     "id": "pinhole-history",
+     "text": "Two pinhole leaks in the crawlspace in six years, both clamped. Galvanized pipe corrodes from the inside, so more leaks are likely.",
+     "severity": "major"
+    },
+    {
+     "id": "rusty-water",
+     "text": "Water runs brown for a few seconds after sitting overnight.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "pex-repipe",
+     "label": "Whole-house repipe with PEX-A",
+     "rationale": "Every branch is galvanized and restricted. Replacing all of it restores flow and ends the leaks. PEX-A costs less than copper and suits the crawlspace layout."
+    },
+    {
+     "id": "new-fixture-stops",
+     "label": "New shutoff valves at every fixture",
+     "rationale": "The old valves come out with the old pipe."
+    },
+    {
+     "id": "electrical-bond",
+     "label": "Check and restore the electrical bond",
+     "rationale": "Metal water pipe is often part of the home's electrical bonding. When it is replaced with plastic, the bond has to be kept as code requires."
+    },
+    {
+     "id": "repipe-permit",
+     "label": "Permit and inspection",
+     "rationale": "A repipe requires a plumbing permit and inspection."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "service-line-replacement",
+     "label": "Replacing the copper service line from the meter",
+     "why": "It was replaced in 2005 and holds 64 psi with no leaks."
+    },
+    {
+     "id": "drain-replacement",
+     "label": "Replacing the drain lines",
+     "why": "The drains run freely and were not part of the complaint. Nothing points to a drain problem."
+    },
+    {
+     "id": "treatment-to-protect-pipes",
+     "label": "Selling a softener or filter to protect the new pipes",
+     "why": "PEX-A does not need water treatment to last. A softener is a separate choice about hard water."
+    }
+   ],
+   "options": [
+    {
+     "id": "trunk-only",
+     "label": "Main trunk and kitchen branch only",
+     "price": 4600,
+     "monthly": 115,
+     "includes": [
+      "Replace the main trunk from the service line to the first branch tee",
+      "Replace the kitchen branch",
+      "PEX-A with expansion fittings",
+      "Permit and inspection",
+      "Bathroom and laundry branches stay galvanized"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "pex-repipe",
+     "label": "Whole-house PEX-A repipe",
+     "price": 11600,
+     "monthly": 290,
+     "includes": [
+      "All hot and cold supply lines replaced with PEX-A",
+      "New shutoff valves at every fixture",
+      "New main shutoff ball valve",
+      "Electrical bond checked and restored",
+      "Drywall openings patched and primed",
+      "Permit and inspection"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "copper-repipe",
+     "label": "Whole-house type L copper repipe",
+     "price": 14900,
+     "monthly": 373,
+     "includes": [
+      "All hot and cold supply lines replaced with type L copper",
+      "New shutoff valves at every fixture",
+      "New main shutoff ball valve",
+      "Drywall openings patched and primed",
+      "Permit and inspection"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "catches-false-claim"
+    ],
+    "excluded": [],
+    "density": 3
+   },
+   "goal": "Give him the measurements behind the recommendation, compare partial, PEX, and copper accurately, and recommend the PEX repipe without overstating anything. Answer technical questions straight, including saying you will find out when you do not know.",
+   "passBar": 80,
+   "tags": [
+    "repipe",
+    "galvanized",
+    "pressure",
+    "analytical",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Confirm the bonding wording with a licensed electrician. Techs should only say the bond will be checked and restored.",
+     "Confirm the PEX-A brand and warranty terms each company installs before techs quote them."
     ]
    }
   },
@@ -9101,6 +10287,327 @@
      "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
      "The other company is fictional and unnamed. Keep it unnamed.",
      "An expansion tank, permit, and haul-away together run several hundred dollars in this area. Verify each company's own line prices so the tech's line-by-line math holds up."
+    ]
+   }
+  },
+  {
+   "id": "sewer-camera-before-sale",
+   "version": 1,
+   "title": "Sewer camera before selling finds a belly",
+   "trade": "plumbing",
+   "jobType": "sewer-inspection",
+   "difficulty": 3,
+   "personaId": "greg-selling",
+   "alternatePersonas": [
+    "rick-landlord",
+    "paul-engineer"
+   ],
+   "briefing": "Scheduled sewer camera inspection. Homeowner plans to sell in a couple of years and wants to know the condition of the line before a buyer's inspector does. Single-story home built in 1987. No backups reported.",
+   "situation": "The tech runs the camera from the exterior cleanout to the city sewer, about 62 feet. The 4-inch ABS line has a belly, a sag where the soil settled, from about 34 to 41 feet. The low spot holds about an inch and a half of water, and toilet paper is collecting at its downstream end. There are no roots, cracks, or separated joints, and the house has never backed up. The belly is not an emergency. A hydro jet clears the paper and lowers the chance of a clog, and the video and written report give the owner what he needs to plan. The honest recommendation is to clean the sag, replace the cracked cleanout cap, keep the report, and camera the line again before listing. A spot repair is a fair choice if he wants a clean scope for buyers, but it is not urgent. Lining does not fix a belly because the liner follows the sag. California sellers disclose known defects; the law does not require this repair before a sale, and disclosure questions belong with his agent. He does not want to put money into a house he will not enjoy.",
+   "equipment": [
+    {
+     "item": "4-inch ABS sewer lateral, about 62 feet to the city sewer",
+     "ageYears": 39,
+     "notes": "Belly from 34 to 41 feet. No roots, cracks, or separated joints."
+    },
+    {
+     "item": "Exterior cleanout at the front of the house",
+     "ageYears": 39,
+     "notes": "Cap is cracked."
+    }
+   ],
+   "findings": [
+    {
+     "id": "belly-34-to-41",
+     "text": "The line sags between about 34 and 41 feet. The low spot holds about an inch and a half of water in a 4-inch pipe.",
+     "severity": "major"
+    },
+    {
+     "id": "paper-collecting",
+     "text": "Toilet paper is collecting at the low end of the sag. Left alone, it can build up into a clog.",
+     "severity": "minor"
+    },
+    {
+     "id": "no-roots-or-cracks",
+     "text": "No roots, cracks, or separated joints anywhere in the line.",
+     "severity": "info"
+    },
+    {
+     "id": "cracked-cleanout-cap",
+     "text": "The cleanout cap is cracked. It is a small part and an easy fix.",
+     "severity": "minor"
+    },
+    {
+     "id": "no-backups",
+     "text": "The house has never backed up, and every drain runs freely today.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "camera-report",
+     "label": "Camera inspection with video and a written report",
+     "rationale": "What he booked. The video, the sag's location and depth, and a written repair estimate give him what he needs to plan for the sale."
+    },
+    {
+     "id": "jet-the-sag",
+     "label": "Hydro jet the line to clear the paper in the sag",
+     "rationale": "Removes the buildup that could turn into a clog, at modest cost while the cleanout is open."
+    },
+    {
+     "id": "replace-cleanout-cap",
+     "label": "Replace the cracked cleanout cap",
+     "rationale": "Keeps dirt and water out of the line. Small part."
+    },
+    {
+     "id": "recheck-before-listing",
+     "label": "Camera the line again before listing",
+     "rationale": "Shows whether the sag is stable and gives a current video for the sale."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "lining-for-belly",
+     "label": "Trenchless lining to fix the belly",
+     "why": "A liner takes the shape of the existing pipe, so it does not remove a sag. It would not solve this problem."
+    },
+    {
+     "id": "full-lateral-replacement",
+     "label": "Replacing the whole sewer lateral",
+     "why": "Only one 7-foot section sags. The rest of the line is sound."
+    },
+    {
+     "id": "repair-required-to-sell",
+     "label": "Saying he must repair the line before he can sell",
+     "why": "Sellers disclose known defects; the law does not require this repair. Buyers may ask for a repair or a credit, and that is his decision."
+    }
+   ],
+   "options": [
+    {
+     "id": "report-only",
+     "label": "Inspection and report only",
+     "price": 325,
+     "includes": [
+      "Camera inspection from the cleanout to the city sewer",
+      "Video file and written report",
+      "Location and depth of the sag marked",
+      "Written estimate for a spot repair"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "clean-and-monitor",
+     "label": "Inspection, clean the sag, new cleanout cap",
+     "price": 720,
+     "includes": [
+      "Everything in the report option",
+      "Hydro jet the line to clear the paper in the sag",
+      "New cleanout cap",
+      "Reminder to camera the line again before listing"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "spot-repair-now",
+     "label": "Spot repair the sag now",
+     "price": 5300,
+     "monthly": 133,
+     "includes": [
+      "Everything in the report option",
+      "Excavate and relay about 8 feet of line at the correct slope",
+      "Permit and inspection",
+      "Backfill and compaction",
+      "Camera video after the repair"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "selling-soon"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Show the footage, explain the sag plainly, and give him an honest picture of what it means for a sale. Recommend the modest option that fits his two-year plan and ask for a decision.",
+   "passBar": 72,
+   "tags": [
+    "drain",
+    "sewer",
+    "camera",
+    "belly",
+    "selling"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Confirm the disclosure wording techs should use. Techs should send disclosure questions to the seller's agent rather than give legal advice."
+    ]
+   }
+  },
+  {
+   "id": "slab-leak-detection",
+   "version": 1,
+   "title": "High water bill, hot line leaking under the slab",
+   "trade": "plumbing",
+   "jobType": "slab-leak-repair",
+   "difficulty": 4,
+   "personaId": "tasha-burned",
+   "alternatePersonas": [
+    "paul-engineer",
+    "margaret-retiree"
+   ],
+   "briefing": "Leak detection call. Water bill jumped from about $90 to $260 in one billing cycle, and the customer hears water running when everything is off. Single-story home on a slab, built in 1977. Not a member.",
+   "situation": "The hot water line under the slab has a pinhole leak. With every fixture off, the meter's leak indicator turns steadily. Closing the cold inlet valve at the water heater stops it, which puts the leak on the hot side. A pressure test shows the cold side holds with no drop. Acoustic listening finds the loudest point under the hallway tile about 6 feet from the hall bathroom, and a thermal camera shows a warm patch in the same spot. The home has its original soft copper lines under the slab. A spot repair means breaking through the hallway tile and concrete. It fixes this leak, but the same 49-year-old hot line can leak somewhere else later, and tile replacement is extra. Rerouting the hot line through the attic with PEX takes the hot water out of the slab for good and leaves the floor alone. The reroute is the honest recommendation for this home, with the spot repair shown as a fair lower-cost choice. A whole-house repipe is not justified. The customer works night shifts as an ER nurse and was overcharged by another company, so she will want to see the proof at every step.",
+   "equipment": [
+    {
+     "item": "Soft copper water lines under the slab",
+     "ageYears": 49,
+     "notes": "Original. Hot line leaking under the hallway. Cold side tests tight."
+    },
+    {
+     "item": "40-gallon gas water heater in the garage",
+     "ageYears": 5,
+     "notes": "Works normally. Not part of the problem."
+    },
+    {
+     "item": "Porcelain tile in the hallway",
+     "ageYears": 6,
+     "notes": "Matching replacement tile may be hard to find."
+    }
+   ],
+   "findings": [
+    {
+     "id": "meter-indicator-turning",
+     "text": "With every fixture off, the meter's leak indicator keeps turning. Water is leaving the pipes somewhere.",
+     "severity": "major"
+    },
+    {
+     "id": "hot-side-isolated",
+     "text": "Closing the cold inlet at the water heater stops the meter. The leak is on the hot water side.",
+     "severity": "major"
+    },
+    {
+     "id": "leak-located-hallway",
+     "text": "Listening equipment and a thermal camera put the leak under the hallway tile, about 6 feet from the hall bathroom door. The tile is warm there.",
+     "severity": "urgent"
+    },
+    {
+     "id": "cold-side-tight",
+     "text": "The cold side held pressure for 30 minutes with no drop. It is not leaking.",
+     "severity": "info"
+    },
+    {
+     "id": "original-copper",
+     "text": "The lines under the slab are the original 1977 soft copper. Hot lines under a slab fail most often, and this one can develop more pinholes over time.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "reroute-hot-line",
+     "label": "Reroute the hot line through the attic with PEX",
+     "rationale": "Stops the leak and takes the hot water out of the slab, where the next leak on this old line would be."
+    },
+    {
+     "id": "spot-repair-hallway",
+     "label": "Spot repair under the hallway",
+     "rationale": "A fair lower-cost way to stop this leak. It means breaking tile and concrete, and the rest of the hot line under the slab stays in service."
+    },
+    {
+     "id": "verify-after-repair",
+     "label": "Recheck the meter and pressure after the repair",
+     "rationale": "Proves the leak is stopped."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "whole-house-repipe",
+     "label": "Whole-house repipe",
+     "why": "Only the hot line under the slab leaks. The cold side held pressure and the rest of the plumbing is fine."
+    },
+    {
+     "id": "cold-line-must-go",
+     "label": "Saying the cold line is leaking or must be rerouted now",
+     "why": "The cold side passed the pressure test. Rerouting it is a choice for later, not a need."
+    },
+    {
+     "id": "new-water-heater",
+     "label": "Replacing the water heater",
+     "why": "The 5-year-old water heater works normally. The leak is in the pipe under the floor."
+    }
+   ],
+   "options": [
+    {
+     "id": "spot-repair",
+     "label": "Spot repair under the hallway",
+     "price": 2950,
+     "monthly": 74,
+     "includes": [
+      "Open about a 2-by-2-foot section of hallway tile and slab",
+      "Repair the leak in the hot line",
+      "Pressure test before closing",
+      "Concrete patch",
+      "Tile replacement not included"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "reroute-hot",
+     "label": "Reroute the hot line through the attic",
+     "price": 3900,
+     "monthly": 98,
+     "includes": [
+      "New PEX hot line from the water heater through the attic to each fixture",
+      "Old hot line under the slab capped and abandoned",
+      "Small drywall openings patched and primed, texture and paint not included",
+      "Permit and inspection",
+      "Pressure test and meter check"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "reroute-both",
+     "label": "Reroute hot and cold lines through the attic",
+     "price": 5800,
+     "monthly": 145,
+     "includes": [
+      "Everything in the hot line reroute",
+      "New PEX cold line through the attic to each fixture",
+      "All water lines out of the slab"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "how-do-i-know-its-broken"
+    ],
+    "excluded": [],
+    "density": 3
+   },
+   "goal": "Show her the proof step by step (meter, isolation, pressure test, listening and thermal readings) and explain spot repair versus reroute in plain words. Recommend the reroute without pushing, ask for a decision, and respect a no.",
+   "passBar": 75,
+   "tags": [
+    "leak",
+    "slab",
+    "detection",
+    "reroute",
+    "trust"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "The leak detection fee is not in the options. Companies charge it separately or credit it toward the repair; set it per price book.",
+     "Homeowner's insurance often covers access and resulting damage but not the pipe itself, and policies vary. Techs should not promise coverage."
     ]
    }
   },
@@ -9266,6 +10773,141 @@
      "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
      "First-hour rating and BTU figures are typical for 50-gallon high-recovery gas tanks. Confirm them against the models each company installs, including whether the vent has to go up a size.",
      "The alternate persona jen-busy-parent has a smaller household. If the engine swaps personas, the family size in the situation should follow the persona."
+    ]
+   }
+  },
+  {
+   "id": "toilet-running-old",
+   "version": 1,
+   "title": "Running toilet, repair or replace",
+   "trade": "plumbing",
+   "jobType": "toilet-repair",
+   "difficulty": 1,
+   "personaId": "linda-warranty",
+   "alternatePersonas": [
+    "margaret-retiree",
+    "rosa-spanish"
+   ],
+   "briefing": "Service call. Hall bathroom toilet refills on its own every few minutes, and the customer hears it at night. The toilet is about 25 years old. Single-story home. Not a member.",
+   "situation": "The toilet runs because the flapper is warped and leaks water into the bowl, and the original fill valve is slow to shut off. A dye test shows color in the bowl in about ten minutes with no flushing. The porcelain has no cracks, the toilet does not rock, and the floor at the base is dry, so the wax seal is fine. A tank rebuild (new flapper, fill valve, and supply line) is the honest recommendation. Replacing the toilet is a fair choice if she wants a newer, lower-flow model, but it is not needed. The customer has a home warranty and expects it to cover this. Home warranties usually require calling the warranty company, paying its service fee, and waiting for its own contractor. An honest tech tells her that if her plan covers toilet repairs, using it may cost her less than this repair, and lets her choose.",
+   "equipment": [
+    {
+     "item": "1.6-gallon two-piece toilet",
+     "ageYears": 25,
+     "notes": "Porcelain sound. Original flapper and fill valve."
+    },
+    {
+     "item": "Toilet shutoff valve",
+     "ageYears": 25,
+     "notes": "Closes fully, no drips."
+    }
+   ],
+   "findings": [
+    {
+     "id": "flapper-leaking",
+     "text": "The flapper is warped and lets water leak into the bowl. A dye test shows color in the bowl in about ten minutes with no flushing.",
+     "severity": "major"
+    },
+    {
+     "id": "fill-valve-slow",
+     "text": "The original fill valve is slow to shut off and hisses while it refills.",
+     "severity": "minor"
+    },
+    {
+     "id": "toilet-sound",
+     "text": "No cracks in the tank or bowl, the toilet does not rock, and the floor around it is dry. The toilet itself is in good shape.",
+     "severity": "info"
+    },
+    {
+     "id": "wasted-water",
+     "text": "A flapper leak like this wastes water around the clock, and it shows up on the water bill.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "rebuild-tank",
+     "label": "Rebuild the tank with a new flapper, fill valve, and supply line",
+     "rationale": "Fixes the leak and the slow refill. The toilet itself is sound."
+    },
+    {
+     "id": "dye-test-after",
+     "label": "Dye test after the repair",
+     "rationale": "Proves the leak is gone."
+    },
+    {
+     "id": "explain-warranty",
+     "label": "Explain plainly how home warranty claims usually work",
+     "rationale": "She can decide whether her plan or this repair costs her less."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "replace-toilet",
+     "label": "Saying the toilet needs to be replaced",
+     "why": "The porcelain is sound. A flapper and fill valve, about $20 in parts, fix the problem."
+    },
+    {
+     "id": "pull-and-reseal",
+     "label": "Pulling the toilet to replace the wax seal",
+     "why": "The toilet does not rock and the base is dry. The seal is fine."
+    },
+    {
+     "id": "other-toilet",
+     "label": "Rebuilding or replacing the other toilet",
+     "why": "The other toilet does not run. Nothing points to a problem there."
+    }
+   ],
+   "options": [
+    {
+     "id": "rebuild",
+     "label": "Rebuild the tank",
+     "price": 245,
+     "includes": [
+      "New flapper and fill valve",
+      "New braided supply line",
+      "Water level and chain adjusted",
+      "Dye test to confirm the fix"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "replace",
+     "label": "Replace with a new 1.28-gallon toilet",
+     "price": 795,
+     "includes": [
+      "New 1.28-gallon-per-flush toilet",
+      "New wax seal and closet bolts",
+      "New supply line",
+      "Haul-away of the old toilet"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "home-warranty-covers-it"
+    ],
+    "excluded": [],
+    "density": 1
+   },
+   "goal": "Show her the dye test and recommend the tank rebuild over a replacement. Explain plainly how home warranties usually work so she can choose the cheaper path for her.",
+   "passBar": 65,
+   "tags": [
+    "toilet",
+    "repair-or-replace",
+    "warranty",
+    "starter",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Warranty service fees and coverage vary by plan. Techs should not quote her plan's terms, only explain how warranties usually work and suggest she check."
     ]
    }
   },
@@ -11214,6 +12856,334 @@
  },
  "drills": [
   {
+   "id": "first-thirty-seconds",
+   "version": 1,
+   "order": 1,
+   "title": "The first 30 seconds at the door",
+   "stage": "door",
+   "skill": "frame",
+   "durationSec": 90,
+   "why": "In the first thirty seconds at the door, the customer decides how much to trust you. Most techs say a quick hello, ask where the water heater is, and walk right past the person who called. Others talk about the company for a full minute. Either way, the customer is left with questions nobody answered. How long will this take? What will it cost? Am I going to get talked into something? Think about what this is like for them. A stranger is about to walk through their house, and they're worried about money before you've said a word. So answer those questions first. Say your name, your company, and their name. Tell them how the visit will go: a few questions, a look at the problem, then you'll show them what you found and go over options and prices before any work starts. Say about how long it takes. In this drill, Margaret opens the door. Tell her how the visit will go.",
+   "demo": [
+    {
+     "speaker": "tech",
+     "text": "Hi, you must be Margaret. I'm Chris, the plumber you called about your hot water."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh, hello. Come in, please. It's been out since yesterday morning."
+    },
+    {
+     "speaker": "tech",
+     "text": "Sorry, that's a long time to go without. Here's how this goes. I'll ask a few questions, then look at the heater. About twenty minutes."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh. All right. That's not so bad."
+    },
+    {
+     "speaker": "tech",
+     "text": "Then I'll show you what I found and your options, with prices. Nothing gets done until you decide. Where's the heater?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, that's a relief. It's out in the garage, through here."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "door",
+   "priorContext": "The tech has just arrived and rung the doorbell. Margaret called this morning because she has had no hot water since yesterday morning. She has never met this tech or anyone from the company. She is opening the front door now.",
+   "forcedMoves": [],
+   "techPrompt": "Margaret opens the door. Introduce yourself and tell her how the visit will go, including options and prices before any work.",
+   "passCriteria": [
+    "Say your name, your company, and her name in the first few sentences",
+    "Explain the steps of the visit and about how long it takes",
+    "Say she will see what you find, her options, and prices before any work starts",
+    "Hand the conversation back to her with a question"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "No customerOpener, so the tech speaks first as the door opens.",
+     "The demo tech is named Chris and names no company, so the demo stays company-neutral."
+    ]
+   }
+  },
+  {
+   "id": "five-discovery-questions",
+   "version": 1,
+   "order": 2,
+   "title": "Five discovery questions",
+   "stage": "discovery",
+   "skill": "discovery",
+   "durationSec": 150,
+   "why": "This moment happens before you touch the equipment. It's the short conversation where you learn about the person, not just the problem. Most techs ask one question, something like \"So what's going on?\", and head straight for the heater. Or they only ask questions with yes or no answers. Then, when it's time for options, they're guessing what this customer cares about. The facts that matter most in this call are not in the garage. Who lives here. How long they plan to stay. What happened the last time they hired someone. What they're worried about. Customers will tell you all of it if you ask, and they trust you more for asking. So ask five open questions, two about the problem and three about them. Listen to the whole answer. Follow up on one thing they say. Then say back what you heard before you start working. In this drill, you're in the garage with Margaret. Ask your five questions first.",
+   "demo": [
+    {
+     "speaker": "tech",
+     "text": "Before I look at it, can I ask you a few things? Tell me what happened when it stopped working."
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, yesterday morning the shower just went cold. And there was water on the garage floor."
+    },
+    {
+     "speaker": "tech",
+     "text": "That helps. Who lives here with you, and how do you use hot water on a normal day?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh, it's just me now. My husband Harold passed four years ago. He always handled these things."
+    },
+    {
+     "speaker": "tech",
+     "text": "I'm sorry. So you're taking care of the house on your own now. What matters most to you in how we fix this?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, I don't want to spend more than I have to. And I don't want to be fooled again."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "discovery",
+   "priorContext": "The tech introduced themselves at the front door and explained how the visit will go. Margaret has led the tech into the garage, where the 40-gallon gas water heater sits next to the washer. There is some water on the floor around its base. The tech has not inspected the heater yet and has not asked her any questions beyond confirming she has had no hot water since yesterday morning.",
+   "forcedMoves": [],
+   "techPrompt": "Before you look at the heater, ask Margaret five open questions, two about the problem and three about her.",
+   "passCriteria": [
+    "Ask at least five questions, most of them open-ended",
+    "Ask at least two about her (who lives here, her plans, what matters to her), not the equipment",
+    "Follow up on at least one of her answers",
+    "Say back what you heard before you move on"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "No customerOpener, so the tech speaks first.",
+     "The last demo line hints at her roof coating regret, which the persona reveals at trust 50 on previous-work or history topics."
+    ]
+   }
+  },
+  {
+   "id": "explain-the-finding",
+   "version": 1,
+   "order": 3,
+   "title": "Explaining a finding in plain language",
+   "stage": "findings",
+   "skill": "findings",
+   "durationSec": 120,
+   "why": "You've found the problem. Now explain it so the customer understands it. Most techs explain it the way they would to another tech. The anode's gone, the tank's rusted through, the combustion chamber's soaked. Or they just say it's shot. The customer nods along, understands almost none of it, and now has to make a big decision based on trust alone. Here's what is going on for them. When people don't understand, most don't ask. They get quiet, and then they get suspicious. If they can't explain it to a family member that night, the answer will be that they need to think about it. So explain it in three parts, in everyday words. What's wrong. Why it happened. What it means for them. If you have to use a trade word, explain it in the same sentence. Then ask if it makes sense. In this drill, Margaret asks what you found. Explain it so she could repeat it to her son.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Well? Is it bad news? Can you fix it?"
+    },
+    {
+     "speaker": "tech",
+     "text": "I wish I could. The tank itself is leaking from the bottom. After twelve years, the steel inside rusts through, and that's where your water is coming from."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh dear. Can't you patch it somehow?"
+    },
+    {
+     "speaker": "tech",
+     "text": "Not in a way that would last. And the water soaked the spot where the burner lights, so it won't stay on. That's why you have no hot water. Does that make sense?"
+    },
+    {
+     "speaker": "customer",
+     "text": "I think so. So it has to be replaced, then."
+    },
+    {
+     "speaker": "tech",
+     "text": "It does. What questions do you have before we talk about your choices?"
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "findings",
+   "priorContext": "The tech introduced themselves, asked Margaret about the water heater and her household, and then spent about fifteen minutes inspecting the heater in the garage while she waited in the kitchen. The tech has not told her anything about what they found yet. She saw water on the garage floor yesterday and is hoping it is something simple. She has come to the garage door to hear the news.",
+   "forcedMoves": [],
+   "customerOpener": "You were out there a while. Is it bad news? Can you fix it?",
+   "techPrompt": "Margaret asks what you found. In plain words, tell her what's wrong, why it happened, and what it means for her.",
+   "passCriteria": [
+    "Explain what is wrong, why it happened, and what it means for her",
+    "Use no trade terms without explaining them in the same sentence",
+    "Check that it made sense before you talk about options or price"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Starts in findings, so the engine adds the mid-call trust and understanding bonus. If the tech uses jargon, understanding drops and Margaret asks what it means."
+    ]
+   }
+  },
+  {
+   "id": "show-what-you-found",
+   "version": 1,
+   "order": 4,
+   "title": "Showing what you found",
+   "stage": "findings",
+   "skill": "findings",
+   "durationSec": 120,
+   "why": "This moment is about letting the customer see the problem. Most techs tell instead of show. When the customer says, \"I'll take your word for it,\" they're glad to skip it. Then the price comes, and all they have is your word. Here's what is really going on. Many homeowners have paid for work they didn't need. When someone says they wouldn't know what they're looking at, they aren't saying they don't care. They're unsure, and a little embarrassed. Seeing the rust and the water for themselves answers the question they won't ask out loud: is this real? So make it easy to say yes. Tell them it takes a minute, they don't need to know anything, and you'll point. Show them one or two things and say what each one means. If they still say no, show them a photo on your phone. In this drill, Margaret says she doesn't need to see it. Make it easy for her to look.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Oh, you don't need to show me. I wouldn't know what I'm looking at anyway."
+    },
+    {
+     "speaker": "tech",
+     "text": "You don't need to know a thing. It's right inside the garage door, and I'll point. It takes a minute."
+    },
+    {
+     "speaker": "customer",
+     "text": "Well... all right, if you think I should."
+    },
+    {
+     "speaker": "tech",
+     "text": "See the rust around the bottom, and the water under it? That's coming out of the tank itself. That's why it can't be repaired."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh my. I had no idea it looked like that."
+    },
+    {
+     "speaker": "tech",
+     "text": "I took photos too, so you'll have them with the estimate. What questions do you have?"
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "findings",
+   "priorContext": "The tech has inspected the 12-year-old gas water heater in the garage and told Margaret in one sentence that the tank is leaking and will need to be replaced. Margaret is standing in the kitchen doorway. She has not seen the leak up close. She feels a little foolish about not understanding these things, because her late husband Harold always handled them.",
+   "forcedMoves": [],
+   "customerOpener": "Oh, you don't need to show me. I wouldn't know what I'm looking at anyway.",
+   "techPrompt": "Margaret says she doesn't need to see it. Make it easy for her to look, then show her the leak.",
+   "passCriteria": [
+    "Offer again in a way that is easy to accept, and use a photo if she still says no",
+    "Point to the leak and the rust and say what each one means in plain words",
+    "Ask what questions she has before moving on"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The opener is the moment itself. No move is forced, so nothing repeats it.",
+     "If Margaret declines a second time, a photo on the phone should pass. Pressing a third time should not."
+    ]
+   }
+  },
+  {
+   "id": "three-options",
+   "version": 1,
+   "order": 5,
+   "title": "Three options tied to what they told you",
+   "stage": "options",
+   "skill": "options",
+   "durationSec": 150,
+   "why": "This is the moment you present the customer's choices. Most techs get it wrong in one of two ways. Some give one option and nothing else. Others read three options off the tablet, cheapest to most expensive, with the same speech they give everyone. Either way, the customer can't tell which choice fits them. Here's what the customer wants at this point. They want a real choice, and they want to know which one you would pick for them. Options only mean something when they're tied to what the customer told you. So think back to discovery. Give each option in a sentence or two, and connect it to something they said: who lives there, how long they're staying, what worries them. Be honest about who each option is not for. Then recommend one, the honest best fit, and give the reason in their words. In this drill, Margaret asks about her choices. Give her three, and recommend one.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Well, I suppose if it has to be replaced, what are my choices?"
+    },
+    {
+     "speaker": "tech",
+     "text": "There are three. The first is a standard tank like the one you have, with a six-year warranty. For one person who plans to stay, it does the job well."
+    },
+    {
+     "speaker": "customer",
+     "text": "And what about the other two?"
+    },
+    {
+     "speaker": "tech",
+     "text": "The second is the same size with a ten-year warranty, and it heats back up faster. The third is tankless. It never runs out, but for one shower a day, you'd be paying for more than you need."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh my. So which one makes the most sense for me?"
+    },
+    {
+     "speaker": "tech",
+     "text": "The standard one. You told me you want something reliable without spending more than you have to. That's the one that fits."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "options",
+   "priorContext": "Earlier in the visit Margaret told the tech that she has lived alone since her husband Harold passed, that she takes one shower a day and does a couple of loads of laundry a week, and that she plans to stay in the house as long as she can. She also said she does not want to spend more than she has to. The tech showed her the leak at the base of the 12-year-old tank and explained that it cannot be repaired. She understands it needs to be replaced. No options or prices have been mentioned yet.",
+   "forcedMoves": [],
+   "customerOpener": "Well, I suppose if it has to be replaced, what are my choices?",
+   "techPrompt": "Present the three options. Tie each one to something Margaret told you, and recommend the one that fits her best.",
+   "passCriteria": [
+    "Present all three options as real choices, each in a sentence or two",
+    "Connect at least two of them to something Margaret said",
+    "Recommend one option with a reason that fits her",
+    "Do not describe tankless or the premium option as required"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The engine starts options with optionsPresented set to 2. That only matters for scope objections, and Margaret has none.",
+     "If the tech states prices here, the phase moves to price and silence-after-price can fire. That is fine."
+    ]
+   }
+  },
+  {
+   "id": "say-the-price",
+   "version": 1,
+   "order": 6,
+   "title": "Saying the price without flinching",
+   "stage": "price",
+   "skill": "price",
+   "durationSec": 90,
+   "why": "This is the moment you say the number. Most techs soften the price without noticing. They start with \"unfortunately.\" They say, \"I know it's a lot, but.\" They give a range, or say \"somewhere around,\" or put the number in the middle of a long explanation. Some offer a discount before the customer has said a word. Here's what the customer hears. They're paying attention to how you say the price as much as the price itself. If you sound unsure, they assume the number is padded, or that it will come down if they push. If you say it plainly, they believe it's the real price. This is harder when the customer is nervous, because their nerves make you nervous. So say what's included in one sentence, then the exact total. No range, no apology. Use the voice you'd use to tell someone the time. Then stop. In this drill, Margaret is nervous to hear it. Tell her the price.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Oh dear. I'm almost afraid to ask. How much is the one you'd recommend?"
+    },
+    {
+     "speaker": "tech",
+     "text": "For the standard heater, with the expansion tank and earthquake straps the code requires, the permit, and hauling the old one away, it's eighteen ninety."
+    },
+    {
+     "speaker": "customer",
+     "text": "Eighteen ninety. Is that everything, or does more get added on later?"
+    },
+    {
+     "speaker": "tech",
+     "text": "That's everything. Eighteen ninety is the whole job, and it's the number you'll see in writing."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "price",
+   "priorContext": "The tech showed Margaret the leak, explained why the 12-year-old tank has to be replaced, and presented three options. The tech recommended the standard 40-gallon gas heater with a 6-year warranty because she lives alone and plans to stay in the house, and she agreed it sounds right for her. She has not heard any prices yet and is nervous about what it will cost.",
+   "forcedMoves": [],
+   "customerOpener": "Oh dear. I'm almost afraid to ask. How much is the one you'd recommend?",
+   "techPrompt": "Margaret is nervous to hear it. Tell her the standard option's total, $1,890, and what it includes. Then stop.",
+   "passCriteria": [
+    "Say the exact total once, with no range, apology, or \"unfortunately\"",
+    "Say in one sentence what the price includes",
+    "Offer no discount and no financing before she reacts",
+    "If she repeats the number back, confirm it calmly without lowering it"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Margaret weights silence-after-price at 3, so she will almost always go quiet after the number. The drill judges how the price is said, and hold-the-silence (order 7) covers the wait."
+    ]
+   }
+  },
+  {
    "id": "hold-the-silence",
    "version": 1,
    "order": 7,
@@ -11263,6 +13233,763 @@
     "author": "Claude",
     "notes": [
      "Gold example drill."
+    ]
+   }
+  },
+  {
+   "id": "three-bids",
+   "version": 1,
+   "order": 8,
+   "title": "\"I need three bids\"",
+   "stage": "objections",
+   "skill": "objections",
+   "durationSec": 180,
+   "why": "Every tech hears this one: \"I always get three bids.\" Most techs answer in a way that makes the customer want to shop even more. They drop the price to keep the job. They warn that other companies do sloppy work. Or they push for a decision now. Here's what is really going on. Three bids is almost never about the number three. It's about feeling sure the price is fair. Most homeowners don't know what a proper install includes, so they compare totals, and a lower total looks better even when it leaves out things the job requires. So respect the choice. Ask what they want to learn from the other bids. Make your estimate easy to compare: in writing, line by line. If they already have another quote, go through it together, point out anything it doesn't list, and suggest they ask that company. Never criticize the other company. In this drill, Devin has a lower quote and wants one more. Help him compare.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "I appreciate it. But I always get three bids before I do anything like this."
+    },
+    {
+     "speaker": "tech",
+     "text": "That makes sense. Can I ask what you'll be comparing? Mostly the total, or what's included?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Mostly the total. The other quote was fourteen fifty. Yours is twenty-one fifty."
+    },
+    {
+     "speaker": "tech",
+     "text": "Let's put them side by side. Mine lists the expansion tank, the permit, and haul-away. Theirs doesn't mention them, so ask them if those are included."
+    },
+    {
+     "speaker": "customer",
+     "text": "Huh. Okay, that's fair. I didn't even think to check that."
+    },
+    {
+     "speaker": "tech",
+     "text": "Here's mine in writing, line by line. Get your third bid, and if you have questions about any of them, call me."
+    }
+   ],
+   "scenarioId": "second-opinion-quote",
+   "personaId": "devin-researcher",
+   "startPhase": "objections",
+   "priorContext": "The tech showed Devin the seep and rust at the base of his 10-year-old 50-gallon gas tank and explained that it needs to be replaced. The tech recommended the standard 50-gallon option at $2,150, which includes the expansion tank the pressure regulator makes necessary, two seismic straps, a new gas connector, the permit, and haul-away, and handed Devin an itemized estimate. Devin already has a written quote from another company for $1,450 that says only \"50-gallon gas water heater, installed\" and a total. He has not decided anything yet.",
+   "forcedMoves": [
+    "need-three-bids"
+   ],
+   "customerOpener": "Okay. Honestly, this is way more detailed than what the other company sent me.",
+   "techPrompt": "Devin is comparing quotes. Ask what he wants to compare, go through the prices line by line, and respect his choice.",
+   "passCriteria": [
+    "Ask what he wants to compare or learn from the other bids",
+    "Go through both quotes line by line and name the required items the lower one does not list",
+    "Do not cut the price, criticize the other company, or push for a decision",
+    "Offer your itemized estimate in writing and make it easy to come back"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "second-opinion-quote also forces found-it-cheaper, and Devin holds it at 60 against 40 for need-three-bids. He raises the lower quote first, and three bids follows on a later turn. durationSec is 180 to fit both.",
+     "The opener only leads in and voices neither objection, so neither repeats."
+    ]
+   }
+  },
+  {
+   "id": "the-spouse-stall",
+   "version": 1,
+   "order": 9,
+   "title": "\"Let me talk to my wife\"",
+   "stage": "objections",
+   "skill": "objections",
+   "durationSec": 120,
+   "why": "This moment starts with \"I need to talk to my wife first.\" Most techs treat it as a stall to get past. They ask, \"Can't you just decide?\" Or they offer a discount to sign before the spouse gets home. Others say, \"No problem,\" and leave with nothing the customer can show anyone. Here's what is really going on. For many couples, it's not a stall. It's how they make decisions, and they're right to. The real worry is explaining it at home from memory, getting it wrong, and being blamed if it goes badly. So respect it right away. Offer to bring the spouse in now with a quick phone call. If that won't work, make it easy to explain later: a photo of what you found, the options and prices in writing, and your recommendation in one sentence they can repeat. Then set a specific time to talk to both of them. In this drill, Carlos wants to talk to Elena first. Help him include her.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Okay, here's the thing. I'm not deciding this without Elena. She's at work till five."
+    },
+    {
+     "speaker": "tech",
+     "text": "That makes sense. It's a big decision for both of you. Would she have two minutes for a quick call now?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Probably not. She's slammed at work. She doesn't really pick up."
+    },
+    {
+     "speaker": "tech",
+     "text": "Then I'll text you a photo of the leak and all three options with prices. The short version is that the fifty-gallon fixes the mornings without paying for tankless."
+    },
+    {
+     "speaker": "customer",
+     "text": "Okay. Yeah, that I can explain to her."
+    },
+    {
+     "speaker": "tech",
+     "text": "What time tonight works for me to call you both? I'll answer whatever she wants to ask."
+    }
+   ],
+   "scenarioId": "tank-vs-tankless-family",
+   "personaId": "ruiz-couple",
+   "startPhase": "price",
+   "priorContext": "The tech found that the 11-year-old 40-gallon tank is leaking at the base and is too small for a family of five, which is why the hot water runs out in the mornings. The tech presented three options, the same 40-gallon size for $1,890, a 50-gallon high-recovery tank for $2,850, and tankless for $5,450, and recommended the 50-gallon because it fixes the mornings for about half the price of tankless. Carlos asked good questions and understands the choices. Elena is at work until five. The tech just asked Carlos if he would like to go ahead.",
+   "forcedMoves": [
+    "talk-to-my-spouse"
+   ],
+   "customerOpener": "Okay, here's the thing. I'm not deciding this without Elena. She's at work till five.",
+   "techPrompt": "Carlos won't decide without Elena. Respect that, offer a way to include her now or later, and set a specific follow-up.",
+   "passCriteria": [
+    "Respect the joint decision without pushing Carlos to decide alone",
+    "Offer to include Elena now by phone, or with photos and the options in writing",
+    "Give Carlos a one-sentence version of your recommendation he can repeat",
+    "Set a specific time to follow up with both of them"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The opener voices the stall. talk-to-my-spouse only fires on a decision ask, and Carlos holds brother-in-law-plumber (55) and too-expensive (50) above it (45), so an ask would bring one of those first. Timing objections never fire on their own, so the opener is not repeated.",
+     "startPhase is price, not close, on purpose. At close the engine treats the price as already heard, and the scenario's forced brother-in-law-plumber fires on the first turn. At price it stays quiet until the tech states a number. Recommend removing brother-in-law-plumber from tank-vs-tankless-family's forced list.",
+     "Elena can walk in as an ambient move (Carlos weights spouse-walks-in at 3). If she does, including her still passes."
+    ]
+   }
+  },
+  {
+   "id": "the-cheap-fix",
+   "version": 1,
+   "order": 10,
+   "title": "\"Just do the cheap fix\"",
+   "stage": "objections",
+   "skill": "objections",
+   "durationSec": 120,
+   "why": "This moment comes when the customer says, \"Just do the cheapest thing.\" Most techs get it wrong in one of two ways. Some pitch the bigger option again, or tell a worst-case story to scare the customer off the basic one. Others agree to anything to keep the job, even skipping a code item to get the price down. Here's what is really going on. Choosing the cheapest option is a fair decision, and customers often have reasons they haven't told you. What they want to know is simple: will the cheap option actually work, or will I be paying again next year? So answer that question honestly. If the basic option is safe and does the job, say so, state the trade-off once, and respect the choice. If the shortcut they want isn't safe or isn't to code, say no plainly and give the reason. Then do the basic job well. In this drill, Rick wants the bare minimum. Tell him honestly what that is.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Look, what's the bare minimum to get them hot water today?"
+    },
+    {
+     "speaker": "tech",
+     "text": "The standard one is the bare minimum. A leaking tank can't be repaired, so there's no cheaper fix that's safe."
+    },
+    {
+     "speaker": "customer",
+     "text": "What about the expansion tank? Skip it. My guy never puts those in."
+    },
+    {
+     "speaker": "tech",
+     "text": "I can't skip that one. This house has a pressure regulator, so code requires it, and without it the pressure climbs every time the water heats. Same with the straps and the permit."
+    },
+    {
+     "speaker": "customer",
+     "text": "Alright. So eighteen ninety is as low as it goes."
+    },
+    {
+     "speaker": "tech",
+     "text": "Yes, that's the lowest price for doing it safely. The other option mostly adds a longer warranty. I can have it in today."
+    }
+   ],
+   "scenarioId": "wh-tank-landlord-tenant",
+   "personaId": "rick-landlord",
+   "startPhase": "objections",
+   "priorContext": "Rick met the tech at his rental. The tech showed him that the 13-year-old 40-gallon gas tank is leaking from the bottom seam and that the old expansion tank is full of water and no longer works. The tech explained that the house has a pressure regulator, so a working expansion tank is required. The tech presented two options with prices, the standard 40-gallon with a 6-year warranty for $1,890 and a 10-year version for $2,490, both installed today from stock on the truck. The tenants have had no hot water since this morning.",
+   "forcedMoves": [
+    "just-the-cheap-fix"
+   ],
+   "customerOpener": "Alright. Two options. My tenant's been texting me every ten minutes.",
+   "techPrompt": "Ask Rick which option he wants. When he asks for the bare minimum, tell him honestly what is safe and what is required.",
+   "passCriteria": [
+    "Say plainly that the standard option is the lowest-cost safe fix, and why",
+    "Name the required items (expansion tank, two straps, permit) and do not agree to skip them",
+    "State the trade-off once, without pushing the 10-year option or using scare talk",
+    "Respect his choice and offer the earliest install"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The tech's decision ask brings just-the-cheap-fix first. $1,890 is over Rick's $1,300 ceiling, so the engine voices his first price-group objection. If the tech does not ask, the scenario's forced handyman-can-do-it (55) fires first and the cheap fix follows.",
+     "In this scenario the cheapest option is already the recommended one, so the honest answer is that there is no cheaper safe fix. The test is refusing to skip the code items."
+    ]
+   }
+  },
+  {
+   "id": "the-relative-plumber",
+   "version": 1,
+   "order": 11,
+   "title": "\"My brother-in-law is a plumber\"",
+   "stage": "objections",
+   "skill": "objections",
+   "durationSec": 150,
+   "why": "This moment comes when the customer says, \"My brother-in-law is a plumber.\" Most techs get defensive. Some question the relative's skill or license. Some list everything that could go wrong. Some drop the price to compete with family. All of it puts the customer in the position of defending someone they love. Here's what is really going on. Family loyalty is real, and the customer isn't trying to insult you. Often money is tight, and the relative is how they can afford the work. What they need to know is whether this is a job their relative can actually do. So speak well of the relative. Say plainly what this job takes: what you found, and what fixing it involves, like the permit and the equipment. Offer your camera video and written findings so the relative can see exactly what you saw. Keep your recommendation and your price. In this drill, Carlos says his brother-in-law Tony could do it. Help him compare fairly.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Honestly, my brother-in-law's a plumber. He could probably do this for a lot less."
+    },
+    {
+     "speaker": "tech",
+     "text": "That's great to have family in the trade. What kind of work does he do?"
+    },
+    {
+     "speaker": "customer",
+     "text": "New construction, mostly. He's good, he's just busy."
+    },
+    {
+     "speaker": "tech",
+     "text": "Then he knows plumbing. This one means digging up about ten feet of old clay sewer pipe under the lawn and replacing it, with a permit and an inspection. I'll send you the camera video so Tony can see exactly what I saw."
+    },
+    {
+     "speaker": "customer",
+     "text": "Okay. Yeah, he'd want to see that first."
+    },
+    {
+     "speaker": "tech",
+     "text": "If he can take it on, great. If not, you have my estimate in writing. Just give me a call."
+    }
+   ],
+   "scenarioId": "drain-main-line-roots",
+   "personaId": "ruiz-couple",
+   "startPhase": "objections",
+   "priorContext": "The Ruiz family's main sewer line backed up this morning. The tech cleared it with a root cutter, so the house drains again for now, then ran a camera and found roots growing into two joints of the old clay line about 40 feet out, under the front lawn near the ash tree. One of those joints is cracked and offset. The rest of the line is sound. Carlos watched the video with the tech. The tech presented three options, root clearing only for $495, a spot repair that replaces about 10 feet of the line for $5,400, and lining the whole line for $13,800, and recommended the spot repair. Carlos's sister's husband, Tony, does plumbing for a builder that puts up new houses.",
+   "forcedMoves": [
+    "brother-in-law-plumber"
+   ],
+   "customerOpener": "Okay. So it's roots, right where the ash tree is. I saw it on the screen.",
+   "techPrompt": "Carlos says his brother-in-law Tony could do it for less. Respect Tony, explain what the job takes, and offer the camera video.",
+   "passCriteria": [
+    "Speak well of Tony without questioning his skill or license",
+    "Explain plainly what this repair involves, such as the digging, the permit, and the inspection",
+    "Offer the camera video and written findings so Tony can see the problem",
+    "Keep your recommendation and price without discounting to compete"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "brother-in-law-plumber is Carlos's strongest objection, and drain-main-line-roots forces it too, so it fires on the first customer turn in objections. If the tech asks for a decision first, $5,400 is over Carlos's $1,500 ceiling, so too-expensive comes instead.",
+     "The priorContext and demo follow the scenario's findings and its spot-repair recommendation. The scenario says the house was built in 1968 and the persona says 1976, so the drill does not name a year."
+    ]
+   }
+  },
+  {
+   "id": "monthly-number",
+   "version": 1,
+   "order": 12,
+   "title": "Financing as a monthly number",
+   "stage": "close",
+   "skill": "membership-financing",
+   "durationSec": 120,
+   "why": "This moment comes right after the price, when the total is more than the customer can pay at once. Most techs miss it in one of three ways. They never mention financing because they're afraid it sounds pushy. They say \"We have financing\" and move on, with no number. Or they push payments before they understand the problem. Here's what is going on for the customer. Most people won't say \"I can't afford it.\" They say less than they mean, like \"That's more than I have right now.\" They're embarrassed, and they're picturing the whole amount coming out of their savings at once. Eighteen ninety at once and forty-nine dollars a month can feel completely different to the same person. So first, thank them for telling you. Then give one specific monthly number for the option you recommended, and offer to show them the terms in writing. Then let them choose. In this drill, Margaret has just heard eighteen ninety. Listen for the worry.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Eighteen ninety. Well... I'd have to take that out of my savings, I suppose."
+    },
+    {
+     "speaker": "tech",
+     "text": "Thank you for telling me. A lot of people would rather leave their savings alone. Can I show you another way to do it?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, yes. I suppose that would be all right."
+    },
+    {
+     "speaker": "tech",
+     "text": "With financing, the standard option comes to forty-nine dollars a month. I'll show you the terms in writing, so you can see exactly what it costs over time."
+    },
+    {
+     "speaker": "customer",
+     "text": "Forty-nine a month. Oh, that I could manage."
+    },
+    {
+     "speaker": "tech",
+     "text": "Then it's your choice. Monthly, all at once, or take some time to think. Whatever feels right to you."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "objections",
+   "priorContext": "The tech showed Margaret the leak, explained that the 12-year-old tank cannot be repaired, presented three options, and recommended the standard 40-gallon gas heater. The tech then said the total for that option, $1,890, once and clearly. Margaret has been quiet for a few seconds. Financing has not been mentioned yet.",
+   "forcedMoves": [
+    "quiet-money-worry"
+   ],
+   "customerOpener": "Eighteen ninety. Well. Let me see.",
+   "techPrompt": "Margaret just heard $1,890. When she hints at a money worry, acknowledge it kindly, then offer the monthly number, $49.",
+   "passCriteria": [
+    "Acknowledge her worry kindly before offering anything",
+    "Give a specific monthly number for the recommended option, $49 a month",
+    "Offer to show the terms in writing and leave the choice to her",
+    "Do not lower the price or push for a yes"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Starts in objections so the engine already has $1,890 heard, which is over Margaret's $1,800 ceiling. quiet-money-worry needs priceStated and priceAboveBudget in price or objections.",
+     "Margaret's own too-expensive (chance 0.8) is checked before forced behavior moves, so it may come first. Both lead to the same moment. A gentle question from the tech can bring her fixed-income reveal first instead.",
+     "The $49 comes from the scenario's standard option. Each company's financing terms replace it."
+    ]
+   }
+  },
+  {
+   "id": "membership-ask",
+   "version": 1,
+   "order": 13,
+   "title": "The membership ask",
+   "stage": "close",
+   "skill": "membership-financing",
+   "durationSec": 120,
+   "why": "This is the moment you offer the membership. Most techs get it wrong in one of three ways. Some skip it because it feels like a sales pitch. Some read every benefit off a card. Some push it the same way, every time, to every customer. Here's what is going on for the customer. Many people have signed up for plans they never used or couldn't cancel, and they remember it. When they hear \"membership,\" they want two answers. What does it do for my house? Is it worth the money? A long list answers neither. So offer it once, plainly, and connect it to today's visit. Name the two or three benefits that matter for this home. Put it in numbers: what it costs, and what it would have saved today. Say what it doesn't cover. Then let them decide, and accept a no. In this drill, Margaret's sink drains again. Offer the membership and answer her question.",
+   "demo": [
+    {
+     "speaker": "tech",
+     "text": "It's draining fine now. Before I go, can I tell you about our maintenance plan? It takes a minute, and there's no pressure."
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, all right. What would I actually get for it?"
+    },
+    {
+     "speaker": "tech",
+     "text": "For your house, three things. Once a year we check the whole system, the water heater, the drains, and the shutoff valves. You get priority when something breaks, and a member discount on repairs."
+    },
+    {
+     "speaker": "customer",
+     "text": "And would it have saved me anything today?"
+    },
+    {
+     "speaker": "tech",
+     "text": "A little, yes. I'll show you the exact amount on your bill. It doesn't pay for new equipment, though. Would you like it, or would you rather think it over?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Well, I'd like someone checking on things. Harold always did that."
+    }
+   ],
+   "scenarioId": "drain-simple-snake",
+   "personaId": "margaret-retiree",
+   "startPhase": "wrapup",
+   "priorContext": "Margaret's hall bathroom sink drained slowly for weeks and stopped completely last night. Before starting, the tech offered two options and she chose the basic clearing for $185. The tech cleaned the hair and soap out of the stopper and the trap, and a full basin now drains in a few seconds. The other drains in the house are fine. Margaret is not a member of any maintenance plan, and nobody has mentioned one to her yet.",
+   "forcedMoves": [
+    "what-do-i-actually-get"
+   ],
+   "customerOpener": "Oh, listen to that. It drains right away now. Thank you, dear.",
+   "techPrompt": "The sink is fixed. Offer the membership once, plainly. When Margaret asks what she gets, name what matters for her house.",
+   "passCriteria": [
+    "Offer the membership once, plainly, without pressure",
+    "Name two or three benefits that matter for her house, not the full list",
+    "Say what it would have saved her today and what it does not cover",
+    "Accept her answer without pushing"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Starts in wrapup so Margaret's too-expensive, which fires only in price, objections, and close, stays quiet. what-do-i-actually-get fires on the turn the tech offers the membership.",
+     "The demo names generic benefits (yearly check, priority, member discount). Company specs supply the real ones, the price, and the cancel terms.",
+     "Margaret brings up Harold herself in the last line. The tech should not use her late husband to sell the plan.",
+     "drain-simple-snake asks that the membership be mentioned once, as optional, and never tied to the repair. The pass criteria test exactly that. Its forced tests-your-honesty does not fire in wrapup."
+    ]
+   }
+  },
+  {
+   "id": "ask-for-the-decision",
+   "version": 1,
+   "order": 14,
+   "title": "Asking for the decision",
+   "stage": "close",
+   "skill": "close",
+   "durationSec": 120,
+   "why": "This is the moment you ask the customer to decide. A lot of techs never actually ask. They finish explaining and stand there, or they say, \"Let me know what you think,\" and start packing up. The customer is left to bring it up, and most won't. Other techs ask in a way that pushes, like \"So we're good to go, right?\" Or they ask three times in a row. Here's what the customer needs. Many are waiting for you to ask, because a clear question is easier to answer than a long silence. If you never ask, they wonder whether you believe your own recommendation. So recap first, in two or three sentences: what you found, what you recommend, and why it fits them. Then ask one clear question, and stop talking. Whatever they say tells you what to do next. Don't ask again unless something new has come up. In this drill, Margaret is out of questions. Recap and ask.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Well, I think that answers all my questions. You've been very patient with me."
+    },
+    {
+     "speaker": "tech",
+     "text": "I'm glad. So, to recap. Your tank is leaking and can't be repaired, and the standard heater fits how you live. It's eighteen ninety, everything included."
+    },
+    {
+     "speaker": "customer",
+     "text": "Yes. That all makes sense to me."
+    },
+    {
+     "speaker": "tech",
+     "text": "Would you like me to go ahead with the standard heater?"
+    },
+    {
+     "speaker": "customer",
+     "text": "(pauses) Well... yes. I think that's the right thing. When could you do it?"
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "close",
+   "priorContext": "The tech showed Margaret the leak, explained that the 12-year-old tank cannot be repaired, presented three options, and recommended the standard 40-gallon gas heater with a 6-year warranty. The tech said the total, $1,890, which includes the expansion tank, two seismic straps, the permit, and haul-away. Margaret asked what the expansion tank is for and how long the install takes, and the tech answered both. She has no more questions. The tech has not asked her to decide yet.",
+   "forcedMoves": [],
+   "customerOpener": "Well, I think that answers all my questions. You've been very patient with me.",
+   "techPrompt": "Margaret has no more questions. Recap what you found and what you recommend, then ask her one clear question.",
+   "passCriteria": [
+    "Recap the finding, your recommendation, and why it fits her in a few sentences",
+    "Ask one clear question she can answer yes or no",
+    "Stop talking after the question and let her answer",
+    "Respond to her answer without asking again or adding pressure"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "At close the engine holds $1,890 against Margaret's $1,800 ceiling with no monthly number framed, so a first ask usually brings too-expensive. That tests the last criterion. The demo shows the yes a strong recap can earn once money is settled."
+    ]
+   }
+  },
+  {
+   "id": "leave-well-on-a-no",
+   "version": 1,
+   "order": 15,
+   "title": "Leaving well on a no",
+   "stage": "close",
+   "skill": "close",
+   "durationSec": 120,
+   "why": "This is the moment the customer says no, or not yet. Most techs do one of two things, and both cost them the job. Some push. They ask again, or they offer a price that's only good today. Others give up. They say, \"Okay, no problem,\" and leave with nothing in writing and no plan. Here's what is really going on. \"I need to think about it\" usually means there's a question the customer hasn't asked yet, and often it's about money. How you treat them right now decides whether they ever call you back. So respect it right away. Ask once, gently, what they want to think through, and answer it if you can. If they still want time, leave the options in writing, offer to send them to anyone they want to show, and set a specific day and time to follow up. Make sure the home is safe until then. In this drill, Margaret wants to think it over. Leave well.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "You've been very kind. But I suppose I'd like to think it over, if that's all right."
+    },
+    {
+     "speaker": "tech",
+     "text": "Of course it's all right. Can I ask what you'd like to think through? If I can answer it now, I'm happy to."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh, it's mostly the money. And I'd like to talk to my son Kevin first."
+    },
+    {
+     "speaker": "tech",
+     "text": "That makes sense. I'll leave all three options in writing, and I can email a copy to Kevin. Could I call you tomorrow at ten?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Tomorrow at ten would be fine. Thank you for not rushing me."
+    },
+    {
+     "speaker": "tech",
+     "text": "Of course. Before I go, I'll shut off the water to the tank so the leak doesn't get worse overnight."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "close",
+   "priorContext": "The tech showed Margaret the leak, explained that the 12-year-old tank cannot be repaired, presented three options, and recommended the standard 40-gallon gas heater for $1,890. The tech answered her questions about what is included and then asked whether she would like to go ahead. Margaret is not ready to decide today.",
+   "forcedMoves": [
+    "need-to-think-about-it"
+   ],
+   "customerOpener": "You've been very kind. But I suppose I'd like to think it over, if that's all right.",
+   "techPrompt": "Margaret wants to think it over. Ask once what she's weighing, then leave the options in writing and set a follow-up.",
+   "passCriteria": [
+    "Accept the request without pushing, a deadline, or a today-only price",
+    "Ask once, gently, what she wants to think through",
+    "Leave the options in writing and set a specific day and time to follow up",
+    "Offer to shut off the water to the leaking tank before you leave"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The opener voices the stall. need-to-think-about-it only fires on a decision ask, and with $1,890 over her $1,800 ceiling the engine would voice too-expensive first. Because timing objections never fire on their own, the opener cannot be repeated. The move stays latent, so a second decision ask from the tech brings too-expensive.",
+     "A gentle question about what she is weighing usually brings her fixed-income reveal, which the tech can answer with the $49 monthly number before leaving."
+    ]
+   }
+  },
+  {
+   "id": "correct-without-condescending",
+   "version": 1,
+   "order": 16,
+   "title": "Correcting misplaced confidence",
+   "stage": "objections",
+   "skill": "objections",
+   "durationSec": 150,
+   "why": "This moment comes when a customer is confident about something that's wrong for their house. Usually it came from a video. Most techs handle it badly in one of two ways. Some make the customer feel foolish: \"You can't believe everything on the internet.\" Others go along with it to avoid an argument, and the customer makes a big decision on bad information. Here's what is really going on. The customer did that research so they wouldn't get overcharged. Sounding confident is how they protect themselves when they don't know the trade. And most of what they found is partly right. So start with what they got right. Then correct the part that doesn't fit their house, in plain words, with a fact they can see or check, like the size of the gas line. Keep your honest recommendation. If they still want the other choice after hearing the facts, respect it. In this drill, Devin has watched videos about tankless. Correct him respectfully.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Basically every video I watched said tankless pays for itself in like two years."
+    },
+    {
+     "speaker": "tech",
+     "text": "They're right that tankless uses less gas. That part's real. For two people, though, the savings are small, so it takes a lot longer than two years to make back the extra cost."
+    },
+    {
+     "speaker": "customer",
+     "text": "Okay, but it runs on my existing gas line, right?"
+    },
+    {
+     "speaker": "tech",
+     "text": "Good question. Not this one. Your line is half an inch, sized for a tank, and tankless needs a bigger line from the meter. I can show you."
+    },
+    {
+     "speaker": "customer",
+     "text": "Huh. None of the videos mentioned that part."
+    },
+    {
+     "speaker": "tech",
+     "text": "Most don't. I'd still recommend the tank for your house. But if you want tankless, I'll price it the right way, with everything it needs."
+    }
+   ],
+   "scenarioId": "wh-tankless-upgrade-question",
+   "personaId": "devin-researcher",
+   "startPhase": "findings",
+   "priorContext": "The tech found rust at the base and a slow seep on Devin's 11-year-old 50-gallon gas tank and explained that it is at the end of its life and should be replaced. Devin and his fiancée Nora have never run out of hot water with it. The tech also noticed that the gas line to the heater is 1/2 inch and that there is white scale on the fittings from hard water. Devin has watched several videos about tankless water heaters and is excited about them. The tech has not presented options yet.",
+   "forcedMoves": [
+    "watched-a-video"
+   ],
+   "customerOpener": "Okay, so it needs replacing. Honestly, I figured. I've been reading up on tankless.",
+   "techPrompt": "Devin repeats something he learned online. Say what he got right, correct the rest with facts about his house, and keep your recommendation.",
+   "passCriteria": [
+    "Say what his claim gets right before you correct it",
+    "Correct the wrong part in plain words, with a fact about this house",
+    "Keep the honest recommendation without mocking the video or giving in",
+    "Treat tankless as a fair choice if he still wants it after the facts"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The scenario also forces watched-a-video, so the two lists merge into one move. It fires on the first customer turn in findings, because none of Devin's objections are due before options or price.",
+     "The demo gives no payback number, matching the scenario, which leaves payback unquantified on purpose."
+    ]
+   }
+  },
+  {
+   "id": "come-back-from-a-distraction",
+   "version": 1,
+   "order": 17,
+   "title": "Re-engaging after a distraction",
+   "stage": "recovery",
+   "skill": "listening",
+   "durationSec": 150,
+   "why": "This moment comes when the customer gets called away in the middle of your explanation. A phone call, a kid, someone at the door. Most techs handle the return badly. Some pick up mid-sentence as if nothing happened. Some sigh, or say, \"As I was saying.\" Some start the whole explanation over at full length. Here's what is going on for the customer. When they come back, they've lost most of what you said, and they're still thinking about the call. They feel bad for making you wait. If you go on from where you stopped, they'll nod without following, and later they won't be able to explain it to anyone. So while they're away, stop and wait. When they come back, welcome them back warmly. Recap the main point in a sentence or two. Check that it still makes sense, then go on. In this drill, Jen's phone rings while you're explaining. Bring her back.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Sorry about that. Where were we?"
+    },
+    {
+     "speaker": "tech",
+     "text": "No problem at all. Real quick, here's where we were. The camera showed the inside of the pipe is coated with grease, so snaking only opens a path through it, and it clogs again."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh, right. Okay. So that's why Dan's fix didn't hold."
+    },
+    {
+     "speaker": "tech",
+     "text": "Exactly. Does that part make sense? Any questions before I tell you how to clean it out so it stays clear?"
+    },
+    {
+     "speaker": "customer",
+     "text": "No, that makes sense. Go ahead, I'm listening now."
+    }
+   ],
+   "scenarioId": "drain-kitchen-recurring",
+   "personaId": "jen-busy-parent",
+   "startPhase": "findings",
+   "priorContext": "Jen's kitchen sink backed up this morning, the third clog this year. Another company cleared it in the spring, and her husband Dan cleared it with a store-bought snake in the summer. Both times it came back within weeks. The tech opened the line with a cable so the sinks drain for now, then ran a camera down the kitchen drain and found why it keeps clogging, but has not explained it to Jen yet. Jen works from home, her two-year-old Theo is home today, and she is expecting a work call.",
+   "forcedMoves": [
+    "phone-call-hold-on"
+   ],
+   "customerOpener": "Sorry, sorry. Okay, I'm here. What did the camera show?",
+   "techPrompt": "Explain what the camera showed. When Jen takes a call, wait. When she's back, recap in a sentence or two and check in.",
+   "passCriteria": [
+    "Stop talking while she is on the phone",
+    "Welcome her back with no sign of impatience",
+    "Recap the main point in a sentence or two and check she is following",
+    "Go on without starting over at full length"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "phone-call-hold-on fires on the first customer turn in findings, because none of Jen's objections are due before options or a decision ask. The runtime speaks the move's first followUp when she returns, which matches the first demo line.",
+     "drain-kitchen-recurring also forces just-the-cheap-fix. It needs a stated price and options, so it stays quiet unless the tech gets to the $265 and $625 options in this drill.",
+     "The priorContext follows the scenario's history (one clearing by another company, one by Dan with a store-bought snake). Jen's persona fact says Dan tried twice. Align the two."
+    ]
+   }
+  },
+  {
+   "id": "bring-in-the-second-decision-maker",
+   "version": 1,
+   "order": 18,
+   "title": "Bringing in the second decision-maker",
+   "stage": "recovery",
+   "skill": "close",
+   "durationSec": 120,
+   "why": "This moment happens when the other decision-maker walks in partway through. Most techs make one of three mistakes. They nod at the new person and keep talking to the first one. They start over and repeat everything at full length. Or they ask for a decision before the new person knows what's going on. Here's what is really happening. The person who just walked in often has an equal say, and they heard none of your explanation. If they aren't caught up, the answer at the end will be, \"We need to talk about it.\" They also notice right away whether you're talking to them or only to their partner. So stop and greet them by name. Give a short recap in plain words: what you found, the options, and what you recommend and why. Keep it to three or four sentences. Then ask what matters to them. In this drill, you're going over options with Carlos when Elena walks in. Catch her up.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Hi, sorry, I was getting the kids out the door. What did you find?"
+    },
+    {
+     "speaker": "tech",
+     "text": "Hi, you must be Elena. I'm Chris. Here's the short version. Your tank is leaking and has to be replaced, and it's too small for five people. That's why you run out in the mornings."
+    },
+    {
+     "speaker": "customer",
+     "text": "Okay. That explains a lot. Mornings are a nightmare around here."
+    },
+    {
+     "speaker": "tech",
+     "text": "There are three ways to fix it, and I'm recommending the fifty-gallon. It stops the running out for about half the cost of tankless. What matters most to you in this?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Honestly? I just want it fixed once, so we're not doing this again."
+    },
+    {
+     "speaker": "tech",
+     "text": "That's fair. Let me show you both how long each option should last."
+    }
+   ],
+   "scenarioId": "tank-vs-tankless-family",
+   "personaId": "ruiz-couple",
+   "startPhase": "options",
+   "priorContext": "The tech found that the 11-year-old 40-gallon tank is leaking at the base and cannot be repaired, and that 40 gallons is too small for a family of five, which is why the hot water runs out in the mornings. The tech showed Carlos the leak in the garage and is now going over three options with him, the same 40-gallon size, a 50-gallon high-recovery tank, and tankless. No prices have been given yet. Elena has been inside getting the kids out the door and has heard none of this.",
+   "forcedMoves": [
+    "spouse-walks-in"
+   ],
+   "customerOpener": "Okay. So the fifty-gallon one, that's enough for all five of us?",
+   "techPrompt": "When Elena walks in, stop. Greet her, catch her up in a few sentences, and ask what matters to her.",
+   "passCriteria": [
+    "Stop and greet Elena by name when she walks in",
+    "Recap what you found and the options in three or four plain sentences",
+    "Ask what matters to her or what questions she has",
+    "Do not ask for a decision before she is caught up"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "spouse-walks-in fires on the first customer turn. In options none of Carlos's objections are due yet, because they all need a stated price or a decision ask.",
+     "tank-vs-tankless-family also forces brother-in-law-plumber. It stays quiet until the tech states a price, then fires on the next turn. That is realistic, since Elena is tired of Tony's fixes, but it pulls focus. Recommend removing it from the scenario's forced list."
+    ]
+   }
+  },
+  {
+   "id": "your-own-house",
+   "version": 1,
+   "order": 19,
+   "title": "\"Would you do this in your own house?\"",
+   "stage": "objections",
+   "skill": "integrity",
+   "durationSec": 120,
+   "why": "At some point a customer will ask, \"Would you do this in your own house?\" Most techs miss it. Some dodge with \"It's totally up to you.\" Some name the most expensive option with no reason. Some make up a story about their own house. Customers can tell. Here's what the question really means. The customer is asking whether they can trust you. Many have been sold work they didn't need. They want a real answer, not a pitch. A straight answer with a reason that fits their house often decides whether they hire you, even when it's the cheaper option. So answer it directly. Say what you would actually do, and why, using what you found and what they told you. If the honest answer is the cheaper option, say so. Then tell them what would change your answer. Don't follow it with a push to get started. In this drill, Tasha asks what you'd do. Tell her the truth.",
+   "demo": [
+    {
+     "speaker": "customer",
+     "text": "Okay. Be honest with me. If this was your house, what would you do?"
+    },
+    {
+     "speaker": "tech",
+     "text": "I'd do the repair. Your tank isn't leaking and there's no rust. The part that failed is small, and replacing it fixes the problem."
+    },
+    {
+     "speaker": "customer",
+     "text": "So you wouldn't replace it? It's nine years old."
+    },
+    {
+     "speaker": "tech",
+     "text": "Not today. Tanks around here usually last eight to twelve years. I'd fix this and start setting money aside for a new one. If it ever starts leaking, that's when you replace it."
+    },
+    {
+     "speaker": "customer",
+     "text": "Huh. The last guy would've sold me the whole tank."
+    },
+    {
+     "speaker": "tech",
+     "text": "I'll put both options in writing, so you can look them over after you've slept."
+    }
+   ],
+   "scenarioId": "wh-repair-or-replace-9yr",
+   "personaId": "tasha-burned",
+   "startPhase": "options",
+   "priorContext": "Tasha just got home from a night shift. The tech tested the thermocouple with a meter, showed her the low reading, and explained that it is why the pilot keeps going out. The tank itself is sound, with no leaks or rust. The tech presented two options, replacing the thermocouple and cleaning the air intake screen for $325, or replacing the whole 9-year-old tank for $1,890, and said the repair is the honest fix.",
+   "forcedMoves": [
+    "would-you-do-this"
+   ],
+   "customerOpener": "Okay. So you're saying I don't need a new one. Just this part.",
+   "techPrompt": "Tasha asks what you would do in your own house. Give a direct, honest answer with a reason that fits her.",
+   "passCriteria": [
+    "Answer the question directly with what you would actually do",
+    "Give a reason based on this tank and what she told you",
+    "Recommend the repair, and say when replacement would make sense",
+    "Do not follow the answer with a push to decide"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "would-you-do-this fires on the first customer turn unless her how-do-i-know-its-broken (chance 0.6) comes first. That only happens while her trust is under 55, so a first answer that shows the reading usually brings the probe right away.",
+     "The scenario also forces tests-your-honesty. It follows on a later turn with a related probe, such as whether she could get another year out of it."
+    ]
+   }
+  },
+  {
+   "id": "catch-the-detail",
+   "version": 1,
+   "order": 20,
+   "title": "Catching and using a dropped detail",
+   "stage": "discovery",
+   "skill": "listening",
+   "durationSec": 180,
+   "why": "This moment is easy to miss. While you're working, the customer mentions something in passing. A pet. A grown kid who lives out of town. A trip coming up. Most techs nod and keep going, and twenty minutes later they give the same presentation they give everyone. Here's why those details matter. They're what the customer actually cares about, and most people won't say them twice. When you bring one back later, the customer knows you were listening to them, not just looking at the equipment. That does more for trust than anything you can say about yourself. So when a customer mentions a person, a pet, a plan, or a worry, respond briefly and remember it. Then use it later where it fits: in how you work, in a question, or in your recommendation. Keep the door closed so the cat stays in. Offer to send the options to the son. In this drill, Margaret will mention two things in passing. Catch one and use it.",
+   "demo": [
+    {
+     "speaker": "tech",
+     "text": "Before I look at the heater, tell me a little about the house. Who lives here with you?"
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh, just me and Biscuit, my cat. She's hiding somewhere. She doesn't like strangers."
+    },
+    {
+     "speaker": "tech",
+     "text": "I'll keep an eye out for her. Does anyone help you with house things like this?"
+    },
+    {
+     "speaker": "customer",
+     "text": "My son Kevin, when he can. But he's up in Bakersfield, and I hate to bother him."
+    },
+    {
+     "speaker": "tech",
+     "text": "Then when I write up your options, I can email a copy to Kevin so he can look it over. And I'll keep the garage door shut so Biscuit can't get out."
+    },
+    {
+     "speaker": "customer",
+     "text": "Oh, would you? That's very thoughtful of you. Thank you."
+    }
+   ],
+   "scenarioId": "wh-tank-no-hot-water",
+   "personaId": "margaret-retiree",
+   "startPhase": "discovery",
+   "priorContext": "The tech has just introduced themselves at the front door and explained how the visit will go. Margaret is leading the tech through the house toward the garage. Her gray cat, Biscuit, slipped out of the bedroom when the doorbell rang and is hiding somewhere nearby. This morning Margaret mentioned the hot water problem to her son Kevin on the phone. He lives two hours away in Bakersfield, and she does not like to bother him with house problems.",
+   "forcedMoves": [],
+   "techPrompt": "Ask about Margaret and her home. When she mentions something personal, remember it and use it before the drill ends.",
+   "passCriteria": [
+    "Ask at least two open questions about Margaret, not only the heater",
+    "Respond briefly when she mentions Biscuit or Kevin",
+    "Later, use one of those details in how you work, a question, or a recommendation"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "No customerOpener, so the tech speaks first. The persona reveals Biscuit after the first tech turn and Kevin on household or budget topics.",
+     "The priorContext puts both details in front of the customer model, so they come up even if the tech asks few questions."
     ]
    }
   }

@@ -112,7 +112,7 @@ export function scoreRecord(record: SessionRecord, index: ContentIndex): Debrief
     sessionId: record.id,
     overall,
     passBar,
-    passed: overall >= passBar,
+    passed: passedFor(record, index, overall, passBar, record.moves),
     skills,
     win,
     fix,
@@ -228,4 +228,23 @@ function spokenDebrief(
   const said = fix.modelResponse?.replace(/\([^)]*\)\s*/g, '').trim();
   const model = said ? ` Here is one way it can sound: ${said}` : '';
   return `${verdict} ${win.text} One thing to work on with ${customer}: ${fix.text}${model} Want to run that moment again?`;
+}
+
+/**
+ * A drill with a target move passes when that move was handled; everything else passes on the
+ * overall score.
+ */
+export function passedFor(
+  record: SessionRecord,
+  index: ContentIndex,
+  overall: number,
+  passBar: number,
+  moves: { moveId: string; result: string }[],
+): boolean {
+  const drill = record.drillId ? index.drills.get(record.drillId) : undefined;
+  const targets = drill?.forcedMoves.filter((id) => moves.some((m) => m.moveId === id)) ?? [];
+  if (record.kind === 'drill' && targets.length > 0) {
+    return targets.every((id) => moves.filter((m) => m.moveId === id).every((m) => m.result === 'pass'));
+  }
+  return overall >= passBar;
 }

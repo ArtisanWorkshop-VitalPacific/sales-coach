@@ -1,0 +1,124 @@
+id: hard-water-softener
+version: 1
+title: Scale buildup and the softener question
+trade: plumbing
+jobType: water-treatment
+difficulty: 3
+personaId: morgan-first-home
+alternatePersonas: [ruiz-couple, margaret-retiree]
+briefing: >-
+  Service call. White crust on faucets and showerheads and spots on dishes. The
+  homeowners want to know whether they need a water softener. First home, bought
+  last year. Built in 2003, with a softener loop in the garage.
+situation: >-
+  The water is hard. A test at the kitchen tap reads 16 grains per gallon, which
+  explains the crust on fixtures, the spotting on dishes, and scale building up
+  inside the water heater over time. Nothing is damaged yet: no leaks, no failed
+  fixtures, and the water heater works normally. The builder put a softener loop
+  with a bypass in the garage, so a standard softener is a simple install. A
+  neighbor bought a $6,800 package (softener, whole-house carbon filter, and
+  drinking water system) and told them they need the same. The honest
+  recommendation is a correctly sized standard softener on the existing loop, the
+  modest fix for hard water. A descale and flush is a fair low-cost choice if they
+  want to wait. The whole-house filter and the drinking water system do nothing for
+  hardness, and the water district's annual report shows the water meets drinking
+  water standards. The couple drained their savings on the down payment and are
+  worried about making an expensive first-home mistake.
+equipment:
+  - item: Softener loop with bypass valve in the garage
+    ageYears: 23
+    notes: Installed by the builder. Never used.
+  - item: 40-gallon gas water heater
+    ageYears: 7
+    notes: Works normally. A test flush shows some scale.
+  - item: Kitchen and bathroom faucets and showerheads
+    notes: White scale on aerators and showerheads.
+findings:
+  - id: hardness-16-grains
+    text: The water tests at 16 grains per gallon. That is very hard water, common in this area.
+    severity: minor
+  - id: scale-on-fixtures
+    text: White scale on the faucet aerators and showerheads, and spots on dishes. So far it is cosmetic.
+    severity: minor
+  - id: no-damage-yet
+    text: >-
+      No leaks, no failed fixtures, and the water heater works normally. Nothing has
+      been damaged by the scale yet.
+    severity: info
+  - id: loop-ready
+    text: >-
+      The builder installed a softener loop with a bypass in the garage. A softener
+      connects there without new piping.
+    severity: info
+  - id: water-meets-standards
+    text: >-
+      The water district's annual report shows the water meets drinking water
+      standards. Hardness is not a health issue.
+    severity: info
+justifiedWork:
+  - id: standard-softener
+    label: Install a correctly sized standard softener on the existing loop
+    rationale: A softener is the only thing that stops hard water scale. A single-tank unit handles 16 grains for this household.
+  - id: descale-and-flush
+    label: Descale fixtures and flush the water heater
+    rationale: Removes the existing buildup at low cost. A fair choice if they want to wait on a softener.
+  - id: explain-add-ons
+    label: Explain what the filter and drinking water add-ons do and do not do
+    rationale: Neither one does anything for hardness. The couple should know that before spending on them.
+unjustifiedWork:
+  - id: whole-house-filter
+    label: Whole-house carbon filtration
+    why: No test shows a contaminant problem, and a carbon filter does nothing for hardness.
+  - id: oversized-softener
+    label: An oversized or premium dual-tank softener
+    why: A standard single-tank unit handles 16 grains for a two-person home. A bigger system adds cost without benefit.
+  - id: water-heater-for-scale
+    label: Replacing the water heater because of scale
+    why: It works normally. A flush removes the scale that is there now.
+options:
+  - id: descale-flush
+    label: Descale and flush
+    price: 285
+    includes:
+      - Flush the water heater
+      - Descale or replace faucet aerators and showerheads
+      - Written hardness result
+      - Tips to keep scale down
+  - id: standard-softener
+    label: Standard softener on your existing loop
+    price: 2350
+    monthly: 59
+    includes:
+      - Single-tank softener sized for 16 grains
+      - Connected to the existing loop and bypass
+      - Drain line with a proper air gap
+      - Set-up and the first bags of salt
+      - Hardness test after the install
+    recommended: true
+  - id: full-package
+    label: Softener, whole-house filter, and drinking water system
+    price: 5950
+    monthly: 149
+    includes:
+      - Everything in the softener option
+      - Whole-house carbon filter
+      - Under-sink reverse osmosis drinking water system
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [neighbor-said]
+  excluded: []
+  density: 2.5
+goal: >-
+  Test the water, answer the softener question honestly, and recommend the standard
+  softener instead of the full package. Make sure they understand what each option
+  does and does not do before asking which they prefer.
+passBar: 72
+tags: [water-treatment, softener, upsell-risk, first-home, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Confirm the typical hardness for the service area against the local water district's annual report.
+    - Some California agencies restrict salt-based softeners that discharge to the sewer. Confirm local rules before techs recommend one.

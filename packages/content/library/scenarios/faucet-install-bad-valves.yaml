@@ -1,0 +1,102 @@
+id: faucet-install-bad-valves
+version: 1
+title: Customer's faucet, failing shutoff valves
+trade: plumbing
+jobType: faucet-install
+difficulty: 1
+personaId: brian-today
+alternatePersonas: [jen-busy-parent, devin-researcher]
+briefing: >-
+  Scheduled install. Customer bought a new pull-down kitchen faucet and wants it
+  installed today. Two-story home built in 1994. Not a member.
+situation: >-
+  The faucet is fine and the install is simple. Under the sink, the two original
+  multi-turn shutoff valves are failing. The hot valve does not close all the way
+  and water keeps flowing, and the cold valve's stem leaks when it is turned. To do
+  the install, the tech has to shut off the water to the whole house at the main.
+  The honest recommendation is to replace both shutoffs with quarter-turn valves
+  while the water is already off, because otherwise the new faucet sits on valves
+  that cannot stop the water when it matters. Installing the faucet on the old
+  valves is a fair choice if he declines, and the tech should say plainly what that
+  risk is. The customer is short on time with guests arriving this weekend,
+  interrupts to ask the price, and called for a faucet install, not more work.
+equipment:
+  - item: Customer-supplied pull-down kitchen faucet
+    ageYears: 0
+    notes: New in the box. Single-hole with a deck plate.
+  - item: Two multi-turn shutoff valves under the kitchen sink
+    ageYears: 32
+    notes: Hot will not close fully. Cold stem leaks when turned.
+  - item: Old kitchen faucet
+    notes: To be removed and hauled away.
+findings:
+  - id: hot-valve-wont-close
+    text: >-
+      The hot shutoff under the sink does not close all the way. Water keeps flowing
+      with the handle turned off.
+    severity: major
+  - id: cold-valve-stem-leak
+    text: The cold shutoff leaks at the stem when it is turned. It may keep dripping after the install.
+    severity: major
+  - id: main-off-needed
+    text: To swap the faucet safely, the water to the whole house has to be shut off at the main.
+    severity: info
+  - id: faucet-and-sink-fine
+    text: The new faucet and the sink are in good shape. It is a single-hole install with a deck plate.
+    severity: info
+justifiedWork:
+  - id: install-faucet
+    label: Install the customer's faucet
+    rationale: What he called for. The faucet and sink are ready.
+  - id: replace-both-shutoffs
+    label: Replace both shutoff valves with quarter-turn valves
+    rationale: One will not shut off and the other leaks. The water is already off, so this is the time to do it.
+  - id: leak-test
+    label: Leak test at full pressure
+    rationale: Confirms the faucet and every connection are dry.
+unjustifiedWork:
+  - id: all-house-shutoffs
+    label: Replacing every shutoff valve in the house
+    why: Only the kitchen valves were tested and found failing. The others were not part of the job.
+  - id: sink-drain-work
+    label: Replacing the sink drain and trap
+    why: The drain and trap are dry and drain normally.
+  - id: filtration-add-on
+    label: Adding a water filtration system with the faucet
+    why: He did not ask about water quality, and nothing points to a problem.
+options:
+  - id: install-only
+    label: Install the faucet only
+    price: 295
+    includes:
+      - Remove and haul away the old faucet
+      - Install your new faucet with new supply lines
+      - Water shut off at the main during the install
+      - Leak test
+      - Old shutoff valves stay in place
+  - id: install-and-shutoffs
+    label: Install the faucet and replace both shutoffs
+    price: 595
+    includes:
+      - Everything in the install option
+      - Two new quarter-turn shutoff valves
+      - Leak test of the new valves at full pressure
+    recommended: true
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [only-fix-what-i-called-for]
+  excluded: []
+  density: 1
+goal: >-
+  Show him the hot valve that will not shut off, keep it short, and recommend
+  replacing both valves while the water is off. State the price clearly and let
+  him decide.
+passBar: 65
+tags: [faucet, shutoff-valves, install, starter, time-pressure]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Valve price assumes about $150 each when done during the install. Confirm against the company's price book.

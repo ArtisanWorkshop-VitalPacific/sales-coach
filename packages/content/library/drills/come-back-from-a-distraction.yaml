@@ -22,7 +22,7 @@ demo:
   - speaker: customer
     text: Sorry about that. Where were we?
   - speaker: tech
-    text: No problem at all. Real quick, here's where we were. The camera showed the inside of the pipe is coated with buildup, so snaking only opens a small hole and it clogs again.
+    text: No problem at all. Real quick, here's where we were. The camera showed the inside of the pipe is coated with grease, so snaking only opens a path through it, and it clogs again.
   - speaker: customer
     text: Oh, right. Okay. So that's why Dan's fix didn't hold.
   - speaker: tech
@@ -33,9 +33,11 @@ scenarioId: drain-kitchen-recurring
 personaId: jen-busy-parent
 startPhase: findings
 priorContext: >-
-  Jen's kitchen sink has clogged several times this year. Her husband Dan
-  snaked it twice himself, and it came back both times. The tech ran a camera
-  down the kitchen drain line and found why it keeps clogging, but has not
+  Jen's kitchen sink backed up this morning, the third clog this year. Another
+  company cleared it in the spring, and her husband Dan cleared it with a
+  store-bought snake in the summer. Both times it came back within weeks. The
+  tech opened the line with a cable so the sinks drain for now, then ran a
+  camera down the kitchen drain and found why it keeps clogging, but has not
   explained it to Jen yet. Jen works from home, her two-year-old Theo is home
   today, and she is expecting a work call.
 forcedMoves: [phone-call-hold-on]
@@ -51,4 +53,5 @@ review:
   author: Claude
   notes:
     - phone-call-hold-on fires on the first customer turn in findings, because none of Jen's objections are due before options or a decision ask. The runtime speaks the move's first followUp when she returns, which matches the first demo line.
-    - Written before drain-kitchen-recurring existed. Check the camera finding in the demo against it.
+    - drain-kitchen-recurring also forces just-the-cheap-fix. It needs a stated price and options, so it stays quiet unless the tech gets to the $265 and $625 options in this drill.
+    - The priorContext follows the scenario's history (one clearing by another company, one by Dan with a store-bought snake). Jen's persona fact says Dan tried twice. Align the two.

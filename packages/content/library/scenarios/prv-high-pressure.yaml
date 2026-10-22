@@ -1,0 +1,111 @@
+id: prv-high-pressure
+version: 1
+title: 110 psi and a failing pressure regulator
+trade: plumbing
+jobType: prv-replacement
+difficulty: 2
+personaId: devin-researcher
+alternatePersonas: [paul-engineer, morgan-first-home]
+briefing: >-
+  Service call. Customer says the relief valve on the water heater drips and the
+  pipes bang when the washer shuts off. He asked for a quote to replace the water
+  heater. Two-story home built in 2001. Not a member.
+situation: >-
+  The water heater is fine. Static pressure at the hose bib reads 110 psi. Code
+  requires a pressure regulator when static pressure is over 80 psi, and most homes
+  are set between 50 and 70. The original 25-year-old regulator at the front of the
+  house has failed, and turning its adjusting screw does not change the reading.
+  The high pressure makes the relief valve on the 6-year-old water heater open and
+  drip, causes the banging, and makes the toilet fill valves hiss. The honest fix
+  is a new regulator set to about 60 psi, then resetting the expansion tank's air
+  charge and rechecking the relief valve once pressure is down. The customer read
+  online that a dripping relief valve means the water heater is failing, and he is
+  confident about it. Replacing the water heater is not justified.
+equipment:
+  - item: 3/4-inch pressure regulator at the front hose bib
+    ageYears: 25
+    notes: Original. Adjusting screw has no effect. House side reads 110 psi.
+  - item: 50-gallon gas water heater in the garage
+    ageYears: 6
+    notes: Works normally. Relief valve drips into the drain pan.
+  - item: 2-gallon thermal expansion tank
+    ageYears: 6
+    notes: Air charge low at 40 psi. Can be reset to match the new pressure.
+findings:
+  - id: pressure-110
+    text: Static pressure at the hose bib is 110 psi. Code requires a regulator when pressure is over 80.
+    severity: major
+  - id: regulator-failed
+    text: The 25-year-old pressure regulator has failed. Turning the adjusting screw does not lower the reading.
+    severity: major
+  - id: relief-valve-drip
+    text: >-
+      The relief valve on the water heater drips because the pressure is too high,
+      not because the water heater is failing.
+    severity: minor
+  - id: water-heater-fine
+    text: The 6-year-old water heater has no leaks, lights normally, and heats normally.
+    severity: info
+  - id: expansion-tank-low
+    text: The expansion tank's air charge is low. It can be reset to match the new pressure.
+    severity: minor
+  - id: fill-valves-and-banging
+    text: >-
+      The toilet fill valves hiss and the pipes bang when the washer shuts off. Both
+      are signs of high pressure.
+    severity: minor
+justifiedWork:
+  - id: replace-regulator
+    label: Replace the pressure regulator and set it to about 60 psi
+    rationale: The regulator has failed and pressure is 30 psi over the code limit.
+  - id: reset-expansion-tank
+    label: Reset the expansion tank's air charge
+    rationale: The tank has to match the house pressure to do its job.
+  - id: recheck-relief-valve
+    label: Recheck the relief valve after pressure is down
+    rationale: Most stop dripping once pressure is normal. If it still drips, the valve itself needs replacing.
+unjustifiedWork:
+  - id: replace-water-heater
+    label: Replacing the water heater
+    why: It is 6 years old and works normally. The drip comes from high pressure.
+  - id: replace-all-fill-valves
+    label: Replacing all the toilet fill valves
+    why: They hiss because of the pressure. Most go quiet once pressure is normal.
+  - id: repipe
+    label: Repiping the house
+    why: The copper lines show no leaks or corrosion. High pressure is the problem, and the regulator fixes it.
+options:
+  - id: regulator-only
+    label: Replace the pressure regulator
+    price: 650
+    includes:
+      - New lead-free 3/4-inch pressure regulator with a union
+      - Set to about 60 psi and checked with a gauge
+      - Expansion tank air charge reset to match
+      - Relief valve rechecked after pressure drops
+    recommended: true
+  - id: regulator-plus
+    label: Regulator, new relief valve, and hammer arrestors
+    price: 895
+    includes:
+      - Everything in the regulator option
+      - New relief valve on the water heater
+      - Water hammer arrestors at the washer valves
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [i-know-what-it-is]
+  excluded: []
+  density: 2
+goal: >-
+  Show him the 110 psi reading, correct his water heater theory respectfully with
+  the evidence, and recommend the regulator instead of the replacement he asked
+  for. State the price clearly and ask for a decision.
+passBar: 70
+tags: [pressure, prv, water-heater, misplaced-confidence, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - California Plumbing Code requires a regulator when static pressure exceeds 80 psi (section 608.2 in recent editions). Confirm the section before techs quote it.

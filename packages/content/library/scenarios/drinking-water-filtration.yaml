@@ -1,0 +1,115 @@
+id: drinking-water-filtration
+version: 1
+title: Drinking water filter question, in Spanish
+trade: plumbing
+jobType: water-treatment
+difficulty: 2
+personaId: rosa-spanish
+alternatePersonas: [margaret-retiree, morgan-first-home]
+briefing: >-
+  Customer asked about a filter for drinking water. She speaks Spanish at home and
+  some English; this call is in Spanish. Single-story home. Not a member.
+situation: >-
+  The customer buys bottled water, about $40 a month in 5-gallon jugs, because she
+  does not like the taste of the tap water and is not sure it is safe. The water
+  district's annual report shows the tap water meets state and federal drinking
+  water standards. A TDS meter at the kitchen tap reads about 540 parts per
+  million. That measures dissolved minerals; it is not a safety test, and an honest
+  tech says so. A simple under-sink reverse osmosis system is the honest
+  recommendation. It improves taste, removes most dissolved minerals and many
+  contaminants such as lead and arsenic, and replaces the bottled water. It does
+  not treat shower or laundry water, it sends some water down the drain while it
+  filters, and its filters need changing on a schedule, about $120 a year. A
+  whole-house system or a UV light is not justified on city water. She usually has
+  her daughter help with decisions like this and is careful about agreeing to
+  something she cannot fully check.
+equipment:
+  - item: Kitchen sink with a single-hole faucet
+    notes: Spare soap dispenser hole can hold a drinking water faucet. Room under the sink for a tank.
+findings:
+  - id: tds-reading
+    text: >-
+      A TDS meter at the kitchen tap reads about 540 parts per million. That
+      measures dissolved minerals, mostly calcium and magnesium. It is not a safety
+      test.
+    severity: info
+  - id: meets-standards
+    text: The water district's annual report shows the tap water meets state and federal drinking water standards.
+    severity: info
+  - id: chlorine-taste
+    text: >-
+      She notices a chlorine taste. Cities add disinfectant on purpose to keep the
+      water safe, and a carbon stage removes the taste.
+    severity: minor
+  - id: bottled-water-cost
+    text: She spends about $40 a month on bottled water.
+    severity: info
+  - id: room-under-sink
+    text: There is room under the sink for an RO tank, and the spare soap dispenser hole can hold the faucet.
+    severity: info
+justifiedWork:
+  - id: under-sink-ro
+    label: Install an under-sink reverse osmosis system
+    rationale: Matches what she wants, better-tasting drinking water at the kitchen sink instead of bottled water.
+  - id: explain-ro-limits
+    label: Explain what RO does and does not do
+    rationale: >-
+      It treats drinking water at one faucet only, sends some water to the drain, and
+      needs filter changes. She should know that before she agrees.
+  - id: quote-in-writing
+    label: Leave the price and filter schedule in writing
+    rationale: She wants to check with her daughter. A written quote lets her verify it.
+unjustifiedWork:
+  - id: whole-house-filtration
+    label: Whole-house filtration
+    why: No test shows a problem with the water used for bathing or laundry. Her concern is drinking water.
+  - id: uv-light
+    label: A UV light system
+    why: UV treats bacteria in well water. City water is already disinfected.
+  - id: softener
+    label: A water softener
+    why: She did not ask about scale, and a softener does not improve drinking water.
+options:
+  - id: carbon-filter
+    label: Under-sink carbon filter
+    price: 325
+    includes:
+      - Under-sink carbon filter with its own faucet
+      - Removes chlorine taste and odor
+      - Filter change about every 6 months
+      - Does not remove dissolved minerals
+  - id: under-sink-ro
+    label: Under-sink reverse osmosis system
+    price: 850
+    includes:
+      - Reverse osmosis system with storage tank
+      - Drinking water faucet in the spare sink hole
+      - TDS test before and after
+      - Written filter schedule, about $120 a year
+    recommended: true
+  - id: whole-house-plus-ro
+    label: Whole-house filter plus reverse osmosis
+    price: 4800
+    monthly: 120
+    includes:
+      - Everything in the reverse osmosis option
+      - Whole-house carbon filter at the main line
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [show-me-in-writing]
+  excluded: []
+  density: 2
+goal: >-
+  Hold the conversation in Spanish, explain plainly what the TDS reading means and
+  what an RO system does and does not do, and recommend the under-sink RO. Put it in
+  writing and make it easy for her to check with her daughter.
+passBar: 70
+tags: [water-treatment, reverse-osmosis, spanish, trust]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - The call is in Spanish. Briefing and option labels stay in English for the tech's screen; confirm whether Spanish labels are wanted.
+    - RO claims should match the NSF/ANSI 58 certification of the unit each company installs. Confirm local TDS values.

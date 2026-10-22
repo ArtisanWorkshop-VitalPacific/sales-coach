@@ -357,6 +357,23 @@ export class CustomerSession {
     };
   }
 
+  /**
+   * A drill is one moment: it ends once its forced moves have been judged, or after a few
+   * exchanges for drills that practice a skill rather than a specific move.
+   */
+  private drillComplete(): boolean {
+    const drill = this.spec.drill;
+    if (this.spec.kind !== 'drill' || !drill) return false;
+    const techTurns = this.transcript.filter((t) => t.speaker === 'tech').length;
+    const forced = drill.forcedMoves.filter((id) => this.index.move(id));
+    if (forced.length > 0) {
+      const judged = forced.every((id) => this.moves.some((m) => m.moveId === id && m.result !== 'pending'));
+      if (judged && techTurns >= 1) return true;
+    }
+    const cap = Math.max(3, Math.min(8, Math.round(drill.durationSec / 25)));
+    return techTurns >= cap + (forced.length ? 2 : 0);
+  }
+
   /** Set when an adapter failed this turn and the backup took over. Reported on the CustomerTurn. */
   private degraded: CustomerTurn['degraded'] = undefined;
 
@@ -413,6 +430,10 @@ export class CustomerSession {
     this.lastCustomerObjectionId = d.objectionId;
     if (d.end) this.state.ended = true;
     const out = this.toCustomerTurn(turn, d);
+    if (!out.ended && !out.holdSilenceMs && this.drillComplete()) {
+      out.ended = true;
+      this.state.ended = true;
+    }
     if (this.degraded) {
       out.degraded = this.degraded;
       this.degraded = undefined;
