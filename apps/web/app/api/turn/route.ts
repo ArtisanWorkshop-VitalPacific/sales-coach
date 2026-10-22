@@ -34,6 +34,7 @@ const Body = z.discriminatedUnion('op', [
     }),
   }),
   z.object({ op: z.literal('hold'), snapshot: z.any() }),
+  z.object({ op: z.literal('end'), snapshot: z.any() }),
 ]);
 
 /**
@@ -63,6 +64,12 @@ export async function POST(req: Request) {
     if (body.op === 'tech') {
       const turn = await session.techTurn(body.input as TechTurnInput);
       return NextResponse.json({ snapshot: session.snapshot(), turn });
+    }
+    if (body.op === 'end') {
+      // The finished call record, built where the turns ran. Used by checks and server saves.
+      const record = session.end();
+      record.adapters = snapshot.adapters ?? record.adapters;
+      return NextResponse.json({ record });
     }
     const turn = await session.holdElapsed();
     return NextResponse.json({ snapshot: session.snapshot(), turn });
