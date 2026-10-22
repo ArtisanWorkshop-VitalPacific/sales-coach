@@ -1,0 +1,80 @@
+id: quiet-money-worry
+version: 1
+name: Quiet money worry
+kind: behavior
+group: intensity
+skill: membership-financing
+summary: >-
+  After the price, the customer quietly admits it is more than they can manage
+  right now, and is embarrassed to say so.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections]
+  when:
+    priceStated: true
+    priceAboveBudget: true
+  chance: 0.6
+priority: 70
+maxUses: 1
+delivery:
+  act: reveal
+  intent: >-
+    Quietly admit the price is more than you can manage right now. You are
+    embarrassed, not angry, and you say less than you mean. Do not ask for a
+    discount or for financing yourself. Say more about your money situation
+    only if the tech is kind about it and does not make you feel judged. If
+    they offer a monthly number that fits, or an honest cheaper option that
+    still fixes the problem, you are relieved. If they push or make you feel
+    small, shut down and say you will think about it.
+  lines:
+    - "[hesitates] That's... um. That's more than I have right now."
+    - I'm sorry. It's just been a tight couple of months.
+    - Okay. I just... I don't really have that sitting around.
+    - That's a lot for us right now. I'm kind of embarrassed to say that.
+  followUps:
+    - I don't want to put it on a card and be paying it off forever.
+    - Is there anything that just gets it working for now?
+  tone: embarrassed
+  delayMs: 1500
+  audioTags: [hesitates]
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    allBehaviors: [acknowledged_feeling]
+    anyBehaviors: [offered_financing, framed_monthly, tied_options_to_needs]
+  failIf:
+    anyBehaviors: [pressured, condescended]
+  pass: >-
+    The tech acknowledges the worry kindly, then offers a real path: financing
+    as a specific monthly number, or an honest lower-cost option that still
+    solves the problem.
+  fail: >-
+    The tech pushes the original option anyway, makes the customer feel judged
+    about money, or hurries past what they said.
+coaching:
+  why: >-
+    Most people will not say "I can't afford it" out loud. When they hint at
+    it, the moment is about dignity before it is about price. If you
+    acknowledge it kindly and show a real way forward, they stay in the
+    conversation. If they feel judged or pushed, they say they will think
+    about it and you do not hear from them again.
+  modelResponse: >-
+    Thank you for telling me. That's more common than you'd think, and
+    there's nothing to be embarrassed about. Let's find what works. With
+    financing, the option I recommended comes to about (monthly amount) a
+    month. If you'd rather not finance, I'll walk you through the lowest-cost
+    way to fix it safely. Which would help more?
+  commonMistakes:
+    - Moving past the comment and going on with the presentation
+    - Saying "It's really not that much when you think about it"
+    - Offering a discount instead of a real plan
+    - Pushing financing hard before acknowledging the worry
+tags: [intensity, price, financing, core]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Fires after the price when the stated price is above the persona's budgetCeiling. Priority 70 puts it ahead of the price objections (about 60).
+    - Pass needs acknowledged_feeling plus one way forward. A lower-cost option counts only when it is honest for the scenario.

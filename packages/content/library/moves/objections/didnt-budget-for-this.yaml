@@ -1,0 +1,101 @@
+id: didnt-budget-for-this
+version: 1
+name: I didn't budget for this
+kind: objection
+group: price
+skill: objections
+summary: The customer says the repair was not in their budget and they do not have the money set aside.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+    priceAboveBudget: true
+  chance: 0.8
+priority: 60
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say this was not in your budget and you do not have that money set aside
+    right now. Sound worried and a little embarrassed, not angry. Do not say how
+    much you do have, or what else is going on with money, unless the tech asks
+    with care. If the tech brings up financing, only consider it seriously when
+    they give a specific monthly number and are clear about the terms. Do not
+    agree to anything that costs more each month than you can manage.
+  lines:
+    - I wasn't planning on this. I don't have that kind of money set aside.
+    - "[sighs] That wasn't in the budget at all this month."
+    - We just didn't budget for something like this. I don't know what to do.
+    - That's money I don't have right now, honestly.
+  followUps:
+    - I hear you, but it's just not there right now.
+    - I really don't want to put something like this on a credit card.
+  tone: anxious
+  delayMs: 900
+  audioTags: [sighs]
+  speaker: primary
+resolution:
+  concern: >-
+    The money is not there right now, and they are worried about what this does
+    to the rest of the month or to their savings. They may be embarrassed to say
+    how tight things are.
+  resolvedBy:
+    - Acknowledging the worry without pity or pressure
+    - Asking what would make it workable, a lower total, a monthly payment, or a little time
+    - Showing the lowest-cost option that still fixes the problem safely
+    - Explaining financing as a specific monthly number with the terms stated plainly
+    - Saying honestly what can safely wait and what cannot
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - asked_about_concern
+    - tied_options_to_needs
+    - framed_monthly
+    - honest_answer
+    - used_customer_detail
+  hardenedBy:
+    - pressured
+    - condescended
+    - hedged_price
+    - recommended_unneeded_work
+    - showed_impatience
+  defaultStrength: 60
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [acknowledged_feeling, asked_about_concern, tied_options_to_needs, framed_monthly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, condescended, recommended_unneeded_work, showed_impatience]
+  pass: >-
+    The tech acknowledges the money worry, asks what would make it workable, and
+    offers a real path: the lowest safe option, a specific monthly number, or an
+    honest answer about what can wait.
+  fail: >-
+    The tech brushes past the worry, pushes for a yes anyway, makes the customer
+    feel judged about money, or keeps unneeded work in the recommendation.
+coaching:
+  why: >-
+    A customer who says this is telling you about their finances, not giving an
+    opinion of your price, and many feel embarrassed saying it. Treat it with
+    respect, find out what would make it workable, and give real choices,
+    including the choice to wait when waiting is safe.
+  modelResponse: >-
+    Thank you for telling me. Most people don't plan for this. Let's figure out
+    what works. The lowest option that still fixes it safely is this one. If the
+    total is the hard part, I can show you an exact monthly payment and the
+    terms. And if part of this can safely wait, I'll tell you that too. What
+    would help most?
+  commonMistakes:
+    - Jumping to "we have financing" before acknowledging the worry
+    - Mentioning financing without a monthly number or the terms
+    - Pushing for a decision today anyway
+    - Leaving add-ons in the quote when money is the problem
+tags: [price, budget, financing]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Fires only when the price is above the persona's cash budget (priceAboveBudget).
+    - Financing terms and approval rules come from each company spec. The model response avoids promising approval.

@@ -12,13 +12,13 @@ const out = join(root, 'generated');
 mkdirSync(out, { recursive: true });
 
 const vars = (prefix: string, obj: Record<string, string>) =>
-  Object.entries(obj).map(([k, v]) => `  --${prefix}-${k}: ${v};`);
+  Object.entries(obj).map(([k, v]) => `  --sc-${prefix}-${k}: ${v};`);
 
 const typeVars = Object.entries(tokens.type as Record<string, Record<string, string>>).flatMap(([name, t]) => [
-  `  --type-${name}-size: ${t.size};`,
-  `  --type-${name}-line: ${t.line};`,
-  `  --type-${name}-tracking: ${t.tracking};`,
-  `  --type-${name}-weight: ${t.weight};`,
+  `  --sc-type-${name}-size: ${t.size};`,
+  `  --sc-type-${name}-line: ${t.line};`,
+  `  --sc-type-${name}-tracking: ${t.tracking};`,
+  `  --sc-type-${name}-weight: ${t.weight};`,
 ]);
 
 const shared = [

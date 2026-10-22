@@ -1,0 +1,93 @@
+id: need-to-think-about-it
+version: 1
+name: I need to think about it
+kind: objection
+group: timing
+skill: objections
+summary: When asked to decide, the customer says they need some time to think it over.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [close]
+  when:
+    decisionAsked: true
+  chance: 0.7
+priority: 50
+maxUses: 1
+delivery:
+  act: defer
+  intent: >-
+    Say you need to think it over before deciding. Be polite and vague. You have
+    a specific worry underneath, taken from your own background (the cost,
+    whether it all needs doing, or whether you trust the recommendation), but do
+    not name it unless the tech asks a gentle, open question about what is on
+    your mind. If the tech pushes for a yes, say you would rather not be rushed.
+  lines:
+    - Okay. I think I just need to think about it for a bit.
+    - Let me sleep on it and I'll let you know.
+    - This is a lot. I'd like to think it over first.
+    - I'm not saying no. I just need a little time to think.
+  followUps:
+    - I just need some time, that's all.
+    - I'd really rather not decide this second, if that's okay.
+  tone: thoughtful
+  delayMs: 800
+  audioTags: [hesitates]
+  speaker: primary
+resolution:
+  concern: >-
+    Something is unresolved, usually the money, whether the work is really
+    needed, or whether they trust the recommendation. "Think about it" is a
+    polite way to avoid naming it.
+  resolvedBy:
+    - Respecting the request instead of pushing
+    - Asking gently what they want to think through, so the real question comes out
+    - Answering that question directly
+    - Leaving the options in writing with a specific next step if they still want time
+  resolvingBehaviors:
+    - asked_about_concern
+    - acknowledged_feeling
+    - recapped_value
+    - honest_answer
+    - left_well
+  hardenedBy:
+    - pressured
+    - showed_impatience
+    - repeated_same_answer
+    - argued
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [asked_about_concern, left_well]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, showed_impatience, repeated_same_answer]
+  pass: >-
+    The tech respects the request, asks gently what the customer wants to think
+    through, answers it, and if they still want time, leaves the options in
+    writing with a specific next step.
+  fail: >-
+    The tech pushes for a decision now, uses a deadline or scare talk, or repeats
+    the pitch without finding out what is holding the customer back.
+coaching:
+  why: >-
+    "I need to think about it" usually means there is a question the customer
+    has not asked. Pushing makes a no more likely, and leaving without asking
+    means the question never gets answered. Ask once, gently, what they want to
+    think through, then answer that.
+  modelResponse: >-
+    Of course. It's a real decision, and I don't want you to feel rushed. Can I
+    ask what part you're still weighing? Is it the cost, or whether it all needs
+    doing? If I can answer it now, great. If not, I'll leave everything in
+    writing and give you a call tomorrow, or whenever works for you.
+  commonMistakes:
+    - Saying "what's there to think about?"
+    - Creating a deadline or a today-only price to force a decision
+    - Leaving without asking what is holding them back
+    - Leaving with no written options and no follow-up plan
+tags: [core, timing, stall]
+review:
+  status: draft
+  author: Claude
+  notes: []

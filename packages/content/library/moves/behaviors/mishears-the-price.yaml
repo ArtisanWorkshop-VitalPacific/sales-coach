@@ -1,0 +1,74 @@
+id: mishears-the-price
+version: 1
+name: Mishears the price
+kind: behavior
+group: confusion
+skill: price
+summary: >-
+  The customer mishears the price, repeats it back wrong, or is not sure what
+  it covers.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price]
+  afterBehaviors: [stated_price]
+  chance: 0.4
+priority: 82
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    Get the price wrong in your head. Either repeat it back wrong (for example,
+    hearing eighteen ninety as eight ninety, or taking the total for a monthly
+    payment), or ask whether it covers everything. Sound unsure, not
+    suspicious. If the tech repeats the full number slowly and says what it
+    covers, you understand. If you heard a lower number and the tech lets it
+    stand, you believe the lower number.
+  lines:
+    - Sorry, did you say hundred or thousand?
+    - Wait, is that per month, or for the whole thing?
+    - Hold on. Say that number again? I don't think I heard it right.
+    - Okay, so that's with everything? Or is that just the part?
+  followUps:
+    - Sorry, so what's the actual total? With everything?
+    - Okay. Can you write that down for me?
+  tone: confused
+  delayMs: 500
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    anyBehaviors: [stated_price, corrected_respectfully]
+  failIf:
+    anyBehaviors: [caved, showed_impatience, condescended, hedged_price]
+  pass: >-
+    The tech calmly repeats the exact total and what it covers, and corrects
+    any wrong number the customer repeated back, even a lower one.
+  fail: >-
+    The tech lets a wrong number stand, repeats the price with irritation or an
+    apology, or makes the customer feel foolish for mishearing.
+coaching:
+  why: >-
+    A misheard price turns into an angry customer at the end of the job, when
+    the invoice does not match what they thought they agreed to. Repeating the
+    full number calmly, with what it covers, protects both of you. If they
+    heard a lower number, correcting it right away is the honest thing to do,
+    even though it is uncomfortable.
+  modelResponse: >-
+    Good question, let me say it again so we're on the same page. It's (the
+    full number, said slowly), and that covers everything: parts, labor, the
+    permit, and cleanup. That's the total, not a monthly payment. I'll write it
+    down for you too. What questions do you have about it?
+  commonMistakes:
+    - Letting a lower misheard number stand to keep the mood good
+    - Repeating the number faster, louder, or with a sigh
+    - Saying "No, I said..." in a correcting tone
+    - Rounding the number down while restating it
+tags: [confusion, price]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Lines avoid specific numbers so the scripted voice works at any price. With Claude voicing, the intent asks for an actual misheard number.
+    - Priority 82 sits below silence-after-price (85), which also fires after stated_price, so the silence usually wins when both are eligible.

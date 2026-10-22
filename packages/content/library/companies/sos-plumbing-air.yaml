@@ -1,0 +1,600 @@
+id: sos-plumbing-air
+version: 1
+name: SOS Plumbing and Air
+shortName: SOS
+trades: [plumbing, hvac]
+serviceArea:
+  - Anaheim Hills
+  - Banning
+  - Beaumont
+  - Calimesa
+  - Chino
+  - Chino Hills
+  - Claremont
+  - Colton
+  - Corona
+  - Eastvale
+  - Fontana
+  - Grand Terrace
+  - Hemet
+  - Highland
+  - Lake Elsinore
+  - Loma Linda
+  - Menifee
+  - Mentone
+  - Moreno Valley
+  - Murrieta
+  - Norco
+  - Ontario
+  - Perris
+  - Rancho Cucamonga
+  - Redlands
+  - Rialto
+  - Riverside
+  - San Bernardino
+  - San Jacinto
+  - Temecula
+  - Upland
+  - Yorba Linda
+about: >-
+  SOS Plumbing and Air, also known as Water Heater SOS, is a family-owned and locally
+  operated company founded in 2019 by owner Anna M. It is based in Lake Elsinore and
+  serves the Inland Empire. It specializes in water heaters (gas, electric, tankless,
+  and heat pump) and also does plumbing and HVAC. The company promises same-day
+  service from fully stocked vans, upfront written pricing, and 24/7 emergency
+  service.
+brandVoice:
+  - >-
+    Personal and caring. The owner's line is "We treat every home like it's our own."
+    Treat the customer like family and their home like your own.
+  - >-
+    Ready to fix it today. Same-day service and a stocked van are the point. Say what
+    can be done today, and never use speed to pressure a decision.
+  - >-
+    Straight about money. Give the written price before any work starts, and say any
+    fee before it applies.
+  - >-
+    Honest about repair or replace. If a repair is the better value, say so, even
+    when a new water heater would be a bigger ticket.
+  - >-
+    No pressure. Never rush a decision or push work the customer does not need. The
+    customer can walk away anytime.
+promises:
+  - id: upfront-written-pricing
+    label: Upfront, written pricing
+    detail: >-
+      Every job gets an upfront, written, flat-rate price before work starts. That
+      written number is the number the customer pays. If the scope changes mid-job,
+      the tech stops and re-quotes before continuing, and the price changes only with
+      the customer's approval.
+  - id: honest-recommendations
+    label: Honest recommendations
+    detail: >-
+      The company says it will always tell the customer if a repair is more
+      cost-effective than a replacement.
+  - id: no-pressure
+    label: No pressure sales
+    detail: >-
+      No high-pressure sales tactics, no rushing the customer into a decision, and no
+      pushing services they do not need. The customer can walk away anytime.
+  - id: same-day-stocked-vans
+    label: Same-day service, fully stocked vans
+    detail: >-
+      Same-day water heater installation and repair. The vans are fully stocked so
+      the tech can finish the job on the first visit.
+  - id: labor-warranty
+    label: Labor warranty about twice as long
+    detail: >-
+      SOS says its labor warranty is, on average, about twice as long as most of its
+      competitors'. The site also says "We stand behind our labor and materials. If
+      something isn't right, we make it right." The length in years is not stated on
+      the site.
+  - id: code-upgrades-included
+    label: Code upgrades and permit in the estimate
+    detail: >-
+      Water heater estimates include the upgrades California code requires, such as
+      seismic strapping, a thermal expansion tank, and T&P valve discharge routing.
+      Permit fees are included in written estimates.
+  - id: free-quotes
+    label: Free quotes, no obligation
+    detail: >-
+      Quotes are free with no obligation, and a customer who does not move forward
+      owes nothing. The pricing page also lists a service call or dispatch fee that is
+      applied toward the repair when the customer approves the work on the same visit.
+      Any fee is disclosed up front.
+  - id: emergency-24-7
+    label: 24/7 emergency service
+    detail: Emergency service is available 24 hours a day, 7 days a week.
+process:
+  - id: arrive-and-set-frame
+    name: Arrive and set the frame
+    description: >-
+      Introduce yourself and SOS Plumbing and Air, and confirm the customer's name and
+      why they called. Explain the visit: you will look, show them what you find, and
+      give them a written price before any work starts. Tell them that if a repair
+      makes more sense than a replacement, you will say so. If a service call or
+      diagnostic fee applies to this visit, say so now, and explain that it goes
+      toward the repair if they approve the work on this visit.
+    required: true
+  - id: discovery
+    name: Ask before you diagnose
+    description: >-
+      Ask what they have noticed and when it started, how old the water heater is, how
+      many people live in the home, whether they run out of hot water, what has been
+      done before, how long they plan to stay, and what matters most to them: cost,
+      speed, or doing it once.
+    required: true
+  - id: inspect
+    name: Inspect the water heater and the code items
+    description: >-
+      Read the label for the brand, size, and age. Diagnose the problem they called
+      about. Check the items California code requires on a water heater: seismic
+      strapping, a thermal expansion tank, and T&P valve discharge routing, plus the
+      venting and gas or electrical connection. Take photos of what you find.
+    required: true
+  - id: show-findings
+    name: Show and explain what you found
+    description: >-
+      Show the photos or the part. Explain each finding in plain words: what it is,
+      why it matters, and how urgent it is. Tell them honestly whether a repair is
+      more cost-effective than a replacement on their unit. Do not call anything
+      urgent that is not.
+    required: true
+  - id: present-options
+    name: Present options
+    description: >-
+      Give two or three options tied to what they told you. Include the repair when a
+      repair will hold. For replacements, cover the size and type that fit the
+      household. Say which option you recommend and why, in one or two sentences.
+    required: true
+  - id: written-price
+    name: Give the upfront written price
+    description: >-
+      Write the price before any work starts, with the required code upgrades and the
+      permit fee included. Pricing is flat rate. Say the price clearly, once, then
+      stop talking and let the customer think. That written number is the number they
+      pay.
+    required: true
+  - id: answer-questions
+    name: Answer questions honestly
+    description: >-
+      Ask what questions they have and answer each concern directly. Explain what is
+      in the price, the labor warranty, and that the van is stocked to finish today.
+      If cost is the concern, offer the other options, and mention that financing is
+      available for larger repairs and replacements. Do not quote financing terms the
+      office has not confirmed. No pressure, and the customer can walk away anytime.
+    required: true
+  - id: ask-for-decision
+    name: Ask for the decision
+    description: >-
+      Ask plainly which option they want. On a yes, do the work the same day from the
+      stocked van when you can. If the scope changes mid-job, stop and re-quote before
+      continuing, and go ahead only with their approval.
+    required: true
+  - id: recommend-maintenance
+    name: Recommend maintenance
+    description: >-
+      Recommend a yearly water heater flush when it fits what you found, since the
+      company says a yearly flush helps a water heater last longer. SOS does not list
+      a membership on its website, so do not offer one unless the office confirms it.
+    required: false
+  - id: clean-up-and-wrap
+    name: Clean up, explain the warranty, and leave well
+    description: >-
+      Clean the work area. Test the work with the customer and show them what you
+      did. Explain the labor warranty and how to reach SOS, including 24/7 emergency
+      service. Thank them. On a no, leave the written price with them and thank them
+      just the same.
+    required: true
+financing:
+  available: true
+  summary: >-
+    The site says financing is available, with flexible payment options for larger
+    repairs and replacements, and tells customers to ask their technician. It does
+    not name a lender or list rates, terms, minimums, or credit requirements. Techs
+    should not quote terms until the owner confirms them.
+  verified: false
+priceRanges:
+  - id: service-call-fee
+    item: Standard service call or dispatch fee, applied toward the repair when the work is approved on the same visit
+    low: 49
+    high: 89
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: diagnostic-inspection
+    item: Diagnostic and inspection, credited toward the repair when the work is approved
+    low: 89
+    high: 149
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: after-hours-emergency-fee
+    item: After-hours or emergency service fee
+    low: 149
+    high: 249
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: water-heater-flush
+    item: Water heater flush and service
+    low: 149
+    high: 249
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: thermocouple-igniter
+    item: Water heater thermocouple or igniter replacement
+    low: 195
+    high: 350
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: water-heater-thermostat
+    item: Water heater thermostat replacement
+    low: 195
+    high: 350
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: anode-rod
+    item: Anode rod replacement
+    low: 195
+    high: 295
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: electric-element
+    item: Electric water heater element replacement
+    low: 225
+    high: 395
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: tp-valve
+    item: T&P valve replacement
+    low: 175
+    high: 295
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: tank-40-gallon
+    item: 40-gallon tank water heater installation
+    low: 1800
+    high: 2800
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: tank-50-gallon
+    item: 50-gallon tank water heater installation
+    low: 2000
+    high: 3200
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: tankless-installation
+    item: Tankless water heater installation
+    low: 3500
+    high: 5500
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: recirculation-pump
+    item: Recirculation pump installation
+    low: 695
+    high: 1295
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: single-drain-clearing
+    item: Single drain clearing with a snake or cable
+    low: 49
+    high: 179
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: main-sewer-line-clearing
+    item: Main sewer line clearing
+    low: 295
+    high: 495
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: hydro-jetting-single-line
+    item: Hydro jetting, single line
+    low: 495
+    high: 595
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: hydro-jetting-main-line
+    item: Hydro jetting, main sewer line
+    low: 695
+    high: 995
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: sewer-camera-inspection
+    item: Sewer or drain camera inspection
+    low: 199
+    high: 350
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: cleanout-installation
+    item: Cleanout installation
+    low: 495
+    high: 895
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: sewer-spot-repair
+    item: Sewer line spot repair, per section
+    low: 1500
+    high: 3500
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: leak-detection
+    item: Leak detection, electronic and non-invasive
+    low: 295
+    high: 595
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: slab-leak-detection
+    item: Slab leak detection
+    low: 395
+    high: 795
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: slab-leak-reroute
+    item: Slab leak repair by reroute
+    low: 2500
+    high: 5500
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: slab-leak-spot-repair
+    item: Slab leak spot repair
+    low: 1500
+    high: 3500
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: toilet-repair
+    item: Toilet repair (flapper, fill valve, or handle)
+    low: 150
+    high: 295
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: toilet-replacement
+    item: Toilet replacement, standard
+    low: 450
+    high: 795
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: faucet-replacement-labor-only
+    item: Faucet replacement, labor only, customer supplies the faucet
+    low: 250
+    high: 450
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: angle-stop-replacement
+    item: Angle stop or shutoff valve replacement
+    low: 99
+    high: 299
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: prv-replacement
+    item: Pressure reducing valve (PRV) replacement
+    low: 495
+    high: 895
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: main-shutoff-replacement
+    item: Main water shutoff valve replacement
+    low: 595
+    high: 1295
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: garbage-disposal-replacement
+    item: Garbage disposal replacement, standard half horsepower
+    low: 395
+    high: 595
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: whole-home-repipe-pex
+    item: Whole-home repipe, PEX
+    low: 4500
+    high: 9500
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: whole-home-repipe-copper
+    item: Whole-home repipe, copper
+    low: 5500
+    high: 12000
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: gas-line-repair
+    item: Gas line repair
+    low: 295
+    high: 795
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: ac-tune-up
+    item: AC tune-up or maintenance
+    low: 79
+    high: 149
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: furnace-tune-up
+    item: Furnace tune-up or safety inspection
+    low: 79
+    high: 149
+    source: waterheatersos.com/transparent-pricing, averages for Southern California 2025 to 2026
+differentiators:
+  - Water heater specialists for gas, electric, tankless, and heat pump units
+  - Same-day service from fully stocked vans, ready to finish the job on the first visit
+  - A labor warranty that is, on average, about twice as long as most competitors'
+  - Required code upgrades and permit fees included in the written estimate
+  - Free online quotes
+  - Preferred pricing and priority scheduling for property managers, real estate agents, home warranty providers, and HOAs
+scripts:
+  preferred:
+    - moment: Introduce yourself at the door
+      line: >-
+        Hi, I'm [your name] with SOS Plumbing and Air. You must be [customer name]. I
+        hear the water heater's giving you trouble.
+    - moment: Set the frame
+      line: >-
+        Here's how this works. I'll take a look, show you what I find, and give you a
+        price in writing before I touch anything. And if a repair makes more sense
+        than a new one, I'll tell you.
+    - moment: Disclose a service call fee, when one applies
+      line: >-
+        Just so you know up front, there's a service call fee for today's visit. If
+        you go ahead with the work today, it goes toward the repair.
+    - moment: Repair is the better value
+      line: >-
+        Honestly, a repair makes more sense here than a new heater. Let me show you
+        why.
+    - moment: Present the written price on a water heater replacement
+      line: >-
+        Here's your price in writing. It covers the new heater, the expansion tank,
+        the seismic straps, and the permit. That written number is the number you
+        pay.
+    - moment: Same-day install
+      line: >-
+        I've got what I need on the van, so if you want to go ahead, I can get it done
+        today.
+    - moment: Explain the labor warranty
+      line: >-
+        Our labor warranty runs about twice as long as what most companies offer. I'll
+        show you the exact terms in writing.
+    - moment: Mention financing
+      line: >-
+        If it's easier to spread this out, we do have financing on bigger jobs like
+        this. Want me to find out what that would look like for you?
+    - moment: Recommend maintenance
+      line: >-
+        One thing that'll help this heater last is a flush once a year. I'd put that
+        on your calendar.
+    - moment: Leave well
+      line: >-
+        No problem at all. Here's the price in writing, it's yours to keep. If
+        anything changes, call us. We're here 24/7.
+  banned:
+    - "This price is only good today."
+    - "That tank could go any minute."
+    - "Trust me."
+    - "Those other companies don't know what they're doing."
+    - "While I'm here, I might as well replace this too."
+    - "Repairs are a waste of money. You need a new one."
+    - "We'll figure out the final price when I'm done."
+    - "I need an answer before I leave."
+    - "Our warranty covers anything that goes wrong."
+    - "Everybody's going tankless. You'd be crazy not to."
+objectionAnswers:
+  - moveId: too-expensive
+    answer: >-
+      I get it, that's real money. Here's what's in it: the heater, the labor, the
+      expansion tank and seismic straps code requires, and the permit, so nothing
+      gets added later. Our labor warranty runs about twice as long as most
+      companies', and the van's stocked, so it's done in one visit. If you'd rather
+      look at a smaller option, I'll walk you through it, and we have financing on
+      bigger jobs.
+  - moveId: what-am-i-paying-for
+    answer: >-
+      Fair question. Here's the breakdown: the new heater, the labor, the expansion
+      tank and seismic straps California code requires, and the permit. It's a flat
+      price, so it doesn't change if the job takes longer. You're also getting a labor
+      warranty that runs about twice as long as most companies', and a van that's
+      stocked to finish the job today.
+  - moveId: can-it-wait
+    answer: >-
+      Sometimes it can, so here's my honest read on yours. If it's still working and
+      not leaking, waiting is a real option, and I'll tell you what to watch for. If
+      the tank itself is leaking, that won't get better, and I'd plan for it soon.
+      Either way, the written price is yours to keep, and we're here 24/7 if it gets
+      worse.
+  - moveId: just-repair-it
+    answer: >-
+      If a repair makes sense, that's what I'll recommend. We'll always tell you when
+      a repair is the better value. If the part that failed can be fixed and the tank
+      is sound, the repair is the right call. If the tank itself is failing, a repair
+      won't hold, and I'll show you why.
+  - moveId: do-i-need-the-code-stuff
+    answer: >-
+      Yes, and here's why. California code requires seismic straps and a thermal
+      expansion tank when a water heater goes in, and the permit is part of doing it
+      to code. That's why they're already in your written price instead of added on
+      later.
+  - moveId: show-me-in-writing
+    answer: >-
+      Absolutely. You'll get the price in writing before any work starts, and that
+      written number is the number you pay. If anything changes once I'm in there, I
+      stop and re-quote before I go any further.
+  - moveId: need-three-bids
+    answer: >-
+      That's smart. Can I ask what you'll be comparing? Here's our price in writing,
+      with the heater, the code upgrades, and the permit all included, so you can line
+      it up against the others. It's worth asking each one whether theirs includes the
+      expansion tank, the straps, and the permit, and how long their labor warranty
+      runs.
+  - moveId: you-always-upsell
+    answer: >-
+      Fair. We don't do the "while I'm here" add-ons. I'll show you what I found,
+      tell you honestly if a repair makes more sense than replacing, and you choose.
+      You can walk away anytime.
+  - moveId: last-company-ripped-me-off
+    answer: >-
+      I'm sorry that happened. Here's how we work. You get the price in writing before
+      any work, and that's the number you pay. If anything changes, I stop and
+      re-quote first. No pressure, and no is a fine answer.
+facts:
+  - Founded in 2019 by owner Anna M. Family-owned and locally operated, based in Lake Elsinore.
+  - California contractor license number 1140776. Licensed, bonded, and insured.
+  - >-
+    Water heater specialists. Gas, electric, tankless, and heat pump water heaters,
+    repaired or replaced across the Inland Empire. Also plumbing and HVAC.
+  - Same-day service. Fully stocked vans are ready to finish the job on the first visit.
+  - 24/7 emergency service.
+  - SOS says its labor warranty is, on average, about twice as long as most competitors'.
+  - >-
+    Upfront, written, flat-rate pricing. The written number is the number the
+    customer pays, and a scope change means the tech stops and re-quotes first.
+  - >-
+    Water heater estimates include the code upgrades California requires (seismic
+    strapping, a thermal expansion tank, and T&P valve discharge routing) and the
+    permit fee.
+  - "Water heater brands shown on the site: Rheem, Rinnai, Bradford White, and Navien."
+  - Financing is available for larger repairs and replacements.
+sources:
+  - url: https://waterheatersos.com/
+    retrieved: '2026-10-22'
+  - url: https://waterheatersos.com/about
+    retrieved: '2026-10-22'
+  - url: https://waterheatersos.com/transparent-pricing
+    retrieved: '2026-10-22'
+  - url: https://waterheatersos.com/discount-water-heaters
+    retrieved: '2026-10-22'
+  - url: https://waterheatersos.com/quote
+    retrieved: '2026-10-22'
+  - url: https://waterheatersos.com/gas-water-heaters
+    retrieved: '2026-10-22'
+  - url: https://waterheatersos.com/tankless-water-heaters
+    retrieved: '2026-10-22'
+review:
+  status: draft
+  author: Claude
+  notes:
+    - >-
+      Written from waterheatersos.com pages retrieved 2026-10-22. All listed pages
+      loaded. FAQ answers on the site are collapsed and did not appear in the page
+      text, so nothing from them is used.
+    - >-
+      Verify with the owner. Labor warranty length. The home page says "Our labor
+      warranty, on average, is twice as long than most of our competitors," but no
+      page states the length in years. Scripts say "about twice as long" and promise
+      the exact terms in writing. Add the real length once confirmed.
+    - >-
+      Verify with the owner. Fees. The site says quotes are free with no obligation,
+      but /transparent-pricing lists a $49 to $89 service call or dispatch fee
+      (applied toward the repair when the work is approved on the same visit) and an
+      $89 to $149 diagnostic fee ("waived or applied"). Confirm when each fee applies,
+      whether either applies to a free replacement estimate, and what a customer owes
+      if they decline. The spec tells techs to disclose any fee before it applies.
+    - >-
+      Verify with the owner. The site shows a "No OT Fees" badge and also lists a $149
+      to $249 after-hours or emergency fee. Confirm what "No OT Fees" means. The spec
+      does not use it in scripts or facts.
+    - >-
+      Verify with the owner. Financing. The site says only "Flexible payment options
+      for larger repairs and replacements, ask your technician." Lender, rates, terms,
+      minimums, and credit requirements are not stated, so financing is verified:
+      false and no terms appear in scripts.
+    - >-
+      Verify with the owner. Membership. No membership or maintenance plan appears on
+      the site, so there is no membership block. The process step recommends the
+      yearly flush the site describes and is marked required: false. If SOS has a
+      membership, add it here.
+    - >-
+      Verify with the owner. Brands. The site shows Rheem, Rinnai, Bradford White, and
+      Navien logos as trusted water heater brands, along with Hajoca, which is a
+      supply house. Confirm which brands SOS installs and stocks on the vans.
+    - >-
+      Verify with the owner. Haul-away of the old water heater is not mentioned on the
+      site, so the spec does not promise it.
+    - >-
+      Verify with the owner. Base location. The About page says "a family-owned
+      business based in Redlands, California," but every page lists 571 Crane St,
+      Unit H, Lake Elsinore. The spec uses Lake Elsinore.
+    - >-
+      Verify with the owner. Ratings. The home page shows 4.9 from 542 Google reviews,
+      other pages show 5.0 with no source, and one counter reads "0+ Reviews." Ratings
+      are left out of facts.
+    - >-
+      Verify with the owner. A "Satisfaction Guarantee" badge appears with no terms,
+      so it is not used as a promise.
+    - >-
+      Verify with the owner. The home page mentions heat pump water heater rebates
+      under California and IRA programs. Federal incentive rules have changed since
+      the IRA passed, so confirm which programs are current before techs cite any
+      rebate.
+    - >-
+      Verify with the owner. /discount-water-heaters lists booking offers ($100 off a
+      water heater replacement, $250 off a tankless installation, $25 off a flush, and
+      $300 off whole-house water filtration) with "mention code at time of booking."
+      No code, expiration, or stacking rules are shown. Not used in scripts. Confirm
+      whether techs can honor them in the home.
+    - >-
+      Verify with the owner. The site shows "CA LIC# 1140776" without naming the
+      license classifications. Confirm the classifications for plumbing and HVAC work,
+      and how techs should refer to the owner (the About page lists "Anna M.").
+    - >-
+      The process steps, brand voice, scripts, and objection answers were written by
+      Claude from the site's promises. The owner should confirm they match how SOS
+      trains its techs.

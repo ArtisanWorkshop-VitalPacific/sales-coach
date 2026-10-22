@@ -1,0 +1,96 @@
+id: how-do-i-know-its-broken
+version: 1
+name: How do I know it's really broken?
+kind: objection
+group: trust
+skill: objections
+summary: The customer asks how they can know the problem is real, since they cannot see it or check it themselves.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [findings, options, price]
+  when:
+    trustBelow: 55
+  chance: 0.6
+priority: 55
+maxUses: 1
+delivery:
+  act: probe
+  intent: >-
+    Ask how you are supposed to know it is really broken, since you cannot see
+    inside it and you are not a plumber. You are not accusing, but you are not
+    taking their word for it either. Relax only when the tech shows you something
+    you can see or check (the part, the leak, a photo, a reading) and explains it
+    in plain words. If the tech just repeats that it is broken, press harder.
+  lines:
+    - How do I know it's actually broken? I can't see inside it.
+    - No offense, but I just have to take your word for that?
+    - It was working fine last week. How do I know that's the problem?
+    - Can you show me? I'm not a plumber, I don't know what I'm looking at.
+  followUps:
+    - Okay, but how do I know that's not normal?
+    - That's what you're telling me, though. Can I see it?
+  tone: skeptical
+  delayMs: 600
+  audioTags: [skeptical]
+  speaker: primary
+resolution:
+  concern: >-
+    They cannot check the diagnosis themselves and fear paying for a repair they
+    do not need. They need proof they can see, explained in words they
+    understand.
+  resolvedBy:
+    - Showing the evidence, such as the part, the leak, a photo or video, or a reading
+    - Explaining in plain words what it means and how it compares to normal
+    - Inviting them to look and ask questions
+    - Being honest about anything that is uncertain
+  resolvingBehaviors:
+    - showed_evidence
+    - explained_plainly
+    - checked_understanding
+    - honest_answer
+    - new_angle
+  hardenedBy:
+    - used_jargon
+    - bluffed
+    - condescended
+    - showed_impatience
+    - argued
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    allBehaviors: [showed_evidence]
+    anyBehaviors: [explained_plainly, checked_understanding]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [bluffed, condescended, used_jargon, showed_impatience]
+  pass: >-
+    The tech shows or offers to show the evidence (the part, the leak, a photo, a
+    reading), explains it in plain words, and invites questions.
+  fail: >-
+    The tech says "trust me," repeats that it is broken without showing anything,
+    explains it in trade terms, or makes the customer feel foolish for asking.
+coaching:
+  why: >-
+    The customer cannot see inside the pipe or the tank, so every diagnosis asks
+    them to take your word for it. Showing them is faster than convincing them. A
+    photo, the old part, or a reading they can see answers the question better
+    than any explanation.
+  modelResponse: >-
+    Good question. You shouldn't have to take my word for it. Come take a look.
+    This is where it's failing, and here's what it should look like for
+    comparison. I took photos too, so you can keep them or show anyone you want.
+    Does that make sense? What else would help you feel sure about it?
+  commonMistakes:
+    - Saying "trust me, I do this every day"
+    - Explaining with trade terms instead of showing
+    - Taking the question as an insult
+    - Claiming the evidence shows more than it does
+tags: [core, trust, evidence]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Pairs with the show-what-you-found drill. In voice-only sessions, offering to show counts as showed_evidence under its definition.
+    - passIf requires showed_evidence plus one of the plain-language behaviors. Confirm the engine reads allBehaviors and anyBehaviors together that way.

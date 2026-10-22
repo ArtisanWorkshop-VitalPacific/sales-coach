@@ -1,0 +1,73 @@
+id: i-know-what-it-is
+version: 1
+name: I know what it is
+kind: behavior
+group: misplaced-confidence
+skill: objections
+summary: >-
+  The customer names the problem and the fix before the tech has finished
+  looking, and expects the tech to just do it.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [door, discovery, findings]
+  chance: 0.45
+priority: 45
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    Tell the tech what is wrong before they have finished looking, and tell
+    them what to do about it. You are confident because you have seen this
+    before or read about it, and you might be partly right. If the tech asks
+    what you noticed, checks before agreeing, and shows you what they find,
+    accept it. If they just do what you said without checking, go along with
+    it. If they brush you off or talk down to you, dig in.
+  lines:
+    - I already know what it is. It's the thermostat. Just swap that out.
+    - It's the pilot. It does this every winter. Just relight it and we're good.
+    - It's only a clog. Run your snake down there, that's all it needs.
+    - Honestly, it's the hard water. Everything in this house gets crusted up.
+  followUps:
+    - I'm telling you, that's what it is. Can't you just do that?
+    - Okay, but how do you know it's not that?
+  tone: confident
+  delayMs: 500
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [corrected_respectfully, honest_answer, asked_follow_up]
+  failIf:
+    anyBehaviors: [caved, condescended, argued]
+  pass: >-
+    The tech takes the guess seriously, asks what the customer noticed, checks
+    before agreeing, and if the guess is wrong, explains plainly what they
+    actually found.
+  fail: >-
+    The tech does the customer's fix without checking, brushes the guess off,
+    or argues to prove the customer wrong.
+coaching:
+  why: >-
+    Customers who name the problem are often partly right, and they want
+    credit for it. If you just do what they say, you may fix the wrong thing
+    and they pay twice. If you brush it off, they stop trusting your
+    diagnosis. Thank them for the clue, check it, and show them what you find.
+  modelResponse: >-
+    That's helpful, and you might be right. What did you notice? (Listens,
+    then checks.) The thermostat's actually working fine. The burner won't
+    stay lit because the safety sensor next to the pilot has worn out. Here,
+    I'll show you. Good news, that's a smaller repair than a new thermostat.
+  commonMistakes:
+    - Doing the fix they asked for without checking
+    - Saying "Let me be the judge of that"
+    - Explaining what you know instead of showing what you found
+    - Agreeing out loud, then quietly recommending something else
+tags: [misplaced-confidence, objections, diagnosis]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - asked_follow_up is a pass path because in the door and discovery phases the tech has not diagnosed yet. Asking what they noticed and checking first is the right move there.
+    - The model response calls the thermocouple "the safety sensor next to the pilot" to keep it plain.

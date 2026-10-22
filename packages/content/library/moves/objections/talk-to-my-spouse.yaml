@@ -1,0 +1,97 @@
+id: talk-to-my-spouse
+version: 1
+name: I need to talk to my spouse
+kind: objection
+group: timing
+skill: objections
+summary: When asked to decide, the customer says they need to talk it over with their spouse or partner first.
+difficultyMin: 1
+personas: [ruiz-couple, morgan-first-home, jen-busy-parent]
+trigger:
+  phases: [close]
+  when:
+    decisionAsked: true
+    secondaryPresent: false
+  chance: 0.8
+priority: 65
+maxUses: 1
+delivery:
+  act: defer
+  intent: >-
+    Say you cannot decide this without talking to your spouse or partner first.
+    Call them by name if your background gives one. It is true: you make big
+    money decisions together. Do not commit to a yes on your own, even if the
+    tech is good. If the tech offers a way to include your partner, such as a
+    quick call, photos, or the options in writing, take it seriously.
+  lines:
+    - I can't make this call without talking to my other half first.
+    - We make big decisions like this together. Let me talk it over tonight.
+    - I'd have to run it by my partner. That's a lot of money for us.
+    - Let me talk it over at home tonight, and we'll give you a call.
+  followUps:
+    - I hear you, but I'm not deciding this without them.
+    - It's not that I don't trust you. We just do these things together.
+  tone: neutral
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They share big money decisions with their partner and will not commit
+    without them. They may also worry about explaining it well enough at home,
+    or being blamed if it turns out to be the wrong call.
+  resolvedBy:
+    - Respecting that they decide together
+    - Offering to include the partner now with a quick call, or with photos and a short written summary
+    - Making sure the customer can explain what was found, the options, and the prices
+    - Setting a specific time to follow up with both of them
+  resolvingBehaviors:
+    - included_second_person
+    - acknowledged_feeling
+    - recapped_value
+    - showed_evidence
+    - checked_understanding
+    - left_well
+  hardenedBy:
+    - pressured
+    - showed_impatience
+    - argued
+    - condescended
+  defaultStrength: 60
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [included_second_person, recapped_value, left_well]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, showed_impatience, argued, condescended]
+  pass: >-
+    The tech respects the joint decision, offers a way to include the partner
+    now or makes it easy to explain later, and sets a specific follow-up.
+  fail: >-
+    The tech pushes the customer to decide alone, suggests the partner does not
+    need a say, or uses a deadline or discount to force a yes.
+coaching:
+  why: >-
+    When a couple decides together, this is not a stall. It is how they make
+    decisions, and pushing for a yes asks the customer to decide without their
+    partner. Make it easy to bring the other person in now, or to explain it
+    accurately later.
+  modelResponse: >-
+    That makes sense, it's a big decision for both of you. Would it help to call
+    them now? I can explain it to them in two minutes. If that doesn't work,
+    I'll send you a photo of what I found and the options in writing, so you're
+    not explaining it from memory. What time tonight is good for me to check
+    back?
+  commonMistakes:
+    - Asking "can't you just decide?" or implying the partner does not need a say
+    - Leaving with nothing the customer can show their partner
+    - Offering a discount if they sign before their partner gets home
+    - Not setting a time to follow up
+tags: [core, timing, stall, second-decision-maker]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Fires only when the second person is not in the room (secondaryPresent false). Pairs with the the-spouse-stall and bring-in-the-second-decision-maker drills.
+    - Lines avoid naming a gender so the scripted voice works for every listed persona. Confirm jen-busy-parent gets a secondary person when that persona is written.

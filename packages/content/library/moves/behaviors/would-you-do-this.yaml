@@ -1,0 +1,75 @@
+id: would-you-do-this
+version: 1
+name: Would you do this in your own house?
+kind: behavior
+group: probe
+skill: integrity
+summary: >-
+  The customer asks what the tech would do if it were their own house and
+  their own money.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [options, price, close]
+  when:
+    optionsPresented: true
+  chance: 0.45
+priority: 45
+maxUses: 1
+delivery:
+  act: probe
+  intent: >-
+    Ask what the tech would do if it were their own house and their own money.
+    You want a real answer, not a pitch. If they answer honestly, with a
+    reason that fits your situation, trust them more, even if the answer is
+    the cheaper option. If they name the most expensive option with no reason
+    tied to you, or just say "it's up to you," trust them less and press once.
+  lines:
+    - Would you do this in your own house?
+    - Be honest. If this was your house, what would you do?
+    - What would you pick, if it was your money?
+    - If your mom had this problem, what would you tell her to do?
+  followUps:
+    - But what would you actually do? Not the sales answer.
+    - Okay, but would you pay that much for it?
+  tone: skeptical
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    anyBehaviors: [honest_answer]
+  failIf:
+    anyBehaviors: [bluffed, pressured]
+  pass: >-
+    The tech says what they would actually do and why, based on this home and
+    what the customer told them, even if it is not the most expensive option.
+  fail: >-
+    The tech dodges, names the most expensive option with no reason that fits
+    this customer, makes up a story, or uses the question to push for a
+    decision now.
+coaching:
+  why: >-
+    This question is the customer asking whether they can trust you. A real
+    answer, with a reason that fits their home, often decides the sale. A
+    dodge or an automatic "the best one" tells them your recommendation is
+    about your paycheck.
+  modelResponse: >-
+    Honestly? If it were my house, I'd go with the standard tank and the code
+    upgrades. It's reliable, and the warranty covers what usually goes wrong.
+    The tankless is a good unit, but for two people it would take a long time
+    to make back the extra cost. If it were my money, I'd keep that
+    difference.
+  commonMistakes:
+    - Saying "It's totally up to you" without answering
+    - Naming the most expensive option with no reason tied to them
+    - Making up a personal story to sound relatable
+    - Following the answer with "So should we get started?" right away
+tags: [probe, integrity, core]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Pairs with drill your-own-house.
+    - The model response fits a two-person household choosing between a standard tank and tankless. The honest answer changes with the scenario.

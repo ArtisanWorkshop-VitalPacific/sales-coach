@@ -1,0 +1,92 @@
+id: show-me-in-writing
+version: 1
+name: Put it in writing
+kind: objection
+group: trust
+skill: objections
+summary: Before agreeing, the customer asks for the work and the price in writing.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+    trustBelow: 60
+  chance: 0.6
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you will not agree to anything until you see the price and exactly what
+    is included in writing. You have had surprise charges added before, or you
+    just want something to hold them to. Relax when the tech agrees right away,
+    itemizes it, and says what could change the price and that you would approve
+    any change first. If the tech hesitates or wants to start first, get firmer.
+  lines:
+    - Before I agree to anything, I want all of that in writing.
+    - Can you write that up for me? Every line, with the total.
+    - I don't do anything on a handshake anymore. Put it on paper for me.
+    - I'll need that in writing first, with exactly what's included.
+  followUps:
+    - And that's the final price? Nothing extra at the end?
+    - What if you open it up and find something else?
+  tone: guarded
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They have had surprise charges or vague promises before. They want the scope
+    and the price fixed so neither can grow once work starts.
+  resolvedBy:
+    - Agreeing right away, without hesitation
+    - Itemizing the work, the price, and the warranty in writing
+    - Saying plainly what could change the price and that any change needs their approval first
+    - Giving them time to read it before signing
+  resolvingBehaviors:
+    - honest_answer
+    - justified_value
+    - explained_plainly
+    - acknowledged_feeling
+  hardenedBy:
+    - pressured
+    - showed_impatience
+    - bluffed
+    - hedged_price
+  defaultStrength: 40
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, justified_value, explained_plainly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, showed_impatience, bluffed, hedged_price]
+  pass: >-
+    The tech agrees right away, writes out the work and the price line by line,
+    and explains what could change it and that the customer approves any change
+    first.
+  fail: >-
+    The tech hesitates, pushes to start before anything is written, or gives a
+    loose number that could grow later.
+coaching:
+  why: >-
+    Asking for it in writing is a reasonable request, and a careful customer will
+    not say yes without it. Any hesitation looks like you plan to change the
+    price later. Agree right away, then answer the question behind it: what
+    happens if you find something else.
+  modelResponse: >-
+    Absolutely, you should have it in writing. I'll list every part of the job,
+    the price, and the warranty. That price is for the job as written. If I open
+    it up and find something I couldn't see, I stop and show you, and nothing
+    extra happens unless you approve it. Take your time reading it.
+  commonMistakes:
+    - Saying "we'll figure out the final number when I'm done"
+    - Pushing to start work before the estimate is written
+    - Leaving out what could change the price
+tags: [trust, transparency]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response assumes the company gives written, upfront prices and gets approval before any change. Confirm against each company's process.

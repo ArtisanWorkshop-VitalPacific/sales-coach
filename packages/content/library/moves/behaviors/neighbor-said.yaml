@@ -1,0 +1,75 @@
+id: neighbor-said
+version: 1
+name: My neighbor said
+kind: behavior
+group: misplaced-confidence
+skill: objections
+summary: >-
+  The customer repeats something a neighbor told them, with confidence, and it
+  is wrong for this home.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [discovery, findings, options]
+  chance: 0.4
+priority: 40
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    Repeat something your neighbor told you, with confidence, as if it settles
+    the question. It is partly or fully wrong for your home. You like your
+    neighbor and believe them. If the tech takes it seriously and explains
+    plainly what is true or what is different about your home, accept it,
+    maybe a little sheepishly. If they just agree, you believe the wrong
+    thing. If they make you feel foolish or knock your neighbor, get defensive.
+  lines:
+    - My neighbor said tankless pays for itself in like two years.
+    - My neighbor had the same thing. Their guy just relit the pilot and it was fine.
+    - My neighbor says those expansion tanks are just an upsell.
+    - My neighbor told me to pour that drain stuff down there once a month and you're good.
+  followUps:
+    - Well, it worked for them.
+    - So you're saying my neighbor's wrong?
+  tone: confident
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [corrected_respectfully, honest_answer]
+  failIf:
+    anyBehaviors: [caved, condescended, argued]
+  pass: >-
+    The tech takes the neighbor's experience seriously, explains plainly what
+    is true or what is different about this home, and keeps a correct
+    recommendation.
+  fail: >-
+    The tech goes along with the wrong claim, makes fun of the neighbor's
+    advice, or argues to win the point.
+coaching:
+  why: >-
+    Advice from a neighbor comes with trust you have not earned yet. If you
+    dismiss it, you are asking the customer to choose you over someone they
+    know. If you go along with something wrong, it costs you later when it
+    turns out to be wrong. Respect where it came from, then explain what is
+    different here.
+  modelResponse: >-
+    Tankless does save on gas, so your neighbor's right about that part. But
+    for most homes, the savings are small next to the price difference, so it
+    takes a lot longer than two years to make it back. I can
+    show you the math. The real reasons people go tankless are endless hot
+    water and space. Does either of those matter to you?
+  commonMistakes:
+    - Saying "Your neighbor doesn't know what they're talking about"
+    - Agreeing to keep things friendly, then recommending the opposite
+    - Giving a long technical lecture to prove the point
+    - Ignoring the comment and moving on
+tags: [misplaced-confidence, objections]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Claims cover tankless payback, pilot relights, expansion tanks, and chemical drain cleaners. All are common in Southern California homes.
+    - The model response avoids a specific savings figure on purpose. Add one only once it is verified against current utility rates.

@@ -1,0 +1,22 @@
+{
+  "name": "@sales-coach/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Live mode: a LiveKit voice agent that plays the customer over WebRTC, driving the shared engine.",
+  "scripts": {
+    "dev": "tsx src/main.ts dev",
+    "start": "tsx src/main.ts start",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.1.0",
+    "@livekit/agents": "^1.9.3",
+    "@livekit/agents-plugin-deepgram": "^1.9.3",
+    "@livekit/agents-plugin-elevenlabs": "^1.9.3",
+    "@livekit/agents-plugin-livekit": "^1.9.3",
+    "@livekit/agents-plugin-silero": "^1.9.3",
+    "@sales-coach/content": "workspace:*",
+    "@sales-coach/engine": "workspace:*"
+  }
+}

@@ -1,0 +1,72 @@
+id: mixes-up-terms
+version: 1
+name: Mixes up the parts
+kind: behavior
+group: confusion
+skill: findings
+summary: >-
+  The customer mixes up two parts or terms the tech used and builds the wrong
+  picture of the problem.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [findings, options]
+  chance: 0.4
+priority: 35
+maxUses: 1
+delivery:
+  act: probe
+  intent: >-
+    Mix up two parts or terms the tech has used, or confuse one with something
+    you have heard of, and say it back as if you have it right. Be sincere, not
+    joking. If the tech sorts it out in plain words without making you feel
+    silly, you get it and feel more confident. If they use more trade terms,
+    you stay confused. If they just agree, you keep the wrong idea.
+  lines:
+    - So the expansion tank, that's the same as a water softener, right?
+    - Wait, so the anode rod is the part that heats the water?
+    - Okay, the pressure regulator. That's the main shutoff, right?
+    - So the sewer line, that's the pipe under the kitchen sink?
+  followUps:
+    - Sorry, I'm still mixing them up. Which one is the one that's broken?
+    - Okay, so which one do I actually need?
+  tone: confused
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    anyBehaviors: [corrected_respectfully, explained_plainly, checked_understanding]
+  failIf:
+    anyBehaviors: [caved, condescended, used_jargon]
+  pass: >-
+    The tech kindly sorts out the two terms in plain words, says which one is
+    the actual problem, and checks that it makes sense.
+  fail: >-
+    The tech lets the mix-up stand, answers with more trade terms, or makes the
+    customer feel silly for asking.
+coaching:
+  why: >-
+    A customer who mixes up two parts will decide based on the wrong picture
+    and may feel tricked later. Getting the words straight now is part of
+    explaining the finding. How you correct them decides whether they keep
+    asking questions or go quiet.
+  modelResponse: >-
+    Good question, they do sound alike. They're two different things. The
+    expansion tank is a small tank that gives the water room to expand when it
+    heats up, so the pressure doesn't strain your pipes. A softener takes
+    minerals out of the water. Code requires the expansion tank. You don't need
+    a softener for this. Want me to show you where it goes?
+  commonMistakes:
+    - Saying "No, that's totally different" and moving on
+    - Correcting with more trade terms
+    - Nodding along so the conversation keeps moving
+    - Laughing at the mix-up before explaining
+tags: [confusion, findings, plain-language]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Lines cover water heater, pressure, and drain jobs. With Claude voicing, the intent asks for terms the tech actually used in this call.
+    - The model response assumes a closed system where code requires an expansion tank. Check against the company's install standard.

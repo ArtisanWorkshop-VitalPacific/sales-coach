@@ -1,0 +1,98 @@
+id: last-company-ripped-me-off
+version: 1
+name: The last company ripped me off
+kind: objection
+group: trust
+skill: objections
+summary: Early in the visit, the customer says a previous company overcharged them or did work that did not hold up.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [door, discovery, findings]
+  when:
+    trustBelow: 45
+    minTurn: 1
+  chance: 0.6
+priority: 60
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Tell the tech, early and a little guarded, that the last company you used
+    overcharged you or did work that did not last, so you are going to be
+    careful this time. Keep it calm and factual, not a rant. Give one short
+    detail only if asked, such as what they charged or what went wrong. Become
+    friendlier only if the tech listens, does not criticize the other company,
+    and explains in specific terms how this visit will work.
+  lines:
+    - Just so you know, the last company we had out here ripped us off.
+    - I'll be honest, I don't trust plumbers much. The last guy overcharged me big time.
+    - We paid a company a lot of money last year, and it broke again a month later.
+    - The last outfit we called charged us a fortune and didn't fix anything.
+  followUps:
+    - That's what they said too, though.
+    - So how is this going to be any different?
+  tone: guarded
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They were overcharged or let down before and expect it to happen again. They
+    need to see, in specific terms, how this visit protects them: what they will
+    see, approve, and get in writing.
+  resolvedBy:
+    - Listening to what happened and acknowledging it without judging the other company
+    - Asking what went wrong
+    - Explaining how this visit will work, so they see what is found, get the price before any work, and approve everything first
+    - Following through on that during the rest of the call
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - asked_follow_up
+    - asked_about_concern
+    - set_frame
+    - showed_evidence
+    - honest_answer
+  hardenedBy:
+    - argued
+    - condescended
+    - bluffed
+    - pressured
+    - showed_impatience
+  defaultStrength: 60
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, asked_follow_up, set_frame]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, condescended, showed_impatience, bluffed]
+  pass: >-
+    The tech listens, acknowledges what happened without criticizing the other
+    company, asks what went wrong, and explains how this visit will work so the
+    customer sees and approves everything first.
+  fail: >-
+    The tech moves on without responding to it, criticizes the other company, or
+    says "we're not like them" without saying what will be different.
+coaching:
+  why: >-
+    A customer who was overcharged before is telling you what they need: proof,
+    not promises. Agreeing that the last company was bad does not build trust,
+    but showing them how this visit works does. What you do during the rest of
+    the call is what answers the worry.
+  modelResponse: >-
+    I'm sorry that happened. That's a lousy feeling. Can I ask what went wrong?
+    (Listens.) Here's how I work. I'll show you everything I find, explain it in
+    plain words, and you'll have the price in writing before I touch anything. If
+    you decide not to do anything, that's okay too. Fair enough?
+  commonMistakes:
+    - Criticizing the other company
+    - Saying "we're not like them" without explaining what is different
+    - Skipping past the story to start the inspection
+    - Getting defensive, as if the customer is accusing you
+tags: [trust, history]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - This is the calm objection. The emotional version is the angry-about-last-company behavior move. Consider excluding one in scenarios that force the other.

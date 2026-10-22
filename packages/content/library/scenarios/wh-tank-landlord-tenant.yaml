@@ -1,0 +1,115 @@
+id: wh-tank-landlord-tenant
+version: 1
+title: Rental tank failed, tenant waiting
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 3
+personaId: rick-landlord
+alternatePersonas: [brian-today, paul-engineer]
+briefing: >-
+  Service call at a rental house. The tenant reported no hot water this morning and
+  water coming out under the water heater closet door. 40-gallon gas tank in an
+  exterior closet. The owner will meet you at the property. Not a member.
+situation: >-
+  The 13-year-old 40-gallon gas tank has failed. Water is seeping from the bottom
+  seam, the base is rusted, and the burner will not stay lit because the combustion
+  chamber is wet. It cannot be repaired. The expansion tank from the last install is
+  waterlogged (water comes out of its air valve), so it no longer protects the
+  system, and the pressure regulator on the main line makes this a closed system that
+  needs a working one. The vent, the combustion air through the louvered closet door,
+  and the gas supply are in good shape. The tenants have never complained about
+  running out of hot water. The honest recommendation is a standard 40-gallon
+  replacement with a new expansion tank, two seismic straps, a permit, and haul-away,
+  installed today from stock on the truck. Hot water is a basic habitability item in
+  a rental, so speed matters to the owner as much as price. The owner meets the tech
+  at the property and the tenant is at work. A strong tech keeps the job simple,
+  itemizes what the price includes, offers the earliest install, and answers the
+  handyman comparison without criticizing the handyman.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 13
+    notes: Exterior closet with a louvered door. Seeping at the bottom seam, burner will not stay lit.
+  - item: Thermal expansion tank
+    ageYears: 13
+    notes: Waterlogged. Water comes out of the air valve.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 65 psi.
+findings:
+  - id: tank-leaking
+    text: The tank is leaking from the bottom seam and the base is rusted. Once a tank leaks, it cannot be repaired.
+    severity: urgent
+  - id: expansion-tank-waterlogged
+    text: >-
+      The expansion tank is full of water. Its air side has failed, so it no longer
+      takes up the extra pressure when the water heats. The house has a pressure
+      regulator, so a working expansion tank is required.
+    severity: major
+  - id: vent-and-gas-reusable
+    text: The vent, the combustion air through the louvered door, and the gas supply are in good shape and can be reused.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is leaking and cannot be repaired.
+  - id: replace-expansion-tank
+    label: Replace the expansion tank
+    rationale: The old one is waterlogged, and a closed system needs a working one.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: tankless-for-rental
+    label: Tankless conversion pitched as better for the tenants
+    why: >-
+      The tenants have never run out of hot water. Tankless adds gas line and venting
+      work and costs more than twice as much, and nothing about this rental needs it.
+  - id: upsize-50
+    label: Upsizing to a 50-gallon tank
+    why: The 40-gallon tank served this household for 13 years without complaints. A bigger tank adds cost for no reason.
+  - id: water-softener
+    label: Water softener
+    why: Nothing in this call points to a water problem the owner wants solved. A softener is an upsell on this job.
+options:
+  - id: standard-40
+    label: 40-gallon standard gas, 6-year warranty
+    price: 1890
+    monthly: 49
+    includes:
+      - New 40-gallon gas water heater
+      - New thermal expansion tank
+      - Two seismic straps
+      - New gas connector and water connectors
+      - Permit and haul-away
+      - Installed today
+    recommended: true
+  - id: standard-40-10yr
+    label: 40-gallon gas, 10-year warranty
+    price: 2490
+    monthly: 65
+    includes:
+      - Everything in the standard option
+      - Longer 10-year tank and parts warranty
+      - New cold-water shutoff valve
+      - Installed today
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [handyman-can-do-it]
+  excluded: []
+  density: 2.5
+goal: >-
+  Get the tenants hot water today at a fair, itemized price, and answer the handyman
+  comparison by showing what the price includes, not by criticizing the handyman.
+passBar: 75
+tags: [water-heater, landlord, rental, competition]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - Alternate personas assume that person also owns this rental. Check that their persona files do not contradict it.
+    - Same-day install assumes the tank is on the truck and the permit can be pulled the same day. Verify for each company and city.

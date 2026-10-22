@@ -1,0 +1,582 @@
+id: gardner-plumbing
+version: 1
+name: Gardner Plumbing Co.
+shortName: Gardner
+trades: [plumbing, hvac, electrical]
+serviceArea:
+  - Temecula
+  - Murrieta
+  - Perris
+  - Menifee
+  - Canyon Lake
+  - Lake Elsinore
+  - Corona
+  - Moreno Valley
+  - Riverside
+  - Hemet
+  - San Jacinto
+  - Wildomar
+about: >-
+  Gardner Plumbing Co. is a family-owned company based in Murrieta that has served
+  Riverside County since 1995. It works in homes, HOAs, restaurants, and small to
+  mid-size commercial properties. The business started as Nootbar Plumbing. The
+  Gardner family took ownership in 2020 and renamed it Gardner Plumbing Co. in 2024.
+  It offers plumbing, HVAC, and electrical service. The company calls its promise on
+  every call The Gardner Standard: written estimates, no trip fees, clean visits, and
+  a 30-day guarantee.
+brandVoice:
+  - >-
+    Warm and respectful. The company describes its approach as treating every
+    customer like a valued neighbor. Use the customer's name and take care with their
+    home and their time.
+  - >-
+    Plain and direct. Short sentences, plain words, and real numbers. Explain any
+    trade term you use.
+  - >-
+    Confident without pushing. State the recommendation and the price once, clearly,
+    then let the customer think.
+  - >-
+    Accountable. The company's own line is "We own it." Point to the written estimate
+    and the 30-day guarantee instead of making verbal promises. If something goes
+    wrong, say so and say what you will do about it.
+  - >-
+    No pressure. A no, a wait, or a second opinion is fine, and the customer should
+    hear that from you.
+promises:
+  - id: callback-guarantee
+    label: 30-Day Callback Guarantee
+    detail: >-
+      If the same issue comes back within 30 days of the visit, a technician returns
+      at no charge. Parts from the original job are re-supplied at no cost, and
+      callback labor is covered with no trip fee or hourly rate. It covers the same
+      root cause, not a separate problem somewhere else.
+  - id: written-estimate
+    label: Written Estimate Before Work Begins
+    detail: >-
+      Every job starts with a written estimate listing scope, materials, and labor.
+      The number you sign is the number you pay. If the scope changes mid-job, work
+      stops and a revised estimate is presented, and nothing goes further without the
+      customer's written sign-off.
+  - id: no-trip-fees
+    label: No Trip Fees, No Pressure
+    detail: >-
+      Free in-home estimate with zero obligation. No dispatch fee, service-call fee,
+      or fuel surcharge. A customer who declines the estimate owes nothing. The
+      company says it never uses pressure tactics or inflated book-rate pricing to
+      create urgency.
+  - id: clean-visit-promise
+    label: Clean Visit Promise
+    detail: >-
+      Six steps on every call: shoe covers before stepping inside, drop cloths under
+      every work area, path protection from the entry to the work area, towels around
+      every fixture, full cleanup before the job is called done, and haul-away of all
+      old parts and packaging. If a step is missed, a technician comes back the same
+      business day at no charge.
+  - id: workmanship-guarantee
+    label: 1-Year Workmanship Guarantee
+    detail: >-
+      Installations and repairs carry a 1-year workmanship guarantee. Parts carry the
+      manufacturer's warranty. Warranty details are written on the invoice.
+  - id: licensed-bonded-insured
+    label: Fully Licensed, Bonded and Insured
+    detail: >-
+      CSLB license number 1073177, which customers can look up at cslb.ca.gov. The
+      company carries liability insurance and workers' compensation.
+process:
+  - id: arrive-and-set-frame
+    name: Arrive, protect the home, and set the frame
+    description: >-
+      Put shoe covers on at the door, before stepping inside. This is the first step
+      of the Clean Visit Promise. Introduce yourself and Gardner Plumbing, and confirm
+      the customer's name and why they called. Explain the visit: you will look, show
+      them what you find, and give them a written estimate before any work begins.
+      Say there is no trip fee and no obligation to go ahead.
+    required: true
+  - id: discovery
+    name: Ask before you diagnose
+    description: >-
+      Ask what they have noticed, when it started, what has been done before, how old
+      the system is, how long they plan to stay in the home, and what matters most to
+      them: cost, timing, or doing it once. Listen and write down what they say. Their
+      answers shape the options.
+    required: true
+  - id: inspect
+    name: Inspect and protect the work area
+    description: >-
+      Follow the Clean Visit Promise before any tool comes out: path protection from
+      the entry to the work area, a drop cloth under the work area, and clean towels
+      around every fixture. Diagnose the problem they called about, then check the
+      related items a careful plumber would check. Take photos or camera video of what
+      you find.
+    required: true
+  - id: show-findings
+    name: Show and explain what you found
+    description: >-
+      Show the photos, the camera video, or the part itself. Explain each finding in
+      plain words: what it is, why it matters, and how urgent it is. Say what is in
+      good shape too. Do not recommend work the findings do not support.
+    required: true
+  - id: present-options
+    name: Present options
+    description: >-
+      Give two or three options tied to what the customer told you, including the
+      simplest repair that will hold when there is one. Say which option you
+      recommend for their home and why, in one or two sentences.
+    required: true
+  - id: written-estimate
+    name: Written estimate before work begins
+    description: >-
+      Write the estimate before any work begins: scope, materials, and labor, with
+      permit fees on their own line. Pricing is flat rate, so the price does not
+      change with the clock. Say the price clearly, once, then stop talking and let
+      the customer think. The number they sign is the number they pay.
+    required: true
+  - id: answer-questions
+    name: Answer questions honestly
+    description: >-
+      Ask what questions they have and answer each concern directly. When cost is the
+      concern, show what is in the price, offer the other options, and explain
+      financing as a monthly number with its real terms. A second opinion is fine,
+      and the estimate visit costs them nothing. Never use pressure or urgency that is
+      not real.
+    required: true
+  - id: ask-for-decision
+    name: Ask for the decision
+    description: >-
+      Ask plainly which option they would like to go with. Get their written sign-off
+      on the estimate before starting. If the scope changes mid-job, stop, write a
+      revised estimate, and do not continue without their written sign-off.
+    required: true
+  - id: offer-gardner-shield
+    name: Offer The Gardner Shield
+    description: >-
+      If they are not a member, offer The Gardner Shield once and tie it to what you
+      found. Bronze (plumbing) is $249 a year: two plumbing maintenance visits, 10
+      percent off plumbing services, one free drain cleaning a year with an
+      accessible cleanout, priority dispatch, and no emergency overtime charges.
+      Silver adds HVAC for $348 a year, and Gold adds HVAC and electrical for $397 a
+      year. Say clearly that it is not a warranty. Accept a no without a second push.
+    required: true
+  - id: clean-up-and-wrap
+    name: Clean up, explain the guarantee, and leave well
+    description: >-
+      Finish the Clean Visit Promise: sweep or vacuum the work area, wipe down
+      surfaces you touched, and remove all debris. Old parts and packaging leave on
+      the Gardner truck unless the customer asks to keep them. Walk the customer
+      through the work, explain
+      the 30-day callback guarantee and the warranty terms on the invoice, and thank
+      them. On a no, leave the written estimate and thank them just the same.
+    required: true
+membership:
+  name: The Gardner Shield
+  summary: >-
+    Annual membership in three tiers. Bronze Shield (plumbing) is $249 a year, Silver
+    Shield (plumbing and HVAC) is $348 a year, and Gold Shield (plumbing, HVAC, and
+    electrical) is $397 a year. A plumbing and electrical combination is $298 a year.
+    The company states it is not a warranty plan. It is a direct relationship with a
+    licensed contractor: scheduled maintenance, priority service, no emergency
+    overtime, and member discounts.
+  benefits:
+    - Two plumbing maintenance visits a year
+    - Annual plumbing safety inspection with a written inspection report
+    - 10 percent off plumbing services
+    - One free drain cleaning a year with an accessible cleanout
+    - Priority service at the front of the dispatch queue, 24/7
+    - No emergency overtime charges. Nights, weekends, and holidays are billed at standard rates.
+    - >-
+      Silver Shield adds two HVAC tune-ups a year (spring AC and fall heating), a
+      refrigerant level check at every tune-up, 10 percent off HVAC services, and
+      priority scheduling during summer AC failures.
+    - >-
+      Gold Shield adds an annual electrical safety inspection with a whole-home
+      electrical safety report, 10 percent off electrical services, and priority
+      response after storms and outages.
+  annualPrice: 249
+  verified: true
+financing:
+  available: true
+  summary: >-
+    Two lenders, both subject to credit approval: the GreenSky Program and Service
+    Finance Company. GreenSky Plan 2613 is no interest if paid in full in 12 months.
+    Interest is billed during the promo period and waived only if the amount financed
+    is paid in full by the end, and minimum payments alone will not pay it off in
+    time. GreenSky Plan 1519 is 11.99 percent APR fixed for 180 months, about $119.95
+    a month for every $10,000 financed (the site calls this an estimate). An
+    origination fee may apply, and GreenSky applicants must be homeowners. Service
+    Finance terms are not listed on the site. The customer gets the written estimate
+    first, then applies through a short digital application.
+  verified: true
+priceRanges:
+  - id: drain-cleaning
+    item: Drain cleaning, from a single-fixture clog to hydro jetting
+    low: 150
+    high: 800
+    source: gardnerplumbingco.com home page, typical ranges that vary by job scope and access
+  - id: water-heater-replacement
+    item: Water heater replacement, from a standard tank to high-efficiency
+    low: 1400
+    high: 3200
+    source: gardnerplumbingco.com home page, typical ranges that vary by job scope and access
+  - id: sewer-camera-inspection
+    item: Sewer camera inspection, HD video diagnosis
+    low: 250
+    high: 400
+    source: gardnerplumbingco.com home page and /transparent-pricing
+  - id: single-fixture-drain-cleaning
+    item: Single fixture drain cleaning
+    low: 150
+    high: 350
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: toilet-drain-clearing
+    item: Toilet drain clearing
+    low: 150
+    high: 300
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: main-sewer-line-clearing
+    item: Main sewer line clearing
+    low: 250
+    high: 600
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: hydro-jetting
+    item: Hydro jetting, high-pressure cleaning
+    low: 350
+    high: 800
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: trenchless-sewer-repair-per-foot
+    item: Trenchless sewer line repair (CIPP), per linear foot
+    low: 80
+    high: 250
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: sewer-line-replacement-per-foot
+    item: Traditional sewer line replacement, per linear foot
+    low: 50
+    high: 250
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: water-heater-repair
+    item: Water heater repair
+    low: 175
+    high: 850
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: standard-tank-replacement
+    item: Standard tank water heater replacement, 40 to 50 gallon
+    low: 1400
+    high: 2800
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: high-efficiency-tank-water-heater
+    item: High-efficiency tank water heater
+    low: 1800
+    high: 3200
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: tankless-gas-installation
+    item: Tankless gas water heater installation
+    low: 3000
+    high: 5500
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: tankless-electric-installation
+    item: Tankless electric water heater installation (the site lists $5,500 and up at the high end)
+    low: 2000
+    high: 5500
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: fixture-leak-repair
+    item: Faucet or fixture leak repair
+    low: 100
+    high: 300
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: pipe-leak-repair-accessible
+    item: Pipe leak repair, accessible pipe
+    low: 200
+    high: 700
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: pipe-leak-repair-behind-wall
+    item: Pipe leak repair behind a wall or under a floor
+    low: 500
+    high: 2000
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: slab-leak-detection
+    item: Slab leak detection
+    low: 150
+    high: 400
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: slab-leak-repair
+    item: Slab leak repair (the site lists $5,000 and up at the high end)
+    low: 1200
+    high: 5000
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: main-water-line-repair
+    item: Main water line repair
+    low: 500
+    high: 3000
+    source: gardnerplumbingco.com/transparent-pricing, averages for Southern California 2025 to 2026
+  - id: toilet-repair
+    item: Toilet repair
+    low: 125
+    high: 350
+    source: gardnerplumbingco.com/transparent-pricing, fixtures section, averages for Southern California 2025 to 2026
+  - id: toilet-replacement
+    item: Toilet replacement
+    low: 350
+    high: 950
+    source: gardnerplumbingco.com/transparent-pricing, fixtures section, averages for Southern California 2025 to 2026
+  - id: faucet-installation
+    item: Faucet installation, kitchen or bathroom
+    low: 175
+    high: 375
+    source: gardnerplumbingco.com/transparent-pricing, fixtures section, averages for Southern California 2025 to 2026
+  - id: shower-tub-faucet-replacement
+    item: Shower or tub faucet replacement
+    low: 200
+    high: 500
+    source: gardnerplumbingco.com/transparent-pricing, fixtures section, averages for Southern California 2025 to 2026
+  - id: garbage-disposal-replacement
+    item: Garbage disposal replacement
+    low: 200
+    high: 625
+    source: gardnerplumbingco.com/transparent-pricing, fixtures section, averages for Southern California 2025 to 2026
+  - id: garbage-disposal-repair
+    item: Garbage disposal repair
+    low: 100
+    high: 250
+    source: gardnerplumbingco.com/transparent-pricing, fixtures section, averages for Southern California 2025 to 2026
+differentiators:
+  - No trip fee and a free in-home estimate on every call
+  - Written estimate before work begins, and the number you sign is the number you pay
+  - 30-day callback guarantee that covers parts and labor
+  - Six-step Clean Visit Promise on every call
+  - Plumbing, HVAC, and electrical from one company, with one membership across all three
+  - Trusted American Home Shield contractor and Moen Certified installer
+scripts:
+  preferred:
+    - moment: Introduce yourself at the door
+      line: >-
+        Hi, I'm [your name] with Gardner Plumbing. Give me one second to put my shoe
+        covers on before I come in.
+    - moment: Set the frame
+      line: >-
+        Here's how this works. I'll take a look, show you what I find, and write up
+        your options before any work starts. There's no trip fee for today, and
+        you're not obligated to go ahead.
+    - moment: Discovery
+      line: >-
+        Before I start, walk me through what you've noticed and when it started. And
+        how long are you planning to be in this house?
+    - moment: Show the finding
+      line: >-
+        Come take a look with me. Here's what I found, here's why it matters, and
+        here's what's in good shape.
+    - moment: Present the written estimate
+      line: >-
+        Here's your written estimate. It lists the scope, the materials, and the
+        labor. The number you sign is the number you pay.
+    - moment: The scope changes mid-job
+      line: >-
+        I found something I didn't expect. I'm going to stop here and write up the
+        change, and nothing goes further unless you sign off on it.
+    - moment: Offer financing
+      line: >-
+        If it helps to spread this out, there's a twelve-month plan that's no interest
+        if it's paid in full in those twelve months. I'll walk you through exactly how
+        it works so there are no surprises.
+    - moment: Offer The Gardner Shield
+      line: >-
+        One more thing, and it's completely your call. The Gardner Shield is two
+        forty-nine a year for plumbing. You get two maintenance visits, ten percent
+        off plumbing work, a free drain cleaning each year when there's an accessible
+        cleanout, and no overtime charges at night or on weekends. Want me to go over
+        it?
+    - moment: Explain the guarantee
+      line: >-
+        If this same problem comes back within thirty days, call us. We come back at
+        no charge, parts and labor.
+    - moment: Leave well
+      line: >-
+        I've cleaned up, and the old parts are going out on my truck. If I missed
+        anything, call the office and they'll send someone back the same business day.
+  banned:
+    - "This price is only good today."
+    - "I need an answer before I leave."
+    - "Trust me."
+    - "Let's get started and I'll write up the price after."
+    - "There's a charge for coming out if you don't go ahead."
+    - "Those other plumbers are crooks."
+    - "It's zero interest, no catch."
+    - "The Shield is basically a warranty. It covers everything."
+    - "Home warranties never pay. Don't bother with them."
+    - "Let me call my manager and see what special deal I can get you."
+objectionAnswers:
+  - moveId: show-me-in-writing
+    answer: >-
+      Absolutely, that's how we do every job. You'll get a written estimate before any
+      work starts, with the scope, the materials, and the labor spelled out. The
+      number you sign is the number you pay. If I find something else once I'm in
+      there, I stop and write up the change, and nothing moves forward without your
+      written okay.
+  - moveId: need-three-bids
+    answer: >-
+      That makes sense, it's a real decision. Can I ask what you'll be comparing,
+      mostly price or what's included? Your written estimate lists the scope, the
+      materials, and the labor, so you can hold it up against the others line by
+      line. There's no trip fee and no charge for today's estimate. If you have
+      questions about the other quotes, call me.
+  - moveId: home-warranty-covers-it
+    answer: >-
+      It might, and it's worth checking before you pay for anything. We're an
+      American Home Shield contractor, so we work with these plans. The warranty
+      company decides what's covered, not us. If part of the job isn't covered, I'll
+      write that part up so you see the price before you decide. And the Gardner
+      Shield isn't a warranty. It's two maintenance visits a year, priority service,
+      and a member discount.
+  - moveId: you-always-upsell
+    answer: >-
+      Fair question, and I'd rather show you than tell you. I'll walk you through what
+      I found, what needs fixing, and what's fine as it is. You'll get your options in
+      writing, including the simplest repair that'll actually hold, and you pick. And
+      if the same problem comes back within thirty days, we come back at no charge,
+      parts and labor.
+  - moveId: how-do-i-know-its-broken
+    answer: >-
+      Good question. Come look with me, and I'll show you exactly what I'm seeing, the
+      photos, the camera video, or the part itself. If you'd like a second opinion,
+      that's completely fine. The estimate visit doesn't cost you anything, and we'll
+      be here when you're ready.
+  - moveId: last-company-ripped-me-off
+    answer: >-
+      I'm sorry, that shouldn't have happened. Here's how we work. You get a written
+      estimate before any work starts, and the number you sign is the number you pay.
+      If anything changes, I stop and get your written okay first. There's no trip
+      fee, and you're under no obligation if you decide not to go ahead.
+  - moveId: charge-me-hourly
+    answer: >-
+      Our pricing is flat rate. The price is set by the job, not the clock, so if it
+      takes me longer than I expect, your price doesn't change. You'll see the full
+      number in writing before I start, and that's the number you pay.
+  - moveId: whats-the-catch
+    answer: >-
+      Fair to ask. The twelve-month plan through GreenSky is no interest if you pay it
+      off in full within twelve months. Interest is billed during that time, and it's
+      waived only if the full amount is paid by the end, so minimum payments alone
+      won't get you there. There's also a fixed plan at eleven point nine nine percent
+      APR over a hundred and eighty months. Both need credit approval, and an
+      origination fee may apply.
+  - moveId: what-do-i-actually-get
+    answer: >-
+      Here's exactly what you get with the Bronze Shield, two forty-nine a year. Two
+      plumbing maintenance visits, a yearly safety inspection with a written report,
+      ten percent off plumbing work, one free drain cleaning a year if there's an
+      accessible cleanout, priority dispatch, and no emergency overtime charges. If
+      you wouldn't use it, I'll tell you it's not worth it.
+  - moveId: too-expensive
+    answer: >-
+      I hear you. Let me show you what's in that number, line by line. If one of the
+      other options fits better, we can go that way, and I'll write it up the same
+      way. And if spreading it out would help, there's a twelve-month plan that's no
+      interest if it's paid in full in those twelve months, with credit approval.
+facts:
+  - >-
+    Serving Riverside County since 1995. The company started as Nootbar Plumbing, the
+    Gardner family took ownership in September 2020, and it became Gardner Plumbing
+    Co. in 2024.
+  - Family-owned and based in Murrieta, at 30714 Wealth St.
+  - >-
+    CSLB license number 1073177, which customers can look up at cslb.ca.gov. Licensed,
+    bonded, and insured, with liability insurance and workers' compensation.
+  - >-
+    No trip fee, no service-call fee, and no dispatch fee. The in-home estimate is
+    free, with no obligation to go ahead.
+  - >-
+    Every job starts with a written estimate, and the number the customer signs is the
+    number they pay.
+  - >-
+    If the same issue comes back within 30 days, a technician returns at no charge,
+    with parts and labor covered.
+  - Installations and repairs carry a 1-year workmanship guarantee, written on the invoice.
+  - Trusted American Home Shield contractor and Moen Certified installer.
+  - Financing through GreenSky and Service Finance Company, subject to credit approval.
+  - 24/7 emergency service, and a 4.9-star Google rating.
+sources:
+  - url: https://gardnerplumbingco.com/
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/guarantee
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/gardner-shield
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/financing
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/transparent-pricing
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/clean-visit-promise
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/about-us
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/warranty
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/services
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/services/hvac
+    retrieved: '2026-10-22'
+  - url: https://gardnerplumbingco.com/services/electrical
+    retrieved: '2026-10-22'
+review:
+  status: draft
+  author: Claude
+  notes:
+    - >-
+      Written from gardnerplumbingco.com pages retrieved 2026-10-22. All listed pages
+      loaded. FAQ answers on /guarantee, /gardner-shield, /financing, and
+      /frequently-asked-questions did not appear in the page text, so nothing from
+      those FAQs is used.
+    - >-
+      Verify with the owner. The business was founded in 1995 as Nootbar Plumbing, and
+      Gardner family ownership began in September 2020. Techs should say "serving
+      Riverside County since 1995", not "family-owned since 1995". Confirm the wording
+      the owner wants.
+    - >-
+      Verify with the owner. Google review counts differ across pages (1,316, 1,315+,
+      1,157+, 900+, and 600+), and the rating shows as both 4.9 and 5.0. Counts are
+      left out of facts. Confirm the rating and count techs should cite.
+    - >-
+      Verify with the owner. The Gardner Shield shows only annual prices, so
+      annualPrice uses Bronze ($249). Confirm whether monthly billing exists, plus the
+      cancellation terms and exclusions (FAQ answers did not load).
+    - >-
+      Verify with the owner. The Shield page says both "10% off every service" and 10
+      percent off each tier's own trades. The spec uses the tier wording. Also confirm
+      whether a customer who joins during the visit gets the member discount on that
+      day's work. The spec does not claim it.
+    - >-
+      Verify with the owner. How techs should handle American Home Shield customers:
+      whether Gardner takes only AHS-dispatched claims, and what a tech says when a
+      customer who called Gardner directly has an AHS plan. Also confirm the official
+      answer to the Shield FAQ "What if I already have a home warranty?"
+    - >-
+      Verify with the owner. The financing page shows a placeholder APR for GreenSky
+      Plan 2613 ("[XX.XX]%"). Service Finance terms, minimum amounts, the credit check
+      process, and early payoff are not stated.
+    - >-
+      Verify with the owner. The HVAC and electrical pages show unfilled license
+      placeholders ({{CSLB_C20_LICENSE_TBD}} and {{CSLB_C10_LICENSE_TBD}}). Confirm the
+      license classifications for HVAC and electrical work before techs cite them.
+    - >-
+      Verify with the owner. Permits: /guarantee says permit fees are a separate
+      pass-through line on the quote, and /transparent-pricing says permit fees are
+      included in written estimates. The spec says permit fees appear on their own
+      line of the written estimate.
+    - >-
+      Verify with the owner. The warranty page lists a 1-year workmanship guarantee
+      and a 30-day drain stoppage guarantee that excludes foreign objects. It does not
+      say how these relate to the 30-day callback guarantee.
+    - >-
+      Verify with the owner. Fixture price ranges sit under a heading that says
+      "Labor", while the page also says prices include labor and standard materials.
+      Confirm whether toilet, faucet, and disposal ranges include the fixture.
+    - >-
+      Verify with the owner. The home page names an "On-Time Promise" with no terms,
+      and the HVAC and electrical pages say most calls received before noon are on
+      site the same day. Neither is used as a promise in this spec.
+    - >-
+      Verify with the owner. Service area: the home page lists the 12 cities used
+      here. The About page adds Eastvale, Chino Hills, and Palm Springs, and says
+      "within 45 miles" of Murrieta, which Palm Springs is not.
+    - >-
+      The process steps, brand voice, scripts, and objection answers were written by
+      Claude from the site's promises. The owner should confirm they match how Gardner
+      trains its techs.

@@ -1,0 +1,16 @@
+{
+  "name": "@sales-coach/testbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Customer test bench: a scripted technician at three skill levels runs every scenario and checks the customer behaves.",
+  "scripts": {
+    "bench": "tsx src/bench.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.1.0",
+    "@sales-coach/content": "workspace:*",
+    "@sales-coach/engine": "workspace:*"
+  }
+}

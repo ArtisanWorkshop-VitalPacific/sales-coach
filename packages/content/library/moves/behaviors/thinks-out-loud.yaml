@@ -29,7 +29,7 @@ delivery:
     - "[thoughtful] Hm. The longer warranty's nice, but then again, if we..."
     - So the basic one would get us by, and then later we could maybe...
   followUps:
-    - Sorry, I was just thinking it through. I'm trying to figure out what makes sense for us.
+    - Sorry, just thinking. I'm trying to figure out if the cheaper one is really enough for us.
     - Hang on, I wasn't done. I was still working that out.
   tone: thoughtful
   delayMs: 800
@@ -70,4 +70,4 @@ review:
   author: Claude
   notes:
     - Pass and fail are measured from timing. The runtime speaks the line first, then holds the silence.
-    - followUps[0] completes the thought, so it also works if the runtime speaks it when the hold ends. followUps[1] is for a tech who jumped in.
+    - followUps[0] finishes the thought, so it also works if the runtime speaks it when the hold ends. It names a concern the tech can tie the options to. followUps[1] is for a tech who jumped in.

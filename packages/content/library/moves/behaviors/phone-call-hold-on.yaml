@@ -29,7 +29,7 @@ delivery:
     - Hold on, I gotta grab this real quick. Sorry.
   followUps:
     - Sorry about that. Where were we?
-    - Wait, sorry, back up. What did you say was wrong with it?
+    - Wait, sorry, back up a little. I lost track there.
   tone: distracted
   delayMs: 1500
   holdSilenceMs: 12000
@@ -56,13 +56,13 @@ coaching:
     the job and shows you respect their time.
   modelResponse: >-
     (Stays quiet while they are on the phone.) When they come back: "No
-    problem at all. Quick recap: I found what's causing the problem, and I was
-    about to show you a couple of ways to fix it. Does that still make sense?
-    Any questions before I keep going?"
+    problem at all. Real quick, here's where we were: (one sentence on the last
+    main point, for example what you found). Does that still make sense? Any
+    questions before I keep going?"
   commonMistakes:
     - Picking up mid-sentence as if they never left
     - Saying "As I was saying" in a tired voice
-    - Talking to the customer while they are on the phone
+    - Continuing to explain while the customer is on the phone
     - Re-explaining everything from the start at full length
 tags: [disruption, recovery, core]
 review:

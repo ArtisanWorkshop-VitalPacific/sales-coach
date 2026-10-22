@@ -1,0 +1,93 @@
+id: charge-me-hourly
+version: 1
+name: Just charge me by the hour
+kind: objection
+group: price
+skill: price
+summary: The customer asks to pay by the hour instead of a set price for the job.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.4
+priority: 45
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask why you can't just pay for the time the job takes, by the hour, the way
+    you remember plumbers charging. You think a set price means paying for hours
+    the job will not take. Stay reasonable, not hostile. Ask for the hourly rate
+    if the tech does not explain. Consider it fairly if the tech explains that a
+    set price means you know the total first and it does not go up if the job
+    runs long.
+  lines:
+    - Why don't you just charge me by the hour? That seems fairer.
+    - This shouldn't take you more than an hour or two. Can't you just bill me for that?
+    - I'd rather just pay for your time and the parts. What's your hourly rate?
+    - Plumbers used to just charge by the hour. Why can't you do that?
+  followUps:
+    - But if it only takes you an hour, I'm overpaying, right?
+    - So what's your hourly rate, then?
+  tone: skeptical
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They suspect the set price is padded and that they are paying for time the
+    job will not take. They want to pay only for the work actually done.
+  resolvedBy:
+    - Explaining plainly how a set price works, with the total known before work starts and no increase if the job runs long
+    - Saying what the price covers beyond time on site, such as parts, code items, permit, warranty, and haul-away
+    - Answering the hourly-rate question honestly without making up a number
+    - Giving the written price so they can decide before any work begins
+  resolvingBehaviors:
+    - justified_value
+    - explained_plainly
+    - honest_answer
+    - checked_understanding
+  hardenedBy:
+    - bluffed
+    - argued
+    - condescended
+    - showed_impatience
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [justified_value, explained_plainly, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [bluffed, argued, condescended, caved]
+  pass: >-
+    The tech explains that a set price means the customer knows the total before
+    work starts and it will not go up if the job takes longer, and says what the
+    price covers beyond time on site.
+  fail: >-
+    The tech invents an hourly rate, agrees to a billing method the company does
+    not offer, argues, or makes the customer feel foolish for asking.
+coaching:
+  why: >-
+    Hourly billing feels fair because people can picture paying for time. A set
+    price is easy to resent when nobody explains it. Explain how it protects
+    them: they know the total before any work starts, and they do not pay more if
+    the job runs long.
+  modelResponse: >-
+    That's a fair question. We price by the job, not the hour, so you know the
+    total before I start, and it doesn't go up if I run into a problem halfway
+    through. The price also covers the parts, anything code requires, the
+    warranty, and cleanup, not just my time. You'll have it in writing, and
+    nothing starts until you say yes.
+  commonMistakes:
+    - Making up an hourly rate to satisfy the customer
+    - Saying "that's just how we do it" without explaining how it helps them
+    - Making the job sound harder than it is to justify the price
+tags: [price, flat-rate]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Assumes the company uses set, by-the-job pricing. Confirm against the Gardner and SOS company specs.

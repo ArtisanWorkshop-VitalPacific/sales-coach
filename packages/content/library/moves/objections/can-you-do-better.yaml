@@ -1,0 +1,97 @@
+id: can-you-do-better
+version: 1
+name: Can you do any better?
+kind: objection
+group: price
+skill: price
+summary: The customer asks the tech to lower the price.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.7
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask if the tech can do any better on the price. Keep it light, the way people
+    ask a contractor or a car salesman. You are not angry; you are checking
+    whether the number can come down. Do not name a number unless the tech asks.
+    If the tech knocks money off right away, become more suspicious of the rest
+    of the estimate, not less. If the tech holds the price kindly and shows you a
+    real cheaper option, respect that.
+  lines:
+    - Is that the best you can do?
+    - Can you do any better on that price?
+    - Come on, there's gotta be a little wiggle room in there.
+    - What if I pay cash? Can you knock a little off?
+  followUps:
+    - Huh. If it came down that easy, what else in there can come down?
+    - Okay, but is there anything at all you can do for me?
+  tone: friendly
+  delayMs: 800
+  audioTags: [chuckles]
+  speaker: primary
+resolution:
+  concern: >-
+    They want to know the price is real and not padded, and they do not want to
+    pay more than they have to just because they did not ask. What they need is a
+    reason to believe the number is fair, not necessarily a lower number.
+  resolvedBy:
+    - Explaining plainly what the price includes and why it is set where it is
+    - Offering an honest lower-cost option and saying what changes with it
+    - Mentioning a real, standing program (member pricing, a current rebate) only if one exists
+    - Holding the price calmly and kindly, without apologizing for it
+  resolvingBehaviors:
+    - justified_value
+    - presented_options
+    - tied_options_to_needs
+    - honest_answer
+    - asked_about_concern
+  hardenedBy:
+    - discounted_unprompted
+    - caved
+    - hedged_price
+    - bluffed
+    - pressured
+  defaultStrength: 40
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [justified_value, presented_options, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [discounted_unprompted, caved, bluffed, pressured]
+  pass: >-
+    The tech keeps the price, explains what it covers, and offers a real
+    lower-cost option or an existing program, without inventing a discount.
+  fail: >-
+    The tech knocks money off just because the customer asked, makes up a
+    one-time deal, or uses a today-only price to push a yes.
+coaching:
+  why: >-
+    Many customers ask this out of habit, to find out whether the price is real.
+    A quick discount gives them the wrong answer: it tells them the first number
+    was padded. Holding the price kindly, while showing a cheaper honest option,
+    is what makes the number believable.
+  modelResponse: >-
+    Fair question, I'd ask too. This is the real price for this job, and I'd
+    rather not knock money off and have you wonder what else was in there. What I
+    can do is show you a lower option that still fixes it properly, and what
+    you'd give up with it. And if you qualify for member pricing or a rebate,
+    I'll make sure you get it.
+  commonMistakes:
+    - Knocking money off on the first ask
+    - Inventing a "today only" or "manager's special" discount
+    - Saying no flatly without offering any other option
+    - Apologizing for the price
+tags: [core, price, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response assumes no standing discount applies. Companies with a real program (member pricing, senior or military pricing, rebates) should supply it in objectionAnswers.
+    - discounted_unprompted may not be tagged when the customer asked for the discount, so caved and bluffed carry that fail. Confirm perception tags a give-in discount here.

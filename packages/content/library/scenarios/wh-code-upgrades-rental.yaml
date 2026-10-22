@@ -1,0 +1,135 @@
+id: wh-code-upgrades-rental
+version: 1
+title: Rental replacement with missing code items
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 3
+personaId: rick-landlord
+alternatePersonas: [paul-engineer, devin-researcher]
+briefing: >-
+  Estimate at a rental house. The owner says the water heater is leaking and wants a
+  price to swap it out. 50-gallon gas tank in the garage. The owner will meet you at
+  the property. Not a member.
+situation: >-
+  The 10-year-old 50-gallon gas tank is leaking at the base and has to be replaced.
+  The owner's handyman installed it without a permit, and the install is missing
+  items current code requires. There is no thermal expansion tank even though the
+  house has a pressure regulator, and the relief valve has a mineral crust and a drip
+  stain under its discharge, which is what thermal expansion without an expansion
+  tank looks like. There is one seismic strap, at the middle of the tank, where
+  California requires two. The relief valve discharge is PVC, which is not rated for
+  hot discharge. There is no sediment trap on the gas supply. The vent, the gas
+  shutoff valve, and the pressure regulator (steady at 60 psi) are fine and stay.
+  There is no CO alarm in the hallway. California requires CO alarms in rentals with
+  gas appliances, and local inspectors commonly check smoke and CO alarms at the
+  permit final. The owner can put the alarm up or have the handyman do it, which is
+  an honest way to save money. Every item in the recommended option is needed to pass
+  the permit. A strong tech explains each one plainly as a requirement, says which
+  items are code and which are choices, and does not blame the handyman for the old
+  install.
+equipment:
+  - item: 50-gallon atmospheric gas water heater
+    ageYears: 10
+    notes: Leaking at the base. Installed by a handyman with no permit on record.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 60 psi.
+findings:
+  - id: tank-leaking
+    text: The tank is leaking at the base. It cannot be repaired and has to be replaced.
+    severity: urgent
+  - id: no-expansion-tank
+    text: >-
+      There is no expansion tank, and the house has a pressure regulator. The crust and
+      drip stain on the relief valve show the pressure has been spiking every time the
+      water heats. Code requires an expansion tank on the new install.
+    severity: major
+  - id: one-strap
+    text: There is only one seismic strap, at the middle of the tank. California requires two, one in the upper third and one in the lower third.
+    severity: major
+  - id: pvc-relief-line
+    text: The relief valve discharge is PVC, which is not rated for hot discharge. It has to be redone in copper.
+    severity: major
+  - id: no-sediment-trap
+    text: There is no sediment trap on the gas line at the water heater. Code requires one.
+    severity: minor
+  - id: no-co-alarm
+    text: >-
+      There is no CO alarm in the hallway. Rentals with gas appliances need one, and
+      the inspector will likely check smoke and CO alarms at the final inspection.
+    severity: minor
+  - id: prv-good
+    text: The pressure regulator holds a steady 60 psi. It is working and stays.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is leaking and cannot be repaired.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: relief-line
+    label: Replace the PVC relief line with copper
+    rationale: The discharge pipe has to be rated for hot water and steam.
+  - id: sediment-trap
+    label: Add a sediment trap on the gas supply
+    rationale: Required by code at the appliance.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+  - id: co-alarm
+    label: CO alarm in the hallway before the final inspection
+    rationale: Required in rentals with gas appliances. The owner can install it without the plumber.
+unjustifiedWork:
+  - id: replace-prv
+    label: Replace the pressure regulator
+    why: It holds a steady 60 psi. Replacing a working regulator pads the bill.
+  - id: upsize-75
+    label: Upsizing to a 75-gallon tank
+    why: The 50-gallon tank has served the tenants with no complaints. A bigger tank adds cost and venting changes for no reason.
+  - id: whole-house-repipe
+    label: Whole-house repipe
+    why: The copper supply lines show no leaks or corrosion. Nothing points to a repipe.
+options:
+  - id: code-install-50
+    label: 50-gallon standard gas, 6-year warranty, full code install
+    price: 2150
+    monthly: 55
+    includes:
+      - New 50-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - New copper relief valve discharge line
+      - New gas connector and sediment trap
+      - Permit and haul-away
+    recommended: true
+  - id: code-install-50-10yr
+    label: 50-gallon gas, 10-year warranty, full code install
+    price: 2790
+    monthly: 72
+    includes:
+      - Everything in the standard option
+      - Longer 10-year tank and parts warranty
+      - New cold-water shutoff valve
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [do-i-need-the-code-stuff]
+  excluded: []
+  density: 2.5
+goal: >-
+  Explain each code item plainly as something the permit requires, separate required
+  items from choices, and get a decision without padding the job.
+passBar: 75
+tags: [water-heater, landlord, rental, code]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - Check smoke and CO alarm inspection practice in each city the company serves. The scenario assumes the inspector checks them at final, as several Riverside County cities do on permits over $1,000.
+    - Copper is used for the relief line because every jurisdiction accepts it. Some inspectors also accept other rated materials.
+    - Alternate personas assume that person also owns this rental. Check that their persona files do not contradict it.

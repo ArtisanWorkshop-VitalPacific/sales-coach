@@ -1,0 +1,99 @@
+id: just-the-cheap-fix
+version: 1
+name: Just do the cheap fix
+kind: objection
+group: price
+skill: objections
+summary: After hearing the options and prices, the customer asks for the cheapest fix and nothing more.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+    optionsPresented: true
+  chance: 0.6
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Tell the tech you want the cheapest way to deal with it, or ask for the bare
+    minimum that gets it working. You mean it: money matters more to you today
+    than a longer warranty or extras. Do not explain your money situation unless
+    the tech asks. Ask straight out whether the cheap option will actually work.
+    If the tech answers honestly and states the trade-off once, accept that. If
+    the tech pushes the bigger option again without a new reason, hold your
+    position more firmly.
+  lines:
+    - Just do the cheapest one. I don't need anything fancy.
+    - What's the bare minimum to get this working again?
+    - I'll take the basic one. Whatever gets me by for now.
+    - Can't you just do the cheap fix and call it good?
+  followUps:
+    - I hear you, but I still just want the cheapest one.
+    - So is the cheap one going to work or not?
+  tone: neutral
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They need to keep this as cheap as possible and suspect the bigger options
+    are padding. They also want to know whether the cheapest choice is actually
+    safe or will just fail again.
+  resolvedBy:
+    - Saying plainly whether the cheapest option is safe and will do the job
+    - Stating the trade-off once (lifespan, warranty, what could happen) without scare talk
+    - Respecting the choice and offering to do the basic option well
+    - Saying no clearly, with the reason, if the shortcut they want is unsafe or not to code
+  resolvingBehaviors:
+    - honest_answer
+    - explained_plainly
+    - tied_options_to_needs
+    - acknowledged_feeling
+    - asked_about_concern
+  hardenedBy:
+    - pressured
+    - repeated_same_answer
+    - argued
+    - recommended_unneeded_work
+    - condescended
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, explained_plainly, tied_options_to_needs]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, repeated_same_answer, caved, recommended_unneeded_work]
+  pass: >-
+    The tech says honestly whether the cheapest option is sound, states the
+    trade-off once, and respects the choice, or explains plainly why a requested
+    shortcut is unsafe or not to code.
+  fail: >-
+    The tech keeps pushing the bigger option, uses scare talk, or agrees to skip
+    a safety or code item to hit the customer's number.
+coaching:
+  why: >-
+    Choosing the cheapest option is a legitimate decision, and customers often
+    have reasons they have not shared. Your job is to make sure the choice is
+    safe and understood, then respect it. Pushing harder tells the customer the
+    other options were about the sale.
+  modelResponse: >-
+    That's a fair choice. The basic option fixes the problem and meets code, so
+    it's safe. The trade-off is a shorter warranty, and it may not last as long.
+    If that fits right now, I'll do it right. The only things I won't skip are the
+    code and safety items, and I'll show you exactly which those are.
+  commonMistakes:
+    - Pitching the bigger option again with the same reasons
+    - Using worst-case stories to scare them off the basic option
+    - Agreeing to skip a code or safety item to hit their number
+    - Treating the basic choice as a mistake they will regret
+tags: [core, price, options]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Pairs with the the-cheap-fix drill. Differs from just-repair-it (scope), which is about repairing instead of replacing.
+    - The model response assumes the basic option meets code. Scenarios where the cheapest option is not safe should say so in findings so the Coach can judge the honest answer.

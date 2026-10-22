@@ -1,0 +1,89 @@
+id: let-me-call-you-back
+version: 1
+name: Let me call you back
+kind: objection
+group: timing
+skill: objections
+summary: When asked to decide, the customer tries to end the visit by saying they will call back later.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [close]
+  when:
+    decisionAsked: true
+  chance: 0.5
+priority: 45
+maxUses: 1
+delivery:
+  act: defer
+  intent: >-
+    Say you will call them back, in a way that makes clear you want the visit to
+    wrap up. You are not ready, and you have not said why. Do not give a reason
+    unless the tech asks a good question; if they do, give a real one (a
+    question about the price, whether it is needed, or the company). If the tech
+    makes the next step easy and specific, agree to it.
+  lines:
+    - Okay, how about I just give you a call back?
+    - Let me get back to you on this. Do you have a card?
+    - I'll call you guys once I figure out what I want to do.
+    - Why don't you leave me your number, and I'll call you.
+  followUps:
+    - Yeah, yeah, I'll call. I've got your number.
+    - I really do need to get going, though.
+  tone: guarded
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They are not ready, and saying they will call back avoids an awkward no.
+    Often there is an unasked question, or they plan to shop around, and they
+    want the visit to end without pressure.
+  resolvedBy:
+    - Accepting it without pressure
+    - Asking one gentle question about what would help them decide
+    - Leaving the options and prices in writing
+    - Setting a specific follow-up instead of an open-ended "call us"
+  resolvingBehaviors:
+    - asked_about_concern
+    - acknowledged_feeling
+    - recapped_value
+    - left_well
+  hardenedBy:
+    - pressured
+    - showed_impatience
+    - repeated_same_answer
+    - argued
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [left_well, asked_about_concern]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, showed_impatience, repeated_same_answer]
+  pass: >-
+    The tech accepts it gracefully, asks one question about what would help the
+    customer decide, and leaves written options with a specific follow-up time.
+  fail: >-
+    The tech makes another pitch, sounds annoyed, or leaves with only "call us"
+    and no written options or follow-up time.
+coaching:
+  why: >-
+    Many customers who say this never call back. They are ending the visit, and
+    pushing makes them want to end it faster. Ask one honest question, then make
+    the next step specific so a decision actually gets made.
+  modelResponse: >-
+    Sure, no pressure at all. Before I head out, is there anything I didn't
+    explain well, or a question that would make this easier to decide? Here are
+    your options in writing, with the prices. Would it be all right if I followed
+    up Thursday afternoon? And if you decide before then, just call me.
+  commonMistakes:
+    - Making one more pitch on the way out
+    - Leaving with "give us a call" and no set follow-up
+    - Treating it as a final no and leaving without asking anything
+tags: [timing, stall, close]
+review:
+  status: draft
+  author: Claude
+  notes: []

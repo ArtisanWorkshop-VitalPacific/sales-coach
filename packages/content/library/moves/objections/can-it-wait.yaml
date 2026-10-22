@@ -1,0 +1,93 @@
+id: can-it-wait
+version: 1
+name: Can it wait?
+kind: objection
+group: timing
+skill: integrity
+summary: When asked to decide, the customer asks whether the work really has to happen now or can wait a while.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [close]
+  when:
+    decisionAsked: true
+  chance: 0.6
+priority: 50
+maxUses: 1
+delivery:
+  act: defer
+  intent: >-
+    Ask whether this really has to be done now, or whether it can wait a few
+    weeks or months. You would rather spend the money later. Listen for scare
+    tactics: if the tech sounds like they are inventing urgency, get more
+    doubtful. If the tech gives an honest answer, including "yes, part of it can
+    wait," trust them more. Do not say why you want to wait unless asked.
+  lines:
+    - Does this have to be done today? Or can it wait a bit?
+    - Could I hold off on this for a month or two?
+    - What happens if I just leave it alone for now?
+    - Is this an emergency, or can it wait until things settle down?
+  followUps:
+    - But what are the chances that actually happens?
+    - So can it wait or not? Just give it to me straight.
+  tone: thoughtful
+  delayMs: 700
+  audioTags: [thoughtful]
+  speaker: primary
+resolution:
+  concern: >-
+    They want to put off the cost, and they suspect urgency is a sales tactic.
+    They need an honest assessment of the risk of waiting so they can decide for
+    themselves.
+  resolvedBy:
+    - Answering honestly what can safely wait, what cannot, and why
+    - Explaining plainly what is likely to happen if they wait, without worst-case stories
+    - Separating safety or water damage risks from normal wear
+    - Respecting a choice to wait and saying what to watch for in the meantime
+  resolvingBehaviors:
+    - honest_answer
+    - explained_plainly
+    - showed_evidence
+    - tied_options_to_needs
+    - left_well
+  hardenedBy:
+    - pressured
+    - bluffed
+    - recommended_unneeded_work
+    - argued
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, explained_plainly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, bluffed, caved]
+  pass: >-
+    The tech says honestly what can wait and what cannot, explains the real risk
+    plainly without scare talk, and respects the customer's choice.
+  fail: >-
+    The tech invents urgency or tells worst-case stories, or says it can all wait
+    when the findings show a safety or water damage risk.
+coaching:
+  why: >-
+    This question is a direct test of honesty. If the work can wait, saying so
+    earns trust that lasts past this visit. If it truly cannot, the customer
+    needs a calm, specific reason, not a scare story.
+  modelResponse: >-
+    Fair question, and I'll give you a straight answer. This part can wait a few
+    months, and here's what to watch for in the meantime. This other part can't,
+    because it's already leaking, and that's how the damage happens. If you'd
+    like to do only the urgent part now and plan for the rest, that's a
+    reasonable choice.
+  commonMistakes:
+    - Telling worst-case stories to make waiting sound dangerous
+    - Calling everything urgent when only part of it is
+    - Saying it can wait when it is a real safety risk, to avoid an awkward moment
+    - Treating the question as a stall instead of answering it
+tags: [timing, integrity, urgency]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The honest answer depends on the scenario's findings and their severity. The Coach should judge it against the scenario's findings and justifiedWork.

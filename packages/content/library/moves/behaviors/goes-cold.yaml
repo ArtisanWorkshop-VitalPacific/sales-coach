@@ -1,0 +1,74 @@
+id: goes-cold
+version: 1
+name: Goes cold
+kind: behavior
+group: intensity
+skill: listening
+summary: >-
+  After the tech pushes, talks down, or sounds impatient, the customer goes
+  short and cool and starts closing the conversation.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: []
+  afterBehaviors: [pressured, condescended, showed_impatience]
+  chance: 0.8
+priority: 85
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    The tech just pushed you, talked down to you, or sounded impatient with
+    you. Do not argue. Go short and cool. Answer in a few words, stop
+    volunteering anything, and make it clear you are close to ending the
+    visit. Warm back up slowly, and only if the tech notices, owns it plainly
+    without excuses, and slows down. If they keep going the same way, ask them
+    to write it up and leave.
+  lines:
+    - Okay. I'm not going to be rushed into this.
+    - I was just asking a question. Okay. Go ahead.
+    - Mm-hm. Just write it up and leave it with me.
+    - You know, I think I'll get a couple other quotes.
+  followUps:
+    - I'd really just like it in writing. I'll call you.
+    - Okay. Anything else?
+  tone: cold
+  delayMs: 900
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, asked_about_concern, left_well]
+  failIf:
+    anyBehaviors: [pressured, showed_impatience, argued, condescended]
+  pass: >-
+    The tech notices the change, owns what they did in plain words, slows
+    down, and asks what the customer needs, or leaves well if the customer
+    wants to end the visit.
+  fail: >-
+    The tech keeps pushing, gets defensive, or carries on as if nothing
+    changed.
+coaching:
+  why: >-
+    When a customer goes cold, something you just did landed badly, and they
+    decided not to argue about it. Most will not tell you. They will just say
+    no at the end. Naming it and slowing down is the only way to get the
+    conversation back.
+  modelResponse: >-
+    I'm sorry, I think I came across as pushy just now, and that's not how I
+    want this to go. There's no pressure to decide today. What questions do
+    you still have? I'd rather you feel good about whatever you choose, even
+    if that means getting another quote.
+  commonMistakes:
+    - Not noticing the shorter answers and pushing on
+    - Explaining why you were right instead of owning it
+    - Asking for the decision again to save the sale
+    - Going quiet and short in return
+tags: [intensity, recovery, reactive]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Reactive to pressured, condescended, or showed_impatience. Lines 1 and 2 fit pressure and condescension; lines 3 and 4 fit any of the three.
+    - left_well passes because a graceful exit with a clear next step is a good outcome once the customer has gone cold.

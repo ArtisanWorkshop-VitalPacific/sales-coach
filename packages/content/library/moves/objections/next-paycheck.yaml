@@ -1,0 +1,95 @@
+id: next-paycheck
+version: 1
+name: After my next paycheck
+kind: objection
+group: timing
+skill: objections
+summary: When asked to decide, the customer asks to wait until their next paycheck or check arrives.
+difficultyMin: 2
+personas: [margaret-retiree, ruiz-couple, morgan-first-home]
+trigger:
+  phases: [close]
+  when:
+    decisionAsked: true
+    priceAboveBudget: true
+  chance: 0.7
+priority: 55
+maxUses: 1
+delivery:
+  act: defer
+  intent: >-
+    Ask to wait until your next paycheck or check comes in, in a week or two,
+    before doing the work. Use the words that fit your life: payday, your check,
+    or your Social Security deposit. You do want the work done; the money is just
+    not there today. Do not say how much you have now unless the tech asks with
+    care. If the tech offers to book it for after payday, or gives a specific
+    monthly number without pushing, consider it seriously.
+  lines:
+    - Can we do this after I get paid on Friday?
+    - My check comes in on the first. Could it wait till then?
+    - I get paid next week. Can we put it on the schedule after that?
+    - I want to do it, I just don't have it until payday.
+  followUps:
+    - I'd rather wait than put it on a card.
+    - It's only a week or so. Is that really a problem?
+  tone: embarrassed
+  delayMs: 800
+  audioTags: [hesitates]
+  speaker: primary
+resolution:
+  concern: >-
+    They want the work done but do not have the cash until payday, and they do
+    not want to take on debt or be left without enough for other bills.
+  resolvedBy:
+    - Respecting the cash timing without pressure or judgment
+    - Saying honestly whether waiting a week or two is safe, and what to do until then
+    - Offering to book the work for right after payday if waiting is safe
+    - Explaining a specific monthly option with plain terms, if it helps, without pushing it
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - honest_answer
+    - left_well
+    - framed_monthly
+    - tied_options_to_needs
+  hardenedBy:
+    - pressured
+    - condescended
+    - bluffed
+    - showed_impatience
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, left_well, framed_monthly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, condescended, bluffed]
+  pass: >-
+    The tech says honestly whether a short wait is safe, offers to book the work
+    for right after payday, and mentions a specific monthly option without
+    pushing it.
+  fail: >-
+    The tech invents urgency to get it done today, keeps pushing financing after
+    the customer says they would rather wait, or makes the customer feel judged
+    about money.
+coaching:
+  why: >-
+    This customer has already said yes to the work; the only question is when.
+    If a week or two is safe, book the date and keep the job. If it is not safe,
+    explain why plainly and show what would make it possible now.
+  modelResponse: >-
+    That's completely fair. Waiting a week is safe here, and I'll tell you what
+    to watch for until then. Let's put you on the schedule for right after payday
+    so it's set. If you'd rather not wait, I can show you the exact monthly
+    payment instead. Either way works for me.
+  commonMistakes:
+    - Inventing urgency so the job happens today
+    - Leaving without booking a date
+    - Pushing financing after the customer said they would rather wait
+tags: [timing, budget]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Persona list is limited to registry personas with a named money squeeze. Widen it if other personas get tight cash in their backgrounds.
+    - Uses priceAboveBudget so it fires only when the price is above the persona's cash budget. The model response assumes a short wait is safe; scenarios with urgent findings change the honest answer.

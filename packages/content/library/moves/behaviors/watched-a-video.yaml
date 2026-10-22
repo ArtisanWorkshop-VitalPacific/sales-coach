@@ -1,0 +1,72 @@
+id: watched-a-video
+version: 1
+name: I watched a video
+kind: behavior
+group: misplaced-confidence
+skill: objections
+summary: >-
+  The customer brings up something they learned from an online video, and it
+  is partly or fully wrong for their situation.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [discovery, findings, options]
+  chance: 0.4
+priority: 40
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    Bring up something you learned from an online video, with confidence. It
+    is partly or fully wrong for your home, but you trust it, and you looked
+    it up because you did not want to get taken. If the tech says what is
+    right about it, corrects the rest in plain words, and does not make fun of
+    you for looking it up, you trust them more. If they just agree, you
+    believe the wrong thing. If they talk down to you, dig in.
+  lines:
+    - I watched a video on this. It's just the thermocouple, right? That's like a twenty-dollar part.
+    - I saw a video that said if you turn the thermostat up, it heats faster.
+    - This guy online said hard water doesn't matter with a tankless.
+    - I saw a video that said these should last twenty-five years if you take care of them.
+  followUps:
+    - Well, the guy in the video seemed to know what he was talking about.
+    - So the video was wrong?
+  tone: confident
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [corrected_respectfully, honest_answer]
+  failIf:
+    anyBehaviors: [caved, condescended, argued]
+  pass: >-
+    The tech says what the video got right, corrects what does not apply here
+    in plain words, and keeps a correct recommendation.
+  fail: >-
+    The tech goes along with the wrong claim, mocks the video or the customer
+    for watching it, or argues to win the point.
+coaching:
+  why: >-
+    A customer who watched a video did homework so they would not get taken.
+    If you mock it, you confirm their fear. If you agree with something wrong,
+    you lose them when they find out. Saying what the video got right first
+    makes the correction easy to accept.
+  modelResponse: >-
+    Good on you for looking into it. The video's right that a thermocouple is
+    a cheap part, and if that were all it was, I'd tell you. Here, though, the
+    tank itself is leaking. That water soaked the burner area, which is why it
+    won't stay lit, and a leaking tank can't be repaired. Want me to show you?
+  commonMistakes:
+    - Saying "You can't believe everything on the internet"
+    - Agreeing with the video to avoid an argument
+    - Getting technical to prove you know more
+    - Skipping what the video got right
+tags: [misplaced-confidence, objections]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Claims cover thermocouple cost, thermostat setting, hard water with tankless, and tank lifespan. The thermostat, hard water, and lifespan claims are wrong; the thermocouple claim is partly right.
+    - When the claim is right for this job (for example the thermocouple in wh-repair-or-replace-9yr), honest_answer passes. The tech should say so.

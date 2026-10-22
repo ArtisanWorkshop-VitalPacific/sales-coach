@@ -1,0 +1,96 @@
+id: too-expensive
+version: 1
+name: That's too expensive
+kind: objection
+group: price
+skill: objections
+summary: The customer reacts to the price by saying it costs too much.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.8
+priority: 60
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    React to the price by saying it is too much. Say it from your own situation,
+    in your own words, not as a bargaining move. Do not ask for a discount. Do not
+    say what you can afford, what number you had in mind, or what else is going
+    on with money unless the tech asks a good question about it. If the tech
+    drops the price right away, trust the rest of the estimate less.
+  lines:
+    - "[exhales] Wow. That's a lot more than I was expecting."
+    - That's way too much for something like this.
+    - Hm. That's too expensive. I can't do that.
+    - Honestly, that seems like a lot of money for what it is.
+  followUps:
+    - I get that, but it's still a lot of money.
+    - Okay, but that doesn't really change the number for me.
+  tone: guarded
+  delayMs: 900
+  audioTags: [exhales]
+  speaker: primary
+resolution:
+  concern: >-
+    The number is bigger than they planned for, and they are not sure it is worth
+    it or that they can cover it without strain. "Too expensive" is a first
+    reaction that usually means a budget limit or doubt about the value.
+  resolvedBy:
+    - Asking what feels like too much, the total itself or not being sure it is worth it
+    - Explaining in plain words what the price covers and why
+    - Showing an honest lower-cost option that still solves the problem
+    - Giving a specific monthly number when the total is the barrier
+  resolvingBehaviors:
+    - asked_about_concern
+    - acknowledged_feeling
+    - justified_value
+    - tied_options_to_needs
+    - framed_monthly
+    - new_angle
+  hardenedBy:
+    - discounted_unprompted
+    - hedged_price
+    - pressured
+    - argued
+    - condescended
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [asked_about_concern, justified_value, tied_options_to_needs, framed_monthly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [discounted_unprompted, pressured, argued, caved]
+  pass: >-
+    The tech stays calm, asks what feels like too much, explains what the price
+    covers, and offers an honest lower-cost option or a monthly number if the
+    total is the problem.
+  fail: >-
+    The tech knocks money off on the spot, drops needed work to hit a number,
+    pushes for a yes anyway, or argues that the price is fair.
+coaching:
+  why: >-
+    "Too expensive" is usually a first reaction, not a final answer. Underneath
+    it is a budget limit or doubt that the work is worth it, and you cannot tell
+    which until you ask. Dropping the price confirms the number was padded, and
+    defending it starts an argument.
+  modelResponse: >-
+    I understand, it's a real number. Can I ask what feels like too much? Is it
+    the total, or not being sure it's worth it? (Listens.) Okay. There's a lower
+    option that still fixes it safely, and I'll show you exactly what you'd give
+    up. And if spreading it out helps, I can give you an exact monthly number.
+  commonMistakes:
+    - Knocking money off before finding out what the concern is
+    - Defending the price at length before asking a single question
+    - Jumping straight to financing without asking what the worry is
+    - Pitching the same option again with the same reasons
+tags: [core, price]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Check that perception tags a discount offered right after this objection as discounted_unprompted, since the customer did not ask for one.

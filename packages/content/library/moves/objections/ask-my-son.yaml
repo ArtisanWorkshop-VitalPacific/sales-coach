@@ -1,0 +1,95 @@
+id: ask-my-son
+version: 1
+name: I want to ask my son
+kind: objection
+group: timing
+skill: objections
+summary: When asked to decide, the customer says she wants to check with her grown son first.
+difficultyMin: 1
+personas: [margaret-retiree]
+trigger:
+  phases: [close]
+  when:
+    decisionAsked: true
+  chance: 0.8
+priority: 65
+maxUses: 1
+delivery:
+  act: defer
+  intent: >-
+    Say you would like to ask your son before you decide. Use his name if your
+    background gives one. You trust his judgment on money and the house, and you
+    are afraid of making a costly mistake on your own. You also feel bad
+    bothering him. Do not bring up any past mistake unless the tech asks a gentle
+    question. If the tech offers to call him with you, or to send him photos and
+    the options, accept warmly.
+  lines:
+    - I think I'd like to ask my son about this first, if that's all right.
+    - Let me call my son tonight. He's better with these things than I am.
+    - Oh, I don't know. I'd feel better if my son looked at it first.
+    - Would you mind if I talked it over with my son first?
+  followUps:
+    - Well, I'd still like him to hear about it, dear.
+    - I just don't want to make a mistake on my own.
+  tone: warm
+  delayMs: 900
+  audioTags: [hesitates]
+  speaker: primary
+resolution:
+  concern: >-
+    She does not trust herself to make a big money decision alone and is afraid
+    of being taken advantage of. Her son is the person she relies on to check
+    big decisions, and she feels bad asking him.
+  resolvedBy:
+    - Treating the son's input as a good idea, not an obstacle
+    - Offering to call him together now, or to send him photos and the written options
+    - Making sure she understands the choices well enough to explain them
+    - Setting a specific time to follow up after she talks to him
+  resolvingBehaviors:
+    - included_second_person
+    - acknowledged_feeling
+    - showed_evidence
+    - used_customer_detail
+    - checked_understanding
+    - left_well
+  hardenedBy:
+    - pressured
+    - condescended
+    - showed_impatience
+    - argued
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [included_second_person, left_well, showed_evidence]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, condescended, showed_impatience]
+  pass: >-
+    The tech welcomes the son's input, offers to call him with her or send him
+    photos and the written options, and sets a specific follow-up.
+  fail: >-
+    The tech suggests she does not need her son's opinion, pushes her to decide
+    alone, or talks to her as if she cannot understand it.
+coaching:
+  why: >-
+    Checking with a trusted family member is how many careful customers protect
+    themselves. Treating the son as an obstacle confirms her fear of being taken
+    advantage of. Making it easy to include him builds the trust that leads to a
+    yes.
+  modelResponse: >-
+    I think that's a great idea. Would you like to call him now? I'm happy to
+    explain it to him myself. If he's busy, I can text him photos of what I found
+    and the options in writing, so he sees exactly what you see. When do you
+    think you'll talk to him? I'll check back with you then.
+  commonMistakes:
+    - Suggesting she can decide this without bothering him
+    - Leaving without giving her anything to show her son
+    - Talking to her as if she cannot follow the explanation
+    - Using a today-only price to get a yes before she can call him
+tags: [timing, stall, second-decision-maker]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Written for margaret-retiree, whose son lives two hours away. If another persona needs a grown child as an advisor, such as rosa-spanish and her daughter, add a separate move or generalize this one.

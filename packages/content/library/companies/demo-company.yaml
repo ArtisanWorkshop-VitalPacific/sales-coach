@@ -1,0 +1,332 @@
+id: demo-company
+version: 1
+name: Summit Plumbing & Air
+shortName: Summit
+trades: [plumbing, hvac]
+serviceArea:
+  - Riverside
+  - Corona
+  - Moreno Valley
+  - Menifee
+  - Murrieta
+  - Temecula
+  - Lake Elsinore
+  - Hemet
+about: >-
+  Summit Plumbing & Air is a family-owned plumbing and HVAC company founded in 2008.
+  It serves homeowners across Riverside County. Its techs give every customer options
+  and a written, flat-rate price before any work starts. Its Summit Care Club
+  membership covers a yearly water heater flush, priority scheduling, and member
+  pricing on repairs.
+brandVoice:
+  - >-
+    Friendly and calm. Sound like a helpful neighbor who knows plumbing, not like a
+    salesperson.
+  - >-
+    Plain and specific. Use plain words and real numbers, and explain any trade term
+    you use.
+  - >-
+    Options, not pressure. Lay out the choices, give your recommendation and the
+    reason, and let the customer decide.
+  - >-
+    Accountable. Put it in writing, do what you said you would do, and own it if
+    something goes wrong.
+promises:
+  - id: written-flat-rate-price
+    label: Written, flat-rate price before work starts
+    detail: >-
+      Every job gets a written, flat-rate price before any work begins. The price
+      does not change unless the customer approves a change in writing.
+  - id: options-every-time
+    label: Options on every job
+    detail: >-
+      Every customer sees their options, including the simplest fix that will hold,
+      with the tech's recommendation and the reason for it.
+  - id: respect-the-home
+    label: Respect for the home
+    detail: >-
+      Shoe covers at the door, drop cloths under the work area, and a clean work area
+      before the tech leaves. Old parts and packaging leave with the tech.
+  - id: arrival-window
+    label: Two-hour arrival window
+    detail: >-
+      Customers get a two-hour arrival window and a call or text when the tech is on
+      the way.
+  - id: labor-warranty
+    label: 2-year labor warranty
+    detail: >-
+      Repairs and installations carry a 2-year labor warranty. Equipment and parts
+      carry the manufacturer's warranty.
+  - id: emergency-24-7
+    label: 24/7 emergency service
+    detail: Emergency service is available 24 hours a day, 7 days a week.
+process:
+  - id: arrive-and-set-frame
+    name: Arrive and set the frame
+    description: >-
+      Arrive inside the two-hour window. Put on shoe covers at the door. Introduce
+      yourself and Summit, and confirm the customer's name and why they called. Lay
+      out the plan: a few questions, an inspection, a look at what you find, and
+      options with a written price. The customer decides, with no pressure.
+    required: true
+  - id: discovery
+    name: Ask before you diagnose
+    description: >-
+      Ask what they have noticed, when it started, what has been done before, how old
+      the system is, who lives in the home, how long they plan to stay, and what
+      matters most to them: cost, timing, or doing it once. Write down what they say.
+    required: true
+  - id: inspect
+    name: Inspect
+    description: >-
+      Put drop cloths under the work area. Diagnose the problem they called about,
+      then check the related items a careful tech would check. On a water heater, that
+      means the venting, the gas or electrical connection, the seismic straps, the
+      expansion tank, and the water pressure. Take photos of what you find.
+    required: true
+  - id: show-findings
+    name: Show and explain what you found
+    description: >-
+      Show the photos or the part. Explain each finding in plain words: what it is,
+      why it matters, and how urgent it is. Say what is in good shape too. Do not
+      recommend work the findings do not support.
+    required: true
+  - id: present-options
+    name: Present options
+    description: >-
+      Give two or three options tied to what the customer told you, including the
+      simplest fix that will hold. Say which one you recommend for their home and why,
+      in one or two sentences.
+    required: true
+  - id: written-price
+    name: Give the written price
+    description: >-
+      Write a flat-rate price for each option before any work begins. Say the price
+      clearly, once, then stop talking and let the customer think.
+    required: true
+  - id: answer-questions
+    name: Answer questions honestly
+    description: >-
+      Ask what questions they have and answer each concern directly. When cost is the
+      concern, show what is included, go back to the other options, and explain
+      financing as a monthly number with its real terms. Never use pressure or urgency
+      that is not real.
+    required: true
+  - id: ask-for-decision
+    name: Ask for the decision
+    description: >-
+      Ask plainly which option they want, and get their signature on the written
+      price. If the scope changes mid-job, stop and get their approval in writing
+      before you go further.
+    required: true
+  - id: offer-summit-care-club
+    name: Offer the Summit Care Club
+    description: >-
+      If they are not a member, offer the Summit Care Club once and tie it to what you
+      found. It is $19.95 a month, month to month: a yearly water heater flush,
+      priority scheduling, 15 percent off repairs, and no overtime fees. Accept a no
+      without a second push.
+    required: true
+  - id: clean-up-and-wrap
+    name: Clean up and leave well
+    description: >-
+      Clean the work area and take old parts and packaging with you. Test the work
+      with the customer and show them what you did. Explain the 2-year labor warranty
+      and thank them. On a no, leave the written options with them and thank them
+      just the same.
+    required: true
+membership:
+  name: Summit Care Club
+  summary: >-
+    Month-to-month membership at $19.95 a month, with no contract. Members get a
+    yearly water heater flush, priority scheduling, 15 percent off repairs, and no
+    overtime fees. Members can cancel anytime.
+  benefits:
+    - Annual water heater flush
+    - Priority scheduling
+    - 15 percent off repairs
+    - No overtime fees on nights, weekends, or holidays
+  verified: true
+financing:
+  available: true
+  summary: >-
+    Financing through a third-party lender, subject to credit approval. Two choices:
+    0 percent APR for 12 months, with the price split into 12 equal monthly payments,
+    or a 60-month plan with a fixed rate and a fixed monthly payment, where the rate
+    depends on credit. The tech shows both as monthly numbers, and the customer
+    applies on the tech's tablet in a few minutes.
+  verified: true
+priceRanges:
+  - id: drain-cleaning
+    item: Drain cleaning, from a single-fixture clog to hydro jetting
+    low: 150
+    high: 800
+    source: Fictional demo value, set to the public Riverside County ranges used across the library
+  - id: water-heater-replacement
+    item: Water heater replacement, from a standard tank to high-efficiency
+    low: 1400
+    high: 3200
+    source: Fictional demo value, set to the public Riverside County ranges used across the library
+  - id: sewer-camera-inspection
+    item: Sewer camera inspection
+    low: 250
+    high: 400
+    source: Fictional demo value, set to the public Riverside County ranges used across the library
+differentiators:
+  - A written, flat-rate price and a set of options on every job
+  - Two-hour arrival window with a call or text when the tech is on the way
+  - 2-year labor warranty on repairs and installations
+  - Summit Care Club at $19.95 a month, month to month
+  - 0 percent financing for 12 months
+scripts:
+  preferred:
+    - moment: Introduce yourself at the door
+      line: >-
+        Hi, I'm [your name] with Summit Plumbing and Air. Thanks for having me out.
+        Let me put my shoe covers on before I come in.
+    - moment: Set the frame
+      line: >-
+        Here's my plan. I'll ask a few questions, take a look, and show you what I
+        find. Then I'll give you a few options with prices in writing, and you decide.
+        No pressure either way.
+    - moment: Discovery
+      line: >-
+        Tell me what's been going on. When did you first notice it?
+    - moment: Show the finding
+      line: >-
+        Let me show you what I found. Here's the problem, here's why it matters, and
+        here's what looks fine.
+    - moment: Present options
+      line: >-
+        I've got three options for you. Here's what each one includes, and here's the
+        one I'd pick for your house, and why.
+    - moment: Present the written price
+      line: >-
+        Here's the price in writing. It's flat rate, so it won't change once I start
+        unless you approve a change.
+    - moment: Offer financing
+      line: >-
+        If it's easier to spread out, there's zero percent for twelve months, or a
+        sixty-month plan with a smaller monthly payment. Want me to show you both?
+    - moment: Offer the Summit Care Club
+      line: >-
+        One more thing, and it's totally optional. The Summit Care Club is nineteen
+        ninety-five a month. You get a yearly water heater flush, priority scheduling,
+        fifteen percent off repairs, and no overtime fees. Want to hear more?
+    - moment: Ask for the decision
+      line: >-
+        Which of these feels right to you?
+    - moment: Leave well
+      line: >-
+        No problem at all. Here's everything in writing so you can think it over. If
+        you have questions, call me.
+  banned:
+    - "This price is only good today."
+    - "I need an answer before I leave."
+    - "Trust me."
+    - "Whoever installed this had no idea what they were doing."
+    - "If you wait, you're going to regret it."
+    - "I can knock a few hundred off if you sign right now."
+    - "Everybody qualifies for the zero percent."
+    - "The club pays for itself, guaranteed."
+objectionAnswers:
+  - moveId: show-me-in-writing
+    answer: >-
+      Of course. Every option and its price goes in writing before I start. It's flat
+      rate, so the number on the paper is the number you pay. If I find something else
+      once I'm in there, I stop and get your okay in writing before I do anything more.
+  - moveId: need-three-bids
+    answer: >-
+      That makes sense. Can I ask what you'll be comparing, price or what's included?
+      I'll put every option in writing, line by line, so it's easy to compare. If you
+      have questions about the other quotes, call me and I'll tell you straight.
+  - moveId: too-expensive
+    answer: >-
+      I hear you. Let me show you what's in that number. If one of the other options
+      fits your budget better, we can go that way. And if spreading it out would help,
+      there's zero percent for twelve months, or a sixty-month plan with a smaller
+      monthly payment.
+  - moveId: can-it-wait
+    answer: >-
+      Sometimes it can, so here's my honest read on yours. If it's working and not
+      leaking, waiting is a real option, and I'll tell you what to watch for. If it's
+      leaking or unsafe, I wouldn't wait. Either way, the written options are yours to
+      keep.
+  - moveId: you-always-upsell
+    answer: >-
+      Fair question. I'll show you exactly what I found, what needs fixing, and what's
+      fine as it is. One of your options is always the simplest fix that'll hold, and
+      you pick. If anything I recommend doesn't make sense, ask me and I'll explain it.
+  - moveId: whats-the-catch
+    answer: >-
+      Fair to ask. The twelve-month plan is zero percent APR. The price is split into
+      twelve equal payments, so if you pay on time, you pay what's on the estimate and
+      nothing more. The sixty-month plan has interest, and the rate depends on credit.
+      Both need credit approval, and you'll see the numbers before you sign anything.
+  - moveId: what-do-i-actually-get
+    answer: >-
+      Here's exactly what you get for nineteen ninety-five a month. A yearly water
+      heater flush, priority scheduling when you call, fifteen percent off repairs,
+      and no overtime fees on nights and weekends. It's month to month, so you can
+      cancel anytime. If you wouldn't use it, I'll tell you it's not worth it.
+  - moveId: memberships-are-a-scam
+    answer: >-
+      I get it, some of them are. Here's ours, so you can judge for yourself. Nineteen
+      ninety-five a month gets you a yearly flush, priority scheduling, fifteen percent
+      off repairs, and no overtime fees. It's month to month, no contract. If it
+      doesn't fit how you use your house, skip it. No hard feelings.
+  - moveId: ill-just-call-when-it-breaks
+    answer: >-
+      That works, and plenty of people do it that way. The club makes the most sense
+      if you'd use the yearly flush, since that's the maintenance that helps a tank
+      last longer. If you'd rather call when something comes up, we'll be here, 24/7.
+facts:
+  - Family-owned since 2008, serving homeowners across Riverside County.
+  - Licensed, bonded, and insured for plumbing and HVAC work in California.
+  - Every job gets a written, flat-rate price before any work starts.
+  - Two-hour arrival window, with a call or text when the tech is on the way.
+  - 2-year labor warranty on repairs and installations, plus the manufacturer's warranty on equipment.
+  - >-
+    Summit Care Club is $19.95 a month, month to month: a yearly water heater flush,
+    priority scheduling, 15 percent off repairs, and no overtime fees.
+  - Financing with credit approval, either 0 percent APR for 12 months or a 60-month plan.
+  - >-
+    Water heater replacements include a thermal expansion tank, two seismic straps,
+    the permit, and haul-away of the old unit.
+  - 24/7 emergency service.
+sources: []
+review:
+  status: draft
+  author: Claude
+  notes:
+    - >-
+      Summit Plumbing & Air is a fictional company used in demo mode. Every fact,
+      promise, price, membership term, financing term, warranty, and date in this file
+      is made up. Never present it as a real business.
+    - >-
+      Fictional terms set by the request: the Summit Care Club at $19.95 a month with
+      an annual water heater flush, priority scheduling, 15 percent off repairs, and no
+      overtime fees; financing with 0 percent for 12 months and 60-month plans; and the
+      price ranges of $150 to $800 for drain cleaning, $1,400 to $3,200 for water
+      heater replacement, and $250 to $400 for a sewer camera inspection.
+    - >-
+      Fictional details added by Claude to make the company realistic: founded in
+      2008, family-owned, the Riverside County service area, the two-hour arrival
+      window, the 2-year labor warranty, a month-to-month club that can be cancelled
+      anytime, an unnamed third-party lender, the 0 percent plan as 12 equal payments,
+      tablet applications, and the water heater install inclusions. Change any of them
+      freely.
+    - >-
+      The schema stores monthlyPrice as a whole number of dollars, so the $19.95 club
+      price is stated in the summary and monthlyPrice is left out. If the engine needs
+      the number, the schema owner could store cents or allow decimals.
+    - >-
+      membership.verified and financing.verified are true because the request defines
+      these terms for demo mode. They are not confirmed with any real business.
+    - >-
+      No license number, address, phone number, or lender name is given, so the demo
+      cannot be confused with a real business. Before public demos, check that no
+      company in the demo service area uses the name Summit Plumbing & Air.
+    - >-
+      The about field and facts are written as if the company were real, so the
+      customer and coach can use them in role play without saying it is fictional.

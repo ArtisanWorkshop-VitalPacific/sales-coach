@@ -56,10 +56,10 @@ coaching:
     listening until they hear it. A clear range answers the question, and then
     they are ready to hear the explanation.
   modelResponse: >-
-    Fair question. Depending on which option you pick, it runs from about
-    (lowest option price) to about (highest option price), everything
-    included. The difference comes down to what each one includes. Give me one
-    minute and I'll show you which one fits what you told me.
+    Fair question. Depending on which way you go, it's between about (lowest
+    option price) and (highest option price), all in. The difference is what
+    each option includes. Give me one minute and I'll show you which one fits
+    what you told me.
   commonMistakes:
     - Saying "I'm getting to that" and continuing the explanation
     - Answering "it depends" with no number at all
@@ -71,4 +71,4 @@ review:
   author: Claude
   notes:
     - Fires only before a price has been stated. The runtime cuts in once the tech has talked for 9 seconds.
-    - A clear range counts as a pass. Check that perception tags a plainly stated range as stated_price.
+    - passIf uses anyBehaviors so a plainly stated range passes even if perception does not tag it stated_price. A plain explanation with no number could also pass; check this in testing.

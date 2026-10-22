@@ -1,0 +1,99 @@
+id: you-always-upsell
+version: 1
+name: You guys always upsell
+kind: objection
+group: trust
+skill: integrity
+summary: The customer says plumbing companies always try to sell more than the job needs.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [findings, options, price]
+  when:
+    trustBelow: 50
+  chance: 0.6
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say, a little sharply, that companies like this always try to sell you more
+    than you need. Say it when the tech mentions anything beyond the problem you
+    called about or lays out bigger options; if they have not yet, say it as a
+    warning. You cannot tell which recommendations are real. Relax only if the
+    tech clearly separates what is required from what is optional and offers the
+    smallest honest fix. If the tech recommends something the findings do not
+    support, say so directly.
+  lines:
+    - Here we go. You guys always find something else to sell me.
+    - I called about one thing, and now it's three things?
+    - Every time somebody comes out here, it turns into a bigger job.
+    - Is all of that really needed, or is this the upsell part?
+  followUps:
+    - So which of those do I actually need? Just tell me straight.
+    - That still sounds like a sales pitch to me.
+  tone: skeptical
+  delayMs: 500
+  audioTags: [skeptical]
+  speaker: primary
+resolution:
+  concern: >-
+    They have been sold extras before and cannot tell which recommendations are
+    real. They want to know what is truly required, and to feel free to say no
+    to the rest.
+  resolvedBy:
+    - Separating what is required (failing, unsafe, or required by code) from what is optional, in plain words
+    - Showing the evidence for anything called required
+    - Offering the smallest honest fix as a real option
+    - Saying out loud that the optional items are the customer's call, and meaning it
+  resolvingBehaviors:
+    - honest_answer
+    - showed_evidence
+    - explained_plainly
+    - presented_options
+    - acknowledged_feeling
+  hardenedBy:
+    - recommended_unneeded_work
+    - pressured
+    - argued
+    - bluffed
+    - single_option_only
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, showed_evidence, explained_plainly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [recommended_unneeded_work, pressured, argued, bluffed, caved]
+  pass: >-
+    The tech separates what is required from what is optional, shows the
+    evidence for the required items, offers the smallest honest fix, and makes
+    clear the extras are the customer's choice.
+  fail: >-
+    The tech gets defensive, calls everything necessary without showing why,
+    keeps pushing work the findings do not support, or drops a real code or
+    safety item to look less pushy.
+coaching:
+  why: >-
+    This customer has been sold things they did not need, and saying you are
+    different will not change their mind. Seeing you separate required work from
+    optional work will. Show the evidence, offer the smallest honest fix, and let
+    them choose.
+  modelResponse: >-
+    That's fair, and I'd rather you ask. Here's the straight version. This part
+    is required because it's failing, and I'll show you. This one is required by
+    code, so I can't leave it out. Everything else is optional, and it's
+    completely your call. If you only want the required part, that's a complete
+    fix, and I'll do it right.
+  commonMistakes:
+    - Saying "we're not like other companies" instead of showing it
+    - Calling optional items "needed" to keep them in the quote
+    - Getting defensive about the question
+    - Dropping a real code or safety item to look less pushy
+tags: [core, trust, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Differs from only-fix-what-i-called-for (scope), which limits the work. This one questions the tech's motive.

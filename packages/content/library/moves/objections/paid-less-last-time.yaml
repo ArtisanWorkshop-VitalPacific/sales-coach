@@ -1,0 +1,92 @@
+id: paid-less-last-time
+version: 1
+name: I paid less last time
+kind: objection
+group: price
+skill: objections
+summary: The customer says they paid much less the last time they had this kind of work done.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.5
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you paid a lot less the last time you had this kind of work done, years
+    ago or at a previous house. You remember the number roughly and you are sure
+    it was lower. Do not bring up what was included last time. If the tech asks,
+    admit you are not sure it had the same parts, a permit, or the same warranty.
+  lines:
+    - I had this same thing done a few years back and paid way less.
+    - Last time I had one of these put in, it was like half that.
+    - Huh. I paid nowhere near that the last time.
+    - That's a lot more than I paid at my old house.
+  followUps:
+    - Prices can't have gone up that much.
+    - It was the same job, though. Why's it so much more now?
+  tone: skeptical
+  delayMs: 700
+  audioTags: [surprised]
+  speaker: primary
+resolution:
+  concern: >-
+    The jump makes them think they are being overcharged. They are comparing to
+    a remembered number, not to the same job, and they need a reason the
+    difference is fair.
+  resolvedBy:
+    - Asking when it was done and what was included last time
+    - Explaining honestly what has changed, such as parts costs, code requirements, and permits
+    - Showing what this price includes that the last job may not have
+    - Not arguing with their memory or criticizing whoever did the last job
+  resolvingBehaviors:
+    - asked_about_concern
+    - asked_follow_up
+    - justified_value
+    - explained_plainly
+    - honest_answer
+  hardenedBy:
+    - argued
+    - condescended
+    - bluffed
+    - showed_impatience
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [asked_about_concern, asked_follow_up, justified_value]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, condescended, bluffed]
+  pass: >-
+    The tech asks when the last job was done and what it included, then explains
+    honestly what is different now and what this price covers.
+  fail: >-
+    The tech argues with the customer's memory, makes up reasons for the
+    difference, or criticizes whoever did the last job.
+coaching:
+  why: >-
+    Customers compare to the last number they remember, not to the same job.
+    Often the old job was years ago, had no permit, or left out items code now
+    requires. Ask about the last job first, then explain the difference honestly,
+    without criticizing the last company.
+  modelResponse: >-
+    That's a fair thing to compare. When was that, and do you remember what was
+    included? Was there a permit? (Listens.) Okay. A few things are different
+    now. This job needs a couple of code items that weren't required back then,
+    and parts cost more than they did. Let me show you each piece so you can
+    compare it with what you got.
+  commonMistakes:
+    - Telling the customer their memory must be wrong
+    - Saying the last company must have skipped things, without knowing
+    - Explaining price increases at length instead of asking about the last job
+tags: [price, comparison]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response assumes this job includes code items newer than the customer's last job, which is true for California water heater replacements. The Coach should accept any honest, specific explanation of the difference.

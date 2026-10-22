@@ -1,0 +1,95 @@
+id: what-am-i-paying-for
+version: 1
+name: What am I paying for?
+kind: objection
+group: price
+skill: price
+summary: The customer asks what is actually included in the price.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.6
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask what exactly is in that price. You are not refusing; you want to know
+    where the money goes before you agree. If the tech gives a vague answer like
+    "parts and labor," ask for more detail. If the tech uses trade words, ask
+    what they mean. Do not mention other quotes or what you think it should cost.
+  lines:
+    - Okay, but what am I actually paying for there?
+    - Can you break that down for me? What's in that number?
+    - That's a lot. Where does all that money go?
+    - So what does that include? Is that everything?
+  followUps:
+    - Okay, but parts and labor doesn't really tell me anything.
+    - So if I add it all up, where's the rest of it going?
+  tone: skeptical
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They cannot see where the money goes, so the price feels made up. They want
+    to know what they are getting, and that nothing is hidden or padded.
+  resolvedBy:
+    - Walking through what the price covers in plain words, such as the parts, labor, code items, permit, haul-away, and warranty
+    - Saying what is not included and what could change the price
+    - Offering to put it in writing, itemized
+    - Checking whether the breakdown answered the question
+  resolvingBehaviors:
+    - justified_value
+    - explained_plainly
+    - showed_evidence
+    - checked_understanding
+    - honest_answer
+  hardenedBy:
+    - used_jargon
+    - bluffed
+    - showed_impatience
+    - hedged_price
+    - rambled
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    allBehaviors: [justified_value]
+    anyBehaviors: [explained_plainly, checked_understanding, showed_evidence]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [used_jargon, showed_impatience, bluffed]
+  pass: >-
+    The tech breaks the price into plain parts (parts, labor, code items, permit,
+    haul-away, warranty), says what is not included, and offers it in writing.
+  fail: >-
+    The tech answers with "parts and labor," lists trade terms without
+    explaining them, makes up a cost breakdown, or gets short with the customer
+    for asking.
+coaching:
+  why: >-
+    A price with no breakdown feels made up, even when it is fair. A customer who
+    asks this is often close to yes and wants to see where the money goes. A
+    clear, itemized answer gives them something they can check.
+  modelResponse: >-
+    Good question. It breaks down into the parts, the labor to do it, anything
+    code requires, the permit if there is one, haul-away, and the warranty on
+    parts and labor. I'll write it out line by line so you can see every piece,
+    and what isn't included. Does that answer it, or is there a piece you want me
+    to go into?
+  commonMistakes:
+    - Saying "parts and labor" and stopping there
+    - Listing trade terms the customer does not know
+    - Taking the question as an attack on the price
+    - Guessing at a dollar split they cannot back up
+tags: [price, value]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Flat-rate techs often do not know the dollar split per line item. The model response lists what is included without inventing per-line costs; company price books may allow more detail.
+    - passIf requires justified_value plus one of the plain-language behaviors. Confirm the engine reads allBehaviors and anyBehaviors together that way.

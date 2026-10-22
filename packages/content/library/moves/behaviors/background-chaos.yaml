@@ -17,16 +17,16 @@ maxUses: 2
 delivery:
   act: distracted
   intent: >-
-    A dog starts barking in the background and takes your attention away. Deal
-    with it in one short, distracted line, then turn back to the tech. You
-    missed the last thing they said, and you may be a little embarrassed about
-    the noise. Pay full attention again if the tech pauses, stays relaxed, and
-    repeats the key point briefly.
+    A dog starts barking nearby and takes your attention away. Deal with it in
+    one short, distracted line, then turn back to the tech. You missed the last
+    thing they said, and you are a little embarrassed about the noise. Pay full
+    attention again if the tech pauses, stays relaxed, and repeats the key
+    point briefly.
   lines:
-    - Sorry, hang on. Quiet! Sorry. What were you saying?
-    - Oh my gosh, that dog. Sorry, go ahead.
-    - Hold on, I can't hear you over the barking. Okay, sorry.
-    - "[chuckles] Sorry, sorry. Hush! Okay, where were you?"
+    - Sorry, hang on. I can't hear you over that dog. Okay, go ahead.
+    - Oh my gosh, that dog. Sorry, what were you saying?
+    - Sorry, sorry. Give me one second. Okay, where were you?
+    - "[chuckles] Sorry. That dog never stops. Okay, go ahead."
   followUps:
     - Sorry, I missed that last part. Can you say it again?
   tone: distracted
@@ -66,5 +66,5 @@ review:
   status: draft
   author: Claude
   notes:
-    - Uses dog-bark. The lines do not say whose dog it is, so they work for most homes.
-    - Margaret has a cat, not a dog (movePreference 0.5). For her the voice writer should treat it as a neighbor's dog and pick a line that fits.
+    - Uses dog-bark. The lines say "that dog" so they fit the customer's own dog or a neighbor's (Margaret has a cat, not a dog).
+    - A kids-background version would need its own move id. jen-busy-parent is the obvious fit if one is added later.

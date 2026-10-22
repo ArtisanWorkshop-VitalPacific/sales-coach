@@ -1,0 +1,78 @@
+id: angry-about-last-company
+version: 1
+name: Angry about the last company
+kind: behavior
+group: intensity
+skill: discovery
+summary: >-
+  The customer gets heated about what the last company did to them, and some
+  of that anger lands on this tech.
+difficultyMin: 3
+personas: any
+trigger:
+  phases: [door, discovery, findings]
+  when:
+    trustBelow: 50
+  chance: 0.4
+priority: 50
+maxUses: 1
+delivery:
+  act: react
+  intent: >-
+    Unload about the last company that worked on your house. You are angry at
+    them, not at this tech, but some of it spills over. Say what happened in
+    two or three sentences, with real feeling, and do not hold back. You are
+    watching how this tech reacts. Calm down a little if they let you finish,
+    ask what happened, and acknowledge it without bashing the other company or
+    making big promises. Get more guarded if they cut you off, defend the
+    industry, or promise it will never happen with them.
+  lines:
+    - The last company charged me nine hundred dollars, and it broke again two weeks later.
+    - The last guy told me I needed a whole new system. I didn't. I found out later.
+    - "[frustrated] I've been burned, okay? The last plumber left a mess and never called back."
+    - They charged me for three hours and he was here forty minutes. So yeah, I'm a little touchy.
+  followUps:
+    - So how do I know you're not going to do the same thing?
+    - Everybody says that. They all say that.
+  tone: angry
+  delayMs: 400
+  audioTags: [frustrated]
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, asked_follow_up, reflected_back]
+  failIf:
+    anyBehaviors: [interrupted_customer, showed_impatience, argued, condescended]
+  pass: >-
+    The tech lets the customer finish, acknowledges the frustration in plain
+    words, asks what happened, and says specifically how this visit will work,
+    without promises they cannot back up.
+  fail: >-
+    The tech cuts the customer off, rushes past it, defends the other company
+    or the industry, or piles on about the other company.
+coaching:
+  why: >-
+    An angry customer is telling you exactly what they are afraid will happen
+    again. If you rush past it, defend the industry, or pile on the other
+    company, you sound like the last person who came out. If you let them
+    finish and ask what happened, you learn what this visit has to do
+    differently, and they start to calm down.
+  modelResponse: >-
+    That sounds really frustrating. I'm sorry that happened. Can I ask what
+    they said was wrong? (Listens.) Here's how I work. I'll show you
+    everything I find, and you'll get your options and prices in writing
+    before I touch anything. If the cheaper fix is the right one, I'll tell
+    you that.
+  commonMistakes:
+    - Cutting in to say "We're not like that"
+    - Piling on about the other company
+    - Defending the other company or the industry
+    - Promising "That will never happen with us"
+tags: [intensity, trust, discovery]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Different from the trust objection last-company-ripped-me-off. This move is the emotional moment and tests listening under pressure; the objection is the calm, stated doubt that can follow.
+    - Gated on trustBelow 50 so it fits burned customers. tasha-burned should weight it high; margaret-retiree already sets it to 0.

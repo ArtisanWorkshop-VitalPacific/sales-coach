@@ -7,5 +7,8 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - "@livekit/rtc-node"
-  - onnxruntime-node
   - protobufjs
+
+# onnxruntime-node (used by the Live mode agent for voice activity detection) downloads
+# native binaries on install. It is left out of onlyBuiltDependencies so web installs stay
+# fast and offline-safe; the agent host runs `pnpm rebuild onnxruntime-node` (see docs/RUNBOOK.md).

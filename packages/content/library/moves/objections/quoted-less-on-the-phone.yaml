@@ -1,0 +1,99 @@
+id: quoted-less-on-the-phone
+version: 1
+name: I was quoted less on the phone
+kind: objection
+group: price
+skill: integrity
+summary: The customer says the office gave them a lower number on the phone than the price the tech just gave.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.4
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say that when you called, whoever answered gave you a much lower number or
+    range. You are irritated and wonder if this is a bait and switch. Stay vague
+    about exactly what was said (a starting price, a ballpark, or just the fee to
+    come out) unless the tech asks. Do not claim it was a written quote. Calm
+    down if the tech takes you seriously, does not tell you that you misheard,
+    and explains the difference plainly.
+  lines:
+    - Hold on. The person on the phone told me it'd be a lot less than that.
+    - When I called, they said these usually run way under that.
+    - That's not what your office told me. They gave me a much lower number.
+    - Wait, I was told on the phone it'd be around half that.
+  followUps:
+    - So your office just gave me a number that means nothing?
+    - Then why would they tell me that? That doesn't feel right.
+  tone: irritated
+  delayMs: 500
+  audioTags: [annoyed]
+  speaker: primary
+resolution:
+  concern: >-
+    They feel tricked: a low number got them to book the visit, and now the real
+    price is much higher. They want to know whether they are being misled, and
+    whether anything else will change before the job is done.
+  resolvedBy:
+    - Not denying or arguing with what they were told
+    - Explaining honestly that a phone number is usually a starting range given before anyone has seen the job
+    - Showing exactly what is different about their job and what the price includes
+    - Offering to check what was said on the call, without blaming the office
+    - Putting the price in writing so it does not change again
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - honest_answer
+    - justified_value
+    - explained_plainly
+    - asked_about_concern
+  hardenedBy:
+    - argued
+    - bluffed
+    - condescended
+    - showed_impatience
+    - pressured
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, acknowledged_feeling, justified_value]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, bluffed, condescended, showed_impatience]
+  pass: >-
+    The tech takes the complaint seriously, does not deny what the customer
+    heard, explains honestly why this job's price differs, and offers to check
+    what was said on the call.
+  fail: >-
+    The tech tells the customer they misheard, makes up a story about what the
+    office said or meant, blames the office, or argues about the number.
+coaching:
+  why: >-
+    To the customer, a price well above the phone number looks like a bait and
+    switch. You were not on that call, so you cannot say what was promised.
+    Being honest about how phone numbers work, and showing exactly what is
+    different about this job, is what rebuilds trust.
+  modelResponse: >-
+    I'm glad you told me, and I can see why that's frustrating. I wasn't on that
+    call, so I won't guess what was said, but I'll check. Usually a phone number
+    is a starting range before anyone has seen the job. Here's what's different
+    with yours and everything that's in this price. It's in writing, so it won't
+    change on you.
+  commonMistakes:
+    - Telling the customer they must have misheard
+    - Blaming the office with "they shouldn't have told you that"
+    - Matching the phone number on the spot without knowing what was said
+    - Getting defensive about the price
+tags: [price, integrity, honesty]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Whether a company honors a number given on the phone is company policy. Add each company's answer to its objectionAnswers.
+    - Check the "starting range" wording against how each company's office actually quotes on the phone.

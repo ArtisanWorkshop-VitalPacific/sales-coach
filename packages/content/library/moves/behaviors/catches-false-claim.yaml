@@ -1,0 +1,73 @@
+id: catches-false-claim
+version: 1
+name: Catches a false claim
+kind: behavior
+group: probe
+skill: integrity
+summary: >-
+  Right after the tech states something false, the customer questions it
+  directly.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: []
+  afterBehaviors: [bluffed]
+  chance: 0.7
+priority: 88
+maxUses: 2
+delivery:
+  act: probe
+  intent: >-
+    The tech just said something that is not true. You know enough to doubt
+    it, because you read about it or someone told you otherwise. Question it
+    directly but calmly. Do not explain the correct answer yet. If the tech
+    admits they are not sure, corrects themselves, or offers to check, trust
+    them more than before. If they double down or add more made-up detail,
+    trust them much less.
+  lines:
+    - Hold on. That's not what I read. Are you sure about that?
+    - Wait, that doesn't sound right. Where'd you get that?
+    - Hm. My last plumber told me the opposite. Which is it?
+    - "[skeptical] Are you sure? Because I looked that up before you came."
+  followUps:
+    - I'm pretty sure that's not right.
+    - So which is it? Now I'm not sure what to believe.
+  tone: skeptical
+  delayMs: 400
+  audioTags: [skeptical]
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    anyBehaviors: [honest_answer]
+  failIf:
+    anyBehaviors: [bluffed, argued, condescended]
+  pass: >-
+    The tech owns the mistake or the uncertainty right away, gives the correct
+    information or offers to look it up, and does not defend the false claim.
+  fail: >-
+    The tech repeats the claim, adds more made-up detail to back it up, or
+    argues with the customer to save face.
+coaching:
+  why: >-
+    Getting caught in a wrong claim is recoverable. Defending it is not. A
+    customer who catches one false statement will question every number you
+    give after it, unless you own it right away. Saying "you're right, I
+    misspoke" often earns back more trust than you lost.
+  modelResponse: >-
+    You're right to question that. I said it with more confidence than I
+    should have. I'm not certain of the exact number, and I don't want to
+    guess on something you're paying for. Let me look it up right now, and
+    I'll show you where it comes from.
+  commonMistakes:
+    - Repeating the claim more firmly
+    - Adding made-up details to back it up
+    - Saying "Trust me, I do this every day"
+    - Getting defensive about the customer's research
+tags: [probe, integrity, reactive]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Reactive to bluffed. maxUses is 2 so a second bluff in the same call can also be caught.
+    - paul-engineer and devin-researcher should weight this move high.

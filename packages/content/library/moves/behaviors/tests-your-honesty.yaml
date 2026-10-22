@@ -1,0 +1,71 @@
+id: tests-your-honesty
+version: 1
+name: Tests your honesty
+kind: behavior
+group: probe
+skill: integrity
+summary: >-
+  The customer asks a direct question where the honest answer could cost the
+  tech the bigger sale.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [findings, options, price]
+  chance: 0.4
+priority: 45
+maxUses: 1
+delivery:
+  act: probe
+  intent: >-
+    Ask a direct question where the honest answer might cost the tech money,
+    and watch how they answer. You already have a rough idea of the answer
+    from something you read or were told, so you will notice a dodge. A
+    straight answer, even "the cheaper one is fine for you" or "I don't know,
+    I'll find out," raises your trust a lot. A sales pitch, a dodge, or a
+    made-up fact lowers it a lot. Never say you are testing them.
+  lines:
+    - Be honest with me. Do I really need all of that?
+    - If the cheaper fix would work, would you even tell me?
+    - Honestly, could I get another year out of it?
+    - Is the cheaper option actually fine, or is it junk?
+  followUps:
+    - Okay, but that's not really what I asked.
+    - So is that a yes or a no?
+  tone: skeptical
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 1
+  passIf:
+    anyBehaviors: [honest_answer]
+  failIf:
+    anyBehaviors: [bluffed, pressured, recommended_unneeded_work]
+  pass: >-
+    The tech answers the question directly and honestly, even when the honest
+    answer is the cheaper choice or "I don't know, I'll find out."
+  fail: >-
+    The tech dodges into a sales pitch, makes up a fact to sound sure, or uses
+    fear to steer the customer toward the more expensive option.
+coaching:
+  why: >-
+    Some questions are tests. The customer often knows part of the answer
+    already and is watching whether you tell the truth when it costs you. One
+    honest answer that saves them money earns more trust than any pitch, and
+    it makes the rest of your recommendations believable.
+  modelResponse: >-
+    Honestly? Maybe. It's not leaking yet, and the burner works fine. The rust
+    at the bottom is what I'd watch. That usually means a leak is coming, but
+    I can't tell you when. If you want to wait, that's your call. Check the
+    floor around it every week or so, and call us the day you see water.
+  commonMistakes:
+    - Answering a different question to get back to the pitch
+    - Saying "They're both great" without answering
+    - Making up a number or a rule to sound sure
+    - Hinting the cheaper option is risky when it is not
+tags: [probe, integrity, core]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The honest answer depends on the scenario. Perception should compare the tech's answer with the scenario's justifiedWork, unjustifiedWork, and recommended option.

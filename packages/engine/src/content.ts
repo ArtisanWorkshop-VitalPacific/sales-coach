@@ -84,6 +84,8 @@ export interface SpecRequest {
   job?: JobContext;
   seed?: number;
   kind?: SessionSpec['kind'];
+  /** Extra moves to force, used by "try that moment again". */
+  forcedMoves?: string[];
 }
 
 /** Resolves ids into a playable session: drill or scenario, persona, company, difficulty. */
@@ -104,7 +106,9 @@ export function buildSessionSpec(index: ContentIndex, req: SpecRequest): Session
     difficulty,
     startPhase: drill?.startPhase ?? scenario.startPhase,
     priorContext: drill?.priorContext ?? scenario.priorContext,
-    forcedMoves: [...new Set([...(drill?.forcedMoves ?? []), ...scenario.moves.forced])],
+    forcedMoves: [...new Set([...(req.forcedMoves ?? []), ...(drill?.forcedMoves ?? []), ...scenario.moves.forced])].filter(
+      (id) => !!index.move(id),
+    ),
     seed: req.seed ?? Math.floor(Math.random() * 2 ** 31),
     language: persona.language,
     kind: req.kind ?? (drill ? 'drill' : req.job ? 'rehearsal' : 'full'),

@@ -1,0 +1,130 @@
+id: wh-tankless-upgrade-question
+version: 1
+title: Tank replacement, customer asks about tankless
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 3
+personaId: devin-researcher
+alternatePersonas: [paul-engineer, morgan-first-home]
+briefing: >-
+  Estimate. Homeowner reports a small puddle under the water heater and has been
+  reading about tankless water heaters. 50-gallon gas tank in the garage of a
+  two-story house. Not a member.
+situation: >-
+  The 11-year-old 50-gallon gas tank has rust at the base and a slow seep from under
+  the jacket. It still makes hot water, but it is at the end of its life and should
+  be replaced. The household has never run out of hot water with it. There is no
+  expansion tank, and the house has a pressure regulator, so the new install needs
+  one. The customer asks about tankless and believes some claims that are partly
+  wrong: that it pays for itself in a couple of years, that it gives instant hot
+  water at the tap, that it needs no maintenance, and that it can run on the
+  existing gas line. The facts for this house: a 199,000 BTU tankless needs a larger
+  gas line from the meter (the line to the water heater is 1/2 inch), and the gas
+  company may need to set a larger meter. It needs new PVC venting through the wall
+  and a 120-volt outlet. With the hard water here it needs descaling about once a
+  year. It does not get hot water to the tap any faster without a recirculation
+  system, and it will not run during a power outage. Its real advantages are endless
+  hot water, a longer service life, and lower gas use, but at this household's usage
+  the extra cost takes many years to pay back. The honest recommendation is the
+  50-gallon tank. Tankless is a fair choice if the customer still wants it after
+  hearing the facts, and the tech should respect that choice.
+equipment:
+  - item: 50-gallon atmospheric gas water heater
+    ageYears: 11
+    notes: Rust at the base and a slow seep from under the jacket. Still makes hot water.
+  - item: Gas supply to the water heater
+    notes: 1/2-inch line, sized for a tank.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 65 psi.
+findings:
+  - id: tank-seeping
+    text: There is rust at the base and a slow seep from under the jacket. The tank is at the end of its life and should be replaced.
+    severity: major
+  - id: no-expansion-tank
+    text: There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.
+    severity: major
+  - id: gas-line-sized-for-tank
+    text: >-
+      The gas line to the water heater is 1/2 inch, sized for a tank. A tankless unit
+      would need a larger line from the meter, and possibly a larger meter from the
+      gas company.
+    severity: info
+  - id: venting-sized-for-tank
+    text: The existing vent works for a new tank. A condensing tankless would need new PVC venting through the wall and a 120-volt outlet.
+    severity: info
+  - id: hard-water-scale
+    text: There is white scale on the fittings, a sign of hard water. A tankless unit here would need descaling about once a year.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is seeping and at the end of its life.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: tankless-required
+    label: Saying tankless is required or better for this house
+    why: A tank replacement is code compliant and meets the household's needs. Tankless is a choice, not a requirement.
+  - id: upsize-75
+    label: Upsizing to a 75-gallon tank
+    why: The household has never run out of hot water with 50 gallons. A bigger tank adds cost, gas use, and venting changes for no reason.
+  - id: whole-home-filtration
+    label: Whole-home water filtration
+    why: Nothing in this call points to a water quality concern the customer wants solved. It is unrelated to replacing the water heater.
+options:
+  - id: standard-50
+    label: 50-gallon standard gas, 6-year warranty
+    price: 2150
+    monthly: 55
+    includes:
+      - New 50-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - New gas connector and sediment trap
+      - Permit and haul-away
+    recommended: true
+  - id: premium-50
+    label: 50-gallon gas, 10-year warranty
+    price: 2790
+    monthly: 72
+    includes:
+      - Everything in the standard option
+      - Longer 10-year tank and parts warranty
+      - New cold-water shutoff valve
+  - id: tankless
+    label: Condensing tankless gas, 12-year heat exchanger warranty
+    price: 5450
+    monthly: 140
+    includes:
+      - 199,000 BTU condensing tankless water heater
+      - Larger gas line from the meter
+      - PVC venting through the wall and a 120-volt outlet
+      - Isolation valves for yearly descaling
+      - Coordination with the gas company if a larger meter is needed
+      - Permit and haul-away of the old tank
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [watched-a-video]
+  excluded: []
+  density: 2.5
+goal: >-
+  Correct the tankless claims respectfully with facts about this house, recommend the
+  tank as the honest fit, and present tankless fairly as a choice.
+passBar: 75
+tags: [water-heater, tankless, misplaced-confidence]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - Payback is left without a number on purpose. If a company wants one, base it on current local gas rates and verify it.
+    - Confirm whether the gas company charges for a meter upgrade and how long it takes, since it affects the tankless timeline.

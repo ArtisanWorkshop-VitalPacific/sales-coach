@@ -1,0 +1,74 @@
+id: repeats-answered-objection
+version: 1
+name: Brings back an answered objection
+kind: behavior
+group: confusion
+skill: objections
+summary: >-
+  The customer brings back an objection the tech already answered, as if the
+  answer never fully landed.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  chance: 0.5
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    The runtime picks the objection the tech answered most recently. Raise
+    that same concern again, in new words, as if the answer did not fully
+    settle it. You are not trying to be difficult. Either the answer did not
+    stick, or the worry underneath is still there. Do not say the tech was
+    wrong and do not add a new objection. If the tech answers calmly from a
+    different angle, or asks what is still bothering you, the worry eases. If
+    they repeat the same answer or sound impatient, it gets stronger.
+  lines:
+    - Sorry, I know you answered this already. I'm still stuck on it, though.
+    - Okay, but going back to what I said before. I'm still not sure about that.
+    - I hear you. I just keep coming back to the same thing.
+    - Can we go back to that? It's still bugging me a little.
+  followUps:
+    - Yeah, that's what you said before. I'm still not sure.
+    - I get it. It's just still on my mind.
+  tone: guarded
+  delayMs: 800
+  audioTags: []
+  speaker: primary
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [new_angle, asked_about_concern]
+  failIf:
+    anyBehaviors: [repeated_same_answer, showed_impatience]
+  pass: >-
+    The tech stays calm and answers from a different angle (the evidence, the
+    numbers in writing, something the customer said earlier) or asks what is
+    still bothering them.
+  fail: >-
+    The tech repeats the first answer, only longer or louder, or says "like I
+    said" or anything else that shows impatience.
+coaching:
+  why: >-
+    Customers bring an objection back because the first answer did not settle
+    the worry, not because they did not hear it. Repeating yourself, or saying
+    "like I said," tells them you are not listening. A calm answer from a new
+    angle, or a question about what is still bothering them, moves it forward.
+  modelResponse: >-
+    That's fair. It's a real decision, so it makes sense it's still on your
+    mind. Can I ask what part is still bothering you? (Listens.) Okay, let me
+    come at it a different way. (Answers with something new: the evidence, the
+    numbers in writing, or a detail they mentioned earlier.)
+  commonMistakes:
+    - Saying "like I said" or "as I mentioned"
+    - Repeating the first answer, only longer and louder
+    - Treating the repeat as a no and dropping the price
+    - Answering again without asking what is still unclear
+tags: [confusion, objections]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - trigger.when.objectionAnswered is left unset on purpose. The runtime picks the most recently answered objection, so the lines stay generic.
+    - asked_about_concern is a second pass path alongside new_angle, since asking what is still unclear is a valid different angle.

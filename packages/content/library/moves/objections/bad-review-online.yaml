@@ -1,0 +1,96 @@
+id: bad-review-online
+version: 1
+name: I read a bad review
+kind: objection
+group: trust
+skill: objections
+summary: Early in the visit, the customer brings up a bad online review of the company.
+difficultyMin: 3
+personas: any
+trigger:
+  phases: [door, discovery]
+  when:
+    trustBelow: 50
+    minTurn: 1
+  chance: 0.4
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Mention that you looked the company up and read a bad review, for example
+    someone saying they were overcharged or pushed into work they did not need.
+    Say it plainly, without being rude. You only remember the gist, so do not
+    quote it. Become friendlier if the tech takes it seriously, does not attack
+    the reviewer, and tells you how this visit will work. If the tech gets
+    defensive or makes excuses, stay guarded.
+  lines:
+    - I looked you guys up before you came. Somebody said you overcharged them.
+    - I read a review where somebody said you pushed them into work they didn't need.
+    - Not gonna lie, I saw a pretty bad review about you guys online.
+    - One review said the tech kept upselling and wouldn't take no for an answer.
+  followUps:
+    - Okay, but why would somebody write that if it wasn't true?
+    - So how do I know that won't happen to me?
+  tone: guarded
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They worry the review describes what is about to happen to them: being
+    overcharged or pushed. They want to know whether the company admits its
+    mistakes and how this visit protects them.
+  resolvedBy:
+    - Thanking them for raising it and taking it seriously
+    - Not attacking the reviewer or making excuses
+    - Being honest that the tech cannot speak to a job they were not on, and that mistakes do happen
+    - Explaining how this visit works, so they see what is found, get the price before any work, and can say no
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - honest_answer
+    - set_frame
+    - asked_about_concern
+  hardenedBy:
+    - argued
+    - bluffed
+    - condescended
+    - showed_impatience
+    - pressured
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, honest_answer, set_frame]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, bluffed, condescended, showed_impatience]
+  pass: >-
+    The tech thanks the customer for raising it, does not attack the reviewer or
+    make excuses, and explains how this visit will work so the customer sees and
+    approves everything first.
+  fail: >-
+    The tech argues with the review, calls the reviewer a liar, makes up an
+    explanation for what happened, or dismisses it.
+coaching:
+  why: >-
+    The customer is not really asking about that review. They are asking whether
+    it will happen to them. You cannot defend a job you were not on, and
+    attacking the reviewer makes the review look true, so take it seriously and
+    show them how this visit will work.
+  modelResponse: >-
+    Thank you for telling me. I'd rather you say it than wonder. I wasn't on that
+    job, so I can't speak to it, but if we got it wrong, that's our fault. Here's how
+    today works: I'll show you what I find, you'll have the price in writing
+    before I start, and if you'd rather not do anything, that's completely fine.
+  commonMistakes:
+    - Saying the reviewer was lying or was a difficult customer
+    - Making up what happened on a job you were not on
+    - Dismissing it with "you can't believe everything online"
+    - Promising "that will never happen" without saying what will be different
+tags: [trust, reputation]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - If a company has a real process for bad reviews (owner follow-up, a satisfaction guarantee), add it to that company's objectionAnswers.

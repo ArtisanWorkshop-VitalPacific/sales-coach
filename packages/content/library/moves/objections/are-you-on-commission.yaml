@@ -1,0 +1,93 @@
+id: are-you-on-commission
+version: 1
+name: Are you on commission?
+kind: objection
+group: trust
+skill: integrity
+summary: The customer asks whether the tech gets paid more when they sell the bigger option.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [options, price, objections]
+  when:
+    optionsPresented: true
+    trustBelow: 60
+  chance: 0.5
+priority: 50
+maxUses: 1
+delivery:
+  act: probe
+  intent: >-
+    Ask directly whether the tech is on commission or makes more if you pick the
+    bigger option. Ask it plainly, not as an insult. Watch how they answer: a
+    straight answer, even "yes, I earn a bit more," raises your trust, while a
+    dodge or a story lowers it. Do not accuse them of anything unless they dodge.
+  lines:
+    - Can I ask you something? Are you on commission?
+    - Do you get paid more if I go with the expensive one?
+    - Be honest with me. Do you make more money on the bigger option?
+    - So what's in it for you if I pick that one?
+  followUps:
+    - That's not really an answer. Do you or don't you?
+    - Okay, so you do make more if I pick that one.
+  tone: neutral
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They wonder whether the recommendation is about their home or the tech's
+    paycheck, and whether they can trust the advice.
+  resolvedBy:
+    - Answering honestly and directly how the tech is paid
+    - Explaining why the recommendation fits this home, separate from pay
+    - Pointing out the lower-cost option and when it is the right choice
+    - Making clear they can pick any option without pressure
+  resolvingBehaviors:
+    - honest_answer
+    - tied_options_to_needs
+    - presented_options
+    - acknowledged_feeling
+  hardenedBy:
+    - bluffed
+    - argued
+    - pressured
+    - showed_impatience
+  defaultStrength: 40
+evaluate:
+  windowTurns: 2
+  passIf:
+    allBehaviors: [honest_answer]
+    anyBehaviors: [tied_options_to_needs, presented_options]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [bluffed, argued, showed_impatience, pressured]
+  pass: >-
+    The tech answers honestly how they are paid, then explains why the
+    recommendation fits this home and treats the lower-cost option as a real
+    choice.
+  fail: >-
+    The tech dodges the question, denies an incentive that exists, gets
+    offended, or pushes the bigger option harder right after answering.
+coaching:
+  why: >-
+    This is a direct honesty test, and the customer already suspects the answer.
+    A straight answer, even "yes, I earn a little more on bigger jobs," builds
+    more trust than a dodge. Then show the recommendation is about their home by
+    treating the cheaper option as a real choice.
+  modelResponse: >-
+    Fair question, and you deserve a straight answer. Yes, part of my pay is tied
+    to what I sell. So I make a point of showing you every option, including the
+    basic one. Based on what you told me, this one fits best, but the basic one
+    is a real fix and I'd be glad to do it. It's your call.
+  commonMistakes:
+    - Dodging the question or changing the subject
+    - Denying a commission or bonus that exists
+    - Getting offended that the customer asked
+    - Pushing the bigger option harder right after answering
+tags: [trust, integrity, honesty]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response assumes the tech earns some sales-based pay, which is common but not universal. If a company pays techs differently, its objectionAnswers should say so. Either way the test is a straight answer.
