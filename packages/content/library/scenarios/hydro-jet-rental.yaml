@@ -1,0 +1,108 @@
+id: hydro-jet-rental
+version: 1
+title: Rental main line, hydro jet or snake
+trade: plumbing
+jobType: hydro-jetting
+difficulty: 2
+personaId: rick-landlord
+alternatePersonas: [greg-selling]
+briefing: >-
+  Service call at a rental. Tenant reports the tub and toilets backing up. The
+  owner says his handyman has snaked the line twice this year. Single-story rental
+  on a slab, built in 1964. Not a member.
+situation: >-
+  The 4-inch cast iron drain under the slab is coated with grease and scale. The
+  tech opens it with a cable through the exterior cleanout to stop the backup,
+  then runs a camera. The footage shows buildup narrowing the pipe to about half
+  its size for about 25 feet under the house. The cable only cut a path through it,
+  which is why the handyman's two clearings did not last. The cast iron is rough
+  inside but intact, with no cracks, holes, or worn-through bottom. The clay line
+  from the house to the street is clear, with tight joints and no roots. Hydro
+  jetting with a descaling nozzle restores the full pipe size, and a camera pass
+  afterward proves it. Jetting is the honest recommendation because the line has
+  backed up three times this year and each repeat call costs him money and tenant
+  goodwill. Lining or replacing the pipe is not justified on this footage. The
+  owner has six rentals, thin margins, a handyman, and a tenant threatening to
+  withhold rent.
+equipment:
+  - item: 4-inch cast iron building drain under the slab
+    ageYears: 62
+    notes: Heavy grease and scale. Walls rough but intact.
+  - item: 4-inch clay sewer lateral to the street
+    ageYears: 62
+    notes: Clear. Tight joints, no roots.
+  - item: Exterior cleanout at the side of the house
+    notes: Good access for the cable, jetter, and camera.
+findings:
+  - id: buildup-half-pipe
+    text: >-
+      The camera shows grease and scale narrowing the cast iron to about half its
+      size for about 25 feet under the house.
+    severity: major
+  - id: cable-path-only
+    text: >-
+      The cable cut a path through the buildup but left the rest on the walls. That
+      is why the last two clearings did not last, and this is the third backup this
+      year.
+    severity: major
+  - id: cast-iron-intact
+    text: The cast iron is rough inside but intact. No cracks, holes, or worn-through bottom.
+    severity: info
+  - id: clay-lateral-clear
+    text: The clay line to the street is clear, with tight joints and no roots.
+    severity: info
+justifiedWork:
+  - id: jet-building-drain
+    label: Hydro jet the cast iron drain with a descaling nozzle
+    rationale: Removes the grease and scale the cable leaves behind. Three backups this year show the cable is not enough.
+  - id: camera-after-jetting
+    label: Camera the line after jetting and give him the video
+    rationale: Proves the line is clean and gives him a record for the property.
+  - id: tenant-note
+    label: Give him a short note for the tenant on what not to pour down the drain
+    rationale: Cooking grease is part of the buildup. A note for the tenant helps the cleaning last.
+unjustifiedWork:
+  - id: line-or-replace-cast-iron
+    label: Lining or replacing the cast iron
+    why: The footage shows intact walls with no cracks or holes. Cleaning is enough for now.
+  - id: replace-clay-lateral
+    label: Replacing the clay line to the street
+    why: It is clear, with tight joints and no roots.
+  - id: jetting-contract-all-rentals
+    label: A jetting contract for all six rentals
+    why: Only this property has a problem. Nothing points to the others.
+options:
+  - id: cable-and-camera
+    label: Cable clearing and camera
+    price: 425
+    includes:
+      - Cable clearing through the cleanout done today
+      - Camera inspection with video
+      - The buildup stays on the pipe walls
+  - id: hydro-jet
+    label: Hydro jet the line
+    price: 795
+    includes:
+      - Cable clearing and camera done today
+      - Hydro jet the cast iron with a descaling nozzle
+      - Camera video after jetting for your records
+      - A short note for the tenant on what not to pour down the drain
+    recommended: true
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [handyman-can-do-it]
+  excluded: []
+  density: 2
+goal: >-
+  Show him the footage, explain why the snake keeps failing, and compare the cost
+  of jetting with more repeat calls in plain numbers. Recommend jetting, respect his
+  budget, and ask for a decision.
+passBar: 70
+tags: [drain, sewer, hydro-jet, camera, rental, landlord]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Old cast iron can be fragile. Confirm each company's practice on jetting pressure and nozzle choice for 60-year-old cast iron.

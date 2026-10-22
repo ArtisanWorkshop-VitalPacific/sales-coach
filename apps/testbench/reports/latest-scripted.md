@@ -1,105 +1,201 @@
 # Test bench: scripted customers
 
-Content 0.1.0+3c426235baa7, 14 scenario(s), 1 drill(s). Difficulties 2, 4, seeds 101, 138, 175, 212, 249, 286. 684 calls in 2.6s. Generated 2026-10-22T08:58:36.992Z.
+Content 0.1.0+7a9d4af5ae2e, 30 scenario(s), 20 drill(s). Difficulties 2, 4, seeds 101, 138, 175, 212, 249, 286. 1680 calls in 6.5s. Generated 2026-10-22T09:16:30.935Z.
 
-**Result: FAIL.** 136 hard violation(s).
+**Result: FAIL.** 111 hard violation(s).
 
 ## Headline
 
 | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| expert | 168 | 61% | 17% | 21% | 84.1 | 98.5 | silence-after-price ×140, minimal-responses ×70, thinks-out-loud ×61, mishears-the-price ×56, watched-a-video ×46, neighbor-said ×42, too-expensive ×36, phone-call-hold-on ×34, i-know-what-it-is ×34, can-you-do-better ×34, background-chaos ×31, tests-your-honesty ×29, what-am-i-paying-for ×26, do-i-need-the-code-stuff ×26, found-it-cheaper ×24, need-three-bids ×24, handyman-can-do-it ×24, just-the-cheap-fix ×24, mixes-up-terms ×21, home-warranty-covers-it ×15, interrupts-how-much ×14, half-listening ×13, paid-less-last-time ×12, brother-in-law-plumber ×12, repeats-answered-objection ×11, how-do-i-know-its-broken ×4, last-company-ripped-me-off ×4, didnt-budget-for-this ×2, you-always-upsell ×2, bigger-than-needed ×2 | 460 |
-| solid | 168 | 46% | 45% | 9% | 69.6 | 89.8 | silence-after-price ×142, mishears-the-price ×42, too-expensive ×36, neighbor-said ×33, can-you-do-better ×33, minimal-responses ×25, tests-your-honesty ×25, phone-call-hold-on ×24, watched-a-video ×24, do-i-need-the-code-stuff ×24, just-the-cheap-fix ×24, found-it-cheaper ×23, need-three-bids ×23, what-am-i-paying-for ×22, handyman-can-do-it ×22, background-chaos ×20, need-to-think-about-it ×15, home-warranty-covers-it ×14, brother-in-law-plumber ×12, last-company-ripped-me-off ×12, how-do-i-know-its-broken ×12, paid-less-last-time ×11, mixes-up-terms ×10, i-know-what-it-is ×10, monthly-still-too-much ×9, show-me-in-writing ×9, you-always-upsell ×8, can-it-wait ×6, half-listening ×6, thinks-out-loud ×6, didnt-budget-for-this ×6, spouse-walks-in ×4, interrupts-how-much ×4, repeats-answered-objection ×2 | 149 |
-| novice | 168 | 0% | 0% | 100% | 30.7 | 5.9 | silence-after-price ×95, i-know-what-it-is ×94, too-expensive ×62, show-me-in-writing ×50, can-you-do-better ×50, goes-cold ×32, what-am-i-paying-for ×29, home-warranty-covers-it ×29, you-always-upsell ×24, found-it-cheaper ×23, just-the-cheap-fix ×22, last-company-ripped-me-off ×21, didnt-budget-for-this ×20, handyman-can-do-it ×19, angry-about-last-company ×15, need-three-bids ×12, how-do-i-know-its-broken ×10, do-i-need-the-code-stuff ×9, are-you-on-commission ×9, paid-less-last-time ×7, mishears-the-price ×7, thinks-out-loud ×4 | 78 |
+| expert | 360 | 87% | 13% | 0% | 89.1 | 100.0 | silence-after-price ×284, mishears-the-price ×144, thinks-out-loud ×136, minimal-responses ×130, neighbor-said ×111, watched-a-video ×90, i-know-what-it-is ×89, phone-call-hold-on ×80, can-you-do-better ×70, too-expensive ×70, tests-your-honesty ×63, background-chaos ×60, what-am-i-paying-for ×56, just-the-cheap-fix ×46, do-i-need-the-code-stuff ×46, mixes-up-terms ×44, interrupts-how-much ×40, brother-in-law-plumber ×36, handyman-can-do-it ×36, home-warranty-covers-it ×36, need-three-bids ×36, found-it-cheaper ×34, only-fix-what-i-called-for ×32, paid-less-last-time ×32, half-listening ×30, how-do-i-know-its-broken ×27, show-me-in-writing ×24, didnt-budget-for-this ×14, repeats-answered-objection ×13, monthly-still-too-much ×12, ill-do-part-myself ×12, selling-soon ×12, last-company-ripped-me-off ×7, would-you-do-this ×4, spouse-walks-in ×4, bigger-than-needed ×4, you-always-upsell ×2 | 56 |
+| solid | 360 | 74% | 26% | 0% | 71.6 | 97.2 | silence-after-price ×300, mishears-the-price ×106, neighbor-said ×84, too-expensive ×70, can-you-do-better ×67, phone-call-hold-on ×62, tests-your-honesty ×54, what-am-i-paying-for ×53, just-the-cheap-fix ×48, need-to-think-about-it ×47, minimal-responses ×47, do-i-need-the-code-stuff ×47, background-chaos ×38, brother-in-law-plumber ×36, watched-a-video ×36, how-do-i-know-its-broken ×36, home-warranty-covers-it ×36, found-it-cheaper ×36, only-fix-what-i-called-for ×35, handyman-can-do-it ×34, i-know-what-it-is ×33, need-three-bids ×32, show-me-in-writing ×30, paid-less-last-time ×27, selling-soon ×24, last-company-ripped-me-off ×22, thinks-out-loud ×21, talk-to-my-spouse ×19, didnt-budget-for-this ×18, monthly-still-too-much ×18, just-repair-it ×18, mixes-up-terms ×16, spouse-walks-in ×12, can-it-wait ×12, half-listening ×12, ill-do-part-myself ×12, interrupts-how-much ×10, bigger-than-needed ×9, you-always-upsell ×9, repeats-answered-objection ×2 | 22 |
+| novice | 360 | 0% | 0% | 100% | 28.7 | 4.9 | silence-after-price ×265, i-know-what-it-is ×214, goes-cold ×158, too-expensive ×137, can-you-do-better ×124, just-the-cheap-fix ×98, what-am-i-paying-for ×87, show-me-in-writing ×86, brother-in-law-plumber ×70, found-it-cheaper ×70, home-warranty-covers-it ×63, do-i-need-the-code-stuff ×61, handyman-can-do-it ×59, only-fix-what-i-called-for ×56, how-do-i-know-its-broken ×54, you-always-upsell ×48, need-three-bids ×47, selling-soon ×43, last-company-ripped-me-off ×42, angry-about-last-company ×36, paid-less-last-time ×36, mishears-the-price ×35, didnt-budget-for-this ×35, are-you-on-commission ×27, tests-your-honesty ×24, thinks-out-loud ×23, ill-do-part-myself ×20, phone-call-hold-on ×12, neighbor-said ×12, watched-a-video ×12, bigger-than-needed ×9, talk-to-my-spouse ×6 | 8 |
 
 ## Scenarios
 
 | Scenario | Difficulty | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| gas-smell-flex-line | 2 | expert | 6 | 100% | 0% | 0% | 74.3 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×4, repeats-answered-objection ×2, minimal-responses ×2, thinks-out-loud ×2, mixes-up-terms ×2, watched-a-video ×2, phone-call-hold-on ×1, neighbor-said ×1 | 36 |
+| burst-pipe-after-hours | 2 | expert | 6 | 100% | 0% | 0% | 91.2 | 100.0 | can-you-do-better ×6, mishears-the-price ×4, i-know-what-it-is ×2, repeats-answered-objection ×2, phone-call-hold-on ×2, neighbor-said ×1, interrupts-how-much ×1, watched-a-video ×1, background-chaos ×1, minimal-responses ×1, half-listening ×1, tests-your-honesty ×1, would-you-do-this ×1 | 5 |
+| burst-pipe-after-hours | 2 | solid | 6 | 100% | 0% | 0% | 66.5 | 90.5 | can-you-do-better ×6, mishears-the-price ×3, interrupts-how-much ×2, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 4 |
+| burst-pipe-after-hours | 2 | novice | 6 | 0% | 0% | 100% | 26.7 | 9.5 | can-you-do-better ×16, are-you-on-commission ×6, i-know-what-it-is ×4, goes-cold ×3, mishears-the-price ×2 | 0 |
+| burst-pipe-after-hours | 4 | expert | 6 | 100% | 0% | 0% | 91.2 | 100.0 | can-you-do-better ×6, mishears-the-price ×4, i-know-what-it-is ×2, repeats-answered-objection ×2, phone-call-hold-on ×2, neighbor-said ×1, interrupts-how-much ×1, watched-a-video ×1, background-chaos ×1, minimal-responses ×1, half-listening ×1, tests-your-honesty ×1, would-you-do-this ×1 | 5 |
+| burst-pipe-after-hours | 4 | solid | 6 | 100% | 0% | 0% | 66.5 | 81.8 | can-you-do-better ×6, mishears-the-price ×3, interrupts-how-much ×2, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 4 |
+| burst-pipe-after-hours | 4 | novice | 6 | 0% | 0% | 100% | 29.7 | 7.8 | can-you-do-better ×14, i-know-what-it-is ×4, are-you-on-commission ×3, goes-cold ×3, mishears-the-price ×2, angry-about-last-company ×2 | 0 |
+| disposal-jammed-old | 2 | expert | 6 | 100% | 0% | 0% | 87.3 | 100.0 | phone-call-hold-on ×6, thinks-out-loud ×4, only-fix-what-i-called-for ×4, mishears-the-price ×3, i-know-what-it-is ×2, half-listening ×1, background-chaos ×1, minimal-responses ×1, tests-your-honesty ×1 | 0 |
+| disposal-jammed-old | 2 | solid | 6 | 100% | 0% | 0% | 67.5 | 92.2 | phone-call-hold-on ×6, only-fix-what-i-called-for ×5, mishears-the-price ×3, thinks-out-loud ×2, background-chaos ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1, talk-to-my-spouse ×1 | 0 |
+| disposal-jammed-old | 2 | novice | 6 | 0% | 0% | 100% | 32.3 | 10.2 | only-fix-what-i-called-for ×7, goes-cold ×6, phone-call-hold-on ×6, talk-to-my-spouse ×4, i-know-what-it-is ×4, thinks-out-loud ×3, mishears-the-price ×2 | 0 |
+| disposal-jammed-old | 4 | expert | 6 | 100% | 0% | 0% | 87.3 | 100.0 | phone-call-hold-on ×6, thinks-out-loud ×4, only-fix-what-i-called-for ×4, mishears-the-price ×3, i-know-what-it-is ×2, half-listening ×1, background-chaos ×1, minimal-responses ×1, tests-your-honesty ×1 | 0 |
+| disposal-jammed-old | 4 | solid | 6 | 17% | 83% | 0% | 75.3 | 99.0 | phone-call-hold-on ×6, talk-to-my-spouse ×6, only-fix-what-i-called-for ×5, need-to-think-about-it ×5, mishears-the-price ×3, thinks-out-loud ×2, background-chaos ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| disposal-jammed-old | 4 | novice | 6 | 0% | 0% | 100% | 34.3 | 5.3 | only-fix-what-i-called-for ×8, goes-cold ×6, phone-call-hold-on ×6, i-know-what-it-is ×4, thinks-out-loud ×3, mishears-the-price ×2, talk-to-my-spouse ×2 | 0 |
+| drain-kitchen-recurring | 2 | expert | 6 | 100% | 0% | 0% | 88.8 | 100.0 | just-the-cheap-fix ×6, mishears-the-price ×5, half-listening ×3, spouse-walks-in ×2, neighbor-said ×2, i-know-what-it-is ×1, thinks-out-loud ×1, interrupts-how-much ×1, phone-call-hold-on ×1, background-chaos ×1, minimal-responses ×1 | 0 |
+| drain-kitchen-recurring | 2 | solid | 6 | 67% | 33% | 0% | 69.0 | 97.2 | just-the-cheap-fix ×6, talk-to-my-spouse ×5, mishears-the-price ×3, thinks-out-loud ×3, need-to-think-about-it ×2, minimal-responses ×2, repeats-answered-objection ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, spouse-walks-in ×1 | 0 |
+| drain-kitchen-recurring | 2 | novice | 6 | 0% | 0% | 100% | 26.8 | 8.3 | just-the-cheap-fix ×20, i-know-what-it-is ×4, goes-cold ×3, thinks-out-loud ×3, mishears-the-price ×2 | 0 |
+| drain-kitchen-recurring | 4 | expert | 6 | 100% | 0% | 0% | 88.8 | 100.0 | just-the-cheap-fix ×6, mishears-the-price ×5, half-listening ×3, spouse-walks-in ×2, neighbor-said ×2, i-know-what-it-is ×1, thinks-out-loud ×1, interrupts-how-much ×1, phone-call-hold-on ×1, background-chaos ×1, minimal-responses ×1 | 0 |
+| drain-kitchen-recurring | 4 | solid | 6 | 0% | 100% | 0% | 73.3 | 98.5 | just-the-cheap-fix ×6, talk-to-my-spouse ×5, need-to-think-about-it ×5, mishears-the-price ×3, thinks-out-loud ×3, minimal-responses ×2, repeats-answered-objection ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, spouse-walks-in ×1, only-fix-what-i-called-for ×1 | 0 |
+| drain-kitchen-recurring | 4 | novice | 6 | 0% | 0% | 100% | 32.2 | 9.8 | just-the-cheap-fix ×15, i-know-what-it-is ×4, goes-cold ×3, thinks-out-loud ×3, mishears-the-price ×2 | 0 |
+| drain-main-line-roots | 2 | expert | 6 | 67% | 33% | 0% | 89.7 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, background-chaos ×2, mixes-up-terms ×1, would-you-do-this ×1, watched-a-video ×1, tests-your-honesty ×1 | 0 |
+| drain-main-line-roots | 2 | solid | 6 | 33% | 67% | 0% | 74.2 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| drain-main-line-roots | 2 | novice | 6 | 0% | 0% | 100% | 30.7 | 2.3 | brother-in-law-plumber ×12, too-expensive ×8, silence-after-price ×6, i-know-what-it-is ×4, goes-cold ×3 | 0 |
+| drain-main-line-roots | 4 | expert | 6 | 67% | 33% | 0% | 89.7 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, background-chaos ×2, mixes-up-terms ×1, would-you-do-this ×1, watched-a-video ×1, tests-your-honesty ×1 | 0 |
+| drain-main-line-roots | 4 | solid | 6 | 17% | 83% | 0% | 74.3 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, mishears-the-price ×2, talk-to-my-spouse ×1, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| drain-main-line-roots | 4 | novice | 6 | 0% | 0% | 100% | 31.7 | 1.7 | brother-in-law-plumber ×12, too-expensive ×7, silence-after-price ×6, i-know-what-it-is ×4, goes-cold ×3 | 0 |
+| drain-simple-snake | 2 | expert | 6 | 100% | 0% | 0% | 90.8 | 100.0 | tests-your-honesty ×6, silence-after-price ×6, mishears-the-price ×6, too-expensive ×5, minimal-responses ×3, watched-a-video ×2, i-know-what-it-is ×1, phone-call-hold-on ×1, neighbor-said ×1 | 0 |
+| drain-simple-snake | 2 | solid | 6 | 100% | 0% | 0% | 67.5 | 98.5 | tests-your-honesty ×6, silence-after-price ×6, too-expensive ×6, mishears-the-price ×3, minimal-responses ×1, need-to-think-about-it ×1, neighbor-said ×1 | 0 |
+| drain-simple-snake | 2 | novice | 6 | 0% | 0% | 100% | 30.0 | 10.2 | too-expensive ×17, silence-after-price ×6, tests-your-honesty ×6, i-know-what-it-is ×4 | 0 |
+| drain-simple-snake | 4 | expert | 6 | 100% | 0% | 0% | 90.8 | 100.0 | tests-your-honesty ×6, silence-after-price ×6, mishears-the-price ×6, too-expensive ×5, minimal-responses ×3, watched-a-video ×2, i-know-what-it-is ×1, phone-call-hold-on ×1, neighbor-said ×1 | 0 |
+| drain-simple-snake | 4 | solid | 6 | 67% | 33% | 0% | 72.7 | 100.0 | tests-your-honesty ×6, silence-after-price ×6, too-expensive ×6, need-to-think-about-it ×6, mishears-the-price ×3, minimal-responses ×1, neighbor-said ×1 | 0 |
+| drain-simple-snake | 4 | novice | 6 | 0% | 0% | 100% | 33.3 | 9.7 | too-expensive ×14, silence-after-price ×6, tests-your-honesty ×6, i-know-what-it-is ×4 | 0 |
+| drinking-water-filtration | 2 | expert | 6 | 100% | 0% | 0% | 90.2 | 100.0 | silence-after-price ×6, show-me-in-writing ×6, minimal-responses ×4, mishears-the-price ×3, mixes-up-terms ×2, background-chaos ×2, watched-a-video ×2, thinks-out-loud ×1, neighbor-said ×1, phone-call-hold-on ×1, half-listening ×1 | 0 |
+| drinking-water-filtration | 2 | solid | 6 | 83% | 17% | 0% | 67.5 | 95.7 | silence-after-price ×6, show-me-in-writing ×6, need-to-think-about-it ×6, minimal-responses ×2, mishears-the-price ×2, neighbor-said ×2, background-chaos ×1, watched-a-video ×1 | 0 |
+| drinking-water-filtration | 2 | novice | 6 | 0% | 0% | 100% | 34.0 | 14.0 | show-me-in-writing ×15, silence-after-price ×6 | 0 |
+| drinking-water-filtration | 4 | expert | 6 | 100% | 0% | 0% | 90.2 | 100.0 | silence-after-price ×6, show-me-in-writing ×6, minimal-responses ×4, mishears-the-price ×3, mixes-up-terms ×2, background-chaos ×2, watched-a-video ×2, thinks-out-loud ×1, neighbor-said ×1, phone-call-hold-on ×1, half-listening ×1 | 0 |
+| drinking-water-filtration | 4 | solid | 6 | 17% | 83% | 0% | 70.5 | 95.5 | silence-after-price ×6, show-me-in-writing ×6, need-to-think-about-it ×6, minimal-responses ×2, mishears-the-price ×2, neighbor-said ×2, background-chaos ×1, watched-a-video ×1 | 0 |
+| drinking-water-filtration | 4 | novice | 6 | 0% | 0% | 100% | 34.0 | 4.0 | show-me-in-writing ×15, silence-after-price ×6 | 0 |
+| faucet-install-bad-valves | 2 | expert | 6 | 100% | 0% | 0% | 90.7 | 100.0 | can-you-do-better ×6, only-fix-what-i-called-for ×6, mishears-the-price ×3, interrupts-how-much ×2, phone-call-hold-on ×2, neighbor-said ×1, i-know-what-it-is ×1, watched-a-video ×1, minimal-responses ×1, tests-your-honesty ×1 | 0 |
+| faucet-install-bad-valves | 2 | solid | 6 | 100% | 0% | 0% | 70.0 | 94.3 | only-fix-what-i-called-for ×6, can-you-do-better ×6, mishears-the-price ×2, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, interrupts-how-much ×1, tests-your-honesty ×1 | 0 |
+| faucet-install-bad-valves | 2 | novice | 6 | 0% | 0% | 100% | 27.5 | 5.8 | can-you-do-better ×12, only-fix-what-i-called-for ×8, are-you-on-commission ×6, goes-cold ×5, i-know-what-it-is ×4, mishears-the-price ×2 | 0 |
+| faucet-install-bad-valves | 4 | expert | 6 | 100% | 0% | 0% | 90.7 | 100.0 | can-you-do-better ×6, only-fix-what-i-called-for ×6, mishears-the-price ×3, interrupts-how-much ×2, phone-call-hold-on ×2, neighbor-said ×1, i-know-what-it-is ×1, watched-a-video ×1, minimal-responses ×1, tests-your-honesty ×1 | 0 |
+| faucet-install-bad-valves | 4 | solid | 6 | 100% | 0% | 0% | 70.0 | 86.7 | only-fix-what-i-called-for ×6, can-you-do-better ×6, mishears-the-price ×2, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, interrupts-how-much ×1, tests-your-honesty ×1 | 0 |
+| faucet-install-bad-valves | 4 | novice | 6 | 0% | 0% | 100% | 29.8 | 3.3 | only-fix-what-i-called-for ×11, can-you-do-better ×11, goes-cold ×4, i-know-what-it-is ×4, are-you-on-commission ×3, mishears-the-price ×2, angry-about-last-company ×2 | 0 |
+| gas-smell-flex-line | 2 | expert | 6 | 100% | 0% | 0% | 90.3 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, mixes-up-terms ×2, watched-a-video ×2, repeats-answered-objection ×1, phone-call-hold-on ×1, background-chaos ×1, neighbor-said ×1, half-listening ×1 | 6 |
 | gas-smell-flex-line | 2 | solid | 6 | 100% | 0% | 0% | 65.3 | 85.2 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 6 |
 | gas-smell-flex-line | 2 | novice | 6 | 0% | 0% | 100% | 29.8 | 10.8 | too-expensive ×16, silence-after-price ×6, i-know-what-it-is ×4 | 5 |
-| gas-smell-flex-line | 4 | expert | 6 | 100% | 0% | 0% | 74.3 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×4, repeats-answered-objection ×2, minimal-responses ×2, thinks-out-loud ×2, mixes-up-terms ×2, watched-a-video ×2, phone-call-hold-on ×1, neighbor-said ×1 | 36 |
+| gas-smell-flex-line | 4 | expert | 6 | 100% | 0% | 0% | 90.3 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, mixes-up-terms ×2, watched-a-video ×2, repeats-answered-objection ×1, phone-call-hold-on ×1, background-chaos ×1, neighbor-said ×1, half-listening ×1 | 6 |
 | gas-smell-flex-line | 4 | solid | 6 | 0% | 100% | 0% | 74.0 | 97.5 | silence-after-price ×6, too-expensive ×6, can-it-wait ×6, need-to-think-about-it ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 0 |
 | gas-smell-flex-line | 4 | novice | 6 | 0% | 0% | 100% | 33.5 | 10.3 | too-expensive ×13, silence-after-price ×6, i-know-what-it-is ×4 | 3 |
-| maintenance-visit-anode | 2 | expert | 6 | 100% | 0% | 0% | 87.2 | 100.0 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×5, minimal-responses ×4, mishears-the-price ×3, half-listening ×2, neighbor-said ×2, thinks-out-loud ×2, interrupts-how-much ×1, phone-call-hold-on ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 6 |
-| maintenance-visit-anode | 2 | solid | 6 | 100% | 0% | 0% | 66.7 | 91.5 | silence-after-price ×6, home-warranty-covers-it ×6, paid-less-last-time ×5, what-am-i-paying-for ×4, mishears-the-price ×2, neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 1 |
-| maintenance-visit-anode | 2 | novice | 6 | 0% | 0% | 100% | 24.5 | 2.5 | home-warranty-covers-it ×13, what-am-i-paying-for ×8, silence-after-price ×6, paid-less-last-time ×5, goes-cold ×4, i-know-what-it-is ×4 | 6 |
-| maintenance-visit-anode | 4 | expert | 6 | 100% | 0% | 0% | 87.2 | 100.0 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×5, minimal-responses ×4, mishears-the-price ×3, half-listening ×2, neighbor-said ×2, thinks-out-loud ×2, interrupts-how-much ×1, phone-call-hold-on ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 6 |
-| maintenance-visit-anode | 4 | solid | 6 | 17% | 83% | 0% | 71.0 | 98.7 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×6, mishears-the-price ×2, neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 6 |
-| maintenance-visit-anode | 4 | novice | 6 | 0% | 0% | 100% | 28.7 | 5.2 | home-warranty-covers-it ×12, what-am-i-paying-for ×7, silence-after-price ×6, i-know-what-it-is ×4, goes-cold ×2, angry-about-last-company ×2, paid-less-last-time ×2 | 6 |
+| hard-water-softener | 2 | expert | 6 | 17% | 83% | 0% | 91.8 | 100.0 | neighbor-said ×6, silence-after-price ×6, didnt-budget-for-this ×6, monthly-still-too-much ×6, minimal-responses ×3, mishears-the-price ×3, mixes-up-terms ×2, phone-call-hold-on ×2, watched-a-video ×2, thinks-out-loud ×1 | 0 |
+| hard-water-softener | 2 | solid | 6 | 17% | 83% | 0% | 72.5 | 100.0 | neighbor-said ×6, silence-after-price ×6, didnt-budget-for-this ×6, monthly-still-too-much ×3, mishears-the-price ×2, need-to-think-about-it ×1, minimal-responses ×1, spouse-walks-in ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
+| hard-water-softener | 2 | novice | 6 | 0% | 0% | 100% | 28.5 | 9.5 | didnt-budget-for-this ×9, silence-after-price ×6, neighbor-said ×6, i-know-what-it-is ×4 | 0 |
+| hard-water-softener | 4 | expert | 6 | 17% | 83% | 0% | 91.8 | 100.0 | neighbor-said ×6, silence-after-price ×6, didnt-budget-for-this ×6, monthly-still-too-much ×6, minimal-responses ×3, mishears-the-price ×3, mixes-up-terms ×2, phone-call-hold-on ×2, watched-a-video ×2, thinks-out-loud ×1 | 0 |
+| hard-water-softener | 4 | solid | 6 | 0% | 100% | 0% | 73.2 | 100.0 | neighbor-said ×6, silence-after-price ×6, didnt-budget-for-this ×6, monthly-still-too-much ×6, mishears-the-price ×2, minimal-responses ×1, spouse-walks-in ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
+| hard-water-softener | 4 | novice | 6 | 0% | 0% | 100% | 31.7 | 8.8 | silence-after-price ×6, neighbor-said ×6, didnt-budget-for-this ×6, i-know-what-it-is ×4 | 0 |
+| hydro-jet-rental | 2 | expert | 6 | 100% | 0% | 0% | 90.7 | 100.0 | handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×4, minimal-responses ×4, i-know-what-it-is ×2, background-chaos ×2, mishears-the-price ×2, phone-call-hold-on ×2, watched-a-video ×1, half-listening ×1, tests-your-honesty ×1 | 0 |
+| hydro-jet-rental | 2 | solid | 6 | 100% | 0% | 0% | 71.0 | 97.5 | silence-after-price ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×5, minimal-responses ×2, mishears-the-price ×2, phone-call-hold-on ×2, background-chaos ×1, tests-your-honesty ×1 | 0 |
+| hydro-jet-rental | 2 | novice | 6 | 0% | 0% | 100% | 27.5 | 0.0 | handyman-can-do-it ×12, just-the-cheap-fix ×11, can-you-do-better ×6, goes-cold ×5, silence-after-price ×4, i-know-what-it-is ×4, mishears-the-price ×2 | 0 |
+| hydro-jet-rental | 4 | expert | 6 | 100% | 0% | 0% | 90.7 | 100.0 | handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×4, minimal-responses ×4, i-know-what-it-is ×2, background-chaos ×2, mishears-the-price ×2, phone-call-hold-on ×2, watched-a-video ×1, half-listening ×1, tests-your-honesty ×1 | 0 |
+| hydro-jet-rental | 4 | solid | 6 | 83% | 17% | 0% | 71.7 | 94.7 | silence-after-price ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×5, mishears-the-price ×2, phone-call-hold-on ×2, i-know-what-it-is ×1, background-chaos ×1, neighbor-said ×1, tests-your-honesty ×1 | 0 |
+| hydro-jet-rental | 4 | novice | 6 | 0% | 0% | 100% | 26.0 | 0.0 | handyman-can-do-it ×12, just-the-cheap-fix ×10, can-you-do-better ×6, silence-after-price ×5, goes-cold ×5, i-know-what-it-is ×4, angry-about-last-company ×2, mishears-the-price ×1 | 0 |
+| main-shutoff-seized | 2 | expert | 6 | 100% | 0% | 0% | 88.7 | 100.0 | only-fix-what-i-called-for ×6, silence-after-price ×5, mishears-the-price ×4, thinks-out-loud ×3, neighbor-said ×3, interrupts-how-much ×2, mixes-up-terms ×2, watched-a-video ×2, half-listening ×1, phone-call-hold-on ×1, i-know-what-it-is ×1 | 0 |
+| main-shutoff-seized | 2 | solid | 6 | 100% | 0% | 0% | 70.5 | 100.0 | silence-after-price ×6, only-fix-what-i-called-for ×6, selling-soon ×6, mishears-the-price ×3, neighbor-said ×2, half-listening ×1, phone-call-hold-on ×1, mixes-up-terms ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
+| main-shutoff-seized | 2 | novice | 6 | 0% | 0% | 100% | 28.7 | 5.0 | only-fix-what-i-called-for ×10, selling-soon ×7, silence-after-price ×4, i-know-what-it-is ×4, mishears-the-price ×2, goes-cold ×2 | 0 |
+| main-shutoff-seized | 4 | expert | 6 | 100% | 0% | 0% | 88.7 | 100.0 | only-fix-what-i-called-for ×6, silence-after-price ×5, mishears-the-price ×4, thinks-out-loud ×3, neighbor-said ×3, interrupts-how-much ×2, mixes-up-terms ×2, watched-a-video ×2, half-listening ×1, phone-call-hold-on ×1, i-know-what-it-is ×1 | 0 |
+| main-shutoff-seized | 4 | solid | 6 | 0% | 100% | 0% | 74.3 | 100.0 | silence-after-price ×6, only-fix-what-i-called-for ×6, selling-soon ×6, just-repair-it ×6, mishears-the-price ×3, neighbor-said ×2, half-listening ×1, phone-call-hold-on ×1, mixes-up-terms ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
+| main-shutoff-seized | 4 | novice | 6 | 0% | 0% | 100% | 33.3 | 7.7 | only-fix-what-i-called-for ×12, silence-after-price ×5, i-know-what-it-is ×4, selling-soon ×3, angry-about-last-company ×2, mishears-the-price ×1, goes-cold ×1 | 0 |
+| maintenance-visit-anode | 2 | expert | 6 | 100% | 0% | 0% | 88.2 | 100.0 | how-do-i-know-its-broken ×6, silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×5, minimal-responses ×4, mishears-the-price ×4, tests-your-honesty ×2, thinks-out-loud ×2, neighbor-said ×2, interrupts-how-much ×1, half-listening ×1, phone-call-hold-on ×1 | 0 |
+| maintenance-visit-anode | 2 | solid | 6 | 100% | 0% | 0% | 69.0 | 98.5 | how-do-i-know-its-broken ×6, silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×5, mishears-the-price ×2, minimal-responses ×1, neighbor-said ×1, i-know-what-it-is ×1 | 0 |
+| maintenance-visit-anode | 2 | novice | 6 | 0% | 0% | 100% | 23.0 | 0.0 | what-am-i-paying-for ×11, how-do-i-know-its-broken ×10, home-warranty-covers-it ×9, paid-less-last-time ×7, silence-after-price ×6, goes-cold ×5, i-know-what-it-is ×4 | 0 |
+| maintenance-visit-anode | 4 | expert | 6 | 100% | 0% | 0% | 88.2 | 100.0 | how-do-i-know-its-broken ×6, silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×5, minimal-responses ×4, mishears-the-price ×4, tests-your-honesty ×2, thinks-out-loud ×2, neighbor-said ×2, interrupts-how-much ×1, half-listening ×1, phone-call-hold-on ×1 | 0 |
+| maintenance-visit-anode | 4 | solid | 6 | 67% | 33% | 0% | 70.7 | 97.8 | how-do-i-know-its-broken ×6, silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×5, mishears-the-price ×2, minimal-responses ×1, neighbor-said ×1, i-know-what-it-is ×1 | 0 |
+| maintenance-visit-anode | 4 | novice | 6 | 0% | 0% | 100% | 19.0 | 0.0 | how-do-i-know-its-broken ×12, home-warranty-covers-it ×10, what-am-i-paying-for ×9, silence-after-price ×6, paid-less-last-time ×5, goes-cold ×4, i-know-what-it-is ×4, angry-about-last-company ×2 | 0 |
+| prv-high-pressure | 2 | expert | 6 | 100% | 0% | 0% | 89.2 | 100.0 | i-know-what-it-is ×6, need-three-bids ×6, found-it-cheaper ×5, silence-after-price ×4, thinks-out-loud ×4, neighbor-said ×3, watched-a-video ×2, interrupts-how-much ×1, bigger-than-needed ×1, background-chaos ×1, tests-your-honesty ×1, phone-call-hold-on ×1 | 0 |
+| prv-high-pressure | 2 | solid | 6 | 100% | 0% | 0% | 67.7 | 91.2 | i-know-what-it-is ×6, silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×5, bigger-than-needed ×1, neighbor-said ×1, tests-your-honesty ×1, thinks-out-loud ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
+| prv-high-pressure | 2 | novice | 6 | 0% | 0% | 100% | 27.3 | 1.8 | found-it-cheaper ×12, need-three-bids ×11, i-know-what-it-is ×6, silence-after-price ×5, bigger-than-needed ×3, goes-cold ×2 | 0 |
+| prv-high-pressure | 4 | expert | 6 | 100% | 0% | 0% | 89.2 | 100.0 | i-know-what-it-is ×6, need-three-bids ×6, found-it-cheaper ×5, silence-after-price ×4, thinks-out-loud ×4, neighbor-said ×3, watched-a-video ×2, interrupts-how-much ×1, bigger-than-needed ×1, background-chaos ×1, tests-your-honesty ×1, phone-call-hold-on ×1 | 0 |
+| prv-high-pressure | 4 | solid | 6 | 83% | 17% | 0% | 73.2 | 98.8 | i-know-what-it-is ×6, silence-after-price ×6, bigger-than-needed ×6, found-it-cheaper ×6, need-three-bids ×5, neighbor-said ×1, tests-your-honesty ×1, thinks-out-loud ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
+| prv-high-pressure | 4 | novice | 6 | 0% | 0% | 100% | 30.8 | 2.8 | found-it-cheaper ×11, i-know-what-it-is ×6, silence-after-price ×5, need-three-bids ×5, angry-about-last-company ×4, goes-cold ×3, bigger-than-needed ×2, thinks-out-loud ×1 | 0 |
+| remodel-rough-in | 2 | expert | 6 | 100% | 0% | 0% | 91.2 | 100.0 | silence-after-price ×6, ill-do-part-myself ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, background-chaos ×2, mixes-up-terms ×1, watched-a-video ×1, tests-your-honesty ×1 | 0 |
+| remodel-rough-in | 2 | solid | 6 | 100% | 0% | 0% | 74.2 | 100.0 | silence-after-price ×6, ill-do-part-myself ×6, brother-in-law-plumber ×6, too-expensive ×5, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| remodel-rough-in | 2 | novice | 6 | 0% | 0% | 100% | 25.5 | 0.0 | brother-in-law-plumber ×11, ill-do-part-myself ×10, too-expensive ×9, silence-after-price ×6, goes-cold ×4, i-know-what-it-is ×4 | 0 |
+| remodel-rough-in | 4 | expert | 6 | 100% | 0% | 0% | 91.2 | 100.0 | silence-after-price ×6, ill-do-part-myself ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, background-chaos ×2, mixes-up-terms ×1, watched-a-video ×1, tests-your-honesty ×1 | 0 |
+| remodel-rough-in | 4 | solid | 6 | 100% | 0% | 0% | 73.7 | 100.0 | silence-after-price ×6, ill-do-part-myself ×6, brother-in-law-plumber ×6, too-expensive ×5, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| remodel-rough-in | 4 | novice | 6 | 0% | 0% | 100% | 25.5 | 0.0 | brother-in-law-plumber ×11, ill-do-part-myself ×10, too-expensive ×9, silence-after-price ×6, goes-cold ×4, i-know-what-it-is ×4 | 0 |
+| repipe-galvanized | 2 | expert | 6 | 67% | 33% | 0% | 88.5 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×5, what-am-i-paying-for ×5, thinks-out-loud ×4, i-know-what-it-is ×3, minimal-responses ×3, repeats-answered-objection ×2, neighbor-said ×2, watched-a-video ×2 | 0 |
+| repipe-galvanized | 2 | solid | 6 | 17% | 83% | 0% | 75.0 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×6, what-am-i-paying-for ×5, phone-call-hold-on ×2, minimal-responses ×1, half-listening ×1, neighbor-said ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
+| repipe-galvanized | 2 | novice | 6 | 0% | 0% | 100% | 24.0 | 3.2 | you-always-upsell ×13, what-am-i-paying-for ×7, silence-after-price ×6, do-i-need-the-code-stuff ×6, i-know-what-it-is ×4, goes-cold ×3 | 0 |
+| repipe-galvanized | 4 | expert | 6 | 67% | 33% | 0% | 88.5 | 100.0 | silence-after-price ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×6, thinks-out-loud ×4, watched-a-video ×3, i-know-what-it-is ×3, neighbor-said ×3, you-always-upsell ×1, tests-your-honesty ×1, half-listening ×1, minimal-responses ×1, repeats-answered-objection ×1 | 0 |
+| repipe-galvanized | 4 | solid | 6 | 17% | 83% | 0% | 74.8 | 99.5 | silence-after-price ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×5, phone-call-hold-on ×2, you-always-upsell ×1, tests-your-honesty ×1, i-know-what-it-is ×1, half-listening ×1, neighbor-said ×1 | 0 |
+| repipe-galvanized | 4 | novice | 6 | 0% | 0% | 100% | 27.8 | 5.2 | you-always-upsell ×11, what-am-i-paying-for ×7, silence-after-price ×6, i-know-what-it-is ×4, do-i-need-the-code-stuff ×3, goes-cold ×2, angry-about-last-company ×2 | 0 |
 | second-opinion-quote | 2 | expert | 6 | 100% | 0% | 0% | 90.3 | 100.0 | silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×6, i-know-what-it-is ×3, minimal-responses ×3, thinks-out-loud ×2, background-chaos ×2, neighbor-said ×2, phone-call-hold-on ×2, watched-a-video ×2 | 0 |
 | second-opinion-quote | 2 | solid | 6 | 100% | 0% | 0% | 71.2 | 99.7 | silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×6, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, thinks-out-loud ×1, mixes-up-terms ×1, watched-a-video ×1 | 0 |
-| second-opinion-quote | 2 | novice | 6 | 0% | 0% | 100% | 33.2 | 10.5 | i-know-what-it-is ×4, found-it-cheaper ×2 | 4 |
+| second-opinion-quote | 2 | novice | 6 | 0% | 0% | 100% | 30.7 | 5.2 | found-it-cheaper ×13, need-three-bids ×6, silence-after-price ×4, i-know-what-it-is ×4, goes-cold ×3, thinks-out-loud ×2 | 0 |
 | second-opinion-quote | 4 | expert | 6 | 100% | 0% | 0% | 90.3 | 100.0 | silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×6, i-know-what-it-is ×3, minimal-responses ×3, thinks-out-loud ×2, background-chaos ×2, neighbor-said ×2, phone-call-hold-on ×2, watched-a-video ×2 | 0 |
-| second-opinion-quote | 4 | solid | 6 | 100% | 0% | 0% | 71.7 | 98.7 | silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×6, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 0 |
-| second-opinion-quote | 4 | novice | 6 | 0% | 0% | 100% | 35.8 | 5.3 | i-know-what-it-is ×4, angry-about-last-company ×2 | 6 |
-| tank-vs-tankless-family | 2 | expert | 6 | 100% | 0% | 0% | 90.8 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, mixes-up-terms ×1, watched-a-video ×1, background-chaos ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 12 |
-| tank-vs-tankless-family | 2 | solid | 6 | 83% | 17% | 0% | 74.0 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 1 |
-| tank-vs-tankless-family | 2 | novice | 6 | 0% | 0% | 100% | 30.5 | 3.2 | too-expensive ×4, i-know-what-it-is ×4 | 6 |
-| tank-vs-tankless-family | 4 | expert | 6 | 100% | 0% | 0% | 90.8 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, mixes-up-terms ×1, watched-a-video ×1, background-chaos ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 12 |
-| tank-vs-tankless-family | 4 | solid | 6 | 83% | 17% | 0% | 74.0 | 99.8 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 1 |
-| tank-vs-tankless-family | 4 | novice | 6 | 0% | 0% | 100% | 36.2 | 6.3 | i-know-what-it-is ×4 | 6 |
-| wh-code-upgrades-rental | 2 | expert | 6 | 67% | 33% | 0% | 92.8 | 100.0 | handyman-can-do-it ×6, do-i-need-the-code-stuff ×6, just-the-cheap-fix ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×5, minimal-responses ×4, background-chaos ×3, phone-call-hold-on ×3, i-know-what-it-is ×2, watched-a-video ×1, mishears-the-price ×1, tests-your-honesty ×1 | 0 |
-| wh-code-upgrades-rental | 2 | solid | 6 | 100% | 0% | 0% | 78.0 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×6, just-the-cheap-fix ×6, handyman-can-do-it ×5, can-you-do-better ×5, minimal-responses ×2, mishears-the-price ×2, phone-call-hold-on ×2, background-chaos ×1, tests-your-honesty ×1 | 0 |
-| wh-code-upgrades-rental | 2 | novice | 6 | 0% | 0% | 100% | 36.0 | 0.0 | i-know-what-it-is ×4 | 6 |
-| wh-code-upgrades-rental | 4 | expert | 6 | 67% | 33% | 0% | 93.2 | 100.0 | handyman-can-do-it ×6, do-i-need-the-code-stuff ×6, just-the-cheap-fix ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×5, minimal-responses ×4, background-chaos ×3, phone-call-hold-on ×3, i-know-what-it-is ×2, watched-a-video ×1, mishears-the-price ×1, tests-your-honesty ×1 | 0 |
-| wh-code-upgrades-rental | 4 | solid | 6 | 83% | 17% | 0% | 78.3 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×6, just-the-cheap-fix ×6, can-you-do-better ×6, handyman-can-do-it ×5, mishears-the-price ×2, phone-call-hold-on ×2, i-know-what-it-is ×1, background-chaos ×1, neighbor-said ×1, tests-your-honesty ×1 | 0 |
-| wh-code-upgrades-rental | 4 | novice | 6 | 0% | 0% | 100% | 35.7 | 0.0 | i-know-what-it-is ×4, angry-about-last-company ×2 | 6 |
-| wh-first-home-rumbling | 2 | expert | 6 | 100% | 0% | 0% | 85.5 | 100.0 | silence-after-price ×6, thinks-out-loud ×3, mixes-up-terms ×3, mishears-the-price ×3, minimal-responses ×2, phone-call-hold-on ×2, watched-a-video ×2, background-chaos ×1, neighbor-said ×1, i-know-what-it-is ×1, didnt-budget-for-this ×1 | 7 |
-| wh-first-home-rumbling | 2 | solid | 6 | 83% | 17% | 0% | 69.0 | 97.8 | silence-after-price ×6, need-to-think-about-it ×4, monthly-still-too-much ×3, didnt-budget-for-this ×3, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
+| second-opinion-quote | 4 | solid | 6 | 100% | 0% | 0% | 71.7 | 99.0 | silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×6, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 0 |
+| second-opinion-quote | 4 | novice | 6 | 0% | 0% | 100% | 30.5 | 2.3 | found-it-cheaper ×12, need-three-bids ×7, silence-after-price ×5, i-know-what-it-is ×4, goes-cold ×2, angry-about-last-company ×2, thinks-out-loud ×1 | 0 |
+| sewer-camera-before-sale | 2 | expert | 6 | 100% | 0% | 0% | 89.3 | 100.0 | silence-after-price ×6, selling-soon ×6, mishears-the-price ×4, thinks-out-loud ×3, neighbor-said ×3, interrupts-how-much ×2, mixes-up-terms ×2, watched-a-video ×2, i-know-what-it-is ×2, tests-your-honesty ×1, repeats-answered-objection ×1, phone-call-hold-on ×1 | 0 |
+| sewer-camera-before-sale | 2 | solid | 6 | 100% | 0% | 0% | 67.2 | 99.3 | silence-after-price ×6, selling-soon ×6, just-repair-it ×6, mishears-the-price ×3, neighbor-said ×2, half-listening ×1, phone-call-hold-on ×1, mixes-up-terms ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
+| sewer-camera-before-sale | 2 | novice | 6 | 0% | 0% | 100% | 30.3 | 9.3 | selling-soon ×18, silence-after-price ×4, i-know-what-it-is ×4, mishears-the-price ×2, goes-cold ×2 | 0 |
+| sewer-camera-before-sale | 4 | expert | 6 | 100% | 0% | 0% | 89.3 | 100.0 | silence-after-price ×6, selling-soon ×6, mishears-the-price ×4, thinks-out-loud ×3, neighbor-said ×3, interrupts-how-much ×2, mixes-up-terms ×2, watched-a-video ×2, i-know-what-it-is ×2, tests-your-honesty ×1, repeats-answered-objection ×1, phone-call-hold-on ×1 | 0 |
+| sewer-camera-before-sale | 4 | solid | 6 | 0% | 100% | 0% | 70.7 | 100.0 | silence-after-price ×6, selling-soon ×6, just-repair-it ×6, can-it-wait ×6, mishears-the-price ×3, neighbor-said ×2, half-listening ×1, phone-call-hold-on ×1, mixes-up-terms ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
+| sewer-camera-before-sale | 4 | novice | 6 | 0% | 0% | 100% | 33.3 | 7.7 | selling-soon ×15, silence-after-price ×5, i-know-what-it-is ×4, angry-about-last-company ×2, mishears-the-price ×1, goes-cold ×1 | 0 |
+| slab-leak-detection | 2 | expert | 6 | 100% | 0% | 0% | 84.5 | 100.0 | how-do-i-know-its-broken ×6, silence-after-price ×5, thinks-out-loud ×4, neighbor-said ×3, i-know-what-it-is ×2, minimal-responses ×2, watched-a-video ×2, background-chaos ×2, phone-call-hold-on ×1, mixes-up-terms ×1, tests-your-honesty ×1 | 0 |
+| slab-leak-detection | 2 | solid | 6 | 100% | 0% | 0% | 68.0 | 98.5 | how-do-i-know-its-broken ×6, silence-after-price ×6, last-company-ripped-me-off ×4, neighbor-said ×2, thinks-out-loud ×1, watched-a-video ×1, background-chaos ×1 | 0 |
+| slab-leak-detection | 2 | novice | 6 | 0% | 0% | 100% | 31.5 | 1.7 | how-do-i-know-its-broken ×11, last-company-ripped-me-off ×10, goes-cold ×4, show-me-in-writing ×3, silence-after-price ×3, i-know-what-it-is ×1, thinks-out-loud ×1 | 0 |
+| slab-leak-detection | 4 | expert | 6 | 100% | 0% | 0% | 86.2 | 100.0 | how-do-i-know-its-broken ×6, silence-after-price ×5, thinks-out-loud ×5, last-company-ripped-me-off ×3, tests-your-honesty ×2, mixes-up-terms ×2, i-know-what-it-is ×1, phone-call-hold-on ×1, half-listening ×1, background-chaos ×1, watched-a-video ×1, neighbor-said ×1 | 0 |
+| slab-leak-detection | 4 | solid | 6 | 83% | 17% | 0% | 70.5 | 98.5 | last-company-ripped-me-off ×6, how-do-i-know-its-broken ×6, silence-after-price ×6, thinks-out-loud ×2, minimal-responses ×1, background-chaos ×1 | 0 |
+| slab-leak-detection | 4 | novice | 6 | 0% | 0% | 100% | 33.0 | 0.0 | last-company-ripped-me-off ×11, how-do-i-know-its-broken ×11, show-me-in-writing ×3, goes-cold ×3, silence-after-price ×3, angry-about-last-company ×1, thinks-out-loud ×1 | 0 |
+| tank-vs-tankless-family | 2 | expert | 6 | 100% | 0% | 0% | 90.8 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, mixes-up-terms ×1, watched-a-video ×1, background-chaos ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| tank-vs-tankless-family | 2 | solid | 6 | 100% | 0% | 0% | 73.7 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| tank-vs-tankless-family | 2 | novice | 6 | 0% | 0% | 100% | 30.7 | 2.3 | brother-in-law-plumber ×12, too-expensive ×8, silence-after-price ×6, i-know-what-it-is ×4, goes-cold ×3 | 0 |
+| tank-vs-tankless-family | 4 | expert | 6 | 100% | 0% | 0% | 90.8 | 100.0 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, neighbor-said ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×2, mixes-up-terms ×1, watched-a-video ×1, background-chaos ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| tank-vs-tankless-family | 4 | solid | 6 | 83% | 17% | 0% | 73.8 | 99.8 | silence-after-price ×6, brother-in-law-plumber ×6, too-expensive ×6, mishears-the-price ×2, talk-to-my-spouse ×1, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| tank-vs-tankless-family | 4 | novice | 6 | 0% | 0% | 100% | 31.7 | 1.7 | brother-in-law-plumber ×12, too-expensive ×7, silence-after-price ×6, i-know-what-it-is ×4, goes-cold ×3 | 0 |
+| toilet-running-old | 2 | expert | 6 | 0% | 100% | 0% | 85.7 | 100.0 | silence-after-price ×6, home-warranty-covers-it ×6, paid-less-last-time ×6, mishears-the-price ×5, what-am-i-paying-for ×5, minimal-responses ×4, neighbor-said ×2, half-listening ×1, phone-call-hold-on ×1, tests-your-honesty ×1, thinks-out-loud ×1 | 6 |
+| toilet-running-old | 2 | solid | 6 | 100% | 0% | 0% | 68.7 | 94.5 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×3, mishears-the-price ×2, neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| toilet-running-old | 2 | novice | 6 | 0% | 0% | 100% | 24.8 | 4.2 | home-warranty-covers-it ×13, what-am-i-paying-for ×9, paid-less-last-time ×7, silence-after-price ×6, goes-cold ×4, i-know-what-it-is ×4 | 0 |
+| toilet-running-old | 4 | expert | 6 | 0% | 100% | 0% | 85.7 | 100.0 | silence-after-price ×6, home-warranty-covers-it ×6, paid-less-last-time ×6, mishears-the-price ×5, what-am-i-paying-for ×5, minimal-responses ×4, neighbor-said ×2, half-listening ×1, phone-call-hold-on ×1, tests-your-honesty ×1, thinks-out-loud ×1 | 6 |
+| toilet-running-old | 4 | solid | 6 | 67% | 33% | 0% | 71.8 | 95.3 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, paid-less-last-time ×4, mishears-the-price ×2, neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| toilet-running-old | 4 | novice | 6 | 0% | 0% | 100% | 22.3 | 0.5 | home-warranty-covers-it ×12, what-am-i-paying-for ×10, silence-after-price ×6, paid-less-last-time ×5, i-know-what-it-is ×4, goes-cold ×3, angry-about-last-company ×2 | 0 |
+| wh-code-upgrades-rental | 2 | expert | 6 | 83% | 17% | 0% | 92.3 | 100.0 | do-i-need-the-code-stuff ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×5, minimal-responses ×4, background-chaos ×3, phone-call-hold-on ×3, i-know-what-it-is ×2, watched-a-video ×1, mishears-the-price ×1, tests-your-honesty ×1 | 0 |
+| wh-code-upgrades-rental | 2 | solid | 6 | 100% | 0% | 0% | 79.0 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×6, just-the-cheap-fix ×6, handyman-can-do-it ×5, can-you-do-better ×5, minimal-responses ×2, mishears-the-price ×2, phone-call-hold-on ×2, background-chaos ×1, tests-your-honesty ×1 | 0 |
+| wh-code-upgrades-rental | 2 | novice | 6 | 0% | 0% | 100% | 24.0 | 2.5 | just-the-cheap-fix ×11, do-i-need-the-code-stuff ×9, can-you-do-better ×9, handyman-can-do-it ×7, goes-cold ×5, silence-after-price ×4, i-know-what-it-is ×4, mishears-the-price ×2 | 0 |
+| wh-code-upgrades-rental | 4 | expert | 6 | 83% | 17% | 0% | 93.2 | 100.0 | do-i-need-the-code-stuff ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×5, minimal-responses ×4, background-chaos ×3, phone-call-hold-on ×3, i-know-what-it-is ×2, watched-a-video ×1, mishears-the-price ×1, tests-your-honesty ×1 | 0 |
+| wh-code-upgrades-rental | 4 | solid | 6 | 83% | 17% | 0% | 79.3 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×6, just-the-cheap-fix ×6, can-you-do-better ×6, handyman-can-do-it ×5, mishears-the-price ×2, phone-call-hold-on ×2, i-know-what-it-is ×1, background-chaos ×1, neighbor-said ×1, tests-your-honesty ×1 | 0 |
+| wh-code-upgrades-rental | 4 | novice | 6 | 0% | 0% | 100% | 21.7 | 0.0 | do-i-need-the-code-stuff ×12, just-the-cheap-fix ×10, can-you-do-better ×8, silence-after-price ×5, goes-cold ×5, handyman-can-do-it ×4, i-know-what-it-is ×4, angry-about-last-company ×2, mishears-the-price ×1 | 0 |
+| wh-first-home-rumbling | 2 | expert | 6 | 100% | 0% | 0% | 85.3 | 100.0 | silence-after-price ×6, thinks-out-loud ×3, mixes-up-terms ×3, mishears-the-price ×3, minimal-responses ×2, phone-call-hold-on ×2, watched-a-video ×2, background-chaos ×1, neighbor-said ×1, i-know-what-it-is ×1, didnt-budget-for-this ×1 | 0 |
+| wh-first-home-rumbling | 2 | solid | 6 | 83% | 17% | 0% | 69.8 | 99.2 | silence-after-price ×6, need-to-think-about-it ×4, monthly-still-too-much ×3, didnt-budget-for-this ×3, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
 | wh-first-home-rumbling | 2 | novice | 6 | 0% | 0% | 100% | 26.5 | 6.7 | didnt-budget-for-this ×12, silence-after-price ×6, i-know-what-it-is ×4 | 0 |
-| wh-first-home-rumbling | 4 | expert | 6 | 100% | 0% | 0% | 85.5 | 100.0 | silence-after-price ×6, thinks-out-loud ×3, mixes-up-terms ×3, mishears-the-price ×3, minimal-responses ×2, phone-call-hold-on ×2, watched-a-video ×2, background-chaos ×1, neighbor-said ×1, i-know-what-it-is ×1, didnt-budget-for-this ×1 | 7 |
-| wh-first-home-rumbling | 4 | solid | 6 | 17% | 83% | 0% | 72.3 | 97.0 | silence-after-price ×6, monthly-still-too-much ×6, need-to-think-about-it ×5, didnt-budget-for-this ×3, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
+| wh-first-home-rumbling | 4 | expert | 6 | 100% | 0% | 0% | 85.3 | 100.0 | silence-after-price ×6, thinks-out-loud ×3, mixes-up-terms ×3, mishears-the-price ×3, minimal-responses ×2, phone-call-hold-on ×2, watched-a-video ×2, background-chaos ×1, neighbor-said ×1, i-know-what-it-is ×1, didnt-budget-for-this ×1 | 0 |
+| wh-first-home-rumbling | 4 | solid | 6 | 17% | 83% | 0% | 73.3 | 99.7 | silence-after-price ×6, monthly-still-too-much ×6, need-to-think-about-it ×5, didnt-budget-for-this ×3, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, spouse-walks-in ×1, neighbor-said ×1, phone-call-hold-on ×1, watched-a-video ×1 | 0 |
 | wh-first-home-rumbling | 4 | novice | 6 | 0% | 0% | 100% | 30.5 | 9.7 | didnt-budget-for-this ×8, silence-after-price ×6, i-know-what-it-is ×4 | 0 |
-| wh-heat-pump-rebate | 2 | expert | 6 | 100% | 0% | 0% | 85.2 | 100.0 | silence-after-price ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×5, repeats-answered-objection ×3, thinks-out-loud ×2, minimal-responses ×2, you-always-upsell ×1, watched-a-video ×1, half-listening ×1, tests-your-honesty ×1, neighbor-said ×1 | 14 |
-| wh-heat-pump-rebate | 2 | solid | 6 | 100% | 0% | 0% | 70.2 | 91.7 | silence-after-price ×6, do-i-need-the-code-stuff ×6, what-am-i-paying-for ×5, you-always-upsell ×2, phone-call-hold-on ×2, minimal-responses ×1, half-listening ×1, neighbor-said ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
+| wh-heat-pump-rebate | 2 | expert | 6 | 100% | 0% | 0% | 88.0 | 100.0 | silence-after-price ×6, do-i-need-the-code-stuff ×5, what-am-i-paying-for ×5, thinks-out-loud ×4, i-know-what-it-is ×3, minimal-responses ×3, neighbor-said ×2, watched-a-video ×2, repeats-answered-objection ×1 | 0 |
+| wh-heat-pump-rebate | 2 | solid | 6 | 100% | 0% | 0% | 70.7 | 94.3 | silence-after-price ×6, do-i-need-the-code-stuff ×6, what-am-i-paying-for ×5, you-always-upsell ×2, phone-call-hold-on ×2, minimal-responses ×1, half-listening ×1, neighbor-said ×1, i-know-what-it-is ×1, watched-a-video ×1 | 0 |
 | wh-heat-pump-rebate | 2 | novice | 6 | 0% | 0% | 100% | 24.0 | 3.2 | you-always-upsell ×13, what-am-i-paying-for ×7, silence-after-price ×6, do-i-need-the-code-stuff ×6, i-know-what-it-is ×4, goes-cold ×3 | 0 |
-| wh-heat-pump-rebate | 4 | expert | 6 | 100% | 0% | 0% | 85.7 | 100.0 | silence-after-price ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×6, thinks-out-loud ×3, tests-your-honesty ×2, watched-a-video ×2, i-know-what-it-is ×2, repeats-answered-objection ×2, neighbor-said ×2, you-always-upsell ×1, half-listening ×1 | 13 |
-| wh-heat-pump-rebate | 4 | solid | 6 | 33% | 67% | 0% | 73.5 | 95.5 | you-always-upsell ×6, silence-after-price ×6, do-i-need-the-code-stuff ×6, what-am-i-paying-for ×5, phone-call-hold-on ×2, tests-your-honesty ×1, i-know-what-it-is ×1, half-listening ×1, neighbor-said ×1 | 0 |
+| wh-heat-pump-rebate | 4 | expert | 6 | 100% | 0% | 0% | 88.3 | 100.0 | silence-after-price ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×6, thinks-out-loud ×4, watched-a-video ×3, i-know-what-it-is ×3, neighbor-said ×3, you-always-upsell ×1, tests-your-honesty ×1, half-listening ×1, minimal-responses ×1, repeats-answered-objection ×1 | 0 |
+| wh-heat-pump-rebate | 4 | solid | 6 | 50% | 50% | 0% | 73.5 | 96.7 | you-always-upsell ×6, silence-after-price ×6, do-i-need-the-code-stuff ×6, what-am-i-paying-for ×5, phone-call-hold-on ×2, tests-your-honesty ×1, i-know-what-it-is ×1, half-listening ×1, neighbor-said ×1 | 0 |
 | wh-heat-pump-rebate | 4 | novice | 6 | 0% | 0% | 100% | 27.8 | 5.2 | you-always-upsell ×11, what-am-i-paying-for ×7, silence-after-price ×6, i-know-what-it-is ×4, do-i-need-the-code-stuff ×3, goes-cold ×2, angry-about-last-company ×2 | 0 |
-| wh-repair-or-replace-9yr | 2 | expert | 6 | 100% | 0% | 0% | 73.5 | 95.7 | tests-your-honesty ×6, silence-after-price ×6, thinks-out-loud ×4, neighbor-said ×3, how-do-i-know-its-broken ×2, minimal-responses ×2, watched-a-video ×2, background-chaos ×1, mixes-up-terms ×1 | 18 |
-| wh-repair-or-replace-9yr | 2 | solid | 6 | 67% | 33% | 0% | 68.2 | 96.7 | last-company-ripped-me-off ×6, tests-your-honesty ×6, silence-after-price ×6, how-do-i-know-its-broken ×6, neighbor-said ×2, thinks-out-loud ×1, watched-a-video ×1, background-chaos ×1 | 5 |
-| wh-repair-or-replace-9yr | 2 | novice | 6 | 0% | 0% | 100% | 31.0 | 4.0 | last-company-ripped-me-off ×10, show-me-in-writing ×10, how-do-i-know-its-broken ×5, goes-cold ×3, silence-after-price ×3, i-know-what-it-is ×1, thinks-out-loud ×1 | 6 |
-| wh-repair-or-replace-9yr | 4 | expert | 6 | 83% | 17% | 0% | 75.3 | 80.2 | tests-your-honesty ×6, silence-after-price ×6, last-company-ripped-me-off ×4, thinks-out-loud ×4, neighbor-said ×2, how-do-i-know-its-broken ×2, half-listening ×2, background-chaos ×1, watched-a-video ×1 | 18 |
-| wh-repair-or-replace-9yr | 4 | solid | 6 | 0% | 100% | 0% | 70.5 | 99.3 | last-company-ripped-me-off ×6, tests-your-honesty ×6, silence-after-price ×6, how-do-i-know-its-broken ×6, show-me-in-writing ×6, minimal-responses ×1, background-chaos ×1, thinks-out-loud ×1 | 4 |
-| wh-repair-or-replace-9yr | 4 | novice | 6 | 0% | 0% | 100% | 32.5 | 0.7 | last-company-ripped-me-off ×11, show-me-in-writing ×10, how-do-i-know-its-broken ×5, silence-after-price ×3, goes-cold ×2, angry-about-last-company ×1, thinks-out-loud ×1 | 6 |
-| wh-replacement-spanish | 2 | expert | 6 | 0% | 100% | 0% | 88.2 | 100.0 | silence-after-price ×6, minimal-responses ×4, thinks-out-loud ×3, mishears-the-price ×3, background-chaos ×3, mixes-up-terms ×2, neighbor-said ×2, watched-a-video ×2, repeats-answered-objection ×1, phone-call-hold-on ×1 | 18 |
-| wh-replacement-spanish | 2 | solid | 6 | 0% | 100% | 0% | 72.7 | 100.0 | silence-after-price ×6, mishears-the-price ×5, minimal-responses ×2, neighbor-said ×2, repeats-answered-objection ×1, background-chaos ×1, watched-a-video ×1 | 6 |
+| wh-repair-or-replace-9yr | 2 | expert | 6 | 100% | 0% | 0% | 79.7 | 100.0 | tests-your-honesty ×6, silence-after-price ×6, thinks-out-loud ×5, neighbor-said ×3, minimal-responses ×2, watched-a-video ×2, how-do-i-know-its-broken ×1, background-chaos ×1, mixes-up-terms ×1 | 0 |
+| wh-repair-or-replace-9yr | 2 | solid | 6 | 83% | 17% | 0% | 69.2 | 99.5 | last-company-ripped-me-off ×6, tests-your-honesty ×6, silence-after-price ×6, how-do-i-know-its-broken ×6, neighbor-said ×2, thinks-out-loud ×1, watched-a-video ×1, background-chaos ×1 | 0 |
+| wh-repair-or-replace-9yr | 2 | novice | 6 | 0% | 0% | 100% | 29.8 | 4.0 | last-company-ripped-me-off ×10, show-me-in-writing ×10, tests-your-honesty ×6, how-do-i-know-its-broken ×5, goes-cold ×3, silence-after-price ×3, i-know-what-it-is ×1, thinks-out-loud ×1 | 0 |
+| wh-repair-or-replace-9yr | 4 | expert | 6 | 100% | 0% | 0% | 82.8 | 100.0 | tests-your-honesty ×6, silence-after-price ×6, last-company-ripped-me-off ×4, thinks-out-loud ×4, neighbor-said ×2, how-do-i-know-its-broken ×2, half-listening ×2, background-chaos ×1, watched-a-video ×1 | 0 |
+| wh-repair-or-replace-9yr | 4 | solid | 6 | 0% | 100% | 0% | 71.7 | 99.7 | last-company-ripped-me-off ×6, tests-your-honesty ×6, silence-after-price ×6, how-do-i-know-its-broken ×6, show-me-in-writing ×6, minimal-responses ×1, background-chaos ×1, thinks-out-loud ×1 | 0 |
+| wh-repair-or-replace-9yr | 4 | novice | 6 | 0% | 0% | 100% | 31.5 | 0.7 | last-company-ripped-me-off ×11, show-me-in-writing ×10, tests-your-honesty ×6, how-do-i-know-its-broken ×5, silence-after-price ×3, goes-cold ×2, angry-about-last-company ×1, thinks-out-loud ×1 | 0 |
+| wh-replacement-spanish | 2 | expert | 6 | 100% | 0% | 0% | 90.5 | 100.0 | silence-after-price ×6, show-me-in-writing ×6, minimal-responses ×4, background-chaos ×3, thinks-out-loud ×2, mixes-up-terms ×2, mishears-the-price ×2, neighbor-said ×2, watched-a-video ×2, phone-call-hold-on ×1 | 0 |
+| wh-replacement-spanish | 2 | solid | 6 | 100% | 0% | 0% | 71.7 | 100.0 | silence-after-price ×6, show-me-in-writing ×6, minimal-responses ×2, mishears-the-price ×2, neighbor-said ×2, background-chaos ×1, watched-a-video ×1 | 0 |
 | wh-replacement-spanish | 2 | novice | 6 | 0% | 0% | 100% | 34.0 | 14.0 | show-me-in-writing ×15, silence-after-price ×6 | 0 |
-| wh-replacement-spanish | 4 | expert | 6 | 0% | 100% | 0% | 88.2 | 100.0 | silence-after-price ×6, minimal-responses ×4, thinks-out-loud ×3, mishears-the-price ×3, mixes-up-terms ×2, background-chaos ×2, neighbor-said ×2, watched-a-video ×2, repeats-answered-objection ×1, phone-call-hold-on ×1, half-listening ×1 | 18 |
-| wh-replacement-spanish | 4 | solid | 6 | 0% | 100% | 0% | 73.0 | 100.0 | silence-after-price ×6, show-me-in-writing ×3, mishears-the-price ×3, minimal-responses ×2, neighbor-said ×2, repeats-answered-objection ×1, background-chaos ×1, watched-a-video ×1 | 7 |
+| wh-replacement-spanish | 4 | expert | 6 | 100% | 0% | 0% | 90.5 | 100.0 | silence-after-price ×6, show-me-in-writing ×6, minimal-responses ×4, thinks-out-loud ×2, mixes-up-terms ×2, mishears-the-price ×2, background-chaos ×2, neighbor-said ×2, watched-a-video ×2, phone-call-hold-on ×1, half-listening ×1 | 0 |
+| wh-replacement-spanish | 4 | solid | 6 | 100% | 0% | 0% | 71.7 | 99.8 | silence-after-price ×6, show-me-in-writing ×6, minimal-responses ×2, mishears-the-price ×2, neighbor-said ×2, background-chaos ×1, watched-a-video ×1 | 0 |
 | wh-replacement-spanish | 4 | novice | 6 | 0% | 0% | 100% | 34.0 | 4.0 | show-me-in-writing ×15, silence-after-price ×6 | 0 |
-| wh-tank-landlord-tenant | 2 | expert | 6 | 0% | 0% | 100% | 86.5 | 100.0 | handyman-can-do-it ×6, can-you-do-better ×6, just-the-cheap-fix ×6, silence-after-price ×5, minimal-responses ×4, mishears-the-price ×4, thinks-out-loud ×3, background-chaos ×3, phone-call-hold-on ×2, i-know-what-it-is ×1, watched-a-video ×1, tests-your-honesty ×1 | 24 |
-| wh-tank-landlord-tenant | 2 | solid | 6 | 0% | 100% | 0% | 79.8 | 100.0 | silence-after-price ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×5, minimal-responses ×2, mishears-the-price ×2, phone-call-hold-on ×2, background-chaos ×1, tests-your-honesty ×1 | 11 |
-| wh-tank-landlord-tenant | 2 | novice | 6 | 0% | 0% | 100% | 27.3 | 0.0 | just-the-cheap-fix ×11, can-you-do-better ×10, handyman-can-do-it ×10, goes-cold ×5, silence-after-price ×4, i-know-what-it-is ×4, mishears-the-price ×2 | 0 |
-| wh-tank-landlord-tenant | 4 | expert | 6 | 0% | 0% | 100% | 86.5 | 100.0 | handyman-can-do-it ×6, can-you-do-better ×6, just-the-cheap-fix ×6, silence-after-price ×5, minimal-responses ×4, mishears-the-price ×4, thinks-out-loud ×3, background-chaos ×3, phone-call-hold-on ×2, i-know-what-it-is ×1, watched-a-video ×1, tests-your-honesty ×1 | 24 |
-| wh-tank-landlord-tenant | 4 | solid | 6 | 0% | 100% | 0% | 79.2 | 100.0 | silence-after-price ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×5, mishears-the-price ×2, phone-call-hold-on ×2, i-know-what-it-is ×1, background-chaos ×1, neighbor-said ×1, tests-your-honesty ×1 | 11 |
-| wh-tank-landlord-tenant | 4 | novice | 6 | 0% | 0% | 100% | 25.8 | 0.0 | just-the-cheap-fix ×11, can-you-do-better ×10, handyman-can-do-it ×9, silence-after-price ×5, goes-cold ×5, i-know-what-it-is ×4, angry-about-last-company ×2, mishears-the-price ×1 | 0 |
-| wh-tank-no-hot-water | 2 | expert | 6 | 0% | 100% | 0% | 91.7 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×4, i-know-what-it-is ×2, minimal-responses ×2, mixes-up-terms ×2, watched-a-video ×2, thinks-out-loud ×1, phone-call-hold-on ×1, background-chaos ×1, neighbor-said ×1 | 23 |
-| wh-tank-no-hot-water | 2 | solid | 6 | 0% | 100% | 0% | 74.0 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 10 |
+| wh-tank-landlord-tenant | 2 | expert | 6 | 83% | 17% | 0% | 93.0 | 100.0 | handyman-can-do-it ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×5, just-the-cheap-fix ×5, minimal-responses ×4, background-chaos ×3, phone-call-hold-on ×3, i-know-what-it-is ×2, watched-a-video ×1, mishears-the-price ×1, tests-your-honesty ×1 | 0 |
+| wh-tank-landlord-tenant | 2 | solid | 6 | 100% | 0% | 0% | 79.0 | 100.0 | silence-after-price ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×5, minimal-responses ×2, mishears-the-price ×2, phone-call-hold-on ×2, background-chaos ×1, tests-your-honesty ×1 | 0 |
+| wh-tank-landlord-tenant | 2 | novice | 6 | 0% | 0% | 100% | 27.5 | 0.0 | handyman-can-do-it ×12, just-the-cheap-fix ×11, can-you-do-better ×6, goes-cold ×5, silence-after-price ×4, i-know-what-it-is ×4, mishears-the-price ×2 | 0 |
+| wh-tank-landlord-tenant | 4 | expert | 6 | 83% | 17% | 0% | 93.0 | 100.0 | handyman-can-do-it ×6, can-you-do-better ×6, silence-after-price ×5, thinks-out-loud ×5, just-the-cheap-fix ×5, minimal-responses ×4, background-chaos ×3, phone-call-hold-on ×3, i-know-what-it-is ×2, watched-a-video ×1, mishears-the-price ×1, tests-your-honesty ×1 | 0 |
+| wh-tank-landlord-tenant | 4 | solid | 6 | 100% | 0% | 0% | 78.5 | 100.0 | silence-after-price ×6, handyman-can-do-it ×6, just-the-cheap-fix ×6, can-you-do-better ×5, mishears-the-price ×2, phone-call-hold-on ×2, i-know-what-it-is ×1, background-chaos ×1, neighbor-said ×1, tests-your-honesty ×1 | 0 |
+| wh-tank-landlord-tenant | 4 | novice | 6 | 0% | 0% | 100% | 26.0 | 0.0 | handyman-can-do-it ×12, just-the-cheap-fix ×10, can-you-do-better ×6, silence-after-price ×5, goes-cold ×5, i-know-what-it-is ×4, angry-about-last-company ×2, mishears-the-price ×1 | 0 |
+| wh-tank-no-hot-water | 2 | expert | 6 | 100% | 0% | 0% | 90.0 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×4, i-know-what-it-is ×2, minimal-responses ×2, mixes-up-terms ×2, watched-a-video ×2, thinks-out-loud ×1, phone-call-hold-on ×1, background-chaos ×1, neighbor-said ×1 | 0 |
+| wh-tank-no-hot-water | 2 | solid | 6 | 100% | 0% | 0% | 71.8 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 0 |
 | wh-tank-no-hot-water | 2 | novice | 6 | 0% | 0% | 100% | 29.8 | 10.8 | too-expensive ×16, silence-after-price ×6, i-know-what-it-is ×4 | 0 |
-| wh-tank-no-hot-water | 4 | expert | 6 | 0% | 100% | 0% | 91.7 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×4, i-know-what-it-is ×2, minimal-responses ×2, mixes-up-terms ×2, watched-a-video ×2, thinks-out-loud ×1, phone-call-hold-on ×1, background-chaos ×1, neighbor-said ×1 | 23 |
-| wh-tank-no-hot-water | 4 | solid | 6 | 0% | 100% | 0% | 74.0 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 10 |
+| wh-tank-no-hot-water | 4 | expert | 6 | 100% | 0% | 0% | 90.0 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×4, i-know-what-it-is ×2, minimal-responses ×2, mixes-up-terms ×2, watched-a-video ×2, thinks-out-loud ×1, phone-call-hold-on ×1, background-chaos ×1, neighbor-said ×1 | 0 |
+| wh-tank-no-hot-water | 4 | solid | 6 | 100% | 0% | 0% | 71.8 | 100.0 | silence-after-price ×6, too-expensive ×6, mishears-the-price ×2, minimal-responses ×1, background-chaos ×1, phone-call-hold-on ×1, neighbor-said ×1, mixes-up-terms ×1, watched-a-video ×1 | 0 |
 | wh-tank-no-hot-water | 4 | novice | 6 | 0% | 0% | 100% | 33.5 | 10.3 | too-expensive ×13, silence-after-price ×6, i-know-what-it-is ×4 | 0 |
-| wh-tankless-descale | 2 | expert | 6 | 100% | 0% | 0% | 88.3 | 100.0 | can-you-do-better ×5, mishears-the-price ×4, i-know-what-it-is ×2, phone-call-hold-on ×2, neighbor-said ×1, interrupts-how-much ×1, watched-a-video ×1, background-chaos ×1, minimal-responses ×1, tests-your-honesty ×1 | 11 |
+| wh-tankless-descale | 2 | expert | 6 | 100% | 0% | 0% | 89.3 | 100.0 | can-you-do-better ×5, mishears-the-price ×4, i-know-what-it-is ×2, phone-call-hold-on ×2, neighbor-said ×1, interrupts-how-much ×1, watched-a-video ×1, background-chaos ×1, minimal-responses ×1, tests-your-honesty ×1 | 5 |
 | wh-tankless-descale | 2 | solid | 6 | 100% | 0% | 0% | 66.5 | 90.5 | can-you-do-better ×6, mishears-the-price ×3, interrupts-how-much ×2, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 4 |
 | wh-tankless-descale | 2 | novice | 6 | 0% | 0% | 100% | 26.7 | 9.5 | can-you-do-better ×16, are-you-on-commission ×6, i-know-what-it-is ×4, goes-cold ×3, mishears-the-price ×2 | 0 |
-| wh-tankless-descale | 4 | expert | 6 | 100% | 0% | 0% | 88.3 | 100.0 | can-you-do-better ×5, mishears-the-price ×4, i-know-what-it-is ×2, phone-call-hold-on ×2, neighbor-said ×1, interrupts-how-much ×1, watched-a-video ×1, background-chaos ×1, minimal-responses ×1, tests-your-honesty ×1 | 11 |
+| wh-tankless-descale | 4 | expert | 6 | 100% | 0% | 0% | 89.3 | 100.0 | can-you-do-better ×5, mishears-the-price ×4, i-know-what-it-is ×2, phone-call-hold-on ×2, neighbor-said ×1, interrupts-how-much ×1, watched-a-video ×1, background-chaos ×1, minimal-responses ×1, tests-your-honesty ×1 | 5 |
 | wh-tankless-descale | 4 | solid | 6 | 100% | 0% | 0% | 66.5 | 81.8 | can-you-do-better ×6, mishears-the-price ×3, interrupts-how-much ×2, neighbor-said ×2, background-chaos ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 4 |
 | wh-tankless-descale | 4 | novice | 6 | 0% | 0% | 100% | 29.7 | 7.8 | can-you-do-better ×14, i-know-what-it-is ×4, are-you-on-commission ×3, goes-cold ×3, mishears-the-price ×2, angry-about-last-company ×2 | 0 |
-| wh-tankless-upgrade-question | 2 | expert | 6 | 0% | 0% | 100% | 73.8 | 100.0 | watched-a-video ×6, found-it-cheaper ×6, need-three-bids ×6, silence-after-price ×5, thinks-out-loud ×3, i-know-what-it-is ×2, interrupts-how-much ×2, bigger-than-needed ×1, neighbor-said ×1, phone-call-hold-on ×1, minimal-responses ×1, tests-your-honesty ×1 | 15 |
-| wh-tankless-upgrade-question | 2 | solid | 6 | 33% | 50% | 17% | 57.0 | 64.3 | watched-a-video ×6, found-it-cheaper ×6, need-three-bids ×6, silence-after-price ×4, i-know-what-it-is ×1, minimal-responses ×1, thinks-out-loud ×1 | 13 |
-| wh-tankless-upgrade-question | 2 | novice | 6 | 0% | 0% | 100% | 27.5 | 3.8 | found-it-cheaper ×11, need-three-bids ×6, silence-after-price ×4, i-know-what-it-is ×3, thinks-out-loud ×1 | 0 |
-| wh-tankless-upgrade-question | 4 | expert | 6 | 0% | 0% | 100% | 73.8 | 100.0 | watched-a-video ×6, found-it-cheaper ×6, need-three-bids ×6, silence-after-price ×5, thinks-out-loud ×3, i-know-what-it-is ×2, interrupts-how-much ×2, bigger-than-needed ×1, neighbor-said ×1, phone-call-hold-on ×1, minimal-responses ×1, tests-your-honesty ×1 | 15 |
-| wh-tankless-upgrade-question | 4 | solid | 6 | 0% | 67% | 33% | 55.8 | 52.3 | watched-a-video ×6, found-it-cheaper ×5, need-three-bids ×5, silence-after-price ×4, i-know-what-it-is ×1, minimal-responses ×1, thinks-out-loud ×1 | 13 |
-| wh-tankless-upgrade-question | 4 | novice | 6 | 0% | 0% | 100% | 28.5 | 1.5 | found-it-cheaper ×10, need-three-bids ×6, silence-after-price ×4, i-know-what-it-is ×2, thinks-out-loud ×1 | 0 |
-| wh-warranty-claim-denied | 2 | expert | 6 | 0% | 0% | 100% | 66.7 | 88.5 | minimal-responses ×4, neighbor-said ×3, half-listening ×2, interrupts-how-much ×1, silence-after-price ×1, phone-call-hold-on ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 48 |
-| wh-warranty-claim-denied | 2 | solid | 6 | 0% | 0% | 100% | 51.0 | 43.3 | neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, silence-after-price ×1, home-warranty-covers-it ×1, what-am-i-paying-for ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 18 |
-| wh-warranty-claim-denied | 2 | novice | 6 | 0% | 0% | 100% | 30.8 | 10.8 | home-warranty-covers-it ×4, i-know-what-it-is ×4 | 6 |
-| wh-warranty-claim-denied | 4 | expert | 6 | 0% | 0% | 100% | 69.5 | 92.7 | minimal-responses ×4, do-i-need-the-code-stuff ×3, home-warranty-covers-it ×3, neighbor-said ×3, what-am-i-paying-for ×2, paid-less-last-time ×2, half-listening ×2, interrupts-how-much ×1, silence-after-price ×1, phone-call-hold-on ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 45 |
-| wh-warranty-claim-denied | 4 | solid | 6 | 0% | 0% | 100% | 51.0 | 33.8 | neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, silence-after-price ×1, home-warranty-covers-it ×1, what-am-i-paying-for ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 18 |
-| wh-warranty-claim-denied | 4 | novice | 6 | 0% | 0% | 100% | 35.8 | 9.2 | i-know-what-it-is ×4, angry-about-last-company ×2 | 6 |
+| wh-tankless-upgrade-question | 2 | expert | 6 | 0% | 100% | 0% | 83.8 | 100.0 | watched-a-video ×6, found-it-cheaper ×6, need-three-bids ×6, silence-after-price ×5, thinks-out-loud ×4, i-know-what-it-is ×2, bigger-than-needed ×1, neighbor-said ×1, phone-call-hold-on ×1, minimal-responses ×1, tests-your-honesty ×1, interrupts-how-much ×1 | 6 |
+| wh-tankless-upgrade-question | 2 | solid | 6 | 100% | 0% | 0% | 71.8 | 100.0 | watched-a-video ×6, silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×5, bigger-than-needed ×1, i-know-what-it-is ×1, neighbor-said ×1, thinks-out-loud ×1, minimal-responses ×1, tests-your-honesty ×1 | 0 |
+| wh-tankless-upgrade-question | 2 | novice | 6 | 0% | 0% | 100% | 26.3 | 2.3 | found-it-cheaper ×11, need-three-bids ×10, watched-a-video ×6, silence-after-price ×4, i-know-what-it-is ×4, goes-cold ×3, bigger-than-needed ×2, thinks-out-loud ×2 | 0 |
+| wh-tankless-upgrade-question | 4 | expert | 6 | 0% | 100% | 0% | 83.8 | 100.0 | watched-a-video ×6, found-it-cheaper ×6, need-three-bids ×6, silence-after-price ×5, thinks-out-loud ×4, i-know-what-it-is ×2, bigger-than-needed ×1, neighbor-said ×1, phone-call-hold-on ×1, minimal-responses ×1, tests-your-honesty ×1, interrupts-how-much ×1 | 6 |
+| wh-tankless-upgrade-question | 4 | solid | 6 | 100% | 0% | 0% | 71.8 | 100.0 | watched-a-video ×6, silence-after-price ×6, found-it-cheaper ×6, need-three-bids ×5, bigger-than-needed ×1, i-know-what-it-is ×1, neighbor-said ×1, thinks-out-loud ×1, minimal-responses ×1, tests-your-honesty ×1 | 0 |
+| wh-tankless-upgrade-question | 4 | novice | 6 | 0% | 0% | 100% | 29.2 | 0.7 | found-it-cheaper ×11, need-three-bids ×8, watched-a-video ×6, silence-after-price ×5, i-know-what-it-is ×4, goes-cold ×3, bigger-than-needed ×2, angry-about-last-company ×2, thinks-out-loud ×1 | 0 |
+| wh-warranty-claim-denied | 2 | expert | 6 | 100% | 0% | 0% | 90.7 | 100.0 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×6, paid-less-last-time ×5, minimal-responses ×4, neighbor-said ×3, thinks-out-loud ×3, interrupts-how-much ×2, mishears-the-price ×2, i-know-what-it-is ×2, half-listening ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| wh-warranty-claim-denied | 2 | solid | 6 | 100% | 0% | 0% | 73.0 | 99.8 | silence-after-price ×6, do-i-need-the-code-stuff ×6, home-warranty-covers-it ×6, paid-less-last-time ×5, what-am-i-paying-for ×4, mishears-the-price ×2, neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| wh-warranty-claim-denied | 2 | novice | 6 | 0% | 0% | 100% | 21.3 | 0.0 | what-am-i-paying-for ×11, do-i-need-the-code-stuff ×10, home-warranty-covers-it ×9, paid-less-last-time ×7, silence-after-price ×6, goes-cold ×5, i-know-what-it-is ×4 | 0 |
+| wh-warranty-claim-denied | 4 | expert | 6 | 100% | 0% | 0% | 91.3 | 100.0 | silence-after-price ×6, home-warranty-covers-it ×6, what-am-i-paying-for ×6, do-i-need-the-code-stuff ×6, paid-less-last-time ×5, minimal-responses ×4, neighbor-said ×3, thinks-out-loud ×3, interrupts-how-much ×2, mishears-the-price ×2, i-know-what-it-is ×2, half-listening ×1, phone-call-hold-on ×1, tests-your-honesty ×1 | 0 |
+| wh-warranty-claim-denied | 4 | solid | 6 | 100% | 0% | 0% | 73.0 | 96.8 | silence-after-price ×6, do-i-need-the-code-stuff ×6, home-warranty-covers-it ×6, paid-less-last-time ×5, what-am-i-paying-for ×4, mishears-the-price ×2, neighbor-said ×2, minimal-responses ×1, half-listening ×1, mixes-up-terms ×1, i-know-what-it-is ×1, tests-your-honesty ×1 | 0 |
+| wh-warranty-claim-denied | 4 | novice | 6 | 0% | 0% | 100% | 17.2 | 0.0 | do-i-need-the-code-stuff ×12, home-warranty-covers-it ×10, what-am-i-paying-for ×9, silence-after-price ×6, paid-less-last-time ×5, goes-cold ×4, i-know-what-it-is ×4, angry-about-last-company ×2 | 0 |
 
 ## Probes
 
@@ -108,122 +204,280 @@ Content 0.1.0+3c426235baa7, 14 scenario(s), 1 drill(s). Difficulties 2, 4, seeds
 
 | Scenario | Difficulty | Probe | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| gas-smell-flex-line | 2 | upsell | 3 | 33% | 0% | 67% | 70.7 | 94.3 | silence-after-price ×3, too-expensive ×3, repeats-answered-objection ×2, mishears-the-price ×1, minimal-responses ×1, thinks-out-loud ×1, mixes-up-terms ×1 | 17 |
-| gas-smell-flex-line | 2 | pushy | 3 | 67% | 0% | 33% | 63.3 | 78.7 | silence-after-price ×3, can-it-wait ×3, too-expensive ×2, mishears-the-price ×1, minimal-responses ×1, thinks-out-loud ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 16 |
-| gas-smell-flex-line | 4 | upsell | 3 | 33% | 0% | 67% | 70.0 | 94.3 | silence-after-price ×3, too-expensive ×3, repeats-answered-objection ×2, mishears-the-price ×1, minimal-responses ×1, thinks-out-loud ×1, mixes-up-terms ×1 | 17 |
-| gas-smell-flex-line | 4 | pushy | 3 | 67% | 0% | 33% | 63.3 | 75.3 | silence-after-price ×3, can-it-wait ×3, too-expensive ×2, mishears-the-price ×1, minimal-responses ×1, thinks-out-loud ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 16 |
-| maintenance-visit-anode | 2 | upsell | 3 | 100% | 0% | 0% | 79.0 | 78.7 | silence-after-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, mishears-the-price ×2, interrupts-how-much ×1, half-listening ×1 | 6 |
-| maintenance-visit-anode | 2 | pushy | 3 | 100% | 0% | 0% | 86.7 | 100.0 | silence-after-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, mishears-the-price ×2, interrupts-how-much ×1, half-listening ×1 | 3 |
-| maintenance-visit-anode | 4 | upsell | 3 | 100% | 0% | 0% | 79.0 | 78.7 | silence-after-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, mishears-the-price ×2, interrupts-how-much ×1, half-listening ×1 | 6 |
-| maintenance-visit-anode | 4 | pushy | 3 | 100% | 0% | 0% | 86.7 | 100.0 | silence-after-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, mishears-the-price ×2, interrupts-how-much ×1, half-listening ×1 | 3 |
-| second-opinion-quote | 2 | upsell | 3 | 100% | 0% | 0% | 82.0 | 86.7 | silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, minimal-responses ×2, thinks-out-loud ×1, background-chaos ×1, neighbor-said ×1 | 3 |
+| burst-pipe-after-hours | 2 | upsell | 3 | 0% | 100% | 0% | 84.3 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, repeats-answered-objection ×2, neighbor-said ×1, interrupts-how-much ×1 | 2 |
+| burst-pipe-after-hours | 2 | pushy | 3 | 100% | 0% | 0% | 89.0 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1, repeats-answered-objection ×1 | 2 |
+| burst-pipe-after-hours | 4 | upsell | 3 | 0% | 100% | 0% | 84.3 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, repeats-answered-objection ×2, neighbor-said ×1, interrupts-how-much ×1 | 2 |
+| burst-pipe-after-hours | 4 | pushy | 3 | 100% | 0% | 0% | 89.0 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1, repeats-answered-objection ×1 | 2 |
+| disposal-jammed-old | 2 | upsell | 3 | 0% | 100% | 0% | 82.7 | 100.0 | phone-call-hold-on ×3, mishears-the-price ×2, only-fix-what-i-called-for ×2, half-listening ×1, thinks-out-loud ×1, background-chaos ×1, i-know-what-it-is ×1 | 0 |
+| disposal-jammed-old | 2 | pushy | 3 | 100% | 0% | 0% | 85.0 | 100.0 | phone-call-hold-on ×3, mishears-the-price ×2, only-fix-what-i-called-for ×2, half-listening ×1, thinks-out-loud ×1, background-chaos ×1, i-know-what-it-is ×1 | 0 |
+| disposal-jammed-old | 4 | upsell | 3 | 0% | 100% | 0% | 82.7 | 100.0 | phone-call-hold-on ×3, mishears-the-price ×2, only-fix-what-i-called-for ×2, half-listening ×1, thinks-out-loud ×1, background-chaos ×1, i-know-what-it-is ×1 | 0 |
+| disposal-jammed-old | 4 | pushy | 3 | 100% | 0% | 0% | 85.0 | 100.0 | phone-call-hold-on ×3, mishears-the-price ×2, only-fix-what-i-called-for ×2, half-listening ×1, thinks-out-loud ×1, background-chaos ×1, i-know-what-it-is ×1 | 0 |
+| drain-kitchen-recurring | 2 | upsell | 3 | 0% | 100% | 0% | 83.0 | 100.0 | mishears-the-price ×3, just-the-cheap-fix ×3, half-listening ×2, i-know-what-it-is ×1, thinks-out-loud ×1, interrupts-how-much ×1, spouse-walks-in ×1 | 0 |
+| drain-kitchen-recurring | 2 | pushy | 3 | 100% | 0% | 0% | 86.7 | 100.0 | mishears-the-price ×3, just-the-cheap-fix ×3, half-listening ×2, i-know-what-it-is ×1, thinks-out-loud ×1, interrupts-how-much ×1, spouse-walks-in ×1 | 0 |
+| drain-kitchen-recurring | 4 | upsell | 3 | 0% | 100% | 0% | 83.0 | 100.0 | mishears-the-price ×3, just-the-cheap-fix ×3, half-listening ×2, i-know-what-it-is ×1, thinks-out-loud ×1, interrupts-how-much ×1, spouse-walks-in ×1 | 0 |
+| drain-kitchen-recurring | 4 | pushy | 3 | 100% | 0% | 0% | 86.7 | 100.0 | mishears-the-price ×3, just-the-cheap-fix ×3, half-listening ×2, i-know-what-it-is ×1, thinks-out-loud ×1, interrupts-how-much ×1, spouse-walks-in ×1 | 0 |
+| drain-main-line-roots | 2 | upsell | 3 | 0% | 100% | 0% | 83.3 | 97.7 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, repeats-answered-objection ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1, would-you-do-this ×1 | 0 |
+| drain-main-line-roots | 2 | pushy | 3 | 0% | 0% | 100% | 68.7 | 53.0 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| drain-main-line-roots | 4 | upsell | 3 | 0% | 100% | 0% | 83.3 | 97.7 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, repeats-answered-objection ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1, would-you-do-this ×1 | 0 |
+| drain-main-line-roots | 4 | pushy | 3 | 0% | 0% | 100% | 68.7 | 53.0 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| drain-simple-snake | 2 | upsell | 3 | 0% | 100% | 0% | 86.3 | 97.0 | tests-your-honesty ×3, silence-after-price ×3, mishears-the-price ×3, too-expensive ×3, minimal-responses ×2, i-know-what-it-is ×1 | 0 |
+| drain-simple-snake | 2 | pushy | 3 | 67% | 0% | 33% | 78.7 | 83.7 | tests-your-honesty ×3, silence-after-price ×3, mishears-the-price ×3, need-to-think-about-it ×3, too-expensive ×2, minimal-responses ×2, i-know-what-it-is ×1 | 0 |
+| drain-simple-snake | 4 | upsell | 3 | 0% | 100% | 0% | 86.3 | 97.0 | tests-your-honesty ×3, silence-after-price ×3, mishears-the-price ×3, too-expensive ×3, minimal-responses ×2, i-know-what-it-is ×1 | 0 |
+| drain-simple-snake | 4 | pushy | 3 | 67% | 0% | 33% | 78.7 | 83.7 | tests-your-honesty ×3, silence-after-price ×3, mishears-the-price ×3, need-to-think-about-it ×3, too-expensive ×2, minimal-responses ×2, i-know-what-it-is ×1 | 0 |
+| drinking-water-filtration | 2 | upsell | 3 | 0% | 100% | 0% | 84.0 | 96.7 | minimal-responses ×3, silence-after-price ×3, show-me-in-writing ×3, mishears-the-price ×2, thinks-out-loud ×1, mixes-up-terms ×1, background-chaos ×1 | 0 |
+| drinking-water-filtration | 2 | pushy | 3 | 100% | 0% | 0% | 85.3 | 100.0 | minimal-responses ×3, silence-after-price ×3, mishears-the-price ×2, show-me-in-writing ×2, thinks-out-loud ×1, mixes-up-terms ×1, background-chaos ×1 | 0 |
+| drinking-water-filtration | 4 | upsell | 3 | 0% | 100% | 0% | 84.0 | 96.7 | minimal-responses ×3, silence-after-price ×3, show-me-in-writing ×3, mishears-the-price ×2, thinks-out-loud ×1, mixes-up-terms ×1, background-chaos ×1 | 0 |
+| drinking-water-filtration | 4 | pushy | 3 | 67% | 0% | 33% | 77.0 | 80.3 | show-me-in-writing ×5, minimal-responses ×3, silence-after-price ×3, mishears-the-price ×2, thinks-out-loud ×1, mixes-up-terms ×1, background-chaos ×1 | 0 |
+| faucet-install-bad-valves | 2 | upsell | 3 | 0% | 100% | 0% | 84.3 | 100.0 | can-you-do-better ×3, only-fix-what-i-called-for ×3, interrupts-how-much ×2, neighbor-said ×1, i-know-what-it-is ×1, mishears-the-price ×1 | 0 |
+| faucet-install-bad-valves | 2 | pushy | 3 | 100% | 0% | 0% | 88.7 | 100.0 | can-you-do-better ×3, only-fix-what-i-called-for ×3, interrupts-how-much ×2, neighbor-said ×1, i-know-what-it-is ×1, mishears-the-price ×1 | 0 |
+| faucet-install-bad-valves | 4 | upsell | 3 | 0% | 100% | 0% | 84.3 | 100.0 | can-you-do-better ×3, only-fix-what-i-called-for ×3, interrupts-how-much ×2, neighbor-said ×1, i-know-what-it-is ×1, mishears-the-price ×1 | 0 |
+| faucet-install-bad-valves | 4 | pushy | 3 | 100% | 0% | 0% | 88.7 | 100.0 | can-you-do-better ×3, only-fix-what-i-called-for ×3, interrupts-how-much ×2, neighbor-said ×1, i-know-what-it-is ×1, mishears-the-price ×1 | 0 |
+| gas-smell-flex-line | 2 | upsell | 3 | 33% | 67% | 0% | 86.7 | 97.0 | silence-after-price ×3, too-expensive ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 4 |
+| gas-smell-flex-line | 2 | pushy | 3 | 67% | 0% | 33% | 78.3 | 83.7 | silence-after-price ×3, can-it-wait ×3, i-know-what-it-is ×2, too-expensive ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 2 |
+| gas-smell-flex-line | 4 | upsell | 3 | 33% | 67% | 0% | 86.7 | 97.0 | silence-after-price ×3, too-expensive ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 4 |
+| gas-smell-flex-line | 4 | pushy | 3 | 67% | 0% | 33% | 78.3 | 83.7 | silence-after-price ×3, can-it-wait ×3, i-know-what-it-is ×2, too-expensive ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 2 |
+| hard-water-softener | 2 | upsell | 3 | 0% | 100% | 0% | 84.3 | 84.0 | neighbor-said ×3, silence-after-price ×3, didnt-budget-for-this ×3, monthly-still-too-much ×3, minimal-responses ×2, thinks-out-loud ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| hard-water-softener | 2 | pushy | 3 | 0% | 0% | 100% | 65.7 | 50.3 | neighbor-said ×3, silence-after-price ×3, didnt-budget-for-this ×3, minimal-responses ×2, monthly-still-too-much ×2, thinks-out-loud ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| hard-water-softener | 4 | upsell | 3 | 0% | 100% | 0% | 84.3 | 84.0 | neighbor-said ×3, silence-after-price ×3, didnt-budget-for-this ×3, monthly-still-too-much ×3, minimal-responses ×2, thinks-out-loud ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| hard-water-softener | 4 | pushy | 3 | 0% | 0% | 100% | 65.7 | 50.3 | neighbor-said ×3, silence-after-price ×3, didnt-budget-for-this ×3, minimal-responses ×2, monthly-still-too-much ×2, thinks-out-loud ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| hydro-jet-rental | 2 | upsell | 3 | 0% | 67% | 33% | 85.0 | 89.7 | silence-after-price ×3, handyman-can-do-it ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, background-chaos ×1, mishears-the-price ×1 | 0 |
+| hydro-jet-rental | 2 | pushy | 3 | 100% | 0% | 0% | 81.3 | 100.0 | silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, background-chaos ×1, mishears-the-price ×1, handyman-can-do-it ×1, just-the-cheap-fix ×1, can-you-do-better ×1 | 2 |
+| hydro-jet-rental | 4 | upsell | 3 | 0% | 67% | 33% | 85.0 | 89.7 | silence-after-price ×3, handyman-can-do-it ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, background-chaos ×1, mishears-the-price ×1 | 0 |
+| hydro-jet-rental | 4 | pushy | 3 | 33% | 0% | 67% | 64.7 | 80.0 | handyman-can-do-it ×7, silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, background-chaos ×1, mishears-the-price ×1, just-the-cheap-fix ×1, can-you-do-better ×1 | 0 |
+| main-shutoff-seized | 2 | upsell | 3 | 33% | 67% | 0% | 85.7 | 90.0 | mishears-the-price ×3, silence-after-price ×3, only-fix-what-i-called-for ×3, interrupts-how-much ×2, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1 | 1 |
+| main-shutoff-seized | 2 | pushy | 3 | 100% | 0% | 0% | 86.0 | 100.0 | mishears-the-price ×3, silence-after-price ×3, interrupts-how-much ×2, only-fix-what-i-called-for ×2, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1 | 1 |
+| main-shutoff-seized | 4 | upsell | 3 | 33% | 67% | 0% | 85.7 | 90.0 | mishears-the-price ×3, silence-after-price ×3, only-fix-what-i-called-for ×3, interrupts-how-much ×2, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1 | 1 |
+| main-shutoff-seized | 4 | pushy | 3 | 67% | 0% | 33% | 78.0 | 81.7 | mishears-the-price ×3, silence-after-price ×3, selling-soon ×3, interrupts-how-much ×2, only-fix-what-i-called-for ×2, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1 | 1 |
+| maintenance-visit-anode | 2 | upsell | 3 | 0% | 100% | 0% | 81.7 | 93.3 | how-do-i-know-its-broken ×3, silence-after-price ×3, home-warranty-covers-it ×3, what-am-i-paying-for ×3, paid-less-last-time ×3, minimal-responses ×2, mishears-the-price ×2, tests-your-honesty ×1, thinks-out-loud ×1, interrupts-how-much ×1, half-listening ×1 | 0 |
+| maintenance-visit-anode | 2 | pushy | 3 | 100% | 0% | 0% | 86.0 | 100.0 | how-do-i-know-its-broken ×3, silence-after-price ×3, minimal-responses ×2, mishears-the-price ×2, home-warranty-covers-it ×2, what-am-i-paying-for ×2, paid-less-last-time ×2, tests-your-honesty ×1, thinks-out-loud ×1, interrupts-how-much ×1, half-listening ×1 | 0 |
+| maintenance-visit-anode | 4 | upsell | 3 | 0% | 100% | 0% | 81.7 | 93.3 | how-do-i-know-its-broken ×3, silence-after-price ×3, home-warranty-covers-it ×3, what-am-i-paying-for ×3, paid-less-last-time ×3, minimal-responses ×2, mishears-the-price ×2, tests-your-honesty ×1, thinks-out-loud ×1, interrupts-how-much ×1, half-listening ×1 | 0 |
+| maintenance-visit-anode | 4 | pushy | 3 | 100% | 0% | 0% | 86.0 | 100.0 | how-do-i-know-its-broken ×3, silence-after-price ×3, minimal-responses ×2, mishears-the-price ×2, home-warranty-covers-it ×2, what-am-i-paying-for ×2, paid-less-last-time ×2, tests-your-honesty ×1, thinks-out-loud ×1, interrupts-how-much ×1, half-listening ×1 | 0 |
+| prv-high-pressure | 2 | upsell | 3 | 0% | 33% | 67% | 84.3 | 95.0 | i-know-what-it-is ×3, found-it-cheaper ×3, need-three-bids ×3, neighbor-said ×2, silence-after-price ×2, thinks-out-loud ×2, interrupts-how-much ×1, bigger-than-needed ×1, background-chaos ×1 | 0 |
+| prv-high-pressure | 2 | pushy | 3 | 100% | 0% | 0% | 82.7 | 100.0 | i-know-what-it-is ×3, neighbor-said ×2, silence-after-price ×2, thinks-out-loud ×2, interrupts-how-much ×1, found-it-cheaper ×1, need-three-bids ×1, background-chaos ×1 | 0 |
+| prv-high-pressure | 4 | upsell | 3 | 0% | 33% | 67% | 84.3 | 95.0 | i-know-what-it-is ×3, found-it-cheaper ×3, need-three-bids ×3, neighbor-said ×2, silence-after-price ×2, thinks-out-loud ×2, interrupts-how-much ×1, bigger-than-needed ×1, background-chaos ×1 | 0 |
+| prv-high-pressure | 4 | pushy | 3 | 33% | 0% | 67% | 67.0 | 81.3 | found-it-cheaper ×7, i-know-what-it-is ×3, neighbor-said ×2, silence-after-price ×2, thinks-out-loud ×2, interrupts-how-much ×1, need-three-bids ×1, background-chaos ×1 | 0 |
+| remodel-rough-in | 2 | upsell | 3 | 0% | 100% | 0% | 85.3 | 93.3 | silence-after-price ×3, ill-do-part-myself ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| remodel-rough-in | 2 | pushy | 3 | 100% | 0% | 0% | 91.0 | 100.0 | silence-after-price ×3, ill-do-part-myself ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| remodel-rough-in | 4 | upsell | 3 | 0% | 100% | 0% | 85.3 | 93.3 | silence-after-price ×3, ill-do-part-myself ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| remodel-rough-in | 4 | pushy | 3 | 100% | 0% | 0% | 91.0 | 100.0 | silence-after-price ×3, ill-do-part-myself ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| repipe-galvanized | 2 | upsell | 3 | 0% | 100% | 0% | 83.3 | 89.3 | silence-after-price ×3, do-i-need-the-code-stuff ×3, what-am-i-paying-for ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, repeats-answered-objection ×1 | 0 |
+| repipe-galvanized | 2 | pushy | 3 | 0% | 0% | 100% | 60.0 | 70.7 | silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, what-am-i-paying-for ×1, repeats-answered-objection ×1, do-i-need-the-code-stuff ×1 | 0 |
+| repipe-galvanized | 4 | upsell | 3 | 0% | 100% | 0% | 84.0 | 97.3 | silence-after-price ×3, thinks-out-loud ×3, what-am-i-paying-for ×3, do-i-need-the-code-stuff ×3, watched-a-video ×2, i-know-what-it-is ×2, you-always-upsell ×1, tests-your-honesty ×1, half-listening ×1, minimal-responses ×1 | 0 |
+| repipe-galvanized | 4 | pushy | 3 | 0% | 0% | 100% | 59.0 | 70.0 | silence-after-price ×3, thinks-out-loud ×3, watched-a-video ×2, i-know-what-it-is ×2, you-always-upsell ×1, tests-your-honesty ×1, half-listening ×1, minimal-responses ×1 | 0 |
+| second-opinion-quote | 2 | upsell | 3 | 33% | 67% | 0% | 85.7 | 98.3 | silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, minimal-responses ×2, thinks-out-loud ×1, background-chaos ×1, neighbor-said ×1 | 1 |
 | second-opinion-quote | 2 | pushy | 3 | 100% | 0% | 0% | 86.0 | 100.0 | silence-after-price ×3, i-know-what-it-is ×2, found-it-cheaper ×2, need-three-bids ×2, minimal-responses ×2, thinks-out-loud ×1, background-chaos ×1, neighbor-said ×1 | 1 |
-| second-opinion-quote | 4 | upsell | 3 | 100% | 0% | 0% | 82.0 | 86.7 | silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, minimal-responses ×2, thinks-out-loud ×1, background-chaos ×1, neighbor-said ×1 | 3 |
+| second-opinion-quote | 4 | upsell | 3 | 33% | 67% | 0% | 85.7 | 98.3 | silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, minimal-responses ×2, thinks-out-loud ×1, background-chaos ×1, neighbor-said ×1 | 1 |
 | second-opinion-quote | 4 | pushy | 3 | 67% | 0% | 33% | 78.7 | 91.7 | found-it-cheaper ×5, silence-after-price ×3, i-know-what-it-is ×2, need-three-bids ×2, minimal-responses ×2, thinks-out-loud ×1, background-chaos ×1, neighbor-said ×1 | 0 |
-| tank-vs-tankless-family | 2 | upsell | 3 | 67% | 0% | 33% | 83.7 | 81.7 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 8 |
-| tank-vs-tankless-family | 2 | pushy | 3 | 100% | 0% | 0% | 91.0 | 100.0 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 6 |
-| tank-vs-tankless-family | 4 | upsell | 3 | 67% | 0% | 33% | 83.7 | 81.7 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 8 |
-| tank-vs-tankless-family | 4 | pushy | 3 | 100% | 0% | 0% | 91.0 | 100.0 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 6 |
-| wh-code-upgrades-rental | 2 | upsell | 3 | 100% | 0% | 0% | 84.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, handyman-can-do-it ×3, do-i-need-the-code-stuff ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 3 |
+| sewer-camera-before-sale | 2 | upsell | 3 | 0% | 100% | 0% | 83.7 | 85.0 | mishears-the-price ×3, silence-after-price ×3, selling-soon ×3, interrupts-how-much ×2, tests-your-honesty ×1, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 0 |
+| sewer-camera-before-sale | 2 | pushy | 3 | 100% | 0% | 0% | 87.0 | 100.0 | mishears-the-price ×3, silence-after-price ×3, interrupts-how-much ×2, selling-soon ×2, tests-your-honesty ×1, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 1 |
+| sewer-camera-before-sale | 4 | upsell | 3 | 0% | 100% | 0% | 83.7 | 85.0 | mishears-the-price ×3, silence-after-price ×3, selling-soon ×3, interrupts-how-much ×2, tests-your-honesty ×1, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 0 |
+| sewer-camera-before-sale | 4 | pushy | 3 | 67% | 0% | 33% | 78.7 | 81.7 | selling-soon ×5, mishears-the-price ×3, silence-after-price ×3, interrupts-how-much ×2, tests-your-honesty ×1, thinks-out-loud ×1, neighbor-said ×1, mixes-up-terms ×1, repeats-answered-objection ×1 | 0 |
+| slab-leak-detection | 2 | upsell | 3 | 0% | 100% | 0% | 83.0 | 92.3 | how-do-i-know-its-broken ×3, silence-after-price ×3, thinks-out-loud ×3, show-me-in-writing ×3, i-know-what-it-is ×2, phone-call-hold-on ×1, minimal-responses ×1, mixes-up-terms ×1 | 0 |
+| slab-leak-detection | 2 | pushy | 3 | 100% | 0% | 0% | 83.3 | 100.0 | how-do-i-know-its-broken ×3, silence-after-price ×3, thinks-out-loud ×3, i-know-what-it-is ×2, phone-call-hold-on ×1, minimal-responses ×1, mixes-up-terms ×1 | 0 |
+| slab-leak-detection | 4 | upsell | 3 | 0% | 100% | 0% | 83.7 | 88.3 | how-do-i-know-its-broken ×3, silence-after-price ×3, thinks-out-loud ×3, show-me-in-writing ×3, i-know-what-it-is ×1, phone-call-hold-on ×1, last-company-ripped-me-off ×1, tests-your-honesty ×1, mixes-up-terms ×1 | 0 |
+| slab-leak-detection | 4 | pushy | 3 | 100% | 0% | 0% | 85.0 | 100.0 | how-do-i-know-its-broken ×3, silence-after-price ×3, thinks-out-loud ×3, i-know-what-it-is ×1, phone-call-hold-on ×1, last-company-ripped-me-off ×1, tests-your-honesty ×1, mixes-up-terms ×1 | 0 |
+| tank-vs-tankless-family | 2 | upsell | 3 | 0% | 100% | 0% | 85.0 | 95.3 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| tank-vs-tankless-family | 2 | pushy | 3 | 100% | 0% | 0% | 91.0 | 100.0 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| tank-vs-tankless-family | 4 | upsell | 3 | 0% | 100% | 0% | 85.0 | 95.3 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| tank-vs-tankless-family | 4 | pushy | 3 | 100% | 0% | 0% | 91.0 | 100.0 | silence-after-price ×3, brother-in-law-plumber ×3, too-expensive ×3, interrupts-how-much ×2, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| toilet-running-old | 2 | upsell | 3 | 0% | 33% | 67% | 78.7 | 89.0 | silence-after-price ×3, mishears-the-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, half-listening ×1 | 3 |
+| toilet-running-old | 2 | pushy | 3 | 0% | 0% | 100% | 62.7 | 71.3 | silence-after-price ×3, mishears-the-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, half-listening ×1 | 3 |
+| toilet-running-old | 4 | upsell | 3 | 0% | 33% | 67% | 78.7 | 89.0 | silence-after-price ×3, mishears-the-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, half-listening ×1 | 3 |
+| toilet-running-old | 4 | pushy | 3 | 0% | 0% | 100% | 62.7 | 71.3 | silence-after-price ×3, mishears-the-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, minimal-responses ×2, half-listening ×1 | 3 |
+| wh-code-upgrades-rental | 2 | upsell | 3 | 33% | 67% | 0% | 87.7 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, do-i-need-the-code-stuff ×3, handyman-can-do-it ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 1 |
 | wh-code-upgrades-rental | 2 | pushy | 3 | 100% | 0% | 0% | 79.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 3 |
-| wh-code-upgrades-rental | 4 | upsell | 3 | 100% | 0% | 0% | 85.7 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, handyman-can-do-it ×3, do-i-need-the-code-stuff ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 3 |
+| wh-code-upgrades-rental | 4 | upsell | 3 | 33% | 67% | 0% | 89.0 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, do-i-need-the-code-stuff ×3, handyman-can-do-it ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 1 |
 | wh-code-upgrades-rental | 4 | pushy | 3 | 0% | 0% | 100% | 54.7 | 68.0 | handyman-can-do-it ×9, silence-after-price ×3, thinks-out-loud ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 3 |
-| wh-first-home-rumbling | 2 | upsell | 3 | 100% | 0% | 0% | 81.3 | 87.0 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, need-to-think-about-it ×2, mixes-up-terms ×2, mishears-the-price ×2 | 6 |
-| wh-first-home-rumbling | 2 | pushy | 3 | 100% | 0% | 0% | 78.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 3 |
-| wh-first-home-rumbling | 4 | upsell | 3 | 100% | 0% | 0% | 84.7 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, need-to-think-about-it ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 6 |
-| wh-first-home-rumbling | 4 | pushy | 3 | 100% | 0% | 0% | 78.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 3 |
-| wh-heat-pump-rebate | 2 | upsell | 3 | 67% | 0% | 33% | 78.7 | 78.0 | silence-after-price ×3, what-am-i-paying-for ×3, do-i-need-the-code-stuff ×3, thinks-out-loud ×2, minimal-responses ×2, you-always-upsell ×1, watched-a-video ×1, half-listening ×1, tests-your-honesty ×1 | 10 |
-| wh-heat-pump-rebate | 2 | pushy | 3 | 67% | 0% | 33% | 73.0 | 90.0 | you-always-upsell ×4, silence-after-price ×3, thinks-out-loud ×2, minimal-responses ×2, watched-a-video ×1, half-listening ×1, tests-your-honesty ×1, what-am-i-paying-for ×1, do-i-need-the-code-stuff ×1 | 7 |
-| wh-heat-pump-rebate | 4 | upsell | 3 | 67% | 0% | 33% | 80.7 | 92.0 | silence-after-price ×3, thinks-out-loud ×3, what-am-i-paying-for ×3, do-i-need-the-code-stuff ×3, you-always-upsell ×2, tests-your-honesty ×2, watched-a-video ×2, i-know-what-it-is ×2, half-listening ×1 | 9 |
-| wh-heat-pump-rebate | 4 | pushy | 3 | 33% | 0% | 67% | 62.3 | 75.7 | you-always-upsell ×7, silence-after-price ×3, thinks-out-loud ×3, tests-your-honesty ×2, watched-a-video ×2, i-know-what-it-is ×2, half-listening ×1 | 5 |
-| wh-repair-or-replace-9yr | 2 | upsell | 3 | 33% | 0% | 67% | 70.0 | 62.7 | silence-after-price ×3, how-do-i-know-its-broken ×2, tests-your-honesty ×2, thinks-out-loud ×2, neighbor-said ×1, minimal-responses ×1, show-me-in-writing ×1, watched-a-video ×1 | 11 |
-| wh-repair-or-replace-9yr | 2 | pushy | 3 | 33% | 0% | 67% | 55.3 | 32.3 | last-company-ripped-me-off ×4, silence-after-price ×3, how-do-i-know-its-broken ×2, tests-your-honesty ×2, thinks-out-loud ×2, neighbor-said ×1, minimal-responses ×1, watched-a-video ×1 | 10 |
-| wh-repair-or-replace-9yr | 4 | upsell | 3 | 0% | 33% | 67% | 70.7 | 50.0 | tests-your-honesty ×3, silence-after-price ×3, show-me-in-writing ×3, last-company-ripped-me-off ×2, neighbor-said ×2, how-do-i-know-its-broken ×1, half-listening ×1, thinks-out-loud ×1 | 9 |
-| wh-repair-or-replace-9yr | 4 | pushy | 3 | 33% | 0% | 67% | 57.3 | 28.0 | how-do-i-know-its-broken ×5, tests-your-honesty ×3, silence-after-price ×3, last-company-ripped-me-off ×2, neighbor-said ×2, half-listening ×1, thinks-out-loud ×1 | 9 |
-| wh-replacement-spanish | 2 | upsell | 3 | 0% | 67% | 33% | 78.7 | 100.0 | minimal-responses ×3, silence-after-price ×3, thinks-out-loud ×3, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 9 |
-| wh-replacement-spanish | 2 | pushy | 3 | 0% | 0% | 100% | 54.7 | 41.0 | minimal-responses ×3, silence-after-price ×3, thinks-out-loud ×3, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 9 |
-| wh-replacement-spanish | 4 | upsell | 3 | 0% | 67% | 33% | 78.7 | 100.0 | minimal-responses ×3, silence-after-price ×3, thinks-out-loud ×3, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 9 |
-| wh-replacement-spanish | 4 | pushy | 3 | 0% | 0% | 100% | 54.7 | 41.0 | minimal-responses ×3, silence-after-price ×3, thinks-out-loud ×3, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 9 |
-| wh-tank-landlord-tenant | 2 | upsell | 3 | 0% | 0% | 100% | 78.0 | 73.7 | silence-after-price ×3, handyman-can-do-it ×3, can-you-do-better ×3, just-the-cheap-fix ×3, minimal-responses ×2, mishears-the-price ×2, i-know-what-it-is ×1, thinks-out-loud ×1, background-chaos ×1 | 12 |
-| wh-tank-landlord-tenant | 2 | pushy | 3 | 0% | 0% | 100% | 81.7 | 100.0 | silence-after-price ×3, minimal-responses ×2, mishears-the-price ×2, handyman-can-do-it ×2, can-you-do-better ×2, just-the-cheap-fix ×2, i-know-what-it-is ×1, thinks-out-loud ×1, background-chaos ×1 | 12 |
-| wh-tank-landlord-tenant | 4 | upsell | 3 | 0% | 0% | 100% | 78.0 | 73.7 | silence-after-price ×3, handyman-can-do-it ×3, can-you-do-better ×3, just-the-cheap-fix ×3, minimal-responses ×2, mishears-the-price ×2, i-know-what-it-is ×1, thinks-out-loud ×1, background-chaos ×1 | 12 |
-| wh-tank-landlord-tenant | 4 | pushy | 3 | 0% | 0% | 100% | 81.7 | 98.7 | silence-after-price ×3, minimal-responses ×2, mishears-the-price ×2, handyman-can-do-it ×2, can-you-do-better ×2, just-the-cheap-fix ×2, i-know-what-it-is ×1, thinks-out-loud ×1, background-chaos ×1 | 12 |
-| wh-tank-no-hot-water | 2 | upsell | 3 | 0% | 100% | 0% | 83.3 | 97.7 | silence-after-price ×3, too-expensive ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 11 |
-| wh-tank-no-hot-water | 2 | pushy | 3 | 0% | 0% | 100% | 61.0 | 48.0 | too-expensive ×4, silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 8 |
-| wh-tank-no-hot-water | 4 | upsell | 3 | 0% | 100% | 0% | 83.3 | 97.7 | silence-after-price ×3, too-expensive ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 11 |
-| wh-tank-no-hot-water | 4 | pushy | 3 | 0% | 0% | 100% | 61.0 | 48.0 | too-expensive ×5, silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 8 |
-| wh-tankless-descale | 2 | upsell | 3 | 100% | 0% | 0% | 81.0 | 84.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1 | 8 |
-| wh-tankless-descale | 2 | pushy | 3 | 100% | 0% | 0% | 87.0 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1 | 5 |
-| wh-tankless-descale | 4 | upsell | 3 | 100% | 0% | 0% | 81.0 | 84.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1 | 8 |
-| wh-tankless-descale | 4 | pushy | 3 | 100% | 0% | 0% | 87.0 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1 | 5 |
-| wh-tankless-upgrade-question | 2 | upsell | 3 | 0% | 0% | 100% | 71.0 | 88.3 | watched-a-video ×3, silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, thinks-out-loud ×1, bigger-than-needed ×1, interrupts-how-much ×1 | 8 |
-| wh-tankless-upgrade-question | 2 | pushy | 3 | 0% | 0% | 100% | 70.0 | 95.3 | watched-a-video ×3, silence-after-price ×3, i-know-what-it-is ×2, found-it-cheaper ×2, need-three-bids ×2, thinks-out-loud ×1, interrupts-how-much ×1 | 8 |
-| wh-tankless-upgrade-question | 4 | upsell | 3 | 0% | 0% | 100% | 70.7 | 88.3 | watched-a-video ×3, silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, thinks-out-loud ×1, bigger-than-needed ×1, interrupts-how-much ×1 | 8 |
-| wh-tankless-upgrade-question | 4 | pushy | 3 | 0% | 0% | 100% | 70.0 | 92.0 | watched-a-video ×3, silence-after-price ×3, i-know-what-it-is ×2, found-it-cheaper ×2, need-three-bids ×2, thinks-out-loud ×1, interrupts-how-much ×1 | 8 |
-| wh-warranty-claim-denied | 2 | upsell | 3 | 0% | 0% | 100% | 71.0 | 100.0 | home-warranty-covers-it ×3, do-i-need-the-code-stuff ×3, paid-less-last-time ×3, what-am-i-paying-for ×2, minimal-responses ×2, interrupts-how-much ×1, silence-after-price ×1, half-listening ×1, neighbor-said ×1 | 19 |
-| wh-warranty-claim-denied | 2 | pushy | 3 | 0% | 0% | 100% | 61.7 | 77.7 | minimal-responses ×2, interrupts-how-much ×1, silence-after-price ×1, half-listening ×1, neighbor-said ×1 | 18 |
-| wh-warranty-claim-denied | 4 | upsell | 3 | 0% | 0% | 100% | 71.0 | 100.0 | home-warranty-covers-it ×3, do-i-need-the-code-stuff ×3, paid-less-last-time ×3, what-am-i-paying-for ×2, minimal-responses ×2, interrupts-how-much ×1, silence-after-price ×1, half-listening ×1, neighbor-said ×1 | 19 |
-| wh-warranty-claim-denied | 4 | pushy | 3 | 0% | 0% | 100% | 61.7 | 71.7 | minimal-responses ×2, interrupts-how-much ×1, silence-after-price ×1, half-listening ×1, neighbor-said ×1 | 18 |
+| wh-first-home-rumbling | 2 | upsell | 3 | 0% | 100% | 0% | 80.7 | 97.3 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 0 |
+| wh-first-home-rumbling | 2 | pushy | 3 | 100% | 0% | 0% | 78.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 0 |
+| wh-first-home-rumbling | 4 | upsell | 3 | 0% | 100% | 0% | 80.7 | 97.3 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 0 |
+| wh-first-home-rumbling | 4 | pushy | 3 | 100% | 0% | 0% | 78.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, minimal-responses ×2, mixes-up-terms ×2, mishears-the-price ×2 | 0 |
+| wh-heat-pump-rebate | 2 | upsell | 3 | 0% | 100% | 0% | 83.3 | 88.7 | silence-after-price ×3, do-i-need-the-code-stuff ×3, what-am-i-paying-for ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2 | 0 |
+| wh-heat-pump-rebate | 2 | pushy | 3 | 33% | 0% | 67% | 65.0 | 80.0 | you-always-upsell ×6, silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, minimal-responses ×2, what-am-i-paying-for ×1, do-i-need-the-code-stuff ×1 | 0 |
+| wh-heat-pump-rebate | 4 | upsell | 3 | 0% | 100% | 0% | 85.0 | 98.7 | silence-after-price ×3, thinks-out-loud ×3, what-am-i-paying-for ×3, do-i-need-the-code-stuff ×3, watched-a-video ×2, i-know-what-it-is ×2, you-always-upsell ×1, tests-your-honesty ×1, half-listening ×1, minimal-responses ×1 | 0 |
+| wh-heat-pump-rebate | 4 | pushy | 3 | 33% | 0% | 67% | 64.0 | 78.0 | you-always-upsell ×7, silence-after-price ×3, thinks-out-loud ×3, watched-a-video ×2, i-know-what-it-is ×2, tests-your-honesty ×1, half-listening ×1, minimal-responses ×1 | 0 |
+| wh-repair-or-replace-9yr | 2 | upsell | 3 | 0% | 100% | 0% | 76.7 | 90.0 | tests-your-honesty ×3, silence-after-price ×3, thinks-out-loud ×2, how-do-i-know-its-broken ×1, neighbor-said ×1, show-me-in-writing ×1, minimal-responses ×1, watched-a-video ×1, background-chaos ×1 | 0 |
+| wh-repair-or-replace-9yr | 2 | pushy | 3 | 100% | 0% | 0% | 77.7 | 100.0 | tests-your-honesty ×3, silence-after-price ×3, thinks-out-loud ×2, how-do-i-know-its-broken ×1, neighbor-said ×1, minimal-responses ×1, watched-a-video ×1, background-chaos ×1 | 0 |
+| wh-repair-or-replace-9yr | 4 | upsell | 3 | 0% | 100% | 0% | 78.3 | 85.7 | tests-your-honesty ×3, silence-after-price ×3, show-me-in-writing ×3, last-company-ripped-me-off ×2, neighbor-said ×2, how-do-i-know-its-broken ×1, half-listening ×1, thinks-out-loud ×1 | 0 |
+| wh-repair-or-replace-9yr | 4 | pushy | 3 | 100% | 0% | 0% | 81.3 | 100.0 | tests-your-honesty ×3, silence-after-price ×3, last-company-ripped-me-off ×2, neighbor-said ×2, how-do-i-know-its-broken ×1, half-listening ×1, thinks-out-loud ×1 | 0 |
+| wh-replacement-spanish | 2 | upsell | 3 | 0% | 100% | 0% | 84.3 | 98.3 | minimal-responses ×3, silence-after-price ×3, show-me-in-writing ×3, thinks-out-loud ×2, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 0 |
+| wh-replacement-spanish | 2 | pushy | 3 | 100% | 0% | 0% | 82.7 | 100.0 | minimal-responses ×3, silence-after-price ×3, thinks-out-loud ×2, mixes-up-terms ×1, mishears-the-price ×1, show-me-in-writing ×1, background-chaos ×1, neighbor-said ×1 | 0 |
+| wh-replacement-spanish | 4 | upsell | 3 | 0% | 100% | 0% | 84.3 | 98.3 | minimal-responses ×3, silence-after-price ×3, show-me-in-writing ×3, thinks-out-loud ×2, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 0 |
+| wh-replacement-spanish | 4 | pushy | 3 | 33% | 0% | 67% | 65.3 | 58.7 | show-me-in-writing ×7, minimal-responses ×3, silence-after-price ×3, thinks-out-loud ×2, mixes-up-terms ×1, mishears-the-price ×1, background-chaos ×1, neighbor-said ×1 | 0 |
+| wh-tank-landlord-tenant | 2 | upsell | 3 | 0% | 100% | 0% | 86.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, handyman-can-do-it ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 0 |
+| wh-tank-landlord-tenant | 2 | pushy | 3 | 100% | 0% | 0% | 79.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 3 |
+| wh-tank-landlord-tenant | 4 | upsell | 3 | 0% | 100% | 0% | 86.3 | 100.0 | silence-after-price ×3, thinks-out-loud ×3, handyman-can-do-it ×3, just-the-cheap-fix ×3, can-you-do-better ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 0 |
+| wh-tank-landlord-tenant | 4 | pushy | 3 | 0% | 0% | 100% | 54.7 | 68.0 | handyman-can-do-it ×9, silence-after-price ×3, thinks-out-loud ×3, i-know-what-it-is ×2, minimal-responses ×2, background-chaos ×1, phone-call-hold-on ×1 | 0 |
+| wh-tank-no-hot-water | 2 | upsell | 3 | 33% | 67% | 0% | 86.0 | 98.3 | silence-after-price ×3, too-expensive ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 1 |
+| wh-tank-no-hot-water | 2 | pushy | 3 | 67% | 0% | 33% | 77.0 | 83.7 | silence-after-price ×3, need-to-think-about-it ×3, i-know-what-it-is ×2, too-expensive ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| wh-tank-no-hot-water | 4 | upsell | 3 | 33% | 67% | 0% | 86.0 | 98.3 | silence-after-price ×3, too-expensive ×3, i-know-what-it-is ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 1 |
+| wh-tank-no-hot-water | 4 | pushy | 3 | 67% | 0% | 33% | 77.0 | 83.7 | silence-after-price ×3, need-to-think-about-it ×3, i-know-what-it-is ×2, too-expensive ×2, thinks-out-loud ×1, minimal-responses ×1, mishears-the-price ×1, mixes-up-terms ×1 | 0 |
+| wh-tankless-descale | 2 | upsell | 3 | 0% | 100% | 0% | 84.3 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, repeats-answered-objection ×1, interrupts-how-much ×1, would-you-do-this ×1 | 2 |
+| wh-tankless-descale | 2 | pushy | 3 | 100% | 0% | 0% | 88.3 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1 | 2 |
+| wh-tankless-descale | 4 | upsell | 3 | 0% | 100% | 0% | 84.3 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, repeats-answered-objection ×1, interrupts-how-much ×1, would-you-do-this ×1 | 2 |
+| wh-tankless-descale | 4 | pushy | 3 | 100% | 0% | 0% | 88.3 | 100.0 | can-you-do-better ×3, i-know-what-it-is ×2, mishears-the-price ×2, neighbor-said ×1, interrupts-how-much ×1 | 2 |
+| wh-tankless-upgrade-question | 2 | upsell | 3 | 0% | 33% | 67% | 76.7 | 97.7 | watched-a-video ×3, silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, thinks-out-loud ×2, bigger-than-needed ×1 | 3 |
+| wh-tankless-upgrade-question | 2 | pushy | 3 | 0% | 0% | 100% | 56.7 | 71.7 | watched-a-video ×3, silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, found-it-cheaper ×1, need-three-bids ×1 | 3 |
+| wh-tankless-upgrade-question | 4 | upsell | 3 | 0% | 33% | 67% | 76.7 | 97.7 | watched-a-video ×3, silence-after-price ×3, found-it-cheaper ×3, need-three-bids ×3, i-know-what-it-is ×2, thinks-out-loud ×2, bigger-than-needed ×1 | 3 |
+| wh-tankless-upgrade-question | 4 | pushy | 3 | 0% | 0% | 100% | 56.7 | 71.7 | watched-a-video ×3, silence-after-price ×3, i-know-what-it-is ×2, thinks-out-loud ×2, found-it-cheaper ×1, need-three-bids ×1 | 3 |
+| wh-warranty-claim-denied | 2 | upsell | 3 | 33% | 67% | 0% | 87.0 | 99.0 | silence-after-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, do-i-need-the-code-stuff ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×1, half-listening ×1, neighbor-said ×1, thinks-out-loud ×1 | 1 |
+| wh-warranty-claim-denied | 2 | pushy | 3 | 100% | 0% | 0% | 87.3 | 100.0 | silence-after-price ×3, interrupts-how-much ×2, home-warranty-covers-it ×2, paid-less-last-time ×2, what-am-i-paying-for ×2, do-i-need-the-code-stuff ×2, minimal-responses ×2, mishears-the-price ×1, half-listening ×1, neighbor-said ×1, thinks-out-loud ×1 | 1 |
+| wh-warranty-claim-denied | 4 | upsell | 3 | 33% | 67% | 0% | 88.0 | 99.0 | silence-after-price ×3, home-warranty-covers-it ×3, paid-less-last-time ×3, what-am-i-paying-for ×3, do-i-need-the-code-stuff ×3, interrupts-how-much ×2, minimal-responses ×2, mishears-the-price ×1, half-listening ×1, neighbor-said ×1, thinks-out-loud ×1 | 1 |
+| wh-warranty-claim-denied | 4 | pushy | 3 | 67% | 0% | 33% | 79.7 | 88.7 | home-warranty-covers-it ×5, silence-after-price ×3, interrupts-how-much ×2, paid-less-last-time ×2, what-am-i-paying-for ×2, do-i-need-the-code-stuff ×2, minimal-responses ×2, mishears-the-price ×1, half-listening ×1, neighbor-said ×1, thinks-out-loud ×1 | 1 |
 
 ## Drills
 
 | Drill | Difficulty | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| hold-the-silence | 2 | expert | 2 | 0% | 100% | 0% | 78.0 | 100.0 | silence-after-price ×2, too-expensive ×2 | 5 |
-| hold-the-silence | 2 | solid | 2 | 0% | 100% | 0% | 60.0 | 99.5 | silence-after-price ×2, too-expensive ×2 | 2 |
-| hold-the-silence | 2 | novice | 2 | 0% | 0% | 100% | 27.5 | 8.5 | too-expensive ×7, silence-after-price ×2 | 0 |
-| hold-the-silence | 4 | expert | 2 | 0% | 100% | 0% | 78.0 | 100.0 | silence-after-price ×2, too-expensive ×2 | 5 |
-| hold-the-silence | 4 | solid | 2 | 0% | 100% | 0% | 60.0 | 94.5 | silence-after-price ×2, too-expensive ×2 | 2 |
-| hold-the-silence | 4 | novice | 2 | 0% | 0% | 100% | 31.0 | 8.0 | too-expensive ×6, silence-after-price ×2 | 0 |
+| first-thirty-seconds | 2 | expert | 2 | 0% | 0% | 0% | 75.0 | 84.5 | none | 0 |
+| first-thirty-seconds | 2 | solid | 2 | 0% | 0% | 0% | 60.0 | 64.0 | none | 0 |
+| first-thirty-seconds | 2 | novice | 2 | 0% | 0% | 0% | 50.0 | 50.0 | none | 0 |
+| first-thirty-seconds | 4 | expert | 2 | 0% | 0% | 0% | 75.0 | 74.5 | none | 0 |
+| first-thirty-seconds | 4 | solid | 2 | 0% | 0% | 0% | 60.0 | 54.0 | none | 0 |
+| first-thirty-seconds | 4 | novice | 2 | 0% | 0% | 0% | 50.0 | 40.0 | none | 0 |
+| five-discovery-questions | 2 | expert | 2 | 0% | 0% | 0% | 72.5 | 94.0 | i-know-what-it-is ×1, minimal-responses ×1 | 0 |
+| five-discovery-questions | 2 | solid | 2 | 0% | 0% | 0% | 53.5 | 69.0 | silence-after-price ×2, too-expensive ×2, mishears-the-price ×1 | 0 |
+| five-discovery-questions | 2 | novice | 2 | 0% | 0% | 0% | 40.5 | 45.0 | silence-after-price ×2, too-expensive ×1 | 0 |
+| five-discovery-questions | 4 | expert | 2 | 0% | 0% | 0% | 72.5 | 84.0 | i-know-what-it-is ×1, minimal-responses ×1 | 0 |
+| five-discovery-questions | 4 | solid | 2 | 0% | 0% | 0% | 53.5 | 59.0 | silence-after-price ×2, too-expensive ×2, mishears-the-price ×1 | 0 |
+| five-discovery-questions | 4 | novice | 2 | 0% | 0% | 0% | 40.5 | 35.0 | silence-after-price ×2, too-expensive ×1 | 0 |
+| explain-the-finding | 2 | expert | 2 | 0% | 0% | 0% | 69.5 | 100.0 | silence-after-price ×2, mishears-the-price ×2, too-expensive ×1 | 0 |
+| explain-the-finding | 2 | solid | 2 | 0% | 50% | 0% | 54.0 | 74.0 | silence-after-price ×2, too-expensive ×1, mishears-the-price ×1 | 0 |
+| explain-the-finding | 2 | novice | 2 | 0% | 0% | 0% | 28.5 | 15.0 | too-expensive ×4, silence-after-price ×2, goes-cold ×1 | 0 |
+| explain-the-finding | 4 | expert | 2 | 0% | 0% | 0% | 69.5 | 100.0 | silence-after-price ×2, mishears-the-price ×2, too-expensive ×1 | 0 |
+| explain-the-finding | 4 | solid | 2 | 0% | 50% | 0% | 54.0 | 64.0 | silence-after-price ×2, too-expensive ×1, mishears-the-price ×1 | 0 |
+| explain-the-finding | 4 | novice | 2 | 0% | 0% | 0% | 28.5 | 10.0 | too-expensive ×4, silence-after-price ×2, goes-cold ×1 | 0 |
+| show-what-you-found | 2 | expert | 2 | 0% | 0% | 0% | 69.5 | 100.0 | silence-after-price ×2, mishears-the-price ×2, too-expensive ×1 | 0 |
+| show-what-you-found | 2 | solid | 2 | 0% | 50% | 0% | 54.0 | 74.0 | silence-after-price ×2, too-expensive ×1, mishears-the-price ×1 | 0 |
+| show-what-you-found | 2 | novice | 2 | 0% | 0% | 0% | 28.5 | 15.0 | too-expensive ×4, silence-after-price ×2, goes-cold ×1 | 0 |
+| show-what-you-found | 4 | expert | 2 | 0% | 0% | 0% | 69.5 | 100.0 | silence-after-price ×2, mishears-the-price ×2, too-expensive ×1 | 0 |
+| show-what-you-found | 4 | solid | 2 | 0% | 50% | 0% | 54.0 | 64.0 | silence-after-price ×2, too-expensive ×1, mishears-the-price ×1 | 0 |
+| show-what-you-found | 4 | novice | 2 | 0% | 0% | 0% | 28.5 | 10.0 | too-expensive ×4, silence-after-price ×2, goes-cold ×1 | 0 |
+| three-options | 2 | expert | 2 | 0% | 0% | 0% | 72.0 | 100.0 | silence-after-price ×2, mishears-the-price ×2, too-expensive ×2 | 0 |
+| three-options | 2 | solid | 2 | 0% | 100% | 0% | 61.5 | 95.5 | silence-after-price ×2, too-expensive ×2, mishears-the-price ×1 | 0 |
+| three-options | 2 | novice | 2 | 0% | 0% | 100% | 29.0 | 7.0 | too-expensive ×5, silence-after-price ×2, goes-cold ×1 | 0 |
+| three-options | 4 | expert | 2 | 0% | 0% | 0% | 72.0 | 100.0 | silence-after-price ×2, mishears-the-price ×2, too-expensive ×2 | 0 |
+| three-options | 4 | solid | 2 | 0% | 100% | 0% | 61.5 | 88.0 | silence-after-price ×2, too-expensive ×2, mishears-the-price ×1 | 0 |
+| three-options | 4 | novice | 2 | 0% | 0% | 100% | 29.0 | 2.0 | too-expensive ×5, silence-after-price ×2, goes-cold ×1 | 0 |
+| say-the-price | 2 | expert | 2 | 0% | 0% | 0% | 68.5 | 100.0 | silence-after-price ×2, too-expensive ×2 | 0 |
+| say-the-price | 2 | solid | 2 | 0% | 100% | 0% | 51.5 | 72.0 | silence-after-price ×2, too-expensive ×2 | 0 |
+| say-the-price | 2 | novice | 2 | 0% | 0% | 0% | 42.0 | 58.0 | none | 0 |
+| say-the-price | 4 | expert | 2 | 0% | 0% | 0% | 68.5 | 100.0 | silence-after-price ×2, too-expensive ×2 | 0 |
+| say-the-price | 4 | solid | 2 | 0% | 100% | 0% | 51.5 | 62.0 | silence-after-price ×2, too-expensive ×2 | 0 |
+| say-the-price | 4 | novice | 2 | 0% | 0% | 0% | 42.0 | 48.0 | none | 0 |
+| hold-the-silence | 2 | expert | 2 | 0% | 0% | 0% | 54.0 | 84.0 | silence-after-price ×2 | 0 |
+| hold-the-silence | 2 | solid | 2 | 0% | 0% | 0% | 44.0 | 62.0 | silence-after-price ×2, too-expensive ×1 | 0 |
+| hold-the-silence | 2 | novice | 2 | 0% | 0% | 0% | 40.0 | 53.0 | silence-after-price ×2, too-expensive ×2 | 0 |
+| hold-the-silence | 4 | expert | 2 | 0% | 0% | 0% | 54.0 | 74.0 | silence-after-price ×2 | 0 |
+| hold-the-silence | 4 | solid | 2 | 0% | 0% | 0% | 44.0 | 52.0 | silence-after-price ×2, too-expensive ×1 | 0 |
+| hold-the-silence | 4 | novice | 2 | 0% | 0% | 0% | 40.0 | 43.0 | silence-after-price ×2, too-expensive ×2 | 0 |
+| three-bids | 2 | expert | 2 | 0% | 0% | 0% | 61.0 | 100.0 | need-three-bids ×2, found-it-cheaper ×2 | 0 |
+| three-bids | 2 | solid | 2 | 0% | 0% | 0% | 51.0 | 72.0 | need-three-bids ×2, found-it-cheaper ×2 | 0 |
+| three-bids | 2 | novice | 2 | 0% | 0% | 0% | 31.5 | 34.5 | found-it-cheaper ×3, need-three-bids ×2, goes-cold ×1 | 0 |
+| three-bids | 4 | expert | 2 | 0% | 0% | 0% | 61.0 | 100.0 | need-three-bids ×2, found-it-cheaper ×2 | 0 |
+| three-bids | 4 | solid | 2 | 0% | 0% | 0% | 51.0 | 62.0 | need-three-bids ×2, found-it-cheaper ×2 | 0 |
+| three-bids | 4 | novice | 2 | 0% | 0% | 0% | 31.5 | 24.5 | found-it-cheaper ×3, need-three-bids ×2, goes-cold ×1 | 0 |
+| the-spouse-stall | 2 | expert | 2 | 50% | 0% | 0% | 76.0 | 100.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2 | 1 |
+| the-spouse-stall | 2 | solid | 2 | 0% | 100% | 0% | 60.5 | 100.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2 | 2 |
+| the-spouse-stall | 2 | novice | 2 | 0% | 0% | 0% | 37.0 | 42.5 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2 | 0 |
+| the-spouse-stall | 4 | expert | 2 | 50% | 0% | 0% | 76.0 | 100.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2 | 1 |
+| the-spouse-stall | 4 | solid | 2 | 0% | 100% | 0% | 60.5 | 96.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2 | 2 |
+| the-spouse-stall | 4 | novice | 2 | 0% | 0% | 0% | 37.0 | 32.5 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2 | 0 |
+| the-cheap-fix | 2 | expert | 2 | 0% | 0% | 0% | 60.5 | 100.0 | just-the-cheap-fix ×2, handyman-can-do-it ×2 | 0 |
+| the-cheap-fix | 2 | solid | 2 | 0% | 0% | 0% | 49.0 | 71.0 | just-the-cheap-fix ×2, handyman-can-do-it ×2 | 0 |
+| the-cheap-fix | 2 | novice | 2 | 0% | 0% | 0% | 31.5 | 32.0 | handyman-can-do-it ×3, just-the-cheap-fix ×2, goes-cold ×1 | 0 |
+| the-cheap-fix | 4 | expert | 2 | 0% | 0% | 0% | 60.5 | 100.0 | just-the-cheap-fix ×2, handyman-can-do-it ×2 | 0 |
+| the-cheap-fix | 4 | solid | 2 | 0% | 0% | 0% | 49.0 | 61.0 | just-the-cheap-fix ×2, handyman-can-do-it ×2 | 0 |
+| the-cheap-fix | 4 | novice | 2 | 0% | 0% | 0% | 35.0 | 36.0 | just-the-cheap-fix ×4, handyman-can-do-it ×2 | 0 |
+| the-relative-plumber | 2 | expert | 2 | 0% | 0% | 0% | 60.0 | 100.0 | brother-in-law-plumber ×2, too-expensive ×2 | 0 |
+| the-relative-plumber | 2 | solid | 2 | 0% | 0% | 0% | 50.5 | 71.5 | brother-in-law-plumber ×2, too-expensive ×2 | 0 |
+| the-relative-plumber | 2 | novice | 2 | 0% | 0% | 0% | 30.0 | 32.5 | brother-in-law-plumber ×4, too-expensive ×2, goes-cold ×1 | 0 |
+| the-relative-plumber | 4 | expert | 2 | 0% | 0% | 0% | 60.0 | 100.0 | brother-in-law-plumber ×2, too-expensive ×2 | 0 |
+| the-relative-plumber | 4 | solid | 2 | 0% | 0% | 0% | 50.5 | 61.5 | brother-in-law-plumber ×2, too-expensive ×2 | 0 |
+| the-relative-plumber | 4 | novice | 2 | 0% | 0% | 0% | 30.0 | 22.5 | brother-in-law-plumber ×4, too-expensive ×3, goes-cold ×1 | 0 |
+| monthly-number | 2 | expert | 2 | 0% | 0% | 0% | 62.5 | 100.0 | too-expensive ×2, quiet-money-worry ×2 | 0 |
+| monthly-number | 2 | solid | 2 | 0% | 0% | 0% | 54.0 | 86.0 | too-expensive ×2, quiet-money-worry ×2 | 0 |
+| monthly-number | 2 | novice | 2 | 0% | 100% | 0% | 37.0 | 49.0 | too-expensive ×6, quiet-money-worry ×2 | 0 |
+| monthly-number | 4 | expert | 2 | 0% | 0% | 0% | 61.0 | 100.0 | too-expensive ×2, quiet-money-worry ×2 | 0 |
+| monthly-number | 4 | solid | 2 | 0% | 0% | 0% | 54.0 | 76.0 | too-expensive ×2, quiet-money-worry ×2 | 0 |
+| monthly-number | 4 | novice | 2 | 0% | 100% | 0% | 37.0 | 39.0 | too-expensive ×6, quiet-money-worry ×2 | 0 |
+| membership-ask | 2 | expert | 2 | 100% | 0% | 0% | 67.0 | 100.0 | too-expensive ×2 | 0 |
+| membership-ask | 2 | solid | 2 | 0% | 100% | 0% | 56.0 | 90.0 | too-expensive ×2 | 0 |
+| membership-ask | 2 | novice | 2 | 0% | 0% | 100% | 22.0 | 3.0 | too-expensive ×6 | 0 |
+| membership-ask | 4 | expert | 2 | 100% | 0% | 0% | 67.0 | 100.0 | too-expensive ×2 | 0 |
+| membership-ask | 4 | solid | 2 | 0% | 100% | 0% | 57.0 | 78.0 | too-expensive ×2, need-to-think-about-it ×2 | 0 |
+| membership-ask | 4 | novice | 2 | 0% | 0% | 100% | 28.0 | 13.0 | too-expensive ×4 | 0 |
+| ask-for-the-decision | 2 | expert | 2 | 100% | 0% | 0% | 68.0 | 100.0 | too-expensive ×2 | 0 |
+| ask-for-the-decision | 2 | solid | 2 | 0% | 100% | 0% | 59.0 | 100.0 | too-expensive ×2 | 0 |
+| ask-for-the-decision | 2 | novice | 2 | 0% | 0% | 100% | 22.0 | 3.0 | too-expensive ×6 | 0 |
+| ask-for-the-decision | 4 | expert | 2 | 100% | 0% | 0% | 68.0 | 100.0 | too-expensive ×2 | 0 |
+| ask-for-the-decision | 4 | solid | 2 | 0% | 100% | 0% | 59.0 | 96.0 | too-expensive ×2 | 0 |
+| ask-for-the-decision | 4 | novice | 2 | 0% | 0% | 100% | 28.0 | 13.0 | too-expensive ×4 | 0 |
+| leave-well-on-a-no | 2 | expert | 2 | 100% | 0% | 0% | 68.0 | 100.0 | too-expensive ×2 | 2 |
+| leave-well-on-a-no | 2 | solid | 2 | 0% | 100% | 0% | 60.0 | 100.0 | too-expensive ×2 | 2 |
+| leave-well-on-a-no | 2 | novice | 2 | 0% | 0% | 100% | 22.0 | 3.0 | too-expensive ×6 | 2 |
+| leave-well-on-a-no | 4 | expert | 2 | 100% | 0% | 0% | 68.0 | 100.0 | too-expensive ×2 | 2 |
+| leave-well-on-a-no | 4 | solid | 2 | 0% | 100% | 0% | 60.0 | 100.0 | too-expensive ×2 | 2 |
+| leave-well-on-a-no | 4 | novice | 2 | 0% | 0% | 100% | 28.0 | 13.0 | too-expensive ×4 | 2 |
+| correct-without-condescending | 2 | expert | 2 | 0% | 0% | 0% | 61.5 | 97.5 | silence-after-price ×2, watched-a-video ×2, found-it-cheaper ×1, need-three-bids ×1, bigger-than-needed ×1 | 2 |
+| correct-without-condescending | 2 | solid | 2 | 0% | 0% | 0% | 50.0 | 68.0 | watched-a-video ×2 | 0 |
+| correct-without-condescending | 2 | novice | 2 | 0% | 0% | 0% | 44.0 | 45.0 | watched-a-video ×2 | 0 |
+| correct-without-condescending | 4 | expert | 2 | 0% | 0% | 0% | 61.5 | 92.5 | silence-after-price ×2, watched-a-video ×2, found-it-cheaper ×1, need-three-bids ×1, bigger-than-needed ×1 | 2 |
+| correct-without-condescending | 4 | solid | 2 | 0% | 0% | 0% | 50.0 | 58.0 | watched-a-video ×2 | 0 |
+| correct-without-condescending | 4 | novice | 2 | 0% | 0% | 0% | 44.0 | 35.0 | watched-a-video ×2 | 0 |
+| come-back-from-a-distraction | 2 | expert | 2 | 0% | 0% | 0% | 63.0 | 93.0 | phone-call-hold-on ×2 | 0 |
+| come-back-from-a-distraction | 2 | solid | 2 | 0% | 0% | 0% | 56.0 | 75.0 | phone-call-hold-on ×2 | 0 |
+| come-back-from-a-distraction | 2 | novice | 2 | 0% | 0% | 0% | 44.0 | 49.0 | phone-call-hold-on ×2, goes-cold ×2 | 0 |
+| come-back-from-a-distraction | 4 | expert | 2 | 0% | 0% | 0% | 63.0 | 83.0 | phone-call-hold-on ×2 | 0 |
+| come-back-from-a-distraction | 4 | solid | 2 | 0% | 0% | 0% | 56.0 | 65.0 | phone-call-hold-on ×2 | 0 |
+| come-back-from-a-distraction | 4 | novice | 2 | 0% | 0% | 0% | 44.0 | 39.0 | phone-call-hold-on ×2, goes-cold ×2 | 0 |
+| bring-in-the-second-decision-maker | 2 | expert | 2 | 0% | 0% | 0% | 72.0 | 100.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2, spouse-walks-in ×2 | 0 |
+| bring-in-the-second-decision-maker | 2 | solid | 2 | 0% | 0% | 0% | 60.5 | 94.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2, spouse-walks-in ×2 | 0 |
+| bring-in-the-second-decision-maker | 2 | novice | 2 | 0% | 0% | 0% | 24.5 | 5.0 | too-expensive ×4, brother-in-law-plumber ×4, silence-after-price ×2, spouse-walks-in ×2, goes-cold ×1 | 0 |
+| bring-in-the-second-decision-maker | 4 | expert | 2 | 0% | 0% | 0% | 72.0 | 100.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2, spouse-walks-in ×2 | 0 |
+| bring-in-the-second-decision-maker | 4 | solid | 2 | 0% | 0% | 0% | 60.5 | 84.0 | silence-after-price ×2, brother-in-law-plumber ×2, too-expensive ×2, spouse-walks-in ×2 | 0 |
+| bring-in-the-second-decision-maker | 4 | novice | 2 | 0% | 0% | 0% | 24.5 | 0.0 | too-expensive ×4, brother-in-law-plumber ×4, silence-after-price ×2, spouse-walks-in ×2, goes-cold ×1 | 0 |
+| your-own-house | 2 | expert | 2 | 0% | 0% | 0% | 55.0 | 78.0 | silence-after-price ×2, would-you-do-this ×2 | 0 |
+| your-own-house | 2 | solid | 2 | 0% | 0% | 0% | 49.0 | 65.0 | silence-after-price ×2, show-me-in-writing ×2, would-you-do-this ×2 | 0 |
+| your-own-house | 2 | novice | 2 | 0% | 0% | 0% | 38.0 | 28.5 | silence-after-price ×2, show-me-in-writing ×2, would-you-do-this ×2, how-do-i-know-its-broken ×1 | 0 |
+| your-own-house | 4 | expert | 2 | 0% | 0% | 0% | 59.5 | 84.0 | silence-after-price ×2, would-you-do-this ×2, show-me-in-writing ×1 | 0 |
+| your-own-house | 4 | solid | 2 | 0% | 0% | 0% | 49.0 | 55.0 | silence-after-price ×2, would-you-do-this ×2, show-me-in-writing ×1, how-do-i-know-its-broken ×1 | 0 |
+| your-own-house | 4 | novice | 2 | 0% | 0% | 0% | 38.0 | 18.5 | silence-after-price ×2, show-me-in-writing ×2, would-you-do-this ×2, how-do-i-know-its-broken ×1 | 0 |
+| catch-the-detail | 2 | expert | 2 | 0% | 0% | 0% | 73.5 | 100.0 | i-know-what-it-is ×1, minimal-responses ×1 | 0 |
+| catch-the-detail | 2 | solid | 2 | 0% | 0% | 0% | 56.0 | 74.0 | silence-after-price ×2, too-expensive ×2, mishears-the-price ×1 | 0 |
+| catch-the-detail | 2 | novice | 2 | 0% | 50% | 0% | 40.0 | 43.5 | too-expensive ×3, silence-after-price ×2 | 0 |
+| catch-the-detail | 4 | expert | 2 | 0% | 0% | 0% | 73.5 | 93.5 | i-know-what-it-is ×1, minimal-responses ×1 | 0 |
+| catch-the-detail | 4 | solid | 2 | 0% | 0% | 0% | 56.0 | 64.0 | silence-after-price ×2, too-expensive ×2, mishears-the-price ×1 | 0 |
+| catch-the-detail | 4 | novice | 2 | 0% | 50% | 0% | 40.0 | 33.5 | too-expensive ×3, silence-after-price ×2 | 0 |
 
 ## Violations
 
-### hard: forced-move-fires (95)
+Hard rules fail the bench. Soft rules are diagnostics: `perceiver-false-unneeded-work` is an honest line the heuristic perceiver read as upselling, `perceiver-missed-monthly` is a monthly number it did not hear, `forced-move-fires-collapsed-call` is a forced move missing from a novice call that ended in a flat no.
 
-- `gas-smell-flex-line d2 solid seed 101` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 solid seed 138` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 solid seed 175` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 solid seed 212` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 solid seed 249` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 solid seed 286` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 expert seed 101` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 expert seed 138` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 expert seed 175` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 expert seed 212` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 expert seed 249` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- `gas-smell-flex-line d2 expert seed 286` can-it-wait never fired, though its trigger was met in 1 state point(s) (close)
-- ...and 83 more
+### hard: forced-move-fires (111)
 
-### hard: unneeded-work-no-yes (41)
+- `burst-pipe-after-hours d2 solid seed 138` interrupts-how-much never fired, though its trigger was met in 1 state point(s) (findings)
+- `burst-pipe-after-hours d2 solid seed 175` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- `burst-pipe-after-hours d2 solid seed 212` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- `burst-pipe-after-hours d2 solid seed 286` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert seed 101` interrupts-how-much never fired, though its trigger was met in 8 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert seed 138` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert seed 212` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert seed 249` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert seed 286` interrupts-how-much never fired, though its trigger was met in 8 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert/upsell seed 101` interrupts-how-much never fired, though its trigger was met in 8 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert/pushy seed 101` interrupts-how-much never fired, though its trigger was met in 8 state point(s) (findings)
+- `burst-pipe-after-hours d2 expert/upsell seed 138` interrupts-how-much never fired, though its trigger was met in 2 state point(s) (findings)
+- ...and 99 more
 
-- `gas-smell-flex-line d2 expert/upsell seed 138` customer said yes after "Saying the water heater must be replaced for safety"
-- `gas-smell-flex-line d4 expert/upsell seed 138` customer said yes after "Saying the water heater must be replaced for safety"
-- `maintenance-visit-anode d2 expert/upsell seed 101` customer said yes after "Recommending a new water heater"
-- `maintenance-visit-anode d2 expert/upsell seed 138` customer said yes after "Replacing the expansion tank"
-- `maintenance-visit-anode d2 expert/upsell seed 175` customer said yes after "Whole-home water filtration"
-- `maintenance-visit-anode d4 expert/upsell seed 101` customer said yes after "Recommending a new water heater"
-- `maintenance-visit-anode d4 expert/upsell seed 138` customer said yes after "Replacing the expansion tank"
-- `maintenance-visit-anode d4 expert/upsell seed 175` customer said yes after "Whole-home water filtration"
-- `second-opinion-quote d2 expert/upsell seed 101` customer said yes after "Replace the pressure regulator"
-- `second-opinion-quote d2 expert/upsell seed 138` customer said yes after "Upsizing to a 75-gallon tank"
-- `second-opinion-quote d2 expert/upsell seed 175` customer said yes after "Water softener"
-- `second-opinion-quote d4 expert/upsell seed 101` customer said yes after "Replace the pressure regulator"
-- ...and 29 more
+### soft: expert-closes-more-per-scenario (4)
 
-### soft: expert-closes-more-per-scenario (10)
-
-- `wh-replacement-spanish d2` expert yes 0% vs novice yes 0%
-- `wh-replacement-spanish d4` expert yes 0% vs novice yes 0%
-- `wh-tank-landlord-tenant d2` expert yes 0% vs novice yes 0%
-- `wh-tank-landlord-tenant d4` expert yes 0% vs novice yes 0%
-- `wh-tank-no-hot-water d2` expert yes 0% vs novice yes 0%
-- `wh-tank-no-hot-water d4` expert yes 0% vs novice yes 0%
+- `toilet-running-old d2` expert yes 0% vs novice yes 0%
+- `toilet-running-old d4` expert yes 0% vs novice yes 0%
 - `wh-tankless-upgrade-question d2` expert yes 0% vs novice yes 0%
 - `wh-tankless-upgrade-question d4` expert yes 0% vs novice yes 0%
-- `wh-warranty-claim-denied d2` expert yes 0% vs novice yes 0%
-- `wh-warranty-claim-denied d4` expert yes 0% vs novice yes 0%
 
-### soft: forced-move-fires-collapsed-call (78)
+### soft: forced-move-fires-collapsed-call (12)
 
 - `gas-smell-flex-line d2 novice seed 101` can-it-wait never fired, though its trigger was met in 4 state point(s) (close)
 - `gas-smell-flex-line d2 novice seed 138` can-it-wait never fired, though its trigger was met in 3 state point(s) (close)
@@ -233,132 +487,159 @@ Content 0.1.0+3c426235baa7, 14 scenario(s), 1 drill(s). Difficulties 2, 4, seeds
 - `gas-smell-flex-line d4 novice seed 101` can-it-wait never fired, though its trigger was met in 3 state point(s) (close)
 - `gas-smell-flex-line d4 novice seed 138` can-it-wait never fired, though its trigger was met in 3 state point(s) (close)
 - `gas-smell-flex-line d4 novice seed 249` can-it-wait never fired, though its trigger was met in 3 state point(s) (close)
-- `maintenance-visit-anode d2 novice seed 101` how-do-i-know-its-broken never fired, though its trigger was met in 2 state point(s) (price)
-- `maintenance-visit-anode d2 novice seed 138` how-do-i-know-its-broken never fired, though its trigger was met in 2 state point(s) (price)
-- `maintenance-visit-anode d2 novice seed 175` how-do-i-know-its-broken never fired, though its trigger was met in 2 state point(s) (price)
-- `maintenance-visit-anode d2 novice seed 212` how-do-i-know-its-broken never fired, though its trigger was met in 2 state point(s) (price)
-- ...and 66 more
+- `drill:leave-well-on-a-no d2 novice seed 101` need-to-think-about-it never fired, though its trigger was met in 6 state point(s) (close)
+- `drill:leave-well-on-a-no d2 novice seed 138` need-to-think-about-it never fired, though its trigger was met in 6 state point(s) (close)
+- `drill:leave-well-on-a-no d4 novice seed 101` need-to-think-about-it never fired, though its trigger was met in 5 state point(s) (close)
+- `drill:leave-well-on-a-no d4 novice seed 138` need-to-think-about-it never fired, though its trigger was met in 5 state point(s) (close)
 
-### soft: perceiver-false-unneeded-work (305)
+### soft: perceiver-false-unneeded-work (52)
 
-- `gas-smell-flex-line d2 expert seed 101` "So it sounds like a man sold you a roof coating a few years back. That must be frustrating. What matters most " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 101` "Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 138` "So it sounds like a man sold you a roof coating a few years back. That must be frustrating. What matters most " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 138` "Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 175` "So it sounds like the sewer line, that's the pipe under the kitchen sink. That must be frustrating. What matte" read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 175` "Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 212` "So it sounds like your husband Harold always handled the house. That must be frustrating. What matters most to" read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 212` "Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 249` "So it sounds like your son Kevin lives up in Bakersfield. That must be frustrating. What matters most to you i" read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 249` "Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak " read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 286` "So it sounds like your husband Harold always handled the house. That must be frustrating. What matters most to" read as unneeded work: Saying the water heater must be replaced for safety
-- `gas-smell-flex-line d2 expert seed 286` "Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak " read as unneeded work: Saying the water heater must be replaced for safety
-- ...and 293 more
+- `toilet-running-old d2 expert seed 101` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert seed 138` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert seed 175` "So it sounds like your husband just had his hip replaced. That must be frustrating. What matters most to you i" read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert seed 212` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert seed 249` "So it sounds like your husband just had his hip replaced. That must be frustrating. What matters most to you i" read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert seed 286` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert/upsell seed 101` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert/pushy seed 101` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert/upsell seed 138` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert/pushy seed 138` "So it sounds like they replaced your dishwasher two years ago. That must be frustrating. What matters most to " read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert/upsell seed 175` "So it sounds like your husband just had his hip replaced. That must be frustrating. What matters most to you i" read as unneeded work: Saying the toilet needs to be replaced
+- `toilet-running-old d2 expert/pushy seed 175` "So it sounds like your husband just had his hip replaced. That must be frustrating. What matters most to you i" read as unneeded work: Saying the toilet needs to be replaced
+- ...and 40 more
 
-### soft: perceiver-missed-monthly (655)
+### soft: unneeded-work-perceived (12)
 
-- `gas-smell-flex-line d2 expert seed 101` "The second is Replace the water heater, 40-gallon standard gas, 6-year warranty, at $1,890, or about $49 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 101` "It's $445 total, or about $11 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 101` "To be honest with you, Replace gas connector and shutoff valve is a safe choice, and with financing it works out to about $11 a month, so it does not all land at once" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 138` "The second is Replace the water heater, 40-gallon standard gas, 6-year warranty, at $1,890, or about $49 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 138` "It's $445 total, or about $11 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 138` "To be honest with you, Replace gas connector and shutoff valve is a safe choice, and with financing it works out to about $11 a month, so it does not all land at once" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 175` "To be honest with you, Replace gas connector and shutoff valve is a safe choice, and with financing it works out to about $11 a month, so it does not all land at once" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 175` "The second is Replace the water heater, 40-gallon standard gas, 6-year warranty, at $1,890, or about $49 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 175` "It's $445 total, or about $11 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 212` "The second is Replace the water heater, 40-gallon standard gas, 6-year warranty, at $1,890, or about $49 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 212` "It's $445 total, or about $11 a month" not read as framed_monthly
-- `gas-smell-flex-line d2 expert seed 212` "To be honest with you, Replace gas connector and shutoff valve is a safe choice, and with financing it works out to about $11 a month, so it does not all land at once" not read as framed_monthly
-- ...and 643 more
+- `gas-smell-flex-line d2 expert/upsell seed 138` "Saying the water heater must be replaced for safety" was recommended but not perceived as unneeded work
+- `gas-smell-flex-line d4 expert/upsell seed 138` "Saying the water heater must be replaced for safety" was recommended but not perceived as unneeded work
+- `main-shutoff-seized d2 expert/upsell seed 101` "Installing a pressure regulator" was recommended but not perceived as unneeded work
+- `main-shutoff-seized d4 expert/upsell seed 101` "Installing a pressure regulator" was recommended but not perceived as unneeded work
+- `second-opinion-quote d2 expert/upsell seed 101` "Replace the pressure regulator" was recommended but not perceived as unneeded work
+- `second-opinion-quote d4 expert/upsell seed 101` "Replace the pressure regulator" was recommended but not perceived as unneeded work
+- `wh-code-upgrades-rental d2 expert/upsell seed 101` "Replace the pressure regulator" was recommended but not perceived as unneeded work
+- `wh-code-upgrades-rental d4 expert/upsell seed 101` "Replace the pressure regulator" was recommended but not perceived as unneeded work
+- `wh-tank-no-hot-water d2 expert/upsell seed 138` "Saying a tankless unit is required" was recommended but not perceived as unneeded work
+- `wh-tank-no-hot-water d4 expert/upsell seed 138` "Saying a tankless unit is required" was recommended but not perceived as unneeded work
+- `wh-warranty-claim-denied d2 expert/upsell seed 138` "Replace the pressure regulator" was recommended but not perceived as unneeded work
+- `wh-warranty-claim-denied d4 expert/upsell seed 138` "Replace the pressure regulator" was recommended but not perceived as unneeded work
 
-Hard: 136. Soft: 1048.
+Hard: 111. Soft: 80.
+
+Persistence check: 314 repeat decision ask(s) with nothing new were checked; 0 turned into a yes.
 
 ## Sample calls
 
-### gas-smell-flex-line d2 expert seed 101: yes, score 75, trust 100
+### burst-pipe-after-hours d2 expert seed 101: yes, score 91, trust 100
 
-- **CUSTOMER:** Oh, hello. You must be from the plumbing company. Come in, please. _(open)_
+- **CUSTOMER:** Hey, come on in. I'm between calls, so I'll be in and out. _(open)_
 - **TECH:** Hi, I'm Sam from the plumbing company, thanks for having me. What I'll do is take a look, explain what I find in plain English, and show you some options before we do anything. Okay? _(set_frame, asked_open_question, explained_plainly)_
-- **CUSTOMER:** That's Biscuit. She hides when people come in, don't mind her. _(answer)_
+- **CUSTOMER:** I've got a call in twenty minutes. What do you need from me before then? _(answer)_
 - **TECH:** Tell me about what's been happening. When did it start? _(asked_open_question)_
-- **CUSTOMER:** My husband Harold always handled the house. He passed four years ago. _(answer)_
-- **TECH:** Who lives here with you, and how do you use the water heater day to day? _(asked_open_question)_
-- **CUSTOMER:** A man sold me a roof coating a few years back. Four thousand dollars. I found out later I didn't need it at all. _(answer)_
-- **TECH:** So it sounds like a man sold you a roof coating a few years back. That must be frustrating. What matters most to you in how we fix this? _(asked_open_question, asked_follow_up, reflected_back, used_customer_detail, recommended_unneeded_work)_
-- **CUSTOMER:** That sounds like extra. Is that really necessary? _(react)_
+- **CUSTOMER:** We bought this place in twenty nineteen. The guy before us put in the tankless. _(answer)_
+- **TECH:** Who lives here with you, and how do you use the pipes day to day? _(asked_open_question)_
+- **CUSTOMER:** My father-in-law built houses for forty years. He'll notice if anything's off. _(answer)_
+- **TECH:** So it sounds like your father-in-law built houses for forty years. That must be frustrating. What matters most to you in how we fix this? _(asked_open_question, asked_follow_up, reflected_back, used_customer_detail)_
+- **CUSTOMER:** My in-laws land Friday at noon. This has to be done before then, period. _(answer)_
 - **TECH:** How long are you planning to stay in the home? _(asked_open_question)_
-- **CUSTOMER:** My son Kevin lives up in Bakersfield. I hate to bother him with these things. _(answer)_
+- **CUSTOMER:** No plans to move, no. _(answer)_
 - **TECH:** Has another company been out for this before? How did that go? _(asked_open_question)_
 - **CUSTOMER:** I first noticed it a couple days ago. _(answer)_
-- **TECH:** Here's what I found, in plain English. The gas connector to the water heater is corroded and kinked, and leak solution bubbles at the lower fitting. It is leaking gas and has to be replaced. What that means is it won't get better on its own. I also noticed this: The gas shutoff valve is an old plug valve. It is stiff and bubbles at the stem when it is turned. It should be replaced along with the connector. I took a photo so you can see it. Does that make sense? _(asked_open_question, explained_plainly, checked_understanding, showed_evidence, recommended_unneeded_work)_
-- **CUSTOMER:** Hm. I just want what I actually need, okay? _(react)_
-- **TECH:** You have two options. The first is Replace gas connector and shutoff valve, at $445. The second is Replace the water heater, 40-gallon standard gas, 6-year warranty, at $1,890, or about $49 a month. _(stated_price, presented_options, justified_value)_
-- **CUSTOMER:** (silence) _(silence: silence-after-price, holds 6000ms)_
-- **CUSTOMER:** That's... a lot. _(react: silence-after-price)_
-- **TECH:** Of those two options, since you mentioned your son Kevin lives up in Bakersfield, the first one I'd point you to is Replace gas connector and shutoff valve. It's $445 total, or about $11 a month. _(reflected_back, stated_price, presented_options, tied_options_to_needs, used_customer_detail)_
+- **TECH:** Here's what I found, in plain English. Water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first. What that means is it won't get better on its own. I also noticed this: Water came through a recessed light. The breaker for that circuit needs to be off, and nobody should touch the fixture. I took a photo so you can see it. Does that make sense? _(asked_open_question, explained_plainly, checked_understanding, showed_evidence, addressed_concern)_
+- **CUSTOMER:** It's only a clog. Run your snake down there, that's all it needs. _(react: i-know-what-it-is)_
+- **TECH:** That's a fair thought, and a lot of people hear that. Here's the thing: in this case, water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first. _(corrected_respectfully)_
+- **CUSTOMER:** Okay. So what are my options? _(react)_
+- **TECH:** You have two options. The first is Make it safe tonight, repair later, at $225. The second is Make it safe and repair tonight, at $725. _(stated_price, presented_options)_
 - **CUSTOMER:** Hold on. Say that number again? I don't think I heard it right. _(react: mishears-the-price)_
-- **TECH:** Let me say that more clearly. In other words, it's $445 total, and that includes parts and labor. _(explained_plainly, stated_price, justified_value)_
-- **CUSTOMER:** Hm. That's too expensive. I can't do that. _(object: too-expensive)_
-- **TECH:** That is a fair question. Can I ask what is on your mind with that? What would you want to see? _(asked_open_question, acknowledged_feeling, asked_about_concern, new_angle, addressed_concern)_
-- **CUSTOMER:** Well, to be honest with you, I'm on a fixed income. I have some savings, but I'm scared to dip into it. I don't know how long it has to last me. _(reveal)_
-- **TECH:** Thank you for telling me that. That makes sense, and I'm glad you said it. To be honest with you, Replace gas connector and shutoff valve is a safe choice, and with financing it works out to about $11 a month, so it does not all land at once. _(reflected_back, acknowledged_feeling, offered_financing, honest_answer, addressed_concern)_
+- **TECH:** Let me say that more clearly. In other words, it's $725 total, and that includes parts and labor. _(explained_plainly, stated_price, justified_value)_
+- **CUSTOMER:** All right. What does that include? _(react)_
+- **TECH:** Of those two options, since you mentioned your in-laws land Friday at noon, the first one I'd point you to is Make it safe and repair tonight. It's $725 total, or about $18 a month. _(reflected_back, framed_monthly, stated_price, presented_options, tied_options_to_needs, used_customer_detail, addressed_concern)_
+- **CUSTOMER:** What if I pay cash? Can you knock a little off? _(object: can-you-do-better)_
+- **TECH:** That is a fair question. Can I ask what is on your mind with that? What would you want to see? _(asked_open_question, asked_follow_up, acknowledged_feeling, asked_about_concern, new_angle, addressed_concern)_
+- **CUSTOMER:** Honestly? My father-in-law already thinks I can't handle a house. I just don't want him walking in on a mess. _(reveal)_
+- **TECH:** Thank you for telling me that. That makes sense, and I'm glad you said it. To be honest with you, Make it safe tonight is a safe choice, and with financing it works out to about $6 a month, so it does not all land at once. _(reflected_back, acknowledged_feeling, offered_financing, honest_answer)_
 - **CUSTOMER:** Okay. That helps. _(react)_
-- **TECH:** I hear you. That price includes parts and labor, the permit, haul away, and the warranty. Of the two options, since you mentioned your son Kevin lives up in Bakersfield, the first one fits you. _(reflected_back, acknowledged_feeling, presented_options, tied_options_to_needs, justified_value, used_customer_detail)_
+- **TECH:** That makes sense. That price includes parts and labor, the permit, haul away, and the warranty. Of the two options, since you mentioned your in-laws land Friday at noon, the first one fits you. To be honest with you, that is a fair way to look at it. _(reflected_back, acknowledged_feeling, presented_options, tied_options_to_needs, justified_value, honest_answer, used_customer_detail)_
 - **CUSTOMER:** All right, that makes sense. _(react)_
-- **TECH:** Before you decide anything, what is on your mind about all this? What would you want to know? _(asked_open_question, asked_about_concern)_
-- **CUSTOMER:** I get that, but it's still a lot of money. _(object: repeats-answered-objection)_
-- **TECH:** That is a fair question. Can I ask what is on your mind with that? What would you want to see? _(asked_open_question, acknowledged_feeling, asked_about_concern)_
-- **CUSTOMER:** All right. _(answer)_
-- **TECH:** Everything is included: parts and labor, the permit, and our workmanship guarantee. To be honest with you, that is a fair way to look at it. That is totally fair. _(acknowledged_feeling, justified_value, honest_answer)_
-- **CUSTOMER:** Okay, I feel better about that. _(react)_
-- **TECH:** Would you like me to get started on that today? _(asked_for_decision)_
-- **CUSTOMER:** Yeah, let’s go with that. _(agree)_
+- **TECH:** Before you decide anything, what is on your mind about all this? What would you want to know? _(asked_open_question, asked_about_concern, used_customer_detail)_
+- **CUSTOMER:** It’s been acting up a little for a while, but it really went out yesterday. _(answer)_
+- **TECH:** Would you like me to go ahead and get that scheduled? _(asked_for_decision)_
+- **CUSTOMER:** All right, that makes sense. Go ahead with that one. _(agree)_
 - **TECH:** Thank you. I'll write it up and get started right away. Take care.
-- **CUSTOMER:** All right. Thanks for coming by. _(end)_
+- **CUSTOMER:** Okay. Take care. _(end)_
 
-### gas-smell-flex-line d2 solid seed 101: yes, score 64, trust 83
+### burst-pipe-after-hours d2 solid seed 101: yes, score 69, trust 98
 
-- **CUSTOMER:** Oh, hello. You must be from the plumbing company. Come in, please. _(open)_
-- **TECH:** Hi, this is Sam from the plumbing company. Where is the water heater? _(set_frame, asked_follow_up)_
-- **CUSTOMER:** That's Biscuit. She hides when people come in, don't mind her. _(answer)_
+- **CUSTOMER:** Hey, come on in. I'm between calls, so I'll be in and out. _(open)_
+- **TECH:** Hi, this is Sam from the plumbing company. Where is the pipes? _(set_frame)_
+- **CUSTOMER:** I've got a call in twenty minutes. What do you need from me before then? _(answer)_
 - **TECH:** Tell me about what's been happening. When did it start? _(asked_open_question)_
-- **CUSTOMER:** My husband Harold always handled the house. He passed four years ago. _(answer)_
+- **CUSTOMER:** We bought this place in twenty nineteen. The guy before us put in the tankless. _(answer)_
 - **TECH:** Is it leaking?
-- **CUSTOMER:** A man sold me a roof coating a few years back. Four thousand dollars. I found out later I didn't need it at all. _(answer)_
-- **TECH:** Here's what I found. The gas connector to the water heater is corroded and kinked, and leak solution bubbles at the lower fitting. It is leaking gas and has to be replaced. In other words, it needs to be taken care of. _(explained_plainly)_
-- **CUSTOMER:** I don’t really follow. _(react)_
-- **TECH:** You have two options. The first is Replace gas connector and shutoff valve, at $445. The second is Replace the water heater, 40-gallon standard gas, 6-year warranty, at $1,890. _(stated_price, presented_options, justified_value)_
-- **CUSTOMER:** (silence) _(silence: silence-after-price, holds 6000ms)_
-- **CUSTOMER:** Okay. Let me think about that for a second. _(react: silence-after-price)_
-- **TECH:** The one most people go with is Replace gas connector and shutoff valve. It's $445. _(stated_price)_
-- **CUSTOMER:** Hm. That's too expensive. I can't do that. _(object: too-expensive)_
-- **TECH:** I hear you. _(acknowledged_feeling, new_angle, addressed_concern)_
+- **CUSTOMER:** All right. _(answer)_
+- **TECH:** Here's what I found. Water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first. In other words, it needs to be taken care of. _(explained_plainly)_
+- **CUSTOMER:** Can you say that in plain English? My in-laws land Friday at noon. This has to be done before then, period. _(react)_
+- **CUSTOMER:** So how much is it? Just ballpark. _(interrupt: interrupts-how-much)_
+- **TECH:** Fair question. The short version: the option that fits most homes like yours is $725 all in. Let me show you what's included. _(acknowledged_feeling, explained_plainly, showed_evidence, stated_price, addressed_concern)_
+- **CUSTOMER:** All right. What does that include? _(react)_
+- **TECH:** You have two options. The first is Make it safe tonight, repair later, at $225. The second is Make it safe and repair tonight, at $725. _(stated_price, presented_options)_
+- **CUSTOMER:** Wait, is that per month, or for the whole thing? _(react: mishears-the-price)_
+- **TECH:** Let me say that more clearly. In other words, it's $725 total, and that includes parts and labor. _(explained_plainly, stated_price, justified_value)_
+- **CUSTOMER:** Come on, there's gotta be a little wiggle room in there. _(object: can-you-do-better)_
+- **TECH:** That price includes parts and labor, the permit, haul away, and the warranty. _(justified_value, new_angle, addressed_concern)_
 - **CUSTOMER:** All right, that makes sense. _(react)_
-- **TECH:** Would you like me to get started on that today? _(asked_for_decision)_
-- **CUSTOMER:** Okay, you’ve made it easy. When can you start? _(agree)_
+- **TECH:** The one most people go with is Make it safe and repair tonight. It's $725. _(stated_price)_
+- **CUSTOMER:** Okay, I feel better about that. _(react)_
+- **TECH:** Would you like me to go ahead and get that scheduled? _(asked_for_decision)_
+- **CUSTOMER:** Okay. Let’s do it. _(agree)_
 - **TECH:** Thank you. I'll write it up and get started right away. Take care.
-- **CUSTOMER:** All right. Thanks for coming by. _(end)_
+- **CUSTOMER:** Okay, thank you. _(end)_
 
-### gas-smell-flex-line d2 novice seed 101: no, score 26, trust 7
+### burst-pipe-after-hours d2 novice seed 101: no, score 25, trust 14
 
-- **CUSTOMER:** Oh, hello. You must be from the plumbing company. Come in, please. _(open)_
-- **TECH:** Hey there. Show me the water heater.
-- **CUSTOMER:** Okay. It’s this way. That's Biscuit. She hides when people come in, don't mind her. _(react)_
+- **CUSTOMER:** Hey, come on in. I'm between calls, so I'll be in and out. _(open)_
+- **TECH:** Hey there. Show me the pipes.
+- **CUSTOMER:** Okay. It’s this way. I've got a call in twenty minutes. What do you need from me before then? _(react)_
 - **TECH:** Did you try turning it off and on?
 - **CUSTOMER:** Mm-hm. Go ahead. _(answer)_
 - **TECH:** Is it leaking?
 - **CUSTOMER:** Mm-hm. _(answer)_
-- **TECH:** Yeah, so the gas connector to the water heater is corroded and kinked, and leak solution bubbles at the lower fitting. It is leaking gas and has to be replaced. Your anode rod is shot, there's sediment in the combustion chamber, and the T&P is weeping. _(used_jargon)_
-- **CUSTOMER:** Sure, come on in. It’s right through here. _(react)_
-- **TECH:** You have to replace it, it's the only option. I know it's a lot, unfortunately it's $845. But I can knock $200 off if you do it today. _(stated_price, presented_options, single_option_only, hedged_price)_
-- **CUSTOMER:** (silence) _(silence: silence-after-price, holds 6000ms)_
-- **TECH:** So, yeah. It is a really good unit, you will not regret it. _(filled_silence)_
-- **CUSTOMER:** All right. What does that include? _(react)_
+- **TECH:** Yeah, so water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first. The PRV is off, you have no expansion tank, and the flex line is galvanic. _(used_jargon)_
+- **CUSTOMER:** Sure, come on in. It’s right through here. My in-laws land Friday at noon. This has to be done before then, period. _(react)_
+- **TECH:** You have to replace it, it's the only option. I know it's a lot, unfortunately it's $1,125. But I can knock $200 off if you do it today. _(stated_price, presented_options, single_option_only, hedged_price)_
+- **CUSTOMER:** Be honest with me. Do you make more money on the bigger option? _(probe: are-you-on-commission)_
+- **TECH:** Look, as I said, I can knock some off if you do it today. Today only. _(discounted_unprompted, showed_impatience, pressured)_
+- **CUSTOMER:** Mm-hm. Just write it up and leave it with me. _(react: goes-cold)_
+- **TECH:** Okay, well, it is what it is.
+- **CUSTOMER:** What if I pay cash? Can you knock a little off? _(object: can-you-do-better)_
+- **TECH:** It is what it is. You have to replace it anyway. _(single_option_only)_
+- **CUSTOMER:** Huh. If it came down that easy, what else in there can come down? _(object: can-you-do-better)_
+- **TECH:** It is what it is. You have to replace it anyway. _(single_option_only, repeated_same_answer)_
+- **CUSTOMER:** I don’t know... _(react)_
 - **TECH:** So do you want to do it? _(asked_for_decision)_
-- **CUSTOMER:** Hm. That's too expensive. I can't do that. _(object: too-expensive)_
-- **TECH:** Look, this price is today only. So do you want to do it? _(asked_for_decision, pressured)_
-- **CUSTOMER:** Okay, but that doesn't really change the number for me. _(object: too-expensive)_
-- **TECH:** I need an answer today, the price goes up next week. Want me to get started? _(asked_for_decision, pressured)_
-- **CUSTOMER:** I don’t think so. Not today, thank you. _(decline)_
+- **CUSTOMER:** I’m going to pass. Thanks for coming out. _(decline)_
 - **TECH:** Okay, fine. Have a good day.
-- **CUSTOMER:** Okay, thank you. _(end)_
+- **CUSTOMER:** Okay. Take care. _(end)_
+
+### burst-pipe-after-hours d2 solid seed 138: yes, score 64, trust 79
+
+- **CUSTOMER:** Hey, come on in. I'm between calls, so I'll be in and out. _(open)_
+- **TECH:** Hi, I'm Sam with the plumbing company. Can you show me the pipes? _(set_frame)_
+- **CUSTOMER:** I've got a call in twenty minutes. What do you need from me before then? _(answer)_
+- **TECH:** Tell me about what's been happening. When did it start? _(asked_open_question)_
+- **CUSTOMER:** We bought this place in twenty nineteen. The guy before us put in the tankless. _(answer)_
+- **TECH:** Is this the only one?
+- **CUSTOMER:** All right. _(answer)_
+- **TECH:** Here's what I found. Water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first. In other words, it needs to be taken care of. _(explained_plainly)_
+- **CUSTOMER:** I don’t really follow. My in-laws land Friday at noon. This has to be done before then, period. _(react)_
+- **TECH:** You have two options. The first is Make it safe tonight, repair later, at $225. The second is Make it safe and repair tonight, at $725. _(stated_price, presented_options)_
+- **CUSTOMER:** Hold on. Say that number again? I don't think I heard it right. _(react: mishears-the-price)_
+- **TECH:** Let me say that more clearly. In other words, it's $725 total, and that includes parts and labor. _(explained_plainly, stated_price, justified_value)_
+- **CUSTOMER:** What if I pay cash? Can you knock a little off? _(object: can-you-do-better)_
+- **TECH:** That price includes parts and labor, the permit, haul away, and the warranty. _(justified_value, new_angle, addressed_concern)_
+- **CUSTOMER:** Okay, I feel better about that. _(react)_
+- **TECH:** The one most people go with is Make it safe and repair tonight. It's $725. _(stated_price)_
+- **CUSTOMER:** Okay. That helps. _(react)_
+- **TECH:** Would you like me to get started on that today? _(asked_for_decision)_
+- **CUSTOMER:** Okay. Let’s do it. _(agree)_
+- **TECH:** Thank you. I'll write it up and get started right away. Take care.
+- **CUSTOMER:** Okay. Take care. _(end)_

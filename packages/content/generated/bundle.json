@@ -1,7 +1,7 @@
 {
- "version": "0.1.0+b64e5a2473e0",
- "hash": "b64e5a2473e0",
- "builtAt": "2026-10-22T09:12:44.068Z",
+ "version": "0.1.0+7a9d4af5ae2e",
+ "hash": "7a9d4af5ae2e",
+ "builtAt": "2026-10-22T09:15:31.522Z",
  "personas": [
   {
    "id": "brian-today",
@@ -8678,6 +8678,309 @@
  ],
  "scenarios": [
   {
+   "id": "burst-pipe-after-hours",
+   "version": 1,
+   "title": "Burst pipe at night",
+   "trade": "plumbing",
+   "jobType": "emergency-repair",
+   "difficulty": 3,
+   "personaId": "brian-today",
+   "alternatePersonas": [
+    "jen-busy-parent",
+    "tasha-burned"
+   ],
+   "briefing": "After-hours emergency call, 10:40 at night. Water is coming through the kitchen ceiling under the upstairs bathroom, and the customer cannot find the main shutoff. Two-story home built in 2004.",
+   "situation": "The first job is to stop the water and make the home safe, before any talk about price. The main shutoff is a ball valve on the front wall of the garage behind a planter, and the tech closes it in the first minute. Water has come through a recessed light in the kitchen ceiling, so the breaker for that circuit has to be turned off and nobody should touch the fixture. The drywall around it is sagging, and a small hole into a bucket drains it under control. With the ceiling opened near the light, the tech finds a 3/4-inch copper hot water line split at an elbow where the pipe wall wore thin. Pressure is 68 psi, inside the normal range, so pressure did not cause it. The after-hours fee is $225 tonight either way, and the repair is $500 tonight or during business hours. With guests arriving this weekend and the water off to the whole house until the repair, repairing tonight is the honest best fit. The tech should also tell him to call his insurance and a water mitigation company to dry the ceiling within a day or two. No fear selling, no mold scare, no repipe pitch. The customer is stressed, impatient, and asks the price before the tech is done talking.",
+   "equipment": [
+    {
+     "item": "3/4-inch copper hot water line in the kitchen ceiling",
+     "ageYears": 22,
+     "notes": "Split at an elbow where the pipe wall wore thin."
+    },
+    {
+     "item": "Main shutoff ball valve on the front garage wall",
+     "ageYears": 22,
+     "notes": "Works. Customer did not know where it was."
+    },
+    {
+     "item": "Recessed light in the kitchen ceiling",
+     "notes": "Water came through it. Its circuit must stay off until it dries and is checked."
+    }
+   ],
+   "findings": [
+    {
+     "id": "water-still-running",
+     "text": "Water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first.",
+     "severity": "urgent"
+    },
+    {
+     "id": "wet-light-fixture",
+     "text": "Water came through a recessed light. The breaker for that circuit needs to be off, and nobody should touch the fixture.",
+     "severity": "urgent"
+    },
+    {
+     "id": "sagging-drywall",
+     "text": "The drywall around the light is sagging with water. A small hole into a bucket drains it under control.",
+     "severity": "major"
+    },
+    {
+     "id": "split-elbow",
+     "text": "A 3/4-inch copper hot water line split at an elbow in the ceiling, where the pipe wall wore thin. It is one failed spot.",
+     "severity": "major"
+    },
+    {
+     "id": "pressure-normal",
+     "text": "Pressure is 68 psi, inside the normal range. Pressure did not cause this.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "stop-water-make-safe",
+     "label": "Shut off the main and make the home safe",
+     "rationale": "Stops the damage and removes the electrical risk before anything else."
+    },
+    {
+     "id": "repair-split",
+     "label": "Replace the failed elbow and a short section of pipe",
+     "rationale": "One failed spot. A short repair restores water to the house."
+    },
+    {
+     "id": "pressure-test",
+     "label": "Pressure test and restore water",
+     "rationale": "Confirms the repair holds before the ceiling is left open to dry."
+    },
+    {
+     "id": "mitigation-referral",
+     "label": "Tell him to call his insurance and a water mitigation company",
+     "rationale": "The ceiling and insulation need drying within a day or two. That is a drying job, not a plumbing job."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "whole-house-repipe",
+     "label": "Whole-house repipe",
+     "why": "One elbow failed. Nothing else in the visible piping shows wear, and one failure does not justify replacing every pipe."
+    },
+    {
+     "id": "pressure-regulator",
+     "label": "Installing a pressure regulator",
+     "why": "Pressure is 68 psi, inside the normal range."
+    },
+    {
+     "id": "mold-treatment-tonight",
+     "label": "Selling a mold treatment tonight",
+     "why": "The drywall has been wet for about an hour. Drying it within a day or two is what matters, and that is usually an insurance matter."
+    }
+   ],
+   "options": [
+    {
+     "id": "make-safe-only",
+     "label": "Make it safe tonight, repair later",
+     "price": 225,
+     "includes": [
+      "After-hours visit",
+      "Main water shut off and the ceiling drained into a bucket",
+      "Breaker off for the wet light",
+      "Water stays off until the repair",
+      "Repair during business hours priced separately at $500"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "repair-tonight",
+     "label": "Make it safe and repair tonight",
+     "price": 725,
+     "includes": [
+      "Everything in the make-safe option",
+      "Open the ceiling at the break",
+      "Replace the failed elbow and a short section of pipe",
+      "Pressure test and water back on tonight",
+      "Drywall repair and drying not included"
+     ],
+     "recommended": true
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "interrupts-how-much"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Stop the water and make the home safe before talking price. Then give calm, honest after-hours pricing, recommend repairing tonight, and point him to insurance and drying help without fear selling.",
+   "passBar": 72,
+   "tags": [
+    "emergency",
+    "after-hours",
+    "leak",
+    "stress",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; the after-hours fee varies by company.",
+     "Techs should only turn off the breaker and keep people away from the wet fixture. Any electrical work goes to an electrician.",
+     "If a company offers water mitigation itself, the referral wording changes, but the no-fear rule stays."
+    ]
+   }
+  },
+  {
+   "id": "disposal-jammed-old",
+   "version": 1,
+   "title": "Old garbage disposal, jammed and leaking",
+   "trade": "plumbing",
+   "jobType": "disposal-replacement",
+   "difficulty": 1,
+   "personaId": "jen-busy-parent",
+   "alternatePersonas": [
+    "brian-today",
+    "rick-landlord"
+   ],
+   "briefing": "Service call. Garbage disposal hums but will not turn. Customer says it has been loud for months. Not a member.",
+   "situation": "The 14-year-old 1/3 horsepower disposal is jammed by a metal bottle cap. The tech frees it with a hex key from the bottom and resets it, and it turns again. But the bottom of the housing is rusted and water drips from it when it runs. Once a disposal leaks from its body, the internal seal has failed and it cannot be repaired. The cabinet floor under it is damp and starting to swell. The honest recommendation is replacing it with a standard 1/2 horsepower unit. Freeing the jam alone is a fair short-term choice if she wants to wait, but the leak will continue. A 3/4 horsepower quiet model is a reasonable upgrade, not a need. The customer works from home with two kids under six, her phone keeps ringing, and she wants one clear recommendation she can trust.",
+   "equipment": [
+    {
+     "item": "1/3 horsepower garbage disposal",
+     "ageYears": 14,
+     "notes": "Jammed by a bottle cap. Rusted housing. Leaks from the bottom when running."
+    },
+    {
+     "item": "Kitchen sink base cabinet",
+     "notes": "Particleboard floor damp and starting to swell."
+    }
+   ],
+   "findings": [
+    {
+     "id": "bottle-cap-jam",
+     "text": "A metal bottle cap jammed the grinder. It is out, and the disposal turns again.",
+     "severity": "minor"
+    },
+    {
+     "id": "housing-leak",
+     "text": "Water drips from the bottom of the disposal when it runs. The internal seal has failed, and a disposal that leaks from its body cannot be repaired.",
+     "severity": "major"
+    },
+    {
+     "id": "rust-and-noise",
+     "text": "The bottom of the housing is rusted and it grinds loudly. At 14 years it is at the end of its life.",
+     "severity": "minor"
+    },
+    {
+     "id": "cabinet-swelling",
+     "text": "The cabinet floor under the sink is damp and starting to swell.",
+     "severity": "minor"
+    },
+    {
+     "id": "drain-fine",
+     "text": "The sink drains normally with the disposal off. The drain line is not part of the problem.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-disposal",
+     "label": "Replace the disposal with a standard 1/2 horsepower unit",
+     "rationale": "The body leaks and cannot be repaired. A 1/2 horsepower unit handles a busy family kitchen."
+    },
+    {
+     "id": "free-the-jam",
+     "label": "Free the jam and reset",
+     "rationale": "Already done to diagnose it. A fair short-term choice if she wants to wait."
+    },
+    {
+     "id": "leak-test-with-dishwasher",
+     "label": "Run and leak test with the dishwasher",
+     "rationale": "Confirms the new unit and the dishwasher connection are dry."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "commercial-disposal",
+     "label": "A 1 horsepower or commercial-grade disposal",
+     "why": "A home kitchen does not need it. A 1/2 horsepower unit is enough, and 3/4 is the most that makes sense here."
+    },
+    {
+     "id": "jet-kitchen-line",
+     "label": "Hydro jetting the kitchen drain",
+     "why": "The sink drains normally. The problem is the disposal, not the line."
+    },
+    {
+     "id": "new-sink-or-faucet",
+     "label": "Replacing the sink or faucet",
+     "why": "Both are in good shape and were not part of the call."
+    }
+   ],
+   "options": [
+    {
+     "id": "free-jam-only",
+     "label": "Free the jam only",
+     "price": 175,
+     "includes": [
+      "Remove the bottle cap and free the grinder",
+      "Reset and test",
+      "The leak at the bottom is not fixed"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "half-hp",
+     "label": "Replace with a 1/2 horsepower disposal",
+     "price": 445,
+     "includes": [
+      "New 1/2 horsepower disposal",
+      "New mounting ring and gaskets",
+      "Dishwasher connection",
+      "Haul-away of the old unit",
+      "Leak test"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "three-quarter-hp-quiet",
+     "label": "Replace with a 3/4 horsepower quiet model",
+     "price": 625,
+     "includes": [
+      "New 3/4 horsepower disposal with sound insulation",
+      "New mounting ring and gaskets",
+      "Dishwasher connection",
+      "Haul-away of the old unit",
+      "Longer manufacturer warranty"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "phone-call-hold-on"
+    ],
+    "excluded": [],
+    "density": 1
+   },
+   "goal": "Show her the leak at the bottom of the unit, give one clear recommendation, and keep it short. Pick the conversation back up smoothly after her phone call and ask for a decision.",
+   "passBar": 65,
+   "tags": [
+    "disposal",
+    "kitchen",
+    "starter",
+    "distraction"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Warranty length on the quiet model depends on the brand each company stocks."
+    ]
+   }
+  },
+  {
    "id": "drain-kitchen-recurring",
    "version": 1,
    "title": "Kitchen sink keeps clogging",
@@ -9697,6 +10000,277 @@
    }
   },
   {
+   "id": "hydro-jet-rental",
+   "version": 1,
+   "title": "Rental main line, hydro jet or snake",
+   "trade": "plumbing",
+   "jobType": "hydro-jetting",
+   "difficulty": 2,
+   "personaId": "rick-landlord",
+   "alternatePersonas": [
+    "greg-selling"
+   ],
+   "briefing": "Service call at a rental. Tenant reports the tub and toilets backing up. The owner says his handyman has snaked the line twice this year. Single-story rental on a slab, built in 1964. Not a member.",
+   "situation": "The 4-inch cast iron drain under the slab is coated with grease and scale. The tech opens it with a cable through the exterior cleanout to stop the backup, then runs a camera. The footage shows buildup narrowing the pipe to about half its size for about 25 feet under the house. The cable only cut a path through it, which is why the handyman's two clearings did not last. The cast iron is rough inside but intact, with no cracks, holes, or worn-through bottom. The clay line from the house to the street is clear, with tight joints and no roots. Hydro jetting with a descaling nozzle restores the full pipe size, and a camera pass afterward proves it. Jetting is the honest recommendation because the line has backed up three times this year and each repeat call costs him money and tenant goodwill. Lining or replacing the pipe is not justified on this footage. The owner has six rentals, thin margins, a handyman, and a tenant threatening to withhold rent.",
+   "equipment": [
+    {
+     "item": "4-inch cast iron building drain under the slab",
+     "ageYears": 62,
+     "notes": "Heavy grease and scale. Walls rough but intact."
+    },
+    {
+     "item": "4-inch clay sewer lateral to the street",
+     "ageYears": 62,
+     "notes": "Clear. Tight joints, no roots."
+    },
+    {
+     "item": "Exterior cleanout at the side of the house",
+     "notes": "Good access for the cable, jetter, and camera."
+    }
+   ],
+   "findings": [
+    {
+     "id": "buildup-half-pipe",
+     "text": "The camera shows grease and scale narrowing the cast iron to about half its size for about 25 feet under the house.",
+     "severity": "major"
+    },
+    {
+     "id": "cable-path-only",
+     "text": "The cable cut a path through the buildup but left the rest on the walls. That is why the last two clearings did not last, and this is the third backup this year.",
+     "severity": "major"
+    },
+    {
+     "id": "cast-iron-intact",
+     "text": "The cast iron is rough inside but intact. No cracks, holes, or worn-through bottom.",
+     "severity": "info"
+    },
+    {
+     "id": "clay-lateral-clear",
+     "text": "The clay line to the street is clear, with tight joints and no roots.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "jet-building-drain",
+     "label": "Hydro jet the cast iron drain with a descaling nozzle",
+     "rationale": "Removes the grease and scale the cable leaves behind. Three backups this year show the cable is not enough."
+    },
+    {
+     "id": "camera-after-jetting",
+     "label": "Camera the line after jetting and give him the video",
+     "rationale": "Proves the line is clean and gives him a record for the property."
+    },
+    {
+     "id": "tenant-note",
+     "label": "Give him a short note for the tenant on what not to pour down the drain",
+     "rationale": "Cooking grease is part of the buildup. A note for the tenant helps the cleaning last."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "line-or-replace-cast-iron",
+     "label": "Lining or replacing the cast iron",
+     "why": "The footage shows intact walls with no cracks or holes. Cleaning is enough for now."
+    },
+    {
+     "id": "replace-clay-lateral",
+     "label": "Replacing the clay line to the street",
+     "why": "It is clear, with tight joints and no roots."
+    },
+    {
+     "id": "jetting-contract-all-rentals",
+     "label": "A jetting contract for all six rentals",
+     "why": "Only this property has a problem. Nothing points to the others."
+    }
+   ],
+   "options": [
+    {
+     "id": "cable-and-camera",
+     "label": "Cable clearing and camera",
+     "price": 425,
+     "includes": [
+      "Cable clearing through the cleanout done today",
+      "Camera inspection with video",
+      "The buildup stays on the pipe walls"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "hydro-jet",
+     "label": "Hydro jet the line",
+     "price": 795,
+     "includes": [
+      "Cable clearing and camera done today",
+      "Hydro jet the cast iron with a descaling nozzle",
+      "Camera video after jetting for your records",
+      "A short note for the tenant on what not to pour down the drain"
+     ],
+     "recommended": true
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "handyman-can-do-it"
+    ],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Show him the footage, explain why the snake keeps failing, and compare the cost of jetting with more repeat calls in plain numbers. Recommend jetting, respect his budget, and ask for a decision.",
+   "passBar": 70,
+   "tags": [
+    "drain",
+    "sewer",
+    "hydro-jet",
+    "camera",
+    "rental",
+    "landlord"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Old cast iron can be fragile. Confirm each company's practice on jetting pressure and nozzle choice for 60-year-old cast iron."
+    ]
+   }
+  },
+  {
+   "id": "main-shutoff-seized",
+   "version": 1,
+   "title": "Main shutoff seized, found during a hose bib repair",
+   "trade": "plumbing",
+   "jobType": "shutoff-valve-replacement",
+   "difficulty": 2,
+   "personaId": "greg-selling",
+   "alternatePersonas": [
+    "margaret-retiree",
+    "linda-warranty"
+   ],
+   "briefing": "Service call. Side yard hose bib leaks at the handle and drips all day. Single-story home built in 1989. Not a member.",
+   "situation": "The hose bib needs replacing, a simple job. When the tech goes to shut off the water at the main valve on the front riser, the 37-year-old gate valve will not turn. The handle is locked by corrosion, and forcing it could break the stem. The tech shuts the water off at the meter instead to do the repair. A main shutoff that does not work means nobody in the house can stop the water quickly if a pipe or the water heater fails. Replacing it with a quarter-turn ball valve while the water is already off is the honest recommendation, and it avoids a second trip. House pressure is 68 psi, inside the normal range, so no regulator is needed. The customer plans to sell in about two years and does not want to put money into a house he will not enjoy. Some buyer's inspectors check the main shutoff, so a seized valve can show up on a report, but the main reason to fix it is being able to stop the water.",
+   "equipment": [
+    {
+     "item": "1-inch brass gate valve, main shutoff on the front riser",
+     "ageYears": 37,
+     "notes": "Handle locked by corrosion. Will not turn without risk of breaking the stem."
+    },
+    {
+     "item": "Side yard hose bib",
+     "ageYears": 37,
+     "notes": "Leaks at the handle stem. Drips all day."
+    }
+   ],
+   "findings": [
+    {
+     "id": "hose-bib-leak",
+     "text": "The side yard hose bib leaks at the stem and drips all day. It needs replacing.",
+     "severity": "minor"
+    },
+    {
+     "id": "main-shutoff-seized",
+     "text": "The main shutoff will not turn. The handle is locked by corrosion, and forcing it could break the valve.",
+     "severity": "major"
+    },
+    {
+     "id": "meter-shutoff-used",
+     "text": "The water was shut off at the meter to do the repair. That valve belongs to the water district and takes a special key.",
+     "severity": "info"
+    },
+    {
+     "id": "pressure-normal",
+     "text": "House pressure is 68 psi, inside the normal range. No regulator is needed.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-hose-bib",
+     "label": "Replace the hose bib",
+     "rationale": "What he called for. It leaks all day."
+    },
+    {
+     "id": "replace-main-shutoff",
+     "label": "Replace the main shutoff with a full-port quarter-turn ball valve",
+     "rationale": "The current valve will not close. The water is already off, so now is the right time."
+    },
+    {
+     "id": "show-valve-location",
+     "label": "Show him where the new valve is and how to close it",
+     "rationale": "A shutoff only helps if the owner can find and close it fast."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "pressure-regulator",
+     "label": "Installing a pressure regulator",
+     "why": "Pressure is 68 psi, inside the normal range."
+    },
+    {
+     "id": "repipe",
+     "label": "Repiping the house",
+     "why": "The copper lines show no leaks or corrosion. One seized valve says nothing about the pipes."
+    },
+    {
+     "id": "all-fixture-shutoffs",
+     "label": "Replacing every fixture shutoff in the house",
+     "why": "Those valves were not tested and were not part of the call. Nothing points to them failing."
+    }
+   ],
+   "options": [
+    {
+     "id": "hose-bib-only",
+     "label": "Replace the hose bib only",
+     "price": 245,
+     "includes": [
+      "New hose bib with a built-in vacuum breaker",
+      "Water shut off at the meter for the repair",
+      "Main shutoff left as it is"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "hose-bib-and-main",
+     "label": "Hose bib and new main shutoff",
+     "price": 795,
+     "includes": [
+      "New hose bib with a built-in vacuum breaker",
+      "New full-port quarter-turn ball valve at the main",
+      "Pressure check and leak test",
+      "A walk-through of where the valve is and how to close it"
+     ],
+     "recommended": true
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "only-fix-what-i-called-for"
+    ],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Finish the job he called for, show him the seized valve, and explain plainly why it matters. Recommend replacing it while the water is off, stay honest about his plan to sell, and ask for a decision.",
+   "passBar": 70,
+   "tags": [
+    "shutoff-valve",
+    "found-during-visit",
+    "selling",
+    "scope"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Some water districts restrict who may operate the meter valve. Confirm each company's practice before techs describe it."
+    ]
+   }
+  },
+  {
    "id": "maintenance-visit-anode",
    "version": 1,
    "title": "Member tune-up finds a worn anode",
@@ -9970,6 +10544,168 @@
     "notes": [
      "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
      "California Plumbing Code requires a regulator when static pressure exceeds 80 psi (section 608.2 in recent editions). Confirm the section before techs quote it."
+    ]
+   }
+  },
+  {
+   "id": "remodel-rough-in",
+   "version": 1,
+   "title": "Bathroom remodel, plumbing relocation",
+   "trade": "plumbing",
+   "jobType": "remodel-rough-in",
+   "difficulty": 4,
+   "personaId": "ruiz-couple",
+   "alternatePersonas": [
+    "morgan-first-home",
+    "paul-engineer"
+   ],
+   "briefing": "Estimate visit for a hall bathroom remodel. The homeowners want to turn the tub into a walk-in shower and add a double vanity. Single-story home on a slab, built in 1985.",
+   "situation": "The remodel is a choice, not a repair, so the honest job is to learn what they want and price the plumbing clearly. Two code items apply to any plan. A shower needs a 2-inch drain, and the tub drains through 1 1/2-inch pipe under the slab. A new shower valve must be pressure-balanced or thermostatic to prevent scalding. Elena likes the idea of a double vanity on the long wall. Moving it there means a trench about 10 feet through the slab for a new drain, a new vent, and new supply lines through the attic. The current vanity wall is 66 inches, wide enough for a 60-inch double vanity, and both sinks can drain into the existing line inside that wall with no new trench. That middle option gives Elena the double sinks and spares Carlos the slab work, and it is the honest recommendation. Carlos wants to do the demolition himself to save money and mentions his brother-in-law is a plumber. Money is tight after a car repair. The plumbing changes need a permit.",
+   "equipment": [
+    {
+     "item": "Built-in tub with a two-handle valve",
+     "ageYears": 41,
+     "notes": "Valve is not pressure-balanced. 1 1/2-inch drain under the slab."
+    },
+    {
+     "item": "Single vanity on a 66-inch wall",
+     "ageYears": 41,
+     "notes": "Drain and copper supplies in the wall."
+    },
+    {
+     "item": "Copper water supply lines",
+     "ageYears": 41,
+     "notes": "Good condition. No leaks or corrosion."
+    }
+   ],
+   "findings": [
+    {
+     "id": "shower-drain-size",
+     "text": "A walk-in shower needs a 2-inch drain. The tub drain under the slab is 1 1/2 inches, so the concrete at the drain has to be opened to upsize it.",
+     "severity": "major"
+    },
+    {
+     "id": "shower-valve-code",
+     "text": "The old two-handle valve does not protect against scalding. A new shower valve must be pressure-balanced or thermostatic.",
+     "severity": "major"
+    },
+    {
+     "id": "long-wall-needs-trench",
+     "text": "Moving the vanity to the long wall means a trench about 10 feet through the slab, a new vent, and new supply lines through the attic.",
+     "severity": "info"
+    },
+    {
+     "id": "existing-wall-fits-double",
+     "text": "The current vanity wall is 66 inches, wide enough for a 60-inch double vanity. Both sinks can drain into the existing line inside the wall.",
+     "severity": "info"
+    },
+    {
+     "id": "copper-good",
+     "text": "The copper supply lines are in good shape, with no leaks or corrosion.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "shower-conversion",
+     "label": "Upsize the shower drain to 2 inches and install a pressure-balanced valve",
+     "rationale": "Required by code for a new shower."
+    },
+    {
+     "id": "double-vanity-same-wall",
+     "label": "Add the second sink on the existing vanity wall",
+     "rationale": "Gives them double sinks without cutting the slab."
+    },
+    {
+     "id": "remodel-permit",
+     "label": "Pull the plumbing permit",
+     "rationale": "Required for the drain and valve changes."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "repipe-while-open",
+     "label": "Repiping the whole house while the walls are open",
+     "why": "Only one bathroom wall is open, and the copper is in good shape."
+    },
+    {
+     "id": "tankless-for-shower",
+     "label": "A tankless water heater for the new shower",
+     "why": "The current water heater serves a standard shower fine. The new shower does not need more hot water than the tub did."
+    },
+    {
+     "id": "sewer-replacement",
+     "label": "Replacing the sewer line",
+     "why": "The drains run freely and nothing points to a sewer problem."
+    }
+   ],
+   "options": [
+    {
+     "id": "keep-layout",
+     "label": "Shower conversion, keep the single vanity",
+     "price": 3600,
+     "monthly": 90,
+     "includes": [
+      "Shower drain upsized to 2 inches under the slab",
+      "Pressure-balanced shower valve with a scald limit",
+      "Reconnect the single vanity",
+      "Concrete patch at the drain",
+      "Permit and inspections"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "double-same-wall",
+     "label": "Shower conversion and double vanity on the same wall",
+     "price": 4900,
+     "monthly": 123,
+     "includes": [
+      "Everything in the single vanity option",
+      "Second sink drain and supply lines inside the existing wall",
+      "New shutoff valves for both sinks"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "double-long-wall",
+     "label": "Shower conversion and double vanity on the long wall",
+     "price": 8200,
+     "monthly": 205,
+     "includes": [
+      "Everything in the single vanity option",
+      "Trench about 10 feet of slab for a new vanity drain",
+      "New vent tied into the existing vent",
+      "New supply lines through the attic",
+      "Concrete patch, permit, and inspections"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "ill-do-part-myself"
+    ],
+    "excluded": [],
+    "density": 3
+   },
+   "goal": "Find out what each of them wants from the remodel, explain the two code items plainly, and present the three layouts with clear prices. Recommend the same-wall double vanity and help Carlos and Elena decide together.",
+   "passBar": 75,
+   "tags": [
+    "remodel",
+    "bathroom",
+    "rough-in",
+    "joint-decision",
+    "code"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders; remodel rough-in pricing varies widely. Confirm against each company's price book.",
+     "California Plumbing Code requires a 2-inch shower trap and pressure-balanced or thermostatic shower valves. Confirm current section numbers.",
+     "Plumbing prices exclude tile, drywall, fixtures, and the vanity itself."
     ]
    }
   },
@@ -13131,7 +13867,8 @@
     "author": "Claude",
     "notes": [
      "The engine starts options with optionsPresented set to 2. That only matters for scope objections, and Margaret has none.",
-     "If the tech states prices here, the phase moves to price and silence-after-price can fire. That is fine."
+     "If the tech states prices here, the phase moves to price and silence-after-price can fire. That is fine.",
+     "In demo mode the heuristic perceiver flags any turn with \"recommend\" and \"tankless\" as unneeded work, even when tankless is offered honestly as one option. The Claude perceiver does not have this problem."
     ]
    }
   },
@@ -13410,7 +14147,8 @@
     "author": "Claude",
     "notes": [
      "The tech's decision ask brings just-the-cheap-fix first. $1,890 is over Rick's $1,300 ceiling, so the engine voices his first price-group objection. If the tech does not ask, the scenario's forced handyman-can-do-it (55) fires first and the cheap fix follows.",
-     "In this scenario the cheapest option is already the recommended one, so the honest answer is that there is no cheaper safe fix. The test is refusing to skip the code items."
+     "In this scenario the cheapest option is already the recommended one, so the honest answer is that there is no cheaper safe fix. The test is refusing to skip the code items.",
+     "In demo mode the heuristic perceiver matches \"required\" plus the word \"tank\" against the unjustified \"Upsizing to a 50-gallon tank\" label, so an honest code answer draws unneeded-work pushback. The Claude perceiver does not have this problem."
     ]
    }
   },
@@ -13529,7 +14267,8 @@
     "notes": [
      "Starts in objections so the engine already has $1,890 heard, which is over Margaret's $1,800 ceiling. quiet-money-worry needs priceStated and priceAboveBudget in price or objections.",
      "Margaret's own too-expensive (chance 0.8) is checked before forced behavior moves, so it may come first. Both lead to the same moment. A gentle question from the tech can bring her fixed-income reveal first instead.",
-     "The $49 comes from the scenario's standard option. Each company's financing terms replace it."
+     "The $49 comes from the scenario's standard option. Each company's financing terms replace it.",
+     "In demo mode the heuristic perceiver never tags \"$49 a month\" as framed_monthly, because extractDollarAmounts drops amounts under $50. Fix that in the engine before relying on demo-mode scoring for this drill."
     ]
    }
   },

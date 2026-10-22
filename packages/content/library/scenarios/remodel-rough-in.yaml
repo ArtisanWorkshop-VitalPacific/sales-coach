@@ -1,0 +1,128 @@
+id: remodel-rough-in
+version: 1
+title: Bathroom remodel, plumbing relocation
+trade: plumbing
+jobType: remodel-rough-in
+difficulty: 4
+personaId: ruiz-couple
+alternatePersonas: [morgan-first-home, paul-engineer]
+briefing: >-
+  Estimate visit for a hall bathroom remodel. The homeowners want to turn the tub
+  into a walk-in shower and add a double vanity. Single-story home on a slab, built
+  in 1985.
+situation: >-
+  The remodel is a choice, not a repair, so the honest job is to learn what they
+  want and price the plumbing clearly. Two code items apply to any plan. A shower
+  needs a 2-inch drain, and the tub drains through 1 1/2-inch pipe under the slab.
+  A new shower valve must be pressure-balanced or thermostatic to prevent scalding.
+  Elena likes the idea of a double vanity on the long wall. Moving it there means a
+  trench about 10 feet through the slab for a new drain, a new vent, and new supply
+  lines through the attic. The current vanity wall is 66 inches, wide enough for a
+  60-inch double vanity, and both sinks can drain into the existing line inside
+  that wall with no new trench. That middle option gives Elena the double sinks and
+  spares Carlos the slab work, and it is the honest recommendation. Carlos wants to
+  do the demolition himself to save money and mentions his brother-in-law is a
+  plumber. Money is tight after a car repair. The plumbing changes need a permit.
+equipment:
+  - item: Built-in tub with a two-handle valve
+    ageYears: 41
+    notes: Valve is not pressure-balanced. 1 1/2-inch drain under the slab.
+  - item: Single vanity on a 66-inch wall
+    ageYears: 41
+    notes: Drain and copper supplies in the wall.
+  - item: Copper water supply lines
+    ageYears: 41
+    notes: Good condition. No leaks or corrosion.
+findings:
+  - id: shower-drain-size
+    text: >-
+      A walk-in shower needs a 2-inch drain. The tub drain under the slab is 1 1/2
+      inches, so the concrete at the drain has to be opened to upsize it.
+    severity: major
+  - id: shower-valve-code
+    text: >-
+      The old two-handle valve does not protect against scalding. A new shower valve
+      must be pressure-balanced or thermostatic.
+    severity: major
+  - id: long-wall-needs-trench
+    text: >-
+      Moving the vanity to the long wall means a trench about 10 feet through the
+      slab, a new vent, and new supply lines through the attic.
+    severity: info
+  - id: existing-wall-fits-double
+    text: >-
+      The current vanity wall is 66 inches, wide enough for a 60-inch double vanity.
+      Both sinks can drain into the existing line inside the wall.
+    severity: info
+  - id: copper-good
+    text: The copper supply lines are in good shape, with no leaks or corrosion.
+    severity: info
+justifiedWork:
+  - id: shower-conversion
+    label: Upsize the shower drain to 2 inches and install a pressure-balanced valve
+    rationale: Required by code for a new shower.
+  - id: double-vanity-same-wall
+    label: Add the second sink on the existing vanity wall
+    rationale: Gives them double sinks without cutting the slab.
+  - id: remodel-permit
+    label: Pull the plumbing permit
+    rationale: Required for the drain and valve changes.
+unjustifiedWork:
+  - id: repipe-while-open
+    label: Repiping the whole house while the walls are open
+    why: Only one bathroom wall is open, and the copper is in good shape.
+  - id: tankless-for-shower
+    label: A tankless water heater for the new shower
+    why: The current water heater serves a standard shower fine. The new shower does not need more hot water than the tub did.
+  - id: sewer-replacement
+    label: Replacing the sewer line
+    why: The drains run freely and nothing points to a sewer problem.
+options:
+  - id: keep-layout
+    label: Shower conversion, keep the single vanity
+    price: 3600
+    monthly: 90
+    includes:
+      - Shower drain upsized to 2 inches under the slab
+      - Pressure-balanced shower valve with a scald limit
+      - Reconnect the single vanity
+      - Concrete patch at the drain
+      - Permit and inspections
+  - id: double-same-wall
+    label: Shower conversion and double vanity on the same wall
+    price: 4900
+    monthly: 123
+    includes:
+      - Everything in the single vanity option
+      - Second sink drain and supply lines inside the existing wall
+      - New shutoff valves for both sinks
+    recommended: true
+  - id: double-long-wall
+    label: Shower conversion and double vanity on the long wall
+    price: 8200
+    monthly: 205
+    includes:
+      - Everything in the single vanity option
+      - Trench about 10 feet of slab for a new vanity drain
+      - New vent tied into the existing vent
+      - New supply lines through the attic
+      - Concrete patch, permit, and inspections
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [ill-do-part-myself]
+  excluded: []
+  density: 3
+goal: >-
+  Find out what each of them wants from the remodel, explain the two code items
+  plainly, and present the three layouts with clear prices. Recommend the same-wall
+  double vanity and help Carlos and Elena decide together.
+passBar: 75
+tags: [remodel, bathroom, rough-in, joint-decision, code]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders; remodel rough-in pricing varies widely. Confirm against each company's price book.
+    - California Plumbing Code requires a 2-inch shower trap and pressure-balanced or thermostatic shower valves. Confirm current section numbers.
+    - Plumbing prices exclude tile, drywall, fixtures, and the vanity itself.

@@ -31,11 +31,22 @@ export const decision = pgEnum('decision', ['yes', 'later', 'no']);
 const createdAt = () => timestamp('created_at', { withTimezone: true }).notNull().defaultNow();
 
 export type SessionRecordJson = { id: string; scenarioId: string; [key: string]: unknown };
-export type DebriefJson = { sessionId: string; overall: number; passed: boolean; [key: string]: unknown };
+export type DebriefJson = {
+  sessionId: string;
+  overall: number;
+  passed: boolean;
+  [key: string]: unknown;
+};
 export type AdaptersJson = { perceiver: string; writer: string };
 export type ObjectionAnswerJson = { moveId: string; answer: string };
 export type ScriptsJson = { preferred: { moment: string; line: string }[]; banned: string[] };
-export type PriceRangeJson = { id: string; item: string; low: number; high: number; source?: string };
+export type PriceRangeJson = {
+  id: string;
+  item: string;
+  low: number;
+  high: number;
+  source?: string;
+};
 
 /* ----------------------------------------------------------------- companies */
 
@@ -108,7 +119,10 @@ export const sessions = pgTable(
     index('sessions_company_created_idx').on(t.companyId, t.createdAt),
     index('sessions_person_created_idx').on(t.personId, t.createdAt),
     check('sessions_difficulty_range', sql`${t.difficulty} between 1 and 5`),
-    check('sessions_score_range', sql`${t.overallScore} is null or ${t.overallScore} between 0 and 100`),
+    check(
+      'sessions_score_range',
+      sql`${t.overallScore} is null or ${t.overallScore} between 0 and 100`,
+    ),
   ],
 );
 
@@ -132,7 +146,9 @@ export const assignments = pgTable(
     difficulty: integer('difficulty'),
     note: text('note'),
     dueAt: timestamp('due_at', { withTimezone: true }),
-    completedSessionId: text('completed_session_id').references(() => sessions.id, { onDelete: 'set null' }),
+    completedSessionId: text('completed_session_id').references(() => sessions.id, {
+      onDelete: 'set null',
+    }),
     completedAt: timestamp('completed_at', { withTimezone: true }),
     createdAt: createdAt(),
   },
@@ -154,7 +170,10 @@ export const contentOverrides = pgTable(
       .notNull()
       .references(() => companies.id, { onDelete: 'cascade' }),
     version: integer('version').notNull(),
-    objectionAnswers: jsonb('objection_answers').$type<ObjectionAnswerJson[]>().notNull().default([]),
+    objectionAnswers: jsonb('objection_answers')
+      .$type<ObjectionAnswerJson[]>()
+      .notNull()
+      .default([]),
     scripts: jsonb('scripts').$type<ScriptsJson>().notNull().default({ preferred: [], banned: [] }),
     priceRanges: jsonb('price_ranges').$type<PriceRangeJson[]>().notNull().default([]),
     createdById: uuid('created_by_id').references(() => people.id, { onDelete: 'set null' }),
@@ -213,9 +232,16 @@ export const sessionsRelations = relations(sessions, ({ one }) => ({
 
 export const assignmentsRelations = relations(assignments, ({ one }) => ({
   company: one(companies, { fields: [assignments.companyId], references: [companies.id] }),
-  assignee: one(people, { fields: [assignments.assigneeId], references: [people.id], relationName: 'assignee' }),
+  assignee: one(people, {
+    fields: [assignments.assigneeId],
+    references: [people.id],
+    relationName: 'assignee',
+  }),
   assignedBy: one(people, { fields: [assignments.assignedById], references: [people.id] }),
-  completedSession: one(sessions, { fields: [assignments.completedSessionId], references: [sessions.id] }),
+  completedSession: one(sessions, {
+    fields: [assignments.completedSessionId],
+    references: [sessions.id],
+  }),
 }));
 
 export const contentOverridesRelations = relations(contentOverrides, ({ one }) => ({

@@ -106,7 +106,8 @@ export function buildSessionSpec(index: ContentIndex, req: SpecRequest): Session
     difficulty,
     startPhase: drill?.startPhase ?? scenario.startPhase,
     priorContext: drill?.priorContext ?? scenario.priorContext,
-    forcedMoves: [...new Set([...(req.forcedMoves ?? []), ...(drill?.forcedMoves ?? []), ...scenario.moves.forced])].filter(
+    // A drill is one moment: only its own moves are forced, not the scenario's.
+    forcedMoves: [...new Set([...(req.forcedMoves ?? []), ...(drill ? drill.forcedMoves : scenario.moves.forced)])].filter(
       (id) => !!index.move(id),
     ),
     seed: req.seed ?? Math.floor(Math.random() * 2 ** 31),

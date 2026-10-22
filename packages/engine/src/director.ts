@@ -1,5 +1,5 @@
 import type { ContentIndex, SessionSpec } from './content';
-import type { Act, AudioTag, BehaviorId, Move, Phase, SoundCue, Tone } from './schema';
+import { type Act, type AudioTag, type BehaviorId, type Move, PHASE_ORDER, type Phase, type SoundCue, type Tone } from './schema';
 import {
   type CustomerState,
   type DecisionResult,
@@ -134,16 +134,25 @@ function moveAllowed(m: Move, ctx: DirectorContext, forced: boolean): boolean {
   return true;
 }
 
-function triggerMet(m: Move, ctx: DirectorContext, turnBehaviors: Set<BehaviorId>): boolean {
+function triggerMet(m: Move, ctx: DirectorContext, turnBehaviors: Set<BehaviorId>, forced = false): boolean {
   const { state, spec } = ctx;
   const t = m.trigger;
-  if (t.phases.length > 0 && !t.phases.includes(state.phase)) return false;
+  if (t.phases.length > 0 && !t.phases.includes(state.phase)) {
+    // A forced move whose moment passed while something else was happening stays due until
+    // the call wraps up, so scenario and drill authors can count on it firing.
+    const earliest = Math.min(...t.phases.map((ph) => PHASE_ORDER.indexOf(ph)));
+    const late = forced && PHASE_ORDER.indexOf(state.phase) > earliest && state.phase !== 'wrapup';
+    if (!late) return false;
+  }
   if (t.afterBehaviors.length > 0 && !t.afterBehaviors.some((b) => turnBehaviors.has(b))) return false;
   const w = t.when;
-  if (w.trustBelow !== undefined && !(state.trust < w.trustBelow)) return false;
-  if (w.trustAbove !== undefined && !(state.trust > w.trustAbove)) return false;
-  if (w.engagementBelow !== undefined && !(state.engagement < w.engagementBelow)) return false;
-  if (w.understandingBelow !== undefined && !(state.understanding < w.understandingBelow)) return false;
+  // Mood conditions describe when a move usually comes up. A forced move comes up anyway.
+  if (!forced) {
+    if (w.trustBelow !== undefined && !(state.trust < w.trustBelow)) return false;
+    if (w.trustAbove !== undefined && !(state.trust > w.trustAbove)) return false;
+    if (w.engagementBelow !== undefined && !(state.engagement < w.engagementBelow)) return false;
+    if (w.understandingBelow !== undefined && !(state.understanding < w.understandingBelow)) return false;
+  }
   if (w.priceStated !== undefined && w.priceStated !== (state.priceHeard !== null)) return false;
   if (w.priceAboveBudget !== undefined) {
     const above = state.priceHeard !== null && state.priceHeard > spec.persona.hidden.budgetCeiling;
@@ -418,8 +427,8 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
     .map((o) => ({ o, m: index.move(o.moveId) }))
     .filter((x): x is { o: ObjectionInstance; m: Move } => !!x.m)
     .filter((x) => x.m.trigger.when.decisionAsked !== true)
-    .filter((x) => triggerMet(x.m, ctx, behaviors))
-    .sort((a, b) => b.o.strength - a.o.strength);
+    .filter((x) => triggerMet(x.m, ctx, behaviors, spec.forcedMoves.includes(x.m.id)))
+    .sort((a, b) => Number(spec.forcedMoves.includes(b.m.id)) - Number(spec.forcedMoves.includes(a.m.id)) || b.o.strength - a.o.strength);
   for (const { o, m } of due) {
     const forced = spec.forcedMoves.includes(m.id);
     if (forced || rng.chance(m.trigger.chance)) {
@@ -436,7 +445,7 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
     const m = index.move(id);
     if (!m || m.kind !== 'behavior' || !moveAllowed(m, ctx, true)) continue;
     if (m.trigger.afterBehaviors.length > 0) continue; // handled as reactive
-    if (triggerMet(m, ctx, behaviors) && m.delivery.act !== 'interrupt') return fireMove(ctx, m, `Forced: ${m.id}`);
+    if (triggerMet(m, ctx, behaviors, true) && m.delivery.act !== 'interrupt') return fireMove(ctx, m, `Forced: ${m.id}`);
   }
 
   // 8. Natural response, possibly carrying an ambient move or an armed interrupt.
@@ -508,7 +517,7 @@ function pickReactive(ctx: DirectorContext, behaviors: Set<BehaviorId>): Move | 
     .filter((m) => m.trigger.afterBehaviors.length > 0)
     .filter((m) => {
       const forced = spec.forcedMoves.includes(m.id);
-      return moveAllowed(m, ctx, forced) && triggerMet(m, ctx, behaviors);
+      return moveAllowed(m, ctx, forced) && triggerMet(m, ctx, behaviors, forced);
     })
     .sort((a, b) => b.priority - a.priority);
   for (const m of candidates) {

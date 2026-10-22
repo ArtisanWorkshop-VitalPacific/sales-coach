@@ -1,7 +1,7 @@
 import {
   type ContentIndex,
-  type CustomerTurn,
   CustomerSession,
+  type CustomerTurn,
   HeuristicPerceiver,
   type LineWriter,
   type Perceiver,
@@ -61,13 +61,33 @@ const speakMs = (text: string, wps: number) => Math.round((wordCount(text) / wps
  * Plays one call. The clock is simulated so time-based behavior (ambient move budget,
  * holds, interrupts) is deterministic and does not depend on how fast the bench runs.
  */
-export async function runCall(index: ContentIndex, spec: RunSpec, adapters: Adapters): Promise<RunResult> {
+export async function runCall(
+  index: ContentIndex,
+  spec: RunSpec,
+  adapters: Adapters,
+): Promise<RunResult> {
   let clock = T0;
   const session = new CustomerSession(
-    { scenarioId: spec.scenarioId, drillId: spec.drillId, difficulty: spec.difficulty, seed: spec.seed },
-    { index, perceiver: adapters.perceiver(), writer: adapters.writer(spec.seed), now: () => clock },
+    {
+      scenarioId: spec.scenarioId,
+      drillId: spec.drillId,
+      difficulty: spec.difficulty,
+      seed: spec.seed,
+    },
+    {
+      index,
+      perceiver: adapters.perceiver(),
+      writer: adapters.writer(spec.seed),
+      now: () => clock,
+    },
   );
-  const tech = new Tech(spec.level, spec.variant, spec.seed, { spec: session.spec, index }, spec.upsellIndex ?? 0);
+  const tech = new Tech(
+    spec.level,
+    spec.variant,
+    spec.seed,
+    { spec: session.spec, index },
+    spec.upsellIndex ?? 0,
+  );
   let techTurns = 0;
   let error: string | undefined;
 

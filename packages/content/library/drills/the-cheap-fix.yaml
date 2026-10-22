@@ -57,3 +57,4 @@ review:
   notes:
     - The tech's decision ask brings just-the-cheap-fix first. $1,890 is over Rick's $1,300 ceiling, so the engine voices his first price-group objection. If the tech does not ask, the scenario's forced handyman-can-do-it (55) fires first and the cheap fix follows.
     - In this scenario the cheapest option is already the recommended one, so the honest answer is that there is no cheaper safe fix. The test is refusing to skip the code items.
+    - In demo mode the heuristic perceiver matches "required" plus the word "tank" against the unjustified "Upsizing to a 50-gallon tank" label, so an honest code answer draws unneeded-work pushback. The Claude perceiver does not have this problem.

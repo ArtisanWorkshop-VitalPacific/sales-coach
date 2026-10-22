@@ -115,7 +115,10 @@ export const StEstimate = z.object({
   id: Id,
   jobId: Id.optional().nullable(),
   name: z.string().optional().nullable(),
-  status: z.union([z.object({ name: z.string().optional() }), z.string()]).optional().nullable(),
+  status: z
+    .union([z.object({ name: z.string().optional() }), z.string()])
+    .optional()
+    .nullable(),
   subtotal: z.number().optional().nullable(),
   createdOn: z.string().optional().nullable(),
 });
@@ -171,16 +174,24 @@ export class ServiceTitanClient {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
       body: body.toString(),
     });
-    if (!res.ok) throw new ServiceTitanError(`ServiceTitan auth failed (${res.status})`, res.status);
+    if (!res.ok)
+      throw new ServiceTitanError(`ServiceTitan auth failed (${res.status})`, res.status);
     const t = TokenResponse.parse(await res.json());
     this.token = { value: t.access_token, expiresAt: this.now() + t.expires_in * 1000 };
     return t.access_token;
   }
 
   /** GET a tenant-scoped path, e.g. `jpm/v2/tenant/{tenant}/jobs/1`. `{tenant}` is filled in. */
-  async get<T extends z.ZodType>(path: string, schema: T, query: Record<string, string | number | boolean | undefined> = {}): Promise<z.infer<T>> {
-    const url = new URL(`${HOSTS[this.cfg.env].api}/${path.replace('{tenant}', encodeURIComponent(this.cfg.tenantId)).replace(/^\//, '')}`);
-    for (const [k, v] of Object.entries(query)) if (v !== undefined) url.searchParams.set(k, String(v));
+  async get<T extends z.ZodType>(
+    path: string,
+    schema: T,
+    query: Record<string, string | number | boolean | undefined> = {},
+  ): Promise<z.infer<T>> {
+    const url = new URL(
+      `${HOSTS[this.cfg.env].api}/${path.replace('{tenant}', encodeURIComponent(this.cfg.tenantId)).replace(/^\//, '')}`,
+    );
+    for (const [k, v] of Object.entries(query))
+      if (v !== undefined) url.searchParams.set(k, String(v));
     const send = async () =>
       this.fetchImpl(url.toString(), {
         headers: {
@@ -195,7 +206,11 @@ export class ServiceTitanClient {
       this.token = null;
       res = await send();
     }
-    if (!res.ok) throw new ServiceTitanError(`ServiceTitan GET ${url.pathname} failed (${res.status})`, res.status);
+    if (!res.ok)
+      throw new ServiceTitanError(
+        `ServiceTitan GET ${url.pathname} failed (${res.status})`,
+        res.status,
+      );
     return schema.parse(await res.json());
   }
 
@@ -211,7 +226,10 @@ export class ServiceTitanClient {
 
   /** Appointments by id. verify: `ids` filter on jpm appointments. */
   appointments(ids: string[]) {
-    return this.get('jpm/v2/tenant/{tenant}/appointments', Paged(StAppointment), { ids: ids.join(','), pageSize: 50 });
+    return this.get('jpm/v2/tenant/{tenant}/appointments', Paged(StAppointment), {
+      ids: ids.join(','),
+      pageSize: 50,
+    });
   }
 
   /** Active assignments for one technician. verify: `technicianIds` and `active` filters. */
@@ -224,15 +242,22 @@ export class ServiceTitanClient {
   }
 
   customer(customerId: string) {
-    return this.get(`crm/v2/tenant/{tenant}/customers/${encodeURIComponent(customerId)}`, StCustomer);
+    return this.get(
+      `crm/v2/tenant/{tenant}/customers/${encodeURIComponent(customerId)}`,
+      StCustomer,
+    );
   }
 
   /** verify: `locationIds` filter on installed equipment. */
   installedEquipment(locationId: string) {
-    return this.get('equipmentsystems/v2/tenant/{tenant}/installed-equipment', Paged(StInstalledEquipment), {
-      locationIds: locationId,
-      pageSize: 50,
-    });
+    return this.get(
+      'equipmentsystems/v2/tenant/{tenant}/installed-equipment',
+      Paged(StInstalledEquipment),
+      {
+        locationIds: locationId,
+        pageSize: 50,
+      },
+    );
   }
 
   /** verify: `customerIds` and `status` filters on memberships. */

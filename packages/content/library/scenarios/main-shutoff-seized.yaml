@@ -1,0 +1,103 @@
+id: main-shutoff-seized
+version: 1
+title: Main shutoff seized, found during a hose bib repair
+trade: plumbing
+jobType: shutoff-valve-replacement
+difficulty: 2
+personaId: greg-selling
+alternatePersonas: [margaret-retiree, linda-warranty]
+briefing: >-
+  Service call. Side yard hose bib leaks at the handle and drips all day.
+  Single-story home built in 1989. Not a member.
+situation: >-
+  The hose bib needs replacing, a simple job. When the tech goes to shut off the
+  water at the main valve on the front riser, the 37-year-old gate valve will not
+  turn. The handle is locked by corrosion, and forcing it could break the stem. The
+  tech shuts the water off at the meter instead to do the repair. A main shutoff
+  that does not work means nobody in the house can stop the water quickly if a pipe
+  or the water heater fails. Replacing it with a quarter-turn ball valve while the
+  water is already off is the honest recommendation, and it avoids a second trip.
+  House pressure is 68 psi, inside the normal range, so no regulator is needed. The
+  customer plans to sell in about two years and does not want to put money into a
+  house he will not enjoy. Some buyer's inspectors check the main shutoff, so a
+  seized valve can show up on a report, but the main reason to fix it is being
+  able to stop the water.
+equipment:
+  - item: 1-inch brass gate valve, main shutoff on the front riser
+    ageYears: 37
+    notes: Handle locked by corrosion. Will not turn without risk of breaking the stem.
+  - item: Side yard hose bib
+    ageYears: 37
+    notes: Leaks at the handle stem. Drips all day.
+findings:
+  - id: hose-bib-leak
+    text: The side yard hose bib leaks at the stem and drips all day. It needs replacing.
+    severity: minor
+  - id: main-shutoff-seized
+    text: >-
+      The main shutoff will not turn. The handle is locked by corrosion, and forcing
+      it could break the valve.
+    severity: major
+  - id: meter-shutoff-used
+    text: >-
+      The water was shut off at the meter to do the repair. That valve belongs to the
+      water district and takes a special key.
+    severity: info
+  - id: pressure-normal
+    text: House pressure is 68 psi, inside the normal range. No regulator is needed.
+    severity: info
+justifiedWork:
+  - id: replace-hose-bib
+    label: Replace the hose bib
+    rationale: What he called for. It leaks all day.
+  - id: replace-main-shutoff
+    label: Replace the main shutoff with a full-port quarter-turn ball valve
+    rationale: The current valve will not close. The water is already off, so now is the right time.
+  - id: show-valve-location
+    label: Show him where the new valve is and how to close it
+    rationale: A shutoff only helps if the owner can find and close it fast.
+unjustifiedWork:
+  - id: pressure-regulator
+    label: Installing a pressure regulator
+    why: Pressure is 68 psi, inside the normal range.
+  - id: repipe
+    label: Repiping the house
+    why: The copper lines show no leaks or corrosion. One seized valve says nothing about the pipes.
+  - id: all-fixture-shutoffs
+    label: Replacing every fixture shutoff in the house
+    why: Those valves were not tested and were not part of the call. Nothing points to them failing.
+options:
+  - id: hose-bib-only
+    label: Replace the hose bib only
+    price: 245
+    includes:
+      - New hose bib with a built-in vacuum breaker
+      - Water shut off at the meter for the repair
+      - Main shutoff left as it is
+  - id: hose-bib-and-main
+    label: Hose bib and new main shutoff
+    price: 795
+    includes:
+      - New hose bib with a built-in vacuum breaker
+      - New full-port quarter-turn ball valve at the main
+      - Pressure check and leak test
+      - A walk-through of where the valve is and how to close it
+    recommended: true
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [only-fix-what-i-called-for]
+  excluded: []
+  density: 2
+goal: >-
+  Finish the job he called for, show him the seized valve, and explain plainly why
+  it matters. Recommend replacing it while the water is off, stay honest about his
+  plan to sell, and ask for a decision.
+passBar: 70
+tags: [shutoff-valve, found-during-visit, selling, scope]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Some water districts restrict who may operate the meter valve. Confirm each company's practice before techs describe it.

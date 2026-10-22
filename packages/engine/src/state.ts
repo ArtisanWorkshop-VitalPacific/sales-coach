@@ -368,6 +368,13 @@ export function evaluateDecision(s: CustomerState, spec: SessionSpec): DecisionR
   if (s.trust < 18 || s.decisionAsks >= 4 || s.flags.unneededWork.length > 1) {
     return { outcome: 'no', readiness, threshold };
   }
+  // Recommending work the job does not need costs the sale: they want a second opinion.
+  if (s.flags.unneededWork.length > 0) {
+    const trustObjection = open.find((o) => o.group === 'trust');
+    return trustObjection
+      ? { outcome: 'later', readiness, threshold, blocker: { kind: 'objection', objection: trustObjection } }
+      : { outcome: 'later', readiness, threshold };
+  }
   if (budgetBlock) {
     const money = open.find((o) => o.group === 'price' || o.group === 'financing');
     if (money) return { outcome: 'later', readiness, threshold, blocker: { kind: 'objection', objection: money } };

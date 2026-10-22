@@ -11,10 +11,22 @@ import type { StCustomer, StEstimate, StInstalledEquipment, StJob, StMembership 
 
 /** ServiceTitan job type name -> our jobType id. First match wins. */
 export const JOB_TYPE_RULES: [RegExp, string][] = [
-  [/tankless.*(descal|flush|service|maint|clean)|(descal|flush|service|maint).*tankless/i, 'tankless-service'],
-  [/(water ?heater|\bwh\b|hot water|tankless).*(replace|install|new|swap|change ?out)|(replace|install|new).*(water ?heater|\bwh\b|tankless)/i, 'water-heater-replacement'],
-  [/(water ?heater|\bwh\b|hot water).*(repair|no hot|pilot|thermocouple|diagnos|leak)|(repair|diagnos).*(water ?heater|\bwh\b)/i, 'water-heater-repair'],
-  [/(water ?heater|\bwh\b).*(flush|maint|service|anode|tune)|(flush|anode).*(water ?heater|\bwh\b)/i, 'water-heater-service'],
+  [
+    /tankless.*(descal|flush|service|maint|clean)|(descal|flush|service|maint).*tankless/i,
+    'tankless-service',
+  ],
+  [
+    /(water ?heater|\bwh\b|hot water|tankless).*(replace|install|new|swap|change ?out)|(replace|install|new).*(water ?heater|\bwh\b|tankless)/i,
+    'water-heater-replacement',
+  ],
+  [
+    /(water ?heater|\bwh\b|hot water).*(repair|no hot|pilot|thermocouple|diagnos|leak)|(repair|diagnos).*(water ?heater|\bwh\b)/i,
+    'water-heater-repair',
+  ],
+  [
+    /(water ?heater|\bwh\b).*(flush|maint|service|anode|tune)|(flush|anode).*(water ?heater|\bwh\b)/i,
+    'water-heater-service',
+  ],
   [/water ?heater|hot water|tankless|\bwh\b/i, 'water-heater-replacement'],
   [/gas.*(leak|smell|line|odor)|(leak|smell|odor).*gas/i, 'gas-leak-repair'],
   [/sewer|main ?line|camera|video inspection/i, 'sewer-inspection'],
@@ -45,7 +57,10 @@ export function mapJobType(stName: string | undefined | null): string {
 const HONORIFIC = /^(mr|mrs|ms|miss|mx|dr)\.?$/i;
 
 /** Splits a ServiceTitan customer name into the first name and every other name token. */
-export function splitName(customer: Pick<StCustomer, 'name' | 'type'>): { first?: string; others: string[] } {
+export function splitName(customer: Pick<StCustomer, 'name' | 'type'>): {
+  first?: string;
+  others: string[];
+} {
   const raw = (customer.name ?? '').trim();
   if (!raw) return { others: [] };
   const tokens = (s: string) =>
@@ -56,14 +71,17 @@ export function splitName(customer: Pick<StCustomer, 'name' | 'type'>): { first?
   // Businesses do not have a first name; every token is scrubbed.
   if (customer.type && /commercial|business/i.test(customer.type)) return { others: tokens(raw) };
   // "Ellis, Margaret" is last-name-first.
-  const [last, rest] = raw.includes(',') ? [raw.split(',')[0]!, raw.split(',').slice(1).join(' ')] : ['', raw];
+  const [last, rest] = raw.includes(',')
+    ? [raw.split(',')[0]!, raw.split(',').slice(1).join(' ')]
+    : ['', raw];
   const ordered = [...tokens(rest), ...tokens(last)];
   const first = ordered[0];
   return { first: first ? capitalize(first) : undefined, others: ordered.slice(1) };
 }
 
 /** First name only, or undefined for businesses and empty names. */
-export const firstNameOnly = (customer: Pick<StCustomer, 'name' | 'type'>) => splitName(customer).first;
+export const firstNameOnly = (customer: Pick<StCustomer, 'name' | 'type'>) =>
+  splitName(customer).first;
 
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -83,7 +101,11 @@ const PATTERNS: RegExp[] = [
  * Removes personal details from free text: HTML, emails, phones, addresses, ZIPs,
  * access codes, and every customer name token except the first name.
  */
-export function scrubText(text: string | null | undefined, removeNames: string[] = [], max = 400): string {
+export function scrubText(
+  text: string | null | undefined,
+  removeNames: string[] = [],
+  max = 400,
+): string {
   if (!text) return '';
   let t = text
     .replace(/<[^>]+>/g, ' ')
@@ -110,7 +132,10 @@ export function scrubText(text: string | null | undefined, removeNames: string[]
 }
 
 /** Whole years since an ISO date, or undefined when unknown or in the future. */
-export function ageInYears(installedOn: string | null | undefined, now = Date.now()): number | undefined {
+export function ageInYears(
+  installedOn: string | null | undefined,
+  now = Date.now(),
+): number | undefined {
   if (!installedOn) return undefined;
   const t = Date.parse(installedOn);
   if (!Number.isFinite(t) || t > now) return undefined;
@@ -120,7 +145,9 @@ export function ageInYears(installedOn: string | null | undefined, now = Date.no
 const money = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`;
 const monthYear = (iso: string) => {
   const d = new Date(iso);
-  return Number.isNaN(d.getTime()) ? '' : d.toLocaleString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  return Number.isNaN(d.getTime())
+    ? ''
+    : d.toLocaleString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 };
 
 /** "Water heater flush ($189), Mar 2025". Names and totals only, never line-item notes. */
@@ -147,16 +174,22 @@ export function toJobContext(p: JobParts): JobContext {
   const now = p.now ?? Date.now();
   const { first, others } = splitName(p.customer);
   const jobType = mapJobType(p.jobTypeName);
-  const summary = scrubText(p.job.summary, others) || (p.jobTypeName ? scrubText(p.jobTypeName, others) : 'Service call');
+  const summary =
+    scrubText(p.job.summary, others) ||
+    (p.jobTypeName ? scrubText(p.jobTypeName, others) : 'Service call');
   const equipment = p.equipment
     .filter((e) => e.active !== false)
     .slice(0, 8)
     .map((e) => {
-      const item = scrubText(e.name || [e.manufacturer, e.model].filter(Boolean).join(' '), others, 80) || 'Equipment';
+      const item =
+        scrubText(e.name || [e.manufacturer, e.model].filter(Boolean).join(' '), others, 80) ||
+        'Equipment';
       const ageYears = ageInYears(e.installedOn, now);
       return ageYears === undefined ? { item } : { item, ageYears };
     });
-  const isMember = p.memberships.some((m) => m.active !== false && (!m.status || /active/i.test(m.status)));
+  const isMember = p.memberships.some(
+    (m) => m.active !== false && (!m.status || /active/i.test(m.status)),
+  );
   const priorDeclinedEstimates = p.declinedEstimates
     .filter((e) => String(e.jobId ?? '') !== p.job.id)
     .slice(0, 5)

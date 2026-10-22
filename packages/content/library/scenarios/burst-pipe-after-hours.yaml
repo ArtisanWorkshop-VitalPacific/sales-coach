@@ -1,0 +1,121 @@
+id: burst-pipe-after-hours
+version: 1
+title: Burst pipe at night
+trade: plumbing
+jobType: emergency-repair
+difficulty: 3
+personaId: brian-today
+alternatePersonas: [jen-busy-parent, tasha-burned]
+briefing: >-
+  After-hours emergency call, 10:40 at night. Water is coming through the kitchen
+  ceiling under the upstairs bathroom, and the customer cannot find the main
+  shutoff. Two-story home built in 2004.
+situation: >-
+  The first job is to stop the water and make the home safe, before any talk about
+  price. The main shutoff is a ball valve on the front wall of the garage behind a
+  planter, and the tech closes it in the first minute. Water has come through a
+  recessed light in the kitchen ceiling, so the breaker for that circuit has to be
+  turned off and nobody should touch the fixture. The drywall around it is sagging,
+  and a small hole into a bucket drains it under control. With the ceiling opened
+  near the light, the tech finds a 3/4-inch copper hot water line split at an elbow
+  where the pipe wall wore thin. Pressure is 68 psi, inside the normal range, so
+  pressure did not cause it. The after-hours fee is $225 tonight either way, and the
+  repair is $500 tonight or during business hours. With guests arriving this
+  weekend and the water off to the whole house until the repair, repairing tonight
+  is the honest best fit. The tech should also tell him to call his insurance and a
+  water mitigation company to dry the ceiling within a day or two. No fear selling,
+  no mold scare, no repipe pitch. The customer is stressed, impatient, and asks the
+  price before the tech is done talking.
+equipment:
+  - item: 3/4-inch copper hot water line in the kitchen ceiling
+    ageYears: 22
+    notes: Split at an elbow where the pipe wall wore thin.
+  - item: Main shutoff ball valve on the front garage wall
+    ageYears: 22
+    notes: Works. Customer did not know where it was.
+  - item: Recessed light in the kitchen ceiling
+    notes: Water came through it. Its circuit must stay off until it dries and is checked.
+findings:
+  - id: water-still-running
+    text: Water is still pouring through the kitchen ceiling when the tech arrives. Stopping it comes first.
+    severity: urgent
+  - id: wet-light-fixture
+    text: >-
+      Water came through a recessed light. The breaker for that circuit needs to be
+      off, and nobody should touch the fixture.
+    severity: urgent
+  - id: sagging-drywall
+    text: The drywall around the light is sagging with water. A small hole into a bucket drains it under control.
+    severity: major
+  - id: split-elbow
+    text: >-
+      A 3/4-inch copper hot water line split at an elbow in the ceiling, where the
+      pipe wall wore thin. It is one failed spot.
+    severity: major
+  - id: pressure-normal
+    text: Pressure is 68 psi, inside the normal range. Pressure did not cause this.
+    severity: info
+justifiedWork:
+  - id: stop-water-make-safe
+    label: Shut off the main and make the home safe
+    rationale: Stops the damage and removes the electrical risk before anything else.
+  - id: repair-split
+    label: Replace the failed elbow and a short section of pipe
+    rationale: One failed spot. A short repair restores water to the house.
+  - id: pressure-test
+    label: Pressure test and restore water
+    rationale: Confirms the repair holds before the ceiling is left open to dry.
+  - id: mitigation-referral
+    label: Tell him to call his insurance and a water mitigation company
+    rationale: The ceiling and insulation need drying within a day or two. That is a drying job, not a plumbing job.
+unjustifiedWork:
+  - id: whole-house-repipe
+    label: Whole-house repipe
+    why: One elbow failed. Nothing else in the visible piping shows wear, and one failure does not justify replacing every pipe.
+  - id: pressure-regulator
+    label: Installing a pressure regulator
+    why: Pressure is 68 psi, inside the normal range.
+  - id: mold-treatment-tonight
+    label: Selling a mold treatment tonight
+    why: >-
+      The drywall has been wet for about an hour. Drying it within a day or two is
+      what matters, and that is usually an insurance matter.
+options:
+  - id: make-safe-only
+    label: Make it safe tonight, repair later
+    price: 225
+    includes:
+      - After-hours visit
+      - Main water shut off and the ceiling drained into a bucket
+      - Breaker off for the wet light
+      - Water stays off until the repair
+      - Repair during business hours priced separately at $500
+  - id: repair-tonight
+    label: Make it safe and repair tonight
+    price: 725
+    includes:
+      - Everything in the make-safe option
+      - Open the ceiling at the break
+      - Replace the failed elbow and a short section of pipe
+      - Pressure test and water back on tonight
+      - Drywall repair and drying not included
+    recommended: true
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [interrupts-how-much]
+  excluded: []
+  density: 2.5
+goal: >-
+  Stop the water and make the home safe before talking price. Then give calm,
+  honest after-hours pricing, recommend repairing tonight, and point him to
+  insurance and drying help without fear selling.
+passBar: 72
+tags: [emergency, after-hours, leak, stress, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; the after-hours fee varies by company.
+    - Techs should only turn off the breaker and keep people away from the wet fixture. Any electrical work goes to an electrician.
+    - If a company offers water mitigation itself, the referral wording changes, but the no-fear rule stays.

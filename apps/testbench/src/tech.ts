@@ -57,7 +57,15 @@ const PLANS: Record<Level, Beat[]> = {
     'trial-close',
     'ask',
   ],
-  solid: ['frame', 'discover-history', 'closed-question', 'findings', 'options', 'recommend', 'ask'],
+  solid: [
+    'frame',
+    'discover-history',
+    'closed-question',
+    'findings',
+    'options',
+    'recommend',
+    'ask',
+  ],
   novice: ['frame', 'closed-question', 'closed-question', 'findings', 'options', 'ask'],
 };
 
@@ -81,20 +89,47 @@ const RESOLVER_PHRASES: Partial<Record<string, (t: Tech) => string[]>> = {
     `That price includes parts and labor, the permit, haul away, and the warranty${t.recWarranty()}.`,
     'Everything is included: parts and labor, the permit, and our workmanship guarantee.',
   ],
-  showed_evidence: () => ['I took a photo so you can see exactly what I saw.', 'Come take a look at this with me so you can see it yourself.'],
-  honest_answer: () => ['To be honest with you, that is a fair way to look at it.', 'Honestly, I would want the same thing in your shoes.'],
+  showed_evidence: () => [
+    'I took a photo so you can see exactly what I saw.',
+    'Come take a look at this with me so you can see it yourself.',
+  ],
+  honest_answer: () => [
+    'To be honest with you, that is a fair way to look at it.',
+    'Honestly, I would want the same thing in your shoes.',
+  ],
   acknowledged_feeling: () => ['I hear you.', 'That is totally fair.'],
-  framed_monthly: (t) => [`If it helps, it works out to about $${t.recMonthly()} a month.`, `Spread out, that is about $${t.recMonthly()} a month.`],
-  offered_financing: (t) => [`We do have financing, about $${t.recMonthly()} a month.`, 'We have payment plans if that is easier.'],
-  explained_plainly: () => ['In other words, you get it fixed right once, with nothing hidden.', 'The short version: one price, done right, nothing hidden.'],
-  tied_options_to_needs: (t) => [`Of the ${t.optionWord()} options, since you mentioned ${t.need()}, the first one fits you.`],
+  framed_monthly: (t) => [
+    `If it helps, it works out to about $${t.recMonthly()} a month.`,
+    `Spread out, that is about $${t.recMonthly()} a month.`,
+  ],
+  offered_financing: (t) => [
+    `We do have financing, about $${t.recMonthly()} a month.`,
+    'We have payment plans if that is easier.',
+  ],
+  explained_plainly: () => [
+    'In other words, you get it fixed right once, with nothing hidden.',
+    'The short version: one price, done right, nothing hidden.',
+  ],
+  tied_options_to_needs: (t) => [
+    `Of the ${t.optionWord()} options, since you mentioned ${t.need()}, the first one fits you.`,
+  ],
   used_customer_detail: (t) => [`You mentioned ${t.need()}, and I kept that in mind.`],
-  included_second_person: (t) => [`${t.secondaryName() ? `${t.secondaryName()}, ` : ''}what do you think?`],
-  explained_membership_value: () => ['The membership gets you priority scheduling, a yearly tune-up, and 15 percent off repairs.'],
-  offered_membership: () => ['We also have a membership that covers a yearly tune-up and priority service.'],
-  corrected_respectfully: () => ['A lot of people hear that, and it is a fair thought, but in this case it works differently.'],
+  included_second_person: (t) => [
+    `${t.secondaryName() ? `${t.secondaryName()}, ` : ''}what do you think?`,
+  ],
+  explained_membership_value: () => [
+    'The membership gets you priority scheduling, a yearly tune-up, and 15 percent off repairs.',
+  ],
+  offered_membership: () => [
+    'We also have a membership that covers a yearly tune-up and priority service.',
+  ],
+  corrected_respectfully: () => [
+    'A lot of people hear that, and it is a fair thought, but in this case it works differently.',
+  ],
   checked_understanding: () => ['Does that make sense?', 'Is that clear?'],
-  recapped_value: (t) => [`So to recap, ${t.recLabel()} fixes the problem and comes with a real warranty.`],
+  recapped_value: (t) => [
+    `So to recap, ${t.recLabel()} fixes the problem and comes with a real warranty.`,
+  ],
   new_angle: () => ['Let me come at it another way: what would make you feel good about this?'],
   re_engaged: () => ['No problem. Where were we? Just to recap, here is what I found.'],
 };
@@ -170,13 +205,16 @@ export class Tech {
     return m ? `, ${m[1]} years of it` : '';
   }
   optionWord() {
-    return ['zero', 'one', 'two', 'three', 'four'][Math.min(4, this.scenario.options.length)] ?? 'few';
+    return (
+      ['zero', 'one', 'two', 'three', 'four'][Math.min(4, this.scenario.options.length)] ?? 'few'
+    );
   }
   secondaryName() {
     return this.spec.persona.secondary?.name.split(' ')[0];
   }
   private thing(): string {
-    const text = `${this.scenario.jobType} ${this.scenario.title} ${this.scenario.equipment[0]?.item ?? ''}`.toLowerCase();
+    const text =
+      `${this.scenario.jobType} ${this.scenario.title} ${this.scenario.equipment[0]?.item ?? ''}`.toLowerCase();
     const map: [RegExp, string][] = [
       [/water.heater|tankless|\bwh-/, 'water heater'],
       [/sewer|main.line/, 'sewer line'],
@@ -196,7 +234,9 @@ export class Tech {
   /** Something the customer told us, said back in our words. */
   need(): string {
     // Prefer a line with a name in it ("my son Kevin"): the detail a good tech remembers.
-    const pick = [...this.memory].reverse().find((l) => /[a-z,]\s+[A-Z][a-z]{2,}/.test(l)) ?? this.memory.at(-1);
+    const pick =
+      [...this.memory].reverse().find((l) => /[a-z,]\s+[A-Z][a-z]{2,}/.test(l)) ??
+      this.memory.at(-1);
     return pick ? echo(pick) : 'you want it done right without surprises';
   }
 
@@ -211,16 +251,24 @@ export class Tech {
 
   /** The customer went quiet ('think') or stepped away ('away'). */
   duringHold(turn: CustomerTurn): HoldChoice {
-    const fill = (text: string): HoldChoice => ({ kind: 'fill', text, afterMs: 800 + Math.floor(this.rng.next() * 900) });
+    const fill = (text: string): HoldChoice => ({
+      kind: 'fill',
+      text,
+      afterMs: 800 + Math.floor(this.rng.next() * 900),
+    });
     if (turn.holdKind === 'away') {
-      if (this.level === 'novice') return fill(`So anyway, like I was saying, the ${this.thing()} is done.`);
+      if (this.level === 'novice')
+        return fill(`So anyway, like I was saying, the ${this.thing()} is done.`);
       return { kind: 'wait' };
     }
     if (this.level === 'expert') return { kind: 'wait' };
     if (this.level === 'solid' && this.rng.chance(0.55)) return { kind: 'wait' };
     return fill(
       this.level === 'novice'
-        ? this.pick(['So, yeah. It is a really good unit, you will not regret it.', 'I mean, I know it is a lot. It is a good price though.'])
+        ? this.pick([
+            'So, yeah. It is a really good unit, you will not regret it.',
+            'I mean, I know it is a lot. It is a good price though.',
+          ])
         : this.pick(['And that is everything included.', 'That is the full price, nothing extra.']),
     );
   }
@@ -272,12 +320,14 @@ export class Tech {
   }
 
   private nextBeat(): string {
-    if (this.asks >= this.maxAsks && !this.awaitingDecision && this.plan.length === 0) return this.bye('later');
+    if (this.asks >= this.maxAsks && !this.awaitingDecision && this.plan.length === 0)
+      return this.bye('later');
     const beat = this.plan.shift();
     if (!beat) {
       // Plan done. Ask again only after progress (or always, for pushers), else leave well.
       const pushes = this.level === 'novice' || this.variant === 'pushy';
-      if (this.asks < this.maxAsks && (pushes || (this.progressSinceAsk && this.asks > 0))) return this.ask();
+      if (this.asks < this.maxAsks && (pushes || (this.progressSinceAsk && this.asks > 0)))
+        return this.ask();
       return this.bye(this.asks > 0 ? 'later' : 'no');
     }
     this.lastBeat = beat;
@@ -289,8 +339,17 @@ export class Tech {
     const thing = this.thing();
     switch (beat) {
       case 'frame':
-        if (L === 'novice') return this.pick([`Hey. Where's the ${thing}?`, `Hi. Okay, where is it?`, `Hey there. Show me the ${thing}.`]);
-        if (L === 'solid') return this.pick([`Hi, I'm Sam with the plumbing company. Can you show me the ${thing}?`, `Hi, this is Sam from the plumbing company. Where is the ${thing}?`]);
+        if (L === 'novice')
+          return this.pick([
+            `Hey. Where's the ${thing}?`,
+            `Hi. Okay, where is it?`,
+            `Hey there. Show me the ${thing}.`,
+          ]);
+        if (L === 'solid')
+          return this.pick([
+            `Hi, I'm Sam with the plumbing company. Can you show me the ${thing}?`,
+            `Hi, this is Sam from the plumbing company. Where is the ${thing}?`,
+          ]);
         return this.pick([
           `Hi, I'm Sam with the plumbing company. Before I touch anything, here's how I like to work: I'll take a look, show you what I find, and give you a few options. Sound good?`,
           `Hi, I'm Sam from the plumbing company, thanks for having me. What I'll do is take a look, explain what I find in plain English, and show you some options before we do anything. Okay?`,
@@ -307,7 +366,9 @@ export class Tech {
         ]);
       case 'reflect': {
         const back = this.memory.at(-1);
-        const lead = back ? `So it sounds like ${echo(back)}. That must be frustrating.` : 'So it sounds like this has been a real hassle. I hear you.';
+        const lead = back
+          ? `So it sounds like ${echo(back)}. That must be frustrating.`
+          : 'So it sounds like this has been a real hassle. I hear you.';
         return `${lead} What matters most to you in how we fix this?`;
       }
       case 'discover-priorities':
@@ -321,7 +382,12 @@ export class Tech {
           'Has another company been out for this before? How did that go?',
         ]);
       case 'closed-question':
-        return this.pick([`Is it gas?`, `Is it leaking?`, `Is this the only one?`, `Did you try turning it off and on?`]);
+        return this.pick([
+          `Is it gas?`,
+          `Is it leaking?`,
+          `Is this the only one?`,
+          `Did you try turning it off and on?`,
+        ]);
       case 'findings':
         return this.findings();
       case 'options':
@@ -343,9 +409,11 @@ export class Tech {
     const top = fs[0]!;
     if (this.level === 'novice') {
       const jargon: Record<string, string> = {
-        'water heater': "Your anode rod is shot, there's sediment in the combustion chamber, and the T&P is weeping.",
+        'water heater':
+          "Your anode rod is shot, there's sediment in the combustion chamber, and the T&P is weeping.",
         drain: 'There is a belly in the lateral past the cleanout, and the p-trap is a mess.',
-        'sewer line': 'There is a belly in the lateral past the cleanout, probably an offset joint.',
+        'sewer line':
+          'There is a belly in the lateral past the cleanout, probably an offset joint.',
         toilet: 'The flapper is shot and the wax ring is gone.',
       };
       return `Yeah, so ${lowerFirst(top.text)} ${jargon[this.thing()] ?? 'The PRV is off, you have no expansion tank, and the flex line is galvanic.'}`;
@@ -372,7 +440,8 @@ export class Tech {
     const n = ['', 'one', 'two', 'three'][shown.length] ?? 'a few';
     const parts = shown.map((o, i) => {
       const ord = ['The first', 'The second', 'The third'][i];
-      const monthly = this.level === 'expert' && o.monthly ? `, or about $${o.monthly} a month` : '';
+      const monthly =
+        this.level === 'expert' && o.monthly ? `, or about $${o.monthly} a month` : '';
       return `${ord} is ${o.label}, at $${fmt(o.price)}${monthly}.`;
     });
     return `You have ${n} options. ${parts.join(' ')}`;
@@ -381,7 +450,8 @@ export class Tech {
   private recommend(): string {
     const r = this.rec();
     if (this.level === 'novice') return `So it's $${fmt(r.price + 200)}. That's the best I can do.`;
-    if (this.level === 'solid') return `The one most people go with is ${shortLabel(r.label)}. It's $${fmt(r.price)}.`;
+    if (this.level === 'solid')
+      return `The one most people go with is ${shortLabel(r.label)}. It's $${fmt(r.price)}.`;
     const n = this.optionWord();
     return `Of those ${n} options, since you mentioned ${this.need()}, the first one I'd point you to is ${shortLabel(r.label)}. It's $${fmt(r.price)} total, or about $${this.recMonthly()} a month.`;
   }
@@ -400,9 +470,17 @@ export class Tech {
     this.awaitingDecision = true;
     this.progressSinceAsk = false;
     if (this.level === 'novice' || (this.variant === 'pushy' && this.asks > 1)) {
-      return this.pick(['So do you want to do it?', 'Want me to get started?', 'Are you ready to go ahead?', 'So do you want to go ahead?']);
+      return this.pick([
+        'So do you want to do it?',
+        'Want me to get started?',
+        'Are you ready to go ahead?',
+        'So do you want to go ahead?',
+      ]);
     }
-    return this.pick(['Would you like me to go ahead and get that scheduled?', 'Would you like me to get started on that today?']);
+    return this.pick([
+      'Would you like me to go ahead and get that scheduled?',
+      'Would you like me to get started on that today?',
+    ]);
   }
 
   private pushAgain(): string {
@@ -462,8 +540,17 @@ export class Tech {
   private address(moveId: string, limit = 3): string {
     this.progressSinceAsk = true;
     const move = this.index.move(moveId);
-    const resolvers = (move?.resolution?.resolvingBehaviors ?? ['justified_value', 'honest_answer', 'acknowledged_feeling']).filter(
-      (b) => b !== 'asked_about_concern' && b !== 'left_well' && (b !== 'included_second_person' || this.secondaryName()),
+    const resolvers = (
+      move?.resolution?.resolvingBehaviors ?? [
+        'justified_value',
+        'honest_answer',
+        'acknowledged_feeling',
+      ]
+    ).filter(
+      (b) =>
+        b !== 'asked_about_concern' &&
+        b !== 'left_well' &&
+        (b !== 'included_second_person' || this.secondaryName()),
     );
     const usedBefore = this.said.join(' ');
     const lines: string[] = [];
@@ -473,14 +560,18 @@ export class Tech {
       if (lines.length >= limit) break;
     }
     if (lines.length === 0) lines.push(RESOLVER_PHRASES.justified_value!(this)[1]!);
-    const lead = this.level === 'expert' && !resolvers.includes('acknowledged_feeling') ? 'That makes sense. ' : '';
+    const lead =
+      this.level === 'expert' && !resolvers.includes('acknowledged_feeling')
+        ? 'That makes sense. '
+        : '';
     return `${lead}${lines.join(' ')}`;
   }
 
   private addressReveal(): string {
     this.progressSinceAsk = true;
     if (this.level === 'novice') return 'Okay. So anyway, do you want to go ahead?';
-    if (this.level === 'solid') return `I understand. It works out to about $${this.recMonthly()} a month if that helps.`;
+    if (this.level === 'solid')
+      return `I understand. It works out to about $${this.recMonthly()} a month if that helps.`;
     const cheapest = this.sortedOptions()[0]!;
     return `Thank you for telling me that. That makes sense, and I'm glad you said it. To be honest with you, ${shortLabel(cheapest.label)} is a safe choice, and with financing it works out to about $${cheapest.monthly ?? Math.round(cheapest.price / 40)} a month, so it does not all land at once.`;
   }
@@ -489,7 +580,11 @@ export class Tech {
     const L = this.level;
     switch (move.group) {
       case 'misplaced-confidence':
-        if (L === 'novice') return this.pick(["That's not true. That's not how it works.", "You're right, we don't really need it."]);
+        if (L === 'novice')
+          return this.pick([
+            "That's not true. That's not how it works.",
+            "You're right, we don't really need it.",
+          ]);
         return `That's a fair thought, and a lot of people hear that. Here's the thing: in this case, ${lowerFirst(this.scenario.findings[0]?.text ?? 'it is a different situation.')}`;
       case 'probe':
         if (L === 'novice') return 'Trust me, everybody gets this one. It is the best.';
@@ -518,12 +613,14 @@ export class Tech {
   }
 
   private reengage(): string {
-    if (this.level === 'novice') return `Like I said, the ${this.thing()} is done and it needs replacing.`;
+    if (this.level === 'novice')
+      return `Like I said, the ${this.thing()} is done and it needs replacing.`;
     return 'No problem at all. Where were we? Just to recap, I was walking you through what I found.';
   }
 
   private answerHowMuch(): string {
-    if (this.level === 'novice') return `Like I said, it's around $${fmt(this.rec().price + 300)}, give or take.`;
+    if (this.level === 'novice')
+      return `Like I said, it's around $${fmt(this.rec().price + 300)}, give or take.`;
     return `Fair question. The short version: the option that fits most homes like yours is $${fmt(this.rec().price)} all in. Let me show you what's included.`;
   }
 

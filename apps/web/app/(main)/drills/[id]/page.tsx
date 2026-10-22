@@ -33,7 +33,7 @@ export default async function DrillPage({ params }: { params: Promise<{ id: stri
       <Card className="reveal mb-5 p-6 md:p-8">
         <h2 className="t-headline text-ink">Why it matters</h2>
         <div className="t-body-lg mt-3 space-y-4 text-ink-2">
-          {d.why.split(/\n\n+/).map((para, i) => (
+          {paragraphs(d.why).map((para, i) => (
             <p key={i}>{para}</p>
           ))}
         </div>
@@ -80,4 +80,13 @@ export default async function DrillPage({ params }: { params: Promise<{ id: stri
       </div>
     </div>
   );
+}
+
+/** Lessons are written to be heard; on screen they read better in short paragraphs. */
+function paragraphs(text: string): string[] {
+  if (text.includes('\n\n')) return text.split(/\n\n+/);
+  const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [text];
+  const out: string[] = [];
+  for (let i = 0; i < sentences.length; i += 3) out.push(sentences.slice(i, i + 3).join('').trim());
+  return out;
 }

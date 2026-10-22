@@ -78,16 +78,16 @@ export function sayDollars(n: number): string {
 }
 
 /** Parse dollar amounts out of tech speech: "$1,890", "1890 dollars", "eighteen ninety". */
-export function extractDollarAmounts(text: string): number[] {
+export function extractDollarAmounts(text: string, min = 50): number[] {
   const out: number[] = [];
   const re = /\$\s?(\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{2})?|\b(\d{3,6})\s*(?:dollars|bucks)\b/gi;
   for (const m of text.matchAll(re)) {
     const raw = (m[1] ?? m[2] ?? '').replace(/,/g, '');
     const n = Number.parseInt(raw, 10);
-    if (Number.isFinite(n) && n >= 50) out.push(n);
+    if (Number.isFinite(n) && n >= min) out.push(n);
   }
   const words = parseSpokenNumbers(text);
-  for (const n of words) if (n >= 50 && !out.includes(n)) out.push(n);
+  for (const n of words) if (n >= min && !out.includes(n)) out.push(n);
   return out;
 }
 

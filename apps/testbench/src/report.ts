@@ -10,6 +10,8 @@ export interface ReportInput {
   seeds: number[];
   difficulties: number[];
   ms: number;
+  /** Repeat decision asks with nothing new since the last "no" or "later". */
+  bareAsks: number;
 }
 
 const LEVELS = ['expert', 'solid', 'novice'] as const;
@@ -39,27 +41,46 @@ export function renderReport(input: ReportInput): string {
       `${results.length} calls in ${(input.ms / 1000).toFixed(1)}s. Generated ${now}.`,
   );
   lines.push('');
-  lines.push(hard.length === 0 ? '**Result: PASS.** No hard invariant failed.' : `**Result: FAIL.** ${hard.length} hard violation(s).`);
+  lines.push(
+    hard.length === 0
+      ? '**Result: PASS.** No hard invariant failed.'
+      : `**Result: FAIL.** ${hard.length} hard violation(s).`,
+  );
   lines.push('');
 
   // Headline: experts versus novices across everything.
   const std = results.filter((r) => r.spec.variant === 'standard' && !r.spec.drillId);
   lines.push('## Headline');
   lines.push('');
-  lines.push('| Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |');
+  lines.push(
+    '| Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |',
+  );
   lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- |');
-  for (const level of LEVELS) lines.push(row([level], stats(std.filter((r) => r.spec.level === level), byRun)));
+  for (const level of LEVELS)
+    lines.push(
+      row(
+        [level],
+        stats(
+          std.filter((r) => r.spec.level === level),
+          byRun,
+        ),
+      ),
+    );
   lines.push('');
 
   // Per scenario, difficulty, level.
   lines.push('## Scenarios');
   lines.push('');
-  lines.push('| Scenario | Difficulty | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |');
+  lines.push(
+    '| Scenario | Difficulty | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |',
+  );
   lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |');
   for (const sid of [...new Set(std.map((r) => r.spec.scenarioId!))]) {
     for (const d of input.difficulties) {
       for (const level of LEVELS) {
-        const rs = std.filter((r) => r.spec.scenarioId === sid && r.spec.difficulty === d && r.spec.level === level);
+        const rs = std.filter(
+          (r) => r.spec.scenarioId === sid && r.spec.difficulty === d && r.spec.level === level,
+        );
         if (rs.length) lines.push(row([sid, String(d), level], stats(rs, byRun)));
       }
     }
@@ -71,15 +92,24 @@ export function renderReport(input: ReportInput): string {
   if (probes.length) {
     lines.push('## Probes');
     lines.push('');
-    lines.push('`upsell`: an expert who also recommends one unjustified item. Must lower trust and never end in yes.');
-    lines.push('`pushy`: an expert who asks for the decision again and again with nothing new. Must never flip to yes.');
+    lines.push(
+      '`upsell`: an expert who also recommends one unjustified item. Must lower trust and never end in yes.',
+    );
+    lines.push(
+      '`pushy`: an expert who asks for the decision again and again with nothing new. Must never flip to yes.',
+    );
     lines.push('');
-    lines.push('| Scenario | Difficulty | Probe | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |');
+    lines.push(
+      '| Scenario | Difficulty | Probe | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |',
+    );
     lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |');
     for (const sid of [...new Set(probes.map((r) => r.spec.scenarioId!))]) {
       for (const d of input.difficulties) {
         for (const variant of ['upsell', 'pushy'] as const) {
-          const rs = probes.filter((r) => r.spec.scenarioId === sid && r.spec.difficulty === d && r.spec.variant === variant);
+          const rs = probes.filter(
+            (r) =>
+              r.spec.scenarioId === sid && r.spec.difficulty === d && r.spec.variant === variant,
+          );
           if (rs.length) lines.push(row([sid, String(d), variant], stats(rs, byRun)));
         }
       }
@@ -92,12 +122,16 @@ export function renderReport(input: ReportInput): string {
   if (drills.length) {
     lines.push('## Drills');
     lines.push('');
-    lines.push('| Drill | Difficulty | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |');
+    lines.push(
+      '| Drill | Difficulty | Level | Calls | Yes | Later | No | Mean score | Mean trust | Moves fired | Violations |',
+    );
     lines.push('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |');
     for (const did of [...new Set(drills.map((r) => r.spec.drillId!))]) {
       for (const d of input.difficulties) {
         for (const level of LEVELS) {
-          const rs = drills.filter((r) => r.spec.drillId === did && r.spec.difficulty === d && r.spec.level === level);
+          const rs = drills.filter(
+            (r) => r.spec.drillId === did && r.spec.difficulty === d && r.spec.level === level,
+          );
           if (rs.length) lines.push(row([did, String(d), level], stats(rs, byRun)));
         }
       }
@@ -108,9 +142,19 @@ export function renderReport(input: ReportInput): string {
   // Violations.
   lines.push('## Violations');
   lines.push('');
+  lines.push(
+    'Hard rules fail the bench. Soft rules are diagnostics: `perceiver-false-unneeded-work` is an honest line ' +
+      'the heuristic perceiver read as upselling, `perceiver-missed-monthly` is a monthly number it did not hear, ' +
+      '`forced-move-fires-collapsed-call` is a forced move missing from a novice call that ended in a flat no.',
+  );
+  lines.push('');
   if (violations.length === 0) lines.push('None.');
   const grouped = new Map<string, Violation[]>();
-  for (const v of violations) grouped.set(`${v.severity}: ${v.rule}`, [...(grouped.get(`${v.severity}: ${v.rule}`) ?? []), v]);
+  for (const v of violations)
+    grouped.set(`${v.severity}: ${v.rule}`, [
+      ...(grouped.get(`${v.severity}: ${v.rule}`) ?? []),
+      v,
+    ]);
   for (const [key, vs] of [...grouped.entries()].sort()) {
     lines.push(`### ${key} (${vs.length})`);
     lines.push('');
@@ -120,19 +164,28 @@ export function renderReport(input: ReportInput): string {
   }
   lines.push(`Hard: ${hard.length}. Soft: ${soft.length}.`);
   lines.push('');
+  lines.push(
+    `Persistence check: ${input.bareAsks} repeat decision ask(s) with nothing new were checked; ` +
+      `${violations.filter((v) => v.rule === 'persistence-no-yes').length} turned into a yes.`,
+  );
+  lines.push('');
 
   // One sample transcript per level for the first scenario, plus the first failing call.
   lines.push('## Sample calls');
   lines.push('');
   const samples: RunResult[] = [];
   for (const level of LEVELS) {
-    const r = std.find((x) => x.spec.level === level && x.spec.difficulty === input.difficulties[0]);
+    const r = std.find(
+      (x) => x.spec.level === level && x.spec.difficulty === input.difficulties[0],
+    );
     if (r) samples.push(r);
   }
   const failing = results.find((r) => byRun.get(runLabel(r))?.some((v) => v.severity === 'hard'));
   if (failing && !samples.includes(failing)) samples.push(failing);
   for (const r of samples) {
-    lines.push(`### ${runLabel(r)}: ${r.decision ?? 'no decision'}, score ${r.score}, trust ${r.finalTrust}`);
+    lines.push(
+      `### ${runLabel(r)}: ${r.decision ?? 'no decision'}, score ${r.score}, trust ${r.finalTrust}`,
+    );
     lines.push('');
     for (const t of r.record.transcript) {
       const who = t.speaker === 'tech' ? 'TECH' : t.speaker === 'secondary' ? 'SPOUSE' : 'CUSTOMER';

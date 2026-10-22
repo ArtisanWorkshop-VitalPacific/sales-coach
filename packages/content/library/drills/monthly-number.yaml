@@ -56,3 +56,4 @@ review:
     - Starts in objections so the engine already has $1,890 heard, which is over Margaret's $1,800 ceiling. quiet-money-worry needs priceStated and priceAboveBudget in price or objections.
     - Margaret's own too-expensive (chance 0.8) is checked before forced behavior moves, so it may come first. Both lead to the same moment. A gentle question from the tech can bring her fixed-income reveal first instead.
     - The $49 comes from the scenario's standard option. Each company's financing terms replace it.
+    - In demo mode the heuristic perceiver never tags "$49 a month" as framed_monthly, because extractDollarAmounts drops amounts under $50. Fix that in the engine before relying on demo-mode scoring for this drill.

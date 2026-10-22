@@ -6,7 +6,15 @@
  *   DATABASE_URL=postgres://... pnpm db:seed
  */
 import { and, eq } from 'drizzle-orm';
-import { assignments, companies, contentOverrides, createDb, type NewPerson, people, usage } from './index';
+import {
+  assignments,
+  companies,
+  contentOverrides,
+  createDb,
+  type NewPerson,
+  people,
+  usage,
+} from './index';
 
 const COMPANY = {
   name: 'Summit Plumbing & Air',
@@ -36,12 +44,17 @@ async function main() {
   const db = createDb();
 
   await db.insert(companies).values(COMPANY).onConflictDoNothing({ target: companies.slug });
-  const [company] = await db.select().from(companies).where(eq(companies.slug, COMPANY.slug)).limit(1);
+  const [company] = await db
+    .select()
+    .from(companies)
+    .where(eq(companies.slug, COMPANY.slug))
+    .limit(1);
   if (!company) throw new Error('Could not create the demo company');
 
   const existing = await db.select().from(people).where(eq(people.companyId, company.id));
   const missing = PEOPLE.filter((p) => !existing.some((e) => e.name === p.name));
-  if (missing.length) await db.insert(people).values(missing.map((p) => ({ ...p, companyId: company.id })));
+  if (missing.length)
+    await db.insert(people).values(missing.map((p) => ({ ...p, companyId: company.id })));
   const staff = await db.select().from(people).where(eq(people.companyId, company.id));
   const manager = staff.find((p) => p.role === 'manager');
   const firstTech = staff.find((p) => p.role === 'tech' && p.name === 'Luis Ortega');
@@ -51,7 +64,9 @@ async function main() {
     const already = await db
       .select({ id: assignments.id })
       .from(assignments)
-      .where(and(eq(assignments.assigneeId, firstTech.id), eq(assignments.drillId, 'hold-the-silence')))
+      .where(
+        and(eq(assignments.assigneeId, firstTech.id), eq(assignments.drillId, 'hold-the-silence')),
+      )
       .limit(1);
     if (already.length === 0) {
       await db.insert(assignments).values({
@@ -73,11 +88,28 @@ async function main() {
       objectionAnswers: [
         {
           moveId: 'need-three-bids',
-          answer: 'Makes sense. I will leave you a written, itemized quote so you can compare line by line.',
+          answer:
+            'Makes sense. I will leave you a written, itemized quote so you can compare line by line.',
         },
       ],
-      scripts: { preferred: [{ moment: 'door', line: 'Hi, I am with Summit. Before I touch anything, I will walk you through how I work.' }], banned: ['today only'] },
-      priceRanges: [{ id: 'water-heater-replacement', item: 'Water heater replacement, 40 to 50 gallon gas', low: 1790, high: 2690, source: 'Fictional demo range' }],
+      scripts: {
+        preferred: [
+          {
+            moment: 'door',
+            line: 'Hi, I am with Summit. Before I touch anything, I will walk you through how I work.',
+          },
+        ],
+        banned: ['today only'],
+      },
+      priceRanges: [
+        {
+          id: 'water-heater-replacement',
+          item: 'Water heater replacement, 40 to 50 gallon gas',
+          low: 1790,
+          high: 2690,
+          source: 'Fictional demo range',
+        },
+      ],
       createdById: manager?.id,
     })
     .onConflictDoNothing();

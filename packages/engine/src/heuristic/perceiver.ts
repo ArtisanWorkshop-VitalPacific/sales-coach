@@ -106,7 +106,7 @@ export function perceiveText(input: PerceptionInput): Perception {
   const prices = extractDollarAmounts(t).filter((n) => n >= 100);
   const monthlyMatch = t.match(R.monthly);
   if (monthlyMatch) {
-    const amounts = extractDollarAmounts(`$${monthlyMatch[1]}`).concat(extractDollarAmounts(monthlyMatch[0]));
+    const amounts = extractDollarAmounts(`$${monthlyMatch[1]}`, 5).concat(extractDollarAmounts(monthlyMatch[0], 5));
     const m = amounts.find((n) => n >= 10 && n < 1000);
     if (m) {
       p.monthlyStated = m;
@@ -186,11 +186,19 @@ export function perceiveText(input: PerceptionInput): Perception {
     }
   }
 
-  // Unneeded work: a keyword from an unjustified item plus a recommending verb.
-  if (R.recommend.test(t)) {
-    for (const u of input.spec.scenario.unjustifiedWork) {
-      const kws = keyWords(u.label).filter((w) => !['saying', 'required', 'whole', 'house', 'water', 'unit', 'system', 'replacement', 'full', 'entire', 'new'].includes(w));
-      if (kws.length > 0 && kws.some((k) => t.toLowerCase().includes(k))) {
+  // Unneeded work: a recommending verb plus the distinctive words of an unjustified item.
+  // Words shared with justified work or the price book ("tank", "line") never count alone.
+  if (R.recommend.test(t) && !/\b(don'?t|do not|no need|not necessary|wouldn'?t|won'?t need|skip|not needed|isn'?t needed)\b/i.test(t)) {
+    const sc = input.spec.scenario;
+    const common = new Set(
+      [...sc.justifiedWork.map((w) => w.label), ...sc.options.map((o) => o.label), ...sc.findings.map((f) => f.text)].flatMap(keyWords),
+    );
+    const generic = ['saying', 'required', 'whole', 'house', 'water', 'unit', 'system', 'replacement', 'replace', 'full', 'entire', 'must', 'needs', 'line', 'adding', 'install', 'installing', 'with'];
+    const tl = t.toLowerCase();
+    for (const u of sc.unjustifiedWork) {
+      const kws = keyWords(u.label).filter((w) => !generic.includes(w) && !common.has(w));
+      const hits = kws.filter((k) => tl.includes(k));
+      if (kws.length > 0 && hits.length >= Math.min(2, kws.length)) {
         p.unneededWork.push(u.label);
         add('recommended_unneeded_work', u.label);
       }

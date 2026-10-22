@@ -24,15 +24,24 @@ function parse(raw: string | undefined | null): Record<string, unknown> | null {
 }
 
 const str = (v: unknown) => (typeof v === 'string' && v.trim() ? v.trim() : undefined);
-const num = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? v : typeof v === 'string' && v.trim() && Number.isFinite(Number(v)) ? Number(v) : undefined);
+const num = (v: unknown) =>
+  typeof v === 'number' && Number.isFinite(v)
+    ? v
+    : typeof v === 'string' && v.trim() && Number.isFinite(Number(v))
+      ? Number(v)
+      : undefined;
 
 /** First metadata source that names a scenario, drill, or job wins. Unknown ids fall back safely. */
-export function readRequest(sources: (string | undefined | null)[], index: ContentIndex): SessionRequest {
+export function readRequest(
+  sources: (string | undefined | null)[],
+  index: ContentIndex,
+): SessionRequest {
   const found = sources.map(parse).find((m) => m && (m.scenarioId || m.drillId || m.job)) ?? {};
   const job = found.job ? JobContext.safeParse(found.job) : null;
   let scenarioId = str(found.scenarioId);
   const drillId = str(found.drillId);
-  if (drillId && !index.drills.has(drillId)) console.warn(`[agent] unknown drill ${drillId}, ignoring`);
+  if (drillId && !index.drills.has(drillId))
+    console.warn(`[agent] unknown drill ${drillId}, ignoring`);
   if (scenarioId && !index.scenarios.has(scenarioId)) {
     console.warn(`[agent] unknown scenario ${scenarioId}, using a default`);
     scenarioId = undefined;
@@ -45,9 +54,10 @@ export function readRequest(sources: (string | undefined | null)[], index: Conte
   }
   const validDrill = drillId && index.drills.has(drillId) ? drillId : undefined;
   if (!scenarioId && !validDrill) {
-    scenarioId = process.env.DEFAULT_SCENARIO_ID && index.scenarios.has(process.env.DEFAULT_SCENARIO_ID)
-      ? process.env.DEFAULT_SCENARIO_ID
-      : [...index.scenarios.keys()][0];
+    scenarioId =
+      process.env.DEFAULT_SCENARIO_ID && index.scenarios.has(process.env.DEFAULT_SCENARIO_ID)
+        ? process.env.DEFAULT_SCENARIO_ID
+        : [...index.scenarios.keys()][0];
   }
   const companyId = str(found.companyId);
   return {

@@ -30,7 +30,13 @@ const FIXTURES: Record<string, unknown> = {
     id: 501,
     name: 'Ellis, Margaret',
     type: 'Residential',
-    address: { street: '41250 Via Rosa Dr', unit: '4', city: 'Murrieta', state: 'CA', zip: '92562' },
+    address: {
+      street: '41250 Via Rosa Dr',
+      unit: '4',
+      city: 'Murrieta',
+      state: 'CA',
+      zip: '92562',
+    },
     phoneSettings: [{ phoneNumber: '9515550142' }],
     email: 'margaret.ellis@example.com',
     balance: 0,
@@ -40,7 +46,15 @@ const FIXTURES: Record<string, unknown> = {
     pageSize: 50,
     hasMore: false,
     data: [
-      { id: 1, name: '40 Gal Gas Water Heater', manufacturer: 'Rheem', model: 'XG40T06EN38U1', serialNumber: 'Q4114R0012', installedOn: '2014-06-10T00:00:00Z', active: true },
+      {
+        id: 1,
+        name: '40 Gal Gas Water Heater',
+        manufacturer: 'Rheem',
+        model: 'XG40T06EN38U1',
+        serialNumber: 'Q4114R0012',
+        installedOn: '2014-06-10T00:00:00Z',
+        active: true,
+      },
       { id: 2, name: 'PRV', installedOn: '2008-02-01T00:00:00Z', active: true },
       { id: 3, name: 'Old softener', installedOn: '2001-01-01T00:00:00Z', active: false },
     ],
@@ -56,8 +70,23 @@ const FIXTURES: Record<string, unknown> = {
     pageSize: 20,
     hasMore: false,
     data: [
-      { id: 3001, jobId: 8001, name: 'Water heater flush for Margaret Ellis', status: { name: 'Dismissed' }, subtotal: 189, createdOn: '2024-03-14T18:00:00Z', summary: 'Customer at 41250 Via Rosa Dr declined, call (951) 555-0142' },
-      { id: 3002, jobId: 8002, name: 'Expansion tank', status: { name: 'Dismissed' }, subtotal: 325.5, createdOn: '2025-01-02T18:00:00Z' },
+      {
+        id: 3001,
+        jobId: 8001,
+        name: 'Water heater flush for Margaret Ellis',
+        status: { name: 'Dismissed' },
+        subtotal: 189,
+        createdOn: '2024-03-14T18:00:00Z',
+        summary: 'Customer at 41250 Via Rosa Dr declined, call (951) 555-0142',
+      },
+      {
+        id: 3002,
+        jobId: 8002,
+        name: 'Expansion tank',
+        status: { name: 'Dismissed' },
+        subtotal: 325.5,
+        createdOn: '2025-01-02T18:00:00Z',
+      },
     ],
   },
   '/dispatch/v2/tenant/777/appointment-assignments': {
@@ -75,9 +104,27 @@ const FIXTURES: Record<string, unknown> = {
     pageSize: 50,
     hasMore: false,
     data: [
-      { id: 7000, jobId: 9000, start: '2026-10-22T13:00:00Z', end: '2026-10-22T14:00:00Z', status: 'Done' },
-      { id: 7002, jobId: 9002, start: '2026-10-23T16:00:00Z', end: '2026-10-23T18:00:00Z', status: 'Scheduled' },
-      { id: 7001, jobId: 9001, start: '2026-10-22T17:00:00Z', end: '2026-10-22T19:00:00Z', status: 'Scheduled' },
+      {
+        id: 7000,
+        jobId: 9000,
+        start: '2026-10-22T13:00:00Z',
+        end: '2026-10-22T14:00:00Z',
+        status: 'Done',
+      },
+      {
+        id: 7002,
+        jobId: 9002,
+        start: '2026-10-23T16:00:00Z',
+        end: '2026-10-23T18:00:00Z',
+        status: 'Scheduled',
+      },
+      {
+        id: 7001,
+        jobId: 9001,
+        start: '2026-10-22T17:00:00Z',
+        end: '2026-10-22T19:00:00Z',
+        status: 'Scheduled',
+      },
     ],
   },
 };
@@ -90,7 +137,10 @@ function fakeTenant() {
     calls.push({ url: url.toString(), init });
     if (url.pathname === '/connect/token') {
       tokens += 1;
-      return new Response(JSON.stringify({ access_token: `tok-${tokens}`, expires_in: 900, token_type: 'Bearer' }), { status: 200 });
+      return new Response(
+        JSON.stringify({ access_token: `tok-${tokens}`, expires_in: 900, token_type: 'Bearer' }),
+        { status: 200 },
+      );
     }
     const body = FIXTURES[url.pathname];
     if (!body) return new Response('not found', { status: 404 });
@@ -140,7 +190,12 @@ describe('nextAppointmentForTechnician', () => {
   it('returns the soonest appointment that has not ended', async () => {
     const { st } = client();
     const next = await st.nextAppointmentForTechnician('42');
-    expect(next).toEqual({ appointmentId: '7001', jobId: '9001', start: '2026-10-22T17:00:00Z', end: '2026-10-22T19:00:00Z' });
+    expect(next).toEqual({
+      appointmentId: '7001',
+      jobId: '9001',
+      start: '2026-10-22T17:00:00Z',
+      end: '2026-10-22T19:00:00Z',
+    });
   });
 });
 
@@ -157,7 +212,10 @@ describe('jobContext', () => {
       { item: 'PRV', ageYears: 18 },
     ]);
     expect(ctx.isMember).toBe(true);
-    expect(ctx.priorDeclinedEstimates).toEqual(['Water heater flush for Margaret ($189), Mar 2024', 'Expansion tank ($326), Jan 2025']);
+    expect(ctx.priorDeclinedEstimates).toEqual([
+      'Water heater flush for Margaret ($189), Mar 2024',
+      'Expansion tank ($326), Jan 2025',
+    ]);
     expect(ctx.summary).toBe(
       'the customer reports no hot water, water on garage floor. Call Margaret at (removed). Address (removed). Son Kevin may call.',
     );
@@ -166,7 +224,22 @@ describe('jobContext', () => {
   it('never carries last names, phones, emails, addresses, ZIPs, or access codes', async () => {
     const { st } = client();
     const json = JSON.stringify(await st.jobContext('9001'));
-    for (const banned of ['Ellis', 'ellis', '555', '0142', '@', 'example.com', 'Via Rosa', '41250', '92562', 'Unit 4', '4471', 'Murrieta', 'Rheem', 'Q4114R0012']) {
+    for (const banned of [
+      'Ellis',
+      'ellis',
+      '555',
+      '0142',
+      '@',
+      'example.com',
+      'Via Rosa',
+      '41250',
+      '92562',
+      'Unit 4',
+      '4471',
+      'Murrieta',
+      'Rheem',
+      'Q4114R0012',
+    ]) {
       expect(json, `leaked "${banned}"`).not.toContain(banned);
     }
     expect(json).toContain('Margaret');
@@ -188,11 +261,18 @@ describe('mapping helpers', () => {
   });
 
   it('splits names to a first name and scrubs the rest', () => {
-    expect(splitName({ name: 'Ellis, Margaret', type: 'Residential' })).toEqual({ first: 'Margaret', others: ['Ellis'] });
+    expect(splitName({ name: 'Ellis, Margaret', type: 'Residential' })).toEqual({
+      first: 'Margaret',
+      others: ['Ellis'],
+    });
     expect(splitName({ name: 'Mrs. Margaret Ellis', type: 'Residential' }).first).toBe('Margaret');
     expect(splitName({ name: 'Acme Property Group', type: 'Commercial' }).first).toBeUndefined();
-    expect(scrubText('Call Bob Smith at 951-555-0142, bob@x.co, 12 Elm St 92562', ['Smith'])).toBe('Call Bob at (removed)');
-    expect(scrubText('Lives at 9 Oak Ln, Temecula, CA. Lockbox code 1234.')).toBe('Lives at (removed).');
+    expect(scrubText('Call Bob Smith at 951-555-0142, bob@x.co, 12 Elm St 92562', ['Smith'])).toBe(
+      'Call Bob at (removed)',
+    );
+    expect(scrubText('Lives at 9 Oak Ln, Temecula, CA. Lockbox code 1234.')).toBe(
+      'Lives at (removed).',
+    );
   });
 
   it('computes equipment age in whole years', () => {
@@ -205,7 +285,13 @@ describe('mapping helpers', () => {
 describe('factories', () => {
   it('fromEnv returns null until every credential is set', () => {
     expect(fromEnv({})).toBeNull();
-    expect(fromEnv({ SERVICETITAN_CLIENT_ID: 'a', SERVICETITAN_CLIENT_SECRET: 'b', SERVICETITAN_APP_KEY: 'c' })).toBeNull();
+    expect(
+      fromEnv({
+        SERVICETITAN_CLIENT_ID: 'a',
+        SERVICETITAN_CLIENT_SECRET: 'b',
+        SERVICETITAN_APP_KEY: 'c',
+      }),
+    ).toBeNull();
     const st = fromEnv({
       SERVICETITAN_CLIENT_ID: 'a',
       SERVICETITAN_CLIENT_SECRET: 'b',

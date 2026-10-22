@@ -1,4 +1,10 @@
-import { AudioTag, BEHAVIORS, type BehaviorId, type ContentIndex, type SessionRecord } from '@sales-coach/engine';
+import {
+  AudioTag,
+  BEHAVIORS,
+  type BehaviorId,
+  type ContentIndex,
+  type SessionRecord,
+} from '@sales-coach/engine';
 import type { RunResult } from './runner';
 
 export interface Violation {
@@ -15,6 +21,7 @@ export const runLabel = (r: RunResult) =>
 
 const AI_MENTION_CI =
   /\b(artificial intelligence|simulat(ion|ed|or|ing)|practice (call|session|run)|training (call|session|exercise)|role ?play|chat ?bot|language model|scripted|this is (just )?a (test|drill)|inteligencia artificial|simulaci[oó]n|entrenamiento)\b/i;
+const EM_DASH = String.fromCharCode(0x2014);
 const AI_WORD = /\b(AI|A\.I\.|IA)\b/;
 const PRACTICE = /\bpractic(e|ing)\b/i;
 
@@ -23,7 +30,8 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
   const out: Violation[] = [];
   const run = runLabel(r);
   const rec = r.record;
-  const v = (severity: Violation['severity'], rule: string, detail: string) => out.push({ severity, rule, run, detail });
+  const v = (severity: Violation['severity'], rule: string, detail: string) =>
+    out.push({ severity, rule, run, detail });
 
   if (r.error) v('hard', 'no-crash', r.error.split('\n').slice(0, 3).join(' | '));
 
@@ -37,7 +45,9 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
     ] as const) {
       if (!inRange(n)) v('hard', 'state-in-range', `turn ${p.turn}: ${k} = ${n}`);
     }
-    for (const o of p.objections) if (!inRange(o.strength)) v('hard', 'state-in-range', `turn ${p.turn}: ${o.moveId} strength ${o.strength}`);
+    for (const o of p.objections)
+      if (!inRange(o.strength))
+        v('hard', 'state-in-range', `turn ${p.turn}: ${o.moveId} strength ${o.strength}`);
   }
   const s = rec.finalState;
   for (const [k, n] of [
@@ -48,7 +58,9 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
   ] as const) {
     if (!inRange(n)) v('hard', 'state-in-range', `final ${k} = ${n}`);
   }
-  for (const o of s.objections) if (!inRange(o.strength)) v('hard', 'state-in-range', `final ${o.moveId} strength ${o.strength}`);
+  for (const o of s.objections)
+    if (!inRange(o.strength))
+      v('hard', 'state-in-range', `final ${o.moveId} strength ${o.strength}`);
 
   // 2. Forced moves fire once their trigger could have been met.
   for (const id of r.forcedMoves) {
@@ -58,7 +70,11 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
     if (!why) continue;
     // A novice call that collapsed into a flat "no" is reported, but does not fail the bench.
     const collapsed = r.spec.level === 'novice' && rec.decision === 'no';
-    v(collapsed ? 'soft' : 'hard', collapsed ? 'forced-move-fires-collapsed-call' : 'forced-move-fires', `${id} never fired, though ${why}`);
+    v(
+      collapsed ? 'soft' : 'hard',
+      collapsed ? 'forced-move-fires-collapsed-call' : 'forced-move-fires',
+      `${id} never fired, though ${why}`,
+    );
   }
 
   // 3. Persistence without progress never turns into a yes.
@@ -66,17 +82,28 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
 
   // 4. Recommending unneeded work never ends in yes and lowers trust.
   if (r.upsoldItem) {
-    const turn = rec.transcript.find((t) => t.speaker === 'tech' && t.behaviors?.includes('recommended_unneeded_work'));
+    const turn = rec.transcript.find(
+      (t) => t.speaker === 'tech' && t.behaviors?.includes('recommended_unneeded_work'),
+    );
     if (!turn) {
-      v('soft', 'unneeded-work-perceived', `"${r.upsoldItem}" was recommended but not perceived as unneeded work`);
+      v(
+        'soft',
+        'unneeded-work-perceived',
+        `"${r.upsoldItem}" was recommended but not perceived as unneeded work`,
+      );
     } else {
       const at = turn.endMs ?? turn.atMs;
       const before = [...rec.timeline].reverse().find((p) => p.atMs < at);
       const after = rec.timeline.find((p) => p.atMs >= at);
       if (before && after && !(after.trust < before.trust)) {
-        v('hard', 'unneeded-work-lowers-trust', `trust ${before.trust} -> ${after.trust} after "${r.upsoldItem}"`);
+        v(
+          'hard',
+          'unneeded-work-lowers-trust',
+          `trust ${before.trust} -> ${after.trust} after "${r.upsoldItem}"`,
+        );
       }
-      if (rec.decision === 'yes') v('hard', 'unneeded-work-no-yes', `customer said yes after "${r.upsoldItem}"`);
+      if (rec.decision === 'yes')
+        v('hard', 'unneeded-work-no-yes', `customer said yes after "${r.upsoldItem}"`);
     }
   }
 
@@ -84,12 +111,26 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
   for (const t of rec.transcript) {
     if (t.speaker !== 'tech') continue;
     const upsellLine = r.upsoldItem && t.text.toLowerCase().includes(r.upsoldItem.toLowerCase());
-    if (r.spec.level !== 'novice' && !upsellLine && t.behaviors?.includes('recommended_unneeded_work')) {
-      const items = rec.perceptions.find((p) => p.turnId === t.id)?.perception.unneededWork.join('; ');
-      v('soft', 'perceiver-false-unneeded-work', `"${t.text.slice(0, 110)}" read as unneeded work: ${items}`);
+    if (
+      r.spec.level !== 'novice' &&
+      !upsellLine &&
+      t.behaviors?.includes('recommended_unneeded_work')
+    ) {
+      const items = rec.perceptions
+        .find((p) => p.turnId === t.id)
+        ?.perception.unneededWork.join('; ');
+      v(
+        'soft',
+        'perceiver-false-unneeded-work',
+        `"${t.text.slice(0, 110)}" read as unneeded work: ${items}`,
+      );
     }
     if (/\$\d{2,3} a month/.test(t.text) && !t.behaviors?.includes('framed_monthly')) {
-      v('soft', 'perceiver-missed-monthly', `"${t.text.match(/[^.]*\$\d{2,3} a month[^.]*/)?.[0]?.trim()}" not read as framed_monthly`);
+      v(
+        'soft',
+        'perceiver-missed-monthly',
+        `"${t.text.match(/[^.]*\$\d{2,3} a month[^.]*/)?.[0]?.trim()}" not read as framed_monthly`,
+      );
     }
   }
 
@@ -99,7 +140,7 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
   // 6. Customer lines: no em dashes, nothing about AI or practice, only allowed tags.
   for (const t of rec.transcript) {
     if (t.speaker === 'tech') continue;
-    if (t.text.includes('—')) v('hard', 'no-em-dash', `"${t.text}"`);
+    if (t.text.includes(EM_DASH)) v('hard', 'no-em-dash', `"${t.text}"`);
     if (AI_MENTION_CI.test(t.text) || AI_WORD.test(t.text) || PRACTICE.test(t.text)) {
       v('hard', 'no-ai-mention', `"${t.text}"`);
     }
@@ -108,7 +149,8 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
         v('soft', 'audio-tags-allowed', `unknown tag [${m[1]}] in "${t.text}" (act ${t.act})`);
       }
     }
-    if (!t.text.trim() && t.act !== 'silence') v('soft', 'customer-line-not-empty', `empty ${t.act} line`);
+    if (!t.text.trim() && t.act !== 'silence')
+      v('soft', 'customer-line-not-empty', `empty ${t.act} line`);
   }
   return out;
 }
@@ -123,9 +165,29 @@ function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): st
   if (!m) return null;
   const t = m.trigger;
   const w = t.when;
-  if (m.delivery.speaker === 'secondary' && !index.personas.get(rec.personaId)?.secondary) return null;
-  if (w.secondaryPresent === true && !rec.finalState.secondaryPresent) return null;
-  const order = ['door', 'discovery', 'findings', 'options', 'price', 'objections', 'close', 'wrapup'];
+  if (m.delivery.speaker === 'secondary' && !index.personas.get(rec.personaId)?.secondary)
+    return null;
+  const fs = rec.finalState;
+  if (w.secondaryPresent === true && !fs.secondaryPresent) return null;
+  if (w.membershipOffered === true && !fs.membershipOffered) return null;
+  if (w.financingOffered === true && !fs.financingOffered) return null;
+  if (w.minTurn !== undefined && fs.turn < w.minTurn) return null;
+  if (
+    w.objectionAnswered &&
+    fs.objections.find((o) => o.moveId === w.objectionAnswered)?.answeredTurn === undefined
+  ) {
+    return null;
+  }
+  const order = [
+    'door',
+    'discovery',
+    'findings',
+    'options',
+    'price',
+    'objections',
+    'close',
+    'wrapup',
+  ];
   const at = (p: string) => order.indexOf(p);
   const points = rec.timeline.filter(
     (p) =>
@@ -142,11 +204,15 @@ function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): st
   if (w.decisionAsked === true) {
     // Decision-time objections can only come up while the customer is weighing a yes.
     // A call that collapsed straight into "no" never gets there.
-    const weighed = rec.directives.some((d) => d.directive.decision === 'yes' || d.directive.decision === 'later');
+    const weighed = rec.directives.some(
+      (d) => d.directive.decision === 'yes' || d.directive.decision === 'later',
+    );
     if (!weighed) return null;
   }
   if (t.afterBehaviors.length > 0) {
-    const hit = rec.transcript.find((x) => x.speaker === 'tech' && x.behaviors?.some((b) => t.afterBehaviors.includes(b)));
+    const hit = rec.transcript.find(
+      (x) => x.speaker === 'tech' && x.behaviors?.some((b) => t.afterBehaviors.includes(b)),
+    );
     if (!hit) return null;
     return `the tech did ${t.afterBehaviors.join('/')} ("${hit.text.slice(0, 60)}")`;
   }
@@ -154,15 +220,17 @@ function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): st
   return `its trigger was met in ${points.length} state point(s) (${phases})`;
 }
 
-const isProgress = (b: BehaviorId) => BEHAVIORS[b]?.polarity === 'positive' && b !== 'asked_for_decision';
+const isProgress = (b: BehaviorId) =>
+  BEHAVIORS[b]?.polarity === 'positive' && b !== 'asked_for_decision';
 
 /**
  * Walks the call in order. An ask is "bare" when the previous ask got a non-yes and the
  * tech added nothing of value since (no positive behavior, no addressed concern, no held
  * silence). A bare ask must never be answered with yes.
  */
-function bareAsksAnsweredYes(rec: SessionRecord): string[] {
-  const bad: string[] = [];
+export function bareAsksAnsweredYes(rec: SessionRecord): string[] & { tested?: number } {
+  const bad: string[] & { tested?: number } = [];
+  bad.tested = 0;
   const perceptionOf = new Map(rec.perceptions.map((p) => [p.turnId, p.perception]));
   const decisionOf = new Map(rec.directives.map((d) => [d.turnId, d.directive.decision]));
   let prevAsk: 'yes' | 'later' | 'no' | null | undefined;
@@ -175,8 +243,10 @@ function bareAsksAnsweredYes(rec: SessionRecord): string[] {
       const behaviors = (t.behaviors ?? []) as BehaviorId[];
       const valued = behaviors.some(isProgress) || (p?.addressed.length ?? 0) > 0;
       if (behaviors.includes('asked_for_decision')) {
-        if (prevAsk !== undefined && prevAsk !== 'yes' && !progress && !valued) pendingBare = t.text;
-        else pendingBare = null;
+        if (prevAsk !== undefined && prevAsk !== 'yes' && !progress && !valued) {
+          pendingBare = t.text;
+          bad.tested = (bad.tested ?? 0) + 1;
+        } else pendingBare = null;
         awaiting = true;
         progress = false;
       } else if (valued) progress = true;
@@ -186,7 +256,8 @@ function bareAsksAnsweredYes(rec: SessionRecord): string[] {
     if (perceptionOf.get(t.id)?.behaviors.some((b) => isProgress(b.id))) progress = true;
     if (awaiting) {
       const d = decisionOf.get(t.id) ?? null;
-      if (pendingBare && d === 'yes') bad.push(`bare repeat ask "${pendingBare}" was answered yes: "${t.text}"`);
+      if (pendingBare && d === 'yes')
+        bad.push(`bare repeat ask "${pendingBare}" was answered yes: "${t.text}"`);
       prevAsk = d;
       awaiting = false;
       pendingBare = null;
@@ -210,7 +281,8 @@ export interface GroupStats {
 export function stats(results: RunResult[], violationsByRun: Map<string, Violation[]>): GroupStats {
   const n = results.length || 1;
   const moves = new Map<string, number>();
-  for (const r of results) for (const m of r.record.moves) moves.set(m.moveId, (moves.get(m.moveId) ?? 0) + 1);
+  for (const r of results)
+    for (const m of r.record.moves) moves.set(m.moveId, (moves.get(m.moveId) ?? 0) + 1);
   return {
     n: results.length,
     yes: results.filter((r) => r.decision === 'yes').length / n,
@@ -230,8 +302,10 @@ export function checkAggregate(results: RunResult[]): Violation[] {
   const std = results.filter((r) => r.spec.variant === 'standard' && !r.spec.drillId);
   const by = (level: string, pred: (r: RunResult) => boolean = () => true) =>
     std.filter((r) => r.spec.level === level && pred(r));
-  const yesRate = (rs: RunResult[]) => (rs.length ? rs.filter((r) => r.decision === 'yes').length / rs.length : 0);
-  const mean = (rs: RunResult[]) => (rs.length ? rs.reduce((a, r) => a + r.score, 0) / rs.length : 0);
+  const yesRate = (rs: RunResult[]) =>
+    rs.length ? rs.filter((r) => r.decision === 'yes').length / rs.length : 0;
+  const mean = (rs: RunResult[]) =>
+    rs.length ? rs.reduce((a, r) => a + r.score, 0) / rs.length : 0;
 
   const ey = yesRate(by('expert'));
   const ny = yesRate(by('novice'));

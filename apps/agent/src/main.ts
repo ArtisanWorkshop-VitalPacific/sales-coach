@@ -9,13 +9,27 @@
  * ElevenLabs speaks it. There is no LLM node in the voice pipeline.
  */
 import { fileURLToPath } from 'node:url';
-import { cli, defineAgent, type JobContext, type JobProcess, type VAD, voice, WorkerOptions } from '@livekit/agents';
+import {
+  cli,
+  defineAgent,
+  type JobContext,
+  type JobProcess,
+  type VAD,
+  voice,
+  WorkerOptions,
+} from '@livekit/agents';
 import * as deepgram from '@livekit/agents-plugin-deepgram';
 import * as elevenlabs from '@livekit/agents-plugin-elevenlabs';
 import * as livekit from '@livekit/agents-plugin-livekit';
 import * as silero from '@livekit/agents-plugin-silero';
 import { contentIndex } from '@sales-coach/content';
-import { CustomerSession, HeuristicPerceiver, type LineWriter, type Perceiver, ScriptedWriter } from '@sales-coach/engine';
+import {
+  CustomerSession,
+  HeuristicPerceiver,
+  type LineWriter,
+  type Perceiver,
+  ScriptedWriter,
+} from '@sales-coach/engine';
 import { CustomerAgent, CustomerBridge } from './customer';
 import { readRequest } from './request';
 
@@ -80,7 +94,10 @@ export default defineAgent({
     const session = new voice.AgentSession({
       vad: ctx.proc.userData.vad ?? (await silero.VAD.load()),
       // Spanish-speaking personas often get Spanish and English in the same call.
-      stt: new deepgram.STT({ model: 'nova-3', language: persona.language === 'es' ? 'multi' : 'en-US' }),
+      stt: new deepgram.STT({
+        model: 'nova-3',
+        language: persona.language === 'es' ? 'multi' : 'en-US',
+      }),
       tts: customerTts,
       turnHandling: { turnDetection: new livekit.turnDetector.MultilingualModel() },
       // The tech going quiet is part of the practice (holding silence). Never mark them away.
@@ -92,7 +109,9 @@ export default defineAgent({
     });
 
     await session.start({ agent: new CustomerAgent(bridge), room: ctx.room });
-    console.log(`[agent] ${engine.id}: ${engine.spec.scenario.id} with ${persona.id} at difficulty ${engine.spec.difficulty}`);
+    console.log(
+      `[agent] ${engine.id}: ${engine.spec.scenario.id} with ${persona.id} at difficulty ${engine.spec.difficulty}`,
+    );
   },
 });
 

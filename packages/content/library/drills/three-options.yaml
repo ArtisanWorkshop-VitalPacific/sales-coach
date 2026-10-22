@@ -56,3 +56,4 @@ review:
   notes:
     - The engine starts options with optionsPresented set to 2. That only matters for scope objections, and Margaret has none.
     - If the tech states prices here, the phase moves to price and silence-after-price can fire. That is fine.
+    - In demo mode the heuristic perceiver flags any turn with "recommend" and "tankless" as unneeded work, even when tankless is offered honestly as one option. The Claude perceiver does not have this problem.

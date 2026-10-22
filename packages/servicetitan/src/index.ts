@@ -28,7 +28,9 @@ export class ServiceTitan {
   /** The soonest appointment assigned to the technician that has not ended yet. */
   async nextAppointmentForTechnician(technicianId: string): Promise<NextAppointment | null> {
     const assignments = await this.client.assignments(technicianId);
-    const ids = [...new Set(assignments.data.filter((a) => a.active !== false).map((a) => a.appointmentId))];
+    const ids = [
+      ...new Set(assignments.data.filter((a) => a.active !== false).map((a) => a.appointmentId)),
+    ];
     if (ids.length === 0) return null;
     const appts = await this.client.appointments(ids.slice(0, 50));
     const now = this.now();
@@ -41,7 +43,12 @@ export class ServiceTitan {
       .sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
     const next = upcoming[0];
     if (!next) return null;
-    return { appointmentId: next.id, jobId: next.jobId, start: next.start, end: next.end ?? undefined };
+    return {
+      appointmentId: next.id,
+      jobId: next.jobId,
+      start: next.start,
+      end: next.end ?? undefined,
+    };
   }
 
   /** The job as a JobContext: type, equipment with ages, membership, declined estimates. */
@@ -50,9 +57,20 @@ export class ServiceTitan {
     const [jobType, customer, equipment, memberships, estimates] = await Promise.all([
       job.jobTypeId ? this.client.jobType(job.jobTypeId).catch(() => null) : Promise.resolve(null),
       this.client.customer(job.customerId),
-      job.locationId ? this.client.installedEquipment(job.locationId).then((r) => r.data).catch(() => []) : Promise.resolve([]),
-      this.client.memberships(job.customerId).then((r) => r.data).catch(() => []),
-      this.client.dismissedEstimates(job.customerId).then((r) => r.data).catch(() => []),
+      job.locationId
+        ? this.client
+            .installedEquipment(job.locationId)
+            .then((r) => r.data)
+            .catch(() => [])
+        : Promise.resolve([]),
+      this.client
+        .memberships(job.customerId)
+        .then((r) => r.data)
+        .catch(() => []),
+      this.client
+        .dismissedEstimates(job.customerId)
+        .then((r) => r.data)
+        .catch(() => []),
     ]);
     return toJobContext({
       job,
@@ -74,14 +92,25 @@ export class ServiceTitan {
 }
 
 /** Reads SERVICETITAN_* env vars. Returns null when the integration is not configured. */
-export function fromEnv(env: Record<string, string | undefined> = process.env, fetchImpl?: typeof fetch): ServiceTitan | null {
+export function fromEnv(
+  env: Record<string, string | undefined> = process.env,
+  fetchImpl?: typeof fetch,
+): ServiceTitan | null {
   const clientId = env.SERVICETITAN_CLIENT_ID?.trim();
   const clientSecret = env.SERVICETITAN_CLIENT_SECRET?.trim();
   const appKey = env.SERVICETITAN_APP_KEY?.trim();
   const tenantId = env.SERVICETITAN_TENANT_ID?.trim();
   if (!clientId || !clientSecret || !appKey || !tenantId) return null;
-  const envName: ServiceTitanEnv = env.SERVICETITAN_ENV?.trim().toLowerCase() === 'production' ? 'production' : 'integration';
-  return new ServiceTitan({ clientId, clientSecret, appKey, tenantId, env: envName, fetch: fetchImpl });
+  const envName: ServiceTitanEnv =
+    env.SERVICETITAN_ENV?.trim().toLowerCase() === 'production' ? 'production' : 'integration';
+  return new ServiceTitan({
+    clientId,
+    clientSecret,
+    appKey,
+    tenantId,
+    env: envName,
+    fetch: fetchImpl,
+  });
 }
 
 /** A realistic, fictional job for demo mode ("Rehearse a sample job"). */
@@ -94,13 +123,17 @@ export function demoJob(now = Date.now()): JobContext {
     customerFirstName: 'Margaret',
     jobType: 'water-heater-replacement',
     scheduledFor: tomorrow.toISOString(),
-    summary: 'No hot water since yesterday morning. Customer says there is water on the garage floor around the tank.',
+    summary:
+      'No hot water since yesterday morning. Customer says there is water on the garage floor around the tank.',
     equipment: [
       { item: '40-gallon atmospheric gas water heater', ageYears: 12 },
       { item: 'Pressure regulator', ageYears: 18 },
     ],
     isMember: false,
     priorDeclinedEstimates: ['Water heater flush and anode check ($189), Mar 2024'],
-    notes: ['Cat indoors. Keep the garage door to the house closed.', 'Prefers a call 30 minutes before arrival.'],
+    notes: [
+      'Cat indoors. Keep the garage door to the house closed.',
+      'Prefers a call 30 minutes before arrival.',
+    ],
   };
 }

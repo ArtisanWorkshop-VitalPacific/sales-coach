@@ -1,0 +1,111 @@
+id: disposal-jammed-old
+version: 1
+title: Old garbage disposal, jammed and leaking
+trade: plumbing
+jobType: disposal-replacement
+difficulty: 1
+personaId: jen-busy-parent
+alternatePersonas: [brian-today, rick-landlord]
+briefing: >-
+  Service call. Garbage disposal hums but will not turn. Customer says it has been
+  loud for months. Not a member.
+situation: >-
+  The 14-year-old 1/3 horsepower disposal is jammed by a metal bottle cap. The tech
+  frees it with a hex key from the bottom and resets it, and it turns again. But
+  the bottom of the housing is rusted and water drips from it when it runs. Once a
+  disposal leaks from its body, the internal seal has failed and it cannot be
+  repaired. The cabinet floor under it is damp and starting to swell. The honest
+  recommendation is replacing it with a standard 1/2 horsepower unit. Freeing the
+  jam alone is a fair short-term choice if she wants to wait, but the leak will
+  continue. A 3/4 horsepower quiet model is a reasonable upgrade, not a need. The
+  customer works from home with two kids under six, her phone keeps ringing, and
+  she wants one clear recommendation she can trust.
+equipment:
+  - item: 1/3 horsepower garbage disposal
+    ageYears: 14
+    notes: Jammed by a bottle cap. Rusted housing. Leaks from the bottom when running.
+  - item: Kitchen sink base cabinet
+    notes: Particleboard floor damp and starting to swell.
+findings:
+  - id: bottle-cap-jam
+    text: A metal bottle cap jammed the grinder. It is out, and the disposal turns again.
+    severity: minor
+  - id: housing-leak
+    text: >-
+      Water drips from the bottom of the disposal when it runs. The internal seal has
+      failed, and a disposal that leaks from its body cannot be repaired.
+    severity: major
+  - id: rust-and-noise
+    text: The bottom of the housing is rusted and it grinds loudly. At 14 years it is at the end of its life.
+    severity: minor
+  - id: cabinet-swelling
+    text: The cabinet floor under the sink is damp and starting to swell.
+    severity: minor
+  - id: drain-fine
+    text: The sink drains normally with the disposal off. The drain line is not part of the problem.
+    severity: info
+justifiedWork:
+  - id: replace-disposal
+    label: Replace the disposal with a standard 1/2 horsepower unit
+    rationale: The body leaks and cannot be repaired. A 1/2 horsepower unit handles a busy family kitchen.
+  - id: free-the-jam
+    label: Free the jam and reset
+    rationale: Already done to diagnose it. A fair short-term choice if she wants to wait.
+  - id: leak-test-with-dishwasher
+    label: Run and leak test with the dishwasher
+    rationale: Confirms the new unit and the dishwasher connection are dry.
+unjustifiedWork:
+  - id: commercial-disposal
+    label: A 1 horsepower or commercial-grade disposal
+    why: A home kitchen does not need it. A 1/2 horsepower unit is enough, and 3/4 is the most that makes sense here.
+  - id: jet-kitchen-line
+    label: Hydro jetting the kitchen drain
+    why: The sink drains normally. The problem is the disposal, not the line.
+  - id: new-sink-or-faucet
+    label: Replacing the sink or faucet
+    why: Both are in good shape and were not part of the call.
+options:
+  - id: free-jam-only
+    label: Free the jam only
+    price: 175
+    includes:
+      - Remove the bottle cap and free the grinder
+      - Reset and test
+      - The leak at the bottom is not fixed
+  - id: half-hp
+    label: Replace with a 1/2 horsepower disposal
+    price: 445
+    includes:
+      - New 1/2 horsepower disposal
+      - New mounting ring and gaskets
+      - Dishwasher connection
+      - Haul-away of the old unit
+      - Leak test
+    recommended: true
+  - id: three-quarter-hp-quiet
+    label: Replace with a 3/4 horsepower quiet model
+    price: 625
+    includes:
+      - New 3/4 horsepower disposal with sound insulation
+      - New mounting ring and gaskets
+      - Dishwasher connection
+      - Haul-away of the old unit
+      - Longer manufacturer warranty
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [phone-call-hold-on]
+  excluded: []
+  density: 1
+goal: >-
+  Show her the leak at the bottom of the unit, give one clear recommendation, and
+  keep it short. Pick the conversation back up smoothly after her phone call and
+  ask for a decision.
+passBar: 65
+tags: [disposal, kitchen, starter, distraction]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Warranty length on the quiet model depends on the brand each company stocks.

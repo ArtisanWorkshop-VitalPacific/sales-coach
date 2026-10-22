@@ -1,6 +1,11 @@
 import { ReadableStream } from 'node:stream/web';
 import { type JobContext as LkJobContext, type llm, type tts, voice } from '@livekit/agents';
-import { type CustomerSession, type CustomerTurn, type SessionRecord, stripTags } from '@sales-coach/engine';
+import {
+  type CustomerSession,
+  type CustomerTurn,
+  type SessionRecord,
+  stripTags,
+} from '@sales-coach/engine';
 
 /**
  * Bridges the LiveKit voice pipeline and the customer engine.
@@ -70,7 +75,12 @@ export class CustomerBridge {
       this.agentState = ev.newState;
     });
     session.on(voice.AgentSessionEventTypes.UserInputTranscribed, (ev) => {
-      void this.caption({ speaker: 'tech', text: ev.transcript, final: ev.isFinal, atMs: this.engine.elapsedMs });
+      void this.caption({
+        speaker: 'tech',
+        text: ev.transcript,
+        final: ev.isFinal,
+        atMs: this.engine.elapsedMs,
+      });
     });
     session.on(voice.AgentSessionEventTypes.Close, () => {
       void this.finish('session-closed');
@@ -100,7 +110,13 @@ export class CustomerBridge {
     void this.enqueue(async () => {
       if (this.engine.isEnded) return;
       const t0 = Date.now();
-      const turn = await this.engine.techTurn({ text, startedAtMs, endedAtMs, interruptedCustomer, holdElapsedMs });
+      const turn = await this.engine.techTurn({
+        text,
+        startedAtMs,
+        endedAtMs,
+        interruptedCustomer,
+        holdElapsedMs,
+      });
       await this.play(turn, Date.now() - t0);
     });
   }
@@ -206,7 +222,10 @@ export class CustomerBridge {
         holdMs: turn.holdSilenceMs,
       });
       const spoken = this.opts.ttsSupportsTags ? turn.text : display;
-      const audio = turn.speaker === 'secondary' && this.opts.secondaryTts ? audioOf(this.opts.secondaryTts, spoken) : undefined;
+      const audio =
+        turn.speaker === 'secondary' && this.opts.secondaryTts
+          ? audioOf(this.opts.secondaryTts, spoken)
+          : undefined;
       handle = session.say(spoken, { allowInterruptions, ...(audio ? { audio } : {}) });
     }
     this.armed = turn.armInterrupt ?? null;
@@ -251,7 +270,8 @@ function audioOf(ttsInstance: tts.TTS, text: string): ReadableStream<AudioFrame>
 export class CustomerAgent extends voice.Agent {
   constructor(private readonly bridge: CustomerBridge) {
     super({
-      instructions: 'You are a homeowner in a practice call. Replies come from the Sales Coach engine, not from a model here.',
+      instructions:
+        'You are a homeowner in a practice call. Replies come from the Sales Coach engine, not from a model here.',
     });
   }
 
@@ -259,7 +279,10 @@ export class CustomerAgent extends voice.Agent {
     await this.bridge.open();
   }
 
-  override async onUserTurnCompleted(_chatCtx: llm.ChatContext, newMessage: llm.ChatMessage): Promise<void> {
+  override async onUserTurnCompleted(
+    _chatCtx: llm.ChatContext,
+    newMessage: llm.ChatMessage,
+  ): Promise<void> {
     const text = newMessage.textContent?.trim();
     if (text) this.bridge.techTurn(text);
     // Never let the pipeline generate its own reply.

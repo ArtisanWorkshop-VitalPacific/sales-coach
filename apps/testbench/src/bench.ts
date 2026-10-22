@@ -14,7 +14,14 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { contentIndex } from '@sales-coach/content';
-import { checkAggregate, checkRun, pct, runLabel, type Violation } from './checks';
+import {
+  bareAsksAnsweredYes,
+  checkAggregate,
+  checkRun,
+  pct,
+  runLabel,
+  type Violation,
+} from './checks';
 import { renderReport } from './report';
 import { type Adapters, type RunResult, type RunSpec, runCall, scriptedAdapters } from './runner';
 import type { Level } from './tech';
@@ -27,7 +34,9 @@ function arg(name: string): string | undefined {
   return i >= 0 ? process.argv[i + 1] : undefined;
 }
 
-async function adaptersFor(useClaude: boolean): Promise<{ adapters: Adapters; mode: 'scripted' | 'claude' }> {
+async function adaptersFor(
+  useClaude: boolean,
+): Promise<{ adapters: Adapters; mode: 'scripted' | 'claude' }> {
   if (!useClaude) return { adapters: scriptedAdapters, mode: 'scripted' };
   if (!process.env.ANTHROPIC_API_KEY) {
     console.warn('--claude needs ANTHROPIC_API_KEY. Running scripted customers instead.');
@@ -36,7 +45,10 @@ async function adaptersFor(useClaude: boolean): Promise<{ adapters: Adapters; mo
   // Loaded lazily so the scripted bench never touches the SDK.
   const { claudeAdapters } = await import('@sales-coach/engine/claude');
   const claude = claudeAdapters({ preset: 'economy' });
-  return { adapters: { perceiver: () => claude.perceiver, writer: () => claude.writer }, mode: 'claude' };
+  return {
+    adapters: { perceiver: () => claude.perceiver, writer: () => claude.writer },
+    mode: 'claude',
+  };
 }
 
 async function main() {
@@ -53,12 +65,21 @@ async function main() {
   const specs: RunSpec[] = [];
   for (const s of scenarios) {
     for (const difficulty of DIFFICULTIES) {
-      for (const level of LEVELS) for (const seed of seeds) specs.push({ scenarioId: s.id, difficulty, level, variant: 'standard', seed });
+      for (const level of LEVELS)
+        for (const seed of seeds)
+          specs.push({ scenarioId: s.id, difficulty, level, variant: 'standard', seed });
       // Probes: fewer seeds, one per unjustified item in rotation.
       const probeSeeds = seeds.slice(0, Math.max(1, Math.ceil(seeds.length / 2)));
       probeSeeds.forEach((seed, i) => {
         if (s.unjustifiedWork.length > 0) {
-          specs.push({ scenarioId: s.id, difficulty, level: 'expert', variant: 'upsell', seed, upsellIndex: i });
+          specs.push({
+            scenarioId: s.id,
+            difficulty,
+            level: 'expert',
+            variant: 'upsell',
+            seed,
+            upsellIndex: i,
+          });
         }
         specs.push({ scenarioId: s.id, difficulty, level: 'expert', variant: 'pushy', seed });
       });
@@ -66,7 +87,9 @@ async function main() {
   }
   for (const d of drills) {
     for (const difficulty of DIFFICULTIES) {
-      for (const level of LEVELS) for (const seed of seeds.slice(0, 2)) specs.push({ drillId: d.id, difficulty, level, variant: 'standard', seed });
+      for (const level of LEVELS)
+        for (const seed of seeds.slice(0, 2))
+          specs.push({ drillId: d.id, difficulty, level, variant: 'standard', seed });
     }
   }
 
@@ -81,7 +104,16 @@ async function main() {
   if (mode === 'claude') process.stdout.write('\n');
   violations.push(...checkAggregate(results));
 
-  const report = renderReport({ index, results, violations, mode, seeds, difficulties: DIFFICULTIES, ms: Date.now() - started });
+  const report = renderReport({
+    index,
+    results,
+    violations,
+    mode,
+    seeds,
+    difficulties: DIFFICULTIES,
+    ms: Date.now() - started,
+    bareAsks: results.reduce((n, r) => n + (bareAsksAnsweredYes(r.record).tested ?? 0), 0),
+  });
   const here = dirname(fileURLToPath(import.meta.url));
   const out = resolve(here, '..', 'reports', `latest-${mode}.md`);
   mkdirSync(dirname(out), { recursive: true });
@@ -90,20 +122,32 @@ async function main() {
   // Short console summary.
   const std = results.filter((r) => r.spec.variant === 'standard' && !r.spec.drillId);
   const hard = violations.filter((v) => v.severity === 'hard');
-  console.log(`Sales Coach test bench (${mode}): ${results.length} calls, ${scenarios.length} scenario(s), ${drills.length} drill(s)`);
+  console.log(
+    `Sales Coach test bench (${mode}): ${results.length} calls, ${scenarios.length} scenario(s), ${drills.length} drill(s)`,
+  );
   for (const level of [...LEVELS].reverse()) {
     const rs = std.filter((r) => r.spec.level === level);
     const yes = rs.filter((r) => r.decision === 'yes').length / (rs.length || 1);
     const score = rs.reduce((a, r) => a + r.score, 0) / (rs.length || 1);
     const trust = rs.reduce((a, r) => a + r.finalTrust, 0) / (rs.length || 1);
-    console.log(`  ${level.padEnd(7)} yes ${pct(yes).padStart(4)}  score ${score.toFixed(1).padStart(5)}  trust ${trust.toFixed(1).padStart(5)}  (${rs.length} calls)`);
+    console.log(
+      `  ${level.padEnd(7)} yes ${pct(yes).padStart(4)}  score ${score.toFixed(1).padStart(5)}  trust ${trust.toFixed(1).padStart(5)}  (${rs.length} calls)`,
+    );
   }
   const rules = new Map<string, number>();
-  for (const v of violations) rules.set(`${v.severity} ${v.rule}`, (rules.get(`${v.severity} ${v.rule}`) ?? 0) + 1);
+  for (const v of violations)
+    rules.set(`${v.severity} ${v.rule}`, (rules.get(`${v.severity} ${v.rule}`) ?? 0) + 1);
   for (const [k, n] of [...rules.entries()].sort()) console.log(`  ${k}: ${n}`);
-  for (const v of hard.slice(0, 5)) console.log(`  ! ${v.rule}${v.run ? ` [${v.run}]` : ''}: ${v.detail.slice(0, 160)}`);
-  console.log(hard.length ? `FAIL: ${hard.length} hard violation(s). Report: ${out}` : `PASS. Report: ${out}`);
-  if (results.some((r) => r.error)) console.log(`  first error in ${runLabel(results.find((r) => r.error)!)}`);
+  // One example per failing hard rule.
+  for (const rule of new Set(hard.map((v) => v.rule))) {
+    const v = hard.find((x) => x.rule === rule)!;
+    console.log(`  ! ${v.rule}${v.run ? ` [${v.run}]` : ''}: ${v.detail.slice(0, 150)}`);
+  }
+  console.log(
+    hard.length ? `FAIL: ${hard.length} hard violation(s). Report: ${out}` : `PASS. Report: ${out}`,
+  );
+  if (results.some((r) => r.error))
+    console.log(`  first error in ${runLabel(results.find((r) => r.error)!)}`);
   process.exitCode = hard.length ? 1 : 0;
 }
 
