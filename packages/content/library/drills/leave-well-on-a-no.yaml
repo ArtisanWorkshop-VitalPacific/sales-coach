@@ -1,0 +1,55 @@
+id: leave-well-on-a-no
+version: 1
+order: 15
+title: Leaving well on a no
+stage: close
+skill: close
+durationSec: 120
+why: >-
+  This is the moment the customer says no, or not yet. Most techs do one of two
+  things, and both cost them the job. Some push. They ask again, or they offer
+  a price that's only good today. Others give up. They say, "Okay, no problem," and leave with nothing in
+  writing and no plan. Here's what is really going on. "I need to think about
+  it" usually means there's a question the customer hasn't asked yet, and often
+  it's about money. How you treat them right now decides whether they ever call
+  you back. So respect it right away. Ask once, gently, what they want to think
+  through, and answer it if you can. If they still want time, leave the options
+  in writing, offer to send them to anyone they want to show, and set a specific
+  day and time to follow up. Make sure the home is safe until then. In this
+  drill, Margaret wants to think it over. Leave well.
+demo:
+  - speaker: customer
+    text: You've been very kind. But I suppose I'd like to think it over, if that's all right.
+  - speaker: tech
+    text: Of course it's all right. Can I ask what you'd like to think through? If I can answer it now, I'm happy to.
+  - speaker: customer
+    text: Oh, it's mostly the money. And I'd like to talk to my son Kevin first.
+  - speaker: tech
+    text: That makes sense. I'll leave all three options in writing, and I can email a copy to Kevin. Could I call you tomorrow at ten?
+  - speaker: customer
+    text: Tomorrow at ten would be fine. Thank you for not rushing me.
+  - speaker: tech
+    text: Of course. Before I go, I'll shut off the water to the tank so the leak doesn't get worse overnight.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: close
+priorContext: >-
+  The tech showed Margaret the leak, explained that the 12-year-old tank cannot
+  be repaired, presented three options, and recommended the standard 40-gallon
+  gas heater for $1,890. The tech answered her questions about what is included
+  and then asked whether she would like to go ahead. Margaret is not ready to
+  decide today.
+forcedMoves: [need-to-think-about-it]
+customerOpener: You've been very kind. But I suppose I'd like to think it over, if that's all right.
+techPrompt: Margaret wants to think it over. Ask once what she's weighing, then leave the options in writing and set a follow-up.
+passCriteria:
+  - Accept the request without pushing, a deadline, or a today-only price
+  - Ask once, gently, what she wants to think through
+  - Leave the options in writing and set a specific day and time to follow up
+  - Offer to shut off the water to the leaking tank before you leave
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The opener voices the stall. need-to-think-about-it only fires on a decision ask, and with $1,890 over her $1,800 ceiling the engine would voice too-expensive first. Because timing objections never fire on their own, the opener cannot be repeated. The move stays latent, so a second decision ask from the tech brings too-expensive.
+    - A gentle question about what she is weighing usually brings her fixed-income reveal, which the tech can answer with the $49 monthly number before leaving.

@@ -95,4 +95,6 @@ export interface CustomerTurn {
   moveId?: string;
   decision?: 'yes' | 'later' | 'no';
   ended: boolean;
+  /** An adapter (Claude) failed on this turn and the built-in backup answered instead. */
+  degraded?: { stage: 'listen' | 'speak'; reason: string };
 }

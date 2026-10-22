@@ -357,6 +357,9 @@ export class CustomerSession {
     };
   }
 
+  /** Set when an adapter failed this turn and the backup took over. Reported on the CustomerTurn. */
+  private degraded: CustomerTurn['degraded'] = undefined;
+
   private async perceive(text: string): Promise<Perception> {
     const input = this.perceptionInput(text);
     if (!text) return emptyPerception();
@@ -364,6 +367,7 @@ export class CustomerSession {
       return await this.perceiver.perceive(input);
     } catch (e) {
       console.warn(`[sales-coach] perceiver ${this.perceiver.name} failed, using heuristic:`, (e as Error).message);
+      this.degraded = { stage: 'listen', reason: (e as Error).message.slice(0, 200) };
       return this.fallbackPerceiver.perceive(input);
     }
   }
@@ -376,6 +380,7 @@ export class CustomerSession {
       if (line.trim()) return cleanLine(line, AudioTag.options);
     } catch (e) {
       console.warn(`[sales-coach] writer ${this.writer.name} failed, using scripted:`, (e as Error).message);
+      this.degraded = { stage: 'speak', reason: (e as Error).message.slice(0, 200) };
     }
     return this.fallbackWriter.write(input);
   }
@@ -407,7 +412,12 @@ export class CustomerSession {
     this.lastCustomerMoveId = d.moveId;
     this.lastCustomerObjectionId = d.objectionId;
     if (d.end) this.state.ended = true;
-    return this.toCustomerTurn(turn, d);
+    const out = this.toCustomerTurn(turn, d);
+    if (this.degraded) {
+      out.degraded = this.degraded;
+      this.degraded = undefined;
+    }
+    return out;
   }
 
   private toCustomerTurn(turn: TranscriptTurn, d: TurnDirective): CustomerTurn {

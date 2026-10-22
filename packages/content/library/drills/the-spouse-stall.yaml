@@ -1,0 +1,60 @@
+id: the-spouse-stall
+version: 1
+order: 9
+title: '"Let me talk to my wife"'
+stage: objections
+skill: objections
+durationSec: 120
+why: >-
+  This moment starts with "I need to talk to my wife first." Most techs treat
+  it as a stall to get past. They ask, "Can't you just decide?" Or they offer a
+  discount to sign before the spouse gets home. Others say, "No problem," and
+  leave with nothing the customer can show anyone. Here's what is really going
+  on. For many couples, it's not a stall. It's how they make decisions, and
+  they're right to. The real worry is explaining it at home from memory,
+  getting it wrong, and being blamed if it goes badly. So
+  respect it right away. Offer to bring the spouse in now with a quick phone
+  call. If that won't work, make it easy to explain later: a photo of what you
+  found, the options and prices in writing, and your recommendation in one
+  sentence they can repeat. Then set a specific time to talk to both of them. In
+  this drill, Carlos wants to talk to Elena first. Help him include her.
+demo:
+  - speaker: customer
+    text: Okay, here's the thing. I'm not deciding this without Elena. She's at work till five.
+  - speaker: tech
+    text: That makes sense. It's a big decision for both of you. Would she have two minutes for a quick call now?
+  - speaker: customer
+    text: Probably not. She's slammed at work. She doesn't really pick up.
+  - speaker: tech
+    text: Then I'll text you a photo of the leak and all three options with prices. The short version is that the fifty-gallon fixes the mornings without paying for tankless.
+  - speaker: customer
+    text: Okay. Yeah, that I can explain to her.
+  - speaker: tech
+    text: What time tonight works for me to call you both? I'll answer whatever she wants to ask.
+scenarioId: tank-vs-tankless-family
+personaId: ruiz-couple
+startPhase: price
+priorContext: >-
+  The tech found that the 11-year-old 40-gallon tank is leaking at the base and
+  is too small for a family of five, which is why the hot water runs out in the
+  mornings. The tech presented three options, the same 40-gallon size for
+  $1,890, a 50-gallon high-recovery tank for $2,850, and tankless for $5,450,
+  and recommended the 50-gallon because it fixes the mornings for about half the
+  price of tankless. Carlos asked good questions and understands the choices.
+  Elena is at work until five. The tech just asked Carlos if he would like to
+  go ahead.
+forcedMoves: [talk-to-my-spouse]
+customerOpener: Okay, here's the thing. I'm not deciding this without Elena. She's at work till five.
+techPrompt: Carlos won't decide without Elena. Respect that, offer a way to include her now or later, and set a specific follow-up.
+passCriteria:
+  - Respect the joint decision without pushing Carlos to decide alone
+  - Offer to include Elena now by phone, or with photos and the options in writing
+  - Give Carlos a one-sentence version of your recommendation he can repeat
+  - Set a specific time to follow up with both of them
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The opener voices the stall. talk-to-my-spouse only fires on a decision ask, and Carlos holds brother-in-law-plumber (55) and too-expensive (50) above it (45), so an ask would bring one of those first. Timing objections never fire on their own, so the opener is not repeated.
+    - startPhase is price, not close, on purpose. At close the engine treats the price as already heard, and the scenario's forced brother-in-law-plumber fires on the first turn. At price it stays quiet until the tech states a number. Recommend removing brother-in-law-plumber from tank-vs-tankless-family's forced list.
+    - Elena can walk in as an ambient move (Carlos weights spouse-walks-in at 3). If she does, including her still passes.

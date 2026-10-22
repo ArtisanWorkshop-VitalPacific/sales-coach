@@ -8,6 +8,7 @@ import type { SessionRecord } from '../../record';
 import { SkillId } from '../../schema';
 import { clamp } from '../../util';
 import type { CallConfig } from './config';
+import { resilient } from './client';
 import { coachSystem } from './prompts';
 
 const CoachOut = z.object({
@@ -68,9 +69,8 @@ export class ClaudeCoach {
       messages: [{ role: 'user' as const, content: coachUser(record, index, base) }],
       output_config: { ...(c.effort ? { effort: c.effort } : {}), format: FORMAT },
     };
-    const message = await this.client.messages.parse(
-      params as unknown as Parameters<Anthropic['messages']['parse']>[0],
-      { signal },
+    const message = await resilient(params as unknown as Record<string, unknown>, (p) =>
+      this.client.messages.parse(p as unknown as Parameters<Anthropic['messages']['parse']>[0], { signal }),
     );
     const out = (message as unknown as { parsed_output: CoachOut | null }).parsed_output;
     if (!out) throw new Error(`coach returned no parsed output (stop: ${message.stop_reason})`);

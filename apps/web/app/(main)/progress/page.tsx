@@ -91,7 +91,7 @@ export default function ProgressPage() {
                     <span className="font-semibold text-ink">Next: {next.name}.</span> {next.requirement}
                   </p>
                   {examScenario && (
-                    <ButtonLink href={`/call?scenario=${examScenario.id}&d=${next.examDifficulty}`} size="sm" className="mt-4">
+                    <ButtonLink href={`/call?scenario=${examScenario.id}&d=${next.examDifficulty}&kind=exam`} size="sm" className="mt-4">
                       Take the {next.name} call
                     </ButtonLink>
                   )}

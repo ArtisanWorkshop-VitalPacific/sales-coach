@@ -18,7 +18,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: `Bad request: ${(e as Error).message}` }, { status: 400 });
   }
   const index = contentIndex();
-  const { coach } = serverAdapters();
+  const adapters = serverAdapters();
+  // Certification calls are judged by the strongest model; practice by the Opus coach.
+  const coach = record.kind === 'exam' ? (adapters.examCoach ?? adapters.coach) : adapters.coach;
   if (!coach) return NextResponse.json({ debrief: scoreRecord(record, index) });
   try {
     const debrief = await coach.debrief(record, index, req.signal);

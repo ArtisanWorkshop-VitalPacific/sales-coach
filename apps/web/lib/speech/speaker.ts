@@ -130,7 +130,7 @@ export class Speaker {
       audio.onended = () => done('done');
       audio.onerror = () => done(started ? 'done' : null);
       const lang = voice.browser.lang.startsWith('es') ? 'es' : 'en';
-      audio.src = `/api/tts?v=${encodeURIComponent(voice.eleven)}&l=${lang}&t=${encodeURIComponent(text)}`;
+      audio.src = `/api/tts?v=${encodeURIComponent(voice.eleven)}&g=${voice.browser.gender}&l=${lang}&t=${encodeURIComponent(text)}`;
       audio.play().catch(() => done(null));
     });
   }

@@ -1,4 +1,4 @@
-export { createClaudeClient, withFastFallback, textOf } from './client';
+export { createClaudeClient, recoverable, resilient, stripTuning, textOf, withFastFallback } from './client';
 export { PRESETS, presetFromEnv, requestFields, type CallConfig, type ModelPreset, type RoleConfig } from './config';
 export { ClaudePerceiver, toPerception } from './perceiver';
 export { ClaudeWriter } from './writer';

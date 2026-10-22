@@ -11,7 +11,7 @@ export interface RecognizerEvents {
   onSpeechStart?: (at: number) => void;
   onInterim?: (text: string) => void;
   onUtterance?: (u: Utterance) => void;
-  onError?: (message: string) => void;
+  onError?: (message: string, code?: string) => void;
   onState?: (listening: boolean) => void;
 }
 
@@ -122,7 +122,7 @@ export class Recognizer {
     const w = window as unknown as { SpeechRecognition?: new () => SR; webkitSpeechRecognition?: new () => SR };
     const Ctor = w.SpeechRecognition ?? w.webkitSpeechRecognition;
     if (!Ctor) {
-      this.events.onError?.('Speech recognition is not available in this browser. Type your replies instead.');
+      this.events.onError?.('Speech recognition is not available in this browser. Type your replies instead.', 'unsupported');
       this.active = false;
       this.events.onState?.(false);
       return;
@@ -159,7 +159,7 @@ export class Recognizer {
     rec.onerror = (e) => {
       if (gen !== this.generation) return;
       if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
-        this.events.onError?.('Microphone access is blocked. Allow the microphone, or type your replies.');
+        this.events.onError?.('Tap the mic to talk. If your phone asks, allow the microphone.', e.error);
         this.stop();
       }
       // no-speech, aborted, network: onend restarts.

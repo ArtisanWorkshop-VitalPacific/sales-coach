@@ -1,0 +1,56 @@
+id: your-own-house
+version: 1
+order: 19
+title: '"Would you do this in your own house?"'
+stage: objections
+skill: integrity
+durationSec: 120
+why: >-
+  Sooner or later a customer asks, "Would you do this in your own house?" Most
+  techs miss it. Some dodge with "It's totally up to you." Some name the most
+  expensive option with no reason. Some make up a story about their own house.
+  Customers can tell. Here's what the question really means. The customer is
+  asking whether they can trust you. Many have been sold work they didn't need.
+  They want a real answer, not a pitch. A straight answer with a reason that fits
+  their house can decide the whole call, even when it's the cheaper option. So
+  answer it directly. Say what you would actually do, and why, using what you
+  found and what they told you. If the honest answer is the cheaper option, say
+  so. Then tell them what would change your answer. Don't follow it with a push
+  to get started. In this drill, Tasha asks what you'd do. Tell her the truth.
+demo:
+  - speaker: customer
+    text: Okay. Be honest with me. If this was your house, what would you do?
+  - speaker: tech
+    text: I'd do the repair. Your tank isn't leaking and there's no rust. The part that failed is small, and replacing it fixes the problem.
+  - speaker: customer
+    text: So you wouldn't replace it? It's nine years old.
+  - speaker: tech
+    text: Not today. Tanks around here usually last eight to twelve years. I'd fix this and start setting money aside for a new one. If it ever starts leaking, that's when you replace it.
+  - speaker: customer
+    text: Huh. The last guy would've sold me the whole tank.
+  - speaker: tech
+    text: I'll put both options in writing, so you can look them over after you've slept.
+scenarioId: wh-repair-or-replace-9yr
+personaId: tasha-burned
+startPhase: options
+priorContext: >-
+  Tasha just got home from a night shift. The tech tested the thermocouple with
+  a meter, showed her the low reading, and explained that it is why the pilot
+  keeps going out. The tank itself is sound, with no leaks or rust. The tech
+  presented two options, replacing the thermocouple and cleaning the air intake
+  screen for $325, or replacing the whole 9-year-old tank for $1,890, and said
+  the repair is the honest fix.
+forcedMoves: [would-you-do-this]
+customerOpener: Okay. So you're saying I don't need a new one. Just this part.
+techPrompt: Tasha asks what you would do in your own house. Give a direct, honest answer with a reason that fits her.
+passCriteria:
+  - Answer the question directly with what you would actually do
+  - Give a reason based on this tank and what she told you
+  - Recommend the repair, and say when replacement would make sense
+  - Do not follow the answer with a push to decide
+review:
+  status: draft
+  author: Claude
+  notes:
+    - would-you-do-this fires on the first customer turn unless her how-do-i-know-its-broken (chance 0.6) comes first. That only happens while her trust is under 55, so a first answer that shows the reading usually brings the probe right away.
+    - The scenario also forces tests-your-honesty. It follows on a later turn with a related probe, such as whether she could get another year out of it.

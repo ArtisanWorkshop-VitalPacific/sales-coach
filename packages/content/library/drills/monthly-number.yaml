@@ -1,0 +1,58 @@
+id: monthly-number
+version: 1
+order: 12
+title: Financing as a monthly number
+stage: close
+skill: membership-financing
+durationSec: 120
+why: >-
+  This moment comes right after the price, when the total is more than the
+  customer can pay at once. Most techs miss it in one of three ways. They never
+  mention financing because they're afraid it sounds pushy. They say "We have
+  financing" and move on, with no number. Or they push payments before they
+  understand the problem. Here's what is going on for the customer. Most people
+  won't say "I can't afford it." They say less than they mean, like "That's more
+  than I have right now." They're embarrassed, and they're picturing the whole
+  amount coming out of their savings at once. Eighteen ninety at once and
+  forty-nine dollars a month can feel completely different to the same person.
+  So first, thank them for telling you. Then give one specific monthly number
+  for the option you recommended, and offer to show them the terms in writing.
+  Then let them choose. In this drill, Margaret has
+  just heard eighteen ninety. Listen for the worry.
+demo:
+  - speaker: customer
+    text: Eighteen ninety. Well... I'd have to take that out of my savings, I suppose.
+  - speaker: tech
+    text: Thank you for telling me. A lot of people would rather leave their savings alone. Can I show you another way to do it?
+  - speaker: customer
+    text: Well, yes. I suppose that would be all right.
+  - speaker: tech
+    text: With financing, the standard option comes to forty-nine dollars a month. I'll show you the terms in writing, so you can see exactly what it costs over time.
+  - speaker: customer
+    text: Forty-nine a month. Oh, that I could manage.
+  - speaker: tech
+    text: Then it's your choice. Monthly, all at once, or take some time to think. Whatever feels right to you.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: objections
+priorContext: >-
+  The tech showed Margaret the leak, explained that the 12-year-old tank cannot
+  be repaired, presented three options, and recommended the standard 40-gallon
+  gas heater. The tech then said the total for that option, $1,890, once and
+  clearly. Margaret has been quiet for a few seconds. Financing has not been
+  mentioned yet.
+forcedMoves: [quiet-money-worry]
+customerOpener: Eighteen ninety. Well. Let me see.
+techPrompt: Margaret just heard $1,890. When she hints at a money worry, acknowledge it kindly, then offer the monthly number, $49.
+passCriteria:
+  - Acknowledge her worry kindly before offering anything
+  - Give a specific monthly number for the recommended option, $49 a month
+  - Offer to show the terms in writing and leave the choice to her
+  - Do not lower the price or push for a yes
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Starts in objections so the engine already has $1,890 heard, which is over Margaret's $1,800 ceiling. quiet-money-worry needs priceStated and priceAboveBudget in price or objections.
+    - Margaret's own too-expensive (chance 0.8) is checked before forced behavior moves, so it may come first. Both lead to the same moment. A gentle question from the tech can bring her fixed-income reveal first instead.
+    - The $49 comes from the scenario's standard option. Each company's financing terms replace it.

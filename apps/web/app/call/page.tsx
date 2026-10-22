@@ -17,6 +17,7 @@ export default async function CallPage({ searchParams }: { searchParams: Promise
       job={one(q.job)}
       retryMove={one(q.retry)}
       tv={one(q.tv) === '1'}
+      exam={one(q.kind) === 'exam'}
     />
   );
 }

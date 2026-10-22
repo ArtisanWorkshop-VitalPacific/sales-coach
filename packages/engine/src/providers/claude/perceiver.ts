@@ -4,7 +4,7 @@ import { z } from 'zod';
 import type { Perceiver, PerceptionInput } from '../../adapters';
 import { type BehaviorId, PERCEPTION_BEHAVIORS, Topic } from '../../schema';
 import type { Perception } from '../../state';
-import { withFastFallback } from './client';
+import { resilient } from './client';
 import type { CallConfig } from './config';
 import { perceiverSystem, perceiverUser } from './prompts';
 
@@ -53,7 +53,7 @@ export class ClaudePerceiver implements Perceiver {
       messages: [{ role: 'user', content: perceiverUser(input) }],
       output_config: { ...(c.effort ? { effort: c.effort } : {}), format: FORMAT },
     };
-    const message = await withFastFallback(params, (p) =>
+    const message = await resilient(params, (p) =>
       this.client.messages.parse(p as unknown as Parameters<Anthropic['messages']['parse']>[0], { signal }),
     );
     const out = (message as unknown as { parsed_output: PerceptionOut | null }).parsed_output;

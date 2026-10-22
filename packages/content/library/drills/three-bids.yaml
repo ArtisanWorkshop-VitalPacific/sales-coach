@@ -1,0 +1,60 @@
+id: three-bids
+version: 1
+order: 8
+title: '"I need three bids"'
+stage: objections
+skill: objections
+durationSec: 180
+why: >-
+  Every tech hears this one: "I always get three bids." Most techs answer in a
+  way that makes the customer want to shop even more. They drop the price to
+  keep the job. They warn that other companies do sloppy work. Or they push for
+  a decision now. Here's what is really going on. Three bids
+  is almost never about the number three. It's about feeling sure the price is
+  fair. Most homeowners don't know what a proper install includes, so they
+  compare totals, and a lower total looks better even when it leaves out things
+  the job requires. So respect the choice. Ask what they want to learn from the
+  other bids. Make your estimate easy to compare: in writing, line by line. If
+  they already have another quote, go through it together, point out anything
+  it doesn't list, and suggest they ask that company. Never criticize the other
+  company. In this drill, Devin has a lower quote and wants one more. Help him
+  compare.
+demo:
+  - speaker: customer
+    text: I appreciate it. But I always get three bids before I do anything like this.
+  - speaker: tech
+    text: That makes sense. Can I ask what you'll be comparing? Mostly the total, or what's included?
+  - speaker: customer
+    text: Mostly the total. The other quote was fourteen fifty. Yours is twenty-one fifty.
+  - speaker: tech
+    text: Let's put them side by side. Mine lists the expansion tank, the permit, and haul-away. Theirs doesn't mention them, so ask them if those are included.
+  - speaker: customer
+    text: Huh. Okay, that's fair. I didn't even think to check that.
+  - speaker: tech
+    text: Here's mine in writing, line by line. Get your third bid, and if you have questions about any of them, call me.
+scenarioId: second-opinion-quote
+personaId: devin-researcher
+startPhase: objections
+priorContext: >-
+  The tech showed Devin the seep and rust at the base of his 10-year-old
+  50-gallon gas tank and explained that it needs to be replaced. The tech
+  recommended the standard 50-gallon option at $2,150, which includes the
+  expansion tank the pressure regulator makes necessary, two seismic straps, a
+  new gas connector, the permit, and haul-away, and handed Devin an itemized
+  estimate. Devin already has a written quote from another company for $1,450
+  that says only "50-gallon gas water heater, installed" and a total. He has
+  not decided anything yet.
+forcedMoves: [need-three-bids]
+customerOpener: Okay. Honestly, this is way more detailed than what the other company sent me.
+techPrompt: Devin is comparing quotes. Ask what he wants to compare, go through the prices line by line, and respect his choice.
+passCriteria:
+  - Ask what he wants to compare or learn from the other bids
+  - Go through both quotes line by line and name the required items the lower one does not list
+  - Do not cut the price, criticize the other company, or push for a decision
+  - Offer your itemized estimate in writing and make it easy to come back
+review:
+  status: draft
+  author: Claude
+  notes:
+    - second-opinion-quote also forces found-it-cheaper, and Devin holds it at 60 against 40 for need-three-bids. He raises the lower quote first, and three bids follows on a later turn. durationSec is 180 to fit both.
+    - The opener only leads in and voices neither objection, so neither repeats.

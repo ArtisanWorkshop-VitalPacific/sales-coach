@@ -1,0 +1,58 @@
+id: the-cheap-fix
+version: 1
+order: 10
+title: '"Just do the cheap fix"'
+stage: objections
+skill: objections
+durationSec: 120
+why: >-
+  This moment comes when the customer says, "Just do the cheapest thing." Most
+  techs get it wrong in one of two ways. Some pitch the bigger option again, or
+  tell a worst-case story to scare the customer off the basic one. Others agree to anything to keep the job, even skipping a code item
+  to hit a number. Here's what is really going on. Choosing the cheapest option
+  is a fair decision, and customers often have reasons they haven't told you.
+  What they want to know is simple: will the cheap option actually work, or will
+  I be paying again next year? So answer that question honestly. If the basic
+  option is safe and does the job, say so, state the trade-off once, and respect
+  the choice. If the shortcut they want isn't safe or isn't to code, say no
+  plainly and give the reason. Then do the basic job well. In this drill, Rick
+  wants the bare minimum. Tell him honestly what that is.
+demo:
+  - speaker: customer
+    text: Look, what's the bare minimum to get them hot water today?
+  - speaker: tech
+    text: The standard one is the bare minimum. A leaking tank can't be repaired, so there's no cheaper fix that's safe.
+  - speaker: customer
+    text: What about the expansion tank? Skip it. My guy never puts those in.
+  - speaker: tech
+    text: I can't skip that one. This house has a pressure regulator, so code requires it, and without it the pressure climbs every time the water heats. Same with the straps and the permit.
+  - speaker: customer
+    text: Alright. So eighteen ninety is as low as it goes.
+  - speaker: tech
+    text: Yes, that's the lowest price for doing it safely. The other option mostly adds a longer warranty. I can have it in today.
+scenarioId: wh-tank-landlord-tenant
+personaId: rick-landlord
+startPhase: objections
+priorContext: >-
+  Rick met the tech at his rental. The tech showed him that the 13-year-old
+  40-gallon gas tank is leaking from the bottom seam and that the old expansion
+  tank is full of water and no longer works. The tech explained that the house
+  has a pressure regulator, so a working expansion tank is required. The tech
+  presented two options with prices, the standard 40-gallon with a 6-year
+  warranty for $1,890 and a 10-year version for $2,490, both installed today
+  from stock on the truck. The tenants have had no hot water since this
+  morning.
+forcedMoves: [just-the-cheap-fix]
+customerOpener: Alright. Two options. My tenant's been texting me every ten minutes.
+techPrompt: Ask Rick which option he wants. When he asks for the bare minimum, tell him honestly what is safe and what is required.
+passCriteria:
+  - Say plainly that the standard option is the lowest-cost safe fix, and why
+  - Name the required items (expansion tank, two straps, permit) and do not agree to skip them
+  - State the trade-off once, without pushing the 10-year option or using scare talk
+  - Respect his choice and offer the earliest install
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The tech's decision ask brings just-the-cheap-fix first. $1,890 is over Rick's $1,300 ceiling, so the engine voices his first price-group objection. If the tech does not ask, the scenario's forced handyman-can-do-it (55) fires first and the cheap fix follows.
+    - In this scenario the cheapest option is already the recommended one, so the honest answer is that there is no cheaper safe fix. The test is refusing to skip the code items.

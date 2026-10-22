@@ -22,6 +22,7 @@ interface Props {
   job?: string;
   retryMove?: string;
   tv?: boolean;
+  exam?: boolean;
 }
 
 function useRequest(p: Props, profileCompany: string): { request: SpecRequest | null; error?: string } {
@@ -46,12 +47,13 @@ function useRequest(p: Props, profileCompany: string): { request: SpecRequest | 
           scenarioId: p.scenarioId,
           companyId: company,
           difficulty: p.difficulty,
+          ...(p.exam ? { kind: 'exam' as const } : {}),
           ...(p.retryMove ? { forcedMoves: [p.retryMove] } : {}),
         },
       };
     }
     return { request: null, error: 'That practice call was not found.' };
-  }, [p.companyId, p.drillId, p.job, p.retryMove, p.scenarioId, p.difficulty, profileCompany]);
+  }, [p.companyId, p.drillId, p.job, p.retryMove, p.scenarioId, p.difficulty, p.exam, profileCompany]);
 }
 
 export function CallScreen(props: Props) {

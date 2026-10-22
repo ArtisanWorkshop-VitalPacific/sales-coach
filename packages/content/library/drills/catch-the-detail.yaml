@@ -1,0 +1,55 @@
+id: catch-the-detail
+version: 1
+order: 20
+title: Catching and using a dropped detail
+stage: discovery
+skill: listening
+durationSec: 180
+why: >-
+  This moment is easy to miss. While you're working, the customer mentions
+  something in passing. A pet. A grown kid who lives out of town. A trip coming
+  up. Most techs nod and keep going, and twenty minutes later they give the same
+  presentation they give everyone. Here's why those details matter. They're what
+  the customer actually cares about, and most people won't say them twice. When
+  you bring one back later, the customer knows you were listening to them, not
+  just looking at the equipment. That does more for trust than anything you can
+  say about yourself. So when a customer mentions a person, a pet, a plan, or a
+  worry, respond briefly and remember it. Then use it later where it fits: in
+  how you work, in a question, or in your recommendation. Keep the door closed
+  so the cat stays in. Offer to send the options to the son. In this drill,
+  Margaret will mention two things in passing. Catch one and use it.
+demo:
+  - speaker: tech
+    text: Before I look at the heater, tell me a little about the house. Who lives here with you?
+  - speaker: customer
+    text: Oh, just me and Biscuit, my cat. She's hiding somewhere. She doesn't like strangers.
+  - speaker: tech
+    text: I'll keep an eye out for her. Does anyone help you with house things like this?
+  - speaker: customer
+    text: My son Kevin, when he can. But he's up in Bakersfield, and I hate to bother him.
+  - speaker: tech
+    text: Then when I write up your options, I can email a copy to Kevin so he can look it over. And I'll keep the garage door shut so Biscuit can't get out.
+  - speaker: customer
+    text: Oh, would you? That's very thoughtful of you. Thank you.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: discovery
+priorContext: >-
+  The tech has just introduced themselves at the front door and explained how
+  the visit will go. Margaret is leading the tech through the house toward the
+  garage. Her gray cat, Biscuit, slipped out of the bedroom when the doorbell
+  rang and is hiding somewhere nearby. This morning Margaret mentioned the hot
+  water problem to her son Kevin on the phone. He lives two hours away in
+  Bakersfield, and she does not like to bother him with house problems.
+forcedMoves: []
+techPrompt: Ask about Margaret and her home. When she mentions something personal, remember it and use it before the drill ends.
+passCriteria:
+  - Ask at least two open questions about Margaret, not only the heater
+  - Respond briefly when she mentions Biscuit or Kevin
+  - Later, use one of those details in how you work, a question, or a recommendation
+review:
+  status: draft
+  author: Claude
+  notes:
+    - No customerOpener, so the tech speaks first. The persona reveals Biscuit after the first tech turn and Kevin on household or budget topics.
+    - The priorContext puts both details in front of the customer model, so they come up even if the tech asks few questions.

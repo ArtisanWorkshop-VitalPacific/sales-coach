@@ -1,0 +1,59 @@
+id: correct-without-condescending
+version: 1
+order: 16
+title: Correcting misplaced confidence
+stage: objections
+skill: objections
+durationSec: 150
+why: >-
+  This moment comes when a customer is confident about something that's wrong
+  for their house. Usually it came from a video. Most techs handle it badly in
+  one of two ways. Some make the customer feel foolish: "You can't believe
+  everything on the internet." Others go
+  along with it to avoid an argument, and the customer makes a big decision on
+  bad information. Here's what is really going on. The customer did that
+  research so they wouldn't get overcharged. Sounding confident is how they
+  protect themselves when they don't know the trade. And most of what they found
+  is partly right. So start with what they got right. Then correct the part that
+  doesn't fit their house, in plain words, with a fact they can see or check,
+  like the size of the gas line. Keep your honest recommendation. If they still
+  want the other choice after hearing the facts, respect it. In this drill,
+  Devin has watched videos about tankless. Correct him respectfully.
+demo:
+  - speaker: customer
+    text: Basically every video I watched said tankless pays for itself in like two years.
+  - speaker: tech
+    text: They're right that tankless uses less gas. That part's real. For two people, though, the savings are small, so it takes a lot longer than two years to make back the extra cost.
+  - speaker: customer
+    text: Okay, but it runs on my existing gas line, right?
+  - speaker: tech
+    text: Good question. Not this one. Your line is half an inch, sized for a tank, and tankless needs a bigger line from the meter. I can show you.
+  - speaker: customer
+    text: Huh. None of the videos mentioned that part.
+  - speaker: tech
+    text: Most don't. I'd still recommend the tank for your house. But if you want tankless, I'll price it the right way, with everything it needs.
+scenarioId: wh-tankless-upgrade-question
+personaId: devin-researcher
+startPhase: findings
+priorContext: >-
+  The tech found rust at the base and a slow seep on Devin's 11-year-old
+  50-gallon gas tank and explained that it is at the end of its life and should
+  be replaced. Devin and his fiancée Nora have never run out of hot water with
+  it. The tech also noticed that the gas line to the heater is 1/2 inch and that
+  there is white scale on the fittings from hard water. Devin has watched
+  several videos about tankless water heaters and is excited about them. The
+  tech has not presented options yet.
+forcedMoves: [watched-a-video]
+customerOpener: Okay, so it needs replacing. Honestly, I figured. I've been reading up on tankless.
+techPrompt: Devin repeats something he learned online. Say what he got right, correct the rest with facts about his house, and keep your recommendation.
+passCriteria:
+  - Say what his claim gets right before you correct it
+  - Correct the wrong part in plain words, with a fact about this house
+  - Keep the honest recommendation without mocking the video or giving in
+  - Treat tankless as a fair choice if he still wants it after the facts
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The scenario also forces watched-a-video, so the two lists merge into one move. It fires on the first customer turn in findings, because none of Devin's objections are due before options or price.
+    - The demo gives no payback number, matching the scenario, which leaves payback unquantified on purpose.

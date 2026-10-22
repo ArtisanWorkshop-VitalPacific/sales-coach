@@ -155,10 +155,19 @@ export default function TeamPage() {
   const [assignments, assign] = useAssignments();
   const all = sessions ?? [];
   const index = contentIndex();
-  const skills = index.rubric.skills;
-  const skillNames = useMemo(() => new Map(skills.map((s) => [s.id, s.name] as const)), [skills]);
+  const rubricSkills = index.rubric.skills;
+  const skillNames = useMemo(() => new Map(rubricSkills.map((s) => [s.id, s.name] as const)), [rubricSkills]);
+  /** Header columns in SKILL_ORDER so they always line up with the cells. */
+  const skills = useMemo(
+    () =>
+      SKILL_ORDER.map((id) => {
+        const s = rubricSkills.find((x) => x.id === id);
+        return { id, name: s?.name ?? humanize(id), description: s?.description ?? '' };
+      }),
+    [rubricSkills],
+  );
 
-  const you = useMemo(() => youRow(all, profile.name ? `${profile.name} · real calls` : 'Real calls from this device'), [all, profile.name]);
+  const you = useMemo(() => youRow(all, profile.name ? `${profile.name} · your real scores` : 'Your real scores'), [all, profile.name]);
   const sampleRows: Row[] = useMemo(
     () =>
       SAMPLE_TEAM.map((t) => ({

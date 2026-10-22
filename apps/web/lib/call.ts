@@ -72,6 +72,9 @@ export class CallController {
   private ended = false;
   private interruptedCustomer = false;
   private disposed = false;
+  /** The browser refused to listen without a tap (iOS). Hands-free resumes after one tap. */
+  private needsTap = false;
+  private degradedNotice = false;
 
   constructor(private opts: CallOptions) {
     const settings = readSettings();
@@ -86,7 +89,14 @@ export class CallController {
       onSpeechStart: () => this.onSpeechStart(),
       onInterim: (t) => this.set({ interim: t }),
       onUtterance: (u) => void this.onUtterance(u),
-      onError: (m) => this.set({ notice: m, micAvailable: false }),
+      onError: (m, code) => {
+        if (code === 'unsupported') this.set({ notice: m, micAvailable: false });
+        else {
+          // Phones often need a tap before they let a page listen. Keep the mic, ask for a tap.
+          this.needsTap = true;
+          this.set({ notice: m });
+        }
+      },
       onState: (on) => this.set({ micOn: on }),
     });
     this.rec.endpointMs = settings.endpointMs;
@@ -129,6 +139,11 @@ export class CallController {
     if (this.state.status !== 'ready') return;
     this.speaker.unlock();
     unlockSfx();
+    // Ask for the microphone inside the tap, which phones require.
+    navigator.mediaDevices
+      ?.getUserMedia?.({ audio: true })
+      .then((stream) => stream.getTracks().forEach((t) => t.stop()))
+      .catch(() => {});
     this.t0 = performance.now();
     this.set({ status: 'connecting', startedAt: Date.now() });
     try {
@@ -158,8 +173,13 @@ export class CallController {
   /** Push-to-talk and mic toggle. */
   toggleMic() {
     if (this.busy || this.ended) return;
-    if (this.rec.listening) this.rec.commitNow();
-    else this.rec.start();
+    if (this.rec.listening) {
+      if (this.rec.partialText) this.rec.commitNow();
+      return;
+    }
+    this.needsTap = false;
+    this.set({ notice: undefined });
+    this.rec.start();
   }
 
   /** Talk over the customer. */
@@ -206,6 +226,14 @@ export class CallController {
     const delay = this.state.mode === 'brain' ? Math.min(turn.delayMs, 350) : Math.min(turn.delayMs, 1600);
     if (delay > 0) await sleep(delay);
     if (this.ended) return;
+    if (turn.degraded) {
+      console.warn('[sales-coach] backup answered this turn:', turn.degraded.stage, turn.degraded.reason);
+      this.degradedNotice = true;
+      this.set({ notice: 'Claude missed that turn, so a backup line played. If this keeps happening, check the Claude key and credits.' });
+    } else if (this.degradedNotice) {
+      this.degradedNotice = false;
+      this.set({ notice: undefined });
+    }
     if (turn.text.trim()) {
       this.caption({
         who: turn.speaker === 'secondary' ? 'secondary' : 'customer',
@@ -234,7 +262,7 @@ export class CallController {
     this.inHold = true;
     this.holdStart = performance.now();
     this.set({ status: 'hold', holdKind: turn.holdKind ?? 'think' });
-    if (readSettings().inputMode === 'hands-free') this.rec.start();
+    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable && !this.needsTap) this.rec.start();
     this.holdTimer = window.setTimeout(async () => {
       this.holdTimer = null;
       if (this.rec.speaking || this.busy || this.ended) return;
@@ -257,7 +285,7 @@ export class CallController {
   private listen() {
     if (this.ended) return;
     this.set({ status: 'listening', holdKind: undefined });
-    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable) this.rec.start();
+    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable && !this.needsTap) this.rec.start();
   }
 
   private onSpeechStart() {

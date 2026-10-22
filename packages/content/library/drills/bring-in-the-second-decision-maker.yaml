@@ -1,0 +1,58 @@
+id: bring-in-the-second-decision-maker
+version: 1
+order: 18
+title: Bringing in the second decision-maker
+stage: recovery
+skill: close
+durationSec: 120
+why: >-
+  This moment happens when the other decision-maker walks in partway through.
+  Most techs make one of three mistakes. They nod at the new person and keep
+  talking to the first one. They start over and repeat everything at full
+  length. Or they ask for a decision before the new person knows what's going
+  on. Here's what is really happening. The person who just walked in often has
+  an equal say, and they heard none of your explanation. If they aren't caught
+  up, the answer at the end will be, "We need to talk about it." They also
+  notice right away whether you're talking to them or only to their partner. So
+  stop and greet them by name. Give a short recap in plain words: what you
+  found, the options, and what you recommend and why. Keep it to three or four
+  sentences. Then ask what matters to them. In this drill, you're going over
+  options with Carlos when Elena walks in. Catch her up.
+demo:
+  - speaker: customer
+    text: Hi, sorry, I was getting the kids out the door. What did you find?
+  - speaker: tech
+    text: Hi, you must be Elena. I'm Chris. Here's the short version. Your tank is leaking and has to be replaced, and it's too small for five people. That's why you run out in the mornings.
+  - speaker: customer
+    text: Okay. That explains a lot. Mornings are a nightmare around here.
+  - speaker: tech
+    text: There are three ways to fix it, and I'm recommending the fifty-gallon. It stops the running out for about half the cost of tankless. What matters most to you in this?
+  - speaker: customer
+    text: Honestly? I just want it fixed once, so we're not doing this again.
+  - speaker: tech
+    text: That's fair. Let me show you both how long each option should last.
+scenarioId: tank-vs-tankless-family
+personaId: ruiz-couple
+startPhase: options
+priorContext: >-
+  The tech found that the 11-year-old 40-gallon tank is leaking at the base and
+  cannot be repaired, and that 40 gallons is too small for a family of five,
+  which is why the hot water runs out in the mornings. The tech showed Carlos
+  the leak in the garage and is now going over three options with him, the same
+  40-gallon size, a 50-gallon high-recovery tank, and tankless. No prices have
+  been given yet. Elena has been inside getting the kids out the door and has
+  heard none of this.
+forcedMoves: [spouse-walks-in]
+customerOpener: Okay. So the fifty-gallon one, that's enough for all five of us?
+techPrompt: When Elena walks in, stop. Greet her, catch her up in a few sentences, and ask what matters to her.
+passCriteria:
+  - Stop and greet Elena by name when she walks in
+  - Recap what you found and the options in three or four plain sentences
+  - Ask what matters to her or what questions she has
+  - Do not ask for a decision before she is caught up
+review:
+  status: draft
+  author: Claude
+  notes:
+    - spouse-walks-in fires on the first customer turn. In options none of Carlos's objections are due yet, because they all need a stated price or a decision ask.
+    - tank-vs-tankless-family also forces brother-in-law-plumber. It stays quiet until the tech states a price, then fires on the next turn. That is realistic, since Elena is tired of Tony's fixes, but it pulls focus. Recommend removing it from the scenario's forced list.

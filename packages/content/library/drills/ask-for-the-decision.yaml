@@ -1,0 +1,54 @@
+id: ask-for-the-decision
+version: 1
+order: 14
+title: Asking for the decision
+stage: close
+skill: close
+durationSec: 120
+why: >-
+  This is the moment you ask the customer to decide. A lot of techs never
+  actually ask. They finish explaining and stand there, or they say, "Let me
+  know what you think," and start packing up. The customer is left to bring it
+  up, and most won't. Other techs ask in a way that pushes, like "So we're good
+  to go, right?" Or they ask three times in a row. Here's what the customer
+  needs. Many are waiting for you to ask, because a clear question is easier to answer than a long silence. If you
+  never ask, they wonder whether you believe your own recommendation. So recap
+  first, in two or three sentences: what you found, what you recommend, and why
+  it fits them. Then ask one clear question, and stop talking. Whatever they say
+  tells you what to do next. Don't ask again unless something new has come up.
+  In this drill, Margaret is out of questions. Recap and ask.
+demo:
+  - speaker: customer
+    text: Well, I think that answers all my questions. You've been very patient with me.
+  - speaker: tech
+    text: I'm glad. So, to recap. Your tank is leaking and can't be repaired, and the standard heater fits how you live. It's eighteen ninety, everything included.
+  - speaker: customer
+    text: Yes. That all makes sense to me.
+  - speaker: tech
+    text: Would you like me to go ahead with the standard heater?
+  - speaker: customer
+    text: (pauses) Well... yes. I think that's the right thing. When could you do it?
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: close
+priorContext: >-
+  The tech showed Margaret the leak, explained that the 12-year-old tank cannot
+  be repaired, presented three options, and recommended the standard 40-gallon
+  gas heater with a 6-year warranty. The tech said the total, $1,890, which
+  includes the expansion tank, two seismic straps, the permit, and haul-away.
+  Margaret asked what the expansion tank is for and how long the install takes,
+  and the tech answered both. She has no more questions. The tech has not asked
+  her to decide yet.
+forcedMoves: []
+customerOpener: Well, I think that answers all my questions. You've been very patient with me.
+techPrompt: Margaret has no more questions. Recap what you found and what you recommend, then ask her one clear question.
+passCriteria:
+  - Recap the finding, your recommendation, and why it fits her in a few sentences
+  - Ask one clear question she can answer yes or no
+  - Stop talking after the question and let her answer
+  - Respond to her answer without asking again or adding pressure
+review:
+  status: draft
+  author: Claude
+  notes:
+    - At close the engine holds $1,890 against Margaret's $1,800 ceiling with no monthly number framed, so a first ask usually brings too-expensive. That tests the last criterion. The demo shows the yes a strong recap can earn once money is settled.

@@ -261,9 +261,7 @@ function OwnerReview({ c }: { c: Company }) {
         <p className="t-callout flex items-center gap-2 font-semibold text-caution">
           <Info size={16} /> Owner review
         </p>
-        <Chip tone={c.review.status === 'approved' ? 'positive' : 'caution'} className="bg-surface">
-          {status}
-        </Chip>
+        <Chip className={cn('bg-surface', c.review.status === 'approved' ? 'text-positive' : 'text-caution')}>{status}</Chip>
       </div>
       <p className="t-body mt-3 text-ink">
         {fictional
@@ -462,6 +460,7 @@ function MoveRow({ m }: { m: Move }) {
           <p className="t-callout text-ink-3">{m.summary}</p>
         </div>
         <span className="flex shrink-0 items-center gap-3 pt-2" title={`Shows up from difficulty ${m.difficultyMin}`}>
+          <span className="t-caption hidden tabular-nums text-ink-4 sm:inline">Level {m.difficultyMin}+</span>
           <Difficulty level={m.difficultyMin} />
           <ChevronDown size={16} className={cn('text-ink-4 transition-transform', open && 'rotate-180')} />
         </span>
