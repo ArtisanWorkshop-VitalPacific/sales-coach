@@ -121,7 +121,7 @@ hidden:
         A strong tech sets a frame that fits her two o'clock call and gets to a
         clear recommendation before then, instead of a long walkthrough.
     - id: dan-tried-first
-      text: Dan usually fixes this stuff. He already tried twice and it didn't hold.
+      text: Dan usually fixes this stuff. He ran a snake through it this summer and it came right back.
       revealWhen:
         topics: [previous-work, history]
       useValue: >-

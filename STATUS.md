@@ -92,7 +92,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 
 ## Content notes from the overnight review
 
-- Jen's persona says Dan tried to fix the drain twice, which conflicts with the drain-kitchen-recurring scenario. Pick one.
+- Fixed overnight: Jen's persona and the drain-kitchen-recurring scenario disagreed about who tried to clear the drain. Dan now ran the store-bought snake, which matches both.
 - hard-water-softener recommends the $2,350 softener over the $285 descale. Lower the tested hardness if descale-only should win.
 - Code rules cited in scenarios need a licensed eye: the 80 psi regulator rule, 2-inch shower drains, anti-scald valves, expansion tanks.
 - Remodel prices are estimates (no public range). The slab leak scenario does not price the leak detection visit.

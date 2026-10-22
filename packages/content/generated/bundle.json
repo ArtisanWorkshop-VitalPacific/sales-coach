@@ -1,7 +1,7 @@
 {
- "version": "0.1.0+7a9d4af5ae2e",
- "hash": "7a9d4af5ae2e",
- "builtAt": "2026-10-22T09:15:31.522Z",
+ "version": "0.1.0+f8c7dc1f2365",
+ "hash": "f8c7dc1f2365",
+ "builtAt": "2026-10-22T09:30:59.736Z",
  "personas": [
   {
    "id": "brian-today",
@@ -723,7 +723,7 @@
      },
      {
       "id": "dan-tried-first",
-      "text": "Dan usually fixes this stuff. He already tried twice and it didn't hold.",
+      "text": "Dan usually fixes this stuff. He ran a snake through it this summer and it came right back.",
       "revealWhen": {
        "topics": [
         "previous-work",
