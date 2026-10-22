@@ -92,7 +92,10 @@ export async function GET(req: Request) {
     if (res.status === 401 || res.status === 402 || res.status === 429) break;
     if (
       !swappedVoice &&
-      (res.status === 404 || /voice[_ ]?not[_ ]?found|voice.{0,20}(does not exist|not available)|invalid voice/i.test(detail))
+      (res.status === 404 ||
+        /voice[_ ]?not[_ ]?found|voice.{0,20}(does not exist|not available)|invalid voice/i.test(
+          detail,
+        ))
     ) {
       const sub = await substituteFor(voice, key, gender);
       if (sub) {
