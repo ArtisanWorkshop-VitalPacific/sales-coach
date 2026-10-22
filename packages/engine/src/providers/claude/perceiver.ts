@@ -13,14 +13,12 @@ import { perceiverSystem, perceiverUser } from './prompts';
 const BEHAVIOR_SET = new Set<string>(PERCEPTION_BEHAVIORS);
 const TOPIC_SET = new Set<string>(Topic.options);
 
+// Kept small on purpose: every output token is time the customer spends not answering.
 const PerceptionOut = z.object({
-  summary: z.string().describe('One short sentence: what the technician just did.'),
-  behaviors: z.array(
-    z.object({
-      id: z.string().describe('A behavior id from the definitions in the system prompt.'),
-      evidence: z.string(),
-    }),
-  ),
+  summary: z.string().describe('Under ten words: what the technician just did.'),
+  behaviors: z
+    .array(z.string())
+    .describe('Behavior ids from the definitions in the system prompt, nothing else.'),
   addressed: z.array(
     z.object({ concernId: z.string(), quality: z.string().describe('partial or full') }),
   ),
@@ -79,11 +77,11 @@ export function toPerception(out: PerceptionOut, input: PerceptionInput): Percep
   const factIds = new Set(input.revealedFacts.map((f) => f.id));
   const seen = new Set<string>();
   const behaviors: Perception['behaviors'] = [];
-  for (const b of out.behaviors) {
-    const id = b.id.trim();
+  for (const b of out.behaviors as (string | { id?: string })[]) {
+    const id = (typeof b === 'string' ? b : (b?.id ?? '')).trim();
     if (!BEHAVIOR_SET.has(id) || seen.has(id)) continue;
     seen.add(id);
-    behaviors.push({ id: id as BehaviorId, evidence: b.evidence });
+    behaviors.push({ id: id as BehaviorId, evidence: '' });
   }
   const addressed = new Map<string, 'partial' | 'full'>();
   for (const a of out.addressed) {

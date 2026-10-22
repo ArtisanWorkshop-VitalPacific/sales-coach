@@ -43,14 +43,26 @@ const DEFAULT_VOICES = {
 type ProcData = { vad?: VAD };
 
 /** Claude when a key is present; otherwise the scripted engine, so a call never goes silent. */
-async function adapters(): Promise<{ perceiver: Perceiver; writer: LineWriter }> {
+async function adapters(): Promise<{
+  perceiver: Perceiver;
+  writer: LineWriter;
+  perceiveBudgetMs?: number;
+}> {
   if (!process.env.ANTHROPIC_API_KEY) {
     console.warn('[agent] ANTHROPIC_API_KEY is not set. Using the scripted customer.');
     return { perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter() };
   }
-  const { claudeAdapters, presetFromEnv } = await import('@sales-coach/engine/claude');
-  const claude = claudeAdapters({ preset: presetFromEnv(process.env.CLAUDE_PRESET) });
-  return { perceiver: claude.perceiver, writer: claude.writer };
+  const { claudeAdapters, presetFromEnv, PERCEIVE_BUDGET_MS } = await import(
+    '@sales-coach/engine/claude'
+  );
+  const claude = claudeAdapters({
+    preset: presetFromEnv(process.env.SALES_COACH_PRESET ?? process.env.CLAUDE_PRESET),
+  });
+  return {
+    perceiver: claude.perceiver,
+    writer: claude.writer,
+    perceiveBudgetMs: PERCEIVE_BUDGET_MS,
+  };
 }
 
 export default defineAgent({

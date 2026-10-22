@@ -4,7 +4,7 @@ import type { TranscriptTurn } from '../../record';
 import { BEHAVIORS, PERCEPTION_BEHAVIORS } from '../../schema';
 
 /** Bump when prompts change; recorded on every session for regression tracking. */
-export const PROMPT_VERSION = '2026-10-22.1';
+export const PROMPT_VERSION = '2026-10-22.2';
 
 const KNOWLEDGE: Record<string, string> = {
   low: 'Very little. You do not know trade terms and you feel a bit lost when people use them.',
@@ -38,7 +38,7 @@ export function perceiverSystem(): string {
   const defs = PERCEPTION_BEHAVIORS.map((id) => `- ${id}: ${BEHAVIORS[id].definition}`).join('\n');
   return `You are the perception layer of a sales practice simulator for home service technicians. A real technician is talking out loud with a simulated homeowner. Read the technician's latest utterance and report, precisely and literally, what they did. You never write dialogue.
 
-Report only behaviors that clearly happened in the LATEST technician utterance. When unsure, leave it out. For each behavior, quote a few words from the utterance as evidence.
+Report only behaviors that clearly happened in the LATEST technician utterance. When unsure, leave it out. List behavior ids only and keep the summary under ten words. Be brief: a live call waits on this.
 
 Behavior definitions:
 ${defs}

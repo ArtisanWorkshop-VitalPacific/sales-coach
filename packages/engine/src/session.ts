@@ -24,6 +24,7 @@ import {
   type CustomerState,
   emptyPerception,
   initState,
+  type ObjectionInstance,
   type Perception,
 } from './state';
 import { createRng, newId, type Rng, wordCount } from './util';
@@ -74,6 +75,11 @@ export interface SessionOptions {
   now?: () => number;
   /** Called with the directive as soon as it is decided, before the line is written. */
   onDirective?: (d: TurnDirective) => void;
+  /**
+   * Live calls: if the perceiver has not answered in this many milliseconds, the built-in rules
+   * read the turn instead, so one slow request never leaves the customer silent.
+   */
+  perceiveBudgetMs?: number;
 }
 
 /**
@@ -91,6 +97,7 @@ export class CustomerSession {
   private readonly fallbackWriter: ScriptedWriter;
   private readonly now: () => number;
   private readonly onDirective?: (d: TurnDirective) => void;
+  private readonly perceiveBudgetMs?: number;
   private rng: Rng;
   private t0: number;
   private request: SpecRequest & { seed: number };
@@ -112,6 +119,7 @@ export class CustomerSession {
     this.writer = opts.writer;
     this.now = opts.now ?? (() => Date.now());
     this.onDirective = opts.onDirective;
+    this.perceiveBudgetMs = opts.perceiveBudgetMs;
     const seed = restore?.request.seed ?? request.seed ?? Math.floor(Math.random() * 2 ** 31);
     this.request = restore?.request ?? { ...request, seed };
     this.spec = buildSessionSpec(this.index, this.request);
@@ -238,11 +246,17 @@ export class CustomerSession {
       if (!perception.behaviors.some((x) => x.id === b))
         perception.behaviors.push({ id: b, evidence: '(timing)' });
     }
+    const latent = new Set(
+      this.state.objections.filter((o) => o.status === 'latent').map((o) => o.moveId),
+    );
     applyPerception(this.state, perception, this.spec, this.index);
     techTurn.behaviors = perception.behaviors.map((b) => b.id);
     this.transcript.push(techTurn);
     this.perceptions.push({ turnId: techTurn.id, perception });
     this.judgeMoves(perception);
+    for (const o of this.state.objections) {
+      if (latent.has(o.moveId) && o.status === 'resolved') this.recordAnsweredEarly(o, techTurn.id);
+    }
     this.pushTimeline();
 
     const d = decideNext(this.ctx(perception));
@@ -432,8 +446,27 @@ export class CustomerSession {
   private async perceive(text: string): Promise<Perception> {
     const input = this.perceptionInput(text);
     if (!text) return emptyPerception();
+    const budget = this.perceiveBudgetMs;
+    const abort = budget ? new AbortController() : undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
     try {
-      return await this.perceiver.perceive(input);
+      const run = this.perceiver.perceive(input, abort?.signal);
+      if (!budget) return await run;
+      const late = new Promise<null>((resolve) => {
+        timer = setTimeout(() => resolve(null), budget);
+      });
+      const first = await Promise.race([run, late]);
+      if (first) return first;
+      // Over budget: the rules read this turn so the customer answers on time. Not a failure,
+      // so no notice; the record shows it in the perception summary.
+      abort?.abort();
+      run.catch(() => undefined);
+      console.warn(
+        `[sales-coach] perceiver ${this.perceiver.name} took over ${budget}ms; rules read this turn`,
+      );
+      const p = await this.fallbackPerceiver.perceive(input);
+      p.summary = `(rules, over ${budget}ms) ${p.summary}`;
+      return p;
     } catch (e) {
       console.warn(
         `[sales-coach] perceiver ${this.perceiver.name} failed, using heuristic:`,
@@ -441,6 +474,8 @@ export class CustomerSession {
       );
       this.degraded = { stage: 'listen', reason: (e as Error).message.slice(0, 200) };
       return this.fallbackPerceiver.perceive(input);
+    } finally {
+      if (timer) clearTimeout(timer);
     }
   }
 
@@ -545,6 +580,23 @@ export class CustomerSession {
       techTurnsSeen: 0,
       behaviorsAfter: [],
       addressed: false,
+    });
+  }
+
+  /** Credit for settling an objection before the customer raised it. */
+  private recordAnsweredEarly(o: ObjectionInstance, turnId: string) {
+    const move = this.index.move(o.moveId);
+    if (!move) return;
+    this.moves.push({
+      moveId: o.moveId,
+      kind: move.kind,
+      turnId,
+      firedAtMs: this.elapsedMs,
+      result: 'pass',
+      techTurnsSeen: 0,
+      behaviorsAfter: [],
+      addressed: true,
+      reason: 'Answered before the customer brought it up.',
     });
   }
 

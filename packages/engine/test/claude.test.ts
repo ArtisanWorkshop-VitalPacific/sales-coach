@@ -46,10 +46,7 @@ describe('Claude adapters (offline, faked client)', () => {
   it('perceiver sends structured output request and keeps only valid ids', async () => {
     const { client, calls } = fakeClient({
       summary: 'Stated the price.',
-      behaviors: [
-        { id: 'stated_price', evidence: '$1,890' },
-        { id: 'stated_price', evidence: 'dupe' },
-      ],
+      behaviors: ['stated_price', 'stated_price', 'not_a_behavior'],
       addressed: [
         { concernId: 'real', quality: 'partial' },
         { concernId: 'not-a-concern', quality: 'full' },

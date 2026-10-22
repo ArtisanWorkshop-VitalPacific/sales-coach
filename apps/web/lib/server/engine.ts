@@ -5,7 +5,12 @@ import {
   type Perceiver,
   ScriptedWriter,
 } from '@sales-coach/engine';
-import { ClaudeCoach, claudeAdapters, presetFromEnv } from '@sales-coach/engine/claude';
+import {
+  ClaudeCoach,
+  claudeAdapters,
+  PERCEIVE_BUDGET_MS,
+  presetFromEnv,
+} from '@sales-coach/engine/claude';
 import { contentIndex } from '../content';
 
 type Adapters = {
@@ -40,7 +45,13 @@ export function serverAdapters(seed = 1): Adapters {
 
 export function sessionOptions(seed?: number) {
   const a = serverAdapters(seed);
-  return { index: contentIndex(), perceiver: a.perceiver, writer: a.writer };
+  const claude = !(a.perceiver instanceof HeuristicPerceiver);
+  return {
+    index: contentIndex(),
+    perceiver: a.perceiver,
+    writer: a.writer,
+    perceiveBudgetMs: claude ? PERCEIVE_BUDGET_MS : undefined,
+  };
 }
 
 export { CustomerSession };

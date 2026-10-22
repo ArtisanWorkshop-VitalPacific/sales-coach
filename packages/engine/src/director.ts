@@ -225,6 +225,7 @@ function voiceObjection(
   const m = ctx.index.move(o.moveId);
   if (!m) return null;
   const pressing = o.status !== 'latent';
+  const followingUp = !pressing && o.preemptedTurn !== undefined;
   o.status = 'voiced';
   o.timesRaised += 1;
   o.voicedTurn = o.voicedTurn ?? ctx.state.turn;
@@ -238,7 +239,15 @@ function voiceObjection(
     ctx.state.phase = 'objections';
   }
   const d = fromMove(ctx.spec, m, why);
-  if (pressing && m.delivery.followUps.length > 0) {
+  if (followingUp) {
+    // The tech already spoke to this. A real customer follows up on what was said; she does
+    // not raise it as if she never heard it.
+    const worry = m.resolution?.concern ?? m.summary;
+    d.intent = `The tech already brought this up before you could. Respond to what they actually said: acknowledge it in a few words, then ask about the part that still bothers you. Do not repeat anything they already answered. The worry behind it: ${worry}`;
+    d.tone = 'guarded';
+    if (m.delivery.followUps.length > 0) d.scriptedLines = m.delivery.followUps;
+    d.why = `${why} (follow-up: the tech answered it early)`;
+  } else if (pressing && m.delivery.followUps.length > 0) {
     d.intent = `You raised this already and the answer did not settle it. Press on it again in different words. ${m.delivery.intent}`;
     d.scriptedLines = m.delivery.followUps;
   }

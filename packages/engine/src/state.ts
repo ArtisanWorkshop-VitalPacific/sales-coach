@@ -18,6 +18,8 @@ export interface ObjectionInstance {
   status: 'latent' | 'voiced' | 'answered' | 'resolved';
   voicedTurn?: number;
   answeredTurn?: number;
+  /** The tech answered this before the customer raised it. */
+  preemptedTurn?: number;
   timesRaised: number;
 }
 
@@ -277,7 +279,19 @@ export function applyPerception(
       continue;
     }
     const o = s.objections.find((x) => x.moveId === a.concernId);
-    if (!o || o.status === 'latent' || o.status === 'resolved') continue;
+    if (!o || o.status === 'resolved') continue;
+    if (o.status === 'latent') {
+      // Answered before she raised it. A full answer settles it. A forced objection (a drill's
+      // target, a scenario's must-have) still comes up, as a follow-up to what the tech said.
+      o.strength = clamp(o.strength - (a.quality === 'full' ? 45 : 20));
+      o.preemptedTurn ??= s.turn;
+      if (o.strength <= 20 && !spec.forcedMoves.includes(o.moveId)) o.status = 'resolved';
+      s.progressSinceLastAsk = true;
+      notes.push(
+        `${o.moveId} answered before it came up (${o.status === 'resolved' ? 'settled' : Math.round(o.strength)}).`,
+      );
+      continue;
+    }
     o.strength = clamp(o.strength - (a.quality === 'full' ? 45 : 20));
     o.answeredTurn = s.turn;
     o.status = o.strength <= 20 ? 'resolved' : 'answered';

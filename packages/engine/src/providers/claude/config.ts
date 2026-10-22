@@ -71,6 +71,12 @@ export const PRESETS: Record<ModelPreset, RoleConfig> = {
   },
 };
 
+/**
+ * How long a live turn waits on Claude's read of the tech before the built-in rules take that
+ * turn. A normal read takes about a second; this only catches the rare slow request.
+ */
+export const PERCEIVE_BUDGET_MS = 3000;
+
 export function presetFromEnv(value: string | undefined): ModelPreset {
   return value === 'max' || value === 'economy' ? value : 'standard';
 }

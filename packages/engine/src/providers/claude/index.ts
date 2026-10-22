@@ -10,6 +10,7 @@ export { ClaudeCoach, coachUser, mergeDebrief } from './coach';
 export {
   type CallConfig,
   type ModelPreset,
+  PERCEIVE_BUDGET_MS,
   PRESETS,
   presetFromEnv,
   type RoleConfig,
