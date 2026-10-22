@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "description": "ServiceTitan client: next appointment, job, equipment, membership, estimates, mapped to a first-name-only JobContext.",
-  "exports": { ".": "./src/index.ts" },
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run"

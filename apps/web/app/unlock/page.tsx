@@ -2,7 +2,11 @@ import { UnlockForm } from './form';
 
 export const metadata = { title: 'Unlock' };
 
-export default async function UnlockPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
+export default async function UnlockPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
   const { next } = await searchParams;
   const safe = next?.startsWith('/') && !next.startsWith('//') ? next : '/';
   return (

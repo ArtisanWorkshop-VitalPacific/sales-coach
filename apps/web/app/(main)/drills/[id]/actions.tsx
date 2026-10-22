@@ -16,7 +16,10 @@ export function DrillActions({ drillId, why }: { drillId: string; why: string })
   useEffect(() => () => sp.current?.stop(), []);
   return (
     <div className="mt-6 flex flex-wrap gap-3">
-      <ButtonLink href={`/call?drill=${drillId}&c=${encodeURIComponent(profile.companyId)}`} size="lg">
+      <ButtonLink
+        href={`/call?drill=${drillId}&c=${encodeURIComponent(profile.companyId)}`}
+        size="lg"
+      >
         Start the drill
       </ButtonLink>
       <Button

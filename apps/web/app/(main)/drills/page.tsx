@@ -49,7 +49,10 @@ export default function DrillsPage() {
         }
       />
       <div className="mb-10 h-[6px] w-full overflow-hidden rounded-full bg-surface-3">
-        <div className="h-full rounded-full bg-voice transition-[width] duration-700" style={{ width: `${(passed / Math.max(1, track.length)) * 100}%` }} />
+        <div
+          className="h-full rounded-full bg-voice transition-[width] duration-700"
+          style={{ width: `${(passed / Math.max(1, track.length)) * 100}%` }}
+        />
       </div>
       {stages.map((stage) => (
         <section key={stage} className="mb-10">
@@ -65,7 +68,9 @@ export default function DrillsPage() {
                       <span
                         className={cn(
                           't-callout grid h-9 w-9 shrink-0 place-items-center rounded-full font-semibold tabular-nums',
-                          st === 'passed' ? 'bg-positive-fill text-white' : 'bg-surface-3 text-ink-2',
+                          st === 'passed'
+                            ? 'bg-positive-fill text-white'
+                            : 'bg-surface-3 text-ink-2',
                         )}
                       >
                         {st === 'passed' ? <Check size={17} /> : d.order}
@@ -73,10 +78,15 @@ export default function DrillsPage() {
                       <div className="min-w-0">
                         <p className="t-body font-medium text-ink">{d.title}</p>
                         <p className="t-caption mt-1 text-ink-3">
-                          {Math.max(1, Math.round(d.durationSec / 60))} min{st === 'tried' ? ' · Tried' : ''}
+                          {Math.max(1, Math.round(d.durationSec / 60))} min
+                          {st === 'tried' ? ' · Tried' : ''}
                         </p>
                       </div>
-                      {st === 'tried' && <Chip className="ml-auto" tone="caution">Again</Chip>}
+                      {st === 'tried' && (
+                        <Chip className="ml-auto" tone="caution">
+                          Again
+                        </Chip>
+                      )}
                     </Card>
                   </Link>
                 );

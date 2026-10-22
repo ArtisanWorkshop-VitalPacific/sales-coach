@@ -96,8 +96,12 @@ function load<T>(dir: string, schema: z.ZodType<T>): { data: T; file: string }[]
 /** House style: no em dashes anywhere in copy. */
 function checkStyle(file: string, value: unknown, path: string[] = []): void {
   if (typeof value === 'string') {
-    if (value.includes('—')) err(file, `${path.join('.')}: contains an em dash. Rewrite the sentence.`);
-    if (/\bAI\b|\bassistant\b|\blanguage model\b/i.test(value) && path.some((p) => p === 'lines' || p === 'sampleLines' || p === 'openingLines')) {
+    if (value.includes('—'))
+      err(file, `${path.join('.')}: contains an em dash. Rewrite the sentence.`);
+    if (
+      /\bAI\b|\bassistant\b|\blanguage model\b/i.test(value) &&
+      path.some((p) => p === 'lines' || p === 'sampleLines' || p === 'openingLines')
+    ) {
       err(file, `${path.join('.')}: customer lines must never mention AI or assistants.`);
     }
     return;
@@ -126,9 +130,11 @@ const reg = {
   companies: new Set(registry.companies),
 };
 const objectionGroupOf = new Map<string, string>();
-for (const [group, ids] of Object.entries(registry.objections)) ids.forEach((id) => objectionGroupOf.set(id, group));
+for (const [group, ids] of Object.entries(registry.objections))
+  ids.forEach((id) => objectionGroupOf.set(id, group));
 const behaviorGroupOf = new Map<string, string>();
-for (const [group, ids] of Object.entries(registry.behaviors)) ids.forEach((id) => behaviorGroupOf.set(id, group));
+for (const [group, ids] of Object.entries(registry.behaviors))
+  ids.forEach((id) => behaviorGroupOf.set(id, group));
 const allMoves = new Set([...reg.objections, ...reg.behaviors]);
 
 const want = (dir: string) => !only || dir.startsWith(only);
@@ -153,7 +159,8 @@ const personaRef = (file: string, where: string, id: string) => {
 for (const { data: p, file } of personas) {
   if (!reg.personas.has(p.id)) err(file, `persona "${p.id}" is not in registry.yaml`);
   for (const o of p.hidden.objections) {
-    if (!reg.objections.has(o.moveId)) err(file, `hidden.objections: "${o.moveId}" is not an objection move`);
+    if (!reg.objections.has(o.moveId))
+      err(file, `hidden.objections: "${o.moveId}" is not an objection move`);
   }
   for (const key of Object.keys(p.movePreferences)) moveRef(file, 'movePreferences', key);
   if ((p.hidden.decisionMaker === 'joint' || p.hidden.decisionMaker === 'spouse') && !p.secondary) {
@@ -170,20 +177,28 @@ for (const { data: p, file } of personas) {
 for (const { data: m, file } of [...objections, ...behaviorMoves]) {
   if (!allMoves.has(m.id)) err(file, `move "${m.id}" is not in registry.yaml`);
   if (m.kind === 'objection') {
-    if (!reg.objections.has(m.id)) err(file, 'kind is objection but the id is registered as a behavior move');
-    if (objectionGroupOf.get(m.id) !== m.group) err(file, `group "${m.group}" does not match registry group "${objectionGroupOf.get(m.id)}"`);
+    if (!reg.objections.has(m.id))
+      err(file, 'kind is objection but the id is registered as a behavior move');
+    if (objectionGroupOf.get(m.id) !== m.group)
+      err(file, `group "${m.group}" does not match registry group "${objectionGroupOf.get(m.id)}"`);
     if (!m.resolution) err(file, 'objection moves need a resolution block');
     if (!file.includes('/objections/')) err(file, 'objection moves live in moves/objections/');
   } else {
-    if (!reg.behaviors.has(m.id)) err(file, 'kind is behavior but the id is registered as an objection');
-    if (behaviorGroupOf.get(m.id) !== m.group) err(file, `group "${m.group}" does not match registry group "${behaviorGroupOf.get(m.id)}"`);
+    if (!reg.behaviors.has(m.id))
+      err(file, 'kind is behavior but the id is registered as an objection');
+    if (behaviorGroupOf.get(m.id) !== m.group)
+      err(file, `group "${m.group}" does not match registry group "${behaviorGroupOf.get(m.id)}"`);
     if (!file.includes('/behaviors/')) err(file, 'behavior moves live in moves/behaviors/');
   }
-  if (m.delivery.act === 'silence' && !m.delivery.holdSilenceMs) err(file, 'silence moves need delivery.holdSilenceMs');
-  if (m.delivery.act === 'interrupt' && !m.delivery.interruptAfterMs) err(file, 'interrupt moves need delivery.interruptAfterMs');
+  if (m.delivery.act === 'silence' && !m.delivery.holdSilenceMs)
+    err(file, 'silence moves need delivery.holdSilenceMs');
+  if (m.delivery.act === 'interrupt' && !m.delivery.interruptAfterMs)
+    err(file, 'interrupt moves need delivery.interruptAfterMs');
   if (Array.isArray(m.personas)) m.personas.forEach((id) => personaRef(file, 'personas', id));
-  if (m.trigger.when.objectionAnswered) moveRef(file, 'trigger.when.objectionAnswered', m.trigger.when.objectionAnswered);
-  if (m.delivery.lines.some((l) => l.split(/\s+/).length > 45)) warn(file, 'a delivery line is over 45 words; customers speak in short lines');
+  if (m.trigger.when.objectionAnswered)
+    moveRef(file, 'trigger.when.objectionAnswered', m.trigger.when.objectionAnswered);
+  if (m.delivery.lines.some((l) => l.split(/\s+/).length > 45))
+    warn(file, 'a delivery line is over 45 words; customers speak in short lines');
 }
 
 for (const { data: s, file } of scenarios) {
@@ -193,7 +208,8 @@ for (const { data: s, file } of scenarios) {
   if (s.moves.allowed !== '*') s.moves.allowed.forEach((id) => moveRef(file, 'moves.allowed', id));
   s.moves.forced.forEach((id) => moveRef(file, 'moves.forced', id));
   s.moves.excluded.forEach((id) => moveRef(file, 'moves.excluded', id));
-  if (!s.options.some((o) => o.recommended)) err(file, 'mark the honest recommendation with recommended: true');
+  if (!s.options.some((o) => o.recommended))
+    err(file, 'mark the honest recommendation with recommended: true');
   const ids = new Set<string>();
   for (const o of s.options) {
     if (ids.has(o.id)) err(file, `duplicate option id ${o.id}`);
@@ -204,13 +220,15 @@ for (const { data: s, file } of scenarios) {
 const orders = new Set<number>();
 for (const { data: d, file } of drills) {
   if (!reg.drills.has(d.id)) err(file, `drill "${d.id}" is not in registry.yaml`);
-  if (!reg.scenarios.has(d.scenarioId)) err(file, `scenarioId "${d.scenarioId}" is not in registry.yaml`);
+  if (!reg.scenarios.has(d.scenarioId))
+    err(file, `scenarioId "${d.scenarioId}" is not in registry.yaml`);
   personaRef(file, 'personaId', d.personaId);
   d.forcedMoves.forEach((id) => moveRef(file, 'forcedMoves', id));
   if (orders.has(d.order)) err(file, `duplicate drill order ${d.order}`);
   orders.add(d.order);
   const words = d.why.split(/\s+/).length;
-  if (words < 110 || words > 200) warn(file, `why is ${words} words; aim for 130 to 170 (about 60 seconds spoken)`);
+  if (words < 110 || words > 200)
+    warn(file, `why is ${words} words; aim for 130 to 170 (about 60 seconds spoken)`);
 }
 
 for (const { data: c, file } of companies) {

@@ -14,7 +14,9 @@ interface Probe {
 /** One tap after adding a key: proves the key works and shows which models answered. */
 export function HealthCheck({ kind }: { kind: 'claude' | 'voice' }) {
   const [busy, setBusy] = useState(false);
-  const [result, setResult] = useState<{ ok: boolean; probes?: Probe[]; error?: string } | null>(null);
+  const [result, setResult] = useState<{ ok: boolean; probes?: Probe[]; error?: string } | null>(
+    null,
+  );
   return (
     <div className="mt-4">
       <Button
@@ -38,11 +40,16 @@ export function HealthCheck({ kind }: { kind: 'claude' | 'voice' }) {
       </Button>
       {result && (
         <div className="mt-3 space-y-1.5">
-          <Chip tone={result.ok ? 'positive' : 'negative'}>{result.ok ? 'Working' : 'Needs attention'}</Chip>
+          <Chip tone={result.ok ? 'positive' : 'negative'}>
+            {result.ok ? 'Working' : 'Needs attention'}
+          </Chip>
           {result.error && <p className="t-caption text-negative">{result.error}</p>}
           {result.probes?.map((p) => (
             <p key={`${p.role}-${p.model}`} className="t-caption text-ink-3">
-              <span className={p.ok ? 'text-positive' : 'text-negative'}>{p.ok ? 'OK' : 'Failed'}</span> · {p.role} · {p.model} · {p.ms} ms
+              <span className={p.ok ? 'text-positive' : 'text-negative'}>
+                {p.ok ? 'OK' : 'Failed'}
+              </span>{' '}
+              · {p.role} · {p.model} · {p.ms} ms
               {p.error ? ` · ${p.error}` : ''}
             </p>
           ))}

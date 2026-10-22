@@ -27,12 +27,33 @@ export function ButtonLink({
 }
 
 /** Apple-style text link with a chevron. */
-export function ChevronLink({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
+export function ChevronLink({
+  href,
+  children,
+  className,
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <Link href={href} className={cn('inline-flex items-center gap-1 text-accent hover:underline t-callout', className)}>
+    <Link
+      href={href}
+      className={cn(
+        'inline-flex items-center gap-1 text-accent hover:underline t-callout',
+        className,
+      )}
+    >
       {children}
       <svg width="8" height="12" viewBox="0 0 8 12" aria-hidden className="mt-px">
-        <path d="M1.5 1l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M1.5 1l5 5-5 5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </Link>
   );
@@ -60,7 +81,12 @@ export function PageHeader({
   className?: string;
 }) {
   return (
-    <header className={cn('reveal mb-8 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between', className)}>
+    <header
+      className={cn(
+        'reveal mb-8 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between',
+        className,
+      )}
+    >
       <div className="max-w-2xl">
         {eyebrow && <Eyebrow className="mb-2">{eyebrow}</Eyebrow>}
         <h1 className="t-display text-ink">{title}</h1>
@@ -71,7 +97,15 @@ export function PageHeader({
   );
 }
 
-export function Chip({ children, tone, className }: { children: ReactNode; tone?: 'accent' | 'positive' | 'caution' | 'negative' | 'voice'; className?: string }) {
+export function Chip({
+  children,
+  tone,
+  className,
+}: {
+  children: ReactNode;
+  tone?: 'accent' | 'positive' | 'caution' | 'negative' | 'voice';
+  className?: string;
+}) {
   const toneClass =
     tone === 'accent'
       ? 'bg-accent-soft text-accent'
@@ -89,22 +123,45 @@ export function Chip({ children, tone, className }: { children: ReactNode; tone?
 
 export function Difficulty({ level, className }: { level: number; className?: string }) {
   return (
-    <span className={cn('inline-flex items-center gap-[3px]', className)} aria-label={`Difficulty ${level} of 5`}>
+    <span
+      className={cn('inline-flex items-center gap-[3px]', className)}
+      aria-label={`Difficulty ${level} of 5`}
+    >
       {[1, 2, 3, 4, 5].map((i) => (
-        <span key={i} className={cn('h-[6px] w-[6px] rounded-full', i <= level ? 'bg-ink' : 'bg-surface-3')} />
+        <span
+          key={i}
+          className={cn('h-[6px] w-[6px] rounded-full', i <= level ? 'bg-ink' : 'bg-surface-3')}
+        />
       ))}
     </span>
   );
 }
 
-export function Bar({ value, tone = 'accent', className }: { value: number | null; tone?: 'accent' | 'positive' | 'caution' | 'negative' | 'auto'; className?: string }) {
+export function Bar({
+  value,
+  tone = 'accent',
+  className,
+}: {
+  value: number | null;
+  tone?: 'accent' | 'positive' | 'caution' | 'negative' | 'auto';
+  className?: string;
+}) {
   const v = value ?? 0;
   const t = tone === 'auto' ? (v >= 80 ? 'positive' : v >= 60 ? 'accent' : 'caution') : tone;
-  const fill = { accent: 'bg-accent', positive: 'bg-positive-fill', caution: 'bg-caution-fill', negative: 'bg-negative-fill' }[t];
+  const fill = {
+    accent: 'bg-accent',
+    positive: 'bg-positive-fill',
+    caution: 'bg-caution-fill',
+    negative: 'bg-negative-fill',
+  }[t];
   return (
     <div className={cn('h-[6px] w-full overflow-hidden rounded-full bg-surface-3', className)}>
       <div
-        className={cn('h-full rounded-full transition-[width] duration-700 ease-apple', fill, value === null && 'opacity-0')}
+        className={cn(
+          'h-full rounded-full transition-[width] duration-700 ease-apple',
+          fill,
+          value === null && 'opacity-0',
+        )}
         style={{ width: `${Math.max(2, Math.min(100, v))}%` }}
       />
     </div>
@@ -112,11 +169,30 @@ export function Bar({ value, tone = 'accent', className }: { value: number | nul
 }
 
 /** Score ring. */
-export function Ring({ value, size = 160, stroke = 12, label, sublabel, tone = 'auto' }: { value: number; size?: number; stroke?: number; label?: ReactNode; sublabel?: ReactNode; tone?: 'auto' | 'voice' }) {
+export function Ring({
+  value,
+  size = 160,
+  stroke = 12,
+  label,
+  sublabel,
+  tone = 'auto',
+}: {
+  value: number;
+  size?: number;
+  stroke?: number;
+  label?: ReactNode;
+  sublabel?: ReactNode;
+  tone?: 'auto' | 'voice';
+}) {
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const v = Math.max(0, Math.min(100, value));
-  const color = v >= 80 ? 'var(--sc-color-positive-fill)' : v >= 60 ? 'var(--sc-color-accent)' : 'var(--sc-color-caution-fill)';
+  const color =
+    v >= 80
+      ? 'var(--sc-color-positive-fill)'
+      : v >= 60
+        ? 'var(--sc-color-accent)'
+        : 'var(--sc-color-caution-fill)';
   const id = `ring-${size}-${stroke}`;
   return (
     <div className="relative inline-grid place-items-center" style={{ width: size, height: size }}>
@@ -129,7 +205,14 @@ export function Ring({ value, size = 160, stroke = 12, label, sublabel, tone = '
             </linearGradient>
           </defs>
         )}
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--sc-color-surface-3)" strokeWidth={stroke} />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          stroke="var(--sc-color-surface-3)"
+          strokeWidth={stroke}
+        />
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -178,7 +261,9 @@ export function Segmented<T extends string>({
           className={cn(
             'rounded-pill font-medium transition-all duration-200',
             size === 'sm' ? 'px-3 py-1 text-[13px]' : 'px-4 py-1.5 text-[15px]',
-            o.value === value ? 'bg-surface text-ink shadow-[0_1px_3px_rgba(0,0,0,0.12)]' : 'text-ink-3 hover:text-ink',
+            o.value === value
+              ? 'bg-surface text-ink shadow-[0_1px_3px_rgba(0,0,0,0.12)]'
+              : 'text-ink-3 hover:text-ink',
           )}
         >
           {o.label}
@@ -188,7 +273,17 @@ export function Segmented<T extends string>({
   );
 }
 
-export function Toggle({ checked, onChange, label, hint }: { checked: boolean; onChange: (v: boolean) => void; label: ReactNode; hint?: ReactNode }) {
+export function Toggle({
+  checked,
+  onChange,
+  label,
+  hint,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  label: ReactNode;
+  hint?: ReactNode;
+}) {
   return (
     <label className="flex cursor-pointer items-center justify-between gap-6 py-3">
       <span>
@@ -200,7 +295,10 @@ export function Toggle({ checked, onChange, label, hint }: { checked: boolean; o
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={cn('relative h-[31px] w-[51px] shrink-0 rounded-full transition-colors duration-200', checked ? 'bg-positive-fill' : 'bg-surface-3')}
+        className={cn(
+          'relative h-[31px] w-[51px] shrink-0 rounded-full transition-colors duration-200',
+          checked ? 'bg-positive-fill' : 'bg-surface-3',
+        )}
       >
         <span
           className={cn(
@@ -213,7 +311,15 @@ export function Toggle({ checked, onChange, label, hint }: { checked: boolean; o
   );
 }
 
-export function Stat({ label, value, hint }: { label: ReactNode; value: ReactNode; hint?: ReactNode }) {
+export function Stat({
+  label,
+  value,
+  hint,
+}: {
+  label: ReactNode;
+  value: ReactNode;
+  hint?: ReactNode;
+}) {
   return (
     <div>
       <div className="t-caption text-ink-3">{label}</div>
@@ -223,7 +329,15 @@ export function Stat({ label, value, hint }: { label: ReactNode; value: ReactNod
   );
 }
 
-export function Empty({ title, body, action }: { title: ReactNode; body?: ReactNode; action?: ReactNode }) {
+export function Empty({
+  title,
+  body,
+  action,
+}: {
+  title: ReactNode;
+  body?: ReactNode;
+  action?: ReactNode;
+}) {
   return (
     <div className="card flex flex-col items-center px-6 py-14 text-center">
       <p className="t-headline text-ink">{title}</p>
@@ -233,7 +347,17 @@ export function Empty({ title, body, action }: { title: ReactNode; body?: ReactN
   );
 }
 
-export function Section({ title, action, children, className }: { title?: ReactNode; action?: ReactNode; children: ReactNode; className?: string }) {
+export function Section({
+  title,
+  action,
+  children,
+  className,
+}: {
+  title?: ReactNode;
+  action?: ReactNode;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
     <section className={cn('mb-12', className)}>
       {(title || action) && (

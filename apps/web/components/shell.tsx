@@ -28,7 +28,9 @@ export function Shell({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useProfile();
   const lead = profile.role !== 'tech';
   const links = lead ? [...TECH, ...LEAD] : TECH;
-  const mobile = lead ? [TECH[0]!, TECH[1]!, TECH[2]!, LEAD[0]!, LEAD[1]!] : [...TECH, { href: '/settings', label: 'Settings', icon: Settings }];
+  const mobile = lead
+    ? [TECH[0]!, TECH[1]!, TECH[2]!, LEAD[0]!, LEAD[1]!]
+    : [...TECH, { href: '/settings', label: 'Settings', icon: Settings }];
 
   return (
     <div className="min-h-dvh">
@@ -67,24 +69,43 @@ export function Shell({ children }: { children: ReactNode }) {
               <option value="owner">Owner view</option>
             </select>
             {lead && (
-              <Link href="/training-day" className="hidden rounded-full p-2 text-ink-3 hover:text-ink sm:inline-flex" title="Training day mode" aria-label="Training day mode">
+              <Link
+                href="/training-day"
+                className="hidden rounded-full p-2 text-ink-3 hover:text-ink sm:inline-flex"
+                title="Training day mode"
+                aria-label="Training day mode"
+              >
                 <Tv size={19} />
               </Link>
             )}
-            <Link href="/settings" className="hidden rounded-full p-2 text-ink-3 hover:text-ink md:inline-flex" aria-label="Settings">
+            <Link
+              href="/settings"
+              className="hidden rounded-full p-2 text-ink-3 hover:text-ink md:inline-flex"
+              aria-label="Settings"
+            >
               <Settings size={19} />
             </Link>
           </div>
         </div>
       </header>
       <main className="mx-auto max-w-[1200px] px-5 pt-8 pb-28 md:pt-14 md:pb-20">{children}</main>
-      <nav className="glass safe-bottom fixed inset-x-0 bottom-0 z-40 border-t hairline md:hidden" aria-label="Tabs">
+      <nav
+        className="glass safe-bottom fixed inset-x-0 bottom-0 z-40 border-t hairline md:hidden"
+        aria-label="Tabs"
+      >
         <div className="mx-auto grid max-w-md grid-cols-5 px-2 pt-2">
           {mobile.map((l) => {
             const on = active(path, l.href);
             const Icon = l.icon;
             return (
-              <Link key={l.href} href={l.href} className={cn('flex flex-col items-center gap-0.5 py-1 text-[10px] font-medium', on ? 'text-accent' : 'text-ink-4')}>
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  'flex flex-col items-center gap-0.5 py-1 text-[10px] font-medium',
+                  on ? 'text-accent' : 'text-ink-4',
+                )}
+              >
                 <Icon size={22} strokeWidth={on ? 2.2 : 1.8} />
                 {l.label}
               </Link>

@@ -6,7 +6,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Avatar } from '@/components/avatar';
-import { Bar, Button, ButtonLink, Card, Chip, cn, Empty, Ring, Section, Skeleton } from '@/components/ui';
+import {
+  Bar,
+  Button,
+  ButtonLink,
+  Card,
+  Chip,
+  cn,
+  Empty,
+  Ring,
+  Section,
+  Skeleton,
+} from '@/components/ui';
 import { contentIndex } from '@/lib/content';
 import { decisionLine, formatDuration, relativeDay, requestCoachDebrief } from '@/lib/sessions';
 import { Speaker } from '@/lib/speech/speaker';
@@ -51,23 +62,57 @@ export function DebriefView({ id, tv }: { id: string; tv: boolean }) {
     );
   }
   if (s === null) {
-    return <Empty title="That call is not on this device." body="Calls are saved on the device you practiced on." action={<ButtonLink href="/">Go home</ButtonLink>} />;
+    return (
+      <Empty
+        title="That call is not on this device."
+        body="Calls are saved on the device you practiced on."
+        action={<ButtonLink href="/">Go home</ButtonLink>}
+      />
+    );
   }
-  return <Loaded s={s} tv={tv} coaching={coaching} coachFailed={coachFailed} voice={!!caps?.voice} onDelete={async () => {
-    await deleteSession(s.id);
-    router.replace('/progress');
-  }} />;
+  return (
+    <Loaded
+      s={s}
+      tv={tv}
+      coaching={coaching}
+      coachFailed={coachFailed}
+      voice={!!caps?.voice}
+      onDelete={async () => {
+        await deleteSession(s.id);
+        router.replace('/progress');
+      }}
+    />
+  );
 }
 
-function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSession; tv: boolean; coaching: boolean; coachFailed: boolean; voice: boolean; onDelete: () => void }) {
+function Loaded({
+  s,
+  tv,
+  coaching,
+  coachFailed,
+  voice,
+  onDelete,
+}: {
+  s: StoredSession;
+  tv: boolean;
+  coaching: boolean;
+  coachFailed: boolean;
+  voice: boolean;
+  onDelete: () => void;
+}) {
   const d = s.debrief;
   const index = contentIndex();
-  const turnText = useMemo(() => new Map(s.record.transcript.map((t) => [t.id, t])), [s.record.transcript]);
+  const turnText = useMemo(
+    () => new Map(s.record.transcript.map((t) => [t.id, t])),
+    [s.record.transcript],
+  );
   const companyQ = s.record.companyId ? `&c=${encodeURIComponent(s.record.companyId)}` : '';
   const retryHref = d.fix.tryAgain?.drillId
     ? `/call?drill=${d.fix.tryAgain.drillId}${companyQ}`
     : `/call?scenario=${s.scenarioId}&d=${s.difficulty}${companyQ}${d.fix.tryAgain?.moveId ? `&retry=${d.fix.tryAgain.moveId}` : ''}`;
-  const againHref = s.drillId ? `/call?drill=${s.drillId}${companyQ}` : `/call?scenario=${s.scenarioId}&d=${s.difficulty}${companyQ}`;
+  const againHref = s.drillId
+    ? `/call?drill=${s.drillId}${companyQ}`
+    : `/call?scenario=${s.scenarioId}&d=${s.difficulty}${companyQ}`;
   const drill = s.drillId ? index.drills.get(s.drillId) : undefined;
   const focus = drill ? d.skills.find((k) => k.skillId === drill.skill) : undefined;
   const winTurn = d.win.turnId ? turnText.get(d.win.turnId) : undefined;
@@ -93,17 +138,40 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
               value={d.passed ? 100 : (focus?.score ?? d.overall)}
               size={tv ? 220 : 180}
               stroke={tv ? 16 : 14}
-              label={d.passed ? <Check size={tv ? 84 : 68} strokeWidth={2.4} className="mx-auto text-positive" /> : <span className="t-title">Again</span>}
-              sublabel={focus ? `${focus.name}${focus.score !== null ? ` ${focus.score}` : ''}` : 'Drill'}
+              label={
+                d.passed ? (
+                  <Check size={tv ? 84 : 68} strokeWidth={2.4} className="mx-auto text-positive" />
+                ) : (
+                  <span className="t-title">Again</span>
+                )
+              }
+              sublabel={
+                focus ? `${focus.name}${focus.score !== null ? ` ${focus.score}` : ''}` : 'Drill'
+              }
             />
           ) : (
-            <Ring value={d.overall} size={tv ? 220 : 180} stroke={tv ? 16 : 14} sublabel={`Pass at ${d.passBar}`} />
+            <Ring
+              value={d.overall}
+              size={tv ? 220 : 180}
+              stroke={tv ? 16 : 14}
+              sublabel={`Pass at ${d.passBar}`}
+            />
           )}
         </div>
         <h1 className="t-display mt-6 text-ink">
-          {drill ? (d.passed ? 'Nailed it.' : 'One more rep.') : d.passed ? (d.overall >= d.passBar + 15 ? 'Strong call.' : 'You passed.') : 'Not yet. Close.'}
+          {drill
+            ? d.passed
+              ? 'Nailed it.'
+              : 'One more rep.'
+            : d.passed
+              ? d.overall >= d.passBar + 15
+                ? 'Strong call.'
+                : 'You passed.'
+              : 'Not yet. Close.'}
         </h1>
-        <p className="t-body-lg mt-2 text-ink-3">{drill ? drill.title : decisionLine(s.personaName, s.record.decision)}</p>
+        <p className="t-body-lg mt-2 text-ink-3">
+          {drill ? drill.title : decisionLine(s.personaName, s.record.decision)}
+        </p>
         <div className="mt-5 flex items-center gap-2">
           {coaching ? (
             <Chip tone="voice">
@@ -114,7 +182,11 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
               <Sparkles size={13} /> Reviewed by your coach
             </Chip>
           ) : (
-            <Chip>{coachFailed ? 'Quick score. The coach review is unavailable right now.' : 'Quick score'}</Chip>
+            <Chip>
+              {coachFailed
+                ? 'Quick score. The coach review is unavailable right now.'
+                : 'Quick score'}
+            </Chip>
           )}
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -174,12 +246,31 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
                 <Card key={`${m.moveId}-${i}`} className="p-5">
                   <div className="flex items-start justify-between gap-3">
                     <p className="t-body font-medium text-ink">{m.name}</p>
-                    <Chip tone={m.result === 'pass' ? 'positive' : m.result === 'fail' ? 'negative' : undefined}>
-                      {m.result === 'pass' ? 'Handled' : m.result === 'fail' ? 'Missed' : m.result === 'pending' ? 'Unfinished' : 'Unclear'}
+                    <Chip
+                      tone={
+                        m.result === 'pass'
+                          ? 'positive'
+                          : m.result === 'fail'
+                            ? 'negative'
+                            : undefined
+                      }
+                    >
+                      {m.result === 'pass'
+                        ? 'Handled'
+                        : m.result === 'fail'
+                          ? 'Missed'
+                          : m.result === 'pending'
+                            ? 'Unfinished'
+                            : 'Unclear'}
                     </Chip>
                   </div>
                   <p className="t-callout mt-2 text-ink-3">
-                    {m.reason ?? (m.result === 'pass' ? move?.evaluate.pass : m.result === 'fail' ? move?.evaluate.fail : move?.summary)}
+                    {m.reason ??
+                      (m.result === 'pass'
+                        ? move?.evaluate.pass
+                        : m.result === 'fail'
+                          ? move?.evaluate.fail
+                          : move?.summary)}
                   </p>
                 </Card>
               );
@@ -195,7 +286,9 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
       <details className="mb-12">
         <summary className="t-callout cursor-pointer text-ink-3">Read the spoken debrief</summary>
         <p className="t-body mt-3 max-w-2xl text-ink-2">{d.spoken}</p>
-        {d.managerNote && <p className="t-caption mt-3 text-ink-4">Note for your manager: {d.managerNote}</p>}
+        {d.managerNote && (
+          <p className="t-caption mt-3 text-ink-4">Note for your manager: {d.managerNote}</p>
+        )}
       </details>
 
       <div className="flex flex-wrap items-center justify-between gap-4 border-t hairline pt-6">
@@ -212,7 +305,9 @@ function Loaded({ s, tv, coaching, coachFailed, voice, onDelete }: { s: StoredSe
         </Button>
       </div>
       <p className="t-caption mt-6 text-ink-4">
-        {s.record.adapters.writer.startsWith('claude') ? `Customer: ${s.record.adapters.writer.replace('claude:', '')}.` : 'Customer: demo engine.'}{' '}
+        {s.record.adapters.writer.startsWith('claude')
+          ? `Customer: ${s.record.adapters.writer.replace('claude:', '')}.`
+          : 'Customer: demo engine.'}{' '}
         {d.model ? `Coach: ${d.model}.` : ''} Content {s.record.contentVersion}.
       </p>
     </div>
@@ -228,19 +323,35 @@ function Quote({ text, label = 'You said' }: { text: string; label?: string }) {
   );
 }
 
-function SkillRow({ k, turnText }: { k: Debrief['skills'][number]; turnText: Map<string, { text: string }> }) {
+function SkillRow({
+  k,
+  turnText,
+}: {
+  k: Debrief['skills'][number];
+  turnText: Map<string, { text: string }>;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="px-5 py-4 md:px-6">
-      <button type="button" className="flex w-full items-center gap-4 text-left" onClick={() => setOpen(!open)} aria-expanded={open}>
+      <button
+        type="button"
+        className="flex w-full items-center gap-4 text-left"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
         <div className="w-40 shrink-0 md:w-56">
           <p className="t-body font-medium text-ink">{k.name}</p>
         </div>
         <div className="flex-1">
           <Bar value={k.score} tone="auto" />
         </div>
-        <span className="t-body w-10 text-right font-semibold tabular-nums text-ink">{k.score ?? '–'}</span>
-        <ChevronDown size={16} className={cn('text-ink-4 transition-transform', open && 'rotate-180')} />
+        <span className="t-body w-10 text-right font-semibold tabular-nums text-ink">
+          {k.score ?? '–'}
+        </span>
+        <ChevronDown
+          size={16}
+          className={cn('text-ink-4 transition-transform', open && 'rotate-180')}
+        />
       </button>
       {open && (
         <div className="fade mt-3 pl-0 md:pl-60">
@@ -249,9 +360,15 @@ function SkillRow({ k, turnText }: { k: Debrief['skills'][number]; turnText: Map
             <ul className="mt-3 space-y-2">
               {k.evidence.slice(0, 4).map((e, i) => (
                 <li key={i} className="t-callout flex gap-2">
-                  <span className={cn('mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full', e.polarity === 'positive' ? 'bg-positive-fill' : 'bg-caution-fill')} />
+                  <span
+                    className={cn(
+                      'mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full',
+                      e.polarity === 'positive' ? 'bg-positive-fill' : 'bg-caution-fill',
+                    )}
+                  />
                   <span className="text-ink-3">
-                    <span className="text-ink-2">{e.note}.</span> &ldquo;{e.quote || turnText.get(e.turnId)?.text}&rdquo;
+                    <span className="text-ink-2">{e.note}.</span> &ldquo;
+                    {e.quote || turnText.get(e.turnId)?.text}&rdquo;
                   </span>
                 </li>
               ))}
@@ -263,7 +380,13 @@ function SkillRow({ k, turnText }: { k: Debrief['skills'][number]; turnText: Map
   );
 }
 
-function Transcript({ s, highlight }: { s: StoredSession; highlight: { win?: string; fix?: string } }) {
+function Transcript({
+  s,
+  highlight,
+}: {
+  s: StoredSession;
+  highlight: { win?: string; fix?: string };
+}) {
   const [all, setAll] = useState(false);
   const turns = s.record.transcript;
   const shown = all ? turns : turns.slice(0, 14);
@@ -291,7 +414,11 @@ function Transcript({ s, highlight }: { s: StoredSession; highlight: { win?: str
                   mark === 'fix' && 'ring-2 ring-caution-fill ring-offset-2 ring-offset-surface',
                 )}
               >
-                {!tech && <p className="t-micro mb-0.5 opacity-60">{t.speaker === 'secondary' ? 'Partner' : first}</p>}
+                {!tech && (
+                  <p className="t-micro mb-0.5 opacity-60">
+                    {t.speaker === 'secondary' ? 'Partner' : first}
+                  </p>
+                )}
                 <p className="t-callout">{t.text.replace(/\[[^\]]{1,24}\]\s*/g, '')}</p>
               </div>
             </li>
@@ -299,7 +426,11 @@ function Transcript({ s, highlight }: { s: StoredSession; highlight: { win?: str
         })}
       </ol>
       {turns.length > 14 && (
-        <button type="button" className="t-callout mt-5 text-accent hover:underline" onClick={() => setAll(!all)}>
+        <button
+          type="button"
+          className="t-callout mt-5 text-accent hover:underline"
+          onClick={() => setAll(!all)}
+        >
           {all ? 'Show less' : `Show all ${turns.length} turns`}
         </button>
       )}

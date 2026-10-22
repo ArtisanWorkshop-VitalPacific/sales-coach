@@ -1,7 +1,15 @@
 import { cn } from './ui';
 
 /** Placeholder mark: a voice wave rising, one bar in accent. Pending SRV LAB brand review. */
-export function Mark({ size = 28, className, inverted = false }: { size?: number; className?: string; inverted?: boolean }) {
+export function Mark({
+  size = 28,
+  className,
+  inverted = false,
+}: {
+  size?: number;
+  className?: string;
+  inverted?: boolean;
+}) {
   const tile = inverted ? '#f5f5f7' : 'currentColor';
   const bars = inverted ? '#000' : 'var(--sc-color-bg)';
   return (

@@ -14,12 +14,14 @@ mkdirSync(out, { recursive: true });
 const vars = (prefix: string, obj: Record<string, string>) =>
   Object.entries(obj).map(([k, v]) => `  --sc-${prefix}-${k}: ${v};`);
 
-const typeVars = Object.entries(tokens.type as Record<string, Record<string, string>>).flatMap(([name, t]) => [
-  `  --sc-type-${name}-size: ${t.size};`,
-  `  --sc-type-${name}-line: ${t.line};`,
-  `  --sc-type-${name}-tracking: ${t.tracking};`,
-  `  --sc-type-${name}-weight: ${t.weight};`,
-]);
+const typeVars = Object.entries(tokens.type as Record<string, Record<string, string>>).flatMap(
+  ([name, t]) => [
+    `  --sc-type-${name}-size: ${t.size};`,
+    `  --sc-type-${name}-line: ${t.line};`,
+    `  --sc-type-${name}-tracking: ${t.tracking};`,
+    `  --sc-type-${name}-weight: ${t.weight};`,
+  ],
+);
 
 const shared = [
   ...vars('gradient', tokens.gradient),
@@ -40,7 +42,9 @@ ${[...vars('color', tokens.color.light), ...shared].join('\n')}
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-${vars('color', tokens.color.dark).map((l) => `  ${l}`).join('\n')}
+${vars('color', tokens.color.dark)
+  .map((l) => `  ${l}`)
+  .join('\n')}
     color-scheme: dark;
   }
 }

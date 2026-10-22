@@ -33,7 +33,8 @@ interface Row {
 
 /* ---------------------------------------------------------------- helpers */
 
-const mean = (xs: number[]) => (xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null);
+const mean = (xs: number[]) =>
+  xs.length ? Math.round(xs.reduce((a, b) => a + b, 0) / xs.length) : null;
 
 function daysAgo(iso: string) {
   const a = new Date();
@@ -43,7 +44,8 @@ function daysAgo(iso: string) {
   return Math.max(0, Math.round((a.getTime() - b.getTime()) / DAY));
 }
 
-const lastLabel = (d: number | null) => (d === null ? 'Not yet' : d <= 0 ? 'Today' : d === 1 ? 'Yesterday' : `${d} days ago`);
+const lastLabel = (d: number | null) =>
+  d === null ? 'Not yet' : d <= 0 ? 'Today' : d === 1 ? 'Yesterday' : `${d} days ago`;
 
 const humanize = (id: string) => {
   const s = id.replace(/-/g, ' ');
@@ -52,7 +54,11 @@ const humanize = (id: string) => {
 
 const drillTitle = (id: string) => contentIndex().drills.get(id)?.title ?? humanize(id);
 
-const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 
 function cellTone(v: number | null | undefined) {
   if (v === null || v === undefined) return 'bg-surface-2 text-ink-4';
@@ -103,7 +109,11 @@ function youRow(sessions: StoredSession[], role: string): Row {
 }
 
 function extremes(r: Row, names: Map<string, string>) {
-  const scored = SKILL_ORDER.map((id) => ({ id, name: names.get(id) ?? humanize(id), score: r.skills[id] ?? null })).filter(
+  const scored = SKILL_ORDER.map((id) => ({
+    id,
+    name: names.get(id) ?? humanize(id),
+    score: r.skills[id] ?? null,
+  })).filter(
     (x): x is { id: (typeof SKILL_ORDER)[number]; name: string; score: number } => x.score !== null,
   );
   if (!scored.length) return { strong: null, weak: null };
@@ -156,7 +166,10 @@ export default function TeamPage() {
   const all = sessions ?? [];
   const index = contentIndex();
   const rubricSkills = index.rubric.skills;
-  const skillNames = useMemo(() => new Map(rubricSkills.map((s) => [s.id, s.name] as const)), [rubricSkills]);
+  const skillNames = useMemo(
+    () => new Map(rubricSkills.map((s) => [s.id, s.name] as const)),
+    [rubricSkills],
+  );
   /** Header columns in SKILL_ORDER so they always line up with the cells. */
   const skills = useMemo(
     () =>
@@ -167,7 +180,10 @@ export default function TeamPage() {
     [rubricSkills],
   );
 
-  const you = useMemo(() => youRow(all, profile.name ? `${profile.name} · your real scores` : 'Your real scores'), [all, profile.name]);
+  const you = useMemo(
+    () => youRow(all, profile.name ? `${profile.name} · your real scores` : 'Your real scores'),
+    [all, profile.name],
+  );
   const sampleRows: Row[] = useMemo(
     () =>
       SAMPLE_TEAM.map((t) => ({
@@ -196,7 +212,11 @@ export default function TeamPage() {
       .sort((a, b) => b.avg! - b.lastWeekAvg! - (a.avg! - a.lastWeekAvg!))[0];
     const nudge = [...rows]
       .filter((r) => r.sample || r.lastPracticedDaysAgo !== null)
-      .sort((a, b) => (b.lastPracticedDaysAgo ?? 0) - (a.lastPracticedDaysAgo ?? 0) || a.callsThisWeek - b.callsThisWeek)[0];
+      .sort(
+        (a, b) =>
+          (b.lastPracticedDaysAgo ?? 0) - (a.lastPracticedDaysAgo ?? 0) ||
+          a.callsThisWeek - b.callsThisWeek,
+      )[0];
     const today = rows.filter((r) => r.lastPracticedDaysAgo === 0).length;
     const longest = [...rows].sort((a, b) => b.streak - a.streak)[0];
     const teamSkills = SKILL_ORDER.map((id) => ({
@@ -239,11 +259,15 @@ export default function TeamPage() {
           <h2 className="t-display mt-3 max-w-md">
             Team average {digest.teamAvg ?? '–'}.
             {digest.delta !== null && digest.delta !== 0 && (
-              <span className="text-[#a1a1a6]"> {digest.delta > 0 ? `Up ${digest.delta}.` : `Down ${-digest.delta}.`}</span>
+              <span className="text-[#a1a1a6]">
+                {' '}
+                {digest.delta > 0 ? `Up ${digest.delta}.` : `Down ${-digest.delta}.`}
+              </span>
             )}
           </h2>
           <p className="t-body mt-4 max-w-md text-[#a1a1a6]">
-            {digest.calls} practice {digest.calls === 1 ? 'call' : 'calls'} across {rows.length} techs.
+            {digest.calls} practice {digest.calls === 1 ? 'call' : 'calls'} across {rows.length}{' '}
+            techs.
             {digest.best && ` ${digest.best.name} leads the team.`}
             {digest.focus && ` ${digest.focus.name} needs the reps.`}
           </p>
@@ -268,7 +292,12 @@ export default function TeamPage() {
                     {digest.improved.lastWeekAvg} last week. {digest.improved.avg} now.
                   </p>
                 </div>
-                <span className={cn('t-title tabular-nums', improvedBy > 0 ? 'text-positive' : 'text-ink-3')}>
+                <span
+                  className={cn(
+                    't-title tabular-nums',
+                    improvedBy > 0 ? 'text-positive' : 'text-ink-3',
+                  )}
+                >
                   {improvedBy > 0 ? `+${improvedBy}` : improvedBy}
                 </span>
               </div>
@@ -284,7 +313,8 @@ export default function TeamPage() {
                 <div className="min-w-0 flex-1">
                   <p className="t-headline truncate text-ink">{digest.nudge.name}</p>
                   <p className="t-caption text-ink-3">
-                    Last practiced {lastLabel(digest.nudge.lastPracticedDaysAgo).toLowerCase()}. {digest.nudge.callsThisWeek}{' '}
+                    Last practiced {lastLabel(digest.nudge.lastPracticedDaysAgo).toLowerCase()}.{' '}
+                    {digest.nudge.callsThisWeek}{' '}
                     {digest.nudge.callsThisWeek === 1 ? 'call' : 'calls'} this week.
                   </p>
                 </div>
@@ -305,10 +335,18 @@ export default function TeamPage() {
           <Stat label="Practiced today" value={`${digest.today} of ${rows.length}`} />
           <Stat
             label="Longest streak"
-            value={digest.longest ? `${digest.longest.streak} ${digest.longest.streak === 1 ? 'day' : 'days'}` : '–'}
+            value={
+              digest.longest
+                ? `${digest.longest.streak} ${digest.longest.streak === 1 ? 'day' : 'days'}`
+                : '–'
+            }
             hint={digest.longest?.name}
           />
-          <Stat label="Team focus" value={<span className="t-headline">{digest.focus?.name ?? '–'}</span>} hint={digest.focus ? `Team average ${digest.focus.avg}` : undefined} />
+          <Stat
+            label="Team focus"
+            value={<span className="t-headline">{digest.focus?.name ?? '–'}</span>}
+            hint={digest.focus ? `Team average ${digest.focus.avg}` : undefined}
+          />
         </Card>
       </Section>
 
@@ -319,25 +357,44 @@ export default function TeamPage() {
             <table className="w-full min-w-[920px] border-separate border-spacing-[4px] p-3 md:p-4">
               <thead>
                 <tr>
-                  <th scope="col" className="sticky left-0 z-10 bg-surface pr-3 text-left align-bottom">
+                  <th
+                    scope="col"
+                    className="sticky left-0 z-10 bg-surface pr-3 text-left align-bottom"
+                  >
                     <span className="t-caption font-semibold text-ink-3">Tech</span>
                   </th>
                   {skills.map((s) => (
-                    <th key={s.id} scope="col" title={s.description} className="w-[78px] px-1 pb-2 align-bottom">
-                      <span className="t-micro block text-center font-medium text-ink-3">{s.name}</span>
+                    <th
+                      key={s.id}
+                      scope="col"
+                      title={s.description}
+                      className="w-[78px] px-1 pb-2 align-bottom"
+                    >
+                      <span className="t-micro block text-center font-medium text-ink-3">
+                        {s.name}
+                      </span>
                     </th>
                   ))}
                   <th scope="col" className="w-[64px] px-1 pb-2 align-bottom">
-                    <span className="t-micro block text-center font-semibold text-ink-2">Overall</span>
+                    <span className="t-micro block text-center font-semibold text-ink-2">
+                      Overall
+                    </span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((r) => (
                   <tr key={r.key}>
-                    <th scope="row" className="sticky left-0 z-10 bg-surface pr-3 text-left font-normal">
+                    <th
+                      scope="row"
+                      className="sticky left-0 z-10 bg-surface pr-3 text-left font-normal"
+                    >
                       <span className="flex items-center gap-2.5">
-                        <Avatar name={r.sample ? r.name : profile.name || 'You'} seed={r.key} size={28} />
+                        <Avatar
+                          name={r.sample ? r.name : profile.name || 'You'}
+                          seed={r.key}
+                          size={28}
+                        />
                         <span className="t-callout max-w-[112px] truncate font-medium text-ink">
                           {r.sample ? r.name.split(' ')[0] : 'You'}
                         </span>
@@ -348,7 +405,10 @@ export default function TeamPage() {
                       return (
                         <td key={id}>
                           <div
-                            className={cn('t-callout grid h-10 place-items-center rounded-[10px] font-semibold tabular-nums', cellTone(v))}
+                            className={cn(
+                              't-callout grid h-10 place-items-center rounded-[10px] font-semibold tabular-nums',
+                              cellTone(v),
+                            )}
                             title={`${r.name}: ${skillNames.get(id) ?? id} ${v ?? 'not scored yet'}`}
                           >
                             {v ?? '–'}
@@ -357,7 +417,12 @@ export default function TeamPage() {
                       );
                     })}
                     <td>
-                      <div className={cn('t-callout grid h-10 place-items-center rounded-[10px] bg-surface-3 font-semibold tabular-nums', scoreTone(r.avg))}>
+                      <div
+                        className={cn(
+                          't-callout grid h-10 place-items-center rounded-[10px] bg-surface-3 font-semibold tabular-nums',
+                          scoreTone(r.avg),
+                        )}
+                      >
                         {r.avg ?? '–'}
                       </div>
                     </td>
@@ -387,7 +452,9 @@ export default function TeamPage() {
             <Legend className="bg-positive-fill" label="80 and up" />
             <Legend className="bg-accent" label="60 to 79" />
             <Legend className="bg-caution-fill" label="Under 60" />
-            <span className="t-caption text-ink-4 md:ml-auto lg:hidden">Swipe sideways for every skill.</span>
+            <span className="t-caption text-ink-4 md:ml-auto lg:hidden">
+              Swipe sideways for every skill.
+            </span>
           </div>
         </Card>
       </Section>
@@ -413,7 +480,9 @@ export default function TeamPage() {
         {sessions === null ? null : all.length === 0 ? (
           <Card className="p-8 text-center">
             <p className="t-headline text-ink">No calls on this device yet.</p>
-            <p className="t-callout mt-2 text-ink-3">Run one and your row in the heatmap fills in.</p>
+            <p className="t-callout mt-2 text-ink-3">
+              Run one and your row in the heatmap fills in.
+            </p>
             <ButtonLink href="/practice" className="mt-6">
               Pick a customer
             </ButtonLink>
@@ -434,11 +503,16 @@ export default function TeamPage() {
         <div className="min-w-0">
           <p className="t-headline text-ink">A sample team, for now.</p>
           <p className="t-callout mt-1 max-w-2xl text-ink-3">
-            Live team data appears once accounts and the shared database are turned on. Until then, the six techs above are a
-            sample shop. Your row is real: it comes from the calls practiced on this device. Assignments save on this device too.
+            Live team data appears once accounts and the shared database are turned on. Until then,
+            the six techs above are a sample shop. Your row is real: it comes from the calls
+            practiced on this device. Assignments save on this device too.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3">
-            {caps && <Chip tone={caps.db ? 'positive' : undefined}>{caps.db ? 'Database connected' : 'Database off'}</Chip>}
+            {caps && (
+              <Chip tone={caps.db ? 'positive' : undefined}>
+                {caps.db ? 'Database connected' : 'Database off'}
+              </Chip>
+            )}
             <ChevronLink href="/portal?tab=setup">How to turn it on</ChevronLink>
           </div>
         </div>
@@ -496,7 +570,17 @@ function TechCard({
         <div className="text-right">
           <p className={cn('t-title tabular-nums', scoreTone(r.avg))}>{r.avg ?? '–'}</p>
           <p className="t-micro text-ink-4">
-            {trend === null ? (r.sample ? 'Average' : empty ? 'No calls' : 'Average') : trend > 0 ? `Up ${trend}` : trend < 0 ? `Down ${-trend}` : 'Steady'}
+            {trend === null
+              ? r.sample
+                ? 'Average'
+                : empty
+                  ? 'No calls'
+                  : 'Average'
+              : trend > 0
+                ? `Up ${trend}`
+                : trend < 0
+                  ? `Down ${-trend}`
+                  : 'Steady'}
           </p>
         </div>
       </div>
@@ -504,14 +588,23 @@ function TechCard({
       <Bar value={r.avg} tone="auto" className="mt-4" />
 
       <dl className="mt-5 grid grid-cols-3 gap-3">
-        <Mini label="This week" value={`${r.callsThisWeek} ${r.callsThisWeek === 1 ? 'call' : 'calls'}`} />
+        <Mini
+          label="This week"
+          value={`${r.callsThisWeek} ${r.callsThisWeek === 1 ? 'call' : 'calls'}`}
+        />
         <Mini label="Streak" value={`${r.streak} ${r.streak === 1 ? 'day' : 'days'}`} />
-        <Mini label="Last practiced" value={lastLabel(r.lastPracticedDaysAgo)} warn={(r.lastPracticedDaysAgo ?? 0) >= 5} />
+        <Mini
+          label="Last practiced"
+          value={lastLabel(r.lastPracticedDaysAgo)}
+          warn={(r.lastPracticedDaysAgo ?? 0) >= 5}
+        />
       </dl>
 
       {empty ? (
         <div className="mt-5 rounded-md bg-surface-2 p-4">
-          <p className="t-callout text-ink-2">Practice a call and this row fills in with your real scores.</p>
+          <p className="t-callout text-ink-2">
+            Practice a call and this row fills in with your real scores.
+          </p>
           <ButtonLink href="/practice" size="sm" className="mt-3">
             Pick a customer
           </ButtonLink>
@@ -566,7 +659,9 @@ function TechCard({
             className="mt-3 w-full rounded-pill border hairline bg-surface-2 px-4 py-2.5 text-[15px] text-ink disabled:opacity-50"
             aria-label={`Assign a drill to ${r.name}`}
           >
-            <option value="">{available.length ? 'Assign a drill' : 'Every drill is assigned'}</option>
+            <option value="">
+              {available.length ? 'Assign a drill' : 'Every drill is assigned'}
+            </option>
             {available.map((d) => (
               <option key={d.id} value={d.id}>
                 {d.order}. {d.title}
@@ -583,7 +678,9 @@ function Mini({ label, value, warn }: { label: string; value: string; warn?: boo
   return (
     <div className="min-w-0">
       <dt className="t-caption text-ink-3">{label}</dt>
-      <dd className={cn('t-callout truncate font-medium', warn ? 'text-caution' : 'text-ink')}>{value}</dd>
+      <dd className={cn('t-callout truncate font-medium', warn ? 'text-caution' : 'text-ink')}>
+        {value}
+      </dd>
     </div>
   );
 }

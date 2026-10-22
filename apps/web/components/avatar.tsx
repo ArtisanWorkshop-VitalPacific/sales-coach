@@ -19,15 +19,30 @@ function hash(s: string) {
 
 export function initials(name: string) {
   const parts = name.replace(/&/g, ' ').split(/\s+/).filter(Boolean);
-  return ((parts[0]?.[0] ?? '') + (parts.length > 1 ? (parts[parts.length - 1]?.[0] ?? '') : '')).toUpperCase();
+  return (
+    (parts[0]?.[0] ?? '') + (parts.length > 1 ? (parts[parts.length - 1]?.[0] ?? '') : '')
+  ).toUpperCase();
 }
 
 /** A soft, friendly monogram. Customers are characters, not photos. */
-export function Avatar({ name, seed, size = 48, className }: { name: string; seed?: string; size?: number; className?: string }) {
+export function Avatar({
+  name,
+  seed,
+  size = 48,
+  className,
+}: {
+  name: string;
+  seed?: string;
+  size?: number;
+  className?: string;
+}) {
   const [a, b] = HUES[hash(seed ?? name) % HUES.length]!;
   return (
     <span
-      className={cn('inline-grid shrink-0 select-none place-items-center rounded-full font-semibold text-[#1d1d1f]', className)}
+      className={cn(
+        'inline-grid shrink-0 select-none place-items-center rounded-full font-semibold text-[#1d1d1f]',
+        className,
+      )}
       style={{
         width: size,
         height: size,

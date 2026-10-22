@@ -4,7 +4,15 @@ import { Check, CircleCheck, Copy, Lock } from 'lucide-react';
 import { type ReactNode, useState } from 'react';
 import type { Capabilities } from '@/lib/capabilities';
 import { contentIndex } from '@/lib/content';
-import { BANDS, OVERAGE_PER_MINUTE, quote, SEMINAR_PER_DAY, type TierId, TIERS, usd } from '@/lib/pricing';
+import {
+  BANDS,
+  OVERAGE_PER_MINUTE,
+  quote,
+  SEMINAR_PER_DAY,
+  type TierId,
+  TIERS,
+  usd,
+} from '@/lib/pricing';
 import { useProfile } from '@/lib/store';
 import { useCapabilities } from '@/lib/use-capabilities';
 import { Button, Card, Chip, cn, Section, Skeleton } from './ui';
@@ -61,14 +69,18 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
           <CircleCheck className="mt-0.5 shrink-0 text-positive" size={20} />
           <div>
             <p className="t-body font-semibold text-ink">You&rsquo;re in.</p>
-            <p className="t-callout text-ink-2">Your license is active. Stripe is sending the receipt.</p>
+            <p className="t-callout text-ink-2">
+              Your license is active. Stripe is sending the receipt.
+            </p>
           </div>
         </div>
       )}
       {checkout === 'cancel' && (
         <div className="reveal mb-8 rounded-lg bg-surface-2 p-5 ring-1 ring-line">
           <p className="t-body font-semibold text-ink">Checkout canceled.</p>
-          <p className="t-callout text-ink-3">Nothing was charged. Your plan is right where you left it.</p>
+          <p className="t-callout text-ink-3">
+            Nothing was charged. Your plan is right where you left it.
+          </p>
         </div>
       )}
 
@@ -112,7 +124,13 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
           <div className="t-caption mt-2 flex justify-between text-ink-4">
             <span>1</span>
             {BANDS.map((b) => (
-              <span key={b.id} className={cn('hidden sm:inline', q.band?.id === b.id && 'font-semibold text-ink-2')}>
+              <span
+                key={b.id}
+                className={cn(
+                  'hidden sm:inline',
+                  q.band?.id === b.id && 'font-semibold text-ink-2',
+                )}
+              >
                 {b.label}
               </span>
             ))}
@@ -131,7 +149,10 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
               <Card
                 key={id}
                 onClick={() => setTier(id)}
-                className={cn('flex cursor-pointer flex-col p-6 transition-shadow md:p-7', on ? 'ring-2 ring-accent' : 'ring-1 ring-transparent hover:ring-line-strong')}
+                className={cn(
+                  'flex cursor-pointer flex-col p-6 transition-shadow md:p-7',
+                  on ? 'ring-2 ring-accent' : 'ring-1 ring-transparent hover:ring-line-strong',
+                )}
               >
                 <div className="flex items-center justify-between gap-3">
                   <p className="t-headline text-ink">{t.name}</p>
@@ -190,13 +211,16 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
               <>
                 <h3 className="t-display mt-3">Custom, per location.</h3>
                 <p className="t-body mt-3 max-w-md text-[#a1a1a6]">
-                  Over {LARGEST_BAND} trucks, we price each location on its own. Our sales team builds the plan with you.
+                  Over {LARGEST_BAND} trucks, we price each location on its own. Our sales team
+                  builds the plan with you.
                 </p>
                 <div className="mt-8">
                   <Button disabled aria-label="Talk to the sales team. Contact opens soon.">
                     Talk to us
                   </Button>
-                  <p className="t-caption mt-3 text-[#a1a1a6]">For the sales team. Direct contact opens soon.</p>
+                  <p className="t-caption mt-3 text-[#a1a1a6]">
+                    For the sales team. Direct contact opens soon.
+                  </p>
                 </div>
               </>
             ) : (
@@ -207,7 +231,10 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
                 </h3>
                 <dl className="mt-8 space-y-3 border-t border-white/15 pt-6">
                   <QuoteLine label="License, billed annually" value={`${usd(q.annual)} a year`} />
-                  <QuoteLine label="Pooled practice minutes" value={`${q.pooledMinutes.toLocaleString('en-US')} a month`} />
+                  <QuoteLine
+                    label="Pooled practice minutes"
+                    value={`${q.pooledMinutes.toLocaleString('en-US')} a month`}
+                  />
                   <QuoteLine label="Overage" value={`$${OVERAGE_PER_MINUTE.toFixed(2)} a minute`} />
                   {tier === 'elite' && (
                     <>
@@ -217,7 +244,10 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
                   )}
                 </dl>
                 {tier === 'elite' && (
-                  <p className="t-caption mt-4 text-[#a1a1a6]">The build is invoiced after the scoping call. Checkout covers the license and program.</p>
+                  <p className="t-caption mt-4 text-[#a1a1a6]">
+                    The build is invoiced after the scoping call. Checkout covers the license and
+                    program.
+                  </p>
                 )}
               </>
             )}
@@ -240,8 +270,16 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
               {!loaded ? (
                 <Skeleton className="h-11 w-full rounded-pill" />
               ) : (
-                <Button className="w-full" onClick={startCheckout} disabled={!billing || busy || q.custom}>
-                  {busy ? 'Opening Stripe' : q.custom ? 'Custom quote' : `Check out ${TIERS[tier].name}`}
+                <Button
+                  className="w-full"
+                  onClick={startCheckout}
+                  disabled={!billing || busy || q.custom}
+                >
+                  {busy
+                    ? 'Opening Stripe'
+                    : q.custom
+                      ? 'Custom quote'
+                      : `Check out ${TIERS[tier].name}`}
                 </Button>
               )}
               {loaded && !billing && (
@@ -250,7 +288,11 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
                 </p>
               )}
               {error && <p className="t-caption mt-3 text-negative">{error}</p>}
-              {billing && !error && !q.custom && <p className="t-caption mt-3 text-ink-4">Secure checkout by Stripe. Promo codes welcome.</p>}
+              {billing && !error && !q.custom && (
+                <p className="t-caption mt-3 text-ink-4">
+                  Secure checkout by Stripe. Promo codes welcome.
+                </p>
+              )}
             </div>
           </Card>
         </div>
@@ -261,7 +303,8 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
           <p className="t-callout font-semibold text-ink-3">In-person seminars</p>
           <p className="t-headline mt-1 text-ink">{usd(SEMINAR_PER_DAY)} per day.</p>
           <p className="t-callout mt-1 text-ink-3">
-            A full day with the whole team. Live role plays on your objections, your process, your price book.
+            A full day with the whole team. Live role plays on your objections, your process, your
+            price book.
           </p>
         </div>
         <Chip>Any tier</Chip>
@@ -306,7 +349,11 @@ const INTEGRATIONS: Integration[] = [
     off: 'Off: Demo mode. Built-in rules and scripted lines.',
     vars: [
       { name: 'ANTHROPIC_API_KEY' },
-      { name: 'SALES_COACH_PRESET', optional: true, note: 'standard, max, or economy. Leave it out for standard.' },
+      {
+        name: 'SALES_COACH_PRESET',
+        optional: true,
+        note: 'standard, max, or economy. Leave it out for standard.',
+      },
     ],
     extra: (c) =>
       c.models ? (
@@ -326,7 +373,14 @@ const INTEGRATIONS: Integration[] = [
     on: (c) => c.voice,
     unlocks: 'A real human voice for every customer and the coach.',
     off: 'Off: the browser’s built-in voices.',
-    vars: [{ name: 'ELEVENLABS_API_KEY' }, { name: 'ELEVENLABS_MODEL_ID', optional: true, note: 'Only to override the default voice model.' }],
+    vars: [
+      { name: 'ELEVENLABS_API_KEY' },
+      {
+        name: 'ELEVENLABS_MODEL_ID',
+        optional: true,
+        note: 'Only to override the default voice model.',
+      },
+    ],
   },
   {
     id: 'billing',
@@ -348,7 +402,8 @@ const INTEGRATIONS: Integration[] = [
     id: 'servicetitan',
     name: 'ServiceTitan',
     on: (c) => c.servicetitan,
-    unlocks: 'Rehearse the next job: the real appointment, equipment, and history. First names only.',
+    unlocks:
+      'Rehearse the next job: the real appointment, equipment, and history. First names only.',
     off: 'Off: techs rehearse a sample job.',
     vars: [
       { name: 'SERVICETITAN_CLIENT_ID' },
@@ -372,7 +427,13 @@ const INTEGRATIONS: Integration[] = [
     on: () => null,
     unlocks: 'One shared passcode keeps a public link private while you pilot.',
     off: 'Optional. Recommended once Claude is on, so a public link cannot spend your credits.',
-    vars: [{ name: 'SALES_COACH_PASSCODE', optional: true, note: 'Any passcode you choose. Share it with your team.' }],
+    vars: [
+      {
+        name: 'SALES_COACH_PASSCODE',
+        optional: true,
+        note: 'Any passcode you choose. Share it with your team.',
+      },
+    ],
   },
 ];
 
@@ -385,10 +446,15 @@ export function SetupTab() {
     <div>
       <div className="mb-10 max-w-2xl">
         <p className="t-headline text-ink">
-          {loaded && caps ? `${onCount} of ${total} connected.` : loaded ? 'Status unavailable right now.' : 'Checking your setup.'}
+          {loaded && caps
+            ? `${onCount} of ${total} connected.`
+            : loaded
+              ? 'Status unavailable right now.'
+              : 'Checking your setup.'}
         </p>
         <p className="t-body mt-2 text-ink-3">
-          Everything turns on in Vercel. No code. Add the variable, save, redeploy. Keys stay in Vercel: this page only shows on or off.
+          Everything turns on in Vercel. No code. Add the variable, save, redeploy. Keys stay in
+          Vercel: this page only shows on or off.
         </p>
       </div>
 
@@ -401,7 +467,15 @@ export function SetupTab() {
   );
 }
 
-function IntegrationCard({ i, caps, loaded }: { i: Integration; caps: Capabilities | null; loaded: boolean }) {
+function IntegrationCard({
+  i,
+  caps,
+  loaded,
+}: {
+  i: Integration;
+  caps: Capabilities | null;
+  loaded: boolean;
+}) {
   const state = caps ? i.on(caps) : null;
   const on = state === true;
   return (
@@ -429,7 +503,9 @@ function IntegrationCard({ i, caps, loaded }: { i: Integration; caps: Capabiliti
       <div className="mt-auto pt-5">
         {on ? (
           <details className="group">
-            <summary className="t-callout cursor-pointer text-accent hover:underline">Setup steps</summary>
+            <summary className="t-callout cursor-pointer text-accent hover:underline">
+              Setup steps
+            </summary>
             <Steps vars={i.vars} />
           </details>
         ) : (
@@ -447,10 +523,14 @@ function Steps({ vars }: { vars: EnvVar[] }) {
   return (
     <ol className="t-callout mt-3 space-y-3 text-ink-2">
       <Step n={1}>
-        In Vercel, open your project. Go to <Path>Settings</Path> then <Path>Environment Variables</Path>.
+        In Vercel, open your project. Go to <Path>Settings</Path> then{' '}
+        <Path>Environment Variables</Path>.
       </Step>
       <Step n={2}>
-        <span>Add {vars.length === 1 ? 'this variable' : 'these variables'} with the value from the provider:</span>
+        <span>
+          Add {vars.length === 1 ? 'this variable' : 'these variables'} with the value from the
+          provider:
+        </span>
         <ul className="mt-2 space-y-2">
           {vars.map((v) => (
             <li key={v.name}>
@@ -462,7 +542,8 @@ function Steps({ vars }: { vars: EnvVar[] }) {
         </ul>
       </Step>
       <Step n={3}>
-        <Path>Save</Path>. Then <Path>Deployments</Path>, open the latest, and choose <Path>Redeploy</Path>.
+        <Path>Save</Path>. Then <Path>Deployments</Path>, open the latest, and choose{' '}
+        <Path>Redeploy</Path>.
       </Step>
     </ol>
   );
@@ -471,7 +552,9 @@ function Steps({ vars }: { vars: EnvVar[] }) {
 function Step({ n, children }: { n: number; children: ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="t-micro mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-surface-3 tabular-nums text-ink-2">{n}</span>
+      <span className="t-micro mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-surface-3 tabular-nums text-ink-2">
+        {n}
+      </span>
       <div className="min-w-0 flex-1">{children}</div>
     </li>
   );
@@ -500,7 +583,11 @@ function VarName({ name }: { name: string }) {
       title="Copy the name"
     >
       <span className="truncate">{name}</span>
-      {copied ? <Check size={13} className="shrink-0 text-positive" /> : <Copy size={13} className="shrink-0 text-ink-4" />}
+      {copied ? (
+        <Check size={13} className="shrink-0 text-positive" />
+      ) : (
+        <Copy size={13} className="shrink-0 text-ink-4" />
+      )}
     </button>
   );
 }

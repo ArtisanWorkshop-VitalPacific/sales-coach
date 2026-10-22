@@ -6,7 +6,13 @@ import { Button, Segmented } from '@/components/ui';
 import { companies, DIFFICULTY_LABEL } from '@/lib/content';
 import { useProfile } from '@/lib/store';
 
-export function BriefingStart({ scenarioId, defaultDifficulty }: { scenarioId: string; defaultDifficulty: number }) {
+export function BriefingStart({
+  scenarioId,
+  defaultDifficulty,
+}: {
+  scenarioId: string;
+  defaultDifficulty: number;
+}) {
   const router = useRouter();
   const [profile] = useProfile();
   const [d, setD] = useState(String(defaultDifficulty) as '1' | '2' | '3' | '4' | '5');
@@ -42,7 +48,9 @@ export function BriefingStart({ scenarioId, defaultDifficulty }: { scenarioId: s
       <Button
         size="lg"
         className="w-full"
-        onClick={() => router.push(`/call?scenario=${scenarioId}&d=${d}&c=${encodeURIComponent(companyId)}`)}
+        onClick={() =>
+          router.push(`/call?scenario=${scenarioId}&d=${d}&c=${encodeURIComponent(companyId)}`)
+        }
       >
         Start the call
       </Button>

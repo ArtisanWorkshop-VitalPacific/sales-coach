@@ -30,7 +30,8 @@ function levelFor(sessions: StoredSession[]) {
       if (full.length > 0) current = 0;
       return;
     }
-    if (full.some((s) => s.difficulty >= l.examDifficulty && s.debrief.overall >= l.examPassBar)) current = i;
+    if (full.some((s) => s.difficulty >= l.examDifficulty && s.debrief.overall >= l.examPassBar))
+      current = i;
   });
   return { levels, current };
 }
@@ -42,10 +43,30 @@ function Sparkline({ values }: { values: number[] }) {
   const pts = values.map((v, i) => [(i / (values.length - 1)) * w, h - (v / 100) * h] as const);
   const d = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
   return (
-    <svg viewBox={`0 0 ${w} ${h + 8}`} className="h-32 w-full" preserveAspectRatio="none" aria-label="Score trend">
-      <line x1="0" x2={w} y1={h - 0.7 * h} y2={h - 0.7 * h} stroke="var(--sc-color-line-strong)" strokeDasharray="4 6" />
+    <svg
+      viewBox={`0 0 ${w} ${h + 8}`}
+      className="h-32 w-full"
+      preserveAspectRatio="none"
+      aria-label="Score trend"
+    >
+      <line
+        x1="0"
+        x2={w}
+        y1={h - 0.7 * h}
+        y2={h - 0.7 * h}
+        stroke="var(--sc-color-line-strong)"
+        strokeDasharray="4 6"
+      />
       <path d={`${d} L${w},${h} L0,${h} Z`} fill="var(--sc-color-accent-soft)" />
-      <path d={d} fill="none" stroke="var(--sc-color-accent)" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      <path
+        d={d}
+        fill="none"
+        stroke="var(--sc-color-accent)"
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
     </svg>
   );
 }
@@ -65,13 +86,24 @@ export default function ProgressPage() {
         .sort((a, b) => a.difficulty - b.difficulty)[0]
     : undefined;
   const skills = contentIndex().rubric.skills;
-  const trend = [...all].reverse().slice(-20).map((s) => s.debrief.overall);
+  const trend = [...all]
+    .reverse()
+    .slice(-20)
+    .map((s) => s.debrief.overall);
 
   return (
     <div>
-      <PageHeader eyebrow="Progress" title="Better every call." lead="Your skills, your level, and every call you have made on this device." />
+      <PageHeader
+        eyebrow="Progress"
+        title="Better every call."
+        lead="Your skills, your level, and every call you have made on this device."
+      />
       {sessions !== null && all.length === 0 ? (
-        <Empty title="Nothing to show yet." body="Make your first call and your progress starts here." action={<ButtonLink href="/practice">Pick a customer</ButtonLink>} />
+        <Empty
+          title="Nothing to show yet."
+          body="Make your first call and your progress starts here."
+          action={<ButtonLink href="/practice">Pick a customer</ButtonLink>}
+        />
       ) : (
         <>
           <div className="mb-12 grid gap-5 lg:grid-cols-5">
@@ -79,19 +111,33 @@ export default function ProgressPage() {
               <p className="t-callout flex items-center gap-2 font-semibold text-ink-3">
                 <Award size={16} /> Your level
               </p>
-              <p className="t-display mt-3 text-ink">{current >= 0 ? levels[current]!.name : 'Getting started'}</p>
+              <p className="t-display mt-3 text-ink">
+                {current >= 0 ? levels[current]!.name : 'Getting started'}
+              </p>
               <div className="mt-5 flex gap-1.5">
                 {levels.map((l, i) => (
-                  <span key={l.id} className={cn('h-1.5 flex-1 rounded-full', i <= current ? 'bg-voice' : 'bg-surface-3')} title={l.name} />
+                  <span
+                    key={l.id}
+                    className={cn(
+                      'h-1.5 flex-1 rounded-full',
+                      i <= current ? 'bg-voice' : 'bg-surface-3',
+                    )}
+                    title={l.name}
+                  />
                 ))}
               </div>
               {next && (
                 <div className="mt-6">
                   <p className="t-callout text-ink-2">
-                    <span className="font-semibold text-ink">Next: {next.name}.</span> {next.requirement}
+                    <span className="font-semibold text-ink">Next: {next.name}.</span>{' '}
+                    {next.requirement}
                   </p>
                   {examScenario && (
-                    <ButtonLink href={`/call?scenario=${examScenario.id}&d=${next.examDifficulty}&kind=exam`} size="sm" className="mt-4">
+                    <ButtonLink
+                      href={`/call?scenario=${examScenario.id}&d=${next.examDifficulty}&kind=exam`}
+                      size="sm"
+                      className="mt-4"
+                    >
                       Take the {next.name} call
                     </ButtonLink>
                   )}
@@ -103,11 +149,18 @@ export default function ProgressPage() {
                 <p className="t-callout font-semibold text-ink-3">Score trend</p>
                 <p className="t-caption text-ink-4">Dashed line: pass at 70</p>
               </div>
-              {trend.length > 1 ? <Sparkline values={trend} /> : <p className="t-callout mt-8 text-ink-3">Two calls in, your trend shows up here.</p>}
+              {trend.length > 1 ? (
+                <Sparkline values={trend} />
+              ) : (
+                <p className="t-callout mt-8 text-ink-3">Two calls in, your trend shows up here.</p>
+              )}
             </Card>
           </div>
 
-          <Section title="Skills" action={<span className="t-caption text-ink-4">Last 10 calls</span>}>
+          <Section
+            title="Skills"
+            action={<span className="t-caption text-ink-4">Last 10 calls</span>}
+          >
             <Card className="divide-y divide-line">
               {SKILL_ORDER.map((id) => {
                 const k = skills.find((s) => s.id === id);
@@ -122,9 +175,15 @@ export default function ProgressPage() {
                     <div className="flex-1">
                       <Bar value={v} tone="auto" />
                     </div>
-                    <span className="t-body w-10 text-right font-semibold tabular-nums text-ink">{v ?? '–'}</span>
+                    <span className="t-body w-10 text-right font-semibold tabular-nums text-ink">
+                      {v ?? '–'}
+                    </span>
                     <span className="w-14 text-right">
-                      {delta !== null && delta !== 0 && <Chip tone={delta > 0 ? 'positive' : 'caution'}>{delta > 0 ? `+${delta}` : delta}</Chip>}
+                      {delta !== null && delta !== 0 && (
+                        <Chip tone={delta > 0 ? 'positive' : 'caution'}>
+                          {delta > 0 ? `+${delta}` : delta}
+                        </Chip>
+                      )}
                     </span>
                   </div>
                 );

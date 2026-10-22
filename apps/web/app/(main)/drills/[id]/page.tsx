@@ -43,9 +43,16 @@ export default async function DrillPage({ params }: { params: Promise<{ id: stri
         <h2 className="t-headline text-ink">How it sounds</h2>
         <ol className="mt-5 space-y-3">
           {d.demo.map((line, i) => (
-            <li key={i} className={line.speaker === 'tech' ? 'flex justify-end' : 'flex justify-start'}>
-              <div className={`max-w-[85%] rounded-lg px-4 py-2.5 ${line.speaker === 'tech' ? 'bg-accent text-accent-ink' : 'bg-surface-3 text-ink'}`}>
-                <p className="t-micro mb-0.5 opacity-60">{line.speaker === 'tech' ? 'Tech' : 'Customer'}</p>
+            <li
+              key={i}
+              className={line.speaker === 'tech' ? 'flex justify-end' : 'flex justify-start'}
+            >
+              <div
+                className={`max-w-[85%] rounded-lg px-4 py-2.5 ${line.speaker === 'tech' ? 'bg-accent text-accent-ink' : 'bg-surface-3 text-ink'}`}
+              >
+                <p className="t-micro mb-0.5 opacity-60">
+                  {line.speaker === 'tech' ? 'Tech' : 'Customer'}
+                </p>
                 <p className="t-callout">{line.text}</p>
               </div>
             </li>
@@ -75,7 +82,9 @@ export default async function DrillPage({ params }: { params: Promise<{ id: stri
             </div>
           </div>
           <p className="t-callout mt-3 text-ink-3">{d.techPrompt}</p>
-          <p className="t-caption mt-3 text-ink-4">The drill picks up mid-call. {first} already knows why you are there.</p>
+          <p className="t-caption mt-3 text-ink-4">
+            The drill picks up mid-call. {first} already knows why you are there.
+          </p>
         </Card>
       </div>
     </div>
@@ -87,6 +96,12 @@ function paragraphs(text: string): string[] {
   if (text.includes('\n\n')) return text.split(/\n\n+/);
   const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [text];
   const out: string[] = [];
-  for (let i = 0; i < sentences.length; i += 3) out.push(sentences.slice(i, i + 3).join('').trim());
+  for (let i = 0; i < sentences.length; i += 3)
+    out.push(
+      sentences
+        .slice(i, i + 3)
+        .join('')
+        .trim(),
+    );
   return out;
 }

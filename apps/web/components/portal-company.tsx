@@ -3,7 +3,15 @@
 import type { Company, Move } from '@sales-coach/engine';
 import { Check, ChevronDown, ExternalLink, Info, Lock, X } from 'lucide-react';
 import { useState } from 'react';
-import { behaviorMoves, companies, contentIndex, drills, objections, personas, scenarios } from '@/lib/content';
+import {
+  behaviorMoves,
+  companies,
+  contentIndex,
+  drills,
+  objections,
+  personas,
+  scenarios,
+} from '@/lib/content';
 import { usd } from '@/lib/pricing';
 import { useProfile } from '@/lib/store';
 import { Avatar } from './avatar';
@@ -15,11 +23,16 @@ export function CompanyTab() {
   const [profile, setProfile] = useProfile();
   const list = companies();
   const [picked, setPicked] = useState<string | null>(null);
-  const fallback = list.some((c) => c.id === profile.companyId) ? profile.companyId : (list[0]?.id ?? '');
+  const fallback = list.some((c) => c.id === profile.companyId)
+    ? profile.companyId
+    : (list[0]?.id ?? '');
   const id = picked ?? fallback;
   const c = list.find((x) => x.id === id);
 
-  if (!c) return <Empty title="No company specs yet." body="Company specs live in the content library." />;
+  if (!c)
+    return (
+      <Empty title="No company specs yet." body="Company specs live in the content library." />
+    );
 
   const inUse = profile.companyId === c.id;
 
@@ -28,7 +41,12 @@ export function CompanyTab() {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {list.length <= 4 ? (
           <div className="no-scrollbar -mx-5 overflow-x-auto px-5">
-            <Segmented size="sm" options={list.map((x) => ({ value: x.id, label: x.shortName }))} value={c.id} onChange={setPicked} />
+            <Segmented
+              size="sm"
+              options={list.map((x) => ({ value: x.id, label: x.shortName }))}
+              value={c.id}
+              onChange={setPicked}
+            />
           </div>
         ) : (
           <select
@@ -49,7 +67,11 @@ export function CompanyTab() {
             <Check size={13} /> Practice calls use {c.shortName}
           </Chip>
         ) : (
-          <button type="button" className="btn btn-secondary btn-sm self-start" onClick={() => setProfile({ companyId: c.id })}>
+          <button
+            type="button"
+            className="btn btn-secondary btn-sm self-start"
+            onClick={() => setProfile({ companyId: c.id })}
+          >
             Practice with {c.shortName}
           </button>
         )}
@@ -133,7 +155,9 @@ export function CompanyTab() {
           </div>
           {c.membership ? (
             <>
-              {membershipPrice(c) && <p className="t-title mt-4 tabular-nums text-ink">{membershipPrice(c)}</p>}
+              {membershipPrice(c) && (
+                <p className="t-title mt-4 tabular-nums text-ink">{membershipPrice(c)}</p>
+              )}
               <p className="t-callout mt-3 text-ink-2">{c.membership.summary}</p>
               {c.membership.benefits.length > 0 && (
                 <ul className="mt-5 space-y-2.5">
@@ -147,14 +171,19 @@ export function CompanyTab() {
               )}
             </>
           ) : (
-            <p className="t-callout mt-3 text-ink-3">No membership plan in this spec. Techs skip the membership ask until the owner adds one.</p>
+            <p className="t-callout mt-3 text-ink-3">
+              No membership plan in this spec. Techs skip the membership ask until the owner adds
+              one.
+            </p>
           )}
         </Card>
         <Card className="p-6 md:p-8">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="t-callout font-semibold text-ink-3">Financing</p>
-              <p className="t-headline mt-1 text-ink">{c.financing.available ? 'Available' : 'Not offered'}</p>
+              <p className="t-headline mt-1 text-ink">
+                {c.financing.available ? 'Available' : 'Not offered'}
+              </p>
             </div>
             {!c.financing.verified && <Chip tone="caution">Verify</Chip>}
           </div>
@@ -225,7 +254,10 @@ export function CompanyTab() {
       <Section title="Sources">
         {c.sources.length === 0 ? (
           <Card className="p-6">
-            <p className="t-callout text-ink-3">No sources. This company is a fictional demo, so nothing here comes from a real website.</p>
+            <p className="t-callout text-ink-3">
+              No sources. This company is a fictional demo, so nothing here comes from a real
+              website.
+            </p>
           </Card>
         ) : (
           <Card className="divide-y divide-line">
@@ -238,7 +270,9 @@ export function CompanyTab() {
                 className="flex items-center gap-3 px-5 py-3.5 transition-colors hover:bg-surface-2 md:px-7"
               >
                 <ExternalLink size={15} className="shrink-0 text-ink-4" />
-                <span className="t-callout min-w-0 flex-1 truncate text-accent">{s.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
+                <span className="t-callout min-w-0 flex-1 truncate text-accent">
+                  {s.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                </span>
                 <span className="t-caption shrink-0 text-ink-4">Retrieved {s.retrieved}</span>
               </a>
             ))}
@@ -254,14 +288,26 @@ function OwnerReview({ c }: { c: Company }) {
   const fictional = c.sources.length === 0;
   const notes = c.review.notes.map((n) => n.replace(/^Verify with the owner\.\s*/, ''));
   const shown = open ? notes : notes.slice(0, 3);
-  const status = c.review.status === 'approved' ? 'Owner approved' : c.review.status === 'reviewed' ? 'Reviewed' : 'Draft';
+  const status =
+    c.review.status === 'approved'
+      ? 'Owner approved'
+      : c.review.status === 'reviewed'
+        ? 'Reviewed'
+        : 'Draft';
   return (
     <div className="reveal rounded-lg bg-caution-soft p-6 md:p-7 lg:col-span-2 [animation-delay:120ms]">
       <div className="flex items-center justify-between gap-3">
         <p className="t-callout flex items-center gap-2 font-semibold text-caution">
           <Info size={16} /> Owner review
         </p>
-        <Chip className={cn('bg-surface', c.review.status === 'approved' ? 'text-positive' : 'text-caution')}>{status}</Chip>
+        <Chip
+          className={cn(
+            'bg-surface',
+            c.review.status === 'approved' ? 'text-positive' : 'text-caution',
+          )}
+        >
+          {status}
+        </Chip>
       </div>
       <p className="t-body mt-3 text-ink">
         {fictional
@@ -271,7 +317,9 @@ function OwnerReview({ c }: { c: Company }) {
       {notes.length > 0 && (
         <>
           <p className="t-caption mt-4 font-semibold text-ink-3">
-            {fictional ? 'Notes' : `${notes.length} ${notes.length === 1 ? 'item' : 'items'} to confirm`}
+            {fictional
+              ? 'Notes'
+              : `${notes.length} ${notes.length === 1 ? 'item' : 'items'} to confirm`}
           </p>
           <ul className="mt-2 space-y-2">
             {shown.map((n) => (
@@ -282,7 +330,11 @@ function OwnerReview({ c }: { c: Company }) {
             ))}
           </ul>
           {notes.length > 3 && (
-            <button type="button" className="t-caption mt-3 font-medium text-accent hover:underline" onClick={() => setOpen(!open)}>
+            <button
+              type="button"
+              className="t-caption mt-3 font-medium text-accent hover:underline"
+              onClick={() => setOpen(!open)}
+            >
               {open ? 'Show less' : `Show all ${notes.length}`}
             </button>
           )}
@@ -303,7 +355,10 @@ function PriceRanges({ c }: { c: Company }) {
       </div>
       <ul className="divide-y divide-line">
         {rows.map((r) => (
-          <li key={r.id} className="grid grid-cols-[1fr_auto] items-baseline gap-4 px-5 py-3.5 md:gap-6 md:px-7">
+          <li
+            key={r.id}
+            className="grid grid-cols-[1fr_auto] items-baseline gap-4 px-5 py-3.5 md:gap-6 md:px-7"
+          >
             <div className="min-w-0">
               <p className="t-callout text-ink">{r.item}</p>
               <p className="t-caption mt-0.5 truncate text-ink-4" title={r.source}>
@@ -318,7 +373,11 @@ function PriceRanges({ c }: { c: Company }) {
       </ul>
       {c.priceRanges.length > 8 && (
         <div className="border-t hairline px-5 py-3.5 md:px-7">
-          <button type="button" className="t-callout text-accent hover:underline" onClick={() => setAll(!all)}>
+          <button
+            type="button"
+            className="t-callout text-accent hover:underline"
+            onClick={() => setAll(!all)}
+          >
             {all ? 'Show less' : `Show all ${c.priceRanges.length} ranges`}
           </button>
         </div>
@@ -330,7 +389,10 @@ function PriceRanges({ c }: { c: Company }) {
 function membershipPrice(c: Company) {
   const m = c.membership;
   if (!m) return null;
-  const parts = [m.monthlyPrice ? `${usd(m.monthlyPrice)} a month` : null, m.annualPrice ? `${usd(m.annualPrice)} a year` : null].filter(Boolean);
+  const parts = [
+    m.monthlyPrice ? `${usd(m.monthlyPrice)} a month` : null,
+    m.annualPrice ? `${usd(m.annualPrice)} a year` : null,
+  ].filter(Boolean);
   return parts.length ? parts.join(' or ') : null;
 }
 
@@ -355,7 +417,10 @@ const BEHAVIOR_GROUPS = [
   ['probe', 'Probes'],
 ] as const;
 
-const GROUP_LABEL: Record<string, string> = Object.fromEntries([...OBJECTION_GROUPS, ...BEHAVIOR_GROUPS]);
+const GROUP_LABEL: Record<string, string> = Object.fromEntries([
+  ...OBJECTION_GROUPS,
+  ...BEHAVIOR_GROUPS,
+]);
 const groupLabel = (g: string) => GROUP_LABEL[g] ?? humanize(g);
 
 export function LibraryTab() {
@@ -368,20 +433,40 @@ export function LibraryTab() {
     <div>
       <Section>
         <Card className="grid grid-cols-2 gap-6 p-6 md:grid-cols-4 md:p-8">
-          <Stat label="Objections" value={obj.length} hint={`${new Set(obj.map((m) => m.group)).size} groups`} />
-          <Stat label="Customer behaviors" value={beh.length} hint="Silence, interruptions, probes" />
-          <Stat label="Personas" value={people.length} hint={`${people.filter((p) => p.language === 'es').length} in Spanish`} />
-          <Stat label="Scenarios" value={scen.length} hint={`${drills().length} ${drills().length === 1 ? 'drill' : 'drills'}`} />
+          <Stat
+            label="Objections"
+            value={obj.length}
+            hint={`${new Set(obj.map((m) => m.group)).size} groups`}
+          />
+          <Stat
+            label="Customer behaviors"
+            value={beh.length}
+            hint="Silence, interruptions, probes"
+          />
+          <Stat
+            label="Personas"
+            value={people.length}
+            hint={`${people.filter((p) => p.language === 'es').length} in Spanish`}
+          />
+          <Stat
+            label="Scenarios"
+            value={scen.length}
+            hint={`${drills().length} ${drills().length === 1 ? 'drill' : 'drills'}`}
+          />
         </Card>
       </Section>
 
       <Section title="Objection library">
-        <p className="t-body -mt-2 mb-6 max-w-2xl text-ink-3">What customers say. Why they say it. What a strong tech says back.</p>
+        <p className="t-body -mt-2 mb-6 max-w-2xl text-ink-3">
+          What customers say. Why they say it. What a strong tech says back.
+        </p>
         <MoveGroups moves={obj} groups={OBJECTION_GROUPS} />
       </Section>
 
       <Section title="Customer behaviors">
-        <p className="t-body -mt-2 mb-6 max-w-2xl text-ink-3">Not objections. The moments that knock a call off track, and how to stay on it.</p>
+        <p className="t-body -mt-2 mb-6 max-w-2xl text-ink-3">
+          Not objections. The moments that knock a call off track, and how to stay on it.
+        </p>
         <MoveGroups moves={beh} groups={BEHAVIOR_GROUPS} />
       </Section>
 
@@ -400,7 +485,9 @@ export function LibraryTab() {
               </div>
               <p className="t-callout mt-4 text-ink-2">{p.card}</p>
               <div className="mt-auto flex pt-5">
-                <Chip tone={p.language === 'es' ? 'accent' : undefined}>{p.language === 'es' ? 'Spanish' : 'English'}</Chip>
+                <Chip tone={p.language === 'es' ? 'accent' : undefined}>
+                  {p.language === 'es' ? 'Spanish' : 'English'}
+                </Chip>
               </div>
             </Card>
           ))}
@@ -413,7 +500,8 @@ export function LibraryTab() {
             Add your own objections <Chip tone="accent">Pro</Chip>
           </p>
           <p className="t-callout mt-1 text-ink-3">
-            The ones your customers actually say. Your answers, your scripts, your price book. Every tech practices them.
+            The ones your customers actually say. Your answers, your scripts, your price book. Every
+            tech practices them.
           </p>
         </div>
         <Button variant="secondary" disabled aria-label="Add an objection. Available on Pro.">
@@ -424,14 +512,24 @@ export function LibraryTab() {
   );
 }
 
-function MoveGroups({ moves, groups }: { moves: Move[]; groups: readonly (readonly [string, string])[] }) {
+function MoveGroups({
+  moves,
+  groups,
+}: {
+  moves: Move[];
+  groups: readonly (readonly [string, string])[];
+}) {
   const known = new Set(groups.map(([g]) => g));
-  const extra = [...new Set(moves.map((m) => m.group).filter((g) => !known.has(g)))].map((g) => [g, humanize(g)] as const);
+  const extra = [...new Set(moves.map((m) => m.group).filter((g) => !known.has(g)))].map(
+    (g) => [g, humanize(g)] as const,
+  );
   const all = [...groups, ...extra];
   return (
     <div className="space-y-6">
       {all.map(([g, label]) => {
-        const list = moves.filter((m) => m.group === g).sort((a, b) => a.difficultyMin - b.difficultyMin || a.name.localeCompare(b.name));
+        const list = moves
+          .filter((m) => m.group === g)
+          .sort((a, b) => a.difficultyMin - b.difficultyMin || a.name.localeCompare(b.name));
         if (!list.length) return null;
         return (
           <div key={g}>
@@ -454,15 +552,28 @@ function MoveRow({ m }: { m: Move }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="px-5 py-4 md:px-6">
-      <button type="button" className="flex w-full items-start gap-4 text-left" onClick={() => setOpen(!open)} aria-expanded={open}>
+      <button
+        type="button"
+        className="flex w-full items-start gap-4 text-left"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
         <div className="min-w-0 flex-1">
           <p className="t-body font-medium text-ink">{m.name}</p>
           <p className="t-callout text-ink-3">{m.summary}</p>
         </div>
-        <span className="flex shrink-0 items-center gap-3 pt-2" title={`Shows up from difficulty ${m.difficultyMin}`}>
-          <span className="t-caption hidden tabular-nums text-ink-4 sm:inline">Level {m.difficultyMin}+</span>
+        <span
+          className="flex shrink-0 items-center gap-3 pt-2"
+          title={`Shows up from difficulty ${m.difficultyMin}`}
+        >
+          <span className="t-caption hidden tabular-nums text-ink-4 sm:inline">
+            Level {m.difficultyMin}+
+          </span>
           <Difficulty level={m.difficultyMin} />
-          <ChevronDown size={16} className={cn('text-ink-4 transition-transform', open && 'rotate-180')} />
+          <ChevronDown
+            size={16}
+            className={cn('text-ink-4 transition-transform', open && 'rotate-180')}
+          />
         </span>
       </button>
       {open && (

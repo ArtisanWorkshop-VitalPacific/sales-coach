@@ -20,7 +20,9 @@ function stats(sessions: StoredSession[]) {
   const weekAgo = Date.now() - 7 * 86400000;
   const week = sessions.filter((s) => new Date(s.createdAt).getTime() > weekAgo);
   const recent = sessions.slice(0, 10);
-  const avg = recent.length ? Math.round(recent.reduce((a, s) => a + s.debrief.overall, 0) / recent.length) : null;
+  const avg = recent.length
+    ? Math.round(recent.reduce((a, s) => a + s.debrief.overall, 0) / recent.length)
+    : null;
   const days = new Set(sessions.map((s) => new Date(s.createdAt).toDateString()));
   let streak = 0;
   for (let d = new Date(); days.has(d.toDateString()); d.setDate(d.getDate() - 1)) streak++;
@@ -72,7 +74,8 @@ export default function HomePage() {
           {profile.name ? `, ${profile.name.split(' ')[0]}.` : '.'}
         </h1>
         <p className="t-body-lg mt-4 max-w-xl text-ink-3">
-          Practice the call before the call. Real customers. Real pushback. A coach who tells you exactly what to fix.
+          Practice the call before the call. Real customers. Real pushback. A coach who tells you
+          exactly what to fix.
         </p>
       </header>
 
@@ -80,8 +83,8 @@ export default function HomePage() {
         <div className="reveal mb-8 flex items-start gap-3 rounded-lg bg-surface-2 p-4 ring-1 ring-line md:items-center">
           <Sparkles className="mt-0.5 shrink-0 text-ink-3 md:mt-0" size={18} />
           <p className="t-callout text-ink-2">
-            <span className="font-semibold text-ink">Demo mode.</span> Customers run on built-in rules and your browser&rsquo;s voices.
-            Add a Claude key and they come to life.{' '}
+            <span className="font-semibold text-ink">Demo mode.</span> Customers run on built-in
+            rules and your browser&rsquo;s voices. Add a Claude key and they come to life.{' '}
             <Link href="/portal?tab=setup" className="text-accent hover:underline">
               How to turn it on
             </Link>
@@ -89,7 +92,11 @@ export default function HomePage() {
         </div>
       )}
 
-      {!profile.onboarded && <Onboarding onDone={(name, companyId) => setProfile({ name, companyId, onboarded: true })} />}
+      {!profile.onboarded && (
+        <Onboarding
+          onDone={(name, companyId) => setProfile({ name, companyId, onboarded: true })}
+        />
+      )}
 
       <div className="mb-12 grid gap-5 lg:grid-cols-5">
         {nextDrill && (
@@ -98,7 +105,9 @@ export default function HomePage() {
             className="reveal group relative overflow-hidden rounded-xl bg-[#000] p-7 text-[#f5f5f7] shadow-float md:p-10 lg:col-span-3"
           >
             <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-voice opacity-30 blur-3xl transition-opacity duration-700 group-hover:opacity-45" />
-            <p className="t-callout font-semibold text-[#a1a1a6]">Today&rsquo;s drill · {Math.round(nextDrill.durationSec / 60) || 1} min</p>
+            <p className="t-callout font-semibold text-[#a1a1a6]">
+              Today&rsquo;s drill · {Math.round(nextDrill.durationSec / 60) || 1} min
+            </p>
             <h2 className="t-display mt-3 max-w-md">{nextDrill.title}</h2>
             <p className="t-body mt-4 max-w-md text-[#a1a1a6]">{firstSentence(nextDrill.why)}</p>
             <span className="btn btn-primary mt-8">
@@ -109,13 +118,20 @@ export default function HomePage() {
         <div className="flex flex-col gap-5 lg:col-span-2">
           {firstCall && (
             <Card className="reveal flex flex-1 flex-col p-6 [animation-delay:120ms]">
-              <p className="t-callout font-semibold text-ink-3">{all.length ? 'Your next call' : 'Your first call'}</p>
+              <p className="t-callout font-semibold text-ink-3">
+                {all.length ? 'Your next call' : 'Your first call'}
+              </p>
               <div className="mt-4 flex items-center gap-3">
-                <Avatar name={contentIndex().persona(firstCall.personaId).name} seed={firstCall.personaId} size={44} />
+                <Avatar
+                  name={contentIndex().persona(firstCall.personaId).name}
+                  seed={firstCall.personaId}
+                  size={44}
+                />
                 <div className="min-w-0">
                   <p className="t-headline truncate text-ink">{firstCall.title}</p>
                   <p className="t-caption text-ink-3">
-                    {contentIndex().persona(firstCall.personaId).name} · {jobLabel(firstCall.jobType)}
+                    {contentIndex().persona(firstCall.personaId).name} ·{' '}
+                    {jobLabel(firstCall.jobType)}
                   </p>
                 </div>
               </div>
@@ -148,17 +164,29 @@ export default function HomePage() {
       <Section>
         <Card className="grid grid-cols-2 gap-6 p-6 md:grid-cols-4 md:p-8">
           <Stat label="Calls this week" value={s.week} />
-          <Stat label="Average score" value={s.avg ?? '–'} hint={s.avg !== null ? 'Last 10 calls' : 'No calls yet'} />
+          <Stat
+            label="Average score"
+            value={s.avg ?? '–'}
+            hint={s.avg !== null ? 'Last 10 calls' : 'No calls yet'}
+          />
           <Stat label="Streak" value={`${s.streak} ${s.streak === 1 ? 'day' : 'days'}`} />
-          <Stat label="Strongest skill" value={<span className="t-headline">{s.best ?? '–'}</span>} />
+          <Stat
+            label="Strongest skill"
+            value={<span className="t-headline">{s.best ?? '–'}</span>}
+          />
         </Card>
       </Section>
 
-      <Section title="Recent calls" action={all.length > 0 ? <ChevronLink href="/progress">All calls</ChevronLink> : undefined}>
+      <Section
+        title="Recent calls"
+        action={all.length > 0 ? <ChevronLink href="/progress">All calls</ChevronLink> : undefined}
+      >
         {sessions === null ? null : all.length === 0 ? (
           <Card className="p-8 text-center">
             <p className="t-headline text-ink">No calls yet.</p>
-            <p className="t-callout mt-2 text-ink-3">Your first one takes about five minutes. Headphones help.</p>
+            <p className="t-callout mt-2 text-ink-3">
+              Your first one takes about five minutes. Headphones help.
+            </p>
             <ButtonLink href="/practice" className="mt-6">
               Pick a customer
             </ButtonLink>
@@ -174,7 +202,10 @@ export default function HomePage() {
 
       {company && (
         <p className="t-caption text-center text-ink-4">
-          Practicing with {company.name}&rsquo;s process. <Link href="/settings" className="text-accent hover:underline">Change</Link>
+          Practicing with {company.name}&rsquo;s process.{' '}
+          <Link href="/settings" className="text-accent hover:underline">
+            Change
+          </Link>
         </p>
       )}
     </div>
@@ -189,7 +220,9 @@ function firstSentence(text: string) {
 function Onboarding({ onDone }: { onDone: (name: string, companyId: string) => void }) {
   const [name, setName] = useState('');
   const list = companies();
-  const [companyId, setCompanyId] = useState(list.find((c) => c.id === 'demo-company')?.id ?? list[0]?.id ?? 'demo-company');
+  const [companyId, setCompanyId] = useState(
+    list.find((c) => c.id === 'demo-company')?.id ?? list[0]?.id ?? 'demo-company',
+  );
   return (
     <Card className="reveal mb-10 p-6 md:p-8">
       <p className="t-headline text-ink">Let&rsquo;s get you set up.</p>
