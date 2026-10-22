@@ -4,6 +4,7 @@ export const maxDuration = 60;
 
 const MODELS = [
   process.env.ELEVENLABS_MODEL_ID,
+  'eleven_v4_turbo',
   'eleven_v3_conversational',
   'eleven_v3',
   'eleven_flash_v2_5',
@@ -37,7 +38,7 @@ async function substituteFor(
 }
 
 async function synth(voice: string, text: string, model: string, key: string, signal: AbortSignal) {
-  const v3 = model.startsWith('eleven_v3');
+  const v3 = /^eleven_v[3-9]/.test(model);
   return fetch(`${API}/text-to-speech/${voice}/stream?output_format=mp3_44100_128`, {
     method: 'POST',
     headers: { 'xi-api-key': key, 'content-type': 'application/json', accept: 'audio/mpeg' },
@@ -89,7 +90,10 @@ export async function GET(req: Request) {
     lastError = `${res.status} ${detail}`;
     // Auth and quota problems will not be fixed by another model or voice.
     if (res.status === 401 || res.status === 402 || res.status === 429) break;
-    if (!swappedVoice && (res.status === 404 || /voice/i.test(detail))) {
+    if (
+      !swappedVoice &&
+      (res.status === 404 || /voice[_ ]?not[_ ]?found|voice.{0,20}(does not exist|not available)|invalid voice/i.test(detail))
+    ) {
       const sub = await substituteFor(voice, key, gender);
       if (sub) {
         voice = sub;

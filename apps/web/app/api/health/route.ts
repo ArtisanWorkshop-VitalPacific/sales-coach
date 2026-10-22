@@ -82,6 +82,7 @@ export async function GET(req: Request) {
     if (!key) return NextResponse.json({ ok: false, error: 'ELEVENLABS_API_KEY is not set' });
     const models = [
       process.env.ELEVENLABS_MODEL_ID,
+      'eleven_v4_turbo',
       'eleven_v3_conversational',
       'eleven_v3',
       'eleven_flash_v2_5',

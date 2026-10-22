@@ -20,7 +20,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 
 **With `ANTHROPIC_API_KEY` (Claude mode):** Claude Haiku 5.5 reads every turn into behaviors, Claude Sonnet 5.5 speaks as the customer in the persona's voice, and Claude Opus 5.5 reviews the whole call and writes the debrief. Certification calls are judged by Claude Fable 5.1. If Claude is unreachable mid-call, the call continues in demo mode and says so.
 
-**With `ELEVENLABS_API_KEY`:** each persona gets a cast ElevenLabs voice with delivery tags ([sighs], [hesitates]), Eleven v3 Conversational first, with automatic fallbacks.
+**With `ELEVENLABS_API_KEY`:** each persona gets a cast ElevenLabs voice with delivery tags ([sighs], [hesitates]), Eleven v4 Turbo first, with automatic fallbacks to v3 and Flash.
 
 ## Not live yet, and why
 

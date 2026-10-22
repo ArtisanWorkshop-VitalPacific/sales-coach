@@ -33,7 +33,7 @@ import {
 import { CustomerAgent, CustomerBridge } from './customer';
 import { readRequest } from './request';
 
-const DEFAULT_MODEL = 'eleven_v3_conversational';
+const DEFAULT_MODEL = 'eleven_v4_turbo';
 /** ElevenLabs premade voices, used until a persona has its own voice id. */
 const DEFAULT_VOICES = {
   female: process.env.ELEVENLABS_DEFAULT_VOICE_FEMALE || '21m00Tcm4TlvDq8ikWAM',
