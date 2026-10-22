@@ -23,7 +23,12 @@ type SR = {
   start(): void;
   stop(): void;
   abort(): void;
-  onresult: ((e: { resultIndex: number; results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
+  onresult:
+    | ((e: {
+        resultIndex: number;
+        results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }>;
+      }) => void)
+    | null;
   onend: (() => void) | null;
   onerror: ((e: { error: string }) => void) | null;
   onspeechstart: (() => void) | null;
@@ -119,10 +124,16 @@ export class Recognizer {
   }
 
   private spawn() {
-    const w = window as unknown as { SpeechRecognition?: new () => SR; webkitSpeechRecognition?: new () => SR };
+    const w = window as unknown as {
+      SpeechRecognition?: new () => SR;
+      webkitSpeechRecognition?: new () => SR;
+    };
     const Ctor = w.SpeechRecognition ?? w.webkitSpeechRecognition;
     if (!Ctor) {
-      this.events.onError?.('Speech recognition is not available in this browser. Type your replies instead.', 'unsupported');
+      this.events.onError?.(
+        'Speech recognition is not available in this browser. Type your replies instead.',
+        'unsupported',
+      );
       this.active = false;
       this.events.onState?.(false);
       return;
@@ -159,7 +170,10 @@ export class Recognizer {
     rec.onerror = (e) => {
       if (gen !== this.generation) return;
       if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
-        this.events.onError?.('Tap the mic to talk. If your phone asks, allow the microphone.', e.error);
+        this.events.onError?.(
+          'Tap the mic to talk. If your phone asks, allow the microphone.',
+          e.error,
+        );
         this.stop();
       }
       // no-speech, aborted, network: onend restarts.
@@ -184,13 +198,18 @@ export class Recognizer {
     this.timer = window.setTimeout(() => {
       this.timer = null;
       if (!this.active) return;
-      if (performance.now() - this.lastHeard >= this.endpointMs - 30 && this.partialText) this.commit();
+      if (performance.now() - this.lastHeard >= this.endpointMs - 30 && this.partialText)
+        this.commit();
     }, this.endpointMs);
   }
 
   private commit() {
     const text = this.partialText;
-    const u: Utterance = { text, startedAt: this.startedAt || performance.now(), endedAt: this.lastHeard || performance.now() };
+    const u: Utterance = {
+      text,
+      startedAt: this.startedAt || performance.now(),
+      endedAt: this.lastHeard || performance.now(),
+    };
     // Fresh session for the next utterance.
     this.generation++;
     try {

@@ -26,7 +26,11 @@ export function capabilities(): Capabilities {
     live: !!(env.LIVEKIT_URL && env.LIVEKIT_API_KEY && env.LIVEKIT_API_SECRET),
     billing: !!env.STRIPE_SECRET_KEY,
     db: !!env.DATABASE_URL,
-    servicetitan: !!(env.SERVICETITAN_CLIENT_ID && env.SERVICETITAN_CLIENT_SECRET && env.SERVICETITAN_APP_KEY),
+    servicetitan: !!(
+      env.SERVICETITAN_CLIENT_ID &&
+      env.SERVICETITAN_CLIENT_SECRET &&
+      env.SERVICETITAN_APP_KEY
+    ),
     preset,
     models: brain
       ? {

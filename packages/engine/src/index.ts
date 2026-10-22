@@ -9,28 +9,34 @@
  * Browser-safe: nothing here imports Node APIs or the Anthropic SDK. Claude adapters live
  * in "@sales-coach/engine/claude" so the demo bundle stays small.
  */
-export * from './schema';
-export { ContentIndex, buildSessionSpec, scenarioForJob, type SessionSpec, type SpecRequest } from './content';
+
 export {
-  type CustomerState,
-  type Mood,
-  type ObjectionInstance,
-  type Perception,
-  type DecisionResult,
-  emptyPerception,
-  evaluateDecision,
-  initState,
-  moodFor,
-  toneFor,
-} from './state';
+  cleanLine,
+  type LineWriter,
+  type Perceiver,
+  type PerceptionInput,
+  stripTags,
+  type WriteInput,
+} from './adapters';
+export { passedFor, phaseAtTurn, scoreRecord, tryAgainFor } from './coach/score';
+export { Debrief, Evidence, SkillScore } from './coach/types';
 export {
-  type TurnDirective,
-  type DirectorContext,
-  openingDirective,
-  decideNext,
+  buildSessionSpec,
+  ContentIndex,
+  type SessionSpec,
+  type SpecRequest,
+  scenarioForJob,
+} from './content';
+export {
   afterHoldDirective,
+  type DirectorContext,
+  decideNext,
   interruptDirective,
+  openingDirective,
+  type TurnDirective,
 } from './director';
+export { HeuristicPerceiver, perceiveText } from './heuristic/perceiver';
+export { ScriptedWriter } from './heuristic/writer';
 export type {
   CustomerTurn,
   LatencySample,
@@ -39,10 +45,31 @@ export type {
   StatePoint,
   TranscriptTurn,
 } from './record';
-export { type LineWriter, type Perceiver, type PerceptionInput, type WriteInput, cleanLine, stripTags } from './adapters';
-export { CustomerSession, type SessionOptions, type SessionSnapshot, type TechTurnInput } from './session';
-export { HeuristicPerceiver, perceiveText } from './heuristic/perceiver';
-export { ScriptedWriter } from './heuristic/writer';
-export { passedFor, phaseAtTurn, scoreRecord, tryAgainFor } from './coach/score';
-export { Debrief, Evidence, SkillScore } from './coach/types';
-export { clamp, createRng, extractDollarAmounts, newId, sayDollars, similarity, wordCount } from './util';
+export * from './schema';
+export {
+  CustomerSession,
+  type SessionOptions,
+  type SessionSnapshot,
+  type TechTurnInput,
+} from './session';
+export {
+  type CustomerState,
+  type DecisionResult,
+  emptyPerception,
+  evaluateDecision,
+  initState,
+  type Mood,
+  moodFor,
+  type ObjectionInstance,
+  type Perception,
+  toneFor,
+} from './state';
+export {
+  clamp,
+  createRng,
+  extractDollarAmounts,
+  newId,
+  sayDollars,
+  similarity,
+  wordCount,
+} from './util';

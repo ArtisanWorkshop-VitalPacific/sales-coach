@@ -26,7 +26,10 @@ export function scoreRecord(record: SessionRecord, index: ContentIndex): Debrief
       firstTurn.set(b, [...(firstTurn.get(b) ?? []), t.id]);
     }
   }
-  const reached = record.timeline.reduce((max, p) => Math.max(max, PHASE_ORDER.indexOf(p.phase)), 0);
+  const reached = record.timeline.reduce(
+    (max, p) => Math.max(max, PHASE_ORDER.indexOf(p.phase)),
+    0,
+  );
   const reachedPhase = (p: Phase) => reached >= PHASE_ORDER.indexOf(p);
   const turnText = new Map(record.transcript.map((t) => [t.id, t.text]));
   const objectionVoiced = record.moves.some((m) => m.kind === 'objection');
@@ -103,7 +106,9 @@ export function scoreRecord(record: SessionRecord, index: ContentIndex): Debrief
   const scored = skills.filter((s) => s.score !== null);
   const weightOf = (id: SkillId) => rubric.skills.find((s) => s.id === id)?.weight ?? 1;
   const totalW = scored.reduce((s, x) => s + weightOf(x.skillId), 0) || 1;
-  const overall = Math.round(scored.reduce((s, x) => s + (x.score ?? 0) * weightOf(x.skillId), 0) / totalW);
+  const overall = Math.round(
+    scored.reduce((s, x) => s + (x.score ?? 0) * weightOf(x.skillId), 0) / totalW,
+  );
 
   const { win, fix } = pickWinAndFix(record, index, skills);
   const persona = index.personas.get(record.personaId);
@@ -162,14 +167,19 @@ function pickWinAndFix(record: SessionRecord, index: ContentIndex, skills: Skill
     text: WIN_TEXT[winSkill] ?? 'You kept the conversation going.',
   };
 
-  const worst = [...scored].filter((s) => s.skillId !== winSkill).sort((a, b) => a.score - b.score)[0];
-  const fixSkill = (failedSkill && failedSkill !== winSkill ? failedSkill : worst?.skillId) ?? 'discovery';
+  const worst = [...scored]
+    .filter((s) => s.skillId !== winSkill)
+    .sort((a, b) => a.score - b.score)[0];
+  const fixSkill =
+    (failedSkill && failedSkill !== winSkill ? failedSkill : worst?.skillId) ?? 'discovery';
   const failedMoveForSkill = record.moves.find(
     (m) => m.result === 'fail' && index.move(m.moveId)?.skill === fixSkill,
   );
   const move = failedMoveForSkill ? index.move(failedMoveForSkill.moveId) : undefined;
   const rubricSkill = index.rubric.skills.find((s) => s.id === fixSkill);
-  const negEvidence = skills.find((s) => s.skillId === fixSkill)?.evidence.find((e) => e.polarity === 'negative');
+  const negEvidence = skills
+    .find((s) => s.skillId === fixSkill)
+    ?.evidence.find((e) => e.polarity === 'negative');
   const fixTurn = failedMoveForSkill?.turnId ?? negEvidence?.turnId;
   const fix = {
     skillId: fixSkill,
@@ -244,7 +254,9 @@ export function passedFor(
   const drill = record.drillId ? index.drills.get(record.drillId) : undefined;
   const targets = drill?.forcedMoves.filter((id) => moves.some((m) => m.moveId === id)) ?? [];
   if (record.kind === 'drill' && targets.length > 0) {
-    return targets.every((id) => moves.filter((m) => m.moveId === id).every((m) => m.result === 'pass'));
+    return targets.every((id) =>
+      moves.filter((m) => m.moveId === id).every((m) => m.result === 'pass'),
+    );
   }
   return overall >= passBar;
 }

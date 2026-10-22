@@ -1,5 +1,14 @@
 import type { ContentIndex, SessionSpec } from './content';
-import { type Act, type AudioTag, type BehaviorId, type Move, PHASE_ORDER, type Phase, type SoundCue, type Tone } from './schema';
+import {
+  type Act,
+  type AudioTag,
+  type BehaviorId,
+  type Move,
+  PHASE_ORDER,
+  type Phase,
+  type SoundCue,
+  type Tone,
+} from './schema';
 import {
   type CustomerState,
   type DecisionResult,
@@ -63,7 +72,11 @@ const YES_LINES = [
   'Okay, you’ve made it easy. When can you start?',
   'Yeah, let’s go with that.',
 ];
-const YES_LINES_ES = ['Bueno, está bien. Hágalo.', 'Okay, vamos con esa opción.', 'Está bien. ¿Cuándo puede empezar?'];
+const YES_LINES_ES = [
+  'Bueno, está bien. Hágalo.',
+  'Okay, vamos con esa opción.',
+  'Está bien. ¿Cuándo puede empezar?',
+];
 const NO_LINES = [
   'I don’t think so. Not today, thank you.',
   'I’m going to pass. Thanks for coming out.',
@@ -93,7 +106,11 @@ export function openingDirective(spec: SessionSpec): TurnDirective | null {
   }
   if (phaseIndex(spec.startPhase) > 0) return null;
   return {
-    ...base(spec, 'open', 'Open the door, greet the tech, and say in a few words what the problem is.'),
+    ...base(
+      spec,
+      'open',
+      'Open the door, greet the tech, and say in a few words what the problem is.',
+    ),
     scriptedLines: p.openingLines,
     tone: p.hidden.startingTrust < 40 ? 'guarded' : 'friendly',
     maxWords: 30,
@@ -134,7 +151,12 @@ function moveAllowed(m: Move, ctx: DirectorContext, forced: boolean): boolean {
   return true;
 }
 
-function triggerMet(m: Move, ctx: DirectorContext, turnBehaviors: Set<BehaviorId>, forced = false): boolean {
+function triggerMet(
+  m: Move,
+  ctx: DirectorContext,
+  turnBehaviors: Set<BehaviorId>,
+  forced = false,
+): boolean {
   const { state, spec } = ctx;
   const t = m.trigger;
   if (t.phases.length > 0 && !t.phases.includes(state.phase)) {
@@ -144,14 +166,16 @@ function triggerMet(m: Move, ctx: DirectorContext, turnBehaviors: Set<BehaviorId
     const late = forced && PHASE_ORDER.indexOf(state.phase) > earliest && state.phase !== 'wrapup';
     if (!late) return false;
   }
-  if (t.afterBehaviors.length > 0 && !t.afterBehaviors.some((b) => turnBehaviors.has(b))) return false;
+  if (t.afterBehaviors.length > 0 && !t.afterBehaviors.some((b) => turnBehaviors.has(b)))
+    return false;
   const w = t.when;
   // Mood conditions describe when a move usually comes up. A forced move comes up anyway.
   if (!forced) {
     if (w.trustBelow !== undefined && !(state.trust < w.trustBelow)) return false;
     if (w.trustAbove !== undefined && !(state.trust > w.trustAbove)) return false;
     if (w.engagementBelow !== undefined && !(state.engagement < w.engagementBelow)) return false;
-    if (w.understandingBelow !== undefined && !(state.understanding < w.understandingBelow)) return false;
+    if (w.understandingBelow !== undefined && !(state.understanding < w.understandingBelow))
+      return false;
   }
   if (w.priceStated !== undefined && w.priceStated !== (state.priceHeard !== null)) return false;
   if (w.priceAboveBudget !== undefined) {
@@ -159,10 +183,14 @@ function triggerMet(m: Move, ctx: DirectorContext, turnBehaviors: Set<BehaviorId
     if (w.priceAboveBudget !== above) return false;
   }
   if (w.decisionAsked !== undefined && w.decisionAsked !== state.decisionAsks > 0) return false;
-  if (w.optionsPresented !== undefined && w.optionsPresented !== state.optionsPresented >= 2) return false;
-  if (w.financingOffered !== undefined && w.financingOffered !== state.financingOffered) return false;
-  if (w.membershipOffered !== undefined && w.membershipOffered !== state.membershipOffered) return false;
-  if (w.secondaryPresent !== undefined && w.secondaryPresent !== state.secondaryPresent) return false;
+  if (w.optionsPresented !== undefined && w.optionsPresented !== state.optionsPresented >= 2)
+    return false;
+  if (w.financingOffered !== undefined && w.financingOffered !== state.financingOffered)
+    return false;
+  if (w.membershipOffered !== undefined && w.membershipOffered !== state.membershipOffered)
+    return false;
+  if (w.secondaryPresent !== undefined && w.secondaryPresent !== state.secondaryPresent)
+    return false;
   if (w.objectionAnswered) {
     const o = state.objections.find((x) => x.moveId === w.objectionAnswered);
     if (!o || o.answeredTurn === undefined) return false;
@@ -189,7 +217,11 @@ function fromMove(spec: SessionSpec, m: Move, why: string): TurnDirective {
   };
 }
 
-function voiceObjection(ctx: DirectorContext, o: ObjectionInstance, why: string): TurnDirective | null {
+function voiceObjection(
+  ctx: DirectorContext,
+  o: ObjectionInstance,
+  why: string,
+): TurnDirective | null {
   const m = ctx.index.move(o.moveId);
   if (!m) return null;
   const pressing = o.status !== 'latent';
@@ -199,7 +231,10 @@ function voiceObjection(ctx: DirectorContext, o: ObjectionInstance, why: string)
   ctx.state.movesUsed[m.id] = (ctx.state.movesUsed[m.id] ?? 0) + 1;
   ctx.state.lastMoveTurn = ctx.state.turn;
   ctx.state.movesFired += 1;
-  if (phaseIndex(ctx.state.phase) < phaseIndex('objections') && phaseIndex(ctx.state.phase) >= phaseIndex('price')) {
+  if (
+    phaseIndex(ctx.state.phase) < phaseIndex('objections') &&
+    phaseIndex(ctx.state.phase) >= phaseIndex('price')
+  ) {
     ctx.state.phase = 'objections';
   }
   const d = fromMove(ctx.spec, m, why);
@@ -217,7 +252,11 @@ function revealDirective(ctx: DirectorContext): TurnDirective {
   const rc = ctx.spec.persona.hidden.realConcern;
   ctx.state.realConcern.revealed = true;
   return {
-    ...base(ctx.spec, 'reveal', 'You trust this tech enough now to say what is really worrying you. Say it simply and honestly.'),
+    ...base(
+      ctx.spec,
+      'reveal',
+      'You trust this tech enough now to say what is really worrying you. Say it simply and honestly.',
+    ),
     mustSay: [rc.description],
     scriptedLines: [rc.revealLine],
     tone: 'thoughtful',
@@ -261,13 +300,21 @@ function decisionDirective(ctx: DirectorContext, result: DecisionResult): TurnDi
   state.decision = 'later';
   const b = result.blocker;
   if (b?.kind === 'objection') {
-    const d = voiceObjection(ctx, b.objection, `Decision later: ${b.objection.moveId} is still at ${Math.round(b.objection.strength)}`);
+    const d = voiceObjection(
+      ctx,
+      b.objection,
+      `Decision later: ${b.objection.moveId} is still at ${Math.round(b.objection.strength)}`,
+    );
     if (d) {
       d.decision = 'later';
       return d;
     }
   }
-  if (b?.kind === 'real-concern' && state.trust >= spec.persona.hidden.realConcern.revealAtTrust && !state.realConcern.revealed) {
+  if (
+    b?.kind === 'real-concern' &&
+    state.trust >= spec.persona.hidden.realConcern.revealAtTrust &&
+    !state.realConcern.revealed
+  ) {
     const d = revealDirective(ctx);
     d.decision = 'later';
     return d;
@@ -284,7 +331,11 @@ function decisionDirective(ctx: DirectorContext, result: DecisionResult): TurnDi
     tone: toneFor(state.mood),
     scriptedLines: isEs(spec)
       ? ['No sé. Déjeme pensarlo un poquito.', 'Es más de lo que esperaba.']
-      : ['I don’t know. That’s more than I can do right now.', 'I’m just not ready to decide yet.', 'Let me think about it.'],
+      : [
+          'I don’t know. That’s more than I can do right now.',
+          'I’m just not ready to decide yet.',
+          'Let me think about it.',
+        ],
     maxWords: 25,
     why: `Decision later: readiness ${Math.round(result.readiness)} vs ${result.threshold}`,
   };
@@ -296,14 +347,16 @@ function naturalDirective(ctx: DirectorContext): TurnDirective {
   const p = spec.persona;
   let intent: string;
   if (perception.askedQuestion) {
-    intent = 'Answer the tech’s question honestly from your situation and what you know. Keep it short and natural.';
+    intent =
+      'Answer the tech’s question honestly from your situation and what you know. Keep it short and natural.';
   } else {
     switch (state.phase) {
       case 'door':
         intent = 'Respond to their introduction and show them where the problem is.';
         break;
       case 'discovery':
-        intent = 'Respond naturally to what they said. Share what you have noticed about the problem.';
+        intent =
+          'Respond naturally to what they said. Share what you have noticed about the problem.';
         break;
       case 'findings':
         intent =
@@ -360,7 +413,10 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   const { spec, state, perception, index, rng } = ctx;
   const behaviors = new Set(perception.behaviors.map((b) => b.id));
 
-  if (perception.saidGoodbye || (state.decision === 'yes' && state.turn > 0 && behaviors.has('left_well'))) {
+  if (
+    perception.saidGoodbye ||
+    (state.decision === 'yes' && state.turn > 0 && behaviors.has('left_well'))
+  ) {
     state.ended = true;
     return {
       ...base(spec, 'end', 'Say a short, natural goodbye that fits how the visit went.'),
@@ -375,18 +431,21 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   // 1. Unneeded work gets an immediate, specific pushback.
   if (perception.unneededWork.length > 0) {
     const reactive = pickReactive(ctx, behaviors);
-    const d = reactive && reactive.trigger.afterBehaviors.includes('recommended_unneeded_work')
-      ? fireMove(ctx, reactive, 'Reactive to unneeded work')
-      : {
-          ...base(
-            spec,
-            'react',
-            `Push back on this: ${perception.unneededWork.join(', ')}. You do not see why you would need it, and it makes you wonder about the rest of the quote.`,
-          ),
-          tone: 'skeptical' as Tone,
-          scriptedLines: isEs(spec) ? ['¿Y eso para qué? Nadie me había dicho eso.'] : UNNEEDED_LINES,
-          why: 'Tech recommended work the findings do not justify',
-        };
+    const d =
+      reactive && reactive.trigger.afterBehaviors.includes('recommended_unneeded_work')
+        ? fireMove(ctx, reactive, 'Reactive to unneeded work')
+        : {
+            ...base(
+              spec,
+              'react',
+              `Push back on this: ${perception.unneededWork.join(', ')}. You do not see why you would need it, and it makes you wonder about the rest of the quote.`,
+            ),
+            tone: 'skeptical' as Tone,
+            scriptedLines: isEs(spec)
+              ? ['¿Y eso para qué? Nadie me había dicho eso.']
+              : UNNEEDED_LINES,
+            why: 'Tech recommended work the findings do not justify',
+          };
     d.mustNot.push('Do not agree to the extra work.');
     return d;
   }
@@ -394,7 +453,10 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   // 2. The tech asked for the decision. A forced objection still waiting comes out first.
   if (behaviors.has('asked_for_decision') && state.decision !== 'yes') {
     const waiting = state.objections.find(
-      (o) => o.status === 'latent' && spec.forcedMoves.includes(o.moveId) && index.move(o.moveId)?.trigger.when.decisionAsked !== false,
+      (o) =>
+        o.status === 'latent' &&
+        spec.forcedMoves.includes(o.moveId) &&
+        index.move(o.moveId)?.trigger.when.decisionAsked !== false,
     );
     if (waiting) {
       const d = voiceObjection(ctx, waiting, 'Forced objection before the decision');
@@ -415,7 +477,14 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   if (ctx.lastCustomerObjectionId) {
     const o = state.objections.find((x) => x.moveId === ctx.lastCustomerObjectionId);
     const addressed = perception.addressed.some((a) => a.concernId === ctx.lastCustomerObjectionId);
-    if (o && !addressed && o.status === 'voiced' && o.timesRaised < 2 && o.strength > 45 && !perception.askedQuestion) {
+    if (
+      o &&
+      !addressed &&
+      o.status === 'voiced' &&
+      o.timesRaised < 2 &&
+      o.strength > 45 &&
+      !perception.askedQuestion
+    ) {
       const d = voiceObjection(ctx, o, `Pressing ${o.moveId}: the answer did not address it`);
       if (d) return d;
     }
@@ -426,7 +495,8 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   if (
     !state.realConcern.revealed &&
     state.trust >= rc.revealAtTrust &&
-    (behaviors.has('asked_about_concern') || (behaviors.has('asked_open_question') && state.objections.some((o) => o.status !== 'latent')))
+    (behaviors.has('asked_about_concern') ||
+      (behaviors.has('asked_open_question') && state.objections.some((o) => o.status !== 'latent')))
   ) {
     return revealDirective(ctx);
   }
@@ -438,13 +508,18 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
     .filter((x): x is { o: ObjectionInstance; m: Move } => !!x.m)
     .filter((x) => x.m.trigger.when.decisionAsked !== true)
     .filter((x) => triggerMet(x.m, ctx, behaviors, spec.forcedMoves.includes(x.m.id)))
-    .sort((a, b) => Number(spec.forcedMoves.includes(b.m.id)) - Number(spec.forcedMoves.includes(a.m.id)) || b.o.strength - a.o.strength);
+    .sort(
+      (a, b) =>
+        Number(spec.forcedMoves.includes(b.m.id)) - Number(spec.forcedMoves.includes(a.m.id)) ||
+        b.o.strength - a.o.strength,
+    );
   for (const { o, m } of due) {
     const forced = spec.forcedMoves.includes(m.id);
     if (forced || rng.chance(m.trigger.chance)) {
       const d = voiceObjection(ctx, o, `Objection due in ${state.phase}`);
       if (d) {
-        if (perception.askedQuestion) d.intent = `First answer their question in one short sentence. Then: ${d.intent}`;
+        if (perception.askedQuestion)
+          d.intent = `First answer their question in one short sentence. Then: ${d.intent}`;
         return d;
       }
     }
@@ -455,7 +530,8 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
     const m = index.move(id);
     if (!m || m.kind !== 'behavior' || !moveAllowed(m, ctx, true)) continue;
     if (m.trigger.afterBehaviors.length > 0) continue; // handled as reactive
-    if (triggerMet(m, ctx, behaviors, true) && m.delivery.act !== 'interrupt') return fireMove(ctx, m, `Forced: ${m.id}`);
+    if (triggerMet(m, ctx, behaviors, true) && m.delivery.act !== 'interrupt')
+      return fireMove(ctx, m, `Forced: ${m.id}`);
   }
 
   // 8. Natural response, possibly carrying an ambient move or an armed interrupt.
@@ -464,7 +540,11 @@ export function decideNext(ctx: DirectorContext): TurnDirective {
   if (ambient) {
     if (ambient.delivery.act === 'interrupt' && ambient.delivery.interruptAfterMs) {
       // Armed, not used: it only counts once the tech talks long enough for it to fire.
-      d.armInterrupt = { afterMs: ambient.delivery.interruptAfterMs, moveId: ambient.id, lines: ambient.delivery.lines };
+      d.armInterrupt = {
+        afterMs: ambient.delivery.interruptAfterMs,
+        moveId: ambient.id,
+        lines: ambient.delivery.lines,
+      };
       d.why += `; armed ${ambient.id}`;
     } else {
       const md = fireMove(ctx, ambient, `Ambient: ${ambient.id}`);
@@ -550,19 +630,29 @@ function pickAmbient(ctx: DirectorContext, behaviors: Set<BehaviorId>): Move | u
     .filter((m) => m.trigger.afterBehaviors.length === 0)
     .filter((m) => moveAllowed(m, ctx, spec.forcedMoves.includes(m.id)))
     .filter((m) => triggerMet(m, ctx, behaviors));
-  const chosen = rng.weighted(pool.map((m) => ({ item: m, weight: weightFor(ctx, m) * (m.priority / 50) })));
+  const chosen = rng.weighted(
+    pool.map((m) => ({ item: m, weight: weightFor(ctx, m) * (m.priority / 50) })),
+  );
   if (!chosen) return undefined;
   const forced = spec.forcedMoves.includes(chosen.id);
   return forced || rng.chance(chosen.trigger.chance) ? chosen : undefined;
 }
 
 /** After a held silence ends without the tech speaking (or a step-away ends). */
-export function afterHoldDirective(ctx: DirectorContext, moveId: string | undefined, kind: 'think' | 'away'): TurnDirective {
+export function afterHoldDirective(
+  ctx: DirectorContext,
+  moveId: string | undefined,
+  kind: 'think' | 'away',
+): TurnDirective {
   const m = moveId ? ctx.index.move(moveId) : undefined;
   const spec = ctx.spec;
   if (kind === 'away') {
     return {
-      ...base(spec, 'return', 'You are back after stepping away. Apologize briefly and ask where you were.'),
+      ...base(
+        spec,
+        'return',
+        'You are back after stepping away. Apologize briefly and ask where you were.',
+      ),
       tone: 'distracted',
       scriptedLines: m?.delivery.followUps.length
         ? m.delivery.followUps.slice(0, 1)
@@ -595,7 +685,10 @@ export function afterHoldDirective(ctx: DirectorContext, moveId: string | undefi
 }
 
 /** The customer cuts in on a long tech turn. */
-export function interruptDirective(spec: SessionSpec, armed: NonNullable<TurnDirective['armInterrupt']>): TurnDirective {
+export function interruptDirective(
+  spec: SessionSpec,
+  armed: NonNullable<TurnDirective['armInterrupt']>,
+): TurnDirective {
   return {
     ...base(spec, 'interrupt', 'Cut in on the tech mid-sentence. Be direct.'),
     tone: 'rushed',

@@ -44,7 +44,8 @@ function ageOf(v: VoiceSpec): number {
 
 function castByVoice(v: VoiceSpec): string {
   const age = ageOf(v);
-  if (v.gender === 'female') return age >= 60 ? ELEVEN.matilda : age >= 42 ? ELEVEN.aria : ELEVEN.jessica;
+  if (v.gender === 'female')
+    return age >= 60 ? ELEVEN.matilda : age >= 42 ? ELEVEN.aria : ELEVEN.jessica;
   return age >= 60 ? ELEVEN.bill : age >= 42 ? ELEVEN.roger : ELEVEN.will;
 }
 

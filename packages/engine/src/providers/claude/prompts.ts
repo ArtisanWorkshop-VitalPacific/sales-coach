@@ -1,5 +1,4 @@
-import type { WriteInput } from '../../adapters';
-import type { PerceptionInput } from '../../adapters';
+import type { PerceptionInput, WriteInput } from '../../adapters';
 import type { SessionSpec } from '../../content';
 import type { TranscriptTurn } from '../../record';
 import { BEHAVIORS, PERCEPTION_BEHAVIORS } from '../../schema';
@@ -13,14 +12,21 @@ const KNOWLEDGE: Record<string, string> = {
   high: 'A lot for a homeowner. You read up, you know some terms, and you notice when something does not add up.',
 };
 
-export function transcriptText(turns: readonly TranscriptTurn[], spec: SessionSpec, limit = 12, you = false): string {
+export function transcriptText(
+  turns: readonly TranscriptTurn[],
+  spec: SessionSpec,
+  limit = 12,
+  you = false,
+): string {
   const sec = spec.persona.secondary?.name.split(' ')[0] ?? 'Partner';
   const name = spec.persona.shortName;
   return turns
     .slice(-limit)
     .map((t) => {
-      const who = t.speaker === 'tech' ? 'Tech' : t.speaker === 'secondary' ? sec : you ? 'You' : name;
-      if (t.act === 'silence' && !t.text) return `${who}: (stays quiet for ${Math.round((t.silenceMs ?? 0) / 1000)} seconds)`;
+      const who =
+        t.speaker === 'tech' ? 'Tech' : t.speaker === 'secondary' ? sec : you ? 'You' : name;
+      if (t.act === 'silence' && !t.text)
+        return `${who}: (stays quiet for ${Math.round((t.silenceMs ?? 0) / 1000)} seconds)`;
       return `${who}: ${t.text}`;
     })
     .join('\n');
@@ -62,14 +68,22 @@ export function perceiverUser(input: PerceptionInput): string {
   lines.push('Not justified:');
   for (const w of s.unjustifiedWork) lines.push(`- ${w.label}: ${w.why}`);
   lines.push('Options for this job:');
-  for (const o of s.options) lines.push(`- ${o.label}: $${o.price}${o.monthly ? ` (about $${o.monthly} a month)` : ''}`);
+  for (const o of s.options)
+    lines.push(`- ${o.label}: $${o.price}${o.monthly ? ` (about $${o.monthly} a month)` : ''}`);
   lines.push('', 'CUSTOMER CONCERNS');
-  for (const c of input.concerns) lines.push(`- ${c.id}: ${c.concern}${c.id === 'real' ? '' : c.voiced ? ' (said out loud)' : ' (not said yet)'}`);
+  for (const c of input.concerns)
+    lines.push(
+      `- ${c.id}: ${c.concern}${c.id === 'real' ? '' : c.voiced ? ' (said out loud)' : ' (not said yet)'}`,
+    );
   if (input.revealedFacts.length) {
     lines.push('', 'DETAILS THE CUSTOMER HAS SHARED');
     for (const f of input.revealedFacts) lines.push(`- ${f.id}: "${f.text}"`);
   }
-  lines.push('', 'RECENT CONVERSATION', transcriptText(input.transcript, input.spec, 10) || '(none yet)');
+  lines.push(
+    '',
+    'RECENT CONVERSATION',
+    transcriptText(input.transcript, input.spec, 10) || '(none yet)',
+  );
   lines.push('', 'LATEST TECHNICIAN UTTERANCE', `"${input.techText}"`);
   return lines.join('\n');
 }
@@ -124,7 +138,10 @@ export function writerUser(input: WriteInput): string {
   lines.push(`Tone: ${d.tone}${d.audioTags.length ? ` (a fitting tag: [${d.audioTags[0]}])` : ''}`);
   if (d.mustSay.length) lines.push(`Get this across in your own words: ${d.mustSay.join(' ')}`);
   for (const m of d.mayMention) lines.push(`Work this in naturally, in your own words: "${m}"`);
-  for (const n of d.mustNot) lines.push(`Do not: ${n.replace(/^(Do not|Never)\s+/i, '').replace(/^\w/, (c) => c.toLowerCase())}`);
+  for (const n of d.mustNot)
+    lines.push(
+      `Do not: ${n.replace(/^(Do not|Never)\s+/i, '').replace(/^\w/, (c) => c.toLowerCase())}`,
+    );
   if (d.scriptedLines.length) {
     lines.push('Example lines in your voice (style only):');
     for (const l of d.scriptedLines.slice(0, 4)) lines.push(`- ${l}`);

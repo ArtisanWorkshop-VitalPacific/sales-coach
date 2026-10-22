@@ -14,7 +14,10 @@
       "!**/generated",
       "!**/drizzle/meta",
       "!**/reports",
-      "!**/*.gen.ts"
+      "!**/*.gen.ts",
+      "!**/*.md",
+      "!**/*.yaml",
+      "!**/*.yml"
     ]
   },
   "formatter": {
@@ -59,7 +62,8 @@
       "complexity": {
         "noForEach": "off",
         "useOptionalChain": "warn",
-        "noCommaOperator": "warn"
+        "noCommaOperator": "warn",
+        "noImportantStyles": "off"
       },
       "correctness": {
         "noUnusedFunctionParameters": "warn",

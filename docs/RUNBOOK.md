@@ -12,6 +12,7 @@ Everything you need to deploy, turn on Claude and voices, and run Sales Coach da
    - `ANTHROPIC_API_KEY`
    - `ELEVENLABS_API_KEY`
 5. Click **Deploy**. The first build takes about two minutes. Every push to `main` redeploys automatically.
+6. Leave **Fluid compute** on (Settings > Functions; it is the default for new projects). The coach's full review can take up to a few minutes on a slow day, and Fluid compute allows it 300 seconds on every plan.
 
 ## 2. Keep it private
 

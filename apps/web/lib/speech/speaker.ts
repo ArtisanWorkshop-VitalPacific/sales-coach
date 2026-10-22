@@ -11,8 +11,50 @@ export interface VoiceRef {
 
 type Outcome = 'done' | 'stopped';
 
-const FEMALE = ['Samantha', 'Ava', 'Allison', 'Susan', 'Zoe', 'Nicky', 'Karen', 'Moira', 'Tessa', 'Victoria', 'Microsoft Aria', 'Microsoft Jenny', 'Google US English', 'Paulina', 'Mónica', 'Monica'];
-const MALE = ['Aaron', 'Alex', 'Tom', 'Fred', 'Evan', 'Nathan', 'Daniel', 'Microsoft Guy', 'Microsoft David', 'Google UK English Male', 'Jorge', 'Juan', 'Diego'];
+const FEMALE = [
+  'Samantha',
+  'Ava',
+  'Allison',
+  'Susan',
+  'Zoe',
+  'Nicky',
+  'Karen',
+  'Moira',
+  'Tessa',
+  'Victoria',
+  'Microsoft Aria',
+  'Microsoft Jenny',
+  'Google US English',
+  'Paulina',
+  'Mónica',
+  'Monica',
+];
+const MALE = [
+  'Aaron',
+  'Alex',
+  'Tom',
+  'Fred',
+  'Evan',
+  'Nathan',
+  'Daniel',
+  'Microsoft Guy',
+  'Microsoft David',
+  'Google UK English Male',
+  'Jorge',
+  'Juan',
+  'Diego',
+];
+
+/** WebKit (every iPhone browser, and Safari) plays a whole file more reliably than a stream. */
+function needsWholeFile(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  const ua = navigator.userAgent;
+  const ios =
+    /iPad|iPhone|iPod/.test(ua) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const safari = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(ua);
+  return ios || safari;
+}
 
 function silentWavUrl(): string {
   const samples = 800;
@@ -43,6 +85,7 @@ export class Speaker {
   private audio: HTMLAudioElement | null = null;
   private finish: ((o: Outcome) => void) | null = null;
   private elevenFailures = 0;
+  private objectUrl: string | null = null;
   private voices: SpeechSynthesisVoice[] = [];
   onLevel?: (speaking: boolean) => void;
 
@@ -90,7 +133,8 @@ export class Speaker {
       this.audio.pause();
       this.audio.removeAttribute('src');
     }
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window)
+      window.speechSynthesis.cancel();
     const f = this.finish;
     this.finish = null;
     this.onLevel?.(false);
@@ -114,24 +158,58 @@ export class Speaker {
       if (!this.audio) this.unlock();
       const audio = this.audio!;
       let started = false;
+      let settled = false;
+      const abort = new AbortController();
+      const words = stripTags(text).split(/\s+/).length;
+      // Give the voice 8 seconds to start, then a cap by length, so a stalled stream or a
+      // paused phone never leaves the call stuck on the customer.
+      const startTimer = window.setTimeout(() => done(null), 8000);
+      let capTimer: number | null = null;
       const done = (o: Outcome | null) => {
+        if (settled) return;
+        settled = true;
+        window.clearTimeout(startTimer);
+        if (capTimer !== null) window.clearTimeout(capTimer);
+        abort.abort();
         audio.onended = null;
         audio.onerror = null;
         audio.onplaying = null;
+        if (o === null) {
+          audio.pause();
+          audio.removeAttribute('src');
+        }
         this.finish = null;
         this.onLevel?.(false);
         resolve(o);
       };
       this.finish = (o) => done(o);
       audio.onplaying = () => {
+        if (started) return;
         started = true;
+        window.clearTimeout(startTimer);
+        capTimer = window.setTimeout(() => done('done'), 4000 + words * 600);
         this.onLevel?.(true);
       };
       audio.onended = () => done('done');
       audio.onerror = () => done(started ? 'done' : null);
       const lang = voice.browser.lang.startsWith('es') ? 'es' : 'en';
-      audio.src = `/api/tts?v=${encodeURIComponent(voice.eleven)}&g=${voice.browser.gender}&l=${lang}&t=${encodeURIComponent(text)}`;
-      audio.play().catch(() => done(null));
+      const url = `/api/tts?v=${encodeURIComponent(voice.eleven)}&g=${voice.browser.gender}&l=${lang}&t=${encodeURIComponent(text)}`;
+      if (needsWholeFile()) {
+        // iPhone and Safari want a complete file, not a stream without a length.
+        fetch(url, { signal: abort.signal })
+          .then((r) => (r.ok ? r.blob() : Promise.reject(new Error(String(r.status)))))
+          .then((blob) => {
+            if (settled) return;
+            if (this.objectUrl) URL.revokeObjectURL(this.objectUrl);
+            this.objectUrl = URL.createObjectURL(blob);
+            audio.src = this.objectUrl;
+            return audio.play();
+          })
+          .catch(() => done(null));
+      } else {
+        audio.src = url;
+        audio.play().catch(() => done(null));
+      }
     });
   }
 

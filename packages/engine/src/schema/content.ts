@@ -311,8 +311,12 @@ export const Scenario = z.strictObject({
       }),
     )
     .min(1),
-  justifiedWork: z.array(z.strictObject({ id: Id, label: z.string(), rationale: z.string() })).min(1),
-  unjustifiedWork: z.array(z.strictObject({ id: Id, label: z.string(), why: z.string() })).default([]),
+  justifiedWork: z
+    .array(z.strictObject({ id: Id, label: z.string(), rationale: z.string() }))
+    .min(1),
+  unjustifiedWork: z
+    .array(z.strictObject({ id: Id, label: z.string(), why: z.string() }))
+    .default([]),
   options: z.array(ScenarioOption).min(1),
   startPhase: Phase.default('door'),
   /** For scenarios that start mid-call: what has already happened. */
@@ -401,9 +405,7 @@ export const Drill = z.strictObject({
   /** A spoken 60-second lesson: why the moment matters. About 130 to 170 words. */
   why: z.string().min(400),
   /** A short exchange that shows it done right. */
-  demo: z
-    .array(z.strictObject({ speaker: z.enum(['tech', 'customer']), text: z.string() }))
-    .min(2),
+  demo: z.array(z.strictObject({ speaker: z.enum(['tech', 'customer']), text: z.string() })).min(2),
   scenarioId: Id,
   personaId: Id,
   startPhase: Phase,

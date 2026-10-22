@@ -10,13 +10,21 @@ import {
 } from '@sales-coach/engine';
 import type { Capabilities } from './capabilities';
 import { LocalDriver, RemoteDriver, type SessionDriver } from './driver';
-import { CUE_LABEL, playCue, unlockSfx } from './speech/sfx';
 import { Recognizer, speechRecognitionSupported, type Utterance } from './speech/recognizer';
+import { CUE_LABEL, playCue, unlockSfx } from './speech/sfx';
 import { Speaker, type VoiceRef } from './speech/speaker';
 import { readSettings } from './store';
 import { browserVoicePrefs, elevenVoiceFor } from './voices';
 
-export type CallStatus = 'ready' | 'connecting' | 'customer' | 'listening' | 'thinking' | 'hold' | 'ended' | 'error';
+export type CallStatus =
+  | 'ready'
+  | 'connecting'
+  | 'customer'
+  | 'listening'
+  | 'thinking'
+  | 'hold'
+  | 'ended'
+  | 'error';
 
 export interface Caption {
   id: string;
@@ -75,6 +83,8 @@ export class CallController {
   /** The browser refused to listen without a tap (iOS). Hands-free resumes after one tap. */
   private needsTap = false;
   private degradedNotice = false;
+  /** Bumped on every turn change; a playback that wakes up to a newer number stops there. */
+  private seq = 0;
 
   constructor(private opts: CallOptions) {
     const settings = readSettings();
@@ -82,7 +92,10 @@ export class CallController {
     const eleven = !!opts.caps?.voice && settings.voice === 'auto';
     this.driver = brain ? new RemoteDriver() : new LocalDriver();
     this.driver.onFallback = () =>
-      this.set({ mode: 'demo', notice: 'Lost the connection to Claude. The call continues in demo mode.' });
+      this.set({
+        mode: 'demo',
+        notice: 'Lost the connection to Claude. The call continues in demo mode.',
+      });
     this.speaker = new Speaker(eleven);
     this.speaker.onLevel = (on) => this.set({ customerSpeaking: on });
     this.rec = new Recognizer(opts.spec.language === 'es' ? 'es-US' : 'en-US', {
@@ -160,6 +173,7 @@ export class CallController {
   sendText(text: string) {
     const t = text.trim();
     if (!t || this.busy || this.ended) return;
+    if (this.state.status === 'customer') this.cutIn();
     const now = performance.now();
     const words = t.split(/\s+/).length;
     void this.onUtterance({ text: t, startedAt: now - Math.min(30000, words * 380), endedAt: now });
@@ -177,6 +191,7 @@ export class CallController {
       if (this.rec.partialText) this.rec.commitNow();
       return;
     }
+    if (this.state.status === 'customer') this.cutIn();
     this.needsTap = false;
     this.set({ notice: undefined });
     this.rec.start();
@@ -216,20 +231,33 @@ export class CallController {
 
   private async playCustomer(turn: CustomerTurn) {
     if (this.ended) return;
+    const my = ++this.seq;
+    const stale = () => my !== this.seq || this.ended;
+    const wasListening = this.rec.listening;
     this.rec.stop();
     this.set({ interim: '', techSpeaking: false });
+    // Phones keep the mic's audio route for a moment; playing right away can land in the earpiece.
+    if (wasListening) await sleep(200);
     if (turn.soundCue) {
       this.caption({ who: 'cue', name: '', text: CUE_LABEL[turn.soundCue] });
       const ms = playCue(turn.soundCue);
       if (ms) await sleep(ms);
     }
-    const delay = this.state.mode === 'brain' ? Math.min(turn.delayMs, 350) : Math.min(turn.delayMs, 1600);
+    const delay =
+      this.state.mode === 'brain' ? Math.min(turn.delayMs, 350) : Math.min(turn.delayMs, 1600);
     if (delay > 0) await sleep(delay);
-    if (this.ended) return;
+    if (stale()) return;
     if (turn.degraded) {
-      console.warn('[sales-coach] backup answered this turn:', turn.degraded.stage, turn.degraded.reason);
+      console.warn(
+        '[sales-coach] backup answered this turn:',
+        turn.degraded.stage,
+        turn.degraded.reason,
+      );
       this.degradedNotice = true;
-      this.set({ notice: 'Claude missed that turn, so a backup line played. If this keeps happening, check the Claude key and credits.' });
+      this.set({
+        notice:
+          'Claude missed that turn, so a backup line played. If this keeps happening, check the Claude key and credits.',
+      });
     } else if (this.degradedNotice) {
       this.degradedNotice = false;
       this.set({ notice: undefined });
@@ -243,11 +271,12 @@ export class CallController {
       this.set({ status: 'customer', holdKind: undefined });
       this.interruptedCustomer = false;
       await this.speaker.speak(turn.text, this.voiceFor(turn.speaker));
-      if (this.ended) return;
+      if (stale()) return;
     }
     this.armed = turn.armInterrupt ?? null;
     if (turn.ended) {
       await sleep(600);
+      if (stale()) return;
       await this.finish();
       return;
     }
@@ -259,13 +288,15 @@ export class CallController {
   }
 
   private startHold(turn: CustomerTurn) {
+    const my = this.seq;
     this.inHold = true;
     this.holdStart = performance.now();
     this.set({ status: 'hold', holdKind: turn.holdKind ?? 'think' });
-    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable && !this.needsTap) this.rec.start();
+    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable && !this.needsTap)
+      this.rec.start();
     this.holdTimer = window.setTimeout(async () => {
       this.holdTimer = null;
-      if (this.rec.speaking || this.busy || this.ended) return;
+      if (my !== this.seq || this.rec.speaking || this.busy || this.ended) return;
       this.rec.stop();
       this.inHold = false;
       this.busy = true;
@@ -285,7 +316,8 @@ export class CallController {
   private listen() {
     if (this.ended) return;
     this.set({ status: 'listening', holdKind: undefined });
-    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable && !this.needsTap) this.rec.start();
+    if (readSettings().inputMode === 'hands-free' && this.state.micAvailable && !this.needsTap)
+      this.rec.start();
   }
 
   private onSpeechStart() {
@@ -308,7 +340,8 @@ export class CallController {
     const partial = this.rec.partialText;
     this.rec.stop();
     this.armed = null;
-    if (partial) this.caption({ who: 'tech', name: 'You', text: `${partial}...`, interrupted: true });
+    if (partial)
+      this.caption({ who: 'tech', name: 'You', text: `${partial}...`, interrupted: true });
     const t = this.driver.interrupt();
     if (t) await this.playCustomer(t);
     else this.listen();
@@ -316,6 +349,7 @@ export class CallController {
 
   private async onUtterance(u: Utterance) {
     if (this.busy || this.ended) return;
+    this.seq++;
     this.clearTimers();
     const rel = (t: number) => Math.max(0, Math.round(t - this.t0));
     const input: TechTurnInput = {
@@ -323,7 +357,9 @@ export class CallController {
       startedAtMs: rel(u.startedAt),
       endedAtMs: rel(u.endedAt),
       ...(this.interruptedCustomer ? { interruptedCustomer: true } : {}),
-      ...(this.inHold ? { holdElapsedMs: Math.max(0, Math.round(u.startedAt - this.holdStart)) } : {}),
+      ...(this.inHold
+        ? { holdElapsedMs: Math.max(0, Math.round(u.startedAt - this.holdStart)) }
+        : {}),
     };
     this.inHold = false;
     this.interruptedCustomer = false;

@@ -84,15 +84,33 @@ export class RemoteDriver implements SessionDriver {
     return this.local?.snapshot ?? this.snap;
   }
 
-  private async post(body: Record<string, unknown>): Promise<TurnResponse> {
+  private async postOnce(body: Record<string, unknown>): Promise<TurnResponse> {
     const res = await fetch('/api/turn', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(body),
+      signal: AbortSignal.timeout(45_000),
     });
     const json = (await res.json().catch(() => ({}))) as TurnResponse;
-    if (!res.ok || !json.snapshot) throw new Error(json.error ?? `Server error ${res.status}`);
+    if (!res.ok || !json.snapshot) {
+      const err = new Error(json.error ?? `Server error ${res.status}`) as Error & {
+        status?: number;
+      };
+      err.status = res.status;
+      throw err;
+    }
     return json;
+  }
+
+  /** One retry for a dropped connection or a server hiccup before giving up on Claude. */
+  private async post(body: Record<string, unknown>): Promise<TurnResponse> {
+    try {
+      return await this.postOnce(body);
+    } catch (e) {
+      const status = (e as { status?: number }).status;
+      if (status && status >= 400 && status < 500) throw e;
+      return this.postOnce(body);
+    }
   }
 
   private fallBack(reason: string) {

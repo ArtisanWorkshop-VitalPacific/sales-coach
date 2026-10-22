@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "../../../packages/design/generated/tokens.css";
 
-@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
   --color-bg: var(--sc-color-bg);

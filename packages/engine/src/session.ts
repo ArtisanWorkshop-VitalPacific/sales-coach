@@ -10,9 +10,22 @@ import {
 } from './director';
 import { HeuristicPerceiver } from './heuristic/perceiver';
 import { ScriptedWriter } from './heuristic/writer';
-import type { CustomerTurn, LatencySample, MoveEvent, SessionRecord, StatePoint, TranscriptTurn } from './record';
+import type {
+  CustomerTurn,
+  LatencySample,
+  MoveEvent,
+  SessionRecord,
+  StatePoint,
+  TranscriptTurn,
+} from './record';
 import { AudioTag, type BehaviorId } from './schema';
-import { applyPerception, type CustomerState, emptyPerception, initState, type Perception } from './state';
+import {
+  applyPerception,
+  type CustomerState,
+  emptyPerception,
+  initState,
+  type Perception,
+} from './state';
 import { createRng, newId, type Rng, wordCount } from './util';
 
 export interface TechTurnInput {
@@ -183,7 +196,14 @@ export class CustomerSession {
 
     // Spoke during a step-away: nobody heard it. The customer comes back.
     if (pending?.kind === 'away') {
-      this.transcript.push({ id: newId('t'), speaker: 'tech', text, atMs: at, endMs: input.endedAtMs, behaviors: [] });
+      this.transcript.push({
+        id: newId('t'),
+        speaker: 'tech',
+        text,
+        atMs: at,
+        endMs: input.endedAtMs,
+        behaviors: [],
+      });
       const d = afterHoldDirective(this.ctx(emptyPerception()), pending.moveId, 'away');
       return this.speak(d, 'return');
     }
@@ -193,20 +213,30 @@ export class CustomerSession {
       const min = move?.evaluate.passIf.minSilenceMs ?? Math.min(4000, pending.holdMs);
       if (elapsed < min) timing.push('filled_silence');
       else timing.push('held_silence');
-      const ev = this.moves.find((m) => m.turnId === pending.customerTurnId && m.moveId === pending.moveId);
+      const ev = this.moves.find(
+        (m) => m.turnId === pending.customerTurnId && m.moveId === pending.moveId,
+      );
       if (ev) ev.silenceMs = elapsed;
     }
     if (input.interruptedCustomer) timing.push('interrupted_customer');
-    const durationMs = input.endedAtMs && input.startedAtMs ? input.endedAtMs - input.startedAtMs : 0;
+    const durationMs =
+      input.endedAtMs && input.startedAtMs ? input.endedAtMs - input.startedAtMs : 0;
     if (wordCount(text) > 140 || durationMs > 50000) timing.push('rambled');
     this.armed = null;
 
-    const techTurn: TranscriptTurn = { id: newId('t'), speaker: 'tech', text, atMs: at, endMs: input.endedAtMs };
+    const techTurn: TranscriptTurn = {
+      id: newId('t'),
+      speaker: 'tech',
+      text,
+      atMs: at,
+      endMs: input.endedAtMs,
+    };
     const t1 = this.now();
     const perception = await this.perceive(text);
     const perceiveMs = this.now() - t1;
     for (const b of timing) {
-      if (!perception.behaviors.some((x) => x.id === b)) perception.behaviors.push({ id: b, evidence: '(timing)' });
+      if (!perception.behaviors.some((x) => x.id === b))
+        perception.behaviors.push({ id: b, evidence: '(timing)' });
     }
     applyPerception(this.state, perception, this.spec, this.index);
     techTurn.behaviors = perception.behaviors.map((b) => b.id);
@@ -218,7 +248,12 @@ export class CustomerSession {
     const d = decideNext(this.ctx(perception));
     const t2 = this.now();
     const turn = await this.speak(d, techTurn.id);
-    this.latency.push({ turnId: techTurn.id, perceiveMs, writeMs: this.now() - t2, totalMs: this.now() - t1 });
+    this.latency.push({
+      turnId: techTurn.id,
+      perceiveMs,
+      writeMs: this.now() - t2,
+      totalMs: this.now() - t1,
+    });
     return turn;
   }
 
@@ -228,7 +263,9 @@ export class CustomerSession {
     if (!pending) return null;
     this.pending = null;
     if (pending.kind === 'think') {
-      const ev = this.moves.find((m) => m.turnId === pending.customerTurnId && m.moveId === pending.moveId);
+      const ev = this.moves.find(
+        (m) => m.turnId === pending.customerTurnId && m.moveId === pending.moveId,
+      );
       if (ev) {
         ev.silenceMs = pending.holdMs;
         this.finishSilenceMove(ev);
@@ -248,7 +285,11 @@ export class CustomerSession {
     const armed = this.armed;
     if (!armed) return null;
     this.armed = null;
-    const d = interruptDirective(this.spec, { afterMs: armed.afterMs, moveId: armed.moveId, lines: [armed.text] });
+    const d = interruptDirective(this.spec, {
+      afterMs: armed.afterMs,
+      moveId: armed.moveId,
+      lines: [armed.text],
+    });
     const turn: TranscriptTurn = {
       id: newId('t'),
       speaker: 'customer',
@@ -342,7 +383,13 @@ export class CustomerSession {
       });
     const rc = this.spec.persona.hidden.realConcern;
     if (!this.state.realConcern.resolved) {
-      concerns.push({ id: 'real', label: 'Deeper worry', concern: rc.description, voiced: this.state.realConcern.revealed, resolvers: [] });
+      concerns.push({
+        id: 'real',
+        label: 'Deeper worry',
+        concern: rc.description,
+        voiced: this.state.realConcern.revealed,
+        resolvers: [],
+      });
     }
     const lastCustomer = [...this.transcript].reverse().find((t) => t.speaker !== 'tech');
     const lastMove = lastCustomer?.moveId ? this.index.move(lastCustomer.moveId) : undefined;
@@ -370,7 +417,9 @@ export class CustomerSession {
     const techTurns = this.transcript.filter((t) => t.speaker === 'tech').length;
     const forced = drill.forcedMoves.filter((id) => this.index.move(id));
     if (forced.length > 0) {
-      const judged = forced.every((id) => this.moves.some((m) => m.moveId === id && m.result !== 'pending'));
+      const judged = forced.every((id) =>
+        this.moves.some((m) => m.moveId === id && m.result !== 'pending'),
+      );
       if (judged && techTurns >= 1) return true;
     }
     const cap = Math.max(3, Math.min(8, Math.round(drill.durationSec / 25)));
@@ -386,7 +435,10 @@ export class CustomerSession {
     try {
       return await this.perceiver.perceive(input);
     } catch (e) {
-      console.warn(`[sales-coach] perceiver ${this.perceiver.name} failed, using heuristic:`, (e as Error).message);
+      console.warn(
+        `[sales-coach] perceiver ${this.perceiver.name} failed, using heuristic:`,
+        (e as Error).message,
+      );
       this.degraded = { stage: 'listen', reason: (e as Error).message.slice(0, 200) };
       return this.fallbackPerceiver.perceive(input);
     }
@@ -397,9 +449,15 @@ export class CustomerSession {
     const input = { spec: this.spec, state: this.state, transcript: this.transcript, directive: d };
     try {
       const line = await this.writer.write(input);
-      if (line.trim()) return cleanLine(line, AudioTag.options);
+      const clean = cleanLine(line, AudioTag.options);
+      if (clean.trim()) return clean;
+      if (this.writer.name !== 'scripted')
+        this.degraded = { stage: 'speak', reason: 'The voice model returned no words' };
     } catch (e) {
-      console.warn(`[sales-coach] writer ${this.writer.name} failed, using scripted:`, (e as Error).message);
+      console.warn(
+        `[sales-coach] writer ${this.writer.name} failed, using scripted:`,
+        (e as Error).message,
+      );
       this.degraded = { stage: 'speak', reason: (e as Error).message.slice(0, 200) };
     }
     return this.fallbackWriter.write(input);
@@ -420,13 +478,23 @@ export class CustomerSession {
     };
     this.transcript.push(turn);
     this.directives.push({ turnId: turn.id, directive: d });
-    if (d.moveId && afterTurnId !== 'after-hold' && afterTurnId !== 'return') this.recordMove(d.moveId, turn.id);
+    if (d.moveId && afterTurnId !== 'after-hold' && afterTurnId !== 'return')
+      this.recordMove(d.moveId, turn.id);
     if (d.holdSilenceMs && d.holdKind) {
-      this.pending = { kind: d.holdKind, moveId: d.moveId, holdMs: d.holdSilenceMs, customerTurnId: turn.id };
+      this.pending = {
+        kind: d.holdKind,
+        moveId: d.moveId,
+        holdMs: d.holdSilenceMs,
+        customerTurnId: turn.id,
+      };
       turn.silenceMs = d.holdSilenceMs;
     }
     this.armed = d.armInterrupt
-      ? { afterMs: d.armInterrupt.afterMs, moveId: d.armInterrupt.moveId, text: this.rng.pick(d.armInterrupt.lines) ?? 'So how much?' }
+      ? {
+          afterMs: d.armInterrupt.afterMs,
+          moveId: d.armInterrupt.moveId,
+          text: this.rng.pick(d.armInterrupt.lines) ?? 'So how much?',
+        }
       : null;
     this.lastCustomerMoveId = d.moveId;
     this.lastCustomerObjectionId = d.objectionId;
@@ -448,7 +516,8 @@ export class CustomerSession {
     return {
       id: turn.id,
       speaker: d.speaker,
-      speakerName: d.speaker === 'secondary' && sec ? sec.name.split(' ')[0]! : this.spec.persona.shortName,
+      speakerName:
+        d.speaker === 'secondary' && sec ? sec.name.split(' ')[0]! : this.spec.persona.shortName,
       act: d.act,
       text: turn.text,
       tone: d.tone,
@@ -487,8 +556,16 @@ export class CustomerSession {
       if (!move) continue;
       ev.techTurnsSeen += 1;
       for (const id of ids) if (!ev.behaviorsAfter.includes(id)) ev.behaviorsAfter.push(id);
-      const concernId = move.kind === 'objection' ? move.id : this.directives.find((x) => x.turnId === ev.turnId)?.directive.objectionId;
-      if (perception.addressed.some((a) => a.concernId === concernId || (move.kind === 'behavior' && a.concernId === 'real'))) ev.addressed = true;
+      const concernId =
+        move.kind === 'objection'
+          ? move.id
+          : this.directives.find((x) => x.turnId === ev.turnId)?.directive.objectionId;
+      if (
+        perception.addressed.some(
+          (a) => a.concernId === concernId || (move.kind === 'behavior' && a.concernId === 'real'),
+        )
+      )
+        ev.addressed = true;
       if (move.delivery.holdSilenceMs && ev.silenceMs !== undefined) {
         this.finishSilenceMove(ev);
         continue;
@@ -510,10 +587,12 @@ export class CustomerSession {
     const move = this.index.move(ev.moveId);
     if (!move) return false;
     const pi = move.evaluate.passIf;
-    const any = pi.anyBehaviors.length === 0 || pi.anyBehaviors.some((b) => ev.behaviorsAfter.includes(b));
+    const any =
+      pi.anyBehaviors.length === 0 || pi.anyBehaviors.some((b) => ev.behaviorsAfter.includes(b));
     const all = pi.allBehaviors.every((b) => ev.behaviorsAfter.includes(b));
     const addressed = pi.addressedConcern ? ev.addressed : true;
-    const hasCriteria = pi.anyBehaviors.length > 0 || pi.allBehaviors.length > 0 || pi.addressedConcern;
+    const hasCriteria =
+      pi.anyBehaviors.length > 0 || pi.allBehaviors.length > 0 || pi.addressedConcern;
     if (!hasCriteria) return false;
     // Objections pass when the concern was addressed even if the exact behavior differs.
     if (pi.addressedConcern && ev.addressed && all) return true;
@@ -530,7 +609,9 @@ export class CustomerSession {
     } else if (this.passed(ev)) ev.result = 'pass';
     else {
       ev.result = 'fail';
-      ev.reason = atEnd ? 'The call ended without a passing response.' : 'No passing response in the window.';
+      ev.reason = atEnd
+        ? 'The call ended without a passing response.'
+        : 'No passing response in the window.';
     }
   }
 

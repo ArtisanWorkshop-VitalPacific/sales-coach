@@ -2,9 +2,12 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
-const MODELS = [process.env.ELEVENLABS_MODEL_ID, 'eleven_v3_conversational', 'eleven_v3', 'eleven_flash_v2_5'].filter(
-  (m, i, a): m is string => !!m && a.indexOf(m) === i,
-);
+const MODELS = [
+  process.env.ELEVENLABS_MODEL_ID,
+  'eleven_v3_conversational',
+  'eleven_v3',
+  'eleven_flash_v2_5',
+].filter((m, i, a): m is string => !!m && a.indexOf(m) === i);
 let workingModel: string | null = null;
 
 const VOICE_ID = /^[A-Za-z0-9]{10,40}$/;
@@ -15,7 +18,11 @@ const API = 'https://api.elevenlabs.io/v1';
 let library: { voice_id: string; labels?: Record<string, string> }[] | null = null;
 const substitutes = new Map<string, string>();
 
-async function substituteFor(voice: string, key: string, gender: string | null): Promise<string | null> {
+async function substituteFor(
+  voice: string,
+  key: string,
+  gender: string | null,
+): Promise<string | null> {
   if (substitutes.has(voice)) return substitutes.get(voice)!;
   if (!library) {
     const res = await fetch(`${API}/voices`, { headers: { 'xi-api-key': key } }).catch(() => null);
@@ -67,7 +74,11 @@ export async function GET(req: Request) {
     if (res?.ok && res.body) {
       workingModel = model;
       return new Response(res.body, {
-        headers: { 'content-type': 'audio/mpeg', 'cache-control': 'no-store', 'x-voice-model': model },
+        headers: {
+          'content-type': 'audio/mpeg',
+          'cache-control': 'no-store',
+          'x-voice-model': model,
+        },
       });
     }
     if (!res) {

@@ -27,7 +27,10 @@ export async function POST(req: Request) {
   }
   const q = quote(body.tier, body.trucks);
   if (q.custom) {
-    return NextResponse.json({ error: 'Shops over 60 trucks get a custom quote.' }, { status: 400 });
+    return NextResponse.json(
+      { error: 'Shops over 60 trucks get a custom quote.' },
+      { status: 400 },
+    );
   }
   const stripe = new Stripe(key);
   const origin = new URL(req.url).origin;

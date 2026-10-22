@@ -9,6 +9,7 @@ interface Probe {
   ok: boolean;
   ms: number;
   error?: string;
+  note?: string;
 }
 
 /** One tap after adding a key: proves the key works and shows which models answered. */
@@ -51,6 +52,7 @@ export function HealthCheck({ kind }: { kind: 'claude' | 'voice' }) {
               </span>{' '}
               · {p.role} · {p.model} · {p.ms} ms
               {p.error ? ` · ${p.error}` : ''}
+              {p.note ? ` · ${p.note}` : ''}
             </p>
           ))}
         </div>

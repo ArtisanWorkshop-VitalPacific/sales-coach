@@ -27,20 +27,45 @@ export interface RoleConfig {
 
 export const PRESETS: Record<ModelPreset, RoleConfig> = {
   standard: {
-    perceive: { model: 'claude-haiku-5-5', effort: 'low', thinking: { type: 'disabled' }, maxTokens: 900 },
-    write: { model: 'claude-sonnet-5-5', effort: 'low', thinking: { type: 'between_tools' }, maxTokens: 300 },
+    perceive: {
+      model: 'claude-haiku-5-5',
+      effort: 'low',
+      thinking: { type: 'disabled' },
+      maxTokens: 900,
+    },
+    write: {
+      model: 'claude-sonnet-5-5',
+      effort: 'low',
+      thinking: { type: 'between_tools' },
+      maxTokens: 300,
+    },
     coach: { model: 'claude-opus-5-5', effort: 'medium', speed: 'fast', maxTokens: 10000 },
     exam: { model: 'claude-fable-5-1', effort: 'medium', maxTokens: 12000 },
   },
   max: {
-    perceive: { model: 'claude-sonnet-5-5', effort: 'low', thinking: { type: 'between_tools' }, maxTokens: 900 },
+    perceive: {
+      model: 'claude-sonnet-5-5',
+      effort: 'low',
+      thinking: { type: 'between_tools' },
+      maxTokens: 900,
+    },
     write: { model: 'claude-opus-5-5', effort: 'low', speed: 'fast', maxTokens: 800 },
     coach: { model: 'claude-opus-5-5', effort: 'high', speed: 'fast', maxTokens: 12000 },
     exam: { model: 'claude-fable-5-1', effort: 'medium', maxTokens: 12000 },
   },
   economy: {
-    perceive: { model: 'claude-haiku-5-5', effort: 'low', thinking: { type: 'disabled' }, maxTokens: 900 },
-    write: { model: 'claude-haiku-5-5', effort: 'low', thinking: { type: 'disabled' }, maxTokens: 300 },
+    perceive: {
+      model: 'claude-haiku-5-5',
+      effort: 'low',
+      thinking: { type: 'disabled' },
+      maxTokens: 900,
+    },
+    write: {
+      model: 'claude-haiku-5-5',
+      effort: 'low',
+      thinking: { type: 'disabled' },
+      maxTokens: 300,
+    },
     coach: { model: 'claude-sonnet-5-5', effort: 'medium', maxTokens: 10000 },
     exam: { model: 'claude-opus-5-5', effort: 'high', maxTokens: 12000 },
   },

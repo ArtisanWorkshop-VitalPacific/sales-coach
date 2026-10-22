@@ -67,7 +67,8 @@ export function LiveScreen(p: Props) {
         }),
       });
       const json = (await res.json()) as { url?: string; token?: string; error?: string };
-      if (!res.ok || !json.url || !json.token) throw new Error(json.error ?? 'Could not start Live mode');
+      if (!res.ok || !json.url || !json.token)
+        throw new Error(json.error ?? 'Could not start Live mode');
       const room = new Room({ adaptiveStream: true, dynacast: true });
       roomRef.current = room;
       const decoder = new TextDecoder();
@@ -116,7 +117,10 @@ export function LiveScreen(p: Props) {
     const record = await new Promise<SessionRecord | null>((resolve) => {
       recordRef.current = resolve;
       void room.localParticipant
-        .publishData(new TextEncoder().encode(JSON.stringify({ type: 'end' })), { reliable: true, topic: 'control' })
+        .publishData(new TextEncoder().encode(JSON.stringify({ type: 'end' })), {
+          reliable: true,
+          topic: 'control',
+        })
         .catch(() => resolve(null));
       setTimeout(() => resolve(null), 10000);
     });
@@ -145,11 +149,19 @@ export function LiveScreen(p: Props) {
     <div className="flex min-h-dvh flex-col bg-[#000] px-5 pt-[max(16px,env(safe-area-inset-top))] text-[#f5f5f7]">
       <div className="mx-auto flex h-12 w-full max-w-[920px] items-center justify-between">
         {status === 'live' || status === 'ending' ? (
-          <button type="button" onClick={end} disabled={status === 'ending'} className="btn btn-sm bg-[#ff453a] text-white">
+          <button
+            type="button"
+            onClick={end}
+            disabled={status === 'ending'}
+            className="btn btn-sm bg-[#ff453a] text-white"
+          >
             <PhoneOff size={16} /> {status === 'ending' ? 'Ending' : 'End'}
           </button>
         ) : (
-          <Link href={`/practice/${scenario.id}`} className="btn btn-sm bg-[#1d1d1f] text-[#f5f5f7]">
+          <Link
+            href={`/practice/${scenario.id}`}
+            className="btn btn-sm bg-[#1d1d1f] text-[#f5f5f7]"
+          >
             <ArrowLeft size={16} /> Back
           </Link>
         )}
@@ -161,8 +173,15 @@ export function LiveScreen(p: Props) {
       <div className="flex flex-1 flex-col items-center justify-center text-center">
         <div className="relative grid place-items-center">
           <div
-            className={cn('absolute h-[260px] w-[260px] rounded-full bg-voice blur-3xl transition-opacity duration-700', speaking ? 'opacity-55' : 'opacity-15')}
-            style={{ animation: speaking ? 'speak 1.1s ease-in-out infinite' : 'breathe 4s ease-in-out infinite' }}
+            className={cn(
+              'absolute h-[260px] w-[260px] rounded-full bg-voice blur-3xl transition-opacity duration-700',
+              speaking ? 'opacity-55' : 'opacity-15',
+            )}
+            style={{
+              animation: speaking
+                ? 'speak 1.1s ease-in-out infinite'
+                : 'breathe 4s ease-in-out infinite',
+            }}
           />
           <Avatar name={persona.name} seed={persona.id} size={128} />
         </div>
@@ -184,8 +203,19 @@ export function LiveScreen(p: Props) {
       </div>
       <div className="mx-auto mb-4 w-full max-w-[920px] space-y-3">
         {captions.slice(-3).map((c, i) => (
-          <p key={i} className={cn('text-[19px]', c.speaker === 'tech' ? 'text-[#a1a1a6]' : 'text-[#f5f5f7]')}>
-            <span className={cn('mr-2 font-semibold', c.speaker === 'tech' ? 'text-[#2997ff]' : 'text-voice')}>
+          <p
+            key={i}
+            className={cn(
+              'text-[19px]',
+              c.speaker === 'tech' ? 'text-[#a1a1a6]' : 'text-[#f5f5f7]',
+            )}
+          >
+            <span
+              className={cn(
+                'mr-2 font-semibold',
+                c.speaker === 'tech' ? 'text-[#2997ff]' : 'text-voice',
+              )}
+            >
               {c.speaker === 'tech' ? 'You' : (c.name ?? first)}
             </span>
             {c.text}

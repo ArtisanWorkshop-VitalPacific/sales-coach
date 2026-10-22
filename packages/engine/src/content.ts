@@ -107,9 +107,12 @@ export function buildSessionSpec(index: ContentIndex, req: SpecRequest): Session
     startPhase: drill?.startPhase ?? scenario.startPhase,
     priorContext: drill?.priorContext ?? scenario.priorContext,
     // A drill is one moment: only its own moves are forced, not the scenario's.
-    forcedMoves: [...new Set([...(req.forcedMoves ?? []), ...(drill ? drill.forcedMoves : scenario.moves.forced)])].filter(
-      (id) => !!index.move(id),
-    ),
+    forcedMoves: [
+      ...new Set([
+        ...(req.forcedMoves ?? []),
+        ...(drill ? drill.forcedMoves : scenario.moves.forced),
+      ]),
+    ].filter((id) => !!index.move(id)),
     seed: req.seed ?? Math.floor(Math.random() * 2 ** 31),
     language: persona.language,
     kind: req.kind ?? (drill ? 'drill' : req.job ? 'rehearsal' : 'full'),
@@ -125,7 +128,9 @@ const clampDifficulty = (d: number) => Math.max(1, Math.min(5, Math.round(d)));
 function applyCompanyPrices(scenario: Scenario, company?: Company): Scenario {
   if (!company) return scenario;
   const range = company.priceRanges.find(
-    (r) => r.id === scenario.jobType || r.item.toLowerCase().includes(scenario.jobType.split('-')[0] ?? ''),
+    (r) =>
+      r.id === scenario.jobType ||
+      r.item.toLowerCase().includes(scenario.jobType.split('-')[0] ?? ''),
   );
   if (!range) return scenario;
   const options = scenario.options.map((o) => {
@@ -144,7 +149,9 @@ export function scenarioForJob(index: ContentIndex, job: JobContext): Scenario {
   const candidates = [...index.scenarios.values()].filter((s) => s.jobType === job.jobType);
   const base =
     candidates.sort((a, b) => a.difficulty - b.difficulty)[0] ??
-    [...index.scenarios.values()].find((s) => job.jobType.includes(s.jobType.split('-')[0] ?? '')) ??
+    [...index.scenarios.values()].find((s) =>
+      job.jobType.includes(s.jobType.split('-')[0] ?? ''),
+    ) ??
     [...index.scenarios.values()][0];
   if (!base) throw new Error('No scenarios in the content bundle');
   const equipment = job.equipment.length
@@ -154,7 +161,9 @@ export function scenarioForJob(index: ContentIndex, job: JobContext): Scenario {
     ...base,
     id: `${base.id}-job`,
     title: job.summary || base.title,
-    briefing: [job.summary, job.isMember ? 'Member.' : 'Not a member.', ...job.notes].filter(Boolean).join(' '),
+    briefing: [job.summary, job.isMember ? 'Member.' : 'Not a member.', ...job.notes]
+      .filter(Boolean)
+      .join(' '),
     equipment,
   };
 }

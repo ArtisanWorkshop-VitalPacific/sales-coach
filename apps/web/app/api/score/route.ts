@@ -5,8 +5,8 @@ import { serverAdapters } from '@/lib/server/engine';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-// 60 seconds fits every Vercel plan. The coach runs in fast mode to finish well inside it.
-export const maxDuration = 60;
+// Fluid compute allows 300 seconds on every plan. The coach usually finishes in well under 60.
+export const maxDuration = 300;
 
 /** The Coach: Claude reviews the whole call. Falls back to the rubric score without a key. */
 export async function POST(req: Request) {
@@ -25,11 +25,14 @@ export async function POST(req: Request) {
   if (!coach) return NextResponse.json({ debrief: scoreRecord(record, index) });
   try {
     // Leave room to answer with the quick score if the review runs long.
-    const signal = AbortSignal.any([req.signal, AbortSignal.timeout(52_000)]);
+    const signal = AbortSignal.any([req.signal, AbortSignal.timeout(280_000)]);
     const debrief = await coach.debrief(record, index, signal);
     return NextResponse.json({ debrief });
   } catch (e) {
     console.error('[api/score]', e);
-    return NextResponse.json({ debrief: scoreRecord(record, index), warning: (e as Error).message });
+    return NextResponse.json({
+      debrief: scoreRecord(record, index),
+      warning: (e as Error).message,
+    });
   }
 }

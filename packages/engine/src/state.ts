@@ -2,7 +2,14 @@ import type { ContentIndex, SessionSpec } from './content';
 import { BEHAVIORS, type BehaviorId, PHASE_ORDER, type Phase, type Tone } from './schema';
 import { clamp } from './util';
 
-export type Mood = 'warm' | 'friendly' | 'neutral' | 'guarded' | 'irritated' | 'cold' | 'embarrassed';
+export type Mood =
+  | 'warm'
+  | 'friendly'
+  | 'neutral'
+  | 'guarded'
+  | 'irritated'
+  | 'cold'
+  | 'embarrassed';
 
 export interface ObjectionInstance {
   moveId: string;
@@ -208,7 +215,8 @@ export function applyPerception(
   const ids = new Set(perception.behaviors.map((b) => b.id));
 
   // Derived behaviors the perceiver may have missed.
-  if (perception.usedFactIds.some((f) => s.revealedFacts.includes(f))) ids.add('used_customer_detail');
+  if (perception.usedFactIds.some((f) => s.revealedFacts.includes(f)))
+    ids.add('used_customer_detail');
   if (perception.unneededWork.length > 0) ids.add('recommended_unneeded_work');
 
   // Persistence rule: asking again with nothing new is pressure.
@@ -260,7 +268,8 @@ export function applyPerception(
         s.trust = clamp(s.trust + 10);
         notes.push('The real concern was resolved.');
         // The stated objections that sat on top of it soften.
-        for (const o of s.objections) if (o.status !== 'resolved') o.strength = clamp(o.strength - 20);
+        for (const o of s.objections)
+          if (o.status !== 'resolved') o.strength = clamp(o.strength - 20);
       } else if (!s.realConcern.resolved) {
         s.trust = clamp(s.trust + 4);
       }
@@ -273,10 +282,13 @@ export function applyPerception(
     o.answeredTurn = s.turn;
     o.status = o.strength <= 20 ? 'resolved' : 'answered';
     s.progressSinceLastAsk = true;
-    notes.push(`${o.moveId} ${o.status === 'resolved' ? 'resolved' : 'softened'} (${Math.round(o.strength)}).`);
+    notes.push(
+      `${o.moveId} ${o.status === 'resolved' ? 'resolved' : 'softened'} (${Math.round(o.strength)}).`,
+    );
   }
   for (const o of s.objections) {
-    if ((o.status === 'voiced' || o.status === 'answered') && o.strength <= 20) o.status = 'resolved';
+    if ((o.status === 'voiced' || o.status === 'answered') && o.strength <= 20)
+      o.status = 'resolved';
   }
 
   // Facts.
@@ -302,13 +314,15 @@ export function applyPerception(
     s.optionsPresented = Math.max(s.optionsPresented, perception.optionsCount);
     advancePhase(s, 'options');
   }
-  for (const w of perception.unneededWork) if (!s.flags.unneededWork.includes(w)) s.flags.unneededWork.push(w);
+  for (const w of perception.unneededWork)
+    if (!s.flags.unneededWork.includes(w)) s.flags.unneededWork.push(w);
   if (ids.has('offered_financing')) s.financingOffered = true;
   if (ids.has('framed_monthly')) {
     s.financingOffered = true;
     s.monthlyFramed = true;
   }
-  if (ids.has('offered_membership') || ids.has('explained_membership_value')) s.membershipOffered = true;
+  if (ids.has('offered_membership') || ids.has('explained_membership_value'))
+    s.membershipOffered = true;
   if (ids.has('bluffed')) s.flags.bluffed = true;
   if (ids.has('pressured')) s.flags.pressured = true;
   if (ids.has('condescended')) s.flags.condescended = true;
@@ -329,7 +343,8 @@ export function applyPerception(
   s.mood = moodFor(s, [...ids]);
   // Keep the behavior list in the perception in sync with derived ones.
   for (const id of ids) {
-    if (!perception.behaviors.some((b) => b.id === id)) perception.behaviors.push({ id, evidence: '(derived)' });
+    if (!perception.behaviors.some((b) => b.id === id))
+      perception.behaviors.push({ id, evidence: '(derived)' });
   }
   return {
     trust: s.trust - before.trust,
@@ -343,7 +358,10 @@ export interface DecisionResult {
   outcome: 'yes' | 'later' | 'no';
   readiness: number;
   threshold: number;
-  blocker?: { kind: 'objection'; objection: ObjectionInstance } | { kind: 'budget' } | { kind: 'real-concern' };
+  blocker?:
+    | { kind: 'objection'; objection: ObjectionInstance }
+    | { kind: 'budget' }
+    | { kind: 'real-concern' };
 }
 
 /** What the customer decides when asked. Deterministic and explainable. */
@@ -372,16 +390,32 @@ export function evaluateDecision(s: CustomerState, spec: SessionSpec): DecisionR
   if (s.flags.unneededWork.length > 0) {
     const trustObjection = open.find((o) => o.group === 'trust');
     return trustObjection
-      ? { outcome: 'later', readiness, threshold, blocker: { kind: 'objection', objection: trustObjection } }
+      ? {
+          outcome: 'later',
+          readiness,
+          threshold,
+          blocker: { kind: 'objection', objection: trustObjection },
+        }
       : { outcome: 'later', readiness, threshold };
   }
   if (budgetBlock) {
     const money = open.find((o) => o.group === 'price' || o.group === 'financing');
-    if (money) return { outcome: 'later', readiness, threshold, blocker: { kind: 'objection', objection: money } };
+    if (money)
+      return {
+        outcome: 'later',
+        readiness,
+        threshold,
+        blocker: { kind: 'objection', objection: money },
+      };
     return { outcome: 'later', readiness, threshold, blocker: { kind: 'budget' } };
   }
   if (open[0]) {
-    return { outcome: 'later', readiness, threshold, blocker: { kind: 'objection', objection: open[0] } };
+    return {
+      outcome: 'later',
+      readiness,
+      threshold,
+      blocker: { kind: 'objection', objection: open[0] },
+    };
   }
   if (
     (p.hidden.decisionMaker === 'joint' || p.hidden.decisionMaker === 'spouse') &&
@@ -389,9 +423,16 @@ export function evaluateDecision(s: CustomerState, spec: SessionSpec): DecisionR
     readiness < threshold + 15
   ) {
     const stall = s.objections.find((o) => o.group === 'timing' && o.status !== 'resolved');
-    if (stall) return { outcome: 'later', readiness, threshold, blocker: { kind: 'objection', objection: stall } };
+    if (stall)
+      return {
+        outcome: 'later',
+        readiness,
+        threshold,
+        blocker: { kind: 'objection', objection: stall },
+      };
   }
   if (readiness >= threshold) return { outcome: 'yes', readiness, threshold };
-  if (!s.realConcern.resolved) return { outcome: 'later', readiness, threshold, blocker: { kind: 'real-concern' } };
+  if (!s.realConcern.resolved)
+    return { outcome: 'later', readiness, threshold, blocker: { kind: 'real-concern' } };
   return { outcome: 'later', readiness, threshold };
 }

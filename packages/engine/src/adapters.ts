@@ -10,7 +10,13 @@ export interface PerceptionInput {
   transcript: TranscriptTurn[];
   techText: string;
   /** Concerns the customer holds right now: voiced objections plus the hidden real concern. */
-  concerns: { id: string; label: string; concern: string; voiced: boolean; resolvers: BehaviorId[] }[];
+  concerns: {
+    id: string;
+    label: string;
+    concern: string;
+    voiced: boolean;
+    resolvers: BehaviorId[];
+  }[];
   revealedFacts: { id: string; text: string; useValue: string }[];
   lastCustomerTurn?: TranscriptTurn;
   lastCustomerMoveGroup?: string;
@@ -45,7 +51,9 @@ export function cleanLine(text: string, allowTags: readonly string[]): string {
   // Remove stage directions in parentheses.
   t = t.replace(/\(([^)]{0,80})\)/g, '').replace(/\s{2,}/g, ' ');
   // Keep only allowed [tags].
-  t = t.replace(/\[([^\]]{1,24})\]/g, (m, tag: string) => (allowTags.includes(tag.toLowerCase()) ? `[${tag.toLowerCase()}]` : ''));
+  t = t.replace(/\[([^\]]{1,24})\]/g, (m, tag: string) =>
+    allowTags.includes(tag.toLowerCase()) ? `[${tag.toLowerCase()}]` : '',
+  );
   // No em dashes in spoken output either.
   t = t.replace(/\s*—\s*/g, ', ');
   return t.trim();

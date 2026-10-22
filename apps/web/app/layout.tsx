@@ -5,7 +5,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: { default: 'Sales Coach', template: '%s · Sales Coach' },
-  description: 'Practice the call before the call. Real conversations with customers who push back, then a coach who tells you exactly what to fix.',
+  description:
+    'Practice the call before the call. Real conversations with customers who push back, then a coach who tells you exactly what to fix.',
   applicationName: 'Sales Coach',
   appleWebApp: { capable: true, title: 'Sales Coach', statusBarStyle: 'default' },
   robots: { index: false, follow: false },

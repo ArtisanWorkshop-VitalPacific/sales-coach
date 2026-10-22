@@ -1,13 +1,35 @@
-export { createClaudeClient, recoverable, resilient, stripTuning, textOf, withFastFallback } from './client';
-export { PRESETS, presetFromEnv, requestFields, type CallConfig, type ModelPreset, type RoleConfig } from './config';
-export { ClaudePerceiver, toPerception } from './perceiver';
-export { ClaudeWriter } from './writer';
+export {
+  createClaudeClient,
+  recoverable,
+  resilient,
+  stripTuning,
+  textOf,
+  withFastFallback,
+} from './client';
 export { ClaudeCoach, coachUser, mergeDebrief } from './coach';
-export { PROMPT_VERSION, perceiverSystem, perceiverUser, writerSystem, writerUser, coachSystem, transcriptText } from './prompts';
+export {
+  type CallConfig,
+  type ModelPreset,
+  PRESETS,
+  presetFromEnv,
+  type RoleConfig,
+  requestFields,
+} from './config';
+export { ClaudePerceiver, toPerception } from './perceiver';
+export {
+  coachSystem,
+  PROMPT_VERSION,
+  perceiverSystem,
+  perceiverUser,
+  transcriptText,
+  writerSystem,
+  writerUser,
+} from './prompts';
+export { ClaudeWriter } from './writer';
 
 import { createClaudeClient } from './client';
-import { PRESETS, type ModelPreset } from './config';
 import { ClaudeCoach } from './coach';
+import { type ModelPreset, PRESETS } from './config';
 import { ClaudePerceiver } from './perceiver';
 import { ClaudeWriter } from './writer';
 

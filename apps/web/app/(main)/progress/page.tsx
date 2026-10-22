@@ -4,7 +4,7 @@ import { Award } from 'lucide-react';
 import { useMemo } from 'react';
 import { SessionRow } from '@/components/session-row';
 import { Bar, ButtonLink, Card, Chip, cn, Empty, PageHeader, Section } from '@/components/ui';
-import { contentIndex, scenarios, SKILL_ORDER } from '@/lib/content';
+import { contentIndex, SKILL_ORDER, scenarios } from '@/lib/content';
 import { type StoredSession, useSessions } from '@/lib/store';
 
 function averages(list: StoredSession[]) {

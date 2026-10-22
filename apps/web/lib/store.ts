@@ -99,7 +99,12 @@ export interface Settings {
   theme: 'system' | 'light' | 'dark';
 }
 
-export const DEFAULT_PROFILE: Profile = { name: '', companyId: 'demo-company', role: 'tech', onboarded: false };
+export const DEFAULT_PROFILE: Profile = {
+  name: '',
+  companyId: 'demo-company',
+  role: 'tech',
+  onboarded: false,
+};
 export const DEFAULT_SETTINGS: Settings = {
   captions: true,
   inputMode: 'hands-free',
@@ -153,12 +158,20 @@ const profileStore = localStore<Profile>('sc.profile', DEFAULT_PROFILE);
 const settingsStore = localStore<Settings>('sc.settings', DEFAULT_SETTINGS);
 
 export function useProfile(): [Profile, (p: Partial<Profile>) => void] {
-  const p = useSyncExternalStore(profileStore.subscribe, profileStore.read, () => profileStore.fallback);
+  const p = useSyncExternalStore(
+    profileStore.subscribe,
+    profileStore.read,
+    () => profileStore.fallback,
+  );
   return [p, profileStore.write];
 }
 
 export function useSettings(): [Settings, (s: Partial<Settings>) => void] {
-  const s = useSyncExternalStore(settingsStore.subscribe, settingsStore.read, () => settingsStore.fallback);
+  const s = useSyncExternalStore(
+    settingsStore.subscribe,
+    settingsStore.read,
+    () => settingsStore.fallback,
+  );
   return [s, settingsStore.write];
 }
 

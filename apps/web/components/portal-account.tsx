@@ -9,14 +9,14 @@ import {
   OVERAGE_PER_MINUTE,
   quote,
   SEMINAR_PER_DAY,
-  type TierId,
   TIERS,
+  type TierId,
   usd,
 } from '@/lib/pricing';
 import { useProfile } from '@/lib/store';
 import { useCapabilities } from '@/lib/use-capabilities';
-import { Button, Card, Chip, cn, Section, Skeleton } from './ui';
 import { HealthCheck } from './portal-health';
+import { Button, Card, Chip, cn, Section, Skeleton } from './ui';
 
 /* ================================================================ Billing */
 

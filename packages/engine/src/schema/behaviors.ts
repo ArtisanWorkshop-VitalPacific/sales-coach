@@ -229,7 +229,8 @@ export const BEHAVIORS: Record<BehaviorId, BehaviorDef> = {
   stated_price: def({
     id: 'stated_price',
     label: 'Stated the price',
-    definition: 'Said a specific dollar amount for a repair or option, clearly and without hedging.',
+    definition:
+      'Said a specific dollar amount for a repair or option, clearly and without hedging.',
     skill: 'price',
     polarity: 'positive',
     source: 'perception',
@@ -305,7 +306,8 @@ export const BEHAVIORS: Record<BehaviorId, BehaviorDef> = {
   repeated_same_answer: def({
     id: 'repeated_same_answer',
     label: 'Repeated the same answer',
-    definition: 'Answered a repeated objection with the same words or argument, only longer or louder.',
+    definition:
+      'Answered a repeated objection with the same words or argument, only longer or louder.',
     skill: 'objections',
     polarity: 'negative',
     source: 'perception',
@@ -326,7 +328,8 @@ export const BEHAVIORS: Record<BehaviorId, BehaviorDef> = {
   argued: def({
     id: 'argued',
     label: 'Argued',
-    definition: 'Contradicted the customer combatively or tried to win the point instead of understanding it.',
+    definition:
+      'Contradicted the customer combatively or tried to win the point instead of understanding it.',
     skill: 'objections',
     polarity: 'negative',
     source: 'perception',

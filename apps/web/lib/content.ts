@@ -4,7 +4,8 @@ import type { Drill, Move, Persona, Scenario } from '@sales-coach/engine';
 export { bundle, contentIndex };
 
 export const scenarios = (): Scenario[] => [...contentIndex().scenarios.values()];
-export const drills = (): Drill[] => [...contentIndex().drills.values()].sort((a, b) => a.order - b.order);
+export const drills = (): Drill[] =>
+  [...contentIndex().drills.values()].sort((a, b) => a.order - b.order);
 export const personas = (): Persona[] => [...contentIndex().personas.values()];
 export const objections = (): Move[] => contentIndex().objectionMoves();
 export const behaviorMoves = (): Move[] => contentIndex().behaviorMoves();

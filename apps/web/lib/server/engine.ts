@@ -8,7 +8,12 @@ import {
 import { ClaudeCoach, claudeAdapters, presetFromEnv } from '@sales-coach/engine/claude';
 import { contentIndex } from '../content';
 
-type Adapters = { perceiver: Perceiver; writer: LineWriter; coach: ClaudeCoach | null; examCoach: ClaudeCoach | null };
+type Adapters = {
+  perceiver: Perceiver;
+  writer: LineWriter;
+  coach: ClaudeCoach | null;
+  examCoach: ClaudeCoach | null;
+};
 let cached: Adapters | null = null;
 
 /** Claude adapters when the key is set, otherwise the same rules engine the demo uses. */
@@ -16,11 +21,21 @@ export function serverAdapters(seed = 1): Adapters {
   if (process.env.ANTHROPIC_API_KEY) {
     if (!cached) {
       const a = claudeAdapters({ preset: presetFromEnv(process.env.SALES_COACH_PRESET) });
-      cached = { perceiver: a.perceiver, writer: a.writer, coach: a.coach, examCoach: new ClaudeCoach(a.client, a.roles.exam) };
+      cached = {
+        perceiver: a.perceiver,
+        writer: a.writer,
+        coach: a.coach,
+        examCoach: new ClaudeCoach(a.client, a.roles.exam),
+      };
     }
     return cached;
   }
-  return { perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter(seed), coach: null, examCoach: null };
+  return {
+    perceiver: new HeuristicPerceiver(),
+    writer: new ScriptedWriter(seed),
+    coach: null,
+    examCoach: null,
+  };
 }
 
 export function sessionOptions(seed?: number) {

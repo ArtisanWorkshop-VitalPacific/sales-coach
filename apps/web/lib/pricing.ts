@@ -61,7 +61,15 @@ export function bandFor(trucks: number) {
 export function quote(tier: TierId, trucks: number, _billing: 'monthly' | 'annual' = 'annual') {
   const band = bandFor(trucks);
   if (!band) {
-    return { custom: true as const, band: null, monthly: 0, annual: 0, pooledMinutes: 0, build: 0, eliteAnnual: 0 };
+    return {
+      custom: true as const,
+      band: null,
+      monthly: 0,
+      annual: 0,
+      pooledMinutes: 0,
+      build: 0,
+      eliteAnnual: 0,
+    };
   }
   const monthly = Math.round(band.monthly * TIERS[tier].multiplier);
   return {

@@ -4,9 +4,9 @@ import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { Avatar } from '@/components/avatar';
+import { SessionRow } from '@/components/session-row';
 import { Button, ButtonLink, Card, ChevronLink, Difficulty, Section, Stat } from '@/components/ui';
 import { companies, contentIndex, drills, jobLabel, scenarios } from '@/lib/content';
-import { SessionRow } from '@/components/session-row';
 import { type StoredSession, useProfile, useSessions } from '@/lib/store';
 import { useCapabilities } from '@/lib/use-capabilities';
 

@@ -1,7 +1,22 @@
 import { describe, expect, it } from 'vitest';
 import raw from '../../content/generated/bundle.json';
-import { type ContentBundle, ContentIndex, CustomerSession, HeuristicPerceiver, ScriptedWriter, scoreRecord } from '../src';
-import { ClaudeCoach, ClaudePerceiver, ClaudeWriter, coachUser, PRESETS, perceiverSystem, writerSystem } from '../src/providers/claude';
+import {
+  type ContentBundle,
+  ContentIndex,
+  CustomerSession,
+  HeuristicPerceiver,
+  ScriptedWriter,
+  scoreRecord,
+} from '../src';
+import {
+  ClaudeCoach,
+  ClaudePerceiver,
+  ClaudeWriter,
+  coachUser,
+  PRESETS,
+  perceiverSystem,
+  writerSystem,
+} from '../src/providers/claude';
 
 const index = new ContentIndex(raw as unknown as ContentBundle);
 const scenarioId = 'wh-tank-no-hot-water';
@@ -18,7 +33,8 @@ function fakeClient(parsed: unknown, text = 'Oh. [sighs] That is more than I hop
       stream: (params: Record<string, unknown>) => {
         calls.push(params);
         return (async function* () {
-          for (const w of text.split(/(?<= )/)) yield { type: 'content_block_delta', delta: { type: 'text_delta', text: w } };
+          for (const w of text.split(/(?<= )/))
+            yield { type: 'content_block_delta', delta: { type: 'text_delta', text: w } };
         })();
       },
     },
@@ -48,7 +64,10 @@ describe('Claude adapters (offline, faked client)', () => {
       saidGoodbye: false,
     });
     const p = new ClaudePerceiver(client, PRESETS.standard.perceive);
-    const s = new CustomerSession({ scenarioId, seed: 3 }, { index, perceiver: p, writer: new ScriptedWriter(3) });
+    const s = new CustomerSession(
+      { scenarioId, seed: 3 },
+      { index, perceiver: p, writer: new ScriptedWriter(3) },
+    );
     await s.start();
     const turn = await s.techTurn({ text: 'The standard tank is $1,890.' });
     expect(turn).toBeTruthy();
@@ -66,7 +85,10 @@ describe('Claude adapters (offline, faked client)', () => {
   it('writer streams text and cleans it', async () => {
     const { client, calls } = fakeClient(null, '"Oh. [sighs] That is more than I hoped."');
     const w = new ClaudeWriter(client, PRESETS.max.write);
-    const s = new CustomerSession({ scenarioId, seed: 5 }, { index, perceiver: new HeuristicPerceiver(), writer: w });
+    const s = new CustomerSession(
+      { scenarioId, seed: 5 },
+      { index, perceiver: new HeuristicPerceiver(), writer: w },
+    );
     await s.start();
     const t = await s.techTurn({ text: 'Can you tell me what has been going on with it?' });
     expect(t.text).not.toMatch(/^"/);
@@ -74,18 +96,33 @@ describe('Claude adapters (offline, faked client)', () => {
   });
 
   it('coach merges Claude output over the rubric score', async () => {
-    const s = new CustomerSession({ scenarioId, seed: 9 }, { index, perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter(9) });
+    const s = new CustomerSession(
+      { scenarioId, seed: 9 },
+      { index, perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter(9) },
+    );
     await s.start();
-    await s.techTurn({ text: "Hi, I'm Alex. I'll take a look, show you what I find, and give you options. Sound good?" });
+    await s.techTurn({
+      text: "Hi, I'm Alex. I'll take a look, show you what I find, and give you options. Sound good?",
+    });
     await s.techTurn({ text: 'The standard tank is $1,890, or about $49 a month.' });
     const record = s.end();
     const base = scoreRecord(record, index);
     const techTurn = record.transcript.find((t) => t.speaker === 'tech')!;
     const { client } = fakeClient({
-      skills: base.skills.map((k) => ({ skillId: k.skillId, score: k.score === null ? null : 77, summary: 'Specific.', evidence: [{ turnId: techTurn.id, quote: 'x', note: 'y', polarity: 'positive' }] })),
+      skills: base.skills.map((k) => ({
+        skillId: k.skillId,
+        score: k.score === null ? null : 77,
+        summary: 'Specific.',
+        evidence: [{ turnId: techTurn.id, quote: 'x', note: 'y', polarity: 'positive' }],
+      })),
       moves: [],
       win: { skillId: 'frame', turnId: techTurn.id, text: 'Great frame.' },
-      fix: { skillId: 'discovery', turnId: 'bogus', text: 'Ask more.', modelResponse: 'What has been going on?' },
+      fix: {
+        skillId: 'discovery',
+        turnId: 'bogus',
+        text: 'Ask more.',
+        modelResponse: 'What has been going on?',
+      },
       spoken: 'Nice work — really.',
       managerNote: 'Solid.',
     });
@@ -101,7 +138,12 @@ describe('Claude adapters (offline, faked client)', () => {
   it('prompts render for every persona without undefined', () => {
     expect(perceiverSystem()).not.toContain('undefined');
     for (const sc of index.scenarios.values()) {
-      const spec = { ...new CustomerSession({ scenarioId: sc.id, seed: 1 }, { index, perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter(1) }).spec };
+      const spec = {
+        ...new CustomerSession(
+          { scenarioId: sc.id, seed: 1 },
+          { index, perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter(1) },
+        ).spec,
+      };
       const sys = writerSystem(spec);
       expect(sys).not.toContain('undefined');
       if (spec.persona.secondary) expect(writerSystem(spec, true)).not.toContain('undefined');

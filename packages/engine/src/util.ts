@@ -62,7 +62,18 @@ export function sayDollars(n: number): string {
     'eighteen',
     'nineteen',
   ];
-  const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+  const tens = [
+    '',
+    '',
+    'twenty',
+    'thirty',
+    'forty',
+    'fifty',
+    'sixty',
+    'seventy',
+    'eighty',
+    'ninety',
+  ];
   const two = (x: number): string =>
     x < 20 ? ones[x]! : `${tens[Math.floor(x / 10)]}${x % 10 ? `-${ones[x % 10]}` : ''}`;
   if (n >= 1000 && n < 10000 && n % 100 !== 0 && Math.floor(n / 100) % 10 !== 0) {
@@ -92,15 +103,43 @@ export function extractDollarAmounts(text: string, min = 50): number[] {
 }
 
 const WORD_VALUES: Record<string, number> = {
-  zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
-  ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16,
-  seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50,
-  sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+  zero: 0,
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+  ten: 10,
+  eleven: 11,
+  twelve: 12,
+  thirteen: 13,
+  fourteen: 14,
+  fifteen: 15,
+  sixteen: 16,
+  seventeen: 17,
+  eighteen: 18,
+  nineteen: 19,
+  twenty: 20,
+  thirty: 30,
+  forty: 40,
+  fifty: 50,
+  sixty: 60,
+  seventy: 70,
+  eighty: 80,
+  ninety: 90,
 };
 
 /** Handles "eighteen ninety", "two thousand four hundred", "forty nine a month". */
 function parseSpokenNumbers(text: string): number[] {
-  const tokens = text.toLowerCase().replace(/-/g, ' ').split(/[^a-z]+/).filter(Boolean);
+  const tokens = text
+    .toLowerCase()
+    .replace(/-/g, ' ')
+    .split(/[^a-z]+/)
+    .filter(Boolean);
   const results: number[] = [];
   let i = 0;
   while (i < tokens.length) {
@@ -110,7 +149,10 @@ function parseSpokenNumbers(text: string): number[] {
     }
     // Gather a run of number words.
     const run: string[] = [];
-    while (i < tokens.length && (tokens[i]! in WORD_VALUES || ['hundred', 'thousand', 'and'].includes(tokens[i]!))) {
+    while (
+      i < tokens.length &&
+      (tokens[i]! in WORD_VALUES || ['hundred', 'thousand', 'and'].includes(tokens[i]!))
+    ) {
       run.push(tokens[i]!);
       i++;
     }

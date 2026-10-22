@@ -1,6 +1,6 @@
 import type Anthropic from '@anthropic-ai/sdk';
 import type { LineWriter, WriteInput } from '../../adapters';
-import { recoverable } from './client';
+import { applyLearned, recoverable, remember, TURN_REQUEST } from './client';
 import type { CallConfig } from './config';
 import { writerSystem, writerUser } from './prompts';
 
@@ -45,11 +45,19 @@ export class ClaudeWriter implements LineWriter {
       system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
       messages: [{ role: 'user', content: writerUser(input) }],
     };
-    yield* this.run(params, signal, 2);
+    yield* this.run(params, applyLearned(params), signal, 1);
   }
 
-  private async *run(params: Record<string, unknown>, signal: AbortSignal | undefined, retries: number): AsyncIterable<string> {
-    const stream = this.client.messages.stream(params as unknown as Anthropic.MessageStreamParams, { signal });
+  private async *run(
+    original: Record<string, unknown>,
+    params: Record<string, unknown>,
+    signal: AbortSignal | undefined,
+    retries: number,
+  ): AsyncIterable<string> {
+    const stream = this.client.messages.stream(params as unknown as Anthropic.MessageStreamParams, {
+      signal,
+      ...TURN_REQUEST,
+    });
     let yielded = false;
     try {
       for await (const event of stream) {
@@ -58,12 +66,13 @@ export class ClaudeWriter implements LineWriter {
           yield event.delta.text;
         }
       }
+      remember(original, params);
     } catch (e) {
       // Fast mode limits, a rejected tuning field, or an unavailable model: adjust and retry
       // rather than let the customer go silent.
       const next = !yielded && retries > 0 ? recoverable(e, params) : null;
       if (next) {
-        yield* this.run(next, signal, retries - 1);
+        yield* this.run(original, next, signal, retries - 1);
         return;
       }
       throw e;

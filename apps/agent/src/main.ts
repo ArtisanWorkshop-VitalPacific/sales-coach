@@ -106,15 +106,18 @@ export default defineAgent({
     bridge.attach(session);
     // The web client ends the call with a 'control' message, then waits for the record.
     const decoder = new TextDecoder();
-    ctx.room.on('dataReceived', (payload: Uint8Array, _from?: unknown, _kind?: unknown, topic?: string) => {
-      if (topic !== 'control') return;
-      try {
-        const msg = JSON.parse(decoder.decode(payload)) as { type?: string };
-        if (msg.type === 'end') void bridge.finish('tech-ended');
-      } catch {
-        // Ignore anything that is not ours.
-      }
-    });
+    ctx.room.on(
+      'dataReceived',
+      (payload: Uint8Array, _from?: unknown, _kind?: unknown, topic?: string) => {
+        if (topic !== 'control') return;
+        try {
+          const msg = JSON.parse(decoder.decode(payload)) as { type?: string };
+          if (msg.type === 'end') void bridge.finish('tech-ended');
+        } catch {
+          // Ignore anything that is not ours.
+        }
+      },
+    );
     ctx.addShutdownCallback(async () => {
       await bridge.finish('shutdown');
     });

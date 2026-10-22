@@ -5,7 +5,10 @@ import { contentIndex } from './content';
 import { getSession, readProfile, type StoredSession, saveSession } from './store';
 
 /** Score a finished call with the rubric right away and store it on this device. */
-export async function storeFinishedCall(record: SessionRecord, opts: { techName?: string } = {}): Promise<StoredSession> {
+export async function storeFinishedCall(
+  record: SessionRecord,
+  opts: { techName?: string } = {},
+): Promise<StoredSession> {
   const index = contentIndex();
   const debrief = scoreRecord(record, index);
   const scenario = index.scenarios.get(record.scenarioId);
