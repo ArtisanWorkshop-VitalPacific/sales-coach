@@ -2,7 +2,7 @@
 
 import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Avatar } from '@/components/avatar';
 import { Button, ButtonLink, Card, ChevronLink, Difficulty, Section, Stat } from '@/components/ui';
 import { companies, contentIndex, drills, jobLabel, scenarios } from '@/lib/content';
@@ -10,8 +10,9 @@ import { SessionRow } from '@/components/session-row';
 import { type StoredSession, useProfile, useSessions } from '@/lib/store';
 import { useCapabilities } from '@/lib/use-capabilities';
 
-function greeting() {
-  const h = new Date().getHours();
+function greeting(now: Date | null) {
+  if (!now) return 'Welcome';
+  const h = now.getHours();
   return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
 }
 
@@ -56,15 +57,18 @@ export default function HomePage() {
     return list.find((x) => !done.has(x.id)) ?? list[0];
   }, [all]);
   const company = contentIndex().company(profile.companyId);
+  // Time-based text renders after mount so the static page never disagrees with the device clock.
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => setNow(new Date()), []);
 
   return (
     <div>
       <header className="reveal mb-10 md:mb-14">
-        <p className="t-callout font-semibold text-ink-3">
-          {new Date().toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
+        <p className="t-callout min-h-[1.4em] font-semibold text-ink-3">
+          {now?.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
         </p>
         <h1 className="t-hero mt-2 text-ink">
-          {greeting()}
+          {greeting(now)}
           {profile.name ? `, ${profile.name.split(' ')[0]}.` : '.'}
         </h1>
         <p className="t-body-lg mt-4 max-w-xl text-ink-3">

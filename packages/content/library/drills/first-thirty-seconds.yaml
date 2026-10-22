@@ -1,0 +1,53 @@
+id: first-thirty-seconds
+version: 1
+order: 1
+title: The first 30 seconds at the door
+stage: door
+skill: frame
+durationSec: 90
+why: >-
+  In the first thirty seconds at the door, the customer decides how much to
+  trust you. Most techs say a quick hello, ask where the water heater is, and
+  walk right past the person who called. Others talk about the company for a
+  full minute. Either way, the customer is left with questions nobody answered.
+  How long will this take? What will it cost? Am I going to get talked into
+  something? Think about what this is like for them. A stranger is about to walk
+  through their house, and they're worried about money before you've said a
+  word. So answer those questions first. Say your name, your company, and their
+  name. Tell them how the visit will go: a few questions, a look at the problem,
+  then you'll show them what you found and go over options and prices before any
+  work starts. Say about how long it takes. In this drill, Margaret opens the
+  door. Tell her how the visit will go.
+demo:
+  - speaker: tech
+    text: Hi, you must be Margaret. I'm Chris, the plumber you called about your hot water.
+  - speaker: customer
+    text: Oh, hello. Come in, please. It's been out since yesterday morning.
+  - speaker: tech
+    text: Sorry, that's a long time to go without. Here's how this goes. I'll ask a few questions, then look at the heater. About twenty minutes.
+  - speaker: customer
+    text: Oh. All right. That's not so bad.
+  - speaker: tech
+    text: Then I'll show you what I found and your options, with prices. Nothing gets done until you decide. Where's the heater?
+  - speaker: customer
+    text: Well, that's a relief. It's out in the garage, through here.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: door
+priorContext: >-
+  The tech has just arrived and rung the doorbell. Margaret called this morning
+  because she has had no hot water since yesterday morning. She has never met
+  this tech or anyone from the company. She is opening the front door now.
+forcedMoves: []
+techPrompt: Margaret opens the door. Introduce yourself and tell her how the visit will go, including options and prices before any work.
+passCriteria:
+  - Say your name, your company, and her name in the first few sentences
+  - Explain the steps of the visit and about how long it takes
+  - Say she will see what you find, her options, and prices before any work starts
+  - Hand the conversation back to her with a question
+review:
+  status: draft
+  author: Claude
+  notes:
+    - No customerOpener, so the tech speaks first as the door opens.
+    - The demo tech is named Chris and names no company, so the demo stays company-neutral.

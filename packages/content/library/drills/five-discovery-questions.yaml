@@ -1,0 +1,55 @@
+id: five-discovery-questions
+version: 1
+order: 2
+title: Five discovery questions
+stage: discovery
+skill: discovery
+durationSec: 150
+why: >-
+  This moment happens before you touch the equipment. It's the short
+  conversation where you learn about the person, not just the problem. Most
+  techs ask one question, something like "So what's going on?", and head
+  straight for the heater. Or they only ask questions with yes or no answers.
+  Then, when it's time for options, they're guessing what this customer cares
+  about. The facts that matter most in this call are not in the garage. Who
+  lives here. How long they plan to stay. What happened the last time they hired
+  someone. What they're worried about. Customers will tell you all of it if you
+  ask, and they trust you more for asking. So ask five open questions, two about
+  the problem and three about them. Listen to the whole answer. Follow up on one
+  thing they say. Then say back what you heard before you start working. In this
+  drill, you're in the garage with Margaret. Ask your five questions first.
+demo:
+  - speaker: tech
+    text: Before I look at it, can I ask you a few things? Tell me what happened when it stopped working.
+  - speaker: customer
+    text: Well, yesterday morning the shower just went cold. And there was water on the garage floor.
+  - speaker: tech
+    text: That helps. Who lives here with you, and how do you use hot water on a normal day?
+  - speaker: customer
+    text: Oh, it's just me now. My husband Harold passed four years ago. He always handled these things.
+  - speaker: tech
+    text: I'm sorry. So you're taking care of the house on your own now. What matters most to you in how we fix this?
+  - speaker: customer
+    text: Well, I don't want to spend more than I have to. And I don't want to be fooled again.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: discovery
+priorContext: >-
+  The tech introduced themselves at the front door and explained how the visit
+  will go. Margaret has led the tech into the garage, where the 40-gallon gas
+  water heater sits next to the washer. There is some water on the floor around
+  its base. The tech has not inspected the heater yet and has not asked her any
+  questions beyond confirming she has had no hot water since yesterday morning.
+forcedMoves: []
+techPrompt: Before you look at the heater, ask Margaret five open questions, two about the problem and three about her.
+passCriteria:
+  - Ask at least five questions, most of them open-ended
+  - Ask at least two about her (who lives here, her plans, what matters to her), not the equipment
+  - Follow up on at least one of her answers
+  - Say back what you heard before you move on
+review:
+  status: draft
+  author: Claude
+  notes:
+    - No customerOpener, so the tech speaks first.
+    - The last demo line hints at her roof coating regret, which the persona reveals at trust 50 on previous-work or history topics.

@@ -56,7 +56,7 @@ const R = {
 const TOPIC_PATTERNS: [Topic, RegExp][] = [
   ['household', /\b(who (lives|else)|family|kids|people in the (house|home)|how many (people|of you)|live here|quién vive)\b/i],
   ['usage', /\b(how (much|often) do you use|showers?|laundry|baths?|dishwasher|use a lot of|hot water (do you|usage))\b/i],
-  ['history', /\b(how long has|when did (it|this|you)|how old|first notice|ever had|happen(ed)? before|start(ed)? (doing|happening)|desde cuándo)\b/i],
+  ['history', /\b(how long has|when did (it|this|you)|how old|first notice|ever had|happen(ed)? before|start(ed)? (doing|happening)|what('?s| is| has) (been )?(going on|happening)|what happened|what('?s| is) (the|going on with)|(the )?(problem|issue) (is|you'?re having)|tell me (about|what)|walk me through|what are you (noticing|seeing|hearing)|what brings|qué pasó|qué está pasando|desde cuándo)\b/i],
   ['previous-work', /\b(anyone (out|else)|(other|last|another) (company|plumber|guy)|had work done|replaced (it )?before|who installed)\b/i],
   ['budget', /\b(budget|spend|afford|price range|cost in mind|presupuesto)\b/i],
   ['plans', /\b(how long (are you|do you) plan|staying|selling|plans for the (house|home)|future|stay in the (house|home))\b/i],

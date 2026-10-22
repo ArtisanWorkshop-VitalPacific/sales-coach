@@ -1,0 +1,54 @@
+id: show-what-you-found
+version: 1
+order: 4
+title: Showing what you found
+stage: findings
+skill: findings
+durationSec: 120
+why: >-
+  This moment is about letting the customer see the problem. Most techs tell
+  instead of show. When the customer says, "I'll take your word for it," they're
+  glad to skip it. Then the price comes, and all they have is your word. Here's
+  what is really going on. Many homeowners have paid for work they didn't need.
+  When someone says they wouldn't know what they're looking at, they aren't
+  saying they don't care. They're unsure, and a little embarrassed. Seeing the rust and
+  the water for themselves answers the question they won't ask out loud: is this
+  real? So make it easy to say yes. Tell them it takes a minute, they don't need
+  to know anything, and you'll point. Show them one or two things and say what
+  each one means. If they still say no, show them a photo on your phone. In this drill, Margaret says she doesn't need to see it. Make it easy
+  for her to look.
+demo:
+  - speaker: customer
+    text: Oh, you don't need to show me. I wouldn't know what I'm looking at anyway.
+  - speaker: tech
+    text: You don't need to know a thing. It's right inside the garage door, and I'll point. It takes a minute.
+  - speaker: customer
+    text: Well... all right, if you think I should.
+  - speaker: tech
+    text: See the rust around the bottom, and the water under it? That's coming out of the tank itself. That's why it can't be repaired.
+  - speaker: customer
+    text: Oh my. I had no idea it looked like that.
+  - speaker: tech
+    text: I took photos too, so you'll have them with the estimate. What questions do you have?
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: findings
+priorContext: >-
+  The tech has inspected the 12-year-old gas water heater in the garage and told
+  Margaret in one sentence that the tank is leaking and will need to be
+  replaced. Margaret is standing in the kitchen doorway. She has not seen the
+  leak up close. She feels a little foolish about not understanding these
+  things, because her late husband Harold always handled them.
+forcedMoves: []
+customerOpener: Oh, you don't need to show me. I wouldn't know what I'm looking at anyway.
+techPrompt: Margaret says she doesn't need to see it. Make it easy for her to look, then show her the leak.
+passCriteria:
+  - Offer again in a way that is easy to accept, and use a photo if she still says no
+  - Point to the leak and the rust and say what each one means in plain words
+  - Ask what questions she has before moving on
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The opener is the moment itself. No move is forced, so nothing repeats it.
+    - If Margaret declines a second time, a photo on the phone should pass. Pressing a third time should not.

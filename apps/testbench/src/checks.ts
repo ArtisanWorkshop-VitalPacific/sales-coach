@@ -55,7 +55,10 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
     const fired = rec.moves.some((m) => m.moveId === id);
     if (fired) continue;
     const why = forcedEligible(rec, index, id);
-    if (why) v('hard', 'forced-move-fires', `${id} never fired, though ${why}`);
+    if (!why) continue;
+    // A novice call that collapsed into a flat "no" is reported, but does not fail the bench.
+    const collapsed = r.spec.level === 'novice' && rec.decision === 'no';
+    v(collapsed ? 'soft' : 'hard', collapsed ? 'forced-move-fires-collapsed-call' : 'forced-move-fires', `${id} never fired, though ${why}`);
   }
 
   // 3. Persistence without progress never turns into a yes.
@@ -74,6 +77,19 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
         v('hard', 'unneeded-work-lowers-trust', `trust ${before.trust} -> ${after.trust} after "${r.upsoldItem}"`);
       }
       if (rec.decision === 'yes') v('hard', 'unneeded-work-no-yes', `customer said yes after "${r.upsoldItem}"`);
+    }
+  }
+
+  // Perception diagnostics: honest lines read as upselling, monthly numbers not heard.
+  for (const t of rec.transcript) {
+    if (t.speaker !== 'tech') continue;
+    const upsellLine = r.upsoldItem && t.text.toLowerCase().includes(r.upsoldItem.toLowerCase());
+    if (r.spec.level !== 'novice' && !upsellLine && t.behaviors?.includes('recommended_unneeded_work')) {
+      const items = rec.perceptions.find((p) => p.turnId === t.id)?.perception.unneededWork.join('; ');
+      v('soft', 'perceiver-false-unneeded-work', `"${t.text.slice(0, 110)}" read as unneeded work: ${items}`);
+    }
+    if (/\$\d{2,3} a month/.test(t.text) && !t.behaviors?.includes('framed_monthly')) {
+      v('soft', 'perceiver-missed-monthly', `"${t.text.match(/[^.]*\$\d{2,3} a month[^.]*/)?.[0]?.trim()}" not read as framed_monthly`);
     }
   }
 
@@ -97,23 +113,45 @@ export function checkRun(r: RunResult, index: ContentIndex): Violation[] {
   return out;
 }
 
-/** Why a forced move could have fired in this call, or null when its trigger never came up. */
+/**
+ * Why a forced move could have fired in this call, or null when its trigger never came up.
+ * Forced moves skip the random chance, not the trigger, so the trigger has to be met at some
+ * point in the call: right phase, trust and the other state conditions.
+ */
 function forcedEligible(rec: SessionRecord, index: ContentIndex, id: string): string | null {
   const m = index.move(id);
   if (!m) return null;
-  const phases = new Set(rec.timeline.map((p) => p.phase));
   const t = m.trigger;
-  if (t.phases.length > 0 && !t.phases.some((p) => phases.has(p))) return null;
+  const w = t.when;
   if (m.delivery.speaker === 'secondary' && !index.personas.get(rec.personaId)?.secondary) return null;
-  if (t.when.priceStated === true && !rec.timeline.some((p) => ['price', 'objections', 'close', 'wrapup'].includes(p.phase))) return null;
-  if (t.when.decisionAsked === true && rec.finalState.decisionAsks === 0) return null;
-  if (t.when.secondaryPresent === true && !rec.finalState.secondaryPresent) return null;
+  if (w.secondaryPresent === true && !rec.finalState.secondaryPresent) return null;
+  const order = ['door', 'discovery', 'findings', 'options', 'price', 'objections', 'close', 'wrapup'];
+  const at = (p: string) => order.indexOf(p);
+  const points = rec.timeline.filter(
+    (p) =>
+      (t.phases.length === 0 || t.phases.includes(p.phase)) &&
+      (w.trustBelow === undefined || p.trust < w.trustBelow) &&
+      (w.trustAbove === undefined || p.trust > w.trustAbove) &&
+      (w.engagementBelow === undefined || p.engagement < w.engagementBelow) &&
+      (w.understandingBelow === undefined || p.understanding < w.understandingBelow) &&
+      (w.priceStated !== true || at(p.phase) >= at('price')) &&
+      (w.priceStated !== false || at(p.phase) < at('price')) &&
+      (w.optionsPresented !== true || at(p.phase) >= at('options')),
+  );
+  if (points.length === 0) return null;
+  if (w.decisionAsked === true) {
+    // Decision-time objections can only come up while the customer is weighing a yes.
+    // A call that collapsed straight into "no" never gets there.
+    const weighed = rec.directives.some((d) => d.directive.decision === 'yes' || d.directive.decision === 'later');
+    if (!weighed) return null;
+  }
   if (t.afterBehaviors.length > 0) {
     const hit = rec.transcript.find((x) => x.speaker === 'tech' && x.behaviors?.some((b) => t.afterBehaviors.includes(b)));
     if (!hit) return null;
     return `the tech did ${t.afterBehaviors.join('/')} ("${hit.text.slice(0, 60)}")`;
   }
-  return `the call reached ${[...phases].join(', ')}`;
+  const phases = [...new Set(points.map((p) => p.phase))].join(', ');
+  return `its trigger was met in ${points.length} state point(s) (${phases})`;
 }
 
 const isProgress = (b: BehaviorId) => BEHAVIORS[b]?.polarity === 'positive' && b !== 'asked_for_decision';

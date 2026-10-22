@@ -1,0 +1,55 @@
+id: explain-the-finding
+version: 1
+order: 3
+title: Explaining a finding in plain language
+stage: findings
+skill: findings
+durationSec: 120
+why: >-
+  You've found the problem. Now explain it so the customer understands it. Most
+  techs explain it the way they would to another tech. The anode's gone, the
+  tank's rusted through, the combustion chamber's soaked. Or they just say it's
+  shot. The customer nods along, understands almost none of it, and now has to
+  make a big decision based on trust alone. Here's what is going on for them.
+  When people don't understand, most don't ask. They get quiet, and then they get
+  suspicious. If they can't explain it to a family member that night, the answer
+  will be that they need to think about it. So explain it in three parts, in
+  everyday words. What's wrong. Why it happened. What it means for them. If you
+  have to use a trade word, explain it in the same sentence. Then ask if it makes
+  sense. In this drill, Margaret asks what you found. Explain it so she could
+  repeat it to her son.
+demo:
+  - speaker: customer
+    text: Well? Is it bad news? Can you fix it?
+  - speaker: tech
+    text: I wish I could. The tank itself is leaking from the bottom. After twelve years, the steel inside rusts through, and that's where your water is coming from.
+  - speaker: customer
+    text: Oh dear. Can't you patch it somehow?
+  - speaker: tech
+    text: Not in a way that would last. And the water soaked the spot where the burner lights, so it won't stay on. That's why you have no hot water. Does that make sense?
+  - speaker: customer
+    text: I think so. So it has to be replaced, then.
+  - speaker: tech
+    text: It does. What questions do you have before we talk about your choices?
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: findings
+priorContext: >-
+  The tech introduced themselves, asked Margaret about the water heater and her
+  household, and then spent about fifteen minutes inspecting the heater in the
+  garage while she waited in the kitchen. The tech has not told her anything
+  about what they found yet. She saw water on the garage floor yesterday and is
+  hoping it is something simple. She has come to the garage door to hear the
+  news.
+forcedMoves: []
+customerOpener: You were out there a while. Is it bad news? Can you fix it?
+techPrompt: Margaret asks what you found. Explain the leak in plain words, what's wrong, why it happened, and what it means for her.
+passCriteria:
+  - Explain what is wrong, why it happened, and what it means for her
+  - Use no trade terms without explaining them in the same sentence
+  - Check that it made sense before you talk about options or price
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Starts in findings, so the engine adds the mid-call trust and understanding bonus. If the tech uses jargon, understanding drops and Margaret asks what it means.

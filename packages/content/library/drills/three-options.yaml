@@ -1,0 +1,58 @@
+id: three-options
+version: 1
+order: 5
+title: Three options tied to what they told you
+stage: options
+skill: options
+durationSec: 150
+why: >-
+  This is the moment you present the customer's choices. Most techs get it wrong
+  in one of two ways. Some give one option and nothing else. Others read three
+  options off the tablet, cheapest to most expensive, with the same speech they
+  give everyone. Either way, the customer can't tell which choice fits them.
+  Here's what the customer wants at this point. They want a real choice, and
+  they want to know which one you would pick for them. Options only mean
+  something when they're tied to what the customer told you. So think back to
+  discovery. Give each option in a sentence or two, and connect it to something
+  they said: who lives there, how long they're staying, what worries them. Be
+  honest about who each option is not for. Then recommend one, the honest best
+  fit, and give the reason in their words. In this drill, Margaret asks about her
+  choices. Give her three, and recommend one.
+demo:
+  - speaker: customer
+    text: Well, I suppose if it has to be replaced, what are my choices?
+  - speaker: tech
+    text: There are three. The first is a standard tank like the one you have, with a six-year warranty. For one person who plans to stay, it does the job well.
+  - speaker: customer
+    text: And what about the other two?
+  - speaker: tech
+    text: The second is the same size with a ten-year warranty, and it heats back up faster. The third is tankless. It never runs out, but for one shower a day, you'd be paying for more than you need.
+  - speaker: customer
+    text: Oh my. So which one makes the most sense for me?
+  - speaker: tech
+    text: The standard one. You told me you want something reliable without spending more than you have to. That's the one that fits.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: options
+priorContext: >-
+  Earlier in the visit Margaret told the tech that she has lived alone since her
+  husband Harold passed, that she takes one shower a day and does a couple of
+  loads of laundry a week, and that she plans to stay in the house as long as
+  she can. She also said she does not want to spend more than she has to. The
+  tech showed her the leak at the base of the 12-year-old tank and explained
+  that it cannot be repaired. She understands it needs to be replaced. No
+  options or prices have been mentioned yet.
+forcedMoves: []
+customerOpener: Well, I suppose if it has to be replaced, what are my choices?
+techPrompt: Present the three options. Tie each one to something Margaret told you, and recommend the one that fits her best.
+passCriteria:
+  - Present all three options as real choices, each in a sentence or two
+  - Connect at least two of them to something Margaret said
+  - Recommend one option with a reason that fits her
+  - Do not describe tankless or the premium option as required
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The engine starts options with optionsPresented set to 2. That only matters for scope objections, and Margaret has none.
+    - If the tech states prices here, the phase moves to price and silence-after-price can fire. That is fine.

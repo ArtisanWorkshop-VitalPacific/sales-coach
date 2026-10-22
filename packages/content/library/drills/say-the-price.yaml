@@ -1,0 +1,51 @@
+id: say-the-price
+version: 1
+order: 6
+title: Saying the price without flinching
+stage: price
+skill: price
+durationSec: 90
+why: >-
+  This is the moment you say the number. Most techs soften the price without
+  noticing. They start with "unfortunately." They say, "I know it's a lot, but."
+  They give a range, or say "somewhere around," or put the number in the middle
+  of a long explanation. Some offer a discount before the customer has said a
+  word. Here's what the customer hears. They're paying attention to how you say
+  the price as much as the price itself. If you sound unsure, they assume the
+  number is padded, or that it will come down if they push. If you say it
+  plainly, they believe it's the real price. This is harder when the customer is
+  nervous, because their nerves make you nervous. So say what's included in one
+  sentence, then the exact total. No range, no apology. Use the voice you'd use
+  to tell someone the time. Then stop. In this drill, Margaret is nervous to
+  hear it. Tell her the price.
+demo:
+  - speaker: customer
+    text: Oh dear. I'm almost afraid to ask. How much is the one you'd recommend?
+  - speaker: tech
+    text: For the standard heater, with the expansion tank and earthquake straps the code requires, the permit, and hauling the old one away, it's eighteen ninety.
+  - speaker: customer
+    text: Eighteen ninety. Is that everything, or does more get added on later?
+  - speaker: tech
+    text: That's everything. Eighteen ninety is the whole job, and it's the number you'll see in writing.
+scenarioId: wh-tank-no-hot-water
+personaId: margaret-retiree
+startPhase: price
+priorContext: >-
+  The tech showed Margaret the leak, explained why the 12-year-old tank has to be
+  replaced, and presented three options. The tech recommended the standard
+  40-gallon gas heater with a 6-year warranty because she lives alone and plans
+  to stay in the house, and she agreed it sounds right for her. She has not
+  heard any prices yet and is nervous about what it will cost.
+forcedMoves: []
+customerOpener: Oh dear. I'm almost afraid to ask. How much is the one you'd recommend?
+techPrompt: Margaret is nervous to hear it. Tell her the standard option's total, $1,890, and what it includes. Then stop.
+passCriteria:
+  - Say the exact total once, with no range, apology, or "unfortunately"
+  - Say in one sentence what the price includes
+  - Offer no discount and no financing before she reacts
+  - If she repeats the number back, confirm it calmly without lowering it
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Margaret weights silence-after-price at 3, so she will almost always go quiet after the number. The drill judges how the price is said, and hold-the-silence (order 7) covers the wait.

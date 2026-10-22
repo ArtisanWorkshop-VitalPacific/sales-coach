@@ -146,7 +146,7 @@ function statusLine(st: CallState, first: string) {
     case 'hold':
       return st.holdKind === 'away' ? `${first} stepped away` : `${first} is quiet`;
     case 'listening':
-      return st.techSpeaking ? 'Listening' : st.micOn ? 'Your turn' : 'Your turn. Tap the mic.';
+      return st.techSpeaking ? 'Listening' : st.micOn || !st.micAvailable ? 'Your turn' : 'Your turn. Tap the mic.';
     case 'ended':
       return 'Call ended';
     case 'error':

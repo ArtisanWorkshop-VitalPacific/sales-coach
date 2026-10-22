@@ -75,7 +75,7 @@ export function TrainingDay() {
             <ArrowLeft size={18} /> Exit training day
           </Link>
           <span className="flex items-center gap-2 text-[#a1a1a6]">
-            <Mark size={22} className="text-[#f5f5f7]" /> Sales Coach
+            <Mark size={22} inverted /> Sales Coach
           </span>
         </div>
 
