@@ -9,7 +9,7 @@ import { useSessions } from '@/lib/store';
 
 type Filter = 'all' | 'water' | 'drain' | 'other';
 const group = (jobType: string): Exclude<Filter, 'all'> =>
-  /water-heater|tankless/.test(jobType) ? 'water' : /drain|sewer|clog/.test(jobType) ? 'drain' : 'other';
+  /water-heater|tankless/.test(jobType) ? 'water' : /drain|sewer|clog|jetting/.test(jobType) ? 'drain' : 'other';
 
 export default function PracticePage() {
   const [filter, setFilter] = useState<Filter>('all');
