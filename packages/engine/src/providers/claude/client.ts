@@ -4,7 +4,7 @@ export type ClaudeClient = Anthropic;
 
 export function createClaudeClient(apiKey?: string): Anthropic {
   return new Anthropic({
-    apiKey: apiKey ?? process.env.ANTHROPIC_API_KEY,
+    apiKey: (apiKey ?? process.env.ANTHROPIC_API_KEY)?.trim(),
     maxRetries: 0,
     timeout: 60_000,
   });

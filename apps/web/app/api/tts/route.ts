@@ -1,3 +1,5 @@
+import { elevenLabsKey } from '@/lib/server/keys';
+
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
@@ -57,7 +59,7 @@ async function synth(voice: string, text: string, model: string, key: string, si
  * is not in this account.
  */
 export async function GET(req: Request) {
-  const key = process.env.ELEVENLABS_API_KEY;
+  const key = elevenLabsKey();
   if (!key) return new Response('Voice is not configured', { status: 404 });
   const url = new URL(req.url);
   const text = (url.searchParams.get('t') ?? '').slice(0, 1200).trim();

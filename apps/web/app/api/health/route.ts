@@ -6,6 +6,7 @@ import {
   requestFields,
 } from '@sales-coach/engine/claude';
 import { NextResponse } from 'next/server';
+import { elevenLabsKey } from '@/lib/server/keys';
 import { ELEVEN } from '@/lib/voices';
 
 export const runtime = 'nodejs';
@@ -78,7 +79,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ ok: probes.every((p) => p.ok), probes });
   }
   if (check === 'voice') {
-    const key = process.env.ELEVENLABS_API_KEY;
+    const key = elevenLabsKey();
     if (!key) return NextResponse.json({ ok: false, error: 'ELEVENLABS_API_KEY is not set' });
     const models = [
       process.env.ELEVENLABS_MODEL_ID,

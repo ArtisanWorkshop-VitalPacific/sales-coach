@@ -33,7 +33,7 @@ Where to get them:
 | Key | Where | Notes |
 | --- | --- | --- |
 | `ANTHROPIC_API_KEY` | console.anthropic.com > API Keys | Needs credits on the account. |
-| `ELEVENLABS_API_KEY` | elevenlabs.io > Developers > API Keys | A plan with Eleven v3 access. |
+| `ELEVENLABS_API_KEY` | elevenlabs.io > Developers > API Keys | A plan with Eleven v3 access. The name `SALES_COACH_11LABS` also works. |
 | `SALES_COACH_PRESET` | optional | `standard` (default), `max` (Opus 5.5 fast mode plays the customer, about 3x the cost), `economy` (Haiku 5.5). |
 | `ELEVENLABS_MODEL_ID` | optional | Default `eleven_v4_turbo` (real-time, delivery tags). Falls back to `eleven_v3_conversational`, `eleven_v3`, then `eleven_flash_v2_5`. |
 | `STRIPE_SECRET_KEY` | dashboard.stripe.com > Developers > API keys | Use a test key first (`sk_test_...`). |

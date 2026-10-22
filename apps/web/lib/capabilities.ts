@@ -1,4 +1,5 @@
 import { PRESETS, presetFromEnv } from '@sales-coach/engine/claude';
+import { elevenLabsKey } from './server/keys';
 
 export interface Capabilities {
   /** Claude plays the customer and coaches. Off means Demo mode (rules + scripted lines). */
@@ -22,7 +23,7 @@ export function capabilities(): Capabilities {
   const roles = PRESETS[preset];
   return {
     brain,
-    voice: !!env.ELEVENLABS_API_KEY,
+    voice: !!elevenLabsKey(),
     live: !!(env.LIVEKIT_URL && env.LIVEKIT_API_KEY && env.LIVEKIT_API_SECRET),
     billing: !!env.STRIPE_SECRET_KEY,
     db: !!env.DATABASE_URL,
