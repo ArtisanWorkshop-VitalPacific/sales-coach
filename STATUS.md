@@ -18,16 +18,17 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 - **Design system:** `/design` shows every token and component.
 - **Settings:** profile, captions, hands-free, interruptions, turn timing, voice and brain, theme, clear history.
 
-**With `ANTHROPIC_API_KEY` (Claude mode):** Claude Haiku 5.5 reads every turn into behaviors, Claude Sonnet 5.5 speaks as the customer in the persona's voice, and Claude Opus 5.5 reviews the whole call and writes the debrief. Certification calls are judged by Claude Fable 5.1. If Claude is unreachable mid-call, the call continues in demo mode and says so.
+**With `ANTHROPIC_API_KEY` (Claude mode):** Claude Haiku 5.5 reads every turn into behaviors, Claude Sonnet 5.5 speaks as the customer in the persona's voice, and Claude Opus 5.5 reviews the whole call and writes the debrief. Certification calls are judged by Claude Fable 5.1. If Claude's read of a turn takes more than 3 seconds, the rules read that turn so the customer never stalls. If Claude is unreachable mid-call, the call continues in demo mode and says so.
 
-**With `ELEVENLABS_API_KEY`:** each persona gets a cast ElevenLabs voice with delivery tags ([sighs], [hesitates]), Eleven v4 Turbo first, with automatic fallbacks to v3 and Flash.
+**With `ELEVENLABS_API_KEY`** (the name `SALES_COACH_11LABS` also works): each persona gets a cast ElevenLabs voice with delivery tags ([sighs], [hesitates]), Eleven v4 Turbo first, with automatic fallbacks to v3 and Flash.
+
+**Live since October 22** at https://sales-coach-six-ruby.vercel.app with both keys, tested end to end against the real APIs (see Quality checks).
 
 ## Not live yet, and why
 
 | Item | State | To finish |
 | --- | --- | --- |
-| Vercel project | The repo is ready to import (`apps/web/vercel.json` sets everything). Creating it from here needed a one-time permission click from you in Vercel. | Two options in the morning note: approve the link, or import in about three minutes (docs/RUNBOOK.md, section 1). |
-| Keys | None were available to me, so Claude and ElevenLabs paths are tested offline with a faked client, not against the live APIs. | Add the two keys in Vercel and redeploy. First real call is the real test. |
+| Passcode | Not set, so anyone with the link can run calls on the Claude key. The Hobby plan does not protect production URLs. | Add `SALES_COACH_PASSCODE` in Vercel and redeploy before sharing the link. |
 | Live mode (LiveKit, sub-second voice) | Agent worker in `apps/agent` and the browser side at `/live` (token route, captions, end-of-call record). The call screen offers it once LiveKit keys are set. | LiveKit Cloud project and an agent host; first live run. |
 | Accounts (Clerk) | Not wired. The Tech / Manager / Owner switch is a demo control; Vercel login or the passcode protects the app. | Add Clerk, map users to companies and roles. |
 | Shared storage (Neon) | Schema and migration in `packages/db`. Calls are stored on each device for now. | Create the database, save calls and assignments server-side, real team console. |
@@ -48,6 +49,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 10. **Demo shop is fictional:** Summit Plumbing & Air. Gardner and SOS specs are drafted from their public websites and marked for owner review.
 11. **Pricing in the app matches the plan:** $990 / $1,990 / $3,990 a month by truck band, billed annually, pooled minutes, $0.15 a minute overage, Pro +40 percent, Elite $30,000 build plus $15,000 a year, seminars $7,500 a day. Stripe prices are computed at checkout, so nothing has to be set up in Stripe first.
 12. **A passcode gate** (`SALES_COACH_PASSCODE`) in addition to Vercel login, because the Hobby plan only protects preview URLs and your Claude key pays for every call.
+13. **Objections answered early stay answered.** When a tech answers a worry before the customer raises it, she does not raise it as if she never heard it. A full answer settles it and counts as handled. A scenario's must-have objection still comes up, as a follow-up to what the tech said.
 
 ## Needs a human
 
@@ -65,7 +67,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 - Greg (selling the house): the right answer on disclosure is "ask your agent", never legal advice.
 
 **You:**
-- Approve the Vercel step and add the two keys (RUNBOOK sections 1 to 3).
+- Add `SALES_COACH_PASSCODE` before sharing the link.
 - Decide on the Vercel plan. Hobby is for personal, non-commercial use and only protects preview URLs; a Pro team lets Gardner and SOS owners sign in.
 - Brand review with SRV LAB.
 
@@ -75,6 +77,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 
 ## Quality checks run
 
+- **Live on production (October 22).** All three Claude models answered with the exact settings a call uses. All 12 customer voices play on Eleven v4 Turbo, first audio in about 0.3 seconds. Two full practice calls ran through the live API: the customer stepped away for a phone call, went quiet after the price, followed up on the home warranty, and decided. The Opus coach reviewed a call in 20 seconds with specific, correct fixes.
 - **Customer test bench: PASS.** 1,680 scripted calls across all 30 scenarios and 20 drills, three technician levels, two difficulties, six seeds. Expert techs get a yes 91 percent of the time and score 89; solid techs 74 percent and 72; novices 0 percent and 29. Persistence without progress never became a yes (314 repeat asks). Recommending unneeded work never ended in a yes. No state out of range, no em dashes or AI mentions in customer lines. Report: `apps/testbench/reports/latest-scripted.md`.
 - Engine unit tests: scripted calls end to end, snapshot and restore, Claude adapters against a faked client. ServiceTitan client tests including a no-personal-data test.
 - Content validator: schemas, cross-references, no em dashes, no AI mentions in customer lines.
@@ -90,12 +93,18 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 
 ## Known gaps
 
-- **Latency in Claude mode** is about 2 to 3 seconds from the end of your sentence to the customer's voice (listen, think, speak, then voice). Natural for an in-home pause, slower than a phone call. Live mode is the path to sub-second.
+- **Latency in Claude mode,** measured on production: about 3 seconds of Claude time per turn (Haiku listening 1.2 to 2 seconds, Sonnet speaking 1.2 to 1.6), plus about 0.3 seconds for the voice to start. Hands-free adds the 1.1-second pause that ends your turn (Settings > Pause before your turn ends). Natural for an in-home pause, slower than a phone call. Next steps: start the voice on the customer's first sentence while the rest is written, and Live mode for sub-second.
 - **Demo mode's listening is rules-based.** It misses some upsells ("replace the pressure regulator") and occasionally flags an honest line. Claude mode reads meaning, not keywords.
 - **The scripted expert in the test bench never offers a membership**, so membership moves are lightly tested.
 - **ServiceTitan endpoint paths** are from the public API layout; the developer docs needed a login, so query filters are marked "verify" in code.
 - **The database** schema and migration are generated but have not run against a live Neon database.
 - **The Live mode agent** typechecks against LiveKit Agents 1.9.3; it has not run (no LiveKit keys).
+
+## Roadmap
+
+- **Learn from real conversations** (Matt, October 22). Train on recordings of in-person visits and customer calls, alongside the objection lists. Each recording is transcribed and cut to first names. Claude then drafts new objections in your customers' own words, persona traits, and the lines your best techs use that work. Every draft goes to an owner for approval, the same review the library uses now. The same rubric and coach can score real calls, so practice and the field show on one progress chart. This works by adding to the content library, not retraining a model, which matches the plan's position of no fine-tuning at launch. Needs: a consent process (California requires every party's consent to record a private conversation), an upload or a feed of ServiceTitan call recordings, and shared storage.
+- **The voice starts on the first sentence** while the rest of the line is still being written.
+- **Accounts, shared storage, ServiceTitan, Live mode:** see Not live yet.
 
 ## Content notes from the overnight review
 

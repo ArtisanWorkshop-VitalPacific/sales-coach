@@ -243,8 +243,8 @@ export class CallController {
       const ms = playCue(turn.soundCue);
       if (ms) await sleep(ms);
     }
-    const delay =
-      this.state.mode === 'brain' ? Math.min(turn.delayMs, 350) : Math.min(turn.delayMs, 1600);
+    // With Claude, the round trip is already a natural pause; adding the move's delay only slows it.
+    const delay = this.state.mode === 'brain' ? 0 : Math.min(turn.delayMs, 1600);
     if (delay > 0) await sleep(delay);
     if (stale()) return;
     if (turn.degraded) {

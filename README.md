@@ -18,7 +18,7 @@ No keys needed. Without keys the app runs in **Demo mode**: the customer engine 
 | Key | Turns on |
 | --- | --- |
 | `ANTHROPIC_API_KEY` | **Claude mode.** Claude listens, plays the customer, and coaches the debrief. |
-| `ELEVENLABS_API_KEY` | Real customer voices (Eleven v3 Conversational, with fallbacks). |
+| `ELEVENLABS_API_KEY` | Real customer voices (Eleven v4 Turbo, with fallbacks). The name `SALES_COACH_11LABS` also works. |
 | `STRIPE_SECRET_KEY` | Checkout in Portal > Billing. |
 | `SALES_COACH_PASSCODE` | A team passcode in front of the whole app. |
 | `DATABASE_URL`, `SERVICETITAN_*`, `LIVEKIT_*` | Shared storage, job context, and Live mode. See [docs/RUNBOOK.md](docs/RUNBOOK.md). |

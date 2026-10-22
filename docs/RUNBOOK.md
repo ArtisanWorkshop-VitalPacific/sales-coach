@@ -99,6 +99,6 @@ With `STRIPE_SECRET_KEY` set, Portal > Billing opens Stripe Checkout for an annu
 | Call chip says *Demo* after adding the Claude key | Redeploy. Keys apply to new deployments only. |
 | Customer voice is robotic | ElevenLabs key missing or out of quota; the browser voice is the fallback. Check Portal > Setup. |
 | "Microphone access is blocked" | Allow the mic for the site (iPhone: Settings > Safari > Microphone). Or type. |
-| Customer answers slowly | Normal in Claude mode is 1.5 to 3 seconds. Live mode removes most of it. Check Vercel > Logs for errors. |
+| Customer answers slowly | Normal in Claude mode is about 3 seconds after your turn ends. Hands-free waits 1.1 seconds of quiet to end your turn; lower it in Settings > Pause before your turn ends. Live mode removes most of the wait. Check Vercel > Logs for errors. |
 | "Lost the connection to Claude" | The call continued in demo mode. Check Vercel > Logs > /api/turn and your Anthropic credits. |
 | Calls missing on another device | Calls are stored per device until shared storage is on. |
