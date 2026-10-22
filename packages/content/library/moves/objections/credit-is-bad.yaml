@@ -1,0 +1,98 @@
+id: credit-is-bad
+version: 1
+name: My credit's not good
+kind: objection
+group: financing
+skill: membership-financing
+summary: >-
+  The tech offers financing, and the customer quietly says they do not think they
+  would be approved.
+difficultyMin: 2
+personas: [morgan-first-home, ruiz-couple, margaret-retiree]
+trigger:
+  phases: [price, objections, close]
+  when:
+    financingOffered: true
+    priceAboveBudget: true
+  chance: 0.8
+priority: 60
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Admit quietly that you do not think you would be approved for financing. Sound
+    embarrassed and a little defensive. Keep it short and do not explain why. If
+    the tech treats you with respect and offers a real way forward, say a little
+    more. If the tech pushes you to apply anyway, promises approval, or asks why
+    your credit is bad, go quiet and say you will think about it.
+  lines:
+    - I don't think I'd get approved. My credit's not great right now.
+    - Financing probably isn't going to work for me. My credit took a hit.
+    - I'd rather not have anybody run my credit. It's not where I want it.
+    - Honestly, I'm not sure they'd approve someone in my situation.
+  followUps:
+    - And if they turn me down, then what?
+    - Does just checking make my credit even worse?
+  tone: embarrassed
+  delayMs: 1400
+  audioTags: [hesitates]
+  speaker: primary
+resolution:
+  concern: >-
+    They are embarrassed about their credit and afraid of being turned down in
+    front of someone. They still need the problem fixed and fear there is no way
+    to pay for it.
+  resolvedBy:
+    - Treating it as ordinary, with no pity and no questions about why
+    - Not promising approval, and being honest about what applying involves
+    - Offering the least expensive safe option that does not depend on a loan
+    - Explaining any other payment option honestly, including what it costs
+    - Letting them apply privately later if they choose to
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - honest_answer
+    - tied_options_to_needs
+    - presented_options
+    - explained_plainly
+  hardenedBy:
+    - pressured
+    - condescended
+    - bluffed
+    - recommended_unneeded_work
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, honest_answer, tied_options_to_needs]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, condescended, bluffed]
+  pass: >-
+    The tech responds without judgment, is honest about what applying involves, and
+    offers the least expensive safe option that does not depend on credit.
+  fail: >-
+    The tech promises approval, pushes them to apply anyway, asks why their credit
+    is bad, or makes them feel ashamed.
+coaching:
+  why: >-
+    Admitting bad credit to a stranger is hard, and how you react decides whether
+    they keep talking. Promising approval is a bluff, and pushing a loan on someone
+    who expects to be turned down adds stress, not help. The honest path is the
+    least expensive safe fix, offered as a normal choice.
+  modelResponse: >-
+    Lots of people are in that spot, and you don't owe me an explanation. I can't
+    promise an approval, so let's not count on one. Let me show you the least
+    expensive way to fix this safely, so a loan isn't the only way forward. If you
+    ever want to see what the lender offers, you can apply privately and decide then.
+  commonMistakes:
+    - Promising approval or saying everyone gets approved
+    - Asking why their credit is bad
+    - Pushing them to apply on the spot, or pitching a high-cost loan without its rate
+    - Guessing whether applying will affect their credit score
+tags: [financing, money-worry, dignity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Persona list per the assignment (morgan-first-home, ruiz-couple, margaret-retiree). Lines use "I" so they work for single and joint personas. Check that these persona files allow this move.
+    - Adds priceAboveBudget so it only fires when the customer cannot pay cash.

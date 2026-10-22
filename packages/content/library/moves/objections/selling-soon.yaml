@@ -1,0 +1,97 @@
+id: selling-soon
+version: 1
+name: I'm selling soon
+kind: objection
+group: scope
+skill: objections
+summary: >-
+  The customer plans to sell the house in about two years and does not want to put
+  money into it.
+difficultyMin: 1
+personas: [greg-selling]
+trigger:
+  phases: [findings, options, price]
+  when:
+    optionsPresented: true
+  chance: 0.9
+priority: 65
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you are selling in about two years and do not want to put real money into
+    the house. Be friendly but firm. You want the cheapest thing that works until
+    you list. Do not mention that you worry about what a buyer's inspector will
+    find. Admit it if the tech asks about the sale or your plans. If the tech keeps
+    pushing the top option, give short answers and lose interest.
+  lines:
+    - I'm selling in a couple of years. I'm not putting real money into this place.
+    - I'm out of here in about two years. What's the cheapest thing that gets me there?
+    - Why would I spend that on a house I'm about to sell?
+    - Honestly, the next owner can deal with it. I just need it working till I list.
+  followUps:
+    - The buyer's not going to care about that, are they?
+    - Just give me the bare minimum. What's the least I can do?
+  tone: confident
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    He does not want to spend on a house he is leaving, and he suspects the tech is
+    using the sale to sell him more. He also wants to avoid surprises that could
+    hurt the sale.
+  resolvedBy:
+    - Taking the two-year plan seriously and changing the recommendation to fit it
+    - Recommending the lowest honest option for a short stay instead of the top one
+    - Separating what could matter at sale time, such as what a buyer's inspector may find, from what will not
+    - Sending disclosure questions to his real estate agent instead of guessing
+    - Not using the sale to create fear
+  resolvingBehaviors:
+    - tied_options_to_needs
+    - used_customer_detail
+    - honest_answer
+    - asked_about_concern
+    - explained_plainly
+  hardenedBy:
+    - recommended_unneeded_work
+    - pressured
+    - bluffed
+    - argued
+  defaultStrength: 60
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [tied_options_to_needs, used_customer_detail, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [recommended_unneeded_work, pressured, bluffed]
+  pass: >-
+    The tech changes the recommendation to fit the two-year plan, points to the
+    option that fits it, and explains plainly what could matter when he sells.
+  fail: >-
+    The tech keeps pushing the top option, uses the sale to scare him, or guesses
+    at disclosure rules.
+coaching:
+  why: >-
+    A customer who is leaving is telling you what he values: getting to the sale
+    without surprises. Recommending less when less fits proves your other
+    recommendations are honest. What could matter at sale time is what a buyer's
+    inspector may find, and that is worth explaining calmly.
+  modelResponse: >-
+    That changes what I'd recommend. For two years, you don't need the top option
+    or the longest warranty. The basic fix does the job. The one thing I'd think
+    about is the sale itself. A buyer's inspector may find this, so fixing it now
+    could cost less than a credit later. Your agent can tell you which is better.
+  commonMistakes:
+    - Pushing the top option on someone leaving in two years
+    - Using the sale as a scare tactic, such as saying the house will not sell
+    - Guessing at disclosure law instead of sending them to their agent
+    - Ignoring the plan and repeating the original recommendation
+tags: [scope, plans]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Written for greg-selling. Check the two-year timeline against his persona file once it exists.
+    - If a water heater scenario is added for greg-selling, California sellers must certify in writing that the water heater is braced or strapped (Health and Safety Code 19211). Left out of the model response so the tech does not give legal advice.

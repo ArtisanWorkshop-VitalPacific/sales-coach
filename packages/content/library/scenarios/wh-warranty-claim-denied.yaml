@@ -1,0 +1,127 @@
+id: wh-warranty-claim-denied
+version: 1
+title: Home warranty will not cover code items
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 3
+personaId: linda-warranty
+alternatePersonas: [morgan-first-home]
+briefing: >-
+  Home warranty dispatch. The warranty company has authorized replacement of a leaking
+  40-gallon gas water heater in the garage. The authorization lists code upgrades, the
+  permit, and haul-away as not covered. The customer has paid the warranty service
+  fee. Not a member.
+situation: >-
+  The 12-year-old 40-gallon gas tank is leaking from the bottom and has to be
+  replaced. The home warranty covers the replacement water heater and standard
+  installation labor, including the gas connector and water connectors. The warranty
+  company has denied the code upgrades, the permit, and haul-away. The install needs
+  those items to pass the permit. There is no expansion tank and the house has a
+  pressure regulator. There is only one seismic strap. The old vent connector will not
+  line up with the new tank's draft hood and needs new pipe with a proper upward
+  slope. There is no sediment trap on the gas supply. The pressure regulator holds 60
+  psi and is fine. The customer pays only for the non-covered items. The honest path
+  is to show the authorization, explain that the code items are required for any
+  installer and are not chosen by the company, itemize what the customer pays and what
+  the warranty pays, and never bill for anything the warranty covers. The tech should
+  not criticize the warranty company or guess about contract terms the tech has not
+  read.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 12
+    notes: Leaking from the bottom. Replacement authorized by the home warranty.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 60 psi.
+findings:
+  - id: tank-leaking
+    text: The tank is leaking from the bottom. Once a tank leaks, it cannot be repaired.
+    severity: urgent
+  - id: no-expansion-tank
+    text: There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.
+    severity: major
+  - id: one-strap
+    text: There is only one seismic strap. California requires two, one in the upper third and one in the lower third.
+    severity: major
+  - id: vent-connector
+    text: The old vent connector will not line up with the new tank's draft hood. It needs new pipe with a proper upward slope.
+    severity: minor
+  - id: no-sediment-trap
+    text: There is no sediment trap on the gas line at the water heater. Code requires one.
+    severity: minor
+  - id: prv-good
+    text: The pressure regulator holds a steady 60 psi. It is working and stays.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater (covered by the warranty)
+    rationale: The tank is leaking and cannot be repaired.
+  - id: expansion-tank
+    label: Add a thermal expansion tank (not covered)
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps (not covered)
+    rationale: Required by code in California.
+  - id: vent-connector
+    label: New vent connector (not covered)
+    rationale: The old connector does not fit the new tank and has to slope up to the vent.
+  - id: sediment-trap
+    label: Add a sediment trap (not covered)
+    rationale: Required by code at the appliance.
+  - id: permit-haul-away
+    label: Permit and haul-away (not covered)
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: tankless-upgrade
+    label: Tankless upgrade at the customer's expense
+    why: >-
+      The warranty covers a standard tank and nothing about this house points to
+      tankless. Pitching it because the customer is already paying for something is an
+      upsell.
+  - id: replace-prv
+    label: Replace the pressure regulator
+    why: It holds a steady 60 psi. Replacing a working regulator adds cost for no reason.
+  - id: bill-covered-items
+    label: Billing the customer for covered parts or labor
+    why: >-
+      The warranty covers the water heater, standard labor, and the connectors.
+      Charging for them makes the customer pay twice.
+options:
+  - id: non-covered-code-items
+    label: Required code items not covered by the warranty
+    price: 795
+    includes:
+      - Thermal expansion tank
+      - Two seismic straps
+      - New vent connector
+      - Gas sediment trap
+      - Permit and haul-away
+      - Warranty pays for the water heater and standard labor
+    recommended: true
+  - id: code-items-10yr-upgrade
+    label: Code items plus upgrade to a 10-year tank
+    price: 1395
+    monthly: 36
+    includes:
+      - Everything in the required option
+      - 10-year warranty tank in place of the warranty's standard tank
+      - Customer pays the price difference for the tank
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [do-i-need-the-code-stuff]
+  excluded: []
+  density: 2.5
+goal: >-
+  Explain why each code item is required and why the warranty does not pay for it, and
+  itemize what the customer pays and what the warranty pays. Ask for a decision without
+  making the customer feel charged twice.
+passBar: 75
+tags: [water-heater, home-warranty, code]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders. The $795 non-covered total (expansion tank, straps, vent connector, sediment trap, permit, haul-away) is an estimate outside the published replacement ranges; verify against each company's price book.
+    - Home warranty terms vary. Some plans include a small allowance for permits or code upgrades, and not every plan allows paid upgrades. Confirm how each company handles warranty-dispatched calls.
+    - If a company does not take home warranty work, rewrite the briefing as a customer who calls after the warranty company denies the code items.
+    - The required option has no monthly number because most financing programs have a minimum amount. The upgrade option uses roughly the price divided by 39.

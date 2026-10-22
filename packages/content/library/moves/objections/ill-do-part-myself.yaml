@@ -1,0 +1,97 @@
+id: ill-do-part-myself
+version: 1
+name: I'll do part of it myself
+kind: objection
+group: scope
+skill: objections
+summary: >-
+  The customer offers to do part of the job, such as hauling away the old unit,
+  buying the parts, or finishing the easy work, to bring the price down.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [options, price, objections]
+  when:
+    priceStated: true
+  chance: 0.5
+priority: 45
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Offer to do part of the job yourself to bring the price down, such as hauling
+    away the old unit, buying the parts, or finishing the easy part. Sound
+    practical. If you are handy, sound a little proud of it. If the tech refuses
+    everything, get suspicious. If the tech agrees to the parts that make sense and
+    explains the rest plainly, relax.
+  lines:
+    - What if I haul the old one away myself? That's got to save something.
+    - Could you just do the main part? I can handle the rest.
+    - I can pick up the parts myself. Just charge me for the labor.
+    - If I do some of the easy stuff, how much does that take off?
+  followUps:
+    - So you won't let me do any of it? Seems convenient.
+    - How hard can it be, really? It's just a couple of connections.
+  tone: confident
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They want to lower the cost and feel capable. They suspect the price includes
+    easy work they could do themselves.
+  resolvedBy:
+    - Agreeing to the parts that are safe and reasonable for a homeowner, and saying what that takes off
+    - Explaining plainly why gas, venting, and permitted work stay with a licensed tech
+    - Being honest about how customer-supplied parts affect the warranty
+    - Respecting their skills instead of talking down
+  resolvingBehaviors:
+    - honest_answer
+    - explained_plainly
+    - justified_value
+    - acknowledged_feeling
+    - corrected_respectfully
+    - asked_follow_up
+  hardenedBy:
+    - condescended
+    - argued
+    - pressured
+    - bluffed
+  defaultStrength: 40
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, explained_plainly, corrected_respectfully]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [condescended, argued, bluffed, pressured]
+  pass: >-
+    The tech agrees to the parts the customer can safely do, says what that takes
+    off the price, and explains plainly which parts must stay with a licensed tech.
+  fail: >-
+    The tech refuses every part without a reason, talks down to the customer, or
+    invents rules to keep the whole job.
+coaching:
+  why: >-
+    Most customers who offer to help are trying to save money, not insult you.
+    Saying yes to the reasonable parts shows the rest of your answer is honest. Be
+    specific about the parts that are not reasonable: gas, venting, and anything the
+    permit or warranty depends on.
+  modelResponse: >-
+    Sure, some of this you can do. If you want to haul the old one to the dump
+    yourself, I'll take the haul-away charge off. The gas line, the venting, and the
+    install itself I need to do, because they're on the permit and the warranty
+    depends on them. Want me to redo the quote that way?
+  commonMistakes:
+    - Refusing every part without explaining why
+    - Talking down to a customer who says they are handy
+    - Inventing a rule or warranty term to keep the whole job
+    - Letting the customer do gas or permitted work to close the sale
+tags: [scope, diy]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Triggers on priceStated with the objections phase added, since customers offer to do part of the work after hearing the price. This is a small change from the scope pattern.
+    - Fits handy or price-focused personas best (devin-researcher, rick-landlord, paul-engineer, ruiz-couple). Consider movePreferences weights if it sounds out of character for others.
+    - Company policies on customer-supplied parts differ. Company specs should supply the exact warranty wording.

@@ -1,0 +1,116 @@
+id: second-opinion-quote
+version: 1
+title: Second opinion on a lower quote
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 4
+personaId: devin-researcher
+alternatePersonas: [paul-engineer, rick-landlord]
+briefing: >-
+  Estimate. Homeowner has a written quote from another company to replace a leaking
+  water heater and wants a second opinion and a price. 50-gallon gas tank in the
+  garage. Not a member.
+situation: >-
+  The 10-year-old 50-gallon gas tank has a slow seep and rust at the base and needs to
+  be replaced. The customer holds a written quote from another company for $1,450. It
+  reads "50-gallon gas water heater, installed" and does not mention an expansion tank,
+  a permit, or haul-away. The standard option here is $2,150, about $700 more. The
+  house has a pressure regulator and no expansion tank, so one is required on the new
+  install. A replacement needs a permit, and the old tank has to be hauled away. Those
+  three items account for most of the difference. The other company may include them
+  and simply not list them, so the honest move is to compare the two quotes line by
+  line, point out which required items the lower quote does not show, and suggest the
+  customer ask the other company directly. The tech should not criticize the other
+  company, should not cut the price to match, and should be fine if the customer
+  chooses the other company once its quote is complete. The pressure regulator holds
+  60 psi and is fine.
+equipment:
+  - item: 50-gallon atmospheric gas water heater
+    ageYears: 10
+    notes: Slow seep and rust at the base.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 60 psi.
+findings:
+  - id: tank-seeping
+    text: There is a slow seep and rust at the base of the tank. It needs to be replaced.
+    severity: major
+  - id: no-expansion-tank
+    text: There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.
+    severity: major
+  - id: straps-loose
+    text: The seismic straps are loose and only one is attached. The new install needs two.
+    severity: minor
+  - id: other-quote-missing-items
+    text: >-
+      The other company's written quote lists the water heater and installation but
+      does not mention an expansion tank, a permit, or haul-away.
+    severity: info
+  - id: prv-good
+    text: The pressure regulator holds a steady 60 psi. It is working and stays.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is seeping and at the end of its life.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: replace-prv
+    label: Replace the pressure regulator
+    why: It holds a steady 60 psi. Replacing it would pad the quote to make it look different.
+  - id: upsize-75
+    label: Upsizing to a 75-gallon tank
+    why: The 50-gallon tank has met the household's needs. A bigger tank raises the price with no reason behind it.
+  - id: water-softener
+    label: Water softener
+    why: >-
+      Nothing in this call points to a water problem the customer wants solved. A
+      softener is a separate decision, not part of replacing a tank.
+options:
+  - id: standard-50
+    label: 50-gallon standard gas, 6-year warranty
+    price: 2150
+    monthly: 55
+    includes:
+      - New 50-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - New gas connector and sediment trap
+      - Permit and haul-away
+      - Itemized written estimate
+    recommended: true
+  - id: premium-50
+    label: 50-gallon gas, 10-year warranty
+    price: 2790
+    monthly: 72
+    includes:
+      - Everything in the standard option
+      - Longer 10-year tank and parts warranty
+      - New cold-water shutoff valve
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [found-it-cheaper]
+  excluded: []
+  density: 3
+goal: >-
+  Compare the two quotes line by line without criticizing the other company, and show
+  which required items the lower quote does not list. Let the customer decide with
+  complete information.
+passBar: 80
+tags: [water-heater, competition, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - The other company is fictional and unnamed. Keep it unnamed.
+    - An expansion tank, permit, and haul-away together run several hundred dollars in this area. Verify each company's own line prices so the tech's line-by-line math holds up.

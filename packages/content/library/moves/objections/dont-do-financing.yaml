@@ -1,0 +1,94 @@
+id: dont-do-financing
+version: 1
+name: I don't do financing
+kind: objection
+group: financing
+skill: membership-financing
+summary: >-
+  The tech offers financing and the customer turns it down on principle. They pay
+  cash or they do not buy.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    financingOffered: true
+  chance: 0.6
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Turn down financing firmly and calmly. Paying cash is a principle for you, not
+    a negotiating move. Do not explain why unless the tech asks with respect. Then
+    give a short, honest reason from your own life. If the tech offers financing a
+    second time, become less friendly. If they drop it and talk about cash options,
+    stay in the conversation.
+  lines:
+    - I don't do financing. If I can't pay for it, I don't buy it.
+    - No loans. I pay cash or I don't do it.
+    - I'm not signing up for payments. I've seen where that goes.
+    - Thanks, but I don't finance things. Never have, never will.
+  followUps:
+    - Why does everybody push financing? Do you make more on it?
+    - So what's the cash price, then? All in.
+  tone: confident
+  delayMs: 400
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    Paying cash is a rule they live by, usually for a reason. They worry the tech
+    will push a loan to make a bigger sale, and they want a straight cash answer.
+  resolvedBy:
+    - Accepting the answer the first time and dropping financing
+    - Giving the cash price and the honest lower-cost option clearly
+    - Asking what amount they are comfortable with
+    - Answering honestly if they ask whether financing earns the company more
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - asked_about_concern
+    - honest_answer
+    - presented_options
+    - tied_options_to_needs
+  hardenedBy:
+    - pressured
+    - repeated_same_answer
+    - argued
+    - condescended
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, honest_answer, tied_options_to_needs]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, repeated_same_answer, argued, condescended]
+  pass: >-
+    The tech drops financing at once, respects the reason, and lays out the cash
+    price and the lower-cost option clearly.
+  fail: >-
+    The tech keeps selling financing, lectures the customer about interest rates,
+    or treats paying cash as a mistake.
+coaching:
+  why: >-
+    For many people, paying cash is a principle, not a calculation. Offering
+    financing a second time tells them you care more about the sale than about how
+    they run their life. Dropping it right away and giving clear cash options keeps
+    the conversation going.
+  modelResponse: >-
+    That makes sense, and I respect it. We'll leave financing out. The cash price
+    for what I recommended is the number you saw. If that's more than you want to
+    spend, tell me what you're comfortable with, and I'll show you honestly what can
+    be done safely for that, even if it's less than I recommended.
+  commonMistakes:
+    - Offering financing again after a clear no
+    - Telling them financing is the smarter choice or lecturing about interest
+    - Implying the job can only happen with financing
+    - Going quiet without offering any cash path forward
+tags: [financing, cash]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The first follow-up asks whether the company earns more on financing. Techs should answer from their company's real arrangement, and company specs should say what that is.

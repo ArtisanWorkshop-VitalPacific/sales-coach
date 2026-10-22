@@ -1,0 +1,95 @@
+id: what-do-i-actually-get
+version: 1
+name: What do I actually get?
+kind: objection
+group: membership
+skill: membership-financing
+summary: >-
+  The tech offers the membership and the customer asks what they would actually
+  get for the money.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [options, price, close, wrapup]
+  when:
+    membershipOffered: true
+  chance: 0.6
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask what you would actually get from the membership. Sound interested but
+    unconvinced, like someone who has heard a vague pitch before. Do not accept a
+    list of perks. Become more interested only if the tech names what it does for
+    your equipment and what it would have saved you today. If the tech reads a
+    long list, lose interest.
+  lines:
+    - Okay, but what do I actually get for that?
+    - Sounds nice, but what does it actually do for me?
+    - So what's in it, really? Like, specifically for my house.
+    - Break it down for me. What exactly am I paying for?
+  followUps:
+    - And what's not included? There's always something.
+    - Would I have saved anything today if I'd had it?
+  tone: thoughtful
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They cannot tell what they would be paying for. They want specifics that apply
+    to their home and an honest sense of whether it pays off.
+  resolvedBy:
+    - Naming the two or three benefits that matter for their home, not the full list
+    - Putting it in numbers, what it costs a year and what it would save
+    - Connecting it to what was found today
+    - Saying plainly what it does not cover
+  resolvingBehaviors:
+    - explained_membership_value
+    - used_customer_detail
+    - explained_plainly
+    - honest_answer
+    - checked_understanding
+  hardenedBy:
+    - rambled
+    - used_jargon
+    - bluffed
+    - pressured
+  defaultStrength: 40
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [explained_membership_value, used_customer_detail, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [rambled, bluffed, pressured]
+  pass: >-
+    The tech names the benefits that matter for this home, puts them in numbers,
+    and says plainly what the plan does not cover.
+  fail: >-
+    The tech reads the whole benefit list, inflates the savings, or cannot say what
+    is not included.
+coaching:
+  why: >-
+    This is a buying question, and most techs answer it by reading the benefit
+    list. The customer wants to know what changes for their house and whether the
+    math works. Two or three specific benefits tied to today's visit do more than
+    the full list.
+  modelResponse: >-
+    For your house, it comes down to three things. A yearly check on the water
+    heater, which matters because yours is getting older. Priority when something
+    breaks, so you're not waiting days. And the member discount, which would have
+    taken a real amount off today's bill. I'll show you the number. And here's what
+    it doesn't cover, so there are no surprises.
+  commonMistakes:
+    - Reading the full benefit list
+    - Giving no numbers for cost or savings
+    - Skipping what the plan does not cover
+    - Promising savings the customer will not see
+tags: [core, membership]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response assumes a yearly water heater check, priority service, and a repair discount. Company specs supply the actual benefits and numbers.

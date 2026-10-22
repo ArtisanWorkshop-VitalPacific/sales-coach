@@ -1,0 +1,105 @@
+id: wh-tankless-descale
+version: 1
+title: Tankless error code, descale needed
+trade: plumbing
+jobType: tankless-service
+difficulty: 2
+personaId: brian-today
+alternatePersonas: [jen-busy-parent, devin-researcher]
+briefing: >-
+  Service call. Customer reports the tankless water heater shuts off in the middle of
+  showers and shows an error code. Gas tankless unit on the garage wall, about 6 years
+  old. Customer wants it fixed today. Not a member.
+situation: >-
+  The 6-year-old condensing gas tankless is showing its scale warning code. It has
+  never been descaled, and with the hard water here scale has built up in the heat
+  exchanger, which makes it overheat and shut down during longer showers. The cold
+  inlet filter screen is also partly clogged with scale. Isolation valves with flush
+  ports were installed with the unit, so a descale can be done today in about an hour
+  to an hour and a half. Gas pressure holds within spec at full fire, and the vent and
+  condensate lines are clear. The honest fix is a descale and service. Because the
+  water is hard, the unit will need descaling about once a year, which is a fair
+  reason to offer the membership if it includes that service. An inline
+  scale-reduction cartridge is a reasonable optional add, not a requirement. Nothing
+  found justifies replacing the unit, upgrading the gas line, or adding a
+  recirculation pump. The customer wants a quick answer and a price. A strong tech
+  gives a short diagnosis, says the price clearly, and gets it done.
+equipment:
+  - item: Condensing gas tankless water heater, 199,000 BTU
+    ageYears: 6
+    notes: Showing the scale warning code. Never descaled. Isolation valves with flush ports installed.
+findings:
+  - id: scale-buildup
+    text: >-
+      The unit is showing its scale warning code. It has never been descaled, and scale
+      in the heat exchanger makes it overheat and shut off.
+    severity: major
+  - id: inlet-screen-clogged
+    text: The cold inlet filter screen is partly clogged with scale, which cuts flow.
+    severity: minor
+  - id: isolation-valves-present
+    text: Isolation valves with flush ports are already installed, so the descale can be done today.
+    severity: info
+  - id: gas-pressure-good
+    text: Gas pressure holds within spec with the unit at full fire.
+    severity: info
+  - id: vent-and-condensate-clear
+    text: The vent and the condensate line are clear.
+    severity: info
+justifiedWork:
+  - id: descale
+    label: Descale the heat exchanger
+    rationale: Scale is causing the overheating and the error code.
+  - id: clean-inlet-screen
+    label: Clean the inlet filter screen
+    rationale: Scale on the screen cuts flow to the unit.
+  - id: yearly-descale
+    label: Descale once a year going forward
+    rationale: The hard water here will build scale again.
+unjustifiedWork:
+  - id: replace-tankless-unit
+    label: Replacing the tankless unit
+    why: The unit is 6 years old and the code comes from scale. A descale fixes it.
+  - id: gas-line-upgrade
+    label: Gas line upgrade
+    why: Gas pressure holds within spec at full fire. The gas line is not the problem.
+  - id: recirculation-pump
+    label: Recirculation pump
+    why: The customer has not raised wait times for hot water, and a pump does nothing for the error code.
+options:
+  - id: descale-service
+    label: Descale and service
+    price: 345
+    includes:
+      - Descale the heat exchanger
+      - Clean the inlet filter screen
+      - Check gas pressure, venting, and condensate
+      - Clear the code and test with two showers running
+      - Done today
+    recommended: true
+  - id: descale-with-cartridge
+    label: Descale and service with a scale-reduction cartridge
+    price: 445
+    includes:
+      - Everything in the descale and service
+      - Inline scale-reduction cartridge on the cold inlet
+      - Slows new scale between descales; the cartridge is replaced yearly
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [interrupts-how-much]
+  excluded: []
+  density: 2
+goal: >-
+  Give a short, plain diagnosis, state the price clearly when asked, and fix it today.
+  Offer the membership as a way to keep the code from coming back.
+passBar: 70
+tags: [tankless, maintenance, membership]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - No monthly numbers because both options are under most financing minimums.
+    - Error code names vary by brand, so the scenario says scale warning code. Keep it brand-neutral.
+    - Confirm each company's membership includes a yearly tankless descale before techs use it as the reason to join.

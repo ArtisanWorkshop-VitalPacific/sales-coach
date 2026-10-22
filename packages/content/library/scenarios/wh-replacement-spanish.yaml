@@ -1,0 +1,109 @@
+id: wh-replacement-spanish
+version: 1
+title: Water heater replacement in Spanish
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 3
+personaId: rosa-spanish
+alternatePersonas: []
+briefing: >-
+  Service call. The customer prefers Spanish, so run the whole call in Spanish. She
+  reports water around the base of the water heater and only lukewarm water. 40-gallon
+  gas tank in the garage. Not a member.
+situation: >-
+  The whole call happens in Spanish. The customer understands some English but is more
+  comfortable in Spanish, and she will not agree to anything she cannot fully
+  understand and check. Her daughter usually helps with decisions like this and is at
+  work. The 12-year-old 40-gallon gas tank is leaking from the bottom, and rust flakes
+  from inside the tank have fallen onto the burner, so the flame is weak and the water
+  is only lukewarm. The tank cannot be repaired. There is no expansion tank, the house
+  has a pressure regulator, and there is only one seismic strap. The honest
+  recommendation is a standard 40-gallon replacement with an expansion tank, two
+  straps, a permit, and haul-away. A strong tech explains in plain Spanish and uses
+  everyday words for the parts (calentador de agua, tanque de expansión, correas
+  sísmicas, permiso), shows her the leak, gives the price as a clear total and a
+  monthly number, puts the estimate in writing so her daughter can read it, and offers
+  to call her daughter on speaker. Rushing her, or switching to English when she is
+  speaking Spanish, fails the language goal of this call.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 12
+    notes: Leaking from the bottom. Rust flakes on the burner, weak flame.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 65 psi.
+findings:
+  - id: tank-leaking
+    text: The tank is leaking from the bottom. Once a tank leaks, it cannot be repaired.
+    severity: urgent
+  - id: burner-fouled
+    text: Rust flakes from inside the tank have fallen onto the burner, which is why the flame is weak and the water is lukewarm.
+    severity: minor
+  - id: no-expansion-tank
+    text: There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.
+    severity: major
+  - id: one-strap
+    text: There is only one seismic strap. California requires two.
+    severity: minor
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is leaking and cannot be repaired.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: tankless-required
+    label: Saying a tankless unit is required
+    why: Tankless is an option, not a requirement. A tank replacement is a sound choice for this home.
+  - id: whole-home-filtration
+    label: Whole-home water filtration
+    why: The customer has not raised a water quality concern on this call. Filtration is unrelated to the leaking tank.
+  - id: upsize-50
+    label: Upsizing to a 50-gallon tank
+    why: The 40-gallon tank has met the household's needs. A bigger tank adds cost for no reason.
+options:
+  - id: standard-40
+    label: 40-gallon standard gas, 6-year warranty
+    price: 1890
+    monthly: 49
+    includes:
+      - New 40-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+      - Written estimate she and her daughter can review
+    recommended: true
+  - id: standard-40-10yr
+    label: 40-gallon gas, 10-year warranty
+    price: 2490
+    monthly: 65
+    includes:
+      - Everything in the standard option
+      - Longer 10-year tank and parts warranty
+      - New cold-water shutoff valve
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [show-me-in-writing]
+  excluded: []
+  density: 2.5
+goal: >-
+  Run the whole call in Spanish and explain the leak and the options plainly. Make the
+  estimate easy for her and her daughter to check, and ask for a decision without
+  rushing her.
+passBar: 75
+tags: [water-heater, spanish, language]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - No alternate personas. The scenario is written for a Spanish-speaking customer, and no other registry persona speaks Spanish. Add one if a second Spanish-speaking persona is created.
+    - Confirm each company can give a written estimate in Spanish. If not, the tech should offer to go through it with the daughter by phone.

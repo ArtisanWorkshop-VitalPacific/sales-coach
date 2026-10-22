@@ -1,0 +1,95 @@
+id: just-repair-it
+version: 1
+name: Can't you just repair it?
+kind: objection
+group: scope
+skill: integrity
+summary: >-
+  The tech recommends replacement and the customer asks whether it can be repaired
+  instead.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [findings, options, price]
+  when:
+    optionsPresented: true
+  chance: 0.7
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask whether it can just be repaired instead of replaced. Sound hopeful and a
+    little doubtful of the recommendation. You are not hostile. You just do not
+    want to spend more than you need to. Do not say how much you hoped to spend
+    unless the tech asks. If the tech shows you the problem or offers a real
+    repair, accept their answer. If they only say it cannot be fixed, ask once more.
+  lines:
+    - Can't you just fix it? I don't want to replace the whole thing.
+    - Isn't there a part you can swap out instead of buying a whole new one?
+    - It was working fine last week. Seems like it just needs a repair.
+    - I'd rather just repair it for now, if that's possible. Is it?
+  followUps:
+    - Somebody fixed my last one for a couple hundred bucks.
+    - Are you sure? Or is replacing it just easier for you?
+  tone: skeptical
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They suspect replacement is the more profitable answer, not the necessary one,
+    and they do not want to throw away something that might still work.
+  resolvedBy:
+    - Answering honestly whether a repair is possible here
+    - Offering the repair as a real option when it is one, with how long it should last
+    - Showing why when it cannot be repaired, with the part, a photo, or a reading
+    - Comparing repairing now and replacing later in plain numbers
+    - Letting them choose
+  resolvingBehaviors:
+    - honest_answer
+    - showed_evidence
+    - explained_plainly
+    - presented_options
+    - tied_options_to_needs
+  hardenedBy:
+    - recommended_unneeded_work
+    - bluffed
+    - pressured
+    - argued
+    - condescended
+  defaultStrength: 50
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, showed_evidence, presented_options]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [recommended_unneeded_work, bluffed, caved, pressured]
+  pass: >-
+    The tech says honestly whether a repair will work here, offers it when it is
+    real, and shows the evidence when it is not.
+  fail: >-
+    The tech refuses a repair that would work, invents a reason it cannot be fixed,
+    or agrees to a repair that will not hold just to keep the customer happy.
+coaching:
+  why: >-
+    This question tests whether replacement is your honest recommendation. When a
+    repair is a real option, offering it builds more trust than any sale. When it
+    is not, the customer needs to see why, not just hear it.
+  modelResponse: >-
+    Fair question. If a repair will hold, that's what I'll recommend, and I'll tell
+    you how long I'd expect it to last. If it won't, I'll show you why. Here, the
+    leak is coming from the tank itself. Come take a look at the rust at the bottom
+    seam. There's no part that fixes a leaking tank. Does that make sense?
+  commonMistakes:
+    - Pushing replacement when a repair would honestly hold
+    - Saying it cannot be fixed without showing why
+    - Agreeing to a patch that will not last to avoid an argument
+    - Leaving out how long a repair is likely to last
+tags: [core, scope, repair-vs-replace, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response uses the leaking-tank case. In wh-repair-or-replace-9yr the repair is the honest answer, and the pass and fail lines cover both cases.

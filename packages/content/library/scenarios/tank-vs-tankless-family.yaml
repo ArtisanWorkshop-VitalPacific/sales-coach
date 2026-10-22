@@ -1,0 +1,127 @@
+id: tank-vs-tankless-family
+version: 1
+title: Family of five, tank or tankless
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 3
+personaId: ruiz-couple
+alternatePersonas: [jen-busy-parent]
+briefing: >-
+  Estimate. Homeowners report the water heater is leaking and the family runs out of
+  hot water most mornings. They want to compare a tank and a tankless unit. 40-gallon
+  gas tank in the garage. Not a member.
+situation: >-
+  The 11-year-old 40-gallon gas tank is leaking at the base and has to be replaced. It
+  was also too small for a family of five, which is why the hot water runs out on busy
+  mornings. There is no expansion tank and the house has a pressure regulator. The gas
+  line can supply a high-recovery tank, but a 199,000 BTU tankless would need a larger
+  line from the meter, new PVC venting, and an outlet. The water is hard, so a tankless
+  unit here would need descaling about once a year. There are three honest options.
+  The same 40-gallon size is the cheapest but will not fix the running out. A 50-gallon
+  high-recovery tank (about 65,000 BTU, with a first-hour rating around 90 gallons
+  compared with about 70 for the old tank) covers the family's morning use for about
+  half the price of tankless. A tankless unit gives endless hot water and a longer
+  life but costs the most up front and needs yearly descaling. The honest
+  recommendation is the 50-gallon high-recovery tank, because it solves the problem
+  the family called about without overspending. Tankless is a fair choice if they
+  value endless hot water and plan to stay a long time. The two spouses may want
+  different things, and the tech should learn what each one cares about and tie the
+  options to both.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 11
+    notes: Leaking at the base. Runs out of hot water most mornings.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 65 psi.
+findings:
+  - id: tank-leaking
+    text: The tank is leaking at the base. Once a tank leaks, it cannot be repaired.
+    severity: urgent
+  - id: tank-undersized
+    text: A 40-gallon standard tank is small for five people. That is why the hot water runs out in the morning.
+    severity: major
+  - id: no-expansion-tank
+    text: There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.
+    severity: major
+  - id: gas-line-capacity
+    text: The gas line can supply a high-recovery tank. A tankless unit would need a larger line from the meter.
+    severity: info
+  - id: hard-water
+    text: The water is hard. A tankless unit here would need descaling about once a year.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is leaking and cannot be repaired.
+  - id: size-for-household
+    label: Size the new unit to the family's use
+    rationale: The 40-gallon tank is why they run out of hot water.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: tankless-only-fix
+    label: Saying tankless is the only way to stop running out
+    why: A 50-gallon high-recovery tank covers the family's morning use. Tankless is a choice, not the only fix.
+  - id: oversize-80
+    label: An 80-gallon tank or two water heaters
+    why: A 50-gallon high-recovery tank covers five people. Going bigger adds cost, space, and gas use for no reason.
+  - id: whole-house-repipe
+    label: Whole-house repipe
+    why: The copper supply lines show no leaks or corrosion. Nothing points to a repipe.
+options:
+  - id: standard-40
+    label: 40-gallon standard gas, same size as now
+    price: 1890
+    monthly: 49
+    includes:
+      - New 40-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+  - id: high-recovery-50
+    label: 50-gallon high-recovery gas, 10-year warranty
+    price: 2850
+    monthly: 73
+    includes:
+      - New 50-gallon high-recovery gas water heater
+      - Vent connector sized for the new unit
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+    recommended: true
+  - id: tankless
+    label: Condensing tankless gas, 12-year heat exchanger warranty
+    price: 5450
+    monthly: 140
+    includes:
+      - 199,000 BTU condensing tankless water heater
+      - Larger gas line from the meter
+      - PVC venting and a 120-volt outlet
+      - Isolation valves for yearly descaling
+      - Permit and haul-away of the old tank
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [brother-in-law-plumber]
+  excluded: []
+  density: 2.5
+goal: >-
+  Learn what each spouse cares about and recommend the option that solves the morning
+  hot water problem without overspending. Ask for a decision both spouses agree to.
+passBar: 75
+tags: [water-heater, tankless, joint-decision]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - First-hour rating and BTU figures are typical for 50-gallon high-recovery gas tanks. Confirm them against the models each company installs, including whether the vent has to go up a size.
+    - The alternate persona jen-busy-parent has a smaller household. If the engine swaps personas, the family size in the situation should follow the persona.

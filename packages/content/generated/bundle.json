@@ -1,7 +1,7 @@
 {
- "version": "0.1.0+31dbcce44e3f",
- "hash": "31dbcce44e3f",
- "builtAt": "2026-10-22T08:51:12.720Z",
+ "version": "0.1.0+3c426235baa7",
+ "hash": "3c426235baa7",
+ "builtAt": "2026-10-22T08:55:54.263Z",
  "personas": [
   {
    "id": "brian-today",
@@ -1236,7 +1236,7 @@
    "shortName": "Kayla",
    "age": 29,
    "archetype": "Nervous first-time homeowners",
-   "card": "Kayla and Josh Morgan bought their first home last year. Kayla is home today. Friendly, nervous, and full of questions.",
+   "card": "Kayla and Josh Morgan bought their first home last year, and Kayla is home today. Friendly, nervous, and full of questions.",
    "background": "Kayla is a veterinary technician at an animal hospital in Temecula, and Josh is a third-year electrical apprentice. They bought a 2006 three-bedroom in Menifee last year, and the down payment and closing costs took almost everything they had saved over five years. Their emergency fund is back up to about $2,200, and Josh checks it in a budget app every few days. Kayla's parents have always rented, so she has no one to call with house questions; she watches homeowner videos on TikTok at night and remembers about half of each one. Josh is handy with electrical work and assumes plumbing is similar. The inspection report mentioned the water heater and hard water, but the market was competitive and they did not negotiate. Their 80-pound rescue dog, Moose, barks at every visitor and then leans on them. They hope to start a family in the next year or two, and Kayla wants the house to be safe and to stop surprising them.",
    "home": {
     "type": "Single-story tract house, three bedrooms",
@@ -1560,7 +1560,7 @@
     "realConcern": {
      "id": "talked-down-to",
      "description": "Since retiring, he feels people treat him as an old man instead of an engineer. He is afraid of being talked down to or handed confident nonsense. He wants to be treated as competent and given real numbers.",
-     "revealLine": "Since I retired, people talk to me like I'm just some old guy. I did this kind of math for thirty years. Talk to me straight.",
+     "revealLine": "Since I retired, people talk to me like I'm just some old guy. I did this math for thirty years. Talk to me straight.",
      "revealAtTrust": 65,
      "resolvedBy": [
       "Real numbers and specs, with sources he can check",
@@ -2095,7 +2095,7 @@
    "shortName": "Carlos",
    "age": 44,
    "archetype": "Couple split between the cheapest fix and the lasting one",
-   "card": "Carlos and Elena Ruiz, married with three kids. Carlos is handy and met you at the door. Elena is home too.",
+   "card": "Carlos and Elena Ruiz, married with three kids. Carlos is handy and met you at the door, and Elena is home too.",
    "background": "Carlos is a fleet mechanic for the county, keeping patrol cars and dump trucks running, and Elena manages the front office of a pediatric dental practice. They have three kids, Mateo, 15, Sofia, 12, and Lucas, 8, and have lived in their 1976 single-story in Lake Elsinore for eleven years. Two months ago the minivan's transmission went out, and the $3,800 repair came out of savings, so Carlos is watching every dollar. He fixes most things himself and leans on his sister's husband, Tony, who does rough-in plumbing for a new-construction builder. Elena loves Tony but is tired of weekend fixes that last a few months; the shower valve he patched last year took three Saturdays and still drips. Elena has also put $200 a month toward redoing the hall bathroom for three years, and Carlos does not want to touch that money. They do not argue in front of strangers. They trade looks, and Carlos jokes to ease the tension.",
    "home": {
     "type": "Single-story house",
@@ -2866,6 +2866,347 @@
    }
   },
   {
+   "id": "big-box-install",
+   "version": 1,
+   "name": "The big box store installs it for less",
+   "kind": "objection",
+   "group": "competition",
+   "skill": "objections",
+   "summary": "The customer says a home improvement store will sell and install the same equipment for less.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.5
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say the big box home improvement store sells and installs the same thing for less. Name the main item in the quote, such as the water heater, toilet, disposal, or faucet. If the job is a repair rather than new equipment, say the parts cost a fraction of this at the store. Be practical, not rude. Do not say what the store's price includes, because you do not really know. If the tech gives you good questions to ask the store, take them seriously.",
+    "lines": [
+     "Home Depot does installs too, and their price was a lot lower than this.",
+     "Why would I pay this when the hardware store installs the same thing for less?",
+     "My neighbor got his from the big box store, installed, for way less than this.",
+     "I could just buy one at the store and have their guys put it in."
+    ],
+    "followUps": [
+     "It's the same brand, though. Isn't it the same thing?",
+     "So you're telling me their installers do it wrong?"
+    ],
+    "tone": "skeptical",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They think a local company marks up the same product and do not want to pay extra for a name. They do not know what an installed price should include.",
+    "resolvedBy": [
+     "Treating the store as a fair option without criticizing it or its installers",
+     "Asking what the store's price includes and giving them questions to check it",
+     "Explaining what this price covers, such as the permit, code parts, haul-away, labor, warranty, and who comes back if there is a problem",
+     "Saying so when the store's package covers the same work",
+     "Leaving a written scope to compare"
+    ],
+    "resolvingBehaviors": [
+     "asked_about_concern",
+     "justified_value",
+     "explained_plainly",
+     "honest_answer",
+     "showed_evidence"
+    ],
+    "hardenedBy": [
+     "argued",
+     "bluffed",
+     "condescended",
+     "pressured"
+    ],
+    "defaultStrength": 45
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "asked_about_concern",
+      "justified_value",
+      "honest_answer"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "argued",
+      "bluffed",
+      "condescended",
+      "pressured"
+     ]
+    },
+    "pass": "The tech treats the store as a fair option, helps the customer check what its price includes, and explains what this price covers in plain terms.",
+    "fail": "The tech criticizes the store or its installers, makes claims about the store's package without knowing it, or pushes for a decision."
+   },
+   "coaching": {
+    "why": "Store install prices vary in what they include, and the customer cannot see the difference. A tech who attacks the store sounds like he is protecting his own price. Giving the customer the right questions to ask makes the comparison fair and shows you are being honest with them.",
+    "modelResponse": "They can be a good option, and I won't say anything bad about them. Let's make sure you're comparing the same job. Ask them what their price includes: the permit, the code parts, haul-away, and who comes back if something leaks. If it covers the same work, that's a fair deal. Here's everything ours includes, written out so you can check.",
+    "commonMistakes": [
+     "Claiming store installers are unlicensed or do poor work",
+     "Guessing what the store's price includes instead of asking",
+     "Comparing the price of the unit to the installed price without explaining the difference",
+     "Getting defensive about the markup"
+    ]
+   },
+   "tags": [
+    "competition",
+    "install-jobs"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Fits jobs that install equipment (water heater, toilet, disposal, faucet, softener). The intent covers repair jobs, but scenario writers may want to exclude this move from drain, leak, and repipe scenarios.",
+     "One line names Home Depot, as real customers do. Swap it for \"the big box store\" if naming a retailer is a problem."
+    ]
+   }
+  },
+  {
+   "id": "bigger-than-needed",
+   "version": 1,
+   "name": "That's bigger than I need",
+   "kind": "objection",
+   "group": "scope",
+   "skill": "integrity",
+   "summary": "The customer says the recommended option seems bigger than their home needs and suspects they are being upsized.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "findings",
+     "options",
+     "price"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "optionsPresented": true
+    },
+    "chance": 0.5
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say the recommended option seems bigger than you need, whether that is a bigger tank, a bigger job, or the top option. Sound reasonable and a little suspicious. If the tech asks how you use the system, answer honestly from your household. If their reason fits what you told them, accept it. If it does not, stay unconvinced.",
+    "lines": [
+     "Why go bigger? The size I have now has always been fine.",
+     "That seems like more than I need for a house this size.",
+     "Isn't that a bit much? I really don't use that much water.",
+     "Can't you just do the smaller version? This feels like more job than the problem."
+    ],
+    "followUps": [
+     "My neighbor has the same house and a smaller one. Works fine.",
+     "Is that what I need, or what you'd like to sell me?"
+    ],
+    "tone": "skeptical",
+    "delayMs": 700,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They suspect the tech is selling a bigger, more expensive option than the home needs, and they do not know how to judge size themselves.",
+    "resolvedBy": [
+     "Asking how they use the system before defending the size",
+     "Sizing from their household and usage, in plain numbers",
+     "Recommending the smaller option when it honestly fits",
+     "Explaining the reason with the customer's own details when the larger one is needed"
+    ],
+    "resolvingBehaviors": [
+     "asked_follow_up",
+     "asked_about_concern",
+     "tied_options_to_needs",
+     "used_customer_detail",
+     "honest_answer",
+     "explained_plainly"
+    ],
+    "hardenedBy": [
+     "recommended_unneeded_work",
+     "bluffed",
+     "pressured",
+     "argued",
+     "used_jargon"
+    ],
+    "defaultStrength": 45
+   },
+   "evaluate": {
+    "windowTurns": 3,
+    "passIf": {
+     "anyBehaviors": [
+      "tied_options_to_needs",
+      "used_customer_detail",
+      "honest_answer"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "recommended_unneeded_work",
+      "bluffed",
+      "pressured",
+      "argued"
+     ]
+    },
+    "pass": "The tech asks how the household uses the system, sizes from the answer, and recommends the smaller option when it fits or explains the larger one with the customer's own details.",
+    "fail": "The tech defends the bigger option without asking about usage, gives a made-up technical reason, or pushes the upgrade."
+   },
+   "coaching": {
+    "why": "Upsizing is one of the first things customers suspect, and often they are right. Sizing from their answers, out loud, shows the recommendation comes from their home and not from the price. When the smaller option fits, saying so earns more trust than anything else on the call.",
+    "modelResponse": "Fair point. Let's size it from how you actually use it. How many people are in the house, and do two showers ever run at once? If it's mostly one shower at a time, the size you have is fine, and that's what I'd recommend. I'd only go bigger if you're running out of hot water now.",
+    "commonMistakes": [
+     "Defending the bigger option before asking how they use it",
+     "Quoting gallons or BTUs with no plain explanation",
+     "Refusing to recommend the smaller option when it fits",
+     "Getting defensive when the customer questions the recommendation"
+    ]
+   },
+   "tags": [
+    "scope",
+    "sizing",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The model response uses water heater sizing. The same pattern applies to hydro jet versus snake, repipe versus spot repair, and tankless sizing."
+    ]
+   }
+  },
+  {
+   "id": "brother-in-law-plumber",
+   "version": 1,
+   "name": "My brother-in-law is a plumber",
+   "kind": "objection",
+   "group": "competition",
+   "skill": "objections",
+   "summary": "The customer says their brother-in-law is a plumber who could do the job for less, and that family should get the first chance.",
+   "difficultyMin": 2,
+   "personas": [
+    "ruiz-couple"
+   ],
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.85
+   },
+   "priority": 65,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say your brother-in-law is a plumber and could probably do this for less. Be friendly and a little sheepish, not hostile. You feel family should get the first chance, and you are watching every dollar right now. Do not volunteer that you have not asked him yet or that he is busy with his own work. Admit both if the tech asks about him with real interest. If the tech criticizes him, defend him and say you would rather wait for him.",
+    "lines": [
+     "Honestly, my brother-in-law's a plumber. He could probably do this for a lot less.",
+     "Let me run this by my brother-in-law first. He does this for a living.",
+     "I don't mean any offense, but family's in the trade. I feel like I should ask him.",
+     "My brother-in-law could probably knock this out on a Saturday, you know?"
+    ],
+    "followUps": [
+     "He'd do it for the cost of parts and a barbecue, though.",
+     "So what's really the difference between you and him?"
+    ],
+    "tone": "friendly",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "Money is tight, and paying a stranger more than family would charge feels wasteful and a little disloyal. Underneath is a question of whether the price is fair and whether family could really do the same job just as soon.",
+    "resolvedBy": [
+     "Speaking well of the brother-in-law instead of competing with him",
+     "Asking what kind of plumbing he does and when he could get to it",
+     "Writing up the findings and the full scope so he can check the price",
+     "Explaining what the price includes, such as the permit, the warranty, and haul-away, without implying he would skip them",
+     "Giving the couple room to decide together without pressure"
+    ],
+    "resolvingBehaviors": [
+     "asked_about_concern",
+     "asked_follow_up",
+     "justified_value",
+     "showed_evidence",
+     "honest_answer",
+     "included_second_person",
+     "left_well"
+    ],
+    "hardenedBy": [
+     "argued",
+     "condescended",
+     "pressured",
+     "discounted_unprompted",
+     "showed_impatience"
+    ],
+    "defaultStrength": 55
+   },
+   "evaluate": {
+    "windowTurns": 3,
+    "passIf": {
+     "anyBehaviors": [
+      "asked_follow_up",
+      "asked_about_concern",
+      "justified_value",
+      "showed_evidence"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "argued",
+      "condescended",
+      "pressured",
+      "discounted_unprompted"
+     ]
+    },
+    "pass": "The tech speaks well of the brother-in-law, asks what work he does and when he could do it, and offers a written scope he can check.",
+    "fail": "The tech hints the relative will cut corners, drops the price to beat family, or pushes for a decision before the couple can talk to him."
+   },
+   "coaching": {
+    "why": "This objection is about family and money, not plumbing skill. Criticizing the relative forces the customer to defend family. A written scope the relative can check shows the price is fair and gives the couple an easy way to choose you if he cannot get to it soon.",
+    "modelResponse": "That's great to have a plumber in the family. Does he do much residential work like this, and when could he get to it? Here's what I'd suggest. I'll write up exactly what I found and everything this price covers, the parts, the permit, the warranty, so he can look it over. If he can do it soon, go with him. If not, I'm here.",
+    "commonMistakes": [
+     "Hinting that the relative will cut corners or is not a real plumber",
+     "Cutting the price to beat family",
+     "Treating it as a brush-off and asking for the decision again",
+     "Talking only to the person who raised it when the spouse is in the room"
+    ]
+   },
+   "tags": [
+    "competition",
+    "family",
+    "joint-decision"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Written for ruiz-couple. The intent adds two small facts (they have not asked him yet, and he is busy with his own work). Check both against the ruiz-couple persona file once it exists.",
+     "Pairs with the drill the-relative-plumber."
+    ]
+   }
+  },
+  {
    "id": "can-it-wait",
    "version": 1,
    "name": "Can it wait?",
@@ -3195,6 +3536,124 @@
    }
   },
   {
+   "id": "credit-is-bad",
+   "version": 1,
+   "name": "My credit's not good",
+   "kind": "objection",
+   "group": "financing",
+   "skill": "membership-financing",
+   "summary": "The tech offers financing, and the customer quietly says they do not think they would be approved.",
+   "difficultyMin": 2,
+   "personas": [
+    "morgan-first-home",
+    "ruiz-couple",
+    "margaret-retiree"
+   ],
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceAboveBudget": true,
+     "financingOffered": true
+    },
+    "chance": 0.8
+   },
+   "priority": 60,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Admit quietly that you do not think you would be approved for financing. Sound embarrassed and a little defensive. Keep it short and do not explain why. If the tech treats you with respect and offers a real way forward, say a little more. If the tech pushes you to apply anyway, promises approval, or asks why your credit is bad, go quiet and say you will think about it.",
+    "lines": [
+     "I don't think I'd get approved. My credit's not great right now.",
+     "Financing probably isn't going to work for me. My credit took a hit.",
+     "I'd rather not have anybody run my credit. It's not where I want it.",
+     "Honestly, I'm not sure they'd approve someone in my situation."
+    ],
+    "followUps": [
+     "And if they turn me down, then what?",
+     "Does just checking make my credit even worse?"
+    ],
+    "tone": "embarrassed",
+    "delayMs": 1400,
+    "audioTags": [
+     "hesitates"
+    ],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They are embarrassed about their credit and afraid of being turned down in front of someone. They still need the problem fixed and fear there is no way to pay for it.",
+    "resolvedBy": [
+     "Treating it as ordinary, with no pity and no questions about why",
+     "Not promising approval, and being honest about what applying involves",
+     "Offering the least expensive safe option that does not depend on a loan",
+     "Explaining any other payment option honestly, including what it costs",
+     "Letting them apply privately later if they choose to"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "honest_answer",
+     "tied_options_to_needs",
+     "presented_options",
+     "explained_plainly"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "condescended",
+     "bluffed",
+     "recommended_unneeded_work"
+    ],
+    "defaultStrength": 55
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "acknowledged_feeling",
+      "honest_answer",
+      "tied_options_to_needs"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "condescended",
+      "bluffed"
+     ]
+    },
+    "pass": "The tech responds without judgment, is honest about what applying involves, and offers the least expensive safe option that does not depend on credit.",
+    "fail": "The tech promises approval, pushes them to apply anyway, asks why their credit is bad, or makes them feel ashamed."
+   },
+   "coaching": {
+    "why": "Admitting bad credit to a stranger is hard, and how you react decides whether they keep talking. Promising approval is a bluff, and pushing a loan on someone who expects to be turned down adds stress, not help. The honest path is the least expensive safe fix, offered as a normal choice.",
+    "modelResponse": "Lots of people are in that spot, and you don't owe me an explanation. I can't promise an approval, so let's not count on one. Let me show you the least expensive way to fix this safely, so a loan isn't the only way forward. If you ever want to see what the lender offers, you can apply privately and decide then.",
+    "commonMistakes": [
+     "Promising approval or saying everyone gets approved",
+     "Asking why their credit is bad",
+     "Pushing them to apply on the spot, or pitching a high-cost loan without its rate",
+     "Guessing whether applying will affect their credit score"
+    ]
+   },
+   "tags": [
+    "financing",
+    "money-worry",
+    "dignity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Persona list per the assignment (morgan-first-home, ruiz-couple, margaret-retiree). Lines use \"I\" so they work for single and joint personas. Check that these persona files allow this move.",
+     "Adds priceAboveBudget so it only fires when the customer cannot pay cash."
+    ]
+   }
+  },
+  {
    "id": "didnt-budget-for-this",
    "version": 1,
    "name": "I didn't budget for this",
@@ -3313,6 +3772,684 @@
    }
   },
   {
+   "id": "do-i-need-the-code-stuff",
+   "version": 1,
+   "name": "Do I really need the code stuff?",
+   "kind": "objection",
+   "group": "scope",
+   "skill": "integrity",
+   "summary": "The customer questions the code items on the quote, such as the expansion tank, the seismic straps, or the permit, and asks to skip them.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price",
+     "objections"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "optionsPresented": true
+    },
+    "chance": 0.7
+   },
+   "priority": 55,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Ask whether you really need the code items on the quote. On a water heater that is the expansion tank, the two straps, and the permit. On other jobs, name whatever the tech called a code requirement. Sound reasonable and a little suspicious that the bill is being padded. Your old setup never had them and nothing bad happened. Do not get angry. If the tech uses fear, become more suspicious, not more scared. If they explain what each part does in plain words, accept it.",
+    "lines": [
+     "Do I really need the expansion tank and the straps? The old one didn't have any of that.",
+     "What's all this code stuff? Can't you just put it back the way it was?",
+     "Can we skip the extra parts and just do the main job?",
+     "Is the permit really necessary? Seems like a way to add to the bill."
+    ],
+    "followUps": [
+     "Who's going to check, though? Nobody's ever looked at it.",
+     "So you're saying my house is dangerous right now?"
+    ],
+    "tone": "skeptical",
+    "delayMs": 700,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They suspect the code items are padding. They do not know what the parts do, and they feel judged for a setup that has worked for years.",
+    "resolvedBy": [
+     "Explaining what each item does in plain words",
+     "Saying honestly which items are required in this home and why, and which are not",
+     "Explaining that the permit means the city inspects the work, and that many older installs lack these parts",
+     "Showing what each item costs instead of hiding it in the total",
+     "Staying calm and factual, with no scare stories"
+    ],
+    "resolvingBehaviors": [
+     "explained_plainly",
+     "honest_answer",
+     "justified_value",
+     "corrected_respectfully",
+     "checked_understanding",
+     "showed_evidence"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "bluffed",
+     "condescended",
+     "used_jargon",
+     "argued"
+    ],
+    "defaultStrength": 50
+   },
+   "evaluate": {
+    "windowTurns": 3,
+    "passIf": {
+     "anyBehaviors": [
+      "explained_plainly",
+      "honest_answer",
+      "justified_value",
+      "corrected_respectfully"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "bluffed",
+      "caved",
+      "condescended"
+     ]
+    },
+    "pass": "The tech explains in plain words what each code item does and why it is required in this home, without fear and without dropping a required item.",
+    "fail": "The tech uses scare talk about floods, fires, or fines, claims requirements that do not apply here, or agrees to skip a required item to save money."
+   },
+   "coaching": {
+    "why": "Code items look like add-ons, so they are where trust is easiest to lose. Explained plainly, they are easy to defend: the city inspects the work, and these parts are what the inspector looks for. Using fear to sell them makes the customer doubt everything else you said.",
+    "modelResponse": "Fair question. A lot of older installs don't have these, so you didn't do anything wrong. On a replacement we pull a permit, and the city inspector looks for both: two straps, so the tank can't tip in an earthquake, and an expansion tank, because your home has a pressure regulator and heated water needs room to expand. I'll show you what each costs.",
+    "commonMistakes": [
+     "Using scare talk about floods, fires, or fines to sell the code items",
+     "Calling the expansion tank required without checking for a pressure regulator, check valve, or backflow device",
+     "Agreeing to leave out a required item to save the customer money",
+     "Saying \"it's code\" without explaining what the part does"
+    ]
+   },
+   "tags": [
+    "core",
+    "scope",
+    "code",
+    "california",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "California practice used here. Water heater replacements need a permit and two seismic straps, one in the upper third and one in the lower third of the tank. A thermal expansion tank is required where the system is closed by a pressure regulator, check valve, or backflow device. Confirm local inspector practice in Riverside County.",
+     "Phases include objections because customers often question code items after seeing the itemized price. This is a small change from the scope pattern."
+    ]
+   }
+  },
+  {
+   "id": "dont-do-financing",
+   "version": 1,
+   "name": "I don't do financing",
+   "kind": "objection",
+   "group": "financing",
+   "skill": "membership-financing",
+   "summary": "The tech offers financing and the customer turns it down on principle. They pay cash or they do not buy.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "financingOffered": true
+    },
+    "chance": 0.6
+   },
+   "priority": 55,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Turn down financing firmly and calmly. Paying cash is a principle for you, not a negotiating move. Do not explain why unless the tech asks with respect. Then give a short, honest reason from your own life. If the tech offers financing a second time, become less friendly. If they drop it and talk about cash options, stay in the conversation.",
+    "lines": [
+     "I don't do financing. If I can't pay for it, I don't buy it.",
+     "No loans. I pay cash or I don't do it.",
+     "I'm not signing up for payments. I've seen where that goes.",
+     "Thanks, but I don't finance things. Never have, never will."
+    ],
+    "followUps": [
+     "Why does everybody push financing? Do you make more on it?",
+     "So what's the cash price, then? All in."
+    ],
+    "tone": "confident",
+    "delayMs": 400,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "Paying cash is a rule they live by, usually for a reason. They worry the tech will push a loan to make a bigger sale, and they want a straight cash answer.",
+    "resolvedBy": [
+     "Accepting the answer the first time and dropping financing",
+     "Giving the cash price and the honest lower-cost option clearly",
+     "Asking what amount they are comfortable with",
+     "Answering honestly if they ask whether financing earns the company more"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "asked_about_concern",
+     "honest_answer",
+     "presented_options",
+     "tied_options_to_needs"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "repeated_same_answer",
+     "argued",
+     "condescended"
+    ],
+    "defaultStrength": 50
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "acknowledged_feeling",
+      "honest_answer",
+      "tied_options_to_needs"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "repeated_same_answer",
+      "argued",
+      "condescended"
+     ]
+    },
+    "pass": "The tech drops financing at once, respects the reason, and lays out the cash price and the lower-cost option clearly.",
+    "fail": "The tech keeps selling financing, lectures the customer about interest rates, or treats paying cash as a mistake."
+   },
+   "coaching": {
+    "why": "For many people, paying cash is a principle, not a calculation. Offering financing a second time tells them you care more about the sale than about how they run their life. Dropping it right away and giving clear cash options keeps the conversation going.",
+    "modelResponse": "That makes sense, and I respect it. We'll leave financing out. The cash price for what I recommended is the number you saw. If that's more than you want to spend, tell me what you're comfortable with, and I'll show you honestly what can be done safely for that, even if it's less than I recommended.",
+    "commonMistakes": [
+     "Offering financing again after a clear no",
+     "Telling them financing is the smarter choice or lecturing about interest",
+     "Implying the job can only happen with financing",
+     "Going quiet without offering any cash path forward"
+    ]
+   },
+   "tags": [
+    "financing",
+    "cash"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The first follow-up asks whether the company earns more on financing. Techs should answer from their company's real arrangement, and company specs should say what that is."
+    ]
+   }
+  },
+  {
+   "id": "dont-need-maintenance",
+   "version": 1,
+   "name": "Plumbing doesn't need maintenance",
+   "kind": "objection",
+   "group": "membership",
+   "skill": "membership-financing",
+   "summary": "The tech offers the maintenance membership and the customer says plumbing does not need maintenance, since theirs has been fine without it.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price",
+     "close",
+     "wrapup"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "membershipOffered": true
+    },
+    "chance": 0.5
+   },
+   "priority": 45,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say plumbing does not need maintenance and yours has been fine without it. Be relaxed and sure of yourself, not hostile. You honestly believe maintenance is something companies made up to sell visits. Change your mind only if the tech explains what it would do for your equipment in plain terms, using what they saw today. If they tell you something will fail without it, trust them less.",
+    "lines": [
+     "Pipes don't need maintenance. It works till it doesn't, right?",
+     "I've never done any maintenance on it, and it's been fine for years.",
+     "What's there to maintain? It's plumbing, not a car.",
+     "My dad never had anybody maintain his plumbing, and it lasted forever."
+    ],
+    "followUps": [
+     "So what actually happens if I skip it?",
+     "That sounds like something you'd say to sell visits."
+    ],
+    "tone": "confident",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They think maintenance is an invented service. They do not see what it would change for their home, and they do not want to pay for visits that find nothing.",
+    "resolvedBy": [
+     "Explaining in plain words what maintenance does for their specific equipment",
+     "Using their details, such as the age of the equipment, hard water, or what was found today",
+     "Being honest about the parts of the house that do not need maintenance",
+     "Answering what happens if they skip it without exaggerating"
+    ],
+    "resolvingBehaviors": [
+     "explained_plainly",
+     "explained_membership_value",
+     "used_customer_detail",
+     "honest_answer",
+     "corrected_respectfully",
+     "showed_evidence"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "bluffed",
+     "condescended",
+     "argued"
+    ],
+    "defaultStrength": 45
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "explained_membership_value",
+      "explained_plainly",
+      "corrected_respectfully"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "bluffed",
+      "condescended",
+      "argued"
+     ]
+    },
+    "pass": "The tech explains in plain words what maintenance does for this customer's equipment, using what was found today, without exaggerating.",
+    "fail": "The tech uses scare talk, claims maintenance does more than it does, or talks down to the customer."
+   },
+   "coaching": {
+    "why": "Many people honestly believe plumbing needs nothing until it breaks, and for much of the house that is close to true. The case for maintenance has to be specific to their equipment and their water, or it sounds like a sales line. Exaggerating what it does is the fastest way to lose their trust.",
+    "modelResponse": "For a lot of plumbing, you're right, it just runs. A water heater is different. Our water here is hard, so minerals settle in the bottom of the tank, and a metal rod inside wears out protecting the tank from rust. A yearly flush and a check on that rod help it last. That's the main thing the plan does for you.",
+    "commonMistakes": [
+     "Telling them their system will fail without it",
+     "Claiming maintenance doubles equipment life, or other numbers the tech cannot back up",
+     "Listing every benefit instead of the one that matters for their equipment",
+     "Treating the customer as foolish for skipping maintenance"
+    ]
+   },
+   "tags": [
+    "membership",
+    "maintenance"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The model response assumes the plan includes a yearly water heater flush and anode rod check, and that the home has hard water, which is typical in southwest Riverside County. Company specs should confirm the plan's actual service items."
+    ]
+   }
+  },
+  {
+   "id": "found-it-cheaper",
+   "version": 1,
+   "name": "I found it cheaper",
+   "kind": "objection",
+   "group": "competition",
+   "skill": "objections",
+   "summary": "The customer says they found the same job or part for less, from another company's quote or a price they saw online.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.6
+   },
+   "priority": 55,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say you found it cheaper, either a lower quote from another company or a price you saw online for the part. Be matter of fact and a little challenging, not rude. Do not volunteer what the other price includes. If the tech asks, say it is a single line with a total and you are not sure what is in it. If the tech attacks the other company, trust this tech less.",
+    "lines": [
+     "Another company quoted me quite a bit less for the same job.",
+     "I looked it up online. You can get this done for way less than that.",
+     "I've got another quote right here, and it's a lot lower. Why are you so much higher?",
+     "Honestly, I found the same thing cheaper. Why would I pay more here?"
+    ],
+    "followUps": [
+     "It's the same job, though. I don't see the difference.",
+     "So are you saying they're doing it wrong?"
+    ],
+    "tone": "skeptical",
+    "delayMs": 500,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They are afraid of overpaying and of looking foolish for choosing the higher price. They cannot tell whether the two prices cover the same work.",
+    "resolvedBy": [
+     "Asking what the other price includes before reacting to it",
+     "Comparing the two line by line, including the permit, code parts, haul-away, labor, and warranty",
+     "Explaining plainly what an installed price adds when the lower number is for the part alone",
+     "Saying so when the other quote covers the same work for less",
+     "Leaving a written, itemized estimate they can compare against the other one"
+    ],
+    "resolvingBehaviors": [
+     "asked_about_concern",
+     "asked_follow_up",
+     "justified_value",
+     "showed_evidence",
+     "honest_answer",
+     "explained_plainly"
+    ],
+    "hardenedBy": [
+     "argued",
+     "bluffed",
+     "pressured",
+     "condescended",
+     "discounted_unprompted"
+    ],
+    "defaultStrength": 50
+   },
+   "evaluate": {
+    "windowTurns": 3,
+    "passIf": {
+     "anyBehaviors": [
+      "asked_about_concern",
+      "asked_follow_up",
+      "justified_value",
+      "honest_answer"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "argued",
+      "bluffed",
+      "caved",
+      "pressured"
+     ]
+    },
+    "pass": "The tech asks what the lower price includes, compares the two line by line, and explains any real difference without attacking the other company.",
+    "fail": "The tech criticizes the competitor, makes claims about a quote they have not seen, or drops needed work to match the number."
+   },
+   "coaching": {
+    "why": "A lower number only matters if it covers the same work, and most customers cannot tell whether two quotes match. Helping them compare honestly, even when the other quote turns out to be fair, earns more trust than defending your price.",
+    "modelResponse": "Good, you should compare. Can I see it, or tell me what it includes? I want to make sure we're pricing the same job: the permit, the code parts, haul-away, and the warranty. If it's the same work, that's a fair price and I'll tell you so. If something's missing, I'll show you exactly what it is and what it costs.",
+    "commonMistakes": [
+     "Saying the other company cuts corners without seeing their quote",
+     "Matching the price on the spot without comparing what is included",
+     "Dropping a required item to get the number down",
+     "Getting defensive about the difference"
+    ]
+   },
+   "tags": [
+    "core",
+    "competition",
+    "comparison"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Fail includes caved because matching the number by dropping required work is the most common way techs lose this one."
+    ]
+   }
+  },
+  {
+   "id": "handyman-can-do-it",
+   "version": 1,
+   "name": "My handyman can do it",
+   "kind": "objection",
+   "group": "competition",
+   "skill": "objections",
+   "summary": "The customer says their handyman can do the job for less.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.5
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say your handyman can do this for less. Be relaxed and practical, not rude. You trust him and like his prices. Do not bring up licenses or permits yourself. If the tech explains calmly which parts need a license or a permit, admit you are not sure whether he is licensed for plumbing. If the tech insults him or tells scare stories, defend him.",
+    "lines": [
+     "My handyman can probably knock this out for a lot less.",
+     "I've got a guy who does all my odd jobs. He can handle this.",
+     "Honestly, my handyman does this kind of thing all the time. Why pay plumber prices?",
+     "I'll just have my handyman do it. He's cheaper and he's done stuff like this."
+    ],
+    "followUps": [
+     "He's done a bunch of these for people on my street. No problems.",
+     "Come on, it's not that complicated, is it?"
+    ],
+    "tone": "neutral",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They want to keep costs down and trust someone they already know. They are not sure this job needs a licensed plumber and suspect they are paying a plumber's price for something simple.",
+    "resolvedBy": [
+     "Speaking well of the handyman and the customer's trust in him",
+     "Saying honestly which parts of the job a handyman can do and which need a license or a permit",
+     "Explaining the license and permit rule as a plain fact, not a threat",
+     "Giving them the questions to ask the handyman",
+     "Leaving a written scope so they can compare"
+    ],
+    "resolvingBehaviors": [
+     "asked_about_concern",
+     "explained_plainly",
+     "honest_answer",
+     "justified_value",
+     "corrected_respectfully"
+    ],
+    "hardenedBy": [
+     "argued",
+     "condescended",
+     "pressured",
+     "bluffed"
+    ],
+    "defaultStrength": 45
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "honest_answer",
+      "explained_plainly",
+      "corrected_respectfully",
+      "asked_about_concern"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "argued",
+      "condescended",
+      "pressured",
+      "bluffed"
+     ]
+    },
+    "pass": "The tech speaks well of the handyman, explains plainly whether this job needs a permit and a licensed contractor, and gives the customer questions to ask him.",
+    "fail": "The tech insults the handyman, tells scare stories about fires or floods, or claims rules that do not apply to this job."
+   },
+   "coaching": {
+    "why": "Homeowners often trust a handyman for good reason, and attacking him makes them defend him. The honest point is narrow: in California, an unlicensed worker can only take jobs under $1,000 in total that need no permit, and water heater and gas work need a permit. Say that as a fact, and say so when a small job really is handyman work.",
+    "modelResponse": "A good handyman is worth a lot, and for small stuff he may be the right call. For this job, I'd ask him two things: is he licensed for plumbing, and will he pull the permit? In California, if a job needs a permit, whoever you hire has to be licensed. I'll write down exactly what this job includes so you can compare.",
+    "commonMistakes": [
+     "Saying the handyman will burn the house down or flood it",
+     "Claiming every job needs a licensed plumber, even small ones that do not",
+     "Talking down to the customer for considering it",
+     "Quoting rules or code sections the tech is not sure of"
+    ]
+   },
+   "tags": [
+    "competition",
+    "licensing",
+    "california"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Uses the California minor work exemption in effect since January 1, 2025 (AB 2622), which covers jobs under $1,000 total for labor and materials when no permit is needed. Confirm it is still current before approval.",
+     "Fits rick-landlord best, since he has a handyman, but works for any homeowner."
+    ]
+   }
+  },
+  {
+   "id": "home-warranty-covers-it",
+   "version": 1,
+   "name": "My home warranty covers it",
+   "kind": "objection",
+   "group": "membership",
+   "skill": "membership-financing",
+   "summary": "The customer has a home warranty and expects it to pay for this, so a bill or a membership feels like paying twice.",
+   "difficultyMin": 1,
+   "personas": [
+    "linda-warranty"
+   ],
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.9
+   },
+   "priority": 65,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say you have a home warranty and expect it to cover this. Be polite but indignant, like someone being asked to pay twice. You believe it covers everything. Do not mention a service fee or exclusions, because you do not know about them. If the tech offers to look at your contract or call the warranty company with you, accept. If the tech says warranties are a waste, defend yours.",
+    "lines": [
+     "I have a home warranty. Shouldn't they be paying for this?",
+     "I'm already paying for a home warranty. I'm not paying for this twice.",
+     "Why can't I just call my warranty company? Isn't that what it's for?",
+     "My warranty's supposed to cover all of this. Why would I pay you too?"
+    ],
+    "followUps": [
+     "So what am I paying them for, then?",
+     "Can't you just bill them directly?"
+    ],
+    "tone": "irritated",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "She is afraid of paying twice for something she believes she already paid for, and of feeling foolish if the warranty does not cover it.",
+    "resolvedBy": [
+     "Taking the warranty seriously and offering to help her check it",
+     "Being honest that coverage depends on her contract, without guessing",
+     "Explaining plainly what warranties often leave out, such as a service fee, permits, and code parts, and checking her contract for each",
+     "Explaining how a maintenance plan differs from a warranty if that comes up",
+     "Making it easy to call the warranty company first"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "honest_answer",
+     "explained_plainly",
+     "showed_evidence",
+     "asked_about_concern",
+     "left_well"
+    ],
+    "hardenedBy": [
+     "argued",
+     "condescended",
+     "bluffed",
+     "pressured"
+    ],
+    "defaultStrength": 60
+   },
+   "evaluate": {
+    "windowTurns": 3,
+    "passIf": {
+     "anyBehaviors": [
+      "acknowledged_feeling",
+      "honest_answer",
+      "explained_plainly"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "argued",
+      "condescended",
+      "bluffed",
+      "pressured"
+     ]
+    },
+    "pass": "The tech takes the warranty seriously, offers to check her contract or call with her, and explains plainly what it may not cover without guessing.",
+    "fail": "The tech says home warranties are worthless, guesses at what her contract covers, or pushes her to pay before she can check."
+   },
+   "coaching": {
+    "why": "She believes she already paid for this, so a bill feels like paying twice. Mocking the warranty makes her defend it, and guessing at her coverage is a bluff. Helping her check, and explaining calmly what warranties often leave out, gets her a real answer either way.",
+    "modelResponse": "Then let's use it if it covers this. I don't want you paying twice. Do you have the contract handy? Many warranties send their own company, charge a service fee, and leave out things like permits and code parts, but yours might not. If you call them first, I'll write down exactly what I found so they have it.",
+    "commonMistakes": [
+     "Saying home warranties are a scam or a waste",
+     "Guessing what her contract covers without reading it",
+     "Pushing her to pay now instead of letting her call the warranty company",
+     "Pitching the membership before her warranty question is answered"
+    ]
+   },
+   "tags": [
+    "membership",
+    "home-warranty"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Written for linda-warranty. Fires at price (priceStated) per the assignment, though it sits in the membership group.",
+     "Claims about warranties are worded as \"many\" or \"often\" (service fee, permits, and code parts left out). Check against common California home warranty contracts before approval."
+    ]
+   }
+  },
+  {
    "id": "how-do-i-know-its-broken",
    "version": 1,
    "name": "How do I know it's really broken?",
@@ -3424,6 +4561,340 @@
     "notes": [
      "Pairs with the show-what-you-found drill. In voice-only sessions, offering to show counts as showed_evidence under its definition.",
      "passIf requires showed_evidence plus one of the plain-language behaviors. Confirm the engine reads allBehaviors and anyBehaviors together that way."
+    ]
+   }
+  },
+  {
+   "id": "ill-do-part-myself",
+   "version": 1,
+   "name": "I'll do part of it myself",
+   "kind": "objection",
+   "group": "scope",
+   "skill": "objections",
+   "summary": "The customer offers to do part of the job, such as hauling away the old unit, buying the parts, or finishing the easy work, to bring the price down.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price",
+     "objections"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceStated": true
+    },
+    "chance": 0.5
+   },
+   "priority": 45,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Offer to do part of the job yourself to bring the price down, such as hauling away the old unit, buying the parts, or finishing the easy part. Sound practical. If you are handy, sound a little proud of it. If the tech refuses everything, get suspicious. If the tech agrees to the parts that make sense and explains the rest plainly, relax.",
+    "lines": [
+     "What if I haul the old one away myself? That's got to save something.",
+     "Could you just do the main part? I can handle the rest.",
+     "I can pick up the parts myself. Just charge me for the labor.",
+     "If I do some of the easy stuff, how much does that take off?"
+    ],
+    "followUps": [
+     "So you won't let me do any of it? Seems convenient.",
+     "How hard can it be, really? It's just a couple of connections."
+    ],
+    "tone": "confident",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They want to lower the cost and feel capable. They suspect the price includes easy work they could do themselves.",
+    "resolvedBy": [
+     "Agreeing to the parts that are safe and reasonable for a homeowner, and saying what that takes off",
+     "Explaining plainly why gas, venting, and permitted work stay with a licensed tech",
+     "Being honest about how customer-supplied parts affect the warranty",
+     "Respecting their skills instead of talking down"
+    ],
+    "resolvingBehaviors": [
+     "honest_answer",
+     "explained_plainly",
+     "justified_value",
+     "acknowledged_feeling",
+     "corrected_respectfully",
+     "asked_follow_up"
+    ],
+    "hardenedBy": [
+     "condescended",
+     "argued",
+     "pressured",
+     "bluffed"
+    ],
+    "defaultStrength": 40
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "honest_answer",
+      "explained_plainly",
+      "corrected_respectfully"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "condescended",
+      "argued",
+      "bluffed",
+      "pressured"
+     ]
+    },
+    "pass": "The tech agrees to the parts the customer can safely do, says what that takes off the price, and explains plainly which parts must stay with a licensed tech.",
+    "fail": "The tech refuses every part without a reason, talks down to the customer, or invents rules to keep the whole job."
+   },
+   "coaching": {
+    "why": "Most customers who offer to help are trying to save money, not insult you. Saying yes to the reasonable parts shows the rest of your answer is honest. Be specific about the parts that are not reasonable: gas, venting, and anything the permit or warranty depends on.",
+    "modelResponse": "Sure, some of this you can do. If you want to haul the old one to the dump yourself, I'll take the haul-away charge off. The gas line, the venting, and the install itself I need to do, because they're on the permit and the warranty depends on them. Want me to redo the quote that way?",
+    "commonMistakes": [
+     "Refusing every part without explaining why",
+     "Talking down to a customer who says they are handy",
+     "Inventing a rule or warranty term to keep the whole job",
+     "Letting the customer do gas or permitted work to close the sale"
+    ]
+   },
+   "tags": [
+    "scope",
+    "diy"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Triggers on priceStated with the objections phase added, since customers offer to do part of the work after hearing the price. This is a small change from the scope pattern.",
+     "Fits handy or price-focused personas best (devin-researcher, rick-landlord, paul-engineer, ruiz-couple). Consider movePreferences weights if it sounds out of character for others.",
+     "Company policies on customer-supplied parts differ. Company specs should supply the exact warranty wording."
+    ]
+   }
+  },
+  {
+   "id": "ill-just-call-when-it-breaks",
+   "version": 1,
+   "name": "I'll just call when it breaks",
+   "kind": "objection",
+   "group": "membership",
+   "skill": "membership-financing",
+   "summary": "The tech offers the membership and the customer says they would rather pay for repairs when something breaks.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price",
+     "close",
+     "wrapup"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "membershipOffered": true
+    },
+    "chance": 0.5
+   },
+   "priority": 45,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say you would rather pay for repairs when something breaks than pay for a plan. Be easygoing and practical. You think the math favors waiting. Accept an answer with real numbers and no pressure. If the tech pushes or predicts a disaster, become more firm.",
+    "lines": [
+     "I'll just call you when something breaks. That's worked fine so far.",
+     "Why pay for a plan when nothing's wrong? I'll pay when I need you.",
+     "I'd rather keep my money and call if there's a problem.",
+     "If something goes wrong, I've got your number. That's good enough for me."
+    ],
+    "followUps": [
+     "Things don't break that often. Do the math for me.",
+     "And if nothing breaks all year, I just paid for nothing?"
+    ],
+    "tone": "friendly",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They believe paying for problems as they come is cheaper than paying for prevention, and they do not want a charge for something they may not use.",
+    "resolvedBy": [
+     "Agreeing it is a reasonable approach for some homes",
+     "Doing the honest math, what the plan costs against what it saves for their equipment",
+     "Pointing to the specific reason in their home, such as an older water heater or high water pressure, without exaggerating",
+     "Accepting the no and leaving the details with them"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "explained_membership_value",
+     "used_customer_detail",
+     "honest_answer",
+     "left_well"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "argued",
+     "bluffed",
+     "repeated_same_answer"
+    ],
+    "defaultStrength": 45
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "explained_membership_value",
+      "honest_answer",
+      "left_well"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "argued",
+      "bluffed",
+      "repeated_same_answer"
+     ]
+    },
+    "pass": "The tech agrees it can be a reasonable choice, does the honest math for this home, and accepts the answer without pushing.",
+    "fail": "The tech predicts a breakdown to scare them, argues the math without real numbers, or asks again after a clear no."
+   },
+   "coaching": {
+    "why": "Paying as you go is a reasonable plan for many homes, and pretending otherwise costs you credibility. The membership is worth it when this home has a specific reason, such as older equipment or hard water, and the math shows it. If the reason is not there, saying so makes them more likely to call you next time.",
+    "modelResponse": "That's fair, and for some homes it's the right call. Here's the honest math for yours: what the plan costs a year, against what the flush and the repair discount would save on a water heater this age. If it doesn't come out ahead for you, skip it. I'll leave the details either way.",
+    "commonMistakes": [
+     "Predicting a breakdown to create urgency",
+     "Talking about savings without real numbers",
+     "Asking again after a clear no",
+     "Treating the customer's approach as foolish"
+    ]
+   },
+   "tags": [
+    "membership"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Company specs supply the plan's yearly price and repair discount so the tech can do this math with real numbers."
+    ]
+   }
+  },
+  {
+   "id": "just-repair-it",
+   "version": 1,
+   "name": "Can't you just repair it?",
+   "kind": "objection",
+   "group": "scope",
+   "skill": "integrity",
+   "summary": "The tech recommends replacement and the customer asks whether it can be repaired instead.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "findings",
+     "options",
+     "price"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "optionsPresented": true
+    },
+    "chance": 0.7
+   },
+   "priority": 55,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Ask whether it can just be repaired instead of replaced. Sound hopeful and a little doubtful of the recommendation. You are not hostile. You just do not want to spend more than you need to. Do not say how much you hoped to spend unless the tech asks. If the tech shows you the problem or offers a real repair, accept their answer. If they only say it cannot be fixed, ask once more.",
+    "lines": [
+     "Can't you just fix it? I don't want to replace the whole thing.",
+     "Isn't there a part you can swap out instead of buying a whole new one?",
+     "It was working fine last week. Seems like it just needs a repair.",
+     "I'd rather just repair it for now, if that's possible. Is it?"
+    ],
+    "followUps": [
+     "Somebody fixed my last one for a couple hundred bucks.",
+     "Are you sure? Or is replacing it just easier for you?"
+    ],
+    "tone": "skeptical",
+    "delayMs": 700,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They suspect replacement is the more profitable answer, not the necessary one, and they do not want to throw away something that might still work.",
+    "resolvedBy": [
+     "Answering honestly whether a repair is possible here",
+     "Offering the repair as a real option when it is one, with how long it should last",
+     "Showing why when it cannot be repaired, with the part, a photo, or a reading",
+     "Comparing repairing now and replacing later in plain numbers",
+     "Letting them choose"
+    ],
+    "resolvingBehaviors": [
+     "honest_answer",
+     "showed_evidence",
+     "explained_plainly",
+     "presented_options",
+     "tied_options_to_needs"
+    ],
+    "hardenedBy": [
+     "recommended_unneeded_work",
+     "bluffed",
+     "pressured",
+     "argued",
+     "condescended"
+    ],
+    "defaultStrength": 50
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "honest_answer",
+      "showed_evidence",
+      "presented_options"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "recommended_unneeded_work",
+      "bluffed",
+      "caved",
+      "pressured"
+     ]
+    },
+    "pass": "The tech says honestly whether a repair will work here, offers it when it is real, and shows the evidence when it is not.",
+    "fail": "The tech refuses a repair that would work, invents a reason it cannot be fixed, or agrees to a repair that will not hold just to keep the customer happy."
+   },
+   "coaching": {
+    "why": "This question tests whether replacement is your honest recommendation. When a repair is a real option, offering it builds more trust than any sale. When it is not, the customer needs to see why, not just hear it.",
+    "modelResponse": "Fair question. If a repair will hold, that's what I'll recommend, and I'll tell you how long I'd expect it to last. If it won't, I'll show you why. Here, the leak is coming from the tank itself. Come take a look at the rust at the bottom seam. There's no part that fixes a leaking tank. Does that make sense?",
+    "commonMistakes": [
+     "Pushing replacement when a repair would honestly hold",
+     "Saying it cannot be fixed without showing why",
+     "Agreeing to a patch that will not last to avoid an argument",
+     "Leaving out how long a repair is likely to last"
+    ]
+   },
+   "tags": [
+    "core",
+    "scope",
+    "repair-vs-replace",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The model response uses the leaking-tank case. In wh-repair-or-replace-9yr the repair is the honest answer, and the pass and fail lines cover both cases."
     ]
    }
   },
@@ -3755,6 +5226,231 @@
    }
   },
   {
+   "id": "memberships-are-a-scam",
+   "version": 1,
+   "name": "Memberships are a scam",
+   "kind": "objection",
+   "group": "membership",
+   "skill": "membership-financing",
+   "summary": "The tech offers the maintenance membership and the customer says memberships are a scam to collect money every month.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price",
+     "close",
+     "wrapup"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "membershipOffered": true
+    },
+    "chance": 0.6
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say you think service memberships are a scam. Be blunt but not rude. You have been stuck paying for subscriptions you did not use. Do not ask about the benefits yourself. Become more open only if the tech admits some memberships are not worth it, gives real numbers for your home, and is honest about how to cancel.",
+    "lines": [
+     "No offense, but those memberships are a racket. I'm not signing up.",
+     "Every company has a club now. It's just a way to get money every month.",
+     "I've been burned by these before. You sign up and you can never cancel.",
+     "Memberships are how they get you. I'll pass, thanks."
+    ],
+    "followUps": [
+     "So how do I cancel, if I want out?",
+     "What would I actually save in a year? Real numbers."
+    ],
+    "tone": "skeptical",
+    "delayMs": 500,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They have paid for subscriptions they never used and expect this one to be the same: a monthly charge that is hard to cancel and pays off only for the company.",
+    "resolvedBy": [
+     "Agreeing that some memberships are not worth it, without getting defensive",
+     "Explaining exactly what this one includes and what it costs for the year",
+     "Showing what it would save or prevent for their equipment, in real numbers",
+     "Explaining plainly how to cancel",
+     "Saying so if it does not make sense for them"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "explained_membership_value",
+     "honest_answer",
+     "used_customer_detail",
+     "explained_plainly"
+    ],
+    "hardenedBy": [
+     "argued",
+     "pressured",
+     "bluffed",
+     "repeated_same_answer"
+    ],
+    "defaultStrength": 55
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "explained_membership_value",
+      "honest_answer",
+      "acknowledged_feeling"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "argued",
+      "pressured",
+      "bluffed",
+      "repeated_same_answer"
+     ]
+    },
+    "pass": "The tech admits not every membership is worth it, explains what this one does for their home in real numbers, and says how to cancel.",
+    "fail": "The tech argues that memberships always pay off, inflates the savings, or keeps pushing after a clear no."
+   },
+   "coaching": {
+    "why": "Most people have paid for a subscription they did not use, so their doubt is reasonable. A membership is worth it only if it does something specific for this home, and the customer needs to hear that in numbers. Being honest about canceling, and about when it does not pay off, makes the rest believable.",
+    "modelResponse": "You're right that some aren't worth it, so let me be specific. Here's what this one covers for your house, what it costs for the year, and what it would save you. And here's exactly how you cancel. If the math doesn't work for you, skip it. I'd rather you trust me than buy it.",
+    "commonMistakes": [
+     "Arguing that memberships always pay for themselves",
+     "Reading the full benefit list instead of what matters for this home",
+     "Inflating the savings or skipping how to cancel",
+     "Asking again after a clear no"
+    ]
+   },
+   "tags": [
+    "membership"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Company specs supply the real benefits, price, and cancellation terms the tech should cite."
+    ]
+   }
+  },
+  {
+   "id": "monthly-still-too-much",
+   "version": 1,
+   "name": "Even the monthly is too much",
+   "kind": "objection",
+   "group": "financing",
+   "skill": "membership-financing",
+   "summary": "The tech offers financing, and the customer says even the monthly payment is more than they can manage.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "priceAboveBudget": true,
+     "financingOffered": true
+    },
+    "chance": 0.7
+   },
+   "priority": 55,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say that even the monthly payment is more than you can manage. Sound tired and a little embarrassed, not angry. If the tech gave a specific monthly number, repeat it back. Do not share your actual budget unless the tech asks gently. If the tech offers a longer loan or more debt, say less and become more guarded. If they offer an honest cheaper way to fix it safely, you are relieved.",
+    "lines": [
+     "Even by the month, that's more than I can swing right now.",
+     "I appreciate it, but another monthly payment just isn't going to work.",
+     "That would really squeeze me. I've already got a lot going out every month.",
+     "Honestly, money's tight. I can't take on another bill."
+    ],
+    "followUps": [
+     "Isn't there something cheaper that would still be safe?",
+     "I don't want to sign up for something I can't keep up with."
+    ],
+    "tone": "embarrassed",
+    "delayMs": 1200,
+    "audioTags": [
+     "sighs"
+    ],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "Money is tight, they are embarrassed to say how tight, and they are afraid a new payment will add to bills they already struggle to pay.",
+    "resolvedBy": [
+     "Acknowledging it without pity or pressure",
+     "Asking gently what amount, monthly or total, would work",
+     "Offering the least expensive option that still fixes the problem safely",
+     "Being clear about the total cost if a longer term comes up, and not pushing it",
+     "Accepting a no and making it easy to come back later"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "asked_about_concern",
+     "tied_options_to_needs",
+     "honest_answer",
+     "presented_options",
+     "left_well"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "condescended",
+     "argued",
+     "recommended_unneeded_work",
+     "repeated_same_answer"
+    ],
+    "defaultStrength": 55
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "acknowledged_feeling",
+      "asked_about_concern",
+      "tied_options_to_needs"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "condescended",
+      "repeated_same_answer"
+     ]
+    },
+    "pass": "The tech acknowledges it kindly, asks what would work, and offers the least expensive safe option without pushing more debt.",
+    "fail": "The tech pushes a longer loan or a bigger payment, repeats the same offer, or makes the customer feel embarrassed."
+   },
+   "coaching": {
+    "why": "When even the monthly number is too much, the customer is telling you something hard about their money. Making the loan longer to lower the payment only adds debt they cannot afford. The honest answer is the least expensive safe fix, offered without making them feel small.",
+    "modelResponse": "Thank you for telling me. Let's not add a payment that makes things harder. Let me show you the least expensive way to do this safely. It may not be my first choice, but it fixes the problem. And if that's still too much right now, tell me what you can manage and I'll be straight with you about what's possible.",
+    "commonMistakes": [
+     "Making the loan longer to lower the payment without explaining the total cost",
+     "Repeating the monthly number as if they did not hear it",
+     "Sounding disappointed or pitying",
+     "Treating a no as a problem to overcome instead of an answer"
+    ]
+   },
+   "tags": [
+    "financing",
+    "money-worry",
+    "dignity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Adds priceAboveBudget to the financing trigger so the move only fires for customers who cannot pay cash. Consider adding afterBehaviors with framed_monthly if it should fire only right after a specific monthly number."
+    ]
+   }
+  },
+  {
    "id": "need-three-bids",
    "version": 1,
    "name": "I need three bids",
@@ -4082,6 +5778,117 @@
    }
   },
   {
+   "id": "only-fix-what-i-called-for",
+   "version": 1,
+   "name": "Just fix what I called about",
+   "kind": "objection",
+   "group": "scope",
+   "skill": "objections",
+   "summary": "The tech brings up findings beyond the reason for the call, and the customer asks them to fix only what they called about.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "findings",
+     "options",
+     "price"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "optionsPresented": true
+    },
+    "chance": 0.6
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Tell the tech you only want the problem you called about fixed. Be polite and firm. You feel a sales pitch coming. Do not ask about the other finding unless the tech explains it once in a way that sounds honest and not pushy. If the tech accepts your choice right away, relax and listen. If they bring it up again, answer in fewer words and sound irritated.",
+    "lines": [
+     "I just want you to fix what I called about. That's it.",
+     "Can we just stick to what I called you out for?",
+     "Look, I appreciate it, but I only need the one thing fixed today.",
+     "Every time someone comes out, it turns into a whole list. Just the one thing, please."
+    ],
+    "followUps": [
+     "Is that a real problem, or just something you noticed?",
+     "If it's been fine this long, it can wait, right?"
+    ],
+    "tone": "guarded",
+    "delayMs": 500,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They feel the visit turning into a sales pitch and are afraid of a bill that keeps growing. They want control over what gets done in their home.",
+    "resolvedBy": [
+     "Agreeing right away to fix what they called about",
+     "Mentioning the other finding once, plainly, with evidence and its real urgency",
+     "Saying clearly when something is a safety issue, without exaggerating",
+     "Writing it down and leaving the decision with them"
+    ],
+    "resolvingBehaviors": [
+     "acknowledged_feeling",
+     "showed_evidence",
+     "explained_plainly",
+     "honest_answer",
+     "left_well"
+    ],
+    "hardenedBy": [
+     "pressured",
+     "recommended_unneeded_work",
+     "repeated_same_answer",
+     "showed_impatience",
+     "argued"
+    ],
+    "defaultStrength": 45
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "acknowledged_feeling",
+      "honest_answer",
+      "showed_evidence",
+      "left_well"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "pressured",
+      "recommended_unneeded_work",
+      "repeated_same_answer",
+      "showed_impatience"
+     ]
+    },
+    "pass": "The tech agrees to fix what they called about, explains the other finding once with its real urgency, and leaves the choice with the customer.",
+    "fail": "The tech keeps pushing the extra work, makes it sound more urgent than it is, or makes the customer feel difficult for saying no."
+   },
+   "coaching": {
+    "why": "The customer is protecting themselves from a visit that grows into a big bill. Agreeing first makes them willing to listen, and one clear explanation is enough. If a finding is a real safety issue, saying so plainly is your job, but repeating it until they agree is pressure.",
+    "modelResponse": "Of course, that's what I'm here for, and I'll take care of it. One thing I want you to know about, and then it's your call. Your main water shutoff is stuck and won't turn. Here's a photo. It's not urgent today, but if a pipe ever breaks, you couldn't shut the water off. I'll note it on your invoice.",
+    "commonMistakes": [
+     "Bringing the extra finding up again after the customer said no",
+     "Making a minor finding sound urgent",
+     "Leaving out a real safety issue to avoid the conversation",
+     "Acting annoyed that the customer said no"
+    ]
+   },
+   "tags": [
+    "scope",
+    "additional-findings"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The model response uses the stuck main shutoff from main-shutoff-seized. The pattern is the same for failing shutoff valves or a worn anode rod."
+    ]
+   }
+  },
+  {
    "id": "paid-less-last-time",
    "version": 1,
    "name": "I paid less last time",
@@ -4302,6 +6109,118 @@
     "notes": [
      "Whether a company honors a number given on the phone is company policy. Add each company's answer to its objectionAnswers.",
      "Check the \"starting range\" wording against how each company's office actually quotes on the phone."
+    ]
+   }
+  },
+  {
+   "id": "selling-soon",
+   "version": 1,
+   "name": "I'm selling soon",
+   "kind": "objection",
+   "group": "scope",
+   "skill": "objections",
+   "summary": "The customer plans to sell the house in about two years and does not want to put money into it.",
+   "difficultyMin": 1,
+   "personas": [
+    "greg-selling"
+   ],
+   "trigger": {
+    "phases": [
+     "findings",
+     "options",
+     "price"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "optionsPresented": true
+    },
+    "chance": 0.9
+   },
+   "priority": 65,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Say you are selling in about two years and do not want to put real money into the house. Be friendly but firm. You want the cheapest thing that works until you list. Do not mention that you worry about what a buyer's inspector will find. Admit it if the tech asks about the sale or your plans. If the tech keeps pushing the top option, give short answers and lose interest.",
+    "lines": [
+     "I'm selling in a couple of years. I'm not putting real money into this place.",
+     "I'm out of here in about two years. What's the cheapest thing that gets me there?",
+     "Why would I spend that on a house I'm about to sell?",
+     "Honestly, the next owner can deal with it. I just need it working till I list."
+    ],
+    "followUps": [
+     "The buyer's not going to care about that, are they?",
+     "Just give me the bare minimum. What's the least I can do?"
+    ],
+    "tone": "confident",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "He does not want to spend on a house he is leaving, and he suspects the tech is using the sale to sell him more. He also wants to avoid surprises that could hurt the sale.",
+    "resolvedBy": [
+     "Taking the two-year plan seriously and changing the recommendation to fit it",
+     "Recommending the lowest honest option for a short stay instead of the top one",
+     "Separating what could matter at sale time, such as what a buyer's inspector may find, from what will not",
+     "Sending disclosure questions to his real estate agent instead of guessing",
+     "Not using the sale to create fear"
+    ],
+    "resolvingBehaviors": [
+     "tied_options_to_needs",
+     "used_customer_detail",
+     "honest_answer",
+     "asked_about_concern",
+     "explained_plainly"
+    ],
+    "hardenedBy": [
+     "recommended_unneeded_work",
+     "pressured",
+     "bluffed",
+     "argued"
+    ],
+    "defaultStrength": 60
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "tied_options_to_needs",
+      "used_customer_detail",
+      "honest_answer"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "recommended_unneeded_work",
+      "pressured",
+      "bluffed"
+     ]
+    },
+    "pass": "The tech changes the recommendation to fit the two-year plan, points to the option that fits it, and explains plainly what could matter when he sells.",
+    "fail": "The tech keeps pushing the top option, uses the sale to scare him, or guesses at disclosure rules."
+   },
+   "coaching": {
+    "why": "A customer who is leaving is telling you what he values: getting to the sale without surprises. Recommending less when less fits proves your other recommendations are honest. What could matter at sale time is what a buyer's inspector may find, and that is worth explaining calmly.",
+    "modelResponse": "That changes what I'd recommend. For two years, you don't need the top option or the longest warranty. The basic fix does the job. The one thing I'd think about is the sale itself. A buyer's inspector may find this, so fixing it now could cost less than a credit later. Your agent can tell you which is better.",
+    "commonMistakes": [
+     "Pushing the top option on someone leaving in two years",
+     "Using the sale as a scare tactic, such as saying the house will not sell",
+     "Guessing at disclosure law instead of sending them to their agent",
+     "Ignoring the plan and repeating the original recommendation"
+    ]
+   },
+   "tags": [
+    "scope",
+    "plans"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Written for greg-selling. Check the two-year timeline against his persona file once it exists.",
+     "If a water heater scenario is added for greg-selling, California sellers must certify in writing that the water heater is braced or strapped (Health and Safety Code 19211). Left out of the model response so the tech does not give legal advice."
     ]
    }
   },
@@ -4752,6 +6671,225 @@
     "notes": [
      "Flat-rate techs often do not know the dollar split per line item. The model response lists what is included without inventing per-line costs; company price books may allow more detail.",
      "passIf requires justified_value plus one of the plain-language behaviors. Confirm the engine reads allBehaviors and anyBehaviors together that way."
+    ]
+   }
+  },
+  {
+   "id": "what-do-i-actually-get",
+   "version": 1,
+   "name": "What do I actually get?",
+   "kind": "objection",
+   "group": "membership",
+   "skill": "membership-financing",
+   "summary": "The tech offers the membership and the customer asks what they would actually get for the money.",
+   "difficultyMin": 1,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "options",
+     "price",
+     "close",
+     "wrapup"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "membershipOffered": true
+    },
+    "chance": 0.6
+   },
+   "priority": 50,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Ask what you would actually get from the membership. Sound interested but unconvinced, like someone who has heard a vague pitch before. Do not accept a list of perks. Become more interested only if the tech names what it does for your equipment and what it would have saved you today. If the tech reads a long list, lose interest.",
+    "lines": [
+     "Okay, but what do I actually get for that?",
+     "Sounds nice, but what does it actually do for me?",
+     "So what's in it, really? Like, specifically for my house.",
+     "Break it down for me. What exactly am I paying for?"
+    ],
+    "followUps": [
+     "And what's not included? There's always something.",
+     "Would I have saved anything today if I'd had it?"
+    ],
+    "tone": "thoughtful",
+    "delayMs": 600,
+    "audioTags": [],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They cannot tell what they would be paying for. They want specifics that apply to their home and an honest sense of whether it pays off.",
+    "resolvedBy": [
+     "Naming the two or three benefits that matter for their home, not the full list",
+     "Putting it in numbers, what it costs a year and what it would save",
+     "Connecting it to what was found today",
+     "Saying plainly what it does not cover"
+    ],
+    "resolvingBehaviors": [
+     "explained_membership_value",
+     "used_customer_detail",
+     "explained_plainly",
+     "honest_answer",
+     "checked_understanding"
+    ],
+    "hardenedBy": [
+     "rambled",
+     "used_jargon",
+     "bluffed",
+     "pressured"
+    ],
+    "defaultStrength": 40
+   },
+   "evaluate": {
+    "windowTurns": 2,
+    "passIf": {
+     "anyBehaviors": [
+      "explained_membership_value",
+      "used_customer_detail",
+      "honest_answer"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "rambled",
+      "bluffed",
+      "pressured"
+     ]
+    },
+    "pass": "The tech names the benefits that matter for this home, puts them in numbers, and says plainly what the plan does not cover.",
+    "fail": "The tech reads the whole benefit list, inflates the savings, or cannot say what is not included."
+   },
+   "coaching": {
+    "why": "This is a buying question, and most techs answer it by reading the benefit list. The customer wants to know what changes for their house and whether the math works. Two or three specific benefits tied to today's visit do more than the full list.",
+    "modelResponse": "For your house, it comes down to three things. A yearly check on the water heater, which matters because yours is getting older. Priority when something breaks, so you're not waiting days. And the member discount, which would have taken a real amount off today's bill. I'll show you the number. And here's what it doesn't cover, so there are no surprises.",
+    "commonMistakes": [
+     "Reading the full benefit list",
+     "Giving no numbers for cost or savings",
+     "Skipping what the plan does not cover",
+     "Promising savings the customer will not see"
+    ]
+   },
+   "tags": [
+    "core",
+    "membership"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "The model response assumes a yearly water heater check, priority service, and a repair discount. Company specs supply the actual benefits and numbers."
+    ]
+   }
+  },
+  {
+   "id": "whats-the-catch",
+   "version": 1,
+   "name": "What's the catch?",
+   "kind": "objection",
+   "group": "financing",
+   "skill": "integrity",
+   "summary": "The tech offers financing and the customer asks what the catch is: the credit check, the interest, and what happens if they fall behind.",
+   "difficultyMin": 2,
+   "personas": "any",
+   "trigger": {
+    "phases": [
+     "price",
+     "objections",
+     "close"
+    ],
+    "afterBehaviors": [],
+    "when": {
+     "financingOffered": true
+    },
+    "chance": 0.6
+   },
+   "priority": 55,
+   "maxUses": 1,
+   "delivery": {
+    "act": "object",
+    "intent": "Ask what the catch is with the financing. Be skeptical but fair. You have heard stories about interest that shows up later and surprise fees. Ask about the credit check, the interest rate, and what happens if the balance is not paid off in time. Accept clear, honest answers. Get more suspicious if the tech says there is no catch at all or cannot answer.",
+    "lines": [
+     "Okay, that sounds easy. So what's the catch?",
+     "There's always a catch with these payment plans. What is it?",
+     "What happens if I miss a payment or can't pay it off in time?",
+     "Does this run my credit? And what's the interest, really?"
+    ],
+    "followUps": [
+     "So if I'm a month late paying it off, what happens?",
+     "Is all of that in writing somewhere I can read?"
+    ],
+    "tone": "skeptical",
+    "delayMs": 600,
+    "audioTags": [
+     "skeptical"
+    ],
+    "speaker": "primary"
+   },
+   "resolution": {
+    "concern": "They suspect the easy monthly number hides interest, fees, or a hit to their credit, and they do not want to be trapped in a loan they did not understand.",
+    "resolvedBy": [
+     "Explaining the real terms in plain words, including the credit check, the rate, the term, and the total cost",
+     "Saying exactly what happens if a promotional balance is not paid off in time",
+     "Showing the lender's written terms instead of summarizing from memory",
+     "Saying \"I'll find out\" when unsure instead of guessing"
+    ],
+    "resolvingBehaviors": [
+     "honest_answer",
+     "explained_plainly",
+     "showed_evidence",
+     "checked_understanding"
+    ],
+    "hardenedBy": [
+     "bluffed",
+     "pressured",
+     "used_jargon",
+     "condescended"
+    ],
+    "defaultStrength": 50
+   },
+   "evaluate": {
+    "windowTurns": 3,
+    "passIf": {
+     "anyBehaviors": [
+      "honest_answer",
+      "explained_plainly",
+      "showed_evidence"
+     ],
+     "allBehaviors": [],
+     "addressedConcern": true
+    },
+    "failIf": {
+     "anyBehaviors": [
+      "bluffed",
+      "pressured",
+      "used_jargon"
+     ]
+    },
+    "pass": "The tech explains the credit check, the rate, the term, and what happens if a promotional balance is not paid off, and shows the written terms.",
+    "fail": "The tech says there is no catch, guesses at the terms, or skips the credit check and interest to keep the sale moving."
+   },
+   "coaching": {
+    "why": "Most people have heard about interest that shows up later and surprise fees, so honest terms are what they want. Saying there is no catch loses them, because there is almost always a credit check and usually interest somewhere. Plain terms, in writing, make the monthly number believable.",
+    "modelResponse": "Fair question, and you should ask it. You'd apply with the lender, so there's a credit check. If you're approved, the payment is the monthly number I gave you, and here are the rate and the term in writing. On a promo plan, the big one is what happens if it's not paid off in time, so let's read that line together.",
+    "commonMistakes": [
+     "Saying there's no catch",
+     "Guessing at the rate or promo terms from memory",
+     "Skipping the credit check because it might scare them off",
+     "Using terms like APR or deferred interest without explaining them"
+    ]
+   },
+   "tags": [
+    "financing",
+    "disclosure",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Real lender terms belong in each company's spec. The model response assumes a lender application with a credit check. Confirm against each company's financing partner."
     ]
    }
   },
@@ -6540,6 +8678,598 @@
  ],
  "scenarios": [
   {
+   "id": "gas-smell-flex-line",
+   "version": 1,
+   "title": "Gas smell at the water heater",
+   "trade": "plumbing",
+   "jobType": "gas-leak-repair",
+   "difficulty": 3,
+   "personaId": "margaret-retiree",
+   "alternatePersonas": [
+    "linda-warranty",
+    "jen-busy-parent"
+   ],
+   "briefing": "Same-day call. Customer reports a faint gas smell in the garage near the water heater since this morning. 40-gallon gas tank in the garage. Not a member.",
+   "situation": "The gas connector to the water heater is leaking. It is an old uncoated brass connector that was reused at the last install. It is corroded at the lower fitting and kinked behind the tank, and leak solution bubbles at that fitting. The gas shutoff valve for the water heater is an old plug valve. It is stiff and shows a small bubble at the stem when it is turned. It closed and held, but it is not reliable. There is no sediment trap. With the water heater valve closed, the meter shows no other leak, and the other gas appliances test tight. The smell was faint and limited to the water heater area. It was not a strong smell, which would mean leaving the house and calling the gas company. Safety comes first. The tech confirms the leak, shuts off the gas to the water heater, airs out the garage, and tells the customer calmly that it is safe now and what happens next. The water heater stays off until it is fixed. The honest recommendation is to replace the connector and the shutoff valve, add a sediment trap, leak test, relight, and check the draft, today. The tank is 14 years old with light rust at the base but no leak and a good burner, so replacement is a fair option to mention because of its age, not because of the gas leak. Calm, honest urgency passes. Scare talk, worst-case stories, or saying the tank must be replaced for safety fails.",
+   "equipment": [
+    {
+     "item": "40-gallon atmospheric gas water heater",
+     "ageYears": 14,
+     "notes": "Light rust at the base, no leak. Burner works. Gas shut off at the appliance valve during the visit."
+    },
+    {
+     "item": "Gas connector",
+     "notes": "Old uncoated brass, reused at the last install. Corroded, kinked, leaking at the lower fitting."
+    },
+    {
+     "item": "Gas shutoff valve",
+     "notes": "Old plug valve. Stiff, small bubble at the stem when turned."
+    }
+   ],
+   "findings": [
+    {
+     "id": "connector-leaking",
+     "text": "The gas connector to the water heater is corroded and kinked, and leak solution bubbles at the lower fitting. It is leaking gas and has to be replaced.",
+     "severity": "urgent"
+    },
+    {
+     "id": "shutoff-valve-unreliable",
+     "text": "The gas shutoff valve is an old plug valve. It is stiff and bubbles at the stem when it is turned. It should be replaced along with the connector.",
+     "severity": "major"
+    },
+    {
+     "id": "no-sediment-trap",
+     "text": "There is no sediment trap on the gas line at the water heater. Code requires one.",
+     "severity": "minor"
+    },
+    {
+     "id": "other-appliances-tight",
+     "text": "With the water heater valve closed, the meter shows no other leak, and the other gas appliances test tight.",
+     "severity": "info"
+    },
+    {
+     "id": "tank-age",
+     "text": "The water heater is 14 years old with light rust at the base but no leak. It works. Replacing it is a choice because of its age, not part of the safety fix.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-gas-connector",
+     "label": "Replace the gas connector",
+     "rationale": "It is corroded, kinked, and leaking."
+    },
+    {
+     "id": "replace-shutoff-valve",
+     "label": "Replace the gas shutoff valve",
+     "rationale": "It is stiff and bubbles at the stem, so it cannot be trusted to shut off."
+    },
+    {
+     "id": "sediment-trap",
+     "label": "Add a sediment trap",
+     "rationale": "Required by code at the appliance, and the line is already open for the repair."
+    },
+    {
+     "id": "leak-test-relight",
+     "label": "Leak test, relight, and draft check",
+     "rationale": "Confirms the repair holds and the water heater runs safely."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "gas-repipe",
+     "label": "Whole-house gas repipe",
+     "why": "One connector and one valve leak. The meter check shows the rest of the gas piping is tight."
+    },
+    {
+     "id": "replace-tank-for-safety",
+     "label": "Saying the water heater must be replaced for safety",
+     "why": "The leak is in the connector and the valve, not the tank. Replacement is a choice because of age, not a safety requirement."
+    },
+    {
+     "id": "tankless-conversion",
+     "label": "Tankless conversion",
+     "why": "A new connector and valve fix the leak. Changing the type of water heater has nothing to do with the safety issue."
+    }
+   ],
+   "options": [
+    {
+     "id": "gas-connection-repair",
+     "label": "Replace gas connector and shutoff valve",
+     "price": 445,
+     "includes": [
+      "New coated gas connector",
+      "New gas shutoff valve",
+      "Sediment trap",
+      "Meter check for other leaks",
+      "Relight and draft check",
+      "Done today"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "replace-40",
+     "label": "Replace the water heater, 40-gallon standard gas, 6-year warranty",
+     "price": 1890,
+     "monthly": 49,
+     "includes": [
+      "New 40-gallon gas water heater",
+      "New gas connector, shutoff valve, and sediment trap",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "can-it-wait"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Make the leak safe first and explain it calmly without fear tactics. Recommend the connector and valve repair today, and present replacement as an optional choice because of the tank's age.",
+   "passBar": 75,
+   "tags": [
+    "gas",
+    "safety",
+    "water-heater",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "The repair has no monthly number because most financing programs have a minimum amount. The replacement uses roughly the price divided by 39.",
+     "Confirm each company's gas leak protocol, including when to shut off at the meter, when to call the gas company, and who relights appliances. The scenario assumes a small leak downstream of a valve that closes and holds."
+    ]
+   }
+  },
+  {
+   "id": "maintenance-visit-anode",
+   "version": 1,
+   "title": "Member tune-up finds a worn anode",
+   "trade": "plumbing",
+   "jobType": "maintenance-visit",
+   "difficulty": 2,
+   "personaId": "linda-warranty",
+   "alternatePersonas": [
+    "margaret-retiree",
+    "paul-engineer"
+   ],
+   "briefing": "Membership tune-up. The customer is a member. Annual water heater service with a flush, relief valve test, and burner check. 50-gallon gas tank in the garage, about 6 years old. No complaints reported.",
+   "situation": "This is the customer's included yearly tune-up. During the service the tech pulls the anode rod and finds it used up. Most of it is bare steel core wire with only a few pieces of magnesium left. The anode corrodes in place of the tank steel, and once it is gone the tank starts to rust from the inside. The tank is sound. There are no leaks and no rust at the base or the fittings, the burner and draft are good, and the flush brought out a normal amount of sediment for the hard water here. The expansion tank holds air, and its pressure was set to match the house. The honest recommendation is a new anode rod, not a new tank. The ceiling is low, so a flexible link-style anode is needed. A new anode can add years to a sound tank, but there is no guarantee, and the tech should not promise a number. The tank's 6-year manufacturer warranty is at or near its end. If the customer brings up a home warranty, most plans treat an anode as maintenance, but the tech should not guess about the customer's contract and can offer to look at it together. Member pricing applies.",
+   "equipment": [
+    {
+     "item": "50-gallon atmospheric gas water heater",
+     "ageYears": 6,
+     "notes": "Sound, no leaks. Low ceiling above the anode port, so a flexible anode is needed."
+    },
+    {
+     "item": "Thermal expansion tank",
+     "ageYears": 6,
+     "notes": "Holds air. Pressure set to match the house during the tune-up."
+    }
+   ],
+   "findings": [
+    {
+     "id": "anode-depleted",
+     "text": "The anode rod is used up. Most of it is bare steel wire. Without it, the tank starts to rust from the inside.",
+     "severity": "major"
+    },
+    {
+     "id": "tank-sound",
+     "text": "There are no leaks and no rust at the base or the fittings, and the burner and draft are good. The tank is in good shape for its age.",
+     "severity": "info"
+    },
+    {
+     "id": "sediment-normal",
+     "text": "The flush brought out a normal amount of sediment for the hard water here.",
+     "severity": "info"
+    },
+    {
+     "id": "expansion-tank-good",
+     "text": "The expansion tank holds air. Its pressure was set to match the house.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-anode",
+     "label": "Replace the anode rod",
+     "rationale": "It is used up, and a sound 6-year-old tank is worth protecting."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "recommend-new-tank",
+     "label": "Recommending a new water heater",
+     "why": "The tank is 6 years old, sound, and not leaking. A new anode protects it."
+    },
+    {
+     "id": "replace-expansion-tank",
+     "label": "Replacing the expansion tank",
+     "why": "It holds air and only needed its pressure set, which the tune-up covers."
+    },
+    {
+     "id": "whole-home-filtration",
+     "label": "Whole-home water filtration",
+     "why": "Nothing in this visit points to a water quality concern the customer wants solved. It has nothing to do with the anode."
+    }
+   ],
+   "options": [
+    {
+     "id": "anode-replacement",
+     "label": "New flexible magnesium anode rod",
+     "price": 295,
+     "includes": [
+      "New flexible magnesium anode rod",
+      "Leak check after install",
+      "Member pricing",
+      "Rest of the tune-up already included"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "powered-anode",
+     "label": "Powered anode rod",
+     "price": 395,
+     "includes": [
+      "Powered titanium anode that does not wear away",
+      "Plugs into a nearby outlet",
+      "Leak check after install",
+      "Member pricing"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "how-do-i-know-its-broken"
+    ],
+    "excluded": [
+     "memberships-are-a-scam"
+    ],
+    "density": 2
+   },
+   "goal": "Show the customer the worn anode, explain plainly what it does, and recommend the anode over a new tank. Answer any warranty question honestly.",
+   "passBar": 70,
+   "tags": [
+    "water-heater",
+    "maintenance",
+    "membership",
+    "anode"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges and are shown as member prices. Each company's price book and member discount replace them.",
+     "No monthly numbers because both options are under most financing minimums.",
+     "memberships-are-a-scam is excluded because the customer is already a member.",
+     "Confirm a powered anode does not affect the tank warranty for the brands each company installs."
+    ]
+   }
+  },
+  {
+   "id": "second-opinion-quote",
+   "version": 1,
+   "title": "Second opinion on a lower quote",
+   "trade": "plumbing",
+   "jobType": "water-heater-replacement",
+   "difficulty": 4,
+   "personaId": "devin-researcher",
+   "alternatePersonas": [
+    "paul-engineer",
+    "rick-landlord"
+   ],
+   "briefing": "Estimate. Homeowner has a written quote from another company to replace a leaking water heater and wants a second opinion and a price. 50-gallon gas tank in the garage. Not a member.",
+   "situation": "The 10-year-old 50-gallon gas tank has a slow seep and rust at the base and needs to be replaced. The customer holds a written quote from another company for $1,450. It reads \"50-gallon gas water heater, installed\" and does not mention an expansion tank, a permit, or haul-away. The standard option here is $2,150, about $700 more. The house has a pressure regulator and no expansion tank, so one is required on the new install. A replacement needs a permit, and the old tank has to be hauled away. Those three items account for most of the difference. The other company may include them and simply not list them, so the honest move is to compare the two quotes line by line, point out which required items the lower quote does not show, and suggest the customer ask the other company directly. The tech should not criticize the other company, should not cut the price to match, and should be fine if the customer chooses the other company once its quote is complete. The pressure regulator holds 60 psi and is fine.",
+   "equipment": [
+    {
+     "item": "50-gallon atmospheric gas water heater",
+     "ageYears": 10,
+     "notes": "Slow seep and rust at the base."
+    },
+    {
+     "item": "Pressure regulator on the main line",
+     "notes": "Holds a steady 60 psi."
+    }
+   ],
+   "findings": [
+    {
+     "id": "tank-seeping",
+     "text": "There is a slow seep and rust at the base of the tank. It needs to be replaced.",
+     "severity": "major"
+    },
+    {
+     "id": "no-expansion-tank",
+     "text": "There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.",
+     "severity": "major"
+    },
+    {
+     "id": "straps-loose",
+     "text": "The seismic straps are loose and only one is attached. The new install needs two.",
+     "severity": "minor"
+    },
+    {
+     "id": "other-quote-missing-items",
+     "text": "The other company's written quote lists the water heater and installation but does not mention an expansion tank, a permit, or haul-away.",
+     "severity": "info"
+    },
+    {
+     "id": "prv-good",
+     "text": "The pressure regulator holds a steady 60 psi. It is working and stays.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-tank",
+     "label": "Replace the water heater",
+     "rationale": "The tank is seeping and at the end of its life."
+    },
+    {
+     "id": "expansion-tank",
+     "label": "Add a thermal expansion tank",
+     "rationale": "Required by code where a pressure regulator makes a closed system."
+    },
+    {
+     "id": "seismic-straps",
+     "label": "Install two seismic straps",
+     "rationale": "Required by code in California."
+    },
+    {
+     "id": "permit-haul-away",
+     "label": "Permit and haul-away",
+     "rationale": "A replacement needs a permit, and the old tank has to be removed."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "replace-prv",
+     "label": "Replace the pressure regulator",
+     "why": "It holds a steady 60 psi. Replacing it would pad the quote to make it look different."
+    },
+    {
+     "id": "upsize-75",
+     "label": "Upsizing to a 75-gallon tank",
+     "why": "The 50-gallon tank has met the household's needs. A bigger tank raises the price with no reason behind it."
+    },
+    {
+     "id": "water-softener",
+     "label": "Water softener",
+     "why": "Nothing in this call points to a water problem the customer wants solved. A softener is a separate decision, not part of replacing a tank."
+    }
+   ],
+   "options": [
+    {
+     "id": "standard-50",
+     "label": "50-gallon standard gas, 6-year warranty",
+     "price": 2150,
+     "monthly": 55,
+     "includes": [
+      "New 50-gallon gas water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "New gas connector and sediment trap",
+      "Permit and haul-away",
+      "Itemized written estimate"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "premium-50",
+     "label": "50-gallon gas, 10-year warranty",
+     "price": 2790,
+     "monthly": 72,
+     "includes": [
+      "Everything in the standard option",
+      "Longer 10-year tank and parts warranty",
+      "New cold-water shutoff valve"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "found-it-cheaper"
+    ],
+    "excluded": [],
+    "density": 3
+   },
+   "goal": "Compare the two quotes line by line without criticizing the other company, and show which required items the lower quote does not list. Let the customer decide with complete information.",
+   "passBar": 80,
+   "tags": [
+    "water-heater",
+    "competition",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
+     "The other company is fictional and unnamed. Keep it unnamed.",
+     "An expansion tank, permit, and haul-away together run several hundred dollars in this area. Verify each company's own line prices so the tech's line-by-line math holds up."
+    ]
+   }
+  },
+  {
+   "id": "tank-vs-tankless-family",
+   "version": 1,
+   "title": "Family of five, tank or tankless",
+   "trade": "plumbing",
+   "jobType": "water-heater-replacement",
+   "difficulty": 3,
+   "personaId": "ruiz-couple",
+   "alternatePersonas": [
+    "jen-busy-parent"
+   ],
+   "briefing": "Estimate. Homeowners report the water heater is leaking and the family runs out of hot water most mornings. They want to compare a tank and a tankless unit. 40-gallon gas tank in the garage. Not a member.",
+   "situation": "The 11-year-old 40-gallon gas tank is leaking at the base and has to be replaced. It was also too small for a family of five, which is why the hot water runs out on busy mornings. There is no expansion tank and the house has a pressure regulator. The gas line can supply a high-recovery tank, but a 199,000 BTU tankless would need a larger line from the meter, new PVC venting, and an outlet. The water is hard, so a tankless unit here would need descaling about once a year. There are three honest options. The same 40-gallon size is the cheapest but will not fix the running out. A 50-gallon high-recovery tank (about 65,000 BTU, with a first-hour rating around 90 gallons compared with about 70 for the old tank) covers the family's morning use for about half the price of tankless. A tankless unit gives endless hot water and a longer life but costs the most up front and needs yearly descaling. The honest recommendation is the 50-gallon high-recovery tank, because it solves the problem the family called about without overspending. Tankless is a fair choice if they value endless hot water and plan to stay a long time. The two spouses may want different things, and the tech should learn what each one cares about and tie the options to both.",
+   "equipment": [
+    {
+     "item": "40-gallon atmospheric gas water heater",
+     "ageYears": 11,
+     "notes": "Leaking at the base. Runs out of hot water most mornings."
+    },
+    {
+     "item": "Pressure regulator on the main line",
+     "notes": "Holds a steady 65 psi."
+    }
+   ],
+   "findings": [
+    {
+     "id": "tank-leaking",
+     "text": "The tank is leaking at the base. Once a tank leaks, it cannot be repaired.",
+     "severity": "urgent"
+    },
+    {
+     "id": "tank-undersized",
+     "text": "A 40-gallon standard tank is small for five people. That is why the hot water runs out in the morning.",
+     "severity": "major"
+    },
+    {
+     "id": "no-expansion-tank",
+     "text": "There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.",
+     "severity": "major"
+    },
+    {
+     "id": "gas-line-capacity",
+     "text": "The gas line can supply a high-recovery tank. A tankless unit would need a larger line from the meter.",
+     "severity": "info"
+    },
+    {
+     "id": "hard-water",
+     "text": "The water is hard. A tankless unit here would need descaling about once a year.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-tank",
+     "label": "Replace the water heater",
+     "rationale": "The tank is leaking and cannot be repaired."
+    },
+    {
+     "id": "size-for-household",
+     "label": "Size the new unit to the family's use",
+     "rationale": "The 40-gallon tank is why they run out of hot water."
+    },
+    {
+     "id": "expansion-tank",
+     "label": "Add a thermal expansion tank",
+     "rationale": "Required by code where a pressure regulator makes a closed system."
+    },
+    {
+     "id": "seismic-straps",
+     "label": "Install two seismic straps",
+     "rationale": "Required by code in California."
+    },
+    {
+     "id": "permit-haul-away",
+     "label": "Permit and haul-away",
+     "rationale": "A replacement needs a permit, and the old tank has to be removed."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "tankless-only-fix",
+     "label": "Saying tankless is the only way to stop running out",
+     "why": "A 50-gallon high-recovery tank covers the family's morning use. Tankless is a choice, not the only fix."
+    },
+    {
+     "id": "oversize-80",
+     "label": "An 80-gallon tank or two water heaters",
+     "why": "A 50-gallon high-recovery tank covers five people. Going bigger adds cost, space, and gas use for no reason."
+    },
+    {
+     "id": "whole-house-repipe",
+     "label": "Whole-house repipe",
+     "why": "The copper supply lines show no leaks or corrosion. Nothing points to a repipe."
+    }
+   ],
+   "options": [
+    {
+     "id": "standard-40",
+     "label": "40-gallon standard gas, same size as now",
+     "price": 1890,
+     "monthly": 49,
+     "includes": [
+      "New 40-gallon gas water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": false
+    },
+    {
+     "id": "high-recovery-50",
+     "label": "50-gallon high-recovery gas, 10-year warranty",
+     "price": 2850,
+     "monthly": 73,
+     "includes": [
+      "New 50-gallon high-recovery gas water heater",
+      "Vent connector sized for the new unit",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "tankless",
+     "label": "Condensing tankless gas, 12-year heat exchanger warranty",
+     "price": 5450,
+     "monthly": 140,
+     "includes": [
+      "199,000 BTU condensing tankless water heater",
+      "Larger gas line from the meter",
+      "PVC venting and a 120-volt outlet",
+      "Isolation valves for yearly descaling",
+      "Permit and haul-away of the old tank"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "brother-in-law-plumber"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Learn what each spouse cares about and recommend the option that solves the morning hot water problem without overspending. Ask for a decision both spouses agree to.",
+   "passBar": 75,
+   "tags": [
+    "water-heater",
+    "tankless",
+    "joint-decision"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
+     "First-hour rating and BTU figures are typical for 50-gallon high-recovery gas tanks. Confirm them against the models each company installs, including whether the vent has to go up a size.",
+     "The alternate persona jen-busy-parent has a smaller household. If the engine swaps personas, the family size in the situation should follow the persona."
+    ]
+   }
+  },
+  {
    "id": "wh-code-upgrades-rental",
    "version": 1,
    "title": "Rental replacement with missing code items",
@@ -6710,6 +9440,561 @@
      "Check smoke and CO alarm inspection practice in each city the company serves. The scenario assumes the inspector checks them at final, as several Riverside County cities do on permits over $1,000.",
      "Copper is used for the relief line because every jurisdiction accepts it. Some inspectors also accept other rated materials.",
      "Alternate personas assume that person also owns this rental. Check that their persona files do not contradict it."
+    ]
+   }
+  },
+  {
+   "id": "wh-first-home-rumbling",
+   "version": 1,
+   "title": "Rumbling 8-year tank, flush or replace",
+   "trade": "plumbing",
+   "jobType": "water-heater-service",
+   "difficulty": 2,
+   "personaId": "morgan-first-home",
+   "alternatePersonas": [
+    "greg-selling",
+    "jen-busy-parent"
+   ],
+   "briefing": "Service call. Customer reports loud rumbling and popping from the water heater when it heats. 50-gallon gas tank in the garage, about 8 years old. Not a member.",
+   "situation": "The rumbling is sediment. The water here is hard, and minerals settle at the bottom of the tank. Water trapped under that layer turns to steam when the burner fires, which makes the popping. It is not dangerous by itself, but it wastes gas and overheats the bottom of the tank, which shortens its life. The 8-year-old 50-gallon gas tank has no leaks and no rust at the base or the fittings. The burner, draft, and relief valve are good, the anode rod is about half used, which is normal for its age, and the expansion tank holds air. The honest recommendation is a flush and service with a new brass drain valve, because the plastic one is likely to clog or leak during a first flush. The tech should set expectations. Hardened sediment may not all come out, so the noise may get quieter rather than stop, and there is a small chance a tank this age shows a leak after its first flush. Replacement is not needed today. At 8 years it is honest to suggest budgeting for one in the next few years.",
+   "equipment": [
+    {
+     "item": "50-gallon atmospheric gas water heater",
+     "ageYears": 8,
+     "notes": "Rumbles and pops when heating. No leaks. Never flushed. Plastic drain valve."
+    },
+    {
+     "item": "Thermal expansion tank",
+     "ageYears": 8,
+     "notes": "Holds air."
+    }
+   ],
+   "findings": [
+    {
+     "id": "sediment-buildup",
+     "text": "Sediment has built up at the bottom of the tank. Water trapped under it turns to steam when the burner fires, which makes the rumbling. It wastes gas and wears the tank faster.",
+     "severity": "minor"
+    },
+    {
+     "id": "plastic-drain-valve",
+     "text": "The drain valve is plastic and likely to clog or leak during a first flush. A brass valve should go in.",
+     "severity": "minor"
+    },
+    {
+     "id": "tank-sound",
+     "text": "There are no leaks and no rust at the base or the fittings. The burner, draft, and relief valve are good.",
+     "severity": "info"
+    },
+    {
+     "id": "anode-half-used",
+     "text": "The anode rod is about half used, which is normal for 8 years. It does not need to be replaced yet.",
+     "severity": "info"
+    },
+    {
+     "id": "expansion-tank-good",
+     "text": "The expansion tank holds air and is doing its job.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "flush-tank",
+     "label": "Flush the sediment",
+     "rationale": "Sediment is causing the rumbling and wasting gas."
+    },
+    {
+     "id": "brass-drain-valve",
+     "label": "Replace the plastic drain valve with brass",
+     "rationale": "The plastic valve is likely to clog or leak during the flush."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "recommend-replacement-now",
+     "label": "Recommending replacement now",
+     "why": "The tank is sound and not leaking. Replacement can be mentioned as something to budget for, but recommending it today is not justified."
+    },
+    {
+     "id": "tankless-conversion",
+     "label": "Tankless conversion as the fix for the noise",
+     "why": "Flushing addresses the noise. A different type of water heater is not needed to stop sediment rumbling."
+    },
+    {
+     "id": "whole-home-filtration",
+     "label": "Whole-home water filtration",
+     "why": "Nothing in this call points to a water quality concern the customer wants solved, and filtration does not remove sediment that is already in the tank."
+    }
+   ],
+   "options": [
+    {
+     "id": "flush-service",
+     "label": "Flush and service",
+     "price": 295,
+     "includes": [
+      "Full flush of the sediment",
+      "New brass drain valve",
+      "Anode rod check",
+      "Relief valve test",
+      "Burner, draft, and temperature check"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "replace-50",
+     "label": "Replace with 50-gallon standard gas, 6-year warranty",
+     "price": 2150,
+     "monthly": 55,
+     "includes": [
+      "New 50-gallon gas water heater",
+      "Existing expansion tank reused, since it still holds air",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Explain the rumbling in plain words and recommend the flush and service as the honest fix for a tank that is not leaking. Help the customer plan for a replacement later without pushing one now.",
+   "passBar": 70,
+   "tags": [
+    "water-heater",
+    "maintenance",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "The flush has no monthly number because most financing programs have a minimum amount. The replacement uses roughly the price divided by 39.",
+     "Reusing the expansion tank depends on its condition and company policy. Some companies replace it with every new water heater."
+    ]
+   }
+  },
+  {
+   "id": "wh-heat-pump-rebate",
+   "version": 1,
+   "title": "Failing electric tank, heat pump option",
+   "trade": "plumbing",
+   "jobType": "water-heater-replacement",
+   "difficulty": 4,
+   "personaId": "paul-engineer",
+   "alternatePersonas": [
+    "devin-researcher"
+   ],
+   "briefing": "Estimate. Homeowner reports lukewarm water and a small puddle under the water heater, and wants to discuss heat pump water heaters. 50-gallon electric tank in the garage. All-electric home. Not a member.",
+   "situation": "The 13-year-old 50-gallon electric tank is failing. Water is seeping from the bottom of the tank, and the lower heating element reads open, which is why the water is lukewarm. The tank cannot be repaired. There is no expansion tank, and the house has a pressure regulator, so the new install needs one. The home suits a heat pump water heater. The existing 240-volt, 30-amp circuit can serve a 240-volt unit (confirm against the model's nameplate). The two-car garage has far more air than the roughly 700 cubic feet many units call for, there is a route for a condensate drain to the outside, and the garage stays inside the heat pump's operating range most of the year. Accurate numbers: a standard electric tank is rated at a UEF of about 0.92 and a 50-gallon heat pump unit at about 3.5 to 4, so it uses roughly a quarter to a third of the electricity for the same hot water. In hybrid mode its first-hour rating is about the same as the old tank's. It runs at roughly 45 to 55 decibels, about like a dehumidifier, cools and dries the air around it, and recovers more slowly in heat pump only mode. Payback depends on the home's usage and electric rate, and the tech should work it out from the customer's bill, not promise a number. Rebates may apply, verify current amounts. Incentives for heat pump water heaters have come from TECH Clean California, local utility programs, and the federal tax credit, and funding and eligibility change often. The federal 25C credit ended for equipment placed in service after December 31, 2025. A like-for-like electric replacement is allowed in an existing home, so the heat pump is a choice, not a code requirement. The honest recommendation is the 50-gallon heat pump unit, presented with accurate numbers and without overstating savings or rebates.",
+   "equipment": [
+    {
+     "item": "50-gallon electric resistance water heater",
+     "ageYears": 13,
+     "notes": "Seeping at the bottom. Lower element reads open. Fed by a 240-volt, 30-amp circuit."
+    },
+    {
+     "item": "Pressure regulator on the main line",
+     "notes": "Holds a steady 60 psi."
+    }
+   ],
+   "findings": [
+    {
+     "id": "tank-leaking",
+     "text": "Water is seeping from the bottom of the tank. A leaking tank cannot be repaired.",
+     "severity": "urgent"
+    },
+    {
+     "id": "lower-element-open",
+     "text": "The lower heating element reads open on the meter, which is why the water is lukewarm.",
+     "severity": "minor"
+    },
+    {
+     "id": "no-expansion-tank",
+     "text": "There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.",
+     "severity": "major"
+    },
+    {
+     "id": "circuit-good",
+     "text": "The 240-volt, 30-amp circuit that feeds the tank is in good shape and can serve a 240-volt heat pump unit.",
+     "severity": "info"
+    },
+    {
+     "id": "garage-suits-heat-pump",
+     "text": "The garage has plenty of air for a heat pump unit and a route for a condensate drain to the outside.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-tank",
+     "label": "Replace the water heater",
+     "rationale": "The tank is leaking and cannot be repaired."
+    },
+    {
+     "id": "expansion-tank",
+     "label": "Add a thermal expansion tank",
+     "rationale": "Required by code where a pressure regulator makes a closed system."
+    },
+    {
+     "id": "seismic-straps",
+     "label": "Install two seismic straps",
+     "rationale": "Required by code in California."
+    },
+    {
+     "id": "condensate-drain",
+     "label": "Condensate drain for a heat pump unit",
+     "rationale": "A heat pump unit makes condensate that has to drain to an approved location."
+    },
+    {
+     "id": "permit-haul-away",
+     "label": "Permit and haul-away",
+     "rationale": "A replacement needs a permit, and the old tank has to be removed."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "panel-upgrade",
+     "label": "Electrical panel upgrade",
+     "why": "The existing 240-volt, 30-amp circuit serves a 240-volt heat pump unit. Nothing points to a panel upgrade."
+    },
+    {
+     "id": "upsize-80",
+     "label": "Upsizing to an 80-gallon heat pump unit",
+     "why": "The 50-gallon tank has met the household's needs, and a 50-gallon heat pump unit has about the same first-hour rating in hybrid mode. A bigger unit adds cost for no reason."
+    },
+    {
+     "id": "promise-rebate-amount",
+     "label": "Promising a rebate or tax credit amount",
+     "why": "Program funding changes often, and the federal 25C credit ended for equipment placed in service after 2025. Rebates may apply, but the amount has to be verified, not promised."
+    }
+   ],
+   "options": [
+    {
+     "id": "heat-pump-50",
+     "label": "50-gallon heat pump water heater, 10-year warranty",
+     "price": 4790,
+     "monthly": 123,
+     "includes": [
+      "New 50-gallon heat pump water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Condensate drain to the outside",
+      "Existing 240-volt circuit tested and reused",
+      "Permit and haul-away",
+      "Help checking current rebates, amounts not guaranteed"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "electric-50",
+     "label": "50-gallon standard electric, 6-year warranty",
+     "price": 1790,
+     "monthly": 46,
+     "includes": [
+      "New 50-gallon electric water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [],
+    "excluded": [],
+    "density": 3
+   },
+   "goal": "Answer technical questions with accurate numbers and recommend the heat pump unit as the honest fit for this home. Be clear about what has to be verified, including rebates.",
+   "passBar": 80,
+   "tags": [
+    "water-heater",
+    "heat-pump",
+    "rebates",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them. The heat pump price is before rebates.",
+     "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
+     "Rebates may apply, verify current amounts. As of this draft (October 2026) the IRS lists the 25C credit for property placed in service through 2025, and TECH Clean California and HEEHRA funds have been fully reserved at times in 2025 and 2026. Confirm current programs before release and update the situation text.",
+     "Verify that the current California Energy Code alteration rules (2025 cycle) and any local ordinance still allow a like-for-like electric replacement in an existing single-family home.",
+     "UEF, first-hour rating, noise, and air volume figures are typical published values. Confirm them against the models each company installs."
+    ]
+   }
+  },
+  {
+   "id": "wh-repair-or-replace-9yr",
+   "version": 1,
+   "title": "9-year tank, failed thermocouple",
+   "trade": "plumbing",
+   "jobType": "water-heater-repair",
+   "difficulty": 3,
+   "personaId": "tasha-burned",
+   "alternatePersonas": [
+    "margaret-retiree",
+    "devin-researcher"
+   ],
+   "briefing": "Service call. Homeowner reports no hot water and says the pilot keeps going out. 40-gallon gas tank in the garage, about 9 years old. Not a member.",
+   "situation": "The thermocouple has failed. The pilot lights, but it goes out when the control knob is released, and the thermocouple tests low on a millivolt meter, below what it takes to hold the gas valve open. On this sealed-burner tank the thermocouple comes as a pilot assembly with the igniter, and replacing it is a routine repair. The air intake screen at the base of the tank is coated with lint and dust, which can starve the burner of air, so it should be cleaned. The tank is sound. There are no leaks and no rust at the base or the fittings, and the gas control valve works. The honest recommendation is the repair. Tanks in this area usually last 8 to 12 years with the hard water here, so at 9 years this tank has some life left. The honest thing is to say that plainly and suggest planning for a replacement, not to do one today. A tech who pushes replacement, or blames the gas control valve to sell a bigger repair, fails the integrity test. A flush should not be added to this repair, because on a 9-year tank that has never been flushed it can make the drain valve leak.",
+   "equipment": [
+    {
+     "item": "40-gallon atmospheric gas water heater",
+     "ageYears": 9,
+     "notes": "Sealed-burner design with a standing pilot. No leaks. Pilot will not stay lit."
+    }
+   ],
+   "findings": [
+    {
+     "id": "thermocouple-failed",
+     "text": "The thermocouple tests low on a millivolt meter, so the gas valve will not stay open and the pilot goes out. It needs to be replaced.",
+     "severity": "major"
+    },
+    {
+     "id": "intake-screen-dusty",
+     "text": "The air intake screen at the base of the tank is coated with lint and dust, which can starve the burner of air. It should be cleaned.",
+     "severity": "minor"
+    },
+    {
+     "id": "tank-sound",
+     "text": "There are no leaks and no rust at the base or the fittings. The tank is sound.",
+     "severity": "info"
+    },
+    {
+     "id": "gas-valve-good",
+     "text": "The gas control valve works and holds. It does not need to be replaced.",
+     "severity": "info"
+    },
+    {
+     "id": "tank-age",
+     "text": "The tank is 9 years old. Tanks here usually last 8 to 12 years, so a replacement is worth planning for, not doing today.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-thermocouple",
+     "label": "Replace the thermocouple pilot assembly",
+     "rationale": "It tests low and is why the pilot goes out."
+    },
+    {
+     "id": "clean-intake-screen",
+     "label": "Clean the air intake screen",
+     "rationale": "Lint on the screen can starve the burner of air and put the pilot out again."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "recommend-replacement-now",
+     "label": "Recommending replacement now",
+     "why": "The tank is sound and the repair fixes the problem. Replacement can be mentioned as a plan or a choice, but recommending it today is not justified."
+    },
+    {
+     "id": "replace-gas-control-valve",
+     "label": "Replacing the gas control valve",
+     "why": "The valve works. The thermocouple is the failed part. Blaming the valve turns a small repair into a large one."
+    },
+    {
+     "id": "tankless-conversion",
+     "label": "Tankless conversion",
+     "why": "Nothing about a failed thermocouple points to a different type of water heater."
+    }
+   ],
+   "options": [
+    {
+     "id": "thermocouple-repair",
+     "label": "Thermocouple repair",
+     "price": 325,
+     "includes": [
+      "New thermocouple pilot assembly",
+      "Clean the air intake screen and burner area",
+      "Relight, test the gas valve, and check the draft",
+      "Hot water back today"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "replace-40",
+     "label": "Replace with 40-gallon standard gas, 6-year warranty",
+     "price": 1890,
+     "monthly": 49,
+     "includes": [
+      "New 40-gallon gas water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "tests-your-honesty"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Show the evidence for the failed thermocouple, recommend the repair as the honest fix, and say plainly how much life the tank likely has left so the customer can plan.",
+   "passBar": 75,
+   "tags": [
+    "water-heater",
+    "repair",
+    "integrity"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "The repair has no monthly number because most financing programs have a minimum amount. Verify each company's minimum.",
+     "Some tanks use a thermopile instead of a thermocouple. The scenario assumes a thermocouple pilot assembly."
+    ]
+   }
+  },
+  {
+   "id": "wh-replacement-spanish",
+   "version": 1,
+   "title": "Water heater replacement in Spanish",
+   "trade": "plumbing",
+   "jobType": "water-heater-replacement",
+   "difficulty": 3,
+   "personaId": "rosa-spanish",
+   "alternatePersonas": [],
+   "briefing": "Service call. The customer prefers Spanish, so run the whole call in Spanish. She reports water around the base of the water heater and only lukewarm water. 40-gallon gas tank in the garage. Not a member.",
+   "situation": "The whole call happens in Spanish. The customer understands some English but is more comfortable in Spanish, and she will not agree to anything she cannot fully understand and check. Her daughter usually helps with decisions like this and is at work. The 12-year-old 40-gallon gas tank is leaking from the bottom, and rust flakes from inside the tank have fallen onto the burner, so the flame is weak and the water is only lukewarm. The tank cannot be repaired. There is no expansion tank, the house has a pressure regulator, and there is only one seismic strap. The honest recommendation is a standard 40-gallon replacement with an expansion tank, two straps, a permit, and haul-away. A strong tech explains in plain Spanish and uses everyday words for the parts (calentador de agua, tanque de expansión, correas sísmicas, permiso), shows her the leak, gives the price as a clear total and a monthly number, puts the estimate in writing so her daughter can read it, and offers to call her daughter on speaker. Rushing her, or switching to English when she is speaking Spanish, fails the language goal of this call.",
+   "equipment": [
+    {
+     "item": "40-gallon atmospheric gas water heater",
+     "ageYears": 12,
+     "notes": "Leaking from the bottom. Rust flakes on the burner, weak flame."
+    },
+    {
+     "item": "Pressure regulator on the main line",
+     "notes": "Holds a steady 65 psi."
+    }
+   ],
+   "findings": [
+    {
+     "id": "tank-leaking",
+     "text": "The tank is leaking from the bottom. Once a tank leaks, it cannot be repaired.",
+     "severity": "urgent"
+    },
+    {
+     "id": "burner-fouled",
+     "text": "Rust flakes from inside the tank have fallen onto the burner, which is why the flame is weak and the water is lukewarm.",
+     "severity": "minor"
+    },
+    {
+     "id": "no-expansion-tank",
+     "text": "There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.",
+     "severity": "major"
+    },
+    {
+     "id": "one-strap",
+     "text": "There is only one seismic strap. California requires two.",
+     "severity": "minor"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-tank",
+     "label": "Replace the water heater",
+     "rationale": "The tank is leaking and cannot be repaired."
+    },
+    {
+     "id": "expansion-tank",
+     "label": "Add a thermal expansion tank",
+     "rationale": "Required by code where a pressure regulator makes a closed system."
+    },
+    {
+     "id": "seismic-straps",
+     "label": "Install two seismic straps",
+     "rationale": "Required by code in California."
+    },
+    {
+     "id": "permit-haul-away",
+     "label": "Permit and haul-away",
+     "rationale": "A replacement needs a permit, and the old tank has to be removed."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "tankless-required",
+     "label": "Saying a tankless unit is required",
+     "why": "Tankless is an option, not a requirement. A tank replacement is a sound choice for this home."
+    },
+    {
+     "id": "whole-home-filtration",
+     "label": "Whole-home water filtration",
+     "why": "The customer has not raised a water quality concern on this call. Filtration is unrelated to the leaking tank."
+    },
+    {
+     "id": "upsize-50",
+     "label": "Upsizing to a 50-gallon tank",
+     "why": "The 40-gallon tank has met the household's needs. A bigger tank adds cost for no reason."
+    }
+   ],
+   "options": [
+    {
+     "id": "standard-40",
+     "label": "40-gallon standard gas, 6-year warranty",
+     "price": 1890,
+     "monthly": 49,
+     "includes": [
+      "New 40-gallon gas water heater",
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "Permit and haul-away",
+      "Written estimate she and her daughter can review"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "standard-40-10yr",
+     "label": "40-gallon gas, 10-year warranty",
+     "price": 2490,
+     "monthly": 65,
+     "includes": [
+      "Everything in the standard option",
+      "Longer 10-year tank and parts warranty",
+      "New cold-water shutoff valve"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "show-me-in-writing"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Run the whole call in Spanish and explain the leak and the options plainly. Make the estimate easy for her and her daughter to check, and ask for a decision without rushing her.",
+   "passBar": 75,
+   "tags": [
+    "water-heater",
+    "spanish",
+    "language"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
+     "No alternate personas. The scenario is written for a Spanish-speaking customer, and no other registry persona speaks Spanish. Add one if a second Spanish-speaking persona is created.",
+     "Confirm each company can give a written estimate in Spanish. If not, the tech should offer to go through it with the daughter by phone."
     ]
    }
   },
@@ -6992,6 +10277,141 @@
    }
   },
   {
+   "id": "wh-tankless-descale",
+   "version": 1,
+   "title": "Tankless error code, descale needed",
+   "trade": "plumbing",
+   "jobType": "tankless-service",
+   "difficulty": 2,
+   "personaId": "brian-today",
+   "alternatePersonas": [
+    "jen-busy-parent",
+    "devin-researcher"
+   ],
+   "briefing": "Service call. Customer reports the tankless water heater shuts off in the middle of showers and shows an error code. Gas tankless unit on the garage wall, about 6 years old. Customer wants it fixed today. Not a member.",
+   "situation": "The 6-year-old condensing gas tankless is showing its scale warning code. It has never been descaled, and with the hard water here scale has built up in the heat exchanger, which makes it overheat and shut down during longer showers. The cold inlet filter screen is also partly clogged with scale. Isolation valves with flush ports were installed with the unit, so a descale can be done today in about an hour to an hour and a half. Gas pressure holds within spec at full fire, and the vent and condensate lines are clear. The honest fix is a descale and service. Because the water is hard, the unit will need descaling about once a year, which is a fair reason to offer the membership if it includes that service. An inline scale-reduction cartridge is a reasonable optional add, not a requirement. Nothing found justifies replacing the unit, upgrading the gas line, or adding a recirculation pump. The customer wants a quick answer and a price. A strong tech gives a short diagnosis, says the price clearly, and gets it done.",
+   "equipment": [
+    {
+     "item": "Condensing gas tankless water heater, 199,000 BTU",
+     "ageYears": 6,
+     "notes": "Showing the scale warning code. Never descaled. Isolation valves with flush ports installed."
+    }
+   ],
+   "findings": [
+    {
+     "id": "scale-buildup",
+     "text": "The unit is showing its scale warning code. It has never been descaled, and scale in the heat exchanger makes it overheat and shut off.",
+     "severity": "major"
+    },
+    {
+     "id": "inlet-screen-clogged",
+     "text": "The cold inlet filter screen is partly clogged with scale, which cuts flow.",
+     "severity": "minor"
+    },
+    {
+     "id": "isolation-valves-present",
+     "text": "Isolation valves with flush ports are already installed, so the descale can be done today.",
+     "severity": "info"
+    },
+    {
+     "id": "gas-pressure-good",
+     "text": "Gas pressure holds within spec with the unit at full fire.",
+     "severity": "info"
+    },
+    {
+     "id": "vent-and-condensate-clear",
+     "text": "The vent and the condensate line are clear.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "descale",
+     "label": "Descale the heat exchanger",
+     "rationale": "Scale is causing the overheating and the error code."
+    },
+    {
+     "id": "clean-inlet-screen",
+     "label": "Clean the inlet filter screen",
+     "rationale": "Scale on the screen cuts flow to the unit."
+    },
+    {
+     "id": "yearly-descale",
+     "label": "Descale once a year going forward",
+     "rationale": "The hard water here will build scale again."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "replace-tankless-unit",
+     "label": "Replacing the tankless unit",
+     "why": "The unit is 6 years old and the code comes from scale. A descale fixes it."
+    },
+    {
+     "id": "gas-line-upgrade",
+     "label": "Gas line upgrade",
+     "why": "Gas pressure holds within spec at full fire. The gas line is not the problem."
+    },
+    {
+     "id": "recirculation-pump",
+     "label": "Recirculation pump",
+     "why": "The customer has not raised wait times for hot water, and a pump does nothing for the error code."
+    }
+   ],
+   "options": [
+    {
+     "id": "descale-service",
+     "label": "Descale and service",
+     "price": 345,
+     "includes": [
+      "Descale the heat exchanger",
+      "Clean the inlet filter screen",
+      "Check gas pressure, venting, and condensate",
+      "Clear the code and test with two showers running",
+      "Done today"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "descale-with-cartridge",
+     "label": "Descale and service with a scale-reduction cartridge",
+     "price": 445,
+     "includes": [
+      "Everything in the descale and service",
+      "Inline scale-reduction cartridge on the cold inlet",
+      "Slows new scale between descales; the cartridge is replaced yearly"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "interrupts-how-much"
+    ],
+    "excluded": [],
+    "density": 2
+   },
+   "goal": "Give a short, plain diagnosis, state the price clearly when asked, and fix it today. Offer the membership as a way to keep the code from coming back.",
+   "passBar": 70,
+   "tags": [
+    "tankless",
+    "maintenance",
+    "membership"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.",
+     "No monthly numbers because both options are under most financing minimums.",
+     "Error code names vary by brand, so the scenario says scale warning code. Keep it brand-neutral.",
+     "Confirm each company's membership includes a yearly tankless descale before techs use it as the reason to join."
+    ]
+   }
+  },
+  {
    "id": "wh-tankless-upgrade-question",
    "version": 1,
    "title": "Tank replacement, customer asks about tankless",
@@ -7153,6 +10573,166 @@
      "Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.",
      "Payback is left without a number on purpose. If a company wants one, base it on current local gas rates and verify it.",
      "Confirm whether the gas company charges for a meter upgrade and how long it takes, since it affects the tankless timeline."
+    ]
+   }
+  },
+  {
+   "id": "wh-warranty-claim-denied",
+   "version": 1,
+   "title": "Home warranty will not cover code items",
+   "trade": "plumbing",
+   "jobType": "water-heater-replacement",
+   "difficulty": 3,
+   "personaId": "linda-warranty",
+   "alternatePersonas": [
+    "morgan-first-home"
+   ],
+   "briefing": "Home warranty dispatch. The warranty company has authorized replacement of a leaking 40-gallon gas water heater in the garage. The authorization lists code upgrades, the permit, and haul-away as not covered. The customer has paid the warranty service fee. Not a member.",
+   "situation": "The 12-year-old 40-gallon gas tank is leaking from the bottom and has to be replaced. The home warranty covers the replacement water heater and standard installation labor, including the gas connector and water connectors. The warranty company has denied the code upgrades, the permit, and haul-away. The install needs those items to pass the permit. There is no expansion tank and the house has a pressure regulator. There is only one seismic strap. The old vent connector will not line up with the new tank's draft hood and needs new pipe with a proper upward slope. There is no sediment trap on the gas supply. The pressure regulator holds 60 psi and is fine. The customer pays only for the non-covered items. The honest path is to show the authorization, explain that the code items are required for any installer and are not chosen by the company, itemize what the customer pays and what the warranty pays, and never bill for anything the warranty covers. The tech should not criticize the warranty company or guess about contract terms the tech has not read.",
+   "equipment": [
+    {
+     "item": "40-gallon atmospheric gas water heater",
+     "ageYears": 12,
+     "notes": "Leaking from the bottom. Replacement authorized by the home warranty."
+    },
+    {
+     "item": "Pressure regulator on the main line",
+     "notes": "Holds a steady 60 psi."
+    }
+   ],
+   "findings": [
+    {
+     "id": "tank-leaking",
+     "text": "The tank is leaking from the bottom. Once a tank leaks, it cannot be repaired.",
+     "severity": "urgent"
+    },
+    {
+     "id": "no-expansion-tank",
+     "text": "There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.",
+     "severity": "major"
+    },
+    {
+     "id": "one-strap",
+     "text": "There is only one seismic strap. California requires two, one in the upper third and one in the lower third.",
+     "severity": "major"
+    },
+    {
+     "id": "vent-connector",
+     "text": "The old vent connector will not line up with the new tank's draft hood. It needs new pipe with a proper upward slope.",
+     "severity": "minor"
+    },
+    {
+     "id": "no-sediment-trap",
+     "text": "There is no sediment trap on the gas line at the water heater. Code requires one.",
+     "severity": "minor"
+    },
+    {
+     "id": "prv-good",
+     "text": "The pressure regulator holds a steady 60 psi. It is working and stays.",
+     "severity": "info"
+    }
+   ],
+   "justifiedWork": [
+    {
+     "id": "replace-tank",
+     "label": "Replace the water heater (covered by the warranty)",
+     "rationale": "The tank is leaking and cannot be repaired."
+    },
+    {
+     "id": "expansion-tank",
+     "label": "Add a thermal expansion tank (not covered)",
+     "rationale": "Required by code where a pressure regulator makes a closed system."
+    },
+    {
+     "id": "seismic-straps",
+     "label": "Install two seismic straps (not covered)",
+     "rationale": "Required by code in California."
+    },
+    {
+     "id": "vent-connector",
+     "label": "New vent connector (not covered)",
+     "rationale": "The old connector does not fit the new tank and has to slope up to the vent."
+    },
+    {
+     "id": "sediment-trap",
+     "label": "Add a sediment trap (not covered)",
+     "rationale": "Required by code at the appliance."
+    },
+    {
+     "id": "permit-haul-away",
+     "label": "Permit and haul-away (not covered)",
+     "rationale": "A replacement needs a permit, and the old tank has to be removed."
+    }
+   ],
+   "unjustifiedWork": [
+    {
+     "id": "tankless-upgrade",
+     "label": "Tankless upgrade at the customer's expense",
+     "why": "The warranty covers a standard tank and nothing about this house points to tankless. Pitching it because the customer is already paying for something is an upsell."
+    },
+    {
+     "id": "replace-prv",
+     "label": "Replace the pressure regulator",
+     "why": "It holds a steady 60 psi. Replacing a working regulator adds cost for no reason."
+    },
+    {
+     "id": "bill-covered-items",
+     "label": "Billing the customer for covered parts or labor",
+     "why": "The warranty covers the water heater, standard labor, and the connectors. Charging for them makes the customer pay twice."
+    }
+   ],
+   "options": [
+    {
+     "id": "non-covered-code-items",
+     "label": "Required code items not covered by the warranty",
+     "price": 795,
+     "includes": [
+      "Thermal expansion tank",
+      "Two seismic straps",
+      "New vent connector",
+      "Gas sediment trap",
+      "Permit and haul-away",
+      "Warranty pays for the water heater and standard labor"
+     ],
+     "recommended": true
+    },
+    {
+     "id": "code-items-10yr-upgrade",
+     "label": "Code items plus upgrade to a 10-year tank",
+     "price": 1395,
+     "monthly": 36,
+     "includes": [
+      "Everything in the required option",
+      "10-year warranty tank in place of the warranty's standard tank",
+      "Customer pays the price difference for the tank"
+     ],
+     "recommended": false
+    }
+   ],
+   "startPhase": "door",
+   "moves": {
+    "allowed": "*",
+    "forced": [
+     "do-i-need-the-code-stuff"
+    ],
+    "excluded": [],
+    "density": 2.5
+   },
+   "goal": "Explain why each code item is required and why the warranty does not pay for it, and itemize what the customer pays and what the warranty pays. Ask for a decision without making the customer feel charged twice.",
+   "passBar": 75,
+   "tags": [
+    "water-heater",
+    "home-warranty",
+    "code"
+   ],
+   "review": {
+    "status": "draft",
+    "author": "Claude",
+    "notes": [
+     "Prices are placeholders. The $795 non-covered total (expansion tank, straps, vent connector, sediment trap, permit, haul-away) is an estimate outside the published replacement ranges; verify against each company's price book.",
+     "Home warranty terms vary. Some plans include a small allowance for permits or code upgrades, and not every plan allows paid upgrades. Confirm how each company handles warranty-dispatched calls.",
+     "If a company does not take home warranty work, rewrite the briefing as a customer who calls after the warranty company denies the code items.",
+     "The required option has no monthly number because most financing programs have a minimum amount. The upgrade option uses roughly the price divided by 39."
     ]
    }
   }

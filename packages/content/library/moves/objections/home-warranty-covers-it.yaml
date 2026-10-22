@@ -1,0 +1,97 @@
+id: home-warranty-covers-it
+version: 1
+name: My home warranty covers it
+kind: objection
+group: membership
+skill: membership-financing
+summary: >-
+  The customer has a home warranty and expects it to pay for this, so a bill or a
+  membership feels like paying twice.
+difficultyMin: 1
+personas: [linda-warranty]
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.9
+priority: 65
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you have a home warranty and expect it to cover this. Be polite but
+    indignant, like someone being asked to pay twice. You believe it covers
+    everything. Do not mention a service fee or exclusions, because you do not know
+    about them. If the tech offers to look at your contract or call the warranty
+    company with you, accept. If the tech says warranties are a waste, defend yours.
+  lines:
+    - I have a home warranty. Shouldn't they be paying for this?
+    - I'm already paying for a home warranty. I'm not paying for this twice.
+    - Why can't I just call my warranty company? Isn't that what it's for?
+    - My warranty's supposed to cover all of this. Why would I pay you too?
+  followUps:
+    - So what am I paying them for, then?
+    - Can't you just bill them directly?
+  tone: irritated
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    She is afraid of paying twice for something she believes she already paid for,
+    and of feeling foolish if the warranty does not cover it.
+  resolvedBy:
+    - Taking the warranty seriously and offering to help her check it
+    - Being honest that coverage depends on her contract, without guessing
+    - Explaining plainly what warranties often leave out, such as a service fee, permits, and code parts, and checking her contract for each
+    - Explaining how a maintenance plan differs from a warranty if that comes up
+    - Making it easy to call the warranty company first
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - honest_answer
+    - explained_plainly
+    - showed_evidence
+    - asked_about_concern
+    - left_well
+  hardenedBy:
+    - argued
+    - condescended
+    - bluffed
+    - pressured
+  defaultStrength: 60
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [acknowledged_feeling, honest_answer, explained_plainly]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, condescended, bluffed, pressured]
+  pass: >-
+    The tech takes the warranty seriously, offers to check her contract or call
+    with her, and explains plainly what it may not cover without guessing.
+  fail: >-
+    The tech says home warranties are worthless, guesses at what her contract
+    covers, or pushes her to pay before she can check.
+coaching:
+  why: >-
+    She believes she already paid for this, so a bill feels like paying twice.
+    Mocking the warranty makes her defend it, and guessing at her coverage is a
+    bluff. Helping her check, and explaining calmly what warranties often leave
+    out, gets her a real answer either way.
+  modelResponse: >-
+    Then let's use it if it covers this. I don't want you paying twice. Do you have
+    the contract handy? Many warranties send their own company, charge a service
+    fee, and leave out things like permits and code parts, but yours might not. If
+    you call them first, I'll write down exactly what I found so they have it.
+  commonMistakes:
+    - Saying home warranties are a scam or a waste
+    - Guessing what her contract covers without reading it
+    - Pushing her to pay now instead of letting her call the warranty company
+    - Pitching the membership before her warranty question is answered
+tags: [membership, home-warranty]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Written for linda-warranty. Fires at price (priceStated) per the assignment, though it sits in the membership group.
+    - Claims about warranties are worded as "many" or "often" (service fee, permits, and code parts left out). Check against common California home warranty contracts before approval.

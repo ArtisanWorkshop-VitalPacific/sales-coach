@@ -1,0 +1,111 @@
+id: wh-first-home-rumbling
+version: 1
+title: Rumbling 8-year tank, flush or replace
+trade: plumbing
+jobType: water-heater-service
+difficulty: 2
+personaId: morgan-first-home
+alternatePersonas: [greg-selling, jen-busy-parent]
+briefing: >-
+  Service call. Customer reports loud rumbling and popping from the water heater when
+  it heats. 50-gallon gas tank in the garage, about 8 years old. Not a member.
+situation: >-
+  The rumbling is sediment. The water here is hard, and minerals settle at the bottom
+  of the tank. Water trapped under that layer turns to steam when the burner fires,
+  which makes the popping. It is not dangerous by itself, but it wastes gas and
+  overheats the bottom of the tank, which shortens its life. The 8-year-old 50-gallon
+  gas tank has no leaks and no rust at the base or the fittings. The burner, draft,
+  and relief valve are good, the anode rod is about half used, which is normal for its
+  age, and the expansion tank holds air. The honest recommendation is a flush and
+  service with a new brass drain valve, because the plastic one is likely to clog or
+  leak during a first flush. The tech should set expectations. Hardened sediment may
+  not all come out, so the noise may get quieter rather than stop, and there is a
+  small chance a tank this age shows a leak after its first flush. Replacement is not
+  needed today. At 8 years it is honest to suggest budgeting for one in the next few
+  years.
+equipment:
+  - item: 50-gallon atmospheric gas water heater
+    ageYears: 8
+    notes: Rumbles and pops when heating. No leaks. Never flushed. Plastic drain valve.
+  - item: Thermal expansion tank
+    ageYears: 8
+    notes: Holds air.
+findings:
+  - id: sediment-buildup
+    text: >-
+      Sediment has built up at the bottom of the tank. Water trapped under it turns to
+      steam when the burner fires, which makes the rumbling. It wastes gas and wears the
+      tank faster.
+    severity: minor
+  - id: plastic-drain-valve
+    text: The drain valve is plastic and likely to clog or leak during a first flush. A brass valve should go in.
+    severity: minor
+  - id: tank-sound
+    text: There are no leaks and no rust at the base or the fittings. The burner, draft, and relief valve are good.
+    severity: info
+  - id: anode-half-used
+    text: The anode rod is about half used, which is normal for 8 years. It does not need to be replaced yet.
+    severity: info
+  - id: expansion-tank-good
+    text: The expansion tank holds air and is doing its job.
+    severity: info
+justifiedWork:
+  - id: flush-tank
+    label: Flush the sediment
+    rationale: Sediment is causing the rumbling and wasting gas.
+  - id: brass-drain-valve
+    label: Replace the plastic drain valve with brass
+    rationale: The plastic valve is likely to clog or leak during the flush.
+unjustifiedWork:
+  - id: recommend-replacement-now
+    label: Recommending replacement now
+    why: >-
+      The tank is sound and not leaking. Replacement can be mentioned as something to
+      budget for, but recommending it today is not justified.
+  - id: tankless-conversion
+    label: Tankless conversion as the fix for the noise
+    why: Flushing addresses the noise. A different type of water heater is not needed to stop sediment rumbling.
+  - id: whole-home-filtration
+    label: Whole-home water filtration
+    why: >-
+      Nothing in this call points to a water quality concern the customer wants solved,
+      and filtration does not remove sediment that is already in the tank.
+options:
+  - id: flush-service
+    label: Flush and service
+    price: 295
+    includes:
+      - Full flush of the sediment
+      - New brass drain valve
+      - Anode rod check
+      - Relief valve test
+      - Burner, draft, and temperature check
+    recommended: true
+  - id: replace-50
+    label: Replace with 50-gallon standard gas, 6-year warranty
+    price: 2150
+    monthly: 55
+    includes:
+      - New 50-gallon gas water heater
+      - Existing expansion tank reused, since it still holds air
+      - Two seismic straps
+      - Permit and haul-away
+startPhase: door
+moves:
+  allowed: '*'
+  forced: []
+  excluded: []
+  density: 2
+goal: >-
+  Explain the rumbling in plain words and recommend the flush and service as the honest
+  fix for a tank that is not leaking. Help the customer plan for a replacement later
+  without pushing one now.
+passBar: 70
+tags: [water-heater, maintenance, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - The flush has no monthly number because most financing programs have a minimum amount. The replacement uses roughly the price divided by 39.
+    - Reusing the expansion tank depends on its condition and company policy. Some companies replace it with every new water heater.

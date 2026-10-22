@@ -1,0 +1,97 @@
+id: bigger-than-needed
+version: 1
+name: That's bigger than I need
+kind: objection
+group: scope
+skill: integrity
+summary: >-
+  The customer says the recommended option seems bigger than their home needs and
+  suspects they are being upsized.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [findings, options, price]
+  when:
+    optionsPresented: true
+  chance: 0.5
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say the recommended option seems bigger than you need, whether that is a bigger
+    tank, a bigger job, or the top option. Sound reasonable and a little
+    suspicious. If the tech asks how you use the system, answer honestly from your
+    household. If their reason fits what you told them, accept it. If it does not,
+    stay unconvinced.
+  lines:
+    - Why go bigger? The size I have now has always been fine.
+    - That seems like more than I need for a house this size.
+    - Isn't that a bit much? I really don't use that much water.
+    - Can't you just do the smaller version? This feels like more job than the problem.
+  followUps:
+    - My neighbor has the same house and a smaller one. Works fine.
+    - Is that what I need, or what you'd like to sell me?
+  tone: skeptical
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They suspect the tech is selling a bigger, more expensive option than the home
+    needs, and they do not know how to judge size themselves.
+  resolvedBy:
+    - Asking how they use the system before defending the size
+    - Sizing from their household and usage, in plain numbers
+    - Recommending the smaller option when it honestly fits
+    - Explaining the reason with the customer's own details when the larger one is needed
+  resolvingBehaviors:
+    - asked_follow_up
+    - asked_about_concern
+    - tied_options_to_needs
+    - used_customer_detail
+    - honest_answer
+    - explained_plainly
+  hardenedBy:
+    - recommended_unneeded_work
+    - bluffed
+    - pressured
+    - argued
+    - used_jargon
+  defaultStrength: 45
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [tied_options_to_needs, used_customer_detail, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [recommended_unneeded_work, bluffed, pressured, argued]
+  pass: >-
+    The tech asks how the household uses the system, sizes from the answer, and
+    recommends the smaller option when it fits or explains the larger one with the
+    customer's own details.
+  fail: >-
+    The tech defends the bigger option without asking about usage, gives a made-up
+    technical reason, or pushes the upgrade.
+coaching:
+  why: >-
+    Upsizing is one of the first things customers suspect, and often they are
+    right. Sizing from their answers, out loud, shows the recommendation comes from
+    their home and not from the price. When the smaller option fits, saying so earns
+    more trust than anything else on the call.
+  modelResponse: >-
+    Fair point. Let's size it from how you actually use it. How many people are in
+    the house, and do two showers ever run at once? If it's mostly one shower at a
+    time, the size you have is fine, and that's what I'd recommend. I'd only go
+    bigger if you're running out of hot water now.
+  commonMistakes:
+    - Defending the bigger option before asking how they use it
+    - Quoting gallons or BTUs with no plain explanation
+    - Refusing to recommend the smaller option when it fits
+    - Getting defensive when the customer questions the recommendation
+tags: [scope, sizing, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response uses water heater sizing. The same pattern applies to hydro jet versus snake, repipe versus spot repair, and tankless sizing.

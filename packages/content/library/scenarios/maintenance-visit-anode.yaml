@@ -1,0 +1,100 @@
+id: maintenance-visit-anode
+version: 1
+title: Member tune-up finds a worn anode
+trade: plumbing
+jobType: maintenance-visit
+difficulty: 2
+personaId: linda-warranty
+alternatePersonas: [margaret-retiree, paul-engineer]
+briefing: >-
+  Membership tune-up. The customer is a member. Annual water heater service with a
+  flush, relief valve test, and burner check. 50-gallon gas tank in the garage, about
+  6 years old. No complaints reported.
+situation: >-
+  This is the customer's included yearly tune-up. During the service the tech pulls
+  the anode rod and finds it used up. Most of it is bare steel core wire with only a
+  few pieces of magnesium left. The anode corrodes in place of the tank steel, and once
+  it is gone the tank starts to rust from the inside. The tank is sound. There are no
+  leaks and no rust at the base or the fittings, the burner and draft are good, and
+  the flush brought out a normal amount of sediment for the hard water here. The
+  expansion tank holds air, and its pressure was set to match the house. The honest
+  recommendation is a new anode rod, not a new tank. The ceiling is low, so a flexible
+  link-style anode is needed. A new anode can add years to a sound tank, but there is
+  no guarantee, and the tech should not promise a number. The tank's 6-year
+  manufacturer warranty is at or near its end. If the customer brings up a home
+  warranty, most plans treat an anode as maintenance, but the tech should not guess
+  about the customer's contract and can offer to look at it together. Member pricing
+  applies.
+equipment:
+  - item: 50-gallon atmospheric gas water heater
+    ageYears: 6
+    notes: Sound, no leaks. Low ceiling above the anode port, so a flexible anode is needed.
+  - item: Thermal expansion tank
+    ageYears: 6
+    notes: Holds air. Pressure set to match the house during the tune-up.
+findings:
+  - id: anode-depleted
+    text: >-
+      The anode rod is used up. Most of it is bare steel wire. Without it, the tank
+      starts to rust from the inside.
+    severity: major
+  - id: tank-sound
+    text: There are no leaks and no rust at the base or the fittings, and the burner and draft are good. The tank is in good shape for its age.
+    severity: info
+  - id: sediment-normal
+    text: The flush brought out a normal amount of sediment for the hard water here.
+    severity: info
+  - id: expansion-tank-good
+    text: The expansion tank holds air. Its pressure was set to match the house.
+    severity: info
+justifiedWork:
+  - id: replace-anode
+    label: Replace the anode rod
+    rationale: It is used up, and a sound 6-year-old tank is worth protecting.
+unjustifiedWork:
+  - id: recommend-new-tank
+    label: Recommending a new water heater
+    why: The tank is 6 years old, sound, and not leaking. A new anode protects it.
+  - id: replace-expansion-tank
+    label: Replacing the expansion tank
+    why: It holds air and only needed its pressure set, which the tune-up covers.
+  - id: whole-home-filtration
+    label: Whole-home water filtration
+    why: Nothing in this visit points to a water quality concern the customer wants solved. It has nothing to do with the anode.
+options:
+  - id: anode-replacement
+    label: New flexible magnesium anode rod
+    price: 295
+    includes:
+      - New flexible magnesium anode rod
+      - Leak check after install
+      - Member pricing
+      - Rest of the tune-up already included
+    recommended: true
+  - id: powered-anode
+    label: Powered anode rod
+    price: 395
+    includes:
+      - Powered titanium anode that does not wear away
+      - Plugs into a nearby outlet
+      - Leak check after install
+      - Member pricing
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [how-do-i-know-its-broken]
+  excluded: [memberships-are-a-scam]
+  density: 2
+goal: >-
+  Show the customer the worn anode, explain plainly what it does, and recommend the
+  anode over a new tank. Answer any warranty question honestly.
+passBar: 70
+tags: [water-heater, maintenance, membership, anode]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges and are shown as member prices. Each company's price book and member discount replace them.
+    - No monthly numbers because both options are under most financing minimums.
+    - memberships-are-a-scam is excluded because the customer is already a member.
+    - Confirm a powered anode does not affect the tank warranty for the brands each company installs.

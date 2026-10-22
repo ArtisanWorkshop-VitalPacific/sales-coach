@@ -1,0 +1,95 @@
+id: dont-need-maintenance
+version: 1
+name: Plumbing doesn't need maintenance
+kind: objection
+group: membership
+skill: membership-financing
+summary: >-
+  The tech offers the maintenance membership and the customer says plumbing does
+  not need maintenance, since theirs has been fine without it.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [options, price, close, wrapup]
+  when:
+    membershipOffered: true
+  chance: 0.5
+priority: 45
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say plumbing does not need maintenance and yours has been fine without it. Be
+    relaxed and sure of yourself, not hostile. You honestly believe maintenance is
+    something companies made up to sell visits. Change your mind only if the tech
+    explains what it would do for your equipment in plain terms, using what they
+    saw today. If they tell you something will fail without it, trust them less.
+  lines:
+    - Pipes don't need maintenance. It works till it doesn't, right?
+    - I've never done any maintenance on it, and it's been fine for years.
+    - What's there to maintain? It's plumbing, not a car.
+    - My dad never had anybody maintain his plumbing, and it lasted forever.
+  followUps:
+    - So what actually happens if I skip it?
+    - That sounds like something you'd say to sell visits.
+  tone: confident
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They think maintenance is an invented service. They do not see what it would
+    change for their home, and they do not want to pay for visits that find nothing.
+  resolvedBy:
+    - Explaining in plain words what maintenance does for their specific equipment
+    - Using their details, such as the age of the equipment, hard water, or what was found today
+    - Being honest about the parts of the house that do not need maintenance
+    - Answering what happens if they skip it without exaggerating
+  resolvingBehaviors:
+    - explained_plainly
+    - explained_membership_value
+    - used_customer_detail
+    - honest_answer
+    - corrected_respectfully
+    - showed_evidence
+  hardenedBy:
+    - pressured
+    - bluffed
+    - condescended
+    - argued
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [explained_membership_value, explained_plainly, corrected_respectfully]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, bluffed, condescended, argued]
+  pass: >-
+    The tech explains in plain words what maintenance does for this customer's
+    equipment, using what was found today, without exaggerating.
+  fail: >-
+    The tech uses scare talk, claims maintenance does more than it does, or talks
+    down to the customer.
+coaching:
+  why: >-
+    Many people honestly believe plumbing needs nothing until it breaks, and for
+    much of the house that is close to true. The case for maintenance has to be
+    specific to their equipment and their water, or it sounds like a sales line.
+    Exaggerating what it does is the fastest way to lose their trust.
+  modelResponse: >-
+    For a lot of plumbing, you're right, it just runs. A water heater is different.
+    Our water here is hard, so minerals settle in the bottom of the tank, and a
+    metal rod inside wears out protecting the tank from rust. A yearly flush and a
+    check on that rod help it last. That's the main thing the plan does for you.
+  commonMistakes:
+    - Telling them their system will fail without it
+    - Claiming maintenance doubles equipment life, or other numbers the tech cannot back up
+    - Listing every benefit instead of the one that matters for their equipment
+    - Treating the customer as foolish for skipping maintenance
+tags: [membership, maintenance]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response assumes the plan includes a yearly water heater flush and anode rod check, and that the home has hard water, which is typical in southwest Riverside County. Company specs should confirm the plan's actual service items.

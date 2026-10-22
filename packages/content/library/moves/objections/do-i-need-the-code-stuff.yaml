@@ -1,0 +1,101 @@
+id: do-i-need-the-code-stuff
+version: 1
+name: Do I really need the code stuff?
+kind: objection
+group: scope
+skill: integrity
+summary: >-
+  The customer questions the code items on the quote, such as the expansion tank,
+  the seismic straps, or the permit, and asks to skip them.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [options, price, objections]
+  when:
+    optionsPresented: true
+  chance: 0.7
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask whether you really need the code items on the quote. On a water heater that
+    is the expansion tank, the two straps, and the permit. On other jobs, name
+    whatever the tech called a code requirement. Sound reasonable and a little
+    suspicious that the bill is being padded. Your old setup never had them and
+    nothing bad happened. Do not get angry. If the tech uses fear, become more
+    suspicious, not more scared. If they explain what each part does in plain
+    words, accept it.
+  lines:
+    - Do I really need the expansion tank and the straps? The old one didn't have any of that.
+    - What's all this code stuff? Can't you just put it back the way it was?
+    - Can we skip the extra parts and just do the main job?
+    - Is the permit really necessary? Seems like a way to add to the bill.
+  followUps:
+    - Who's going to check, though? Nobody's ever looked at it.
+    - So you're saying my house is dangerous right now?
+  tone: skeptical
+  delayMs: 700
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They suspect the code items are padding. They do not know what the parts do,
+    and they feel judged for a setup that has worked for years.
+  resolvedBy:
+    - Explaining what each item does in plain words
+    - Saying honestly which items are required in this home and why, and which are not
+    - Explaining that the permit means the city inspects the work, and that many older installs lack these parts
+    - Showing what each item costs instead of hiding it in the total
+    - Staying calm and factual, with no scare stories
+  resolvingBehaviors:
+    - explained_plainly
+    - honest_answer
+    - justified_value
+    - corrected_respectfully
+    - checked_understanding
+    - showed_evidence
+  hardenedBy:
+    - pressured
+    - bluffed
+    - condescended
+    - used_jargon
+    - argued
+  defaultStrength: 50
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [explained_plainly, honest_answer, justified_value, corrected_respectfully]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, bluffed, caved, condescended]
+  pass: >-
+    The tech explains in plain words what each code item does and why it is
+    required in this home, without fear and without dropping a required item.
+  fail: >-
+    The tech uses scare talk about floods, fires, or fines, claims requirements that
+    do not apply here, or agrees to skip a required item to save money.
+coaching:
+  why: >-
+    Code items look like add-ons, so they are where trust is easiest to lose.
+    Explained plainly, they are easy to defend: the city inspects the work, and
+    these parts are what the inspector looks for. Using fear to sell them makes the
+    customer doubt everything else you said.
+  modelResponse: >-
+    Fair question. A lot of older installs don't have these, so you didn't do
+    anything wrong. On a replacement we pull a permit, and the city inspector looks
+    for both: two straps, so the tank can't tip in an earthquake, and an expansion
+    tank, because your home has a pressure regulator and heated water needs room to
+    expand. I'll show you what each costs.
+  commonMistakes:
+    - Using scare talk about floods, fires, or fines to sell the code items
+    - Calling the expansion tank required without checking for a pressure regulator, check valve, or backflow device
+    - Agreeing to leave out a required item to save the customer money
+    - Saying "it's code" without explaining what the part does
+tags: [core, scope, code, california, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - California practice used here. Water heater replacements need a permit and two seismic straps, one in the upper third and one in the lower third of the tank. A thermal expansion tank is required where the system is closed by a pressure regulator, check valve, or backflow device. Confirm local inspector practice in Riverside County.
+    - Phases include objections because customers often question code items after seeing the itemized price. This is a small change from the scope pattern.

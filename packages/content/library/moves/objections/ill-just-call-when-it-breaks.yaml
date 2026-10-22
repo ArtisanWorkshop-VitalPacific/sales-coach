@@ -1,0 +1,94 @@
+id: ill-just-call-when-it-breaks
+version: 1
+name: I'll just call when it breaks
+kind: objection
+group: membership
+skill: membership-financing
+summary: >-
+  The tech offers the membership and the customer says they would rather pay for
+  repairs when something breaks.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [options, price, close, wrapup]
+  when:
+    membershipOffered: true
+  chance: 0.5
+priority: 45
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you would rather pay for repairs when something breaks than pay for a plan.
+    Be easygoing and practical. You think the math favors waiting. Accept an answer
+    with real numbers and no pressure. If the tech pushes or predicts a disaster,
+    become more firm.
+  lines:
+    - I'll just call you when something breaks. That's worked fine so far.
+    - Why pay for a plan when nothing's wrong? I'll pay when I need you.
+    - I'd rather keep my money and call if there's a problem.
+    - If something goes wrong, I've got your number. That's good enough for me.
+  followUps:
+    - Things don't break that often. Do the math for me.
+    - And if nothing breaks all year, I just paid for nothing?
+  tone: friendly
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They believe paying for problems as they come is cheaper than paying for
+    prevention, and they do not want a charge for something they may not use.
+  resolvedBy:
+    - Agreeing it is a reasonable approach for some homes
+    - Doing the honest math, what the plan costs against what it saves for their equipment
+    - Pointing to the specific reason in their home, such as an older water heater or high water pressure, without exaggerating
+    - Accepting the no and leaving the details with them
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - explained_membership_value
+    - used_customer_detail
+    - honest_answer
+    - left_well
+  hardenedBy:
+    - pressured
+    - argued
+    - bluffed
+    - repeated_same_answer
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [explained_membership_value, honest_answer, left_well]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, argued, bluffed, repeated_same_answer]
+  pass: >-
+    The tech agrees it can be a reasonable choice, does the honest math for this
+    home, and accepts the answer without pushing.
+  fail: >-
+    The tech predicts a breakdown to scare them, argues the math without real
+    numbers, or asks again after a clear no.
+coaching:
+  why: >-
+    Paying as you go is a reasonable plan for many homes, and pretending otherwise
+    costs you credibility. The membership is worth it when this home has a
+    specific reason, such as older equipment or hard water, and the math shows it.
+    If the reason is not there, saying so makes them more likely to call you next
+    time.
+  modelResponse: >-
+    That's fair, and for some homes it's the right call. Here's the honest math for
+    yours: what the plan costs a year, against what the flush and the repair
+    discount would save on a water heater this age. If it doesn't come out ahead
+    for you, skip it. I'll leave the details either way.
+  commonMistakes:
+    - Predicting a breakdown to create urgency
+    - Talking about savings without real numbers
+    - Asking again after a clear no
+    - Treating the customer's approach as foolish
+tags: [membership]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Company specs supply the plan's yearly price and repair discount so the tech can do this math with real numbers.

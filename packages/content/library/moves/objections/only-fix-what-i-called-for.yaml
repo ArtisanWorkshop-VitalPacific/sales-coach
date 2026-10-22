@@ -1,0 +1,95 @@
+id: only-fix-what-i-called-for
+version: 1
+name: Just fix what I called about
+kind: objection
+group: scope
+skill: objections
+summary: >-
+  The tech brings up findings beyond the reason for the call, and the customer asks
+  them to fix only what they called about.
+difficultyMin: 1
+personas: any
+trigger:
+  phases: [findings, options, price]
+  when:
+    optionsPresented: true
+  chance: 0.6
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Tell the tech you only want the problem you called about fixed. Be polite and
+    firm. You feel a sales pitch coming. Do not ask about the other finding unless
+    the tech explains it once in a way that sounds honest and not pushy. If the
+    tech accepts your choice right away, relax and listen. If they bring it up
+    again, answer in fewer words and sound irritated.
+  lines:
+    - I just want you to fix what I called about. That's it.
+    - Can we just stick to what I called you out for?
+    - Look, I appreciate it, but I only need the one thing fixed today.
+    - Every time someone comes out, it turns into a whole list. Just the one thing, please.
+  followUps:
+    - Is that a real problem, or just something you noticed?
+    - If it's been fine this long, it can wait, right?
+  tone: guarded
+  delayMs: 500
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They feel the visit turning into a sales pitch and are afraid of a bill that
+    keeps growing. They want control over what gets done in their home.
+  resolvedBy:
+    - Agreeing right away to fix what they called about
+    - Mentioning the other finding once, plainly, with evidence and its real urgency
+    - Saying clearly when something is a safety issue, without exaggerating
+    - Writing it down and leaving the decision with them
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - showed_evidence
+    - explained_plainly
+    - honest_answer
+    - left_well
+  hardenedBy:
+    - pressured
+    - recommended_unneeded_work
+    - repeated_same_answer
+    - showed_impatience
+    - argued
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, honest_answer, showed_evidence, left_well]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, recommended_unneeded_work, repeated_same_answer, showed_impatience]
+  pass: >-
+    The tech agrees to fix what they called about, explains the other finding once
+    with its real urgency, and leaves the choice with the customer.
+  fail: >-
+    The tech keeps pushing the extra work, makes it sound more urgent than it is,
+    or makes the customer feel difficult for saying no.
+coaching:
+  why: >-
+    The customer is protecting themselves from a visit that grows into a big bill.
+    Agreeing first makes them willing to listen, and one clear explanation is
+    enough. If a finding is a real safety issue, saying so plainly is your job,
+    but repeating it until they agree is pressure.
+  modelResponse: >-
+    Of course, that's what I'm here for, and I'll take care of it. One thing I want
+    you to know about, and then it's your call. Your main water shutoff is stuck
+    and won't turn. Here's a photo. It's not urgent today, but if a pipe ever
+    breaks, you couldn't shut the water off. I'll note it on your invoice.
+  commonMistakes:
+    - Bringing the extra finding up again after the customer said no
+    - Making a minor finding sound urgent
+    - Leaving out a real safety issue to avoid the conversation
+    - Acting annoyed that the customer said no
+tags: [scope, additional-findings]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - The model response uses the stuck main shutoff from main-shutoff-seized. The pattern is the same for failing shutoff valves or a worn anode rod.

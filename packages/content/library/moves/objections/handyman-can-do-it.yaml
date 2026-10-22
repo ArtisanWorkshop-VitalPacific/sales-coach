@@ -1,0 +1,97 @@
+id: handyman-can-do-it
+version: 1
+name: My handyman can do it
+kind: objection
+group: competition
+skill: objections
+summary: >-
+  The customer says their handyman can do the job for less.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.5
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say your handyman can do this for less. Be relaxed and practical, not rude. You
+    trust him and like his prices. Do not bring up licenses or permits yourself. If
+    the tech explains calmly which parts need a license or a permit, admit you are
+    not sure whether he is licensed for plumbing. If the tech insults him or tells
+    scare stories, defend him.
+  lines:
+    - My handyman can probably knock this out for a lot less.
+    - I've got a guy who does all my odd jobs. He can handle this.
+    - Honestly, my handyman does this kind of thing all the time. Why pay plumber prices?
+    - I'll just have my handyman do it. He's cheaper and he's done stuff like this.
+  followUps:
+    - He's done a bunch of these for people on my street. No problems.
+    - Come on, it's not that complicated, is it?
+  tone: neutral
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They want to keep costs down and trust someone they already know. They are not
+    sure this job needs a licensed plumber and suspect they are paying a plumber's
+    price for something simple.
+  resolvedBy:
+    - Speaking well of the handyman and the customer's trust in him
+    - Saying honestly which parts of the job a handyman can do and which need a license or a permit
+    - Explaining the license and permit rule as a plain fact, not a threat
+    - Giving them the questions to ask the handyman
+    - Leaving a written scope so they can compare
+  resolvingBehaviors:
+    - asked_about_concern
+    - explained_plainly
+    - honest_answer
+    - justified_value
+    - corrected_respectfully
+  hardenedBy:
+    - argued
+    - condescended
+    - pressured
+    - bluffed
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [honest_answer, explained_plainly, corrected_respectfully, asked_about_concern]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, condescended, pressured, bluffed]
+  pass: >-
+    The tech speaks well of the handyman, explains plainly whether this job needs a
+    permit and a licensed contractor, and gives the customer questions to ask him.
+  fail: >-
+    The tech insults the handyman, tells scare stories about fires or floods, or
+    claims rules that do not apply to this job.
+coaching:
+  why: >-
+    Homeowners often trust a handyman for good reason, and attacking him makes them
+    defend him. The honest point is narrow: in California, an unlicensed worker can
+    only take jobs under $1,000 in total that need no permit, and water heater and
+    gas work need a permit. Say that as a fact, and say so when a small job really
+    is handyman work.
+  modelResponse: >-
+    A good handyman is worth a lot, and for small stuff he may be the right call.
+    For this job, I'd ask him two things: is he licensed for plumbing, and will he
+    pull the permit? In California, if a job needs a permit, whoever you hire has to
+    be licensed. I'll write down exactly what this job includes so you can compare.
+  commonMistakes:
+    - Saying the handyman will burn the house down or flood it
+    - Claiming every job needs a licensed plumber, even small ones that do not
+    - Talking down to the customer for considering it
+    - Quoting rules or code sections the tech is not sure of
+tags: [competition, licensing, california]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Uses the California minor work exemption in effect since January 1, 2025 (AB 2622), which covers jobs under $1,000 total for labor and materials when no permit is needed. Confirm it is still current before approval.
+    - Fits rick-landlord best, since he has a handyman, but works for any homeowner.

@@ -1,0 +1,96 @@
+id: found-it-cheaper
+version: 1
+name: I found it cheaper
+kind: objection
+group: competition
+skill: objections
+summary: >-
+  The customer says they found the same job or part for less, from another
+  company's quote or a price they saw online.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.6
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you found it cheaper, either a lower quote from another company or a price
+    you saw online for the part. Be matter of fact and a little challenging, not
+    rude. Do not volunteer what the other price includes. If the tech asks, say it
+    is a single line with a total and you are not sure what is in it. If the tech
+    attacks the other company, trust this tech less.
+  lines:
+    - Another company quoted me quite a bit less for the same job.
+    - I looked it up online. You can get this done for way less than that.
+    - I've got another quote right here, and it's a lot lower. Why are you so much higher?
+    - Honestly, I found the same thing cheaper. Why would I pay more here?
+  followUps:
+    - It's the same job, though. I don't see the difference.
+    - So are you saying they're doing it wrong?
+  tone: skeptical
+  delayMs: 500
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They are afraid of overpaying and of looking foolish for choosing the higher
+    price. They cannot tell whether the two prices cover the same work.
+  resolvedBy:
+    - Asking what the other price includes before reacting to it
+    - Comparing the two line by line, including the permit, code parts, haul-away, labor, and warranty
+    - Explaining plainly what an installed price adds when the lower number is for the part alone
+    - Saying so when the other quote covers the same work for less
+    - Leaving a written, itemized estimate they can compare against the other one
+  resolvingBehaviors:
+    - asked_about_concern
+    - asked_follow_up
+    - justified_value
+    - showed_evidence
+    - honest_answer
+    - explained_plainly
+  hardenedBy:
+    - argued
+    - bluffed
+    - pressured
+    - condescended
+    - discounted_unprompted
+  defaultStrength: 50
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [asked_about_concern, asked_follow_up, justified_value, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, bluffed, caved, pressured]
+  pass: >-
+    The tech asks what the lower price includes, compares the two line by line, and
+    explains any real difference without attacking the other company.
+  fail: >-
+    The tech criticizes the competitor, makes claims about a quote they have not
+    seen, or drops needed work to match the number.
+coaching:
+  why: >-
+    A lower number only matters if it covers the same work, and most customers
+    cannot tell whether two quotes match. Helping them compare honestly, even when
+    the other quote turns out to be fair, earns more trust than defending your price.
+  modelResponse: >-
+    Good, you should compare. Can I see it, or tell me what it includes? I want to
+    make sure we're pricing the same job: the permit, the code parts, haul-away, and
+    the warranty. If it's the same work, that's a fair price and I'll tell you so. If
+    something's missing, I'll show you exactly what it is and what it costs.
+  commonMistakes:
+    - Saying the other company cuts corners without seeing their quote
+    - Matching the price on the spot without comparing what is included
+    - Dropping a required item to get the number down
+    - Getting defensive about the difference
+tags: [core, competition, comparison]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Fail includes caved because matching the number by dropping required work is the most common way techs lose this one.

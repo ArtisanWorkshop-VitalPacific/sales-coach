@@ -1,0 +1,93 @@
+id: whats-the-catch
+version: 1
+name: What's the catch?
+kind: objection
+group: financing
+skill: integrity
+summary: >-
+  The tech offers financing and the customer asks what the catch is: the credit
+  check, the interest, and what happens if they fall behind.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    financingOffered: true
+  chance: 0.6
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Ask what the catch is with the financing. Be skeptical but fair. You have heard
+    stories about interest that shows up later and surprise fees. Ask about the
+    credit check, the interest rate, and what happens if the balance is not paid
+    off in time. Accept clear, honest answers. Get more suspicious if the tech says
+    there is no catch at all or cannot answer.
+  lines:
+    - Okay, that sounds easy. So what's the catch?
+    - There's always a catch with these payment plans. What is it?
+    - What happens if I miss a payment or can't pay it off in time?
+    - Does this run my credit? And what's the interest, really?
+  followUps:
+    - So if I'm a month late paying it off, what happens?
+    - Is all of that in writing somewhere I can read?
+  tone: skeptical
+  delayMs: 600
+  audioTags: [skeptical]
+  speaker: primary
+resolution:
+  concern: >-
+    They suspect the easy monthly number hides interest, fees, or a hit to their
+    credit, and they do not want to be trapped in a loan they did not understand.
+  resolvedBy:
+    - Explaining the real terms in plain words, including the credit check, the rate, the term, and the total cost
+    - Saying exactly what happens if a promotional balance is not paid off in time
+    - Showing the lender's written terms instead of summarizing from memory
+    - Saying "I'll find out" when unsure instead of guessing
+  resolvingBehaviors:
+    - honest_answer
+    - explained_plainly
+    - showed_evidence
+    - checked_understanding
+  hardenedBy:
+    - bluffed
+    - pressured
+    - used_jargon
+    - condescended
+  defaultStrength: 50
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [honest_answer, explained_plainly, showed_evidence]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [bluffed, pressured, used_jargon]
+  pass: >-
+    The tech explains the credit check, the rate, the term, and what happens if a
+    promotional balance is not paid off, and shows the written terms.
+  fail: >-
+    The tech says there is no catch, guesses at the terms, or skips the credit
+    check and interest to keep the sale moving.
+coaching:
+  why: >-
+    Most people have heard about interest that shows up later and surprise fees, so
+    honest terms are what they want. Saying there is no catch loses them, because
+    there is almost always a credit check and usually interest somewhere. Plain terms, in
+    writing, make the monthly number believable.
+  modelResponse: >-
+    Fair question, and you should ask it. You'd apply with the lender, so there's a
+    credit check. If you're approved, the payment is the monthly number I gave you,
+    and here are the rate and the term in writing. On a promo plan, the big one is
+    what happens if it's not paid off in time, so let's read that line together.
+  commonMistakes:
+    - Saying there's no catch
+    - Guessing at the rate or promo terms from memory
+    - Skipping the credit check because it might scare them off
+    - Using terms like APR or deferred interest without explaining them
+tags: [financing, disclosure, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Real lender terms belong in each company's spec. The model response assumes a lender application with a credit check. Confirm against each company's financing partner.

@@ -1,0 +1,95 @@
+id: memberships-are-a-scam
+version: 1
+name: Memberships are a scam
+kind: objection
+group: membership
+skill: membership-financing
+summary: >-
+  The tech offers the maintenance membership and the customer says memberships are
+  a scam to collect money every month.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [options, price, close, wrapup]
+  when:
+    membershipOffered: true
+  chance: 0.6
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say you think service memberships are a scam. Be blunt but not rude. You have
+    been stuck paying for subscriptions you did not use. Do not ask about the
+    benefits yourself. Become more open only if the tech admits some memberships
+    are not worth it, gives real numbers for your home, and is honest about how to
+    cancel.
+  lines:
+    - No offense, but those memberships are a racket. I'm not signing up.
+    - Every company has a club now. It's just a way to get money every month.
+    - I've been burned by these before. You sign up and you can never cancel.
+    - Memberships are how they get you. I'll pass, thanks.
+  followUps:
+    - So how do I cancel, if I want out?
+    - What would I actually save in a year? Real numbers.
+  tone: skeptical
+  delayMs: 500
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They have paid for subscriptions they never used and expect this one to be the
+    same: a monthly charge that is hard to cancel and pays off only for the company.
+  resolvedBy:
+    - Agreeing that some memberships are not worth it, without getting defensive
+    - Explaining exactly what this one includes and what it costs for the year
+    - Showing what it would save or prevent for their equipment, in real numbers
+    - Explaining plainly how to cancel
+    - Saying so if it does not make sense for them
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - explained_membership_value
+    - honest_answer
+    - used_customer_detail
+    - explained_plainly
+  hardenedBy:
+    - argued
+    - pressured
+    - bluffed
+    - repeated_same_answer
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [explained_membership_value, honest_answer, acknowledged_feeling]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, pressured, bluffed, repeated_same_answer]
+  pass: >-
+    The tech admits not every membership is worth it, explains what this one does
+    for their home in real numbers, and says how to cancel.
+  fail: >-
+    The tech argues that memberships always pay off, inflates the savings, or keeps
+    pushing after a clear no.
+coaching:
+  why: >-
+    Most people have paid for a subscription they did not use, so their doubt is
+    reasonable. A membership is worth it only if it does something specific for
+    this home, and the customer needs to hear that in numbers. Being honest about
+    canceling, and about when it does not pay off, makes the rest believable.
+  modelResponse: >-
+    You're right that some aren't worth it, so let me be specific. Here's what this
+    one covers for your house, what it costs for the year, and what it would save
+    you. And here's exactly how you cancel. If the math doesn't work for you, skip
+    it. I'd rather you trust me than buy it.
+  commonMistakes:
+    - Arguing that memberships always pay for themselves
+    - Reading the full benefit list instead of what matters for this home
+    - Inflating the savings or skipping how to cancel
+    - Asking again after a clear no
+tags: [membership]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Company specs supply the real benefits, price, and cancellation terms the tech should cite.

@@ -73,7 +73,15 @@ export function CallScreen(props: Props) {
       caps,
       onEnded: async (record: SessionRecord) => {
         setSaving(true);
-        const stored = await storeFinishedCall(record);
+        let techName: string | undefined;
+        if (props.tv) {
+          try {
+            techName = window.sessionStorage.getItem('sc.trainingTech') ?? undefined;
+          } catch {
+            /* ignore */
+          }
+        }
+        const stored = await storeFinishedCall(record, { techName });
         router.replace(`/debrief/${stored.id}${props.tv ? '?tv=1' : ''}`);
       },
     });

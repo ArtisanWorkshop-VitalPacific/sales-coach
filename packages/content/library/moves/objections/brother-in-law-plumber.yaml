@@ -1,0 +1,102 @@
+id: brother-in-law-plumber
+version: 1
+name: My brother-in-law is a plumber
+kind: objection
+group: competition
+skill: objections
+summary: >-
+  The customer says their brother-in-law is a plumber who could do the job for
+  less, and that family should get the first chance.
+difficultyMin: 2
+personas: [ruiz-couple]
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.85
+priority: 65
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say your brother-in-law is a plumber and could probably do this for less. Be
+    friendly and a little sheepish, not hostile. You feel family should get the
+    first chance, and you are watching every dollar right now. Do not volunteer
+    that you have not asked him yet or that he is busy with his own work. Admit
+    both if the tech asks about him with real interest. If the tech criticizes
+    him, defend him and say you would rather wait for him.
+  lines:
+    - Honestly, my brother-in-law's a plumber. He could probably do this for a lot less.
+    - Let me run this by my brother-in-law first. He does this for a living.
+    - I don't mean any offense, but family's in the trade. I feel like I should ask him.
+    - My brother-in-law could probably knock this out on a Saturday, you know?
+  followUps:
+    - He'd do it for the cost of parts and a barbecue, though.
+    - So what's really the difference between you and him?
+  tone: friendly
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    Money is tight, and paying a stranger more than family would charge feels
+    wasteful and a little disloyal. Underneath is a question of whether the price
+    is fair and whether family could really do the same job just as soon.
+  resolvedBy:
+    - Speaking well of the brother-in-law instead of competing with him
+    - Asking what kind of plumbing he does and when he could get to it
+    - Writing up the findings and the full scope so he can check the price
+    - Explaining what the price includes, such as the permit, the warranty, and haul-away, without implying he would skip them
+    - Giving the couple room to decide together without pressure
+  resolvingBehaviors:
+    - asked_about_concern
+    - asked_follow_up
+    - justified_value
+    - showed_evidence
+    - honest_answer
+    - included_second_person
+    - left_well
+  hardenedBy:
+    - argued
+    - condescended
+    - pressured
+    - discounted_unprompted
+    - showed_impatience
+  defaultStrength: 55
+evaluate:
+  windowTurns: 3
+  passIf:
+    anyBehaviors: [asked_follow_up, asked_about_concern, justified_value, showed_evidence]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, condescended, pressured, discounted_unprompted]
+  pass: >-
+    The tech speaks well of the brother-in-law, asks what work he does and when he
+    could do it, and offers a written scope he can check.
+  fail: >-
+    The tech hints the relative will cut corners, drops the price to beat family,
+    or pushes for a decision before the couple can talk to him.
+coaching:
+  why: >-
+    This objection is about family and money, not plumbing skill. Criticizing the
+    relative forces the customer to defend family. A written scope the relative can
+    check shows the price is fair and gives the couple an easy way to choose you if
+    he cannot get to it soon.
+  modelResponse: >-
+    That's great to have a plumber in the family. Does he do much residential work
+    like this, and when could he get to it? Here's what I'd suggest. I'll write up
+    exactly what I found and everything this price covers, the parts, the permit,
+    the warranty, so he can look it over. If he can do it soon, go with him. If not,
+    I'm here.
+  commonMistakes:
+    - Hinting that the relative will cut corners or is not a real plumber
+    - Cutting the price to beat family
+    - Treating it as a brush-off and asking for the decision again
+    - Talking only to the person who raised it when the spouse is in the room
+tags: [competition, family, joint-decision]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Written for ruiz-couple. The intent adds two small facts (they have not asked him yet, and he is busy with his own work). Check both against the ruiz-couple persona file once it exists.
+    - Pairs with the drill the-relative-plumber.

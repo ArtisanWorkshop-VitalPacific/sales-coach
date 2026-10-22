@@ -1,0 +1,98 @@
+id: monthly-still-too-much
+version: 1
+name: Even the monthly is too much
+kind: objection
+group: financing
+skill: membership-financing
+summary: >-
+  The tech offers financing, and the customer says even the monthly payment is
+  more than they can manage.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    financingOffered: true
+    priceAboveBudget: true
+  chance: 0.7
+priority: 55
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say that even the monthly payment is more than you can manage. Sound tired and
+    a little embarrassed, not angry. If the tech gave a specific monthly number,
+    repeat it back. Do not share your actual budget unless the tech asks gently. If
+    the tech offers a longer loan or more debt, say less and become more guarded.
+    If they offer an honest cheaper way to fix it safely, you are relieved.
+  lines:
+    - Even by the month, that's more than I can swing right now.
+    - I appreciate it, but another monthly payment just isn't going to work.
+    - That would really squeeze me. I've already got a lot going out every month.
+    - Honestly, money's tight. I can't take on another bill.
+  followUps:
+    - Isn't there something cheaper that would still be safe?
+    - I don't want to sign up for something I can't keep up with.
+  tone: embarrassed
+  delayMs: 1200
+  audioTags: [sighs]
+  speaker: primary
+resolution:
+  concern: >-
+    Money is tight, they are embarrassed to say how tight, and they are afraid a new
+    payment will add to bills they already struggle to pay.
+  resolvedBy:
+    - Acknowledging it without pity or pressure
+    - Asking gently what amount, monthly or total, would work
+    - Offering the least expensive option that still fixes the problem safely
+    - Being clear about the total cost if a longer term comes up, and not pushing it
+    - Accepting a no and making it easy to come back later
+  resolvingBehaviors:
+    - acknowledged_feeling
+    - asked_about_concern
+    - tied_options_to_needs
+    - honest_answer
+    - presented_options
+    - left_well
+  hardenedBy:
+    - pressured
+    - condescended
+    - argued
+    - recommended_unneeded_work
+    - repeated_same_answer
+  defaultStrength: 55
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [acknowledged_feeling, asked_about_concern, tied_options_to_needs]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [pressured, condescended, repeated_same_answer]
+  pass: >-
+    The tech acknowledges it kindly, asks what would work, and offers the least
+    expensive safe option without pushing more debt.
+  fail: >-
+    The tech pushes a longer loan or a bigger payment, repeats the same offer, or
+    makes the customer feel embarrassed.
+coaching:
+  why: >-
+    When even the monthly number is too much, the customer is telling you something
+    hard about their money. Making the loan longer to lower the payment only adds
+    debt they cannot afford. The honest answer is the least expensive safe fix,
+    offered without making them feel small.
+  modelResponse: >-
+    Thank you for telling me. Let's not add a payment that makes things harder. Let
+    me show you the least expensive way to do this safely. It may not be my first
+    choice, but it fixes the problem. And if that's still too much right now, tell
+    me what you can manage and I'll be straight with you about what's possible.
+  commonMistakes:
+    - Making the loan longer to lower the payment without explaining the total cost
+    - Repeating the monthly number as if they did not hear it
+    - Sounding disappointed or pitying
+    - Treating a no as a problem to overcome instead of an answer
+tags: [financing, money-worry, dignity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Adds priceAboveBudget to the financing trigger so the move only fires for customers who cannot pay cash. Consider adding afterBehaviors with framed_monthly if it should fire only right after a specific monthly number.

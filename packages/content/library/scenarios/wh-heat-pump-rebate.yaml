@@ -1,0 +1,132 @@
+id: wh-heat-pump-rebate
+version: 1
+title: Failing electric tank, heat pump option
+trade: plumbing
+jobType: water-heater-replacement
+difficulty: 4
+personaId: paul-engineer
+alternatePersonas: [devin-researcher]
+briefing: >-
+  Estimate. Homeowner reports lukewarm water and a small puddle under the water
+  heater, and wants to discuss heat pump water heaters. 50-gallon electric tank in the
+  garage. All-electric home. Not a member.
+situation: >-
+  The 13-year-old 50-gallon electric tank is failing. Water is seeping from the bottom
+  of the tank, and the lower heating element reads open, which is why the water is
+  lukewarm. The tank cannot be repaired. There is no expansion tank, and the house has
+  a pressure regulator, so the new install needs one. The home suits a heat pump water
+  heater. The existing 240-volt, 30-amp circuit can serve a 240-volt unit (confirm
+  against the model's nameplate). The two-car garage has far more air than the roughly
+  700 cubic feet many units call for, there is a route for a condensate drain to the
+  outside, and the garage stays inside the heat pump's operating range most of the
+  year. Accurate numbers: a standard electric tank is rated at a UEF of about 0.92 and
+  a 50-gallon heat pump unit at about 3.5 to 4, so it uses roughly a quarter to a
+  third of the electricity for the same hot water. In hybrid mode its first-hour
+  rating is about the same as the old tank's. It runs at roughly 45 to 55 decibels,
+  about like a dehumidifier, cools and dries the air around it, and recovers more
+  slowly in heat pump only mode. Payback depends on the home's usage and electric
+  rate, and the tech should work it out from the customer's bill, not promise a
+  number. Rebates may apply, verify current amounts. Incentives for heat pump water
+  heaters have come from TECH Clean California, local utility programs, and the
+  federal tax credit, and funding and eligibility change often. The federal 25C credit
+  ended for equipment placed in service after December 31, 2025. A like-for-like
+  electric replacement is allowed in an existing home, so the heat pump is a choice,
+  not a code requirement. The honest recommendation is the 50-gallon heat pump unit,
+  presented with accurate numbers and without overstating savings or rebates.
+equipment:
+  - item: 50-gallon electric resistance water heater
+    ageYears: 13
+    notes: Seeping at the bottom. Lower element reads open. Fed by a 240-volt, 30-amp circuit.
+  - item: Pressure regulator on the main line
+    notes: Holds a steady 60 psi.
+findings:
+  - id: tank-leaking
+    text: Water is seeping from the bottom of the tank. A leaking tank cannot be repaired.
+    severity: urgent
+  - id: lower-element-open
+    text: The lower heating element reads open on the meter, which is why the water is lukewarm.
+    severity: minor
+  - id: no-expansion-tank
+    text: There is no expansion tank, and the house has a pressure regulator. Code requires one on the new install.
+    severity: major
+  - id: circuit-good
+    text: The 240-volt, 30-amp circuit that feeds the tank is in good shape and can serve a 240-volt heat pump unit.
+    severity: info
+  - id: garage-suits-heat-pump
+    text: The garage has plenty of air for a heat pump unit and a route for a condensate drain to the outside.
+    severity: info
+justifiedWork:
+  - id: replace-tank
+    label: Replace the water heater
+    rationale: The tank is leaking and cannot be repaired.
+  - id: expansion-tank
+    label: Add a thermal expansion tank
+    rationale: Required by code where a pressure regulator makes a closed system.
+  - id: seismic-straps
+    label: Install two seismic straps
+    rationale: Required by code in California.
+  - id: condensate-drain
+    label: Condensate drain for a heat pump unit
+    rationale: A heat pump unit makes condensate that has to drain to an approved location.
+  - id: permit-haul-away
+    label: Permit and haul-away
+    rationale: A replacement needs a permit, and the old tank has to be removed.
+unjustifiedWork:
+  - id: panel-upgrade
+    label: Electrical panel upgrade
+    why: The existing 240-volt, 30-amp circuit serves a 240-volt heat pump unit. Nothing points to a panel upgrade.
+  - id: upsize-80
+    label: Upsizing to an 80-gallon heat pump unit
+    why: >-
+      The 50-gallon tank has met the household's needs, and a 50-gallon heat pump unit
+      has about the same first-hour rating in hybrid mode. A bigger unit adds cost for
+      no reason.
+  - id: promise-rebate-amount
+    label: Promising a rebate or tax credit amount
+    why: >-
+      Program funding changes often, and the federal 25C credit ended for equipment
+      placed in service after 2025. Rebates may apply, but the amount has to be
+      verified, not promised.
+options:
+  - id: heat-pump-50
+    label: 50-gallon heat pump water heater, 10-year warranty
+    price: 4790
+    monthly: 123
+    includes:
+      - New 50-gallon heat pump water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - Condensate drain to the outside
+      - Existing 240-volt circuit tested and reused
+      - Permit and haul-away
+      - Help checking current rebates, amounts not guaranteed
+    recommended: true
+  - id: electric-50
+    label: 50-gallon standard electric, 6-year warranty
+    price: 1790
+    monthly: 46
+    includes:
+      - New 50-gallon electric water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+startPhase: door
+moves:
+  allowed: '*'
+  forced: []
+  excluded: []
+  density: 3
+goal: >-
+  Answer technical questions with accurate numbers and recommend the heat pump unit as
+  the honest fit for this home. Be clear about what has to be verified, including rebates.
+passBar: 80
+tags: [water-heater, heat-pump, rebates, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them. The heat pump price is before rebates.
+    - Monthly numbers assume 60-month financing at roughly the price divided by 39. Verify against each company's financing terms.
+    - Rebates may apply, verify current amounts. As of this draft (October 2026) the IRS lists the 25C credit for property placed in service through 2025, and TECH Clean California and HEEHRA funds have been fully reserved at times in 2025 and 2026. Confirm current programs before release and update the situation text.
+    - Verify that the current California Energy Code alteration rules (2025 cycle) and any local ordinance still allow a like-for-like electric replacement in an existing single-family home.
+    - UEF, first-hour rating, noise, and air volume figures are typical published values. Confirm them against the models each company installs.

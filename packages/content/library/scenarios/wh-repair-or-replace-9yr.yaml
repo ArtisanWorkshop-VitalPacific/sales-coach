@@ -1,0 +1,106 @@
+id: wh-repair-or-replace-9yr
+version: 1
+title: 9-year tank, failed thermocouple
+trade: plumbing
+jobType: water-heater-repair
+difficulty: 3
+personaId: tasha-burned
+alternatePersonas: [margaret-retiree, devin-researcher]
+briefing: >-
+  Service call. Homeowner reports no hot water and says the pilot keeps going out.
+  40-gallon gas tank in the garage, about 9 years old. Not a member.
+situation: >-
+  The thermocouple has failed. The pilot lights, but it goes out when the control
+  knob is released, and the thermocouple tests low on a millivolt meter, below what
+  it takes to hold the gas valve open. On this sealed-burner tank the thermocouple
+  comes as a pilot assembly with the igniter, and replacing it is a routine repair.
+  The air intake screen at the base of the tank is coated with lint and dust, which
+  can starve the burner of air, so it should be cleaned. The tank is sound. There are
+  no leaks and no rust at the base or the fittings, and the gas control valve works.
+  The honest recommendation is the repair. Tanks in this area usually last 8 to 12
+  years with the hard water here, so at 9 years this tank has some life left. The
+  honest thing is to say that plainly and suggest planning for a replacement, not to
+  do one today. A tech who pushes replacement, or blames the gas control valve to sell
+  a bigger repair, fails the integrity test. A flush should not be added to this
+  repair, because on a 9-year tank that has never been flushed it can make the drain
+  valve leak.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 9
+    notes: Sealed-burner design with a standing pilot. No leaks. Pilot will not stay lit.
+findings:
+  - id: thermocouple-failed
+    text: >-
+      The thermocouple tests low on a millivolt meter, so the gas valve will not stay
+      open and the pilot goes out. It needs to be replaced.
+    severity: major
+  - id: intake-screen-dusty
+    text: The air intake screen at the base of the tank is coated with lint and dust, which can starve the burner of air. It should be cleaned.
+    severity: minor
+  - id: tank-sound
+    text: There are no leaks and no rust at the base or the fittings. The tank is sound.
+    severity: info
+  - id: gas-valve-good
+    text: The gas control valve works and holds. It does not need to be replaced.
+    severity: info
+  - id: tank-age
+    text: >-
+      The tank is 9 years old. Tanks here usually last 8 to 12 years, so a replacement
+      is worth planning for, not doing today.
+    severity: info
+justifiedWork:
+  - id: replace-thermocouple
+    label: Replace the thermocouple pilot assembly
+    rationale: It tests low and is why the pilot goes out.
+  - id: clean-intake-screen
+    label: Clean the air intake screen
+    rationale: Lint on the screen can starve the burner of air and put the pilot out again.
+unjustifiedWork:
+  - id: recommend-replacement-now
+    label: Recommending replacement now
+    why: >-
+      The tank is sound and the repair fixes the problem. Replacement can be mentioned
+      as a plan or a choice, but recommending it today is not justified.
+  - id: replace-gas-control-valve
+    label: Replacing the gas control valve
+    why: The valve works. The thermocouple is the failed part. Blaming the valve turns a small repair into a large one.
+  - id: tankless-conversion
+    label: Tankless conversion
+    why: Nothing about a failed thermocouple points to a different type of water heater.
+options:
+  - id: thermocouple-repair
+    label: Thermocouple repair
+    price: 325
+    includes:
+      - New thermocouple pilot assembly
+      - Clean the air intake screen and burner area
+      - Relight, test the gas valve, and check the draft
+      - Hot water back today
+    recommended: true
+  - id: replace-40
+    label: Replace with 40-gallon standard gas, 6-year warranty
+    price: 1890
+    monthly: 49
+    includes:
+      - New 40-gallon gas water heater
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [tests-your-honesty]
+  excluded: []
+  density: 2.5
+goal: >-
+  Show the evidence for the failed thermocouple, recommend the repair as the honest
+  fix, and say plainly how much life the tank likely has left so the customer can plan.
+passBar: 75
+tags: [water-heater, repair, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - The repair has no monthly number because most financing programs have a minimum amount. Verify each company's minimum.
+    - Some tanks use a thermopile instead of a thermocouple. The scenario assumes a thermocouple pilot assembly.

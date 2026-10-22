@@ -1,0 +1,125 @@
+id: gas-smell-flex-line
+version: 1
+title: Gas smell at the water heater
+trade: plumbing
+jobType: gas-leak-repair
+difficulty: 3
+personaId: margaret-retiree
+alternatePersonas: [linda-warranty, jen-busy-parent]
+briefing: >-
+  Same-day call. Customer reports a faint gas smell in the garage near the water heater
+  since this morning. 40-gallon gas tank in the garage. Not a member.
+situation: >-
+  The gas connector to the water heater is leaking. It is an old uncoated brass
+  connector that was reused at the last install. It is corroded at the lower fitting
+  and kinked behind the tank, and leak solution bubbles at that fitting. The gas
+  shutoff valve for the water heater is an old plug valve. It is stiff and shows a
+  small bubble at the stem when it is turned. It closed and held, but it is not
+  reliable. There is no sediment trap. With the water heater valve closed, the meter
+  shows no other leak, and the other gas appliances test tight. The smell was faint
+  and limited to the water heater area. It was not a strong smell, which would mean
+  leaving the house and calling the gas company. Safety comes first. The tech confirms
+  the leak, shuts off the gas to the water heater, airs out the garage, and tells the
+  customer calmly that it is safe now and what happens next. The water heater stays
+  off until it is fixed. The honest recommendation is to replace the connector and the
+  shutoff valve, add a sediment trap, leak test, relight, and check the draft, today.
+  The tank is 14 years old with light rust at the base but no leak and a good burner,
+  so replacement is a fair option to mention because of its age, not because of the
+  gas leak. Calm, honest urgency passes. Scare talk, worst-case stories, or saying the
+  tank must be replaced for safety fails.
+equipment:
+  - item: 40-gallon atmospheric gas water heater
+    ageYears: 14
+    notes: Light rust at the base, no leak. Burner works. Gas shut off at the appliance valve during the visit.
+  - item: Gas connector
+    notes: Old uncoated brass, reused at the last install. Corroded, kinked, leaking at the lower fitting.
+  - item: Gas shutoff valve
+    notes: Old plug valve. Stiff, small bubble at the stem when turned.
+findings:
+  - id: connector-leaking
+    text: >-
+      The gas connector to the water heater is corroded and kinked, and leak solution
+      bubbles at the lower fitting. It is leaking gas and has to be replaced.
+    severity: urgent
+  - id: shutoff-valve-unreliable
+    text: >-
+      The gas shutoff valve is an old plug valve. It is stiff and bubbles at the stem
+      when it is turned. It should be replaced along with the connector.
+    severity: major
+  - id: no-sediment-trap
+    text: There is no sediment trap on the gas line at the water heater. Code requires one.
+    severity: minor
+  - id: other-appliances-tight
+    text: With the water heater valve closed, the meter shows no other leak, and the other gas appliances test tight.
+    severity: info
+  - id: tank-age
+    text: >-
+      The water heater is 14 years old with light rust at the base but no leak. It
+      works. Replacing it is a choice because of its age, not part of the safety fix.
+    severity: info
+justifiedWork:
+  - id: replace-gas-connector
+    label: Replace the gas connector
+    rationale: It is corroded, kinked, and leaking.
+  - id: replace-shutoff-valve
+    label: Replace the gas shutoff valve
+    rationale: It is stiff and bubbles at the stem, so it cannot be trusted to shut off.
+  - id: sediment-trap
+    label: Add a sediment trap
+    rationale: Required by code at the appliance, and the line is already open for the repair.
+  - id: leak-test-relight
+    label: Leak test, relight, and draft check
+    rationale: Confirms the repair holds and the water heater runs safely.
+unjustifiedWork:
+  - id: gas-repipe
+    label: Whole-house gas repipe
+    why: One connector and one valve leak. The meter check shows the rest of the gas piping is tight.
+  - id: replace-tank-for-safety
+    label: Saying the water heater must be replaced for safety
+    why: >-
+      The leak is in the connector and the valve, not the tank. Replacement is a choice
+      because of age, not a safety requirement.
+  - id: tankless-conversion
+    label: Tankless conversion
+    why: A new connector and valve fix the leak. Changing the type of water heater has nothing to do with the safety issue.
+options:
+  - id: gas-connection-repair
+    label: Replace gas connector and shutoff valve
+    price: 445
+    includes:
+      - New coated gas connector
+      - New gas shutoff valve
+      - Sediment trap
+      - Meter check for other leaks
+      - Relight and draft check
+      - Done today
+    recommended: true
+  - id: replace-40
+    label: Replace the water heater, 40-gallon standard gas, 6-year warranty
+    price: 1890
+    monthly: 49
+    includes:
+      - New 40-gallon gas water heater
+      - New gas connector, shutoff valve, and sediment trap
+      - Thermal expansion tank
+      - Two seismic straps
+      - Permit and haul-away
+startPhase: door
+moves:
+  allowed: '*'
+  forced: [can-it-wait]
+  excluded: []
+  density: 2.5
+goal: >-
+  Make the leak safe first and explain it calmly without fear tactics. Recommend the
+  connector and valve repair today, and present replacement as an optional choice
+  because of the tank's age.
+passBar: 75
+tags: [gas, safety, water-heater, integrity]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Prices are placeholders inside public Riverside County ranges; each company's price book replaces them.
+    - The repair has no monthly number because most financing programs have a minimum amount. The replacement uses roughly the price divided by 39.
+    - Confirm each company's gas leak protocol, including when to shut off at the meter, when to call the gas company, and who relights appliances. The scenario assumes a small leak downstream of a valve that closes and holds.

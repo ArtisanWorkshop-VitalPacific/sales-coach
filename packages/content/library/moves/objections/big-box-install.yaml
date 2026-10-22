@@ -1,0 +1,98 @@
+id: big-box-install
+version: 1
+name: The big box store installs it for less
+kind: objection
+group: competition
+skill: objections
+summary: >-
+  The customer says a home improvement store will sell and install the same
+  equipment for less.
+difficultyMin: 2
+personas: any
+trigger:
+  phases: [price, objections, close]
+  when:
+    priceStated: true
+  chance: 0.5
+priority: 50
+maxUses: 1
+delivery:
+  act: object
+  intent: >-
+    Say the big box home improvement store sells and installs the same thing for
+    less. Name the main item in the quote, such as the water heater, toilet,
+    disposal, or faucet. If the job is a repair rather than new equipment, say the
+    parts cost a fraction of this at the store. Be practical, not rude. Do not say
+    what the store's price includes, because you do not really know. If the tech
+    gives you good questions to ask the store, take them seriously.
+  lines:
+    - Home Depot does installs too, and their price was a lot lower than this.
+    - Why would I pay this when the hardware store installs the same thing for less?
+    - My neighbor got his from the big box store, installed, for way less than this.
+    - I could just buy one at the store and have their guys put it in.
+  followUps:
+    - It's the same brand, though. Isn't it the same thing?
+    - So you're telling me their installers do it wrong?
+  tone: skeptical
+  delayMs: 600
+  audioTags: []
+  speaker: primary
+resolution:
+  concern: >-
+    They think a local company marks up the same product and do not want to pay
+    extra for a name. They do not know what an installed price should include.
+  resolvedBy:
+    - Treating the store as a fair option without criticizing it or its installers
+    - Asking what the store's price includes and giving them questions to check it
+    - Explaining what this price covers, such as the permit, code parts, haul-away, labor, warranty, and who comes back if there is a problem
+    - Saying so when the store's package covers the same work
+    - Leaving a written scope to compare
+  resolvingBehaviors:
+    - asked_about_concern
+    - justified_value
+    - explained_plainly
+    - honest_answer
+    - showed_evidence
+  hardenedBy:
+    - argued
+    - bluffed
+    - condescended
+    - pressured
+  defaultStrength: 45
+evaluate:
+  windowTurns: 2
+  passIf:
+    anyBehaviors: [asked_about_concern, justified_value, honest_answer]
+    addressedConcern: true
+  failIf:
+    anyBehaviors: [argued, bluffed, condescended, pressured]
+  pass: >-
+    The tech treats the store as a fair option, helps the customer check what its
+    price includes, and explains what this price covers in plain terms.
+  fail: >-
+    The tech criticizes the store or its installers, makes claims about the store's
+    package without knowing it, or pushes for a decision.
+coaching:
+  why: >-
+    Store install prices vary in what they include, and the customer cannot see the
+    difference. A tech who attacks the store sounds like he is protecting his own
+    price. Giving the customer the right questions to ask makes the comparison fair
+    and shows you are being honest with them.
+  modelResponse: >-
+    They can be a good option, and I won't say anything bad about them. Let's make
+    sure you're comparing the same job. Ask them what their price includes: the
+    permit, the code parts, haul-away, and who comes back if something leaks. If it
+    covers the same work, that's a fair deal. Here's everything ours includes,
+    written out so you can check.
+  commonMistakes:
+    - Claiming store installers are unlicensed or do poor work
+    - Guessing what the store's price includes instead of asking
+    - Comparing the price of the unit to the installed price without explaining the difference
+    - Getting defensive about the markup
+tags: [competition, install-jobs]
+review:
+  status: draft
+  author: Claude
+  notes:
+    - Fits jobs that install equipment (water heater, toilet, disposal, faucet, softener). The intent covers repair jobs, but scenario writers may want to exclude this move from drain, leak, and repipe scenarios.
+    - One line names Home Depot, as real customers do. Swap it for "the big box store" if naming a retailer is a problem.
