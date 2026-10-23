@@ -4,6 +4,7 @@ import type { SkillId } from '@sales-coach/engine';
 import { BellRing, Database, TrendingUp, X } from 'lucide-react';
 import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Avatar } from '@/components/avatar';
+import { Orb } from '@/components/orb';
 import { SessionRow } from '@/components/session-row';
 import { SAMPLE_SHOP, SAMPLE_TEAM } from '@/components/team-sample';
 import { Bar, ButtonLink, Card, ChevronLink, Chip, cn, Section, Stat } from '@/components/ui';
@@ -253,14 +254,15 @@ export default function TeamPage() {
 
       {/* Digest */}
       <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
-        <div className="reveal relative lg:col-span-3">
-          <span
-            aria-hidden
-            className="pearl pointer-events-none absolute -top-6 right-6 h-28 w-28 md:-top-10 md:right-12 md:h-44 md:w-44"
-          />
+        <div className="reveal lg:col-span-3">
           <div className="hero h-full p-7 md:p-10">
+            <Orb
+              name="lilac"
+              shade={112}
+              className="pointer-events-none absolute top-7 right-7 h-14 w-14 md:top-10 md:right-10 md:h-28 md:w-28"
+            />
             <p className="t-callout font-medium text-ink-3">This week</p>
-            <h2 className="t-display mt-3 max-w-md text-ink">
+            <h2 className="t-display mt-3 max-w-md pr-16 text-ink md:pr-0">
               Team average {digest.teamAvg ?? '–'}.
               {digest.delta !== null && digest.delta !== 0 && (
                 <span className="text-ink-3">

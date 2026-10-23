@@ -4,6 +4,7 @@ import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { Avatar } from '@/components/avatar';
+import { Orb } from '@/components/orb';
 import { SessionRow } from '@/components/session-row';
 import { Button, ButtonLink, Card, ChevronLink, Difficulty, Section, Stat } from '@/components/ui';
 import { companies, contentIndex, drills, jobLabel, scenarios } from '@/lib/content';
@@ -100,17 +101,18 @@ export default function HomePage() {
 
       <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
         {nextDrill && (
-          <div className="reveal relative lg:col-span-3">
-            {/* The pearl sits behind the glass: frosted where it is covered, clear where it rises above. */}
-            <span
-              aria-hidden
-              className="pearl pearl-live pointer-events-none absolute -top-6 right-6 h-32 w-32 md:-top-12 md:right-12 md:h-52 md:w-52"
-            />
+          <div className="reveal lg:col-span-3">
             <Link href={`/drills/${nextDrill.id}`} className="hero group block h-full p-7 md:p-10">
+              <Orb
+                name="ember"
+                live
+                shade={112}
+                className="pointer-events-none absolute top-7 right-7 h-14 w-14 md:top-10 md:right-10 md:h-28 md:w-28"
+              />
               <p className="t-callout font-medium text-ink-3">
                 Today&rsquo;s drill · {Math.round(nextDrill.durationSec / 60) || 1} min
               </p>
-              <h2 className="t-display mt-3 max-w-md text-ink">{nextDrill.title}</h2>
+              <h2 className="t-display mt-3 max-w-md pr-16 text-ink md:pr-0">{nextDrill.title}</h2>
               <p className="t-body mt-4 max-w-md text-ink-3">{firstSentence(nextDrill.why)}</p>
               <span className="btn btn-primary mt-8">
                 Start the drill <ArrowRight size={18} />

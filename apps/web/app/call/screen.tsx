@@ -14,6 +14,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { Orb, type OrbName, orbFor } from '@/components/orb';
 import { cn } from '@/components/ui';
 import { CallController, type CallState } from '@/lib/call';
 import { contentIndex, DIFFICULTY_LABEL, jobLabel, scenarios } from '@/lib/content';
@@ -290,7 +291,8 @@ function LiveCall({
 
       {/* Customer */}
       <div className="flex flex-1 flex-col items-center justify-center py-6 text-center">
-        <Orb
+        <CustomerOrb
+          name={orbFor(p.id)}
           size={tv ? 220 : 168}
           speaking={speaking}
           listening={listening && st.micOn}
@@ -536,8 +538,9 @@ function Dots() {
   );
 }
 
-/** The customer, as a pearl. It breathes while waiting, swells as they talk, and dims when they step away. */
-function Orb({
+/** The customer, as their color orb. It breathes while waiting, swells as they talk, and dims when they step away. */
+function CustomerOrb({
+  name,
   size,
   speaking,
   listening,
@@ -545,6 +548,7 @@ function Orb({
   thinking,
   away,
 }: {
+  name: OrbName;
   size: number;
   speaking: boolean;
   listening: boolean;
@@ -581,22 +585,21 @@ function Orb({
         />
       )}
       <span
-        aria-hidden
         className={cn(
-          'pearl pearl-live block transition-[opacity,transform] duration-700',
-          away && 'scale-[0.94] opacity-40',
-          thinking && 'opacity-80',
+          'block rounded-full transition-[opacity,transform,filter] duration-700',
+          away && 'scale-[0.94] opacity-40 grayscale',
+          thinking && 'opacity-85',
         )}
         style={{
-          width: size,
-          height: size,
           animation: speaking
             ? 'speak 1.1s ease-in-out infinite'
             : away
               ? undefined
               : 'breathe 4s ease-in-out infinite',
         }}
-      />
+      >
+        <Orb name={name} size={size} live />
+      </span>
     </div>
   );
 }

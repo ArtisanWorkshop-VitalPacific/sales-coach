@@ -15,6 +15,7 @@ import {
 } from '@/lib/pricing';
 import { useProfile } from '@/lib/store';
 import { useCapabilities } from '@/lib/use-capabilities';
+import { Orb } from './orb';
 import { HealthCheck } from './portal-health';
 import { Button, Card, Chip, cn, Section, Skeleton } from './ui';
 
@@ -202,13 +203,14 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
 
       <Section title="Your quote">
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-5">
-          <div className="relative lg:col-span-3">
-            <span
-              aria-hidden
-              className="pearl pointer-events-none absolute -top-6 right-6 h-24 w-24 md:-top-10 md:right-10 md:h-36 md:w-36"
-            />
+          <div className="lg:col-span-3">
             <div className="hero h-full p-7 text-ink md:p-10">
-              <p className="t-callout font-medium text-ink-3">
+              <Orb
+                name="sky"
+                shade={112}
+                className="pointer-events-none absolute top-7 right-7 h-14 w-14 md:top-10 md:right-10 md:h-28 md:w-28"
+              />
+              <p className="t-callout font-medium pr-16 text-ink-3 md:pr-0">
                 Sales Coach {TIERS[tier].name} · {trucks} {trucks === 1 ? 'truck' : 'trucks'}
               </p>
               {q.custom ? (

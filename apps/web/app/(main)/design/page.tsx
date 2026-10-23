@@ -4,6 +4,7 @@ import tokens from '@sales-coach/design/tokens.json';
 import { Info, Play, RotateCcw } from 'lucide-react';
 import { type CSSProperties, type ReactNode, useState } from 'react';
 import { Avatar } from '@/components/avatar';
+import { ORB_NAMES, Orb } from '@/components/orb';
 import {
   Bar,
   Button,
@@ -49,8 +50,6 @@ const TYPE_CLASS: Record<string, string> = {
 
 const GRADIENT_NAME: Record<string, string> = {
   voice: 'Graphite',
-  pearl: 'Pearl',
-  sheen: 'Sheen',
   ambient: 'Ambient light',
   'ambient-dark': 'Ambient light, dark',
 };
@@ -111,9 +110,11 @@ export default function DesignPage() {
             className="pointer-events-none absolute inset-0"
             style={{ background: tokens.gradient.ambient }}
           />
-          <span
-            aria-hidden
-            className="pearl pearl-live absolute top-[34%] left-1/2 h-44 w-44 -translate-x-1/2 md:h-56 md:w-56"
+          <Orb
+            name="ember"
+            live
+            shade={224}
+            className="absolute top-[34%] left-1/2 h-44 w-44 -translate-x-1/2 md:h-56 md:w-56"
           />
           <div className="relative grid grid-cols-1 gap-5 md:grid-cols-2">
             <div className="card p-6">
@@ -128,17 +129,30 @@ export default function DesignPage() {
         </div>
       </Section>
 
+      <Section title="Orbs">
+        <p className="t-body -mt-2 mb-6 max-w-2xl text-ink-3">
+          Color lives only here. Each orb is a soft mesh of the colors sampled from one of the voice
+          orbs on elevenlabs.io, with fine grain on top. Every customer gets one, the same one every
+          time.
+        </p>
+        <Card className="grid grid-cols-2 gap-x-4 gap-y-8 p-6 sm:grid-cols-4 md:p-8">
+          {ORB_NAMES.map((name) => (
+            <div key={name} className="flex flex-col items-center text-center">
+              <Orb name={name} size={104} />
+              <p className="t-callout mt-3 font-medium text-ink capitalize">{name}</p>
+              <p className="t-caption text-ink-3">
+                {tokens.orb.palettes[name].center} · {tokens.orb.source[name]}
+              </p>
+            </div>
+          ))}
+        </Card>
+      </Section>
+
       <Section title="Gradients">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {Object.entries(tokens.gradient).map(([name, value]) => (
             <Card key={name} className="overflow-hidden">
-              {name === 'pearl' ? (
-                <div className="grid h-32 place-items-center">
-                  <span className="pearl block h-24 w-24" />
-                </div>
-              ) : (
-                <div className="h-32" style={{ background: value }} />
-              )}
+              <div className="h-32" style={{ background: value }} />
               <div className="p-5">
                 <p className="t-body font-medium text-ink">{GRADIENT_NAME[name] ?? name}</p>
                 <p className="t-caption mt-1 break-all font-mono text-ink-3">{value}</p>
@@ -522,7 +536,7 @@ function ComponentSamples() {
           <Avatar name="Paul Lindqvist" seed="paul-engineer" size={32} />
         </div>
         <p className="t-caption mt-4 text-ink-3">
-          Every customer is a pearl. Same seed, same light, every time.
+          Every customer is an orb. Same seed, same orb, every time.
         </p>
       </Sample>
 

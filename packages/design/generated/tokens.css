@@ -30,8 +30,6 @@
   --sc-color-scrim: rgba(0, 0, 0, 0.30);
   --sc-ambient: radial-gradient(60vmax 60vmax at 8% -12%, rgba(235, 232, 228, 0.95), rgba(235, 232, 228, 0) 62%), radial-gradient(50vmax 50vmax at 104% 18%, rgba(215, 210, 204, 0.55), rgba(215, 210, 204, 0) 60%), radial-gradient(70vmax 50vmax at 50% 112%, rgba(245, 243, 241, 1), rgba(245, 243, 241, 0) 62%);
   --sc-gradient-voice: linear-gradient(90deg, #000000 0%, #44403B 55%, #777169 100%);
-  --sc-gradient-pearl: radial-gradient(circle at 34% 28%, #FFFFFF 0%, #FFFFFF 8%, #F5F3F1 28%, #EBE8E4 50%, #D7D2CC 74%, #A59F97 95%, #777169 100%);
-  --sc-gradient-sheen: conic-gradient(from 210deg, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.85) 60deg, rgba(215, 210, 204, 0.5) 140deg, rgba(255, 255, 255, 0) 220deg, rgba(255, 255, 255, 0.6) 300deg, rgba(255, 255, 255, 0) 360deg);
   --sc-blur-glass: blur(24px) saturate(160%);
   --sc-blur-glass-strong: blur(32px) saturate(180%);
   --sc-font-display: "Inter Variable", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;

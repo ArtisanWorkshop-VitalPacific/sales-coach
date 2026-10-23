@@ -5,6 +5,7 @@ import { ArrowLeft, PhoneOff } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { Orb, orbFor } from '@/components/orb';
 import { cn } from '@/components/ui';
 import { contentIndex } from '@/lib/content';
 import { storeFinishedCall } from '@/lib/sessions';
@@ -172,14 +173,15 @@ export function LiveScreen(p: Props) {
             <span className="absolute h-[168px] w-[168px] animate-[ripple_1.8s_ease-out_infinite] rounded-full border border-ink/15" />
           )}
           <span
-            aria-hidden
-            className="pearl pearl-live block h-[168px] w-[168px]"
+            className="block rounded-full"
             style={{
               animation: speaking
                 ? 'speak 1.1s ease-in-out infinite'
                 : 'breathe 4s ease-in-out infinite',
             }}
-          />
+          >
+            <Orb name={orbFor(persona.id)} size={168} live />
+          </span>
         </div>
         <h1 className="mt-10 text-[34px] leading-tight font-light tracking-[-0.022em]">
           {persona.name}
