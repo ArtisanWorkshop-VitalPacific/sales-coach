@@ -13,6 +13,8 @@ export interface Capabilities {
   servicetitan: boolean;
   preset: string;
   models: { listen: string; speak: string; coach: string } | null;
+  /** The live commit, added by /api/config. */
+  version?: string;
 }
 
 /** Server only: what this deployment can do, from which keys are set. Never exposes values. */

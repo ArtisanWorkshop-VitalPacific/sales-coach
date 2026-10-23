@@ -154,6 +154,7 @@ export default function SettingsPage() {
             {caps?.models && <Chip>Listens: {caps.models.listen}</Chip>}
             {caps?.models && <Chip>Speaks: {caps.models.speak}</Chip>}
             {caps?.models && <Chip>Coach: {caps.models.coach}</Chip>}
+            {caps?.version && <Chip>Version {caps.version}</Chip>}
           </div>
         </Card>
       </Section>
