@@ -663,7 +663,7 @@ function TechCard({
               if (id && !assigned.includes(id)) onAssign([...assigned, id]);
             }}
             disabled={available.length === 0}
-            className="mt-3 w-full rounded-pill border hairline bg-surface-2 px-4 py-2.5 text-[15px] text-ink disabled:opacity-50"
+            className="mt-3 w-full rounded-pill border hairline bg-surface-2 py-2.5 pr-10 pl-4 text-[15px] text-ink disabled:opacity-50"
             aria-label={`Assign a drill to ${r.name}`}
           >
             <option value="">

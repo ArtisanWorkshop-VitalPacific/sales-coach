@@ -6,7 +6,7 @@ import type { Debrief, SkillScore } from '../../coach/types';
 import type { ContentIndex } from '../../content';
 import type { SessionRecord } from '../../record';
 import { SkillId } from '../../schema';
-import { clamp } from '../../util';
+import { clamp, planPrice } from '../../util';
 import { COACH_REQUEST, resilient } from './client';
 import type { CallConfig } from './config';
 import { coachSystem } from './prompts';
@@ -205,6 +205,12 @@ export function coachUser(record: SessionRecord, index: ContentIndex, base: Debr
   if (company) {
     L.push('', `COMPANY: ${company.name}`, 'Their process:');
     for (const step of company.process) L.push(`- ${step.name}: ${step.description}`);
+    if (company.memberships.length) {
+      L.push(
+        'Memberships they sell (lead plan first; judge whether the tech named the right plan and price):',
+      );
+      for (const m of company.memberships) L.push(`- ${m.name}: ${planPrice(m)}. ${m.summary}`);
+    }
     if (company.scripts.banned.length)
       L.push(`Phrases they never use: ${company.scripts.banned.join('; ')}`);
   }

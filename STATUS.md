@@ -54,7 +54,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 ## Needs a human
 
 **Owners (Gardner and SOS):**
-- Gardner: review counts and rating (the site shows different numbers), ownership dates (family since 2020, business since 1995), the Shield membership's monthly billing and cancellation terms, the 12-month financing rate (a placeholder on the site), HVAC and electrical license numbers (placeholders on the site), how permits show on estimates, how to handle American Home Shield customers.
+- Gardner: what PACE ($29.99 a month, plumbing, air conditioning, electrical) includes in each trade, its contract and cancellation terms, and whether it replaces The Gardner Shield. Until then, techs name only its price and trades. Also: review counts and rating (the site shows different numbers), ownership dates (family since 2020, business since 1995), the Shield membership's monthly billing and cancellation terms, the 12-month financing rate (a placeholder on the site), HVAC and electrical license numbers (placeholders on the site), how permits show on estimates, how to handle American Home Shield customers.
 - SOS: the labor warranty in years (the site says "twice as long"), fees ("free" quotes alongside a dispatch fee; "No OT fees" next to a $149 to $249 after-hours fee), financing lender and terms, whether a membership exists, which brands you install, haul-away, and the home base (Lake Elsinore or Redlands).
 - Both: the assumed sales facts in the objection library (set per-job pricing, tech pay partly tied to sales, no standing discounts).
 

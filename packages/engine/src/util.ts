@@ -210,3 +210,14 @@ export function similarity(a: string, b: string): number {
   for (const w of A) if (B.has(w)) inter++;
   return inter / Math.max(A.size, B.size);
 }
+
+/** "$29.99 a month", "$249 a year", or both: a membership's price as people say it. */
+export function planPrice(m: { monthlyPrice?: number; annualPrice?: number }): string {
+  const money = (n: number) => `$${Number.isInteger(n) ? n.toLocaleString('en-US') : n.toFixed(2)}`;
+  return [
+    m.monthlyPrice ? `${money(m.monthlyPrice)} a month` : null,
+    m.annualPrice ? `${money(m.annualPrice)} a year` : null,
+  ]
+    .filter(Boolean)
+    .join(' or ');
+}

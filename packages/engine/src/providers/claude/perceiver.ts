@@ -91,13 +91,23 @@ export function toPerception(out: PerceptionOut, input: PerceptionInput): Percep
   }
   const money = (n: number | null) =>
     n !== null && Number.isFinite(n) && n > 0 && n < 1_000_000 ? Math.round(n) : null;
+  // A membership's monthly price is not a payment for the work. Left in, it would read as a
+  // financing number the customer can afford.
+  const ids = new Set(behaviors.map((b) => b.id));
+  const planTalk = ids.has('offered_membership') && !ids.has('offered_financing');
+  const monthly = planTalk ? null : money(out.monthlyStated);
+  if (planTalk && ids.has('framed_monthly'))
+    behaviors.splice(
+      behaviors.findIndex((b) => b.id === 'framed_monthly'),
+      1,
+    );
   return {
     behaviors,
     addressed: [...addressed].map(([concernId, quality]) => ({ concernId, quality })),
     usedFactIds: [...new Set(out.usedFactIds.filter((id) => factIds.has(id)))],
     topics: [...new Set(out.topics.map((t) => t.trim()).filter((t) => TOPIC_SET.has(t)))],
     priceStated: money(out.priceStated),
-    monthlyStated: money(out.monthlyStated),
+    monthlyStated: monthly,
     optionsCount:
       out.optionsCount !== null && out.optionsCount > 0 && out.optionsCount < 10
         ? Math.round(out.optionsCount)

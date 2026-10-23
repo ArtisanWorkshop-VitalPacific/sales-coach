@@ -1,5 +1,5 @@
 id: gardner-plumbing
-version: 1
+version: 2
 name: Gardner Plumbing Co.
 shortName: Gardner
 trades: [plumbing, hvac, electrical]
@@ -147,15 +147,19 @@ process:
       on the estimate before starting. If the scope changes mid-job, stop, write a
       revised estimate, and do not continue without their written sign-off.
     required: true
-  - id: offer-gardner-shield
-    name: Offer The Gardner Shield
+  - id: offer-membership
+    name: Offer PACE or The Gardner Shield
     description: >-
-      If they are not a member, offer The Gardner Shield once and tie it to what you
-      found. Bronze (plumbing) is $249 a year: two plumbing maintenance visits, 10
-      percent off plumbing services, one free drain cleaning a year with an
-      accessible cleanout, priority dispatch, and no emergency overtime charges.
-      Silver adds HVAC for $348 a year, and Gold adds HVAC and electrical for $397 a
-      year. Say clearly that it is not a warranty. Accept a no without a second push.
+      If they are not a member, offer a plan once and tie it to what you found. Lead
+      with PACE, the home service subscription: $29.99 a month for plumbing, air
+      conditioning, and electrical in one plan. Name only the price and the three
+      trades until the owner confirms what else it includes. If they would rather pay
+      once a year or want plumbing only, offer The Gardner Shield: Bronze (plumbing)
+      is $249 a year, with two plumbing maintenance visits, 10 percent off plumbing
+      services, one free drain cleaning a year with an accessible cleanout, priority
+      dispatch, and no emergency overtime charges. Silver adds HVAC for $348 a year,
+      and Gold adds HVAC and electrical for $397 a year. The Gardner Shield is not a
+      warranty, so never call it one. Accept a no without a second push.
     required: true
   - id: clean-up-and-wrap
     name: Clean up, explain the guarantee, and leave well
@@ -167,32 +171,47 @@ process:
       the 30-day callback guarantee and the warranty terms on the invoice, and thank
       them. On a no, leave the written estimate and thank them just the same.
     required: true
-membership:
-  name: The Gardner Shield
-  summary: >-
-    Annual membership in three tiers. Bronze Shield (plumbing) is $249 a year, Silver
-    Shield (plumbing and HVAC) is $348 a year, and Gold Shield (plumbing, HVAC, and
-    electrical) is $397 a year. A plumbing and electrical combination is $298 a year.
-    The company states it is not a warranty plan. It is a direct relationship with a
-    licensed contractor: scheduled maintenance, priority service, no emergency
-    overtime, and member discounts.
-  benefits:
-    - Two plumbing maintenance visits a year
-    - Annual plumbing safety inspection with a written inspection report
-    - 10 percent off plumbing services
-    - One free drain cleaning a year with an accessible cleanout
-    - Priority service at the front of the dispatch queue, 24/7
-    - No emergency overtime charges. Nights, weekends, and holidays are billed at standard rates.
-    - >-
-      Silver Shield adds two HVAC tune-ups a year (spring AC and fall heating), a
-      refrigerant level check at every tune-up, 10 percent off HVAC services, and
-      priority scheduling during summer AC failures.
-    - >-
-      Gold Shield adds an annual electrical safety inspection with a whole-home
-      electrical safety report, 10 percent off electrical services, and priority
-      response after storms and outages.
-  annualPrice: 249
-  verified: true
+memberships:
+  - id: pace
+    name: PACE
+    summary: >-
+      Home service subscription at $29.99 a month. One plan covers plumbing, air
+      conditioning, and electrical.
+    trades: [plumbing, hvac, electrical]
+    benefits:
+      - Covers plumbing
+      - Covers air conditioning
+      - Covers electrical
+    monthlyPrice: 29.99
+    lead: true
+    verified: true
+  - id: gardner-shield
+    name: The Gardner Shield
+    summary: >-
+      Annual membership in three tiers. Bronze Shield (plumbing) is $249 a year,
+      Silver Shield (plumbing and HVAC) is $348 a year, and Gold Shield (plumbing,
+      HVAC, and electrical) is $397 a year. A plumbing and electrical combination is
+      $298 a year. The company states it is not a warranty plan. It is a direct
+      relationship with a licensed contractor: scheduled maintenance, priority
+      service, no emergency overtime, and member discounts.
+    trades: [plumbing, hvac, electrical]
+    benefits:
+      - Two plumbing maintenance visits a year
+      - Annual plumbing safety inspection with a written inspection report
+      - 10 percent off plumbing services
+      - One free drain cleaning a year with an accessible cleanout
+      - Priority service at the front of the dispatch queue, 24/7
+      - No emergency overtime charges. Nights, weekends, and holidays are billed at standard rates.
+      - >-
+        Silver Shield adds two HVAC tune-ups a year (spring AC and fall heating), a
+        refrigerant level check at every tune-up, 10 percent off HVAC services, and
+        priority scheduling during summer AC failures.
+      - >-
+        Gold Shield adds an annual electrical safety inspection with a whole-home
+        electrical safety report, 10 percent off electrical services, and priority
+        response after storms and outages.
+    annualPrice: 249
+    verified: true
 financing:
   available: true
   summary: >-
@@ -342,7 +361,7 @@ differentiators:
   - Written estimate before work begins, and the number you sign is the number you pay
   - 30-day callback guarantee that covers parts and labor
   - Six-step Clean Visit Promise on every call
-  - Plumbing, HVAC, and electrical from one company, with one membership across all three
+  - Plumbing, air conditioning, and electrical from one company, with one subscription across all three, PACE, at $29.99 a month
   - Trusted American Home Shield contractor and Moen Certified installer
 scripts:
   preferred:
@@ -376,13 +395,18 @@ scripts:
         If it helps to spread this out, there's a twelve-month plan that's no interest
         if it's paid in full in those twelve months. I'll walk you through exactly how
         it works so there are no surprises.
-    - moment: Offer The Gardner Shield
+    - moment: Offer PACE
       line: >-
-        One more thing, and it's completely your call. The Gardner Shield is two
-        forty-nine a year for plumbing. You get two maintenance visits, ten percent
-        off plumbing work, a free drain cleaning each year when there's an accessible
-        cleanout, and no overtime charges at night or on weekends. Want me to go over
-        it?
+        One more thing, and it's completely your call. We have a home service
+        subscription called PACE. It's twenty-nine ninety-nine a month, and it covers
+        your plumbing, your air conditioning, and your electrical with us. Want me to
+        go over it?
+    - moment: Offer The Gardner Shield instead
+      line: >-
+        If you'd rather pay once a year, The Gardner Shield is two forty-nine a year
+        for plumbing. You get two maintenance visits, ten percent off plumbing work, a
+        free drain cleaning each year when there's an accessible cleanout, and no
+        overtime charges at night or on weekends.
     - moment: Explain the guarantee
       line: >-
         If this same problem comes back within thirty days, call us. We come back at
@@ -400,6 +424,7 @@ scripts:
     - "Those other plumbers are crooks."
     - "It's zero interest, no catch."
     - "The Shield is basically a warranty. It covers everything."
+    - "PACE covers everything."
     - "Home warranties never pay. Don't bother with them."
     - "Let me call my manager and see what special deal I can get you."
 objectionAnswers:
@@ -459,11 +484,13 @@ objectionAnswers:
       origination fee may apply.
   - moveId: what-do-i-actually-get
     answer: >-
-      Here's exactly what you get with the Bronze Shield, two forty-nine a year. Two
-      plumbing maintenance visits, a yearly safety inspection with a written report,
-      ten percent off plumbing work, one free drain cleaning a year if there's an
-      accessible cleanout, priority dispatch, and no emergency overtime charges. If
-      you wouldn't use it, I'll tell you it's not worth it.
+      Here's exactly what you get. PACE is twenty-nine ninety-nine a month, and it
+      covers your plumbing, air conditioning, and electrical with us in one plan. If
+      you'd rather pay once a year for plumbing only, the Bronze Shield is two
+      forty-nine a year: two plumbing maintenance visits, a yearly safety inspection
+      with a written report, ten percent off plumbing work, one free drain cleaning a
+      year if there's an accessible cleanout, priority dispatch, and no emergency
+      overtime charges. If you wouldn't use it, I'll tell you it's not worth it.
   - moveId: too-expensive
     answer: >-
       I hear you. Let me show you what's in that number, line by line. If one of the
@@ -491,6 +518,9 @@ facts:
   - Installations and repairs carry a 1-year workmanship guarantee, written on the invoice.
   - Trusted American Home Shield contractor and Moen Certified installer.
   - Financing through GreenSky and Service Finance Company, subject to credit approval.
+  - >-
+    PACE, the home service subscription, is $29.99 a month and covers plumbing, air
+    conditioning, and electrical.
   - 24/7 emergency service, and a 4.9-star Google rating.
 sources:
   - url: https://gardnerplumbingco.com/
@@ -533,6 +563,13 @@ review:
       Verify with the owner. Google review counts differ across pages (1,316, 1,315+,
       1,157+, 900+, and 600+), and the rating shows as both 4.9 and 5.0. Counts are
       left out of facts. Confirm the rating and count techs should cite.
+    - >-
+      Verify with the owner. PACE was added on request on October 23, 2026: $29.99 a
+      month for plumbing, air conditioning, and electrical. Confirm what it includes
+      in each trade (maintenance visits, discounts, priority, overtime), the contract
+      and cancellation terms, and whether it replaces The Gardner Shield. Until then,
+      techs name only the price and the three trades, and the Shield stays as the
+      yearly option.
     - >-
       Verify with the owner. The Gardner Shield shows only annual prices, so
       annualPrice uses Bronze ($249). Confirm whether monthly billing exists, plus the

@@ -65,7 +65,8 @@ const R = {
     /\b(financ(e|ing)|payment plans?|pay (it )?over time|monthly payments?|0 ?% |zero percent|financiamiento|pagos mensuales)\b/i,
   monthly: /(\$?\d{2,4}|[a-z-]+(?: [a-z-]+)?)\s*(dollars?\s*)?(a|per|\/)\s*month|al mes/i,
   membership:
-    /\b(membership|member|maintenance plan|club|shield|care plan|service agreement|membresía)\b/i,
+    /\b(membership|member|subscription|maintenance plan|club|shield|care plan|service agreement|membresía|suscripción)\b/i,
+  planContext: /\b(subscription|plan|membership|a month|per month|monthly|covers?)\b/i,
   membershipValue:
     /\b(priority|discount|flush|tune.?up|no overtime|percent off|% off|annual (inspection|maintenance|visit)|first in line|front of the line)\b/i,
   honest:
@@ -207,9 +208,19 @@ export function perceiveText(input: PerceptionInput): Perception {
   if (R.recap.test(t)) add('recapped_value');
   if (R.pressure.test(t)) add('pressured');
   if (R.financing.test(t)) add('offered_financing');
-  if (R.membership.test(t)) {
+  // A company plan named out loud ("PACE, twenty-nine ninety-nine a month") is a membership offer.
+  const planNamed = (input.spec.company?.memberships ?? []).some(
+    (m) => new RegExp(`\\b${escapeRegExp(m.name)}\\b`, 'i').test(t) && R.planContext.test(t),
+  );
+  const planTalk = R.membership.test(t) || planNamed;
+  if (planTalk) {
     add('offered_membership');
     if (R.membershipValue.test(t)) add('explained_membership_value');
+    // The plan's monthly price is not a payment for the work, so it is not a financing number.
+    if (!R.financing.test(t) && p.monthlyStated !== null) {
+      p.monthlyStated = null;
+      p.behaviors = p.behaviors.filter((b) => b.id !== 'framed_monthly');
+    }
   }
   if (R.honest.test(t)) add('honest_answer');
   if (input.lastCustomerTurn?.act === 'return' && R.reengage.test(t)) add('re_engaged');
@@ -337,4 +348,8 @@ export function perceiveText(input: PerceptionInput): Perception {
   p.summary = t.length > 140 ? `${t.slice(0, 137)}...` : t;
   if (wordCount(t) === 0) p.summary = '(silence)';
   return p;
+}
+
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }

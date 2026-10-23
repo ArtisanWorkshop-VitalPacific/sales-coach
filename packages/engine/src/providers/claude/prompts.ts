@@ -2,9 +2,10 @@ import type { PerceptionInput, WriteInput } from '../../adapters';
 import type { SessionSpec } from '../../content';
 import type { TranscriptTurn } from '../../record';
 import { BEHAVIORS, PERCEPTION_BEHAVIORS } from '../../schema';
+import { planPrice } from '../../util';
 
 /** Bump when prompts change; recorded on every session for regression tracking. */
-export const PROMPT_VERSION = '2026-10-22.2';
+export const PROMPT_VERSION = '2026-10-23.1';
 
 const KNOWLEDGE: Record<string, string> = {
   low: 'Very little. You do not know trade terms and you feel a bit lost when people use them.',
@@ -49,7 +50,7 @@ Facts: when the technician brings back a personal detail the customer shared ear
 
 Topics: the topics the technician asked about, from: household, usage, history, previous-work, budget, plans, pets, timeline, home, priorities, health, work.
 
-priceStated: the main dollar amount the technician quoted for a repair or option in this utterance, else null. monthlyStated: a monthly payment amount if stated, else null. optionsCount: the number of distinct options presented in this utterance, else null.
+priceStated: the main dollar amount the technician quoted for a repair or option in this utterance, else null. monthlyStated: a monthly payment for the work quoted, as with financing, if stated, else null. A membership or subscription price is never a monthlyStated. optionsCount: the number of distinct options presented in this utterance, else null.
 
 unneededWork: if the technician recommended an item from the job's "Not justified" list, or anything equally unsupported by the findings, describe it in a few words. Mentioning that an option exists is not recommending it. Recommending what the findings justify is never unneeded.
 
@@ -70,6 +71,11 @@ export function perceiverUser(input: PerceptionInput): string {
   lines.push('Options for this job:');
   for (const o of s.options)
     lines.push(`- ${o.label}: $${o.price}${o.monthly ? ` (about $${o.monthly} a month)` : ''}`);
+  const plans = input.spec.company?.memberships ?? [];
+  if (plans.length) {
+    lines.push('Memberships the company sells (offering any of them is offered_membership):');
+    for (const m of plans) lines.push(`- ${m.name}: ${planPrice(m)}. ${m.summary}`);
+  }
   lines.push('', 'CUSTOMER CONCERNS');
   for (const c of input.concerns)
     lines.push(

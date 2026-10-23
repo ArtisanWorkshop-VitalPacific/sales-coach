@@ -135,18 +135,22 @@ process:
       and thank them. On a no, leave the written options with them and thank them
       just the same.
     required: true
-membership:
-  name: Summit Care Club
-  summary: >-
-    Month-to-month membership at $19.95 a month, with no contract. Members get a
-    yearly water heater flush, priority scheduling, 15 percent off repairs, and no
-    overtime fees. Members can cancel anytime.
-  benefits:
-    - Annual water heater flush
-    - Priority scheduling
-    - 15 percent off repairs
-    - No overtime fees on nights, weekends, or holidays
-  verified: true
+memberships:
+  - id: summit-care-club
+    name: Summit Care Club
+    summary: >-
+      Month-to-month membership at $19.95 a month, with no contract. Members get a
+      yearly water heater flush, priority scheduling, 15 percent off repairs, and no
+      overtime fees. Members can cancel anytime.
+    trades: [plumbing, hvac]
+    benefits:
+      - Annual water heater flush
+      - Priority scheduling
+      - 15 percent off repairs
+      - No overtime fees on nights, weekends, or holidays
+    monthlyPrice: 19.95
+    lead: true
+    verified: true
 financing:
   available: true
   summary: >-
@@ -317,12 +321,8 @@ review:
       tablet applications, and the water heater install inclusions. Change any of them
       freely.
     - >-
-      The schema stores monthlyPrice as a whole number of dollars, so the $19.95 club
-      price is stated in the summary and monthlyPrice is left out. If the engine needs
-      the number, the schema owner could store cents or allow decimals.
-    - >-
-      membership.verified and financing.verified are true because the request defines
-      these terms for demo mode. They are not confirmed with any real business.
+      The membership's verified flag and financing.verified are true because the
+      request defines these terms for demo mode. They are not confirmed with any real business.
     - >-
       No license number, address, phone number, or lender name is given, so the demo
       cannot be confused with a real business. Before public demos, check that no

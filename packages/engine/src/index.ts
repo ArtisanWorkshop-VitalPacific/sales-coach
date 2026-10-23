@@ -69,6 +69,7 @@ export {
   createRng,
   extractDollarAmounts,
   newId,
+  planPrice,
   sayDollars,
   similarity,
   wordCount,

@@ -64,7 +64,7 @@ export function Shell({ children }: { children: ReactNode }) {
               id="role"
               value={profile.role}
               onChange={(e) => setProfile({ role: e.target.value as typeof profile.role })}
-              className="h-9 rounded-pill bg-surface-2 px-3 text-[13px] text-ink-2 shadow-[inset_0_0_0_0.5px_var(--sc-color-line)]"
+              className="h-9 rounded-pill bg-surface-2 pr-9 pl-3.5 text-[13px] text-ink-2 shadow-[inset_0_0_0_0.5px_var(--sc-color-line)]"
               title="Switch view (demo). Sign-in sets this automatically once accounts are on."
             >
               <option value="tech">Tech view</option>

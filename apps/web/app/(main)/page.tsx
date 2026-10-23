@@ -249,7 +249,7 @@ function Onboarding({ onDone }: { onDone: (name: string, companyId: string) => v
         <select
           value={companyId}
           onChange={(e) => setCompanyId(e.target.value)}
-          className="rounded-md border hairline bg-surface-2 px-4 py-3 text-[17px]"
+          className="rounded-md border hairline bg-surface-2 py-3 pr-10 pl-4 text-[17px]"
           aria-label="Company"
         >
           {list.map((c) => (

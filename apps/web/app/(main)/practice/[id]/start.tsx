@@ -1,5 +1,6 @@
 'use client';
 
+import { planPrice } from '@sales-coach/engine';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button, Segmented } from '@/components/ui';
@@ -16,7 +17,10 @@ export function BriefingStart({
   const router = useRouter();
   const [profile] = useProfile();
   const [d, setD] = useState(String(defaultDifficulty) as '1' | '2' | '3' | '4' | '5');
-  const [companyId, setCompanyId] = useState(profile.companyId);
+  // Follows the tech's company once their profile loads, until they pick another here.
+  const [picked, setCompanyId] = useState<string | null>(null);
+  const companyId = picked ?? profile.companyId;
+  const plans = companies().find((c) => c.id === companyId)?.memberships ?? [];
   return (
     <div className="mt-6 space-y-5">
       <div>
@@ -36,7 +40,7 @@ export function BriefingStart({
           id="company"
           value={companyId}
           onChange={(e) => setCompanyId(e.target.value)}
-          className="w-full rounded-md border hairline bg-surface-2 px-3 py-2.5 text-[15px]"
+          className="w-full rounded-md border hairline bg-surface-2 py-2.5 pr-10 pl-3.5 text-[15px]"
         >
           {companies().map((c) => (
             <option key={c.id} value={c.id}>
@@ -44,6 +48,21 @@ export function BriefingStart({
             </option>
           ))}
         </select>
+        {plans.length > 0 && (
+          <div className="well mt-3 px-3.5 py-3">
+            <p className="t-caption text-ink-3">
+              {plans.length > 1 ? 'Plans you can offer' : 'Plan you can offer'}
+            </p>
+            <ul className="mt-1.5 space-y-1">
+              {plans.map((m) => (
+                <li key={m.id} className="t-callout flex items-baseline justify-between gap-3">
+                  <span className="font-medium text-ink">{m.name}</span>
+                  <span className="text-right tabular-nums text-ink-2">{planPrice(m)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <Button
         size="lg"

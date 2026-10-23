@@ -6,6 +6,7 @@ import {
   CustomerSession,
   HeuristicPerceiver,
   type Perceiver,
+  planPrice,
   ScriptedWriter,
   scoreRecord,
   type TurnDirective,
@@ -168,5 +169,36 @@ describe('Objections the tech answers before the customer raises them', () => {
     ])
       await s.techTurn({ text });
     expect(seen.some((x) => x.moveId === WARRANTY)).toBe(false);
+  });
+});
+
+describe('Company plans', () => {
+  it('formats plan prices the way people say them', () => {
+    expect(planPrice({ monthlyPrice: 29.99 })).toBe('$29.99 a month');
+    expect(planPrice({ annualPrice: 249 })).toBe('$249 a year');
+    expect(planPrice({ monthlyPrice: 19.95, annualPrice: 199 })).toBe(
+      '$19.95 a month or $199 a year',
+    );
+  });
+
+  it('hears PACE as a membership offer, not a financing number', async () => {
+    const gardner = index.company('gardner-plumbing')!;
+    const pace = gardner.memberships.find((m) => m.id === 'pace')!;
+    expect(pace.monthlyPrice).toBe(29.99);
+    expect(pace.lead).toBe(true);
+    const s = new CustomerSession(
+      { scenarioId: 'toilet-running-old', seed: 2, companyId: 'gardner-plumbing' },
+      { index, perceiver: new HeuristicPerceiver(), writer: new ScriptedWriter(2) },
+    );
+    await s.start();
+    await s.techTurn({
+      text: "One more thing. We have a home service subscription called PACE. It's $29.99 a month and covers your plumbing, air conditioning, and electrical.",
+    });
+    const p = s.record().perceptions.at(-1)!.perception;
+    const ids = p.behaviors.map((b) => b.id);
+    expect(ids).toContain('offered_membership');
+    expect(ids).not.toContain('framed_monthly');
+    expect(p.monthlyStated).toBeNull();
+    expect(s.state.monthlyHeard).toBeNull();
   });
 });

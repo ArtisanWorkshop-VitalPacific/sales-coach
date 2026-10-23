@@ -423,6 +423,22 @@ export type Drill = z.infer<typeof Drill>;
 
 /* --------------------------------------------------------------- Companies */
 
+/** A membership or subscription a company sells to homeowners. Prices may carry cents. */
+export const Membership = z.strictObject({
+  id: Id,
+  name: z.string(),
+  summary: z.string(),
+  /** The trades the plan covers. Empty means the company's whole service list. */
+  trades: z.array(Trade).default([]),
+  benefits: z.array(z.string()).default([]),
+  monthlyPrice: z.number().positive().optional(),
+  annualPrice: z.number().positive().optional(),
+  /** The plan techs offer first when a company has more than one. */
+  lead: z.boolean().default(false),
+  verified: z.boolean().default(false),
+});
+export type Membership = z.infer<typeof Membership>;
+
 export const Company = z.strictObject({
   id: Id,
   version: z.number().int().min(1),
@@ -443,16 +459,8 @@ export const Company = z.strictObject({
       }),
     )
     .min(3),
-  membership: z
-    .strictObject({
-      name: z.string(),
-      summary: z.string(),
-      benefits: z.array(z.string()).default([]),
-      monthlyPrice: z.number().int().optional(),
-      annualPrice: z.number().int().optional(),
-      verified: z.boolean().default(false),
-    })
-    .optional(),
+  /** Lead plan first. Empty means the company sells no membership, so techs skip the ask. */
+  memberships: z.array(Membership).default([]),
   financing: z.strictObject({
     available: z.boolean(),
     summary: z.string(),

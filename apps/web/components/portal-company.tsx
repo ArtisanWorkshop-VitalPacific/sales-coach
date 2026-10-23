@@ -1,6 +1,6 @@
 'use client';
 
-import type { Company, Move } from '@sales-coach/engine';
+import { type Company, type Move, planPrice } from '@sales-coach/engine';
 import { Check, ChevronDown, ExternalLink, Info, Lock, X } from 'lucide-react';
 import { useState } from 'react';
 import {
@@ -52,7 +52,7 @@ export function CompanyTab() {
           <select
             value={c.id}
             onChange={(e) => setPicked(e.target.value)}
-            className="rounded-pill border hairline bg-surface px-4 py-2 text-[15px] text-ink"
+            className="rounded-pill border hairline bg-surface py-2 pr-10 pl-4 text-[15px] text-ink"
             aria-label="Company"
           >
             {list.map((x) => (
@@ -146,35 +146,47 @@ export function CompanyTab() {
 
       <div className="mb-12 grid grid-cols-1 gap-5 md:grid-cols-2">
         <Card className="p-6 md:p-8">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="t-callout font-semibold text-ink-3">Membership</p>
-              <p className="t-headline mt-1 text-ink">{c.membership?.name ?? 'None on file'}</p>
-            </div>
-            {c.membership && !c.membership.verified && <Chip tone="caution">Verify</Chip>}
-          </div>
-          {c.membership ? (
+          <p className="t-callout font-semibold text-ink-3">
+            {c.memberships.length > 1 ? 'Memberships' : 'Membership'}
+          </p>
+          {c.memberships.length === 0 ? (
             <>
-              {membershipPrice(c) && (
-                <p className="t-title mt-4 tabular-nums text-ink">{membershipPrice(c)}</p>
-              )}
-              <p className="t-callout mt-3 text-ink-2">{c.membership.summary}</p>
-              {c.membership.benefits.length > 0 && (
-                <ul className="mt-5 space-y-2.5">
-                  {c.membership.benefits.map((b) => (
-                    <li key={b} className="t-callout flex gap-3 text-ink">
-                      <Check size={16} className="mt-0.5 shrink-0 text-positive" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <p className="t-headline mt-1 text-ink">None on file</p>
+              <p className="t-callout mt-3 text-ink-3">
+                No membership plan in this spec. Techs skip the membership ask until the owner adds
+                one.
+              </p>
             </>
           ) : (
-            <p className="t-callout mt-3 text-ink-3">
-              No membership plan in this spec. Techs skip the membership ask until the owner adds
-              one.
-            </p>
+            <div className="divide-y divide-line">
+              {c.memberships.map((m) => (
+                <div key={m.id} className="py-5 first:pt-1 last:pb-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="t-headline text-ink">{m.name}</p>
+                      {m.lead && c.memberships.length > 1 && (
+                        <p className="t-caption mt-0.5 text-ink-3">Techs offer this one first</p>
+                      )}
+                    </div>
+                    {!m.verified && <Chip tone="caution">Verify</Chip>}
+                  </div>
+                  {planPrice(m) && (
+                    <p className="t-title mt-3 tabular-nums text-ink">{planPrice(m)}</p>
+                  )}
+                  <p className="t-callout mt-2 text-ink-2">{m.summary}</p>
+                  {m.benefits.length > 0 && (
+                    <ul className="mt-4 space-y-2.5">
+                      {m.benefits.map((b) => (
+                        <li key={b} className="t-callout flex gap-3 text-ink">
+                          <Check size={16} className="mt-0.5 shrink-0 text-positive" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
           )}
         </Card>
         <Card className="p-6 md:p-8">
@@ -380,16 +392,6 @@ function PriceRanges({ c }: { c: Company }) {
       )}
     </Card>
   );
-}
-
-function membershipPrice(c: Company) {
-  const m = c.membership;
-  if (!m) return null;
-  const parts = [
-    m.monthlyPrice ? `${usd(m.monthlyPrice)} a month` : null,
-    m.annualPrice ? `${usd(m.annualPrice)} a year` : null,
-  ].filter(Boolean);
-  return parts.length ? parts.join(' or ') : null;
 }
 
 /* ================================================================ Library */

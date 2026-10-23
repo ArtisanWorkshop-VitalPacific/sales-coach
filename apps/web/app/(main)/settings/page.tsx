@@ -36,7 +36,7 @@ export default function SettingsPage() {
             <select
               value={profile.companyId}
               onChange={(e) => setProfile({ companyId: e.target.value })}
-              className="mt-1 w-full rounded-md border hairline bg-surface-2 px-4 py-3 text-[17px]"
+              className="mt-1 w-full rounded-md border hairline bg-surface-2 py-3 pr-10 pl-4 text-[17px]"
             >
               {companies().map((c) => (
                 <option key={c.id} value={c.id}>
