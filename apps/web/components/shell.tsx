@@ -34,8 +34,9 @@ export function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-dvh">
-      <header className="glass sticky top-0 z-40 border-b hairline">
-        <div className="mx-auto flex h-[52px] max-w-[1200px] items-center gap-6 px-5">
+      {/* A glass capsule that floats over the page. */}
+      <header className="sticky top-0 z-40 px-3 pt-[max(10px,env(safe-area-inset-top))] md:px-5 md:pt-4">
+        <div className="glass mx-auto flex h-14 max-w-[1200px] items-center gap-6 rounded-pill pr-2 pl-5">
           <Link href="/" aria-label="Sales Coach home">
             <Wordmark />
           </Link>
@@ -45,15 +46,17 @@ export function Shell({ children }: { children: ReactNode }) {
                 key={l.href}
                 href={l.href}
                 className={cn(
-                  'rounded-pill px-3 py-1.5 text-[14px] transition-colors',
-                  active(path, l.href) ? 'bg-surface-3 text-ink' : 'text-ink-3 hover:text-ink',
+                  'rounded-pill px-3.5 py-1.5 text-[14px] transition-colors',
+                  active(path, l.href)
+                    ? 'bg-surface text-ink shadow-ring'
+                    : 'text-ink-3 hover:text-ink',
                 )}
               >
                 {l.label}
               </Link>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1.5">
             <label className="sr-only" htmlFor="role">
               View as
             </label>
@@ -61,7 +64,7 @@ export function Shell({ children }: { children: ReactNode }) {
               id="role"
               value={profile.role}
               onChange={(e) => setProfile({ role: e.target.value as typeof profile.role })}
-              className="rounded-pill border hairline bg-surface px-3 py-1.5 text-[13px] text-ink-2"
+              className="h-9 rounded-pill bg-surface-2 px-3 text-[13px] text-ink-2 shadow-[inset_0_0_0_0.5px_var(--sc-color-line)]"
               title="Switch view (demo). Sign-in sets this automatically once accounts are on."
             >
               <option value="tech">Tech view</option>
@@ -71,7 +74,7 @@ export function Shell({ children }: { children: ReactNode }) {
             {lead && (
               <Link
                 href="/training-day"
-                className="hidden rounded-full p-2 text-ink-3 hover:text-ink sm:inline-flex"
+                className="hidden h-10 w-10 place-items-center rounded-full text-ink-3 hover:bg-surface-2 hover:text-ink sm:grid"
                 title="Training day mode"
                 aria-label="Training day mode"
               >
@@ -80,7 +83,7 @@ export function Shell({ children }: { children: ReactNode }) {
             )}
             <Link
               href="/settings"
-              className="hidden rounded-full p-2 text-ink-3 hover:text-ink md:inline-flex"
+              className="hidden h-10 w-10 place-items-center rounded-full text-ink-3 hover:bg-surface-2 hover:text-ink md:grid"
               aria-label="Settings"
             >
               <Settings size={19} />
@@ -88,12 +91,12 @@ export function Shell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-[1200px] px-5 pt-8 pb-28 md:pt-14 md:pb-20">{children}</main>
+      <main className="mx-auto max-w-[1200px] px-5 pt-8 pb-32 md:pt-14 md:pb-20">{children}</main>
       <nav
-        className="glass safe-bottom fixed inset-x-0 bottom-0 z-40 border-t hairline md:hidden"
+        className="glass fixed inset-x-3 bottom-[max(12px,env(safe-area-inset-bottom))] z-40 rounded-[28px] md:hidden"
         aria-label="Tabs"
       >
-        <div className="mx-auto grid max-w-md grid-cols-5 px-2 pt-2">
+        <div className="mx-auto grid max-w-md grid-cols-5 px-1.5 py-1.5">
           {mobile.map((l) => {
             const on = active(path, l.href);
             const Icon = l.icon;
@@ -101,12 +104,13 @@ export function Shell({ children }: { children: ReactNode }) {
               <Link
                 key={l.href}
                 href={l.href}
+                aria-current={on ? 'page' : undefined}
                 className={cn(
-                  'flex flex-col items-center gap-0.5 py-1 text-[10px] font-medium',
-                  on ? 'text-accent' : 'text-ink-4',
+                  'flex flex-col items-center gap-0.5 rounded-[22px] py-1.5 text-[10px] font-medium transition-colors',
+                  on ? 'bg-surface text-ink shadow-ring' : 'text-ink-3',
                 )}
               >
-                <Icon size={22} strokeWidth={on ? 2.2 : 1.8} />
+                <Icon size={21} strokeWidth={on ? 2 : 1.7} />
                 {l.label}
               </Link>
             );

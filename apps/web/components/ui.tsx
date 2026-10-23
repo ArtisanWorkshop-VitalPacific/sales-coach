@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from 'react';
 
 export const cn = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(' ');
 
-type BtnVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type BtnVariant = 'primary' | 'secondary' | 'glass' | 'ghost' | 'danger';
 type BtnSize = 'sm' | 'md' | 'lg';
 const btnClass = (v: BtnVariant = 'primary', s: BtnSize = 'md', extra?: string) =>
   cn('btn', `btn-${v}`, s === 'lg' && 'btn-lg', s === 'sm' && 'btn-sm', extra);
@@ -26,7 +26,7 @@ export function ButtonLink({
   return <Link className={btnClass(variant, size, className)} {...props} />;
 }
 
-/** Apple-style text link with a chevron. */
+/** A text link with a chevron. */
 export function ChevronLink({
   href,
   children,
@@ -116,7 +116,7 @@ export function Chip({
           : tone === 'negative'
             ? 'bg-negative-soft text-negative'
             : tone === 'voice'
-              ? 'bg-voice text-[#1d1d1f]'
+              ? 'bg-voice text-white'
               : '';
   return <span className={cn('chip', toneClass, className)}>{children}</span>;
 }
@@ -147,10 +147,11 @@ export function Bar({
   className?: string;
 }) {
   const v = value ?? 0;
-  const t = tone === 'auto' ? (v >= 80 ? 'positive' : v >= 60 ? 'accent' : 'caution') : tone;
+  const t = tone === 'auto' ? (v >= 80 ? 'positive' : v >= 60 ? 'muted' : 'caution') : tone;
   const fill = {
     accent: 'bg-accent',
     positive: 'bg-positive-fill',
+    muted: 'bg-ink-3',
     caution: 'bg-caution-fill',
     negative: 'bg-negative-fill',
   }[t];
@@ -187,11 +188,12 @@ export function Ring({
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const v = Math.max(0, Math.min(100, value));
+  // Black for strong, taupe for solid, the one warm signal for work to do.
   const color =
     v >= 80
       ? 'var(--sc-color-positive-fill)'
       : v >= 60
-        ? 'var(--sc-color-accent)'
+        ? 'var(--sc-color-ink-3)'
         : 'var(--sc-color-caution-fill)';
   const id = `ring-${size}-${stroke}`;
   return (
@@ -200,8 +202,8 @@ export function Ring({
         {tone === 'voice' && (
           <defs>
             <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#C8A0FF" />
-              <stop offset="100%" stopColor="#7AB8FF" />
+              <stop offset="0%" stopColor="var(--sc-color-ink)" />
+              <stop offset="100%" stopColor="var(--sc-color-ink-3)" />
             </linearGradient>
           </defs>
         )}
@@ -250,7 +252,13 @@ export function Segmented<T extends string>({
   size?: 'sm' | 'md';
 }) {
   return (
-    <div className={cn('inline-flex rounded-pill bg-surface-3 p-[3px]', className)} role="tablist">
+    <div
+      className={cn(
+        'no-scrollbar inline-flex max-w-full overflow-x-auto rounded-pill bg-surface-2 p-[3px] shadow-[inset_0_0_0_0.5px_var(--sc-color-line)]',
+        className,
+      )}
+      role="tablist"
+    >
       {options.map((o) => (
         <button
           key={o.value}
@@ -259,11 +267,9 @@ export function Segmented<T extends string>({
           aria-selected={o.value === value}
           onClick={() => onChange(o.value)}
           className={cn(
-            'rounded-pill font-medium transition-all duration-200',
+            'shrink-0 whitespace-nowrap rounded-pill font-medium transition-all duration-200',
             size === 'sm' ? 'px-3 py-1 text-[13px]' : 'px-4 py-1.5 text-[15px]',
-            o.value === value
-              ? 'bg-surface text-ink shadow-[0_1px_3px_rgba(0,0,0,0.12)]'
-              : 'text-ink-3 hover:text-ink',
+            o.value === value ? 'bg-surface text-ink shadow-ring' : 'text-ink-3 hover:text-ink',
           )}
         >
           {o.label}
@@ -297,13 +303,13 @@ export function Toggle({
         onClick={() => onChange(!checked)}
         className={cn(
           'relative h-[31px] w-[51px] shrink-0 rounded-full transition-colors duration-200',
-          checked ? 'bg-positive-fill' : 'bg-surface-3',
+          checked ? 'bg-accent' : 'bg-surface-3',
         )}
       >
         <span
           className={cn(
-            'absolute top-[2px] left-[2px] h-[27px] w-[27px] rounded-full bg-white shadow-[0_3px_8px_rgba(0,0,0,0.15)] transition-transform duration-200',
-            checked && 'translate-x-[20px]',
+            'absolute top-[2px] left-[2px] h-[27px] w-[27px] rounded-full shadow-[0_3px_8px_rgba(0,0,0,0.15)] transition-transform duration-200',
+            checked ? 'translate-x-[20px] bg-accent-ink' : 'bg-surface',
           )}
         />
       </button>

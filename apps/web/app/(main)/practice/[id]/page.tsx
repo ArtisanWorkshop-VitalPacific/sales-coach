@@ -35,7 +35,7 @@ export default async function BriefingPage({ params }: { params: Promise<{ id: s
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-5">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-5">
         <div className="flex flex-col gap-5 md:col-span-3">
           <Card className="p-6">
             <h2 className="t-headline text-ink">What you know walking in</h2>
@@ -100,7 +100,7 @@ export default async function BriefingPage({ params }: { params: Promise<{ id: s
               ))}
             </div>
             {recommended && (
-              <p className="t-caption mt-3 text-ink-4">
+              <p className="t-caption mt-3 text-ink-3">
                 The honest fit is marked. Recommend what the home needs, and only that.
               </p>
             )}
@@ -113,7 +113,7 @@ export default async function BriefingPage({ params }: { params: Promise<{ id: s
               <p className="t-body mt-2 text-ink-2">{s.goal}</p>
               <BriefingStart scenarioId={s.id} defaultDifficulty={s.difficulty} />
             </Card>
-            <p className="t-caption mt-4 px-2 text-ink-4">
+            <p className="t-caption mt-4 px-2 text-ink-3">
               Speak naturally. {p.name.split(' ')[0]} hears you, reacts to how you say things, and
               remembers. Headphones make it feel real.
             </p>

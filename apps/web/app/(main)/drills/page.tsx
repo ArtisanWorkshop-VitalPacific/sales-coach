@@ -57,7 +57,7 @@ export default function DrillsPage() {
       {stages.map((stage) => (
         <section key={stage} className="mb-10">
           <h2 className="t-headline mb-3 text-ink-2">{STAGES[stage] ?? stage}</h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {track
               .filter((d) => d.stage === stage)
               .map((d) => {
@@ -68,9 +68,7 @@ export default function DrillsPage() {
                       <span
                         className={cn(
                           't-callout grid h-9 w-9 shrink-0 place-items-center rounded-full font-semibold tabular-nums',
-                          st === 'passed'
-                            ? 'bg-positive-fill text-white'
-                            : 'bg-surface-3 text-ink-2',
+                          st === 'passed' ? 'bg-accent text-accent-ink' : 'bg-surface-3 text-ink-2',
                         )}
                       >
                         {st === 'passed' ? <Check size={17} /> : d.order}

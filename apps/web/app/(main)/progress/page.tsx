@@ -106,7 +106,7 @@ export default function ProgressPage() {
         />
       ) : (
         <>
-          <div className="mb-12 grid gap-5 lg:grid-cols-5">
+          <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
             <Card className="relative overflow-hidden p-6 md:p-8 lg:col-span-2">
               <p className="t-callout flex items-center gap-2 font-semibold text-ink-3">
                 <Award size={16} /> Your level
@@ -147,7 +147,7 @@ export default function ProgressPage() {
             <Card className="p-6 md:p-8 lg:col-span-3">
               <div className="flex items-end justify-between">
                 <p className="t-callout font-semibold text-ink-3">Score trend</p>
-                <p className="t-caption text-ink-4">Dashed line: pass at 70</p>
+                <p className="t-caption text-ink-3">Dashed line: pass at 70</p>
               </div>
               {trend.length > 1 ? (
                 <Sparkline values={trend} />
@@ -159,7 +159,7 @@ export default function ProgressPage() {
 
           <Section
             title="Skills"
-            action={<span className="t-caption text-ink-4">Last 10 calls</span>}
+            action={<span className="t-caption text-ink-3">Last 10 calls</span>}
           >
             <Card className="divide-y divide-line">
               {SKILL_ORDER.map((id) => {

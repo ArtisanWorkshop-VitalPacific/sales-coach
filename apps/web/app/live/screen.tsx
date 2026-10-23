@@ -5,7 +5,6 @@ import { ArrowLeft, PhoneOff } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { Avatar } from '@/components/avatar';
 import { cn } from '@/components/ui';
 import { contentIndex } from '@/lib/content';
 import { storeFinishedCall } from '@/lib/sessions';
@@ -136,7 +135,7 @@ export function LiveScreen(p: Props) {
 
   if (!scenario || !persona) {
     return (
-      <div className="grid min-h-dvh place-items-center bg-[#000] p-8 text-center text-[#f5f5f7]">
+      <div className="grid min-h-dvh place-items-center p-8 text-center text-ink">
         <Link href="/practice" className="btn btn-primary">
           Pick a customer
         </Link>
@@ -146,47 +145,46 @@ export function LiveScreen(p: Props) {
 
   const first = persona.name.split(' ')[0];
   return (
-    <div className="flex min-h-dvh flex-col bg-[#000] px-5 pt-[max(16px,env(safe-area-inset-top))] text-[#f5f5f7]">
+    <div className="flex min-h-dvh flex-col px-5 pt-[max(16px,env(safe-area-inset-top))] text-ink">
       <div className="mx-auto flex h-12 w-full max-w-[920px] items-center justify-between">
         {status === 'live' || status === 'ending' ? (
           <button
             type="button"
             onClick={end}
             disabled={status === 'ending'}
-            className="btn btn-sm bg-[#ff453a] text-white"
+            className="btn btn-sm btn-danger"
           >
             <PhoneOff size={16} /> {status === 'ending' ? 'Ending' : 'End'}
           </button>
         ) : (
-          <Link
-            href={`/practice/${scenario.id}`}
-            className="btn btn-sm bg-[#1d1d1f] text-[#f5f5f7]"
-          >
+          <Link href={`/practice/${scenario.id}`} className="btn btn-sm btn-glass">
             <ArrowLeft size={16} /> Back
           </Link>
         )}
-        <span className="flex items-center gap-1.5 rounded-pill bg-[#1d1d1f] px-2.5 py-1 text-[13px] text-[#a1a1a6]">
-          <span className="h-1.5 w-1.5 rounded-full bg-voice" /> Live
+        <span className="flex items-center gap-1.5 rounded-pill bg-glass-strong px-2.5 py-1 text-[13px] text-ink-2 shadow-ring">
+          <span className="h-1.5 w-1.5 rounded-full bg-ink" /> Live
         </span>
         <span className="w-16" />
       </div>
       <div className="flex flex-1 flex-col items-center justify-center text-center">
-        <div className="relative grid place-items-center">
-          <div
-            className={cn(
-              'absolute h-[260px] w-[260px] rounded-full bg-voice blur-3xl transition-opacity duration-700',
-              speaking ? 'opacity-55' : 'opacity-15',
-            )}
+        <div className="relative grid h-[196px] w-[196px] place-items-center">
+          {speaking && (
+            <span className="absolute h-[168px] w-[168px] animate-[ripple_1.8s_ease-out_infinite] rounded-full border border-ink/15" />
+          )}
+          <span
+            aria-hidden
+            className="pearl pearl-live block h-[168px] w-[168px]"
             style={{
               animation: speaking
                 ? 'speak 1.1s ease-in-out infinite'
                 : 'breathe 4s ease-in-out infinite',
             }}
           />
-          <Avatar name={persona.name} seed={persona.id} size={128} />
         </div>
-        <h1 className="mt-8 text-[28px] font-semibold tracking-[-0.02em]">{persona.name}</h1>
-        <p className="mt-1 text-[15px] text-[#a1a1a6]">
+        <h1 className="mt-10 text-[34px] leading-tight font-light tracking-[-0.022em]">
+          {persona.name}
+        </h1>
+        <p className="mt-2 text-[15px] text-ink-3">
           {status === 'ready'
             ? 'Live mode. Talk like it is a real call.'
             : status === 'connecting'
@@ -199,22 +197,21 @@ export function LiveScreen(p: Props) {
                     ? `${first} is talking`
                     : 'Go ahead'}
         </p>
-        {error && <p className="mt-4 max-w-sm text-[14px] text-[#ff6961]">{error}</p>}
+        {error && <p className="mt-4 max-w-sm text-[14px] text-negative">{error}</p>}
       </div>
-      <div className="mx-auto mb-4 w-full max-w-[920px] space-y-3">
+      <div
+        className={cn(
+          'mx-auto mb-4 w-full max-w-[920px] space-y-3',
+          captions.length > 0 && 'card px-5 py-4',
+        )}
+      >
         {captions.slice(-3).map((c, i) => (
           <p
             key={i}
-            className={cn(
-              'text-[19px]',
-              c.speaker === 'tech' ? 'text-[#a1a1a6]' : 'text-[#f5f5f7]',
-            )}
+            className={cn('text-[19px]', c.speaker === 'tech' ? 'text-ink-3' : 'text-ink')}
           >
             <span
-              className={cn(
-                'mr-2 font-semibold',
-                c.speaker === 'tech' ? 'text-[#2997ff]' : 'text-voice',
-              )}
+              className={cn('mr-2 font-semibold', c.speaker === 'tech' ? 'text-ink-3' : 'text-ink')}
             >
               {c.speaker === 'tech' ? 'You' : (c.name ?? first)}
             </span>

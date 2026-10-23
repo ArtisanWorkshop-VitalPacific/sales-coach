@@ -69,7 +69,7 @@ export default function PracticePage() {
           ]}
         />
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((s, i) => {
           const p = index.persona(s.personaId);
           const score = best.get(s.id);
@@ -97,7 +97,7 @@ export default function PracticePage() {
                     {p.name.split(' ')[0]} · {jobLabel(s.jobType)}
                   </span>
                   <span className="flex items-center gap-2">
-                    <span className="t-caption text-ink-4">{DIFFICULTY_LABEL[s.difficulty]}</span>
+                    <span className="t-caption text-ink-3">{DIFFICULTY_LABEL[s.difficulty]}</span>
                     <Difficulty level={s.difficulty} />
                   </span>
                 </div>

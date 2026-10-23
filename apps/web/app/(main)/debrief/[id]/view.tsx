@@ -197,7 +197,9 @@ function Loaded({
         </div>
       </header>
 
-      <div className={cn('mb-12 grid gap-5 md:grid-cols-2', coaching && 'animate-pulse')}>
+      <div
+        className={cn('mb-12 grid grid-cols-1 gap-5 md:grid-cols-2', coaching && 'animate-pulse')}
+      >
         <Card className="reveal p-6 md:p-8">
           <p className="t-callout flex items-center gap-2 font-semibold text-positive">
             <span className="grid h-6 w-6 place-items-center rounded-full bg-positive-soft">
@@ -239,7 +241,7 @@ function Loaded({
 
       {d.moves.length > 0 && (
         <Section title="Customer moments">
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             {d.moves.map((m, i) => {
               const move = index.move(m.moveId);
               return (
@@ -287,7 +289,7 @@ function Loaded({
         <summary className="t-callout cursor-pointer text-ink-3">Read the spoken debrief</summary>
         <p className="t-body mt-3 max-w-2xl text-ink-2">{d.spoken}</p>
         {d.managerNote && (
-          <p className="t-caption mt-3 text-ink-4">Note for your manager: {d.managerNote}</p>
+          <p className="t-caption mt-3 text-ink-3">Note for your manager: {d.managerNote}</p>
         )}
       </details>
 
@@ -304,7 +306,7 @@ function Loaded({
           <Trash2 size={15} /> Delete this call
         </Button>
       </div>
-      <p className="t-caption mt-6 text-ink-4">
+      <p className="t-caption mt-6 text-ink-3">
         {s.record.adapters.writer.startsWith('claude')
           ? `Customer: ${s.record.adapters.writer.replace('claude:', '')}.`
           : 'Customer: demo engine.'}{' '}
@@ -317,7 +319,7 @@ function Loaded({
 function Quote({ text, label = 'You said' }: { text: string; label?: string }) {
   return (
     <blockquote className="mt-4 border-l-2 border-line-strong pl-4">
-      <p className="t-caption text-ink-4">{label}</p>
+      <p className="t-caption text-ink-3">{label}</p>
       <p className="t-callout text-ink-2">&ldquo;{text}&rdquo;</p>
     </blockquote>
   );
@@ -399,7 +401,7 @@ function Transcript({
           const mark = t.id === highlight.win ? 'win' : t.id === highlight.fix ? 'fix' : null;
           if (t.act === 'silence' && !t.text) {
             return (
-              <li key={t.id} className="t-caption text-center text-ink-4">
+              <li key={t.id} className="t-caption text-center text-ink-3">
                 {first} stays quiet for {Math.round((t.silenceMs ?? 0) / 1000)} seconds
               </li>
             );
@@ -426,11 +428,7 @@ function Transcript({
         })}
       </ol>
       {turns.length > 14 && (
-        <button
-          type="button"
-          className="t-callout mt-5 text-accent hover:underline"
-          onClick={() => setAll(!all)}
-        >
+        <button type="button" className="t-callout link mt-5" onClick={() => setAll(!all)}>
           {all ? 'Show less' : `Show all ${turns.length} turns`}
         </button>
       )}

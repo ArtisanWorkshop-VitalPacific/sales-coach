@@ -23,8 +23,15 @@ const typeVars = Object.entries(tokens.type as Record<string, Record<string, str
   ],
 );
 
+const {
+  ambient,
+  'ambient-dark': ambientDark,
+  ...gradients
+} = tokens.gradient as Record<string, string>;
+
 const shared = [
-  ...vars('gradient', tokens.gradient),
+  ...vars('gradient', gradients),
+  ...vars('blur', tokens.blur),
   ...vars('font', tokens.font),
   ...typeVars,
   ...vars('radius', tokens.radius),
@@ -34,24 +41,27 @@ const shared = [
   ...vars('layout', tokens.layout),
 ];
 
+const light = [...vars('color', tokens.color.light), `  --sc-ambient: ${ambient};`];
+const dark = [...vars('color', tokens.color.dark), `  --sc-ambient: ${ambientDark};`];
+const indent = (lines: string[]) => lines.map((l) => `  ${l}`).join('\n');
+
+// Light is the design. Dark is an explicit choice in Settings; "device" follows the phone.
 const css = `/* Generated from packages/design/tokens.json. Do not edit by hand. */
 :root {
-${[...vars('color', tokens.color.light), ...shared].join('\n')}
+${[...light, ...shared].join('\n')}
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-${vars('color', tokens.color.dark)
-  .map((l) => `  ${l}`)
-  .join('\n')}
-    color-scheme: dark;
-  }
+:root[data-theme='dark'] {
+${dark.join('\n')}
+  color-scheme: dark;
 }
 
-:root[data-theme='dark'] {
-${vars('color', tokens.color.dark).join('\n')}
-  color-scheme: dark;
+@media (prefers-color-scheme: dark) {
+  :root[data-theme='device'] {
+${indent(dark)}
+    color-scheme: dark;
+  }
 }
 `;
 

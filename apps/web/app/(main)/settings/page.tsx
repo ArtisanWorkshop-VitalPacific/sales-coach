@@ -161,12 +161,12 @@ export default function SettingsPage() {
       <Section title="Appearance">
         <Card className="p-6">
           <Segmented
-            value={s.theme}
+            value={s.theme === 'dark' || s.theme === 'device' ? s.theme : 'light'}
             onChange={(theme) => set({ theme })}
             options={[
-              { value: 'system', label: 'Automatic' },
               { value: 'light', label: 'Light' },
               { value: 'dark', label: 'Dark' },
+              { value: 'device', label: 'Match device' },
             ]}
           />
         </Card>

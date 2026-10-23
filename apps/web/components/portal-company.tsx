@@ -77,7 +77,7 @@ export function CompanyTab() {
         )}
       </div>
 
-      <div className="mb-12 grid gap-5 lg:grid-cols-5">
+      <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
         <Card className="reveal p-6 md:p-8 lg:col-span-3">
           <p className="t-callout font-semibold text-ink-3">{c.trades.map(cap).join(' · ')}</p>
           <h2 className="t-display mt-2 text-ink">{c.name}</h2>
@@ -96,7 +96,7 @@ export function CompanyTab() {
         <OwnerReview c={c} />
       </div>
 
-      <div className="mb-12 grid gap-5 md:grid-cols-2">
+      <div className="mb-12 grid grid-cols-1 gap-5 md:grid-cols-2">
         <Card className="p-6 md:p-8">
           <p className="t-callout font-semibold text-ink-3">Brand voice</p>
           <ul className="mt-4 space-y-3">
@@ -111,7 +111,7 @@ export function CompanyTab() {
         <Card className="p-6 md:p-8">
           <p className="t-callout font-semibold text-ink-3">Promises</p>
           {c.promises.length === 0 ? (
-            <p className="t-callout mt-4 text-ink-4">No promises on file.</p>
+            <p className="t-callout mt-4 text-ink-3">No promises on file.</p>
           ) : (
             <ul className="mt-4 space-y-4">
               {c.promises.map((p) => (
@@ -144,7 +144,7 @@ export function CompanyTab() {
         </Card>
       </Section>
 
-      <div className="mb-12 grid gap-5 md:grid-cols-2">
+      <div className="mb-12 grid grid-cols-1 gap-5 md:grid-cols-2">
         <Card className="p-6 md:p-8">
           <div className="flex items-start justify-between gap-3">
             <div>
@@ -197,11 +197,11 @@ export function CompanyTab() {
         </Section>
       )}
 
-      <div className="mb-12 grid gap-5 lg:grid-cols-5">
+      <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
         <Card className="p-6 md:p-8 lg:col-span-3">
           <p className="t-callout font-semibold text-ink-3">Preferred scripts</p>
           {c.scripts.preferred.length === 0 ? (
-            <p className="t-callout mt-4 text-ink-4">None on file.</p>
+            <p className="t-callout mt-4 text-ink-3">None on file.</p>
           ) : (
             <ul className="mt-4 divide-y divide-line">
               {c.scripts.preferred.map((s) => (
@@ -216,7 +216,7 @@ export function CompanyTab() {
         <Card className="p-6 md:p-8 lg:col-span-2">
           <p className="t-callout font-semibold text-ink-3">Never say</p>
           {c.scripts.banned.length === 0 ? (
-            <p className="t-callout mt-4 text-ink-4">None on file.</p>
+            <p className="t-callout mt-4 text-ink-3">None on file.</p>
           ) : (
             <ul className="mt-4 space-y-3">
               {c.scripts.banned.map((b) => (
@@ -234,7 +234,7 @@ export function CompanyTab() {
 
       {c.objectionAnswers.length > 0 && (
         <Section title="Your answers to common objections">
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {c.objectionAnswers.map((a) => {
               const m = contentIndex().move(a.moveId);
               return (
@@ -273,7 +273,7 @@ export function CompanyTab() {
                 <span className="t-callout min-w-0 flex-1 truncate text-accent">
                   {s.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                 </span>
-                <span className="t-caption shrink-0 text-ink-4">Retrieved {s.retrieved}</span>
+                <span className="t-caption shrink-0 text-ink-3">Retrieved {s.retrieved}</span>
               </a>
             ))}
           </Card>
@@ -332,7 +332,7 @@ function OwnerReview({ c }: { c: Company }) {
           {notes.length > 3 && (
             <button
               type="button"
-              className="t-caption mt-3 font-medium text-accent hover:underline"
+              className="t-caption link mt-3 font-medium"
               onClick={() => setOpen(!open)}
             >
               {open ? 'Show less' : `Show all ${notes.length}`}
@@ -361,7 +361,7 @@ function PriceRanges({ c }: { c: Company }) {
           >
             <div className="min-w-0">
               <p className="t-callout text-ink">{r.item}</p>
-              <p className="t-caption mt-0.5 truncate text-ink-4" title={r.source}>
+              <p className="t-caption mt-0.5 truncate text-ink-3" title={r.source}>
                 {r.source}
               </p>
             </div>
@@ -373,11 +373,7 @@ function PriceRanges({ c }: { c: Company }) {
       </ul>
       {c.priceRanges.length > 8 && (
         <div className="border-t hairline px-5 py-3.5 md:px-7">
-          <button
-            type="button"
-            className="t-callout text-accent hover:underline"
-            onClick={() => setAll(!all)}
-          >
+          <button type="button" className="t-callout link" onClick={() => setAll(!all)}>
             {all ? 'Show less' : `Show all ${c.priceRanges.length} ranges`}
           </button>
         </div>
@@ -471,7 +467,7 @@ export function LibraryTab() {
       </Section>
 
       <Section title="Personas">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {people.map((p) => (
             <Card key={p.id} className="flex flex-col p-6">
               <div className="flex items-center gap-3">
@@ -534,7 +530,7 @@ function MoveGroups({
         return (
           <div key={g}>
             <p className="t-callout mb-2 font-semibold text-ink-3">
-              {label} <span className="font-normal text-ink-4">· {list.length}</span>
+              {label} <span className="font-normal text-ink-3">· {list.length}</span>
             </p>
             <Card className="divide-y divide-line">
               {list.map((m) => (
@@ -566,7 +562,7 @@ function MoveRow({ m }: { m: Move }) {
           className="flex shrink-0 items-center gap-3 pt-2"
           title={`Shows up from difficulty ${m.difficultyMin}`}
         >
-          <span className="t-caption hidden tabular-nums text-ink-4 sm:inline">
+          <span className="t-caption hidden tabular-nums text-ink-3 sm:inline">
             Level {m.difficultyMin}+
           </span>
           <Difficulty level={m.difficultyMin} />
@@ -577,7 +573,7 @@ function MoveRow({ m }: { m: Move }) {
         </span>
       </button>
       {open && (
-        <div className="fade mt-4 grid gap-4 md:grid-cols-2">
+        <div className="fade mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
             <p className="t-caption font-semibold text-ink-3">Why it matters</p>
             <p className="t-callout mt-1 text-ink-2">{m.coaching.why}</p>

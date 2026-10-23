@@ -62,15 +62,15 @@ const slug = (s: string) =>
 
 function cellTone(v: number | null | undefined) {
   if (v === null || v === undefined) return 'bg-surface-2 text-ink-4';
-  if (v >= 80) return 'bg-positive-soft text-positive';
-  if (v >= 60) return 'bg-accent-soft text-accent';
+  if (v >= 80) return 'bg-accent text-accent-ink';
+  if (v >= 60) return 'bg-surface-3 text-ink';
   return 'bg-caution-soft text-caution';
 }
 
 function scoreTone(v: number | null) {
   if (v === null) return 'text-ink-4';
   if (v >= 80) return 'text-positive';
-  if (v >= 60) return 'text-ink';
+  if (v >= 60) return 'text-ink-2';
   return 'text-caution';
 }
 
@@ -252,29 +252,34 @@ export default function TeamPage() {
       </header>
 
       {/* Digest */}
-      <div className="mb-12 grid gap-5 lg:grid-cols-5">
-        <div className="reveal relative overflow-hidden rounded-xl bg-[#000] p-7 text-[#f5f5f7] shadow-float md:p-10 lg:col-span-3">
-          <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-voice opacity-30 blur-3xl" />
-          <p className="t-callout font-semibold text-[#a1a1a6]">This week</p>
-          <h2 className="t-display mt-3 max-w-md">
-            Team average {digest.teamAvg ?? '–'}.
-            {digest.delta !== null && digest.delta !== 0 && (
-              <span className="text-[#a1a1a6]">
-                {' '}
-                {digest.delta > 0 ? `Up ${digest.delta}.` : `Down ${-digest.delta}.`}
-              </span>
-            )}
-          </h2>
-          <p className="t-body mt-4 max-w-md text-[#a1a1a6]">
-            {digest.calls} practice {digest.calls === 1 ? 'call' : 'calls'} across {rows.length}{' '}
-            techs.
-            {digest.best && ` ${digest.best.name} leads the team.`}
-            {digest.focus && ` ${digest.focus.name} needs the reps.`}
-          </p>
-          <div className="mt-8 grid max-w-md grid-cols-3 gap-4 border-t border-white/15 pt-6">
-            <DarkStat label="Calls" value={digest.calls} />
-            <DarkStat label="Team avg" value={digest.teamAvg ?? '–'} />
-            <DarkStat label="Today" value={`${digest.today} of ${rows.length}`} />
+      <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
+        <div className="reveal relative lg:col-span-3">
+          <span
+            aria-hidden
+            className="pearl pointer-events-none absolute -top-6 right-6 h-28 w-28 md:-top-10 md:right-12 md:h-44 md:w-44"
+          />
+          <div className="hero h-full p-7 md:p-10">
+            <p className="t-callout font-medium text-ink-3">This week</p>
+            <h2 className="t-display mt-3 max-w-md text-ink">
+              Team average {digest.teamAvg ?? '–'}.
+              {digest.delta !== null && digest.delta !== 0 && (
+                <span className="text-ink-3">
+                  {' '}
+                  {digest.delta > 0 ? `Up ${digest.delta}.` : `Down ${-digest.delta}.`}
+                </span>
+              )}
+            </h2>
+            <p className="t-body mt-4 max-w-md text-ink-3">
+              {digest.calls} practice {digest.calls === 1 ? 'call' : 'calls'} across {rows.length}{' '}
+              techs.
+              {digest.best && ` ${digest.best.name} leads the team.`}
+              {digest.focus && ` ${digest.focus.name} needs the reps.`}
+            </p>
+            <div className="mt-8 grid max-w-md grid-cols-3 gap-4 border-t hairline pt-6">
+              <HeroStat label="Calls" value={digest.calls} />
+              <HeroStat label="Team avg" value={digest.teamAvg ?? '–'} />
+              <HeroStat label="Today" value={`${digest.today} of ${rows.length}`} />
+            </div>
           </div>
         </div>
 
@@ -449,10 +454,10 @@ export default function TeamPage() {
             </table>
           </div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t hairline px-5 py-4 md:px-7">
-            <Legend className="bg-positive-fill" label="80 and up" />
-            <Legend className="bg-accent" label="60 to 79" />
+            <Legend className="bg-accent" label="80 and up" />
+            <Legend className="bg-surface-3" label="60 to 79" />
             <Legend className="bg-caution-fill" label="Under 60" />
-            <span className="t-caption text-ink-4 md:ml-auto lg:hidden">
+            <span className="t-caption text-ink-3 md:ml-auto lg:hidden">
               Swipe sideways for every skill.
             </span>
           </div>
@@ -461,7 +466,7 @@ export default function TeamPage() {
 
       {/* Roster */}
       <Section title="Roster" action={<Chip>Sample team</Chip>}>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
           {rows.map((r) => (
             <TechCard
               key={r.key}
@@ -523,10 +528,10 @@ export default function TeamPage() {
 
 /* ------------------------------------------------------------- components */
 
-function DarkStat({ label, value }: { label: string; value: ReactNode }) {
+function HeroStat({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div>
-      <p className="t-caption text-[#a1a1a6]">{label}</p>
+      <p className="t-caption text-ink-3">{label}</p>
       <p className="t-headline mt-0.5 tabular-nums">{value}</p>
     </div>
   );
@@ -569,7 +574,7 @@ function TechCard({
         </div>
         <div className="text-right">
           <p className={cn('t-title tabular-nums', scoreTone(r.avg))}>{r.avg ?? '–'}</p>
-          <p className="t-micro text-ink-4">
+          <p className="t-micro text-ink-3">
             {trend === null
               ? r.sample
                 ? 'Average'
@@ -634,7 +639,7 @@ function TechCard({
         <div className="border-t hairline pt-4">
           <p className="t-caption font-semibold text-ink-3">Assigned drills</p>
           <div className="mt-2 flex flex-wrap gap-2">
-            {assigned.length === 0 && <span className="t-caption text-ink-4">None yet.</span>}
+            {assigned.length === 0 && <span className="t-caption text-ink-3">None yet.</span>}
             {assigned.map((id) => (
               <span key={id} className="chip max-w-full bg-accent-soft pr-1.5 text-accent">
                 <span className="truncate">{drillTitle(id)}</span>

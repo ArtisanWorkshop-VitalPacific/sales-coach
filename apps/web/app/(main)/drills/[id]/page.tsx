@@ -60,7 +60,7 @@ export default async function DrillPage({ params }: { params: Promise<{ id: stri
         </ol>
       </Card>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <Card className="p-6">
           <h2 className="t-headline text-ink">To pass</h2>
           <ul className="mt-3 space-y-2">
@@ -82,7 +82,7 @@ export default async function DrillPage({ params }: { params: Promise<{ id: stri
             </div>
           </div>
           <p className="t-callout mt-3 text-ink-3">{d.techPrompt}</p>
-          <p className="t-caption mt-3 text-ink-4">
+          <p className="t-caption mt-3 text-ink-3">
             The drill picks up mid-call. {first} already knows why you are there.
           </p>
         </Card>

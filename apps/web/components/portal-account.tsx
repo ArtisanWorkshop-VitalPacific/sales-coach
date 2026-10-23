@@ -91,7 +91,7 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
               <label htmlFor="trucks" className="t-callout font-semibold text-ink-3">
                 Trucks on the road
               </label>
-              <p className="t-caption text-ink-4">One license covers every tech in every truck.</p>
+              <p className="t-caption text-ink-3">One license covers every tech in every truck.</p>
             </div>
             <div className="flex items-baseline gap-2">
               <input
@@ -121,7 +121,7 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
             className="mt-6 w-full accent-[var(--sc-color-accent)]"
             aria-label="Trucks"
           />
-          <div className="t-caption mt-2 flex justify-between text-ink-4">
+          <div className="t-caption mt-2 flex justify-between text-ink-3">
             <span>1</span>
             {BANDS.map((b) => (
               <span
@@ -140,7 +140,7 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
       </Section>
 
       <Section title="Pick a tier">
-        <div className="grid gap-5 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {TIER_IDS.map((id) => {
             const t = TIERS[id];
             const tq = quote(id, trucks);
@@ -168,7 +168,7 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
                       <span className="t-callout font-normal text-ink-3"> a month</span>
                     </p>
                   )}
-                  <p className="t-caption text-ink-4">
+                  <p className="t-caption text-ink-3">
                     {tq.custom ? 'Per location, for 61 trucks and up' : 'Billed annually'}
                     {id === 'elite' && ` · plus ${usd(TIERS.elite.build)} build`}
                   </p>
@@ -201,56 +201,67 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
       </Section>
 
       <Section title="Your quote">
-        <div className="grid gap-5 lg:grid-cols-5">
-          <div className="relative overflow-hidden rounded-xl bg-[#000] p-7 text-[#f5f5f7] shadow-float md:p-10 lg:col-span-3">
-            <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-voice opacity-25 blur-3xl" />
-            <p className="t-callout font-semibold text-[#a1a1a6]">
-              Sales Coach {TIERS[tier].name} · {trucks} {trucks === 1 ? 'truck' : 'trucks'}
-            </p>
-            {q.custom ? (
-              <>
-                <h3 className="t-display mt-3">Custom, per location.</h3>
-                <p className="t-body mt-3 max-w-md text-[#a1a1a6]">
-                  Over {LARGEST_BAND} trucks, we price each location on its own. Our sales team
-                  builds the plan with you.
-                </p>
-                <div className="mt-8">
-                  <Button disabled aria-label="Talk to the sales team. Contact opens soon.">
-                    Talk to us
-                  </Button>
-                  <p className="t-caption mt-3 text-[#a1a1a6]">
-                    For the sales team. Direct contact opens soon.
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-5">
+          <div className="relative lg:col-span-3">
+            <span
+              aria-hidden
+              className="pearl pointer-events-none absolute -top-6 right-6 h-24 w-24 md:-top-10 md:right-10 md:h-36 md:w-36"
+            />
+            <div className="hero h-full p-7 text-ink md:p-10">
+              <p className="t-callout font-medium text-ink-3">
+                Sales Coach {TIERS[tier].name} · {trucks} {trucks === 1 ? 'truck' : 'trucks'}
+              </p>
+              {q.custom ? (
+                <>
+                  <h3 className="t-display mt-3">Custom, per location.</h3>
+                  <p className="t-body mt-3 max-w-md text-ink-3">
+                    Over {LARGEST_BAND} trucks, we price each location on its own. Our sales team
+                    builds the plan with you.
                   </p>
-                </div>
-              </>
-            ) : (
-              <>
-                <h3 className="t-display mt-3 tabular-nums">
-                  {usd(q.monthly)}
-                  <span className="t-body-lg font-normal text-[#a1a1a6]"> a month</span>
-                </h3>
-                <dl className="mt-8 space-y-3 border-t border-white/15 pt-6">
-                  <QuoteLine label="License, billed annually" value={`${usd(q.annual)} a year`} />
-                  <QuoteLine
-                    label="Pooled practice minutes"
-                    value={`${q.pooledMinutes.toLocaleString('en-US')} a month`}
-                  />
-                  <QuoteLine label="Overage" value={`$${OVERAGE_PER_MINUTE.toFixed(2)} a minute`} />
+                  <div className="mt-8">
+                    <Button disabled aria-label="Talk to the sales team. Contact opens soon.">
+                      Talk to us
+                    </Button>
+                    <p className="t-caption mt-3 text-ink-3">
+                      For the sales team. Direct contact opens soon.
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h3 className="t-display mt-3 tabular-nums">
+                    {usd(q.monthly)}
+                    <span className="t-body-lg font-normal text-ink-3"> a month</span>
+                  </h3>
+                  <dl className="mt-8 space-y-3 border-t hairline pt-6">
+                    <QuoteLine label="License, billed annually" value={`${usd(q.annual)} a year`} />
+                    <QuoteLine
+                      label="Pooled practice minutes"
+                      value={`${q.pooledMinutes.toLocaleString('en-US')} a month`}
+                    />
+                    <QuoteLine
+                      label="Overage"
+                      value={`$${OVERAGE_PER_MINUTE.toFixed(2)} a minute`}
+                    />
+                    {tier === 'elite' && (
+                      <>
+                        <QuoteLine label="Elite build, one time" value={usd(q.build)} />
+                        <QuoteLine
+                          label="Strategy program"
+                          value={`${usd(q.eliteAnnual)} a year`}
+                        />
+                      </>
+                    )}
+                  </dl>
                   {tier === 'elite' && (
-                    <>
-                      <QuoteLine label="Elite build, one time" value={usd(q.build)} />
-                      <QuoteLine label="Strategy program" value={`${usd(q.eliteAnnual)} a year`} />
-                    </>
+                    <p className="t-caption mt-4 text-ink-3">
+                      The build is invoiced after the scoping call. Checkout covers the license and
+                      program.
+                    </p>
                   )}
-                </dl>
-                {tier === 'elite' && (
-                  <p className="t-caption mt-4 text-[#a1a1a6]">
-                    The build is invoiced after the scoping call. Checkout covers the license and
-                    program.
-                  </p>
-                )}
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
 
           <Card className="flex flex-col p-6 md:p-8 lg:col-span-2">
@@ -289,7 +300,7 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
               )}
               {error && <p className="t-caption mt-3 text-negative">{error}</p>}
               {billing && !error && !q.custom && (
-                <p className="t-caption mt-3 text-ink-4">
+                <p className="t-caption mt-3 text-ink-3">
                   Secure checkout by Stripe. Promo codes welcome.
                 </p>
               )}
@@ -316,7 +327,7 @@ export function BillingTab({ checkout }: { checkout: string | null }) {
 function QuoteLine({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-baseline justify-between gap-4">
-      <dt className="t-callout text-[#a1a1a6]">{label}</dt>
+      <dt className="t-callout text-ink-3">{label}</dt>
       <dd className="t-body font-medium tabular-nums">{value}</dd>
     </div>
   );
@@ -458,7 +469,7 @@ export function SetupTab() {
         </p>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {INTEGRATIONS.map((i) => (
           <IntegrationCard key={i.id} i={i} caps={caps} loaded={loaded} />
         ))}
@@ -497,15 +508,13 @@ function IntegrationCard({
         )}
       </div>
       <p className="t-callout mt-2 text-ink-2">{i.unlocks}</p>
-      {!on && <p className="t-caption mt-1 text-ink-4">{i.off}</p>}
+      {!on && <p className="t-caption mt-1 text-ink-3">{i.off}</p>}
       {on && caps && i.extra?.(caps)}
       {on && (i.id === 'claude' || i.id === 'voice') && <HealthCheck kind={i.id} />}
       <div className="mt-auto pt-5">
         {on ? (
           <details className="group">
-            <summary className="t-callout cursor-pointer text-accent hover:underline">
-              Setup steps
-            </summary>
+            <summary className="t-callout link cursor-pointer">Setup steps</summary>
             <Steps vars={i.vars} />
           </details>
         ) : (
@@ -535,7 +544,7 @@ function Steps({ vars }: { vars: EnvVar[] }) {
           {vars.map((v) => (
             <li key={v.name}>
               <VarName name={v.name} />
-              {v.optional && <span className="t-caption ml-2 text-ink-4">Optional</span>}
+              {v.optional && <span className="t-caption ml-2 text-ink-3">Optional</span>}
               {v.note && <p className="t-caption mt-1 text-ink-3">{v.note}</p>}
             </li>
           ))}

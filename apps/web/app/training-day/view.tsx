@@ -72,32 +72,30 @@ export function TrainingDay() {
   };
 
   return (
-    <div className="min-h-dvh bg-[#000] px-6 py-8 text-[#f5f5f7] md:px-12 md:py-12">
+    <div className="min-h-dvh px-6 py-8 text-ink md:px-12 md:py-12">
       <div className="mx-auto max-w-[1400px]">
         <div className="mb-12 flex items-center justify-between">
           <Link
             href="/team"
-            className="flex items-center gap-2 text-[15px] text-[#a1a1a6] hover:text-white"
+            className="flex items-center gap-2 text-[15px] text-ink-3 hover:text-ink"
           >
             <ArrowLeft size={18} /> Exit training day
           </Link>
-          <span className="flex items-center gap-2 text-[#a1a1a6]">
-            <Mark size={22} inverted /> Sales Coach
+          <span className="flex items-center gap-2 text-ink-3">
+            <Mark size={22} /> Sales Coach
           </span>
         </div>
 
-        <h1 className="text-[56px] leading-[1.03] font-bold tracking-[-0.035em] md:text-[96px]">
-          Training day<span className="text-voice">.</span>
+        <h1 className="text-[56px] leading-[1.03] font-light tracking-[-0.03em] md:text-[96px]">
+          Training day.
         </h1>
-        <p className="mt-4 max-w-3xl text-[22px] text-[#a1a1a6] md:text-[28px]">
+        <p className="mt-4 max-w-3xl text-[22px] text-ink-3 md:text-[28px]">
           One tech on the mic. The whole shop learns.
         </p>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <h2 className="text-[15px] font-semibold tracking-wide text-[#86868b]">
-              1. Who is on the mic
-            </h2>
+            <h2 className="text-[15px] font-medium text-ink-3">1. Who is on the mic</h2>
             <div className="mt-4 flex flex-wrap gap-3">
               {roster.map((n) => (
                 <span key={n} className="group relative">
@@ -106,9 +104,7 @@ export function TrainingDay() {
                     onClick={() => setTech(n)}
                     className={cn(
                       'rounded-pill px-6 py-3 text-[20px] font-medium transition-colors',
-                      tech === n
-                        ? 'bg-[#f5f5f7] text-black'
-                        : 'bg-[#1d1d1f] text-[#f5f5f7] hover:bg-[#2c2c2e]',
+                      tech === n ? 'bg-accent text-accent-ink' : 'btn-glass text-ink',
                     )}
                   >
                     {n}
@@ -117,7 +113,7 @@ export function TrainingDay() {
                     type="button"
                     aria-label={`Remove ${n}`}
                     onClick={() => save(roster.filter((x) => x !== n))}
-                    className="absolute -top-2 -right-2 hidden rounded-full bg-[#3a3a3c] p-1 group-hover:block"
+                    className="absolute -top-2 -right-2 hidden rounded-full bg-surface-3 p-1 text-ink group-hover:block"
                   >
                     <X size={12} />
                   </button>
@@ -137,15 +133,13 @@ export function TrainingDay() {
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="Add a tech"
-                  className="rounded-pill bg-[#1d1d1f] px-6 py-3 text-[20px] text-white outline-none placeholder:text-[#6e6e73] focus:ring-2 focus:ring-[#2997ff]"
+                  className="rounded-pill bg-surface px-6 py-3 text-[20px] text-ink shadow-ring outline-none focus:shadow-[inset_0_0_0_1.5px_var(--sc-color-ink)]"
                 />
               </form>
             </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <h2 className="text-[15px] font-semibold tracking-wide text-[#86868b]">
-                2. How tough
-              </h2>
+              <h2 className="text-[15px] font-medium text-ink-3">2. How tough</h2>
               {[1, 2, 3, 4, 5].map((v) => (
                 <button
                   key={v}
@@ -153,7 +147,7 @@ export function TrainingDay() {
                   onClick={() => setD(v)}
                   className={cn(
                     'rounded-pill px-4 py-2 text-[17px]',
-                    d === v ? 'bg-[#f5f5f7] text-black' : 'bg-[#1d1d1f] text-[#a1a1a6]',
+                    d === v ? 'bg-accent text-accent-ink' : 'btn-glass text-ink-3',
                   )}
                 >
                   {DIFFICULTY_LABEL[v]}
@@ -161,10 +155,8 @@ export function TrainingDay() {
               ))}
             </div>
 
-            <h2 className="mt-10 text-[15px] font-semibold tracking-wide text-[#86868b]">
-              3. Pick the customer
-            </h2>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <h2 className="mt-10 text-[15px] font-medium text-ink-3">3. Pick the customer</h2>
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {list.map((s) => {
                 const p = index.persona(s.personaId);
                 return (
@@ -173,17 +165,17 @@ export function TrainingDay() {
                     type="button"
                     disabled={!tech}
                     onClick={() => start(s.id)}
-                    className="rounded-xl bg-[#1d1d1f] p-6 text-left transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2c2c2e] disabled:opacity-40 disabled:hover:translate-y-0"
+                    className="card p-6 text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-float disabled:opacity-40 disabled:hover:translate-y-0"
                   >
                     <div className="flex items-center gap-4">
                       <Avatar name={p.name} seed={p.id} size={56} />
                       <div>
                         <p className="text-[20px] font-semibold">{p.name}</p>
-                        <p className="text-[15px] text-[#a1a1a6]">{jobLabel(s.jobType)}</p>
+                        <p className="text-[15px] text-ink-3">{jobLabel(s.jobType)}</p>
                       </div>
                     </div>
-                    <p className="mt-4 text-[17px] text-[#d2d2d7]">{s.title}</p>
-                    <div className="mt-4 flex items-center justify-between text-[#86868b]">
+                    <p className="mt-4 text-[17px] text-ink-2">{s.title}</p>
+                    <div className="mt-4 flex items-center justify-between text-ink-3">
                       <span className="text-[14px]">
                         {DIFFICULTY_LABEL[s.difficulty]} as written
                       </span>
@@ -193,7 +185,7 @@ export function TrainingDay() {
                             key={i}
                             className={cn(
                               'h-2 w-2 rounded-full',
-                              i <= s.difficulty ? 'bg-[#f5f5f7]' : 'bg-[#3a3a3c]',
+                              i <= s.difficulty ? 'bg-ink' : 'bg-surface-3',
                             )}
                           />
                         ))}
@@ -203,16 +195,16 @@ export function TrainingDay() {
                 );
               })}
             </div>
-            {!tech && <p className="mt-4 text-[17px] text-[#86868b]">Pick or add a tech first.</p>}
+            {!tech && <p className="mt-4 text-[17px] text-ink-3">Pick or add a tech first.</p>}
           </div>
 
           <aside>
-            <div className="sticky top-8 rounded-xl bg-[#1d1d1f] p-7">
-              <h2 className="flex items-center gap-2 text-[22px] font-semibold">
-                <Trophy size={22} className="text-[#ffb340]" /> Today&rsquo;s board
+            <div className="card sticky top-8 p-7">
+              <h2 className="flex items-center gap-2 text-[22px] font-medium">
+                <Trophy size={22} className="text-ink" /> Today&rsquo;s board
               </h2>
               {board.length === 0 ? (
-                <p className="mt-4 text-[17px] text-[#86868b]">First call sets the bar.</p>
+                <p className="mt-4 text-[17px] text-ink-3">First call sets the bar.</p>
               ) : (
                 <ol className="mt-5 space-y-4">
                   {board.map(([name, e], i) => (
@@ -220,13 +212,13 @@ export function TrainingDay() {
                       <span
                         className={cn(
                           'w-6 text-[20px] font-bold tabular-nums',
-                          i === 0 ? 'text-voice' : 'text-[#6e6e73]',
+                          i === 0 ? 'text-ink' : 'text-ink-4',
                         )}
                       >
                         {i + 1}
                       </span>
                       <span className="flex-1 truncate text-[20px]">{name}</span>
-                      <span className="text-[13px] text-[#86868b]">
+                      <span className="text-[13px] text-ink-3">
                         {e.calls} {e.calls === 1 ? 'call' : 'calls'}
                       </span>
                       <span className="text-[28px] font-semibold tabular-nums">{e.best}</span>

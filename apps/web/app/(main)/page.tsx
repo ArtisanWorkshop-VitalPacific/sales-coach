@@ -80,12 +80,12 @@ export default function HomePage() {
       </header>
 
       {loaded && caps && !caps.brain && (
-        <div className="reveal mb-8 flex items-start gap-3 rounded-lg bg-surface-2 p-4 ring-1 ring-line md:items-center">
+        <div className="reveal well mb-8 flex items-start gap-3 p-4 md:items-center">
           <Sparkles className="mt-0.5 shrink-0 text-ink-3 md:mt-0" size={18} />
           <p className="t-callout text-ink-2">
             <span className="font-semibold text-ink">Demo mode.</span> Customers run on built-in
             rules and your browser&rsquo;s voices. Add a Claude key and they come to life.{' '}
-            <Link href="/portal?tab=setup" className="text-accent hover:underline">
+            <Link href="/portal?tab=setup" className="link">
               How to turn it on
             </Link>
           </p>
@@ -98,22 +98,25 @@ export default function HomePage() {
         />
       )}
 
-      <div className="mb-12 grid gap-5 lg:grid-cols-5">
+      <div className="mb-12 grid grid-cols-1 gap-5 lg:grid-cols-5">
         {nextDrill && (
-          <Link
-            href={`/drills/${nextDrill.id}`}
-            className="reveal group relative overflow-hidden rounded-xl bg-[#000] p-7 text-[#f5f5f7] shadow-float md:p-10 lg:col-span-3"
-          >
-            <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-voice opacity-30 blur-3xl transition-opacity duration-700 group-hover:opacity-45" />
-            <p className="t-callout font-semibold text-[#a1a1a6]">
-              Today&rsquo;s drill · {Math.round(nextDrill.durationSec / 60) || 1} min
-            </p>
-            <h2 className="t-display mt-3 max-w-md">{nextDrill.title}</h2>
-            <p className="t-body mt-4 max-w-md text-[#a1a1a6]">{firstSentence(nextDrill.why)}</p>
-            <span className="btn btn-primary mt-8">
-              Start the drill <ArrowRight size={18} />
-            </span>
-          </Link>
+          <div className="reveal relative lg:col-span-3">
+            {/* The pearl sits behind the glass: frosted where it is covered, clear where it rises above. */}
+            <span
+              aria-hidden
+              className="pearl pearl-live pointer-events-none absolute -top-6 right-6 h-32 w-32 md:-top-12 md:right-12 md:h-52 md:w-52"
+            />
+            <Link href={`/drills/${nextDrill.id}`} className="hero group block h-full p-7 md:p-10">
+              <p className="t-callout font-medium text-ink-3">
+                Today&rsquo;s drill · {Math.round(nextDrill.durationSec / 60) || 1} min
+              </p>
+              <h2 className="t-display mt-3 max-w-md text-ink">{nextDrill.title}</h2>
+              <p className="t-body mt-4 max-w-md text-ink-3">{firstSentence(nextDrill.why)}</p>
+              <span className="btn btn-primary mt-8">
+                Start the drill <ArrowRight size={18} />
+              </span>
+            </Link>
+          </div>
         )}
         <div className="flex flex-col gap-5 lg:col-span-2">
           {firstCall && (
@@ -201,9 +204,9 @@ export default function HomePage() {
       </Section>
 
       {company && (
-        <p className="t-caption text-center text-ink-4">
+        <p className="t-caption text-center text-ink-3">
           Practicing with {company.name}&rsquo;s process.{' '}
-          <Link href="/settings" className="text-accent hover:underline">
+          <Link href="/settings" className="link">
             Change
           </Link>
         </p>
@@ -228,7 +231,7 @@ function Onboarding({ onDone }: { onDone: (name: string, companyId: string) => v
       <p className="t-headline text-ink">Let&rsquo;s get you set up.</p>
       <p className="t-callout mt-1 text-ink-3">Two things, ten seconds. Stays on this device.</p>
       <form
-        className="mt-5 grid gap-3 md:grid-cols-[1fr_1fr_auto]"
+        className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-[1fr_1fr_auto]"
         onSubmit={(e) => {
           e.preventDefault();
           onDone(name.trim(), companyId);

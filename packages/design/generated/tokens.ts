@@ -3,123 +3,130 @@ export const tokens = {
   "$description": "Sales Coach design tokens. Source of truth for web today and iOS/Android later. Run `pnpm design:build` after editing.",
   "brand": {
     "name": "Sales Coach",
-    "status": "placeholder brand, pending SRV LAB review"
+    "status": "placeholder brand, pending SRV LAB review",
+    "direction": "White, grey, and white glass. Palette, type sizes, radii, and shadows taken from elevenlabs.io (October 2026). Black means action. Every customer is a pearl."
   },
   "color": {
     "light": {
-      "bg": "#F5F5F7",
+      "bg": "#FDFCFC",
       "bg-elevated": "#FFFFFF",
       "surface": "#FFFFFF",
-      "surface-2": "#FBFBFD",
-      "surface-3": "#E8E8ED",
-      "ink": "#1D1D1F",
-      "ink-2": "#424245",
-      "ink-3": "#6E6E73",
-      "ink-4": "#86868B",
-      "line": "rgba(0, 0, 0, 0.08)",
-      "line-strong": "rgba(0, 0, 0, 0.16)",
-      "accent": "#0071E3",
-      "accent-hover": "#0077ED",
+      "surface-2": "#F5F3F1",
+      "surface-3": "#EBE8E4",
+      "ink": "#000000",
+      "ink-2": "#44403B",
+      "ink-3": "#777169",
+      "ink-4": "#A59F97",
+      "line": "rgba(0, 0, 0, 0.075)",
+      "line-strong": "rgba(0, 0, 0, 0.125)",
+      "accent": "#000000",
+      "accent-hover": "#44403B",
       "accent-ink": "#FFFFFF",
-      "accent-soft": "rgba(0, 113, 227, 0.10)",
-      "positive": "#248A3D",
-      "positive-fill": "#34C759",
-      "positive-soft": "rgba(52, 199, 89, 0.14)",
-      "caution": "#B25000",
-      "caution-fill": "#FF9F0A",
-      "caution-soft": "rgba(255, 159, 10, 0.16)",
-      "negative": "#D70015",
-      "negative-fill": "#FF3B30",
-      "negative-soft": "rgba(255, 59, 48, 0.12)",
-      "glass": "rgba(255, 255, 255, 0.72)",
-      "scrim": "rgba(0, 0, 0, 0.40)"
+      "accent-soft": "rgba(0, 0, 0, 0.05)",
+      "positive": "#000000",
+      "positive-fill": "#000000",
+      "positive-soft": "rgba(0, 0, 0, 0.05)",
+      "caution": "#44403B",
+      "caution-fill": "#FF4704",
+      "caution-soft": "rgba(255, 71, 4, 0.10)",
+      "negative": "#F41A2F",
+      "negative-fill": "#F41A2F",
+      "negative-soft": "rgba(244, 26, 47, 0.08)",
+      "glass": "rgba(255, 255, 255, 0.62)",
+      "glass-strong": "rgba(253, 252, 252, 0.80)",
+      "glass-edge": "rgba(255, 255, 255, 0.60)",
+      "scrim": "rgba(0, 0, 0, 0.30)"
     },
     "dark": {
       "bg": "#000000",
-      "bg-elevated": "#161617",
-      "surface": "#1D1D1F",
-      "surface-2": "#2C2C2E",
-      "surface-3": "#3A3A3C",
-      "ink": "#F5F5F7",
-      "ink-2": "#D2D2D7",
-      "ink-3": "#A1A1A6",
-      "ink-4": "#86868B",
+      "bg-elevated": "#1A1917",
+      "surface": "#1A1917",
+      "surface-2": "#22201E",
+      "surface-3": "#2E2B28",
+      "ink": "#FDFCFC",
+      "ink-2": "#EBE8E4",
+      "ink-3": "#A59F97",
+      "ink-4": "#777169",
       "line": "rgba(255, 255, 255, 0.10)",
-      "line-strong": "rgba(255, 255, 255, 0.20)",
-      "accent": "#2997FF",
-      "accent-hover": "#47A6FF",
-      "accent-ink": "#FFFFFF",
-      "accent-soft": "rgba(41, 151, 255, 0.16)",
-      "positive": "#30D158",
-      "positive-fill": "#30D158",
-      "positive-soft": "rgba(48, 209, 88, 0.16)",
-      "caution": "#FFB340",
-      "caution-fill": "#FF9F0A",
-      "caution-soft": "rgba(255, 159, 10, 0.18)",
-      "negative": "#FF6961",
-      "negative-fill": "#FF453A",
-      "negative-soft": "rgba(255, 69, 58, 0.16)",
-      "glass": "rgba(22, 22, 23, 0.72)",
+      "line-strong": "rgba(255, 255, 255, 0.18)",
+      "accent": "#FFFFFF",
+      "accent-hover": "#EBE8E4",
+      "accent-ink": "#000000",
+      "accent-soft": "rgba(255, 255, 255, 0.10)",
+      "positive": "#FFFFFF",
+      "positive-fill": "#FFFFFF",
+      "positive-soft": "rgba(255, 255, 255, 0.08)",
+      "caution": "#EBE8E4",
+      "caution-fill": "#FF4704",
+      "caution-soft": "rgba(255, 71, 4, 0.16)",
+      "negative": "#F41A2F",
+      "negative-fill": "#F41A2F",
+      "negative-soft": "rgba(244, 26, 47, 0.16)",
+      "glass": "rgba(34, 32, 30, 0.58)",
+      "glass-strong": "rgba(26, 25, 23, 0.80)",
+      "glass-edge": "rgba(255, 255, 255, 0.08)",
       "scrim": "rgba(0, 0, 0, 0.60)"
     }
   },
   "gradient": {
-    "voice": "linear-gradient(90deg, #F1CEFF 0%, #C8A0FF 33%, #9B7EFF 66%, #7AB8FF 100%)",
-    "voice-radial": "radial-gradient(circle at 30% 30%, #F1CEFF 0%, #C8A0FF 30%, #9B7EFF 60%, #7AB8FF 100%)",
-    "coach": "linear-gradient(90deg, #FFD7A8 0%, #FFB37A 50%, #FF8A65 100%)"
+    "voice": "linear-gradient(90deg, #000000 0%, #44403B 55%, #777169 100%)",
+    "pearl": "radial-gradient(circle at 34% 28%, #FFFFFF 0%, #FFFFFF 8%, #F5F3F1 28%, #EBE8E4 50%, #D7D2CC 74%, #A59F97 95%, #777169 100%)",
+    "sheen": "conic-gradient(from 210deg, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.85) 60deg, rgba(215, 210, 204, 0.5) 140deg, rgba(255, 255, 255, 0) 220deg, rgba(255, 255, 255, 0.6) 300deg, rgba(255, 255, 255, 0) 360deg)",
+    "ambient": "radial-gradient(60vmax 60vmax at 8% -12%, rgba(235, 232, 228, 0.95), rgba(235, 232, 228, 0) 62%), radial-gradient(50vmax 50vmax at 104% 18%, rgba(215, 210, 204, 0.55), rgba(215, 210, 204, 0) 60%), radial-gradient(70vmax 50vmax at 50% 112%, rgba(245, 243, 241, 1), rgba(245, 243, 241, 0) 62%)",
+    "ambient-dark": "radial-gradient(60vmax 60vmax at 8% -12%, rgba(68, 64, 59, 0.45), rgba(68, 64, 59, 0) 62%), radial-gradient(50vmax 50vmax at 104% 18%, rgba(119, 113, 105, 0.22), rgba(119, 113, 105, 0) 60%)"
   },
   "font": {
-    "display": "-apple-system, BlinkMacSystemFont, \"SF Pro Display\", \"Segoe UI Variable Display\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
-    "text": "-apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Segoe UI Variable Text\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "display": "\"Inter Variable\", Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
+    "text": "\"Inter Variable\", Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", system-ui, sans-serif",
     "mono": "ui-monospace, \"SF Mono\", SFMono-Regular, Menlo, Consolas, monospace"
   },
   "type": {
     "hero": {
-      "size": "clamp(44px, 7vw, 80px)",
-      "line": "1.05",
-      "tracking": "-0.035em",
-      "weight": "700"
+      "size": "clamp(42px, 6.4vw, 76px)",
+      "line": "1.06",
+      "tracking": "-0.022em",
+      "weight": "300"
     },
     "display": {
-      "size": "clamp(32px, 4.6vw, 56px)",
-      "line": "1.07",
-      "tracking": "-0.028em",
-      "weight": "700"
+      "size": "clamp(32px, 4.4vw, 52px)",
+      "line": "1.08",
+      "tracking": "-0.02em",
+      "weight": "300"
     },
     "title": {
-      "size": "clamp(24px, 2.6vw, 32px)",
-      "line": "1.12",
-      "tracking": "-0.02em",
-      "weight": "650"
+      "size": "clamp(24px, 2.4vw, 30px)",
+      "line": "1.16",
+      "tracking": "-0.016em",
+      "weight": "400"
     },
     "headline": {
-      "size": "21px",
-      "line": "1.24",
-      "tracking": "-0.012em",
-      "weight": "600"
+      "size": "19px",
+      "line": "1.3",
+      "tracking": "-0.011em",
+      "weight": "500"
     },
     "body-lg": {
       "size": "19px",
-      "line": "1.42",
-      "tracking": "-0.006em",
+      "line": "1.45",
+      "tracking": "-0.011em",
       "weight": "400"
     },
     "body": {
       "size": "17px",
-      "line": "1.47",
-      "tracking": "-0.022em",
+      "line": "1.4",
+      "tracking": "-0.008em",
       "weight": "400"
     },
     "callout": {
       "size": "15px",
       "line": "1.4",
-      "tracking": "-0.01em",
+      "tracking": "-0.004em",
       "weight": "400"
     },
     "caption": {
       "size": "13px",
-      "line": "1.38",
-      "tracking": "-0.005em",
+      "line": "1.4",
+      "tracking": "0",
       "weight": "400"
     },
     "micro": {
@@ -130,11 +137,11 @@ export const tokens = {
     }
   },
   "radius": {
-    "sm": "10px",
-    "md": "14px",
-    "lg": "22px",
+    "sm": "12px",
+    "md": "16px",
+    "lg": "20px",
     "xl": "28px",
-    "pill": "980px"
+    "pill": "9999px"
   },
   "space": {
     "1": "4px",
@@ -151,8 +158,14 @@ export const tokens = {
     "24": "96px"
   },
   "shadow": {
-    "card": "0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(0, 0, 0, 0.06)",
-    "float": "0 2px 6px rgba(0, 0, 0, 0.06), 0 24px 60px rgba(0, 0, 0, 0.14)"
+    "ring": "0 0 0 0.5px rgba(0, 0, 0, 0.125), 0 1px 1px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.04)",
+    "card": "0 0 0 0.5px rgba(0, 0, 0, 0.075), 0 2px 4px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.04)",
+    "float": "0 0 0 0.5px rgba(0, 0, 0, 0.075), 0 2px 4px rgba(0, 0, 0, 0.04), 0 16px 40px rgba(0, 0, 0, 0.08)",
+    "edge": "inset 0 0 0 1px rgba(255, 255, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.9)"
+  },
+  "blur": {
+    "glass": "blur(24px) saturate(160%)",
+    "glass-strong": "blur(32px) saturate(180%)"
   },
   "motion": {
     "ease-out": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
@@ -165,7 +178,7 @@ export const tokens = {
     "content": "980px",
     "wide": "1200px",
     "full": "1440px",
-    "nav-height": "52px"
+    "nav-height": "56px"
   }
 } as const;
 export type Tokens = typeof tokens;

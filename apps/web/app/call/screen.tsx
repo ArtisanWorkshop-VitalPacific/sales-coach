@@ -13,8 +13,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { type ReactNode, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { Avatar } from '@/components/avatar';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { cn } from '@/components/ui';
 import { CallController, type CallState } from '@/lib/call';
 import { contentIndex, DIFFICULTY_LABEL, jobLabel, scenarios } from '@/lib/content';
@@ -125,7 +124,7 @@ export function CallScreen(props: Props) {
 
   if (error || !spec) {
     return (
-      <div className="grid min-h-dvh place-items-center bg-[#000] p-8 text-center text-[#f5f5f7]">
+      <div className="grid min-h-dvh place-items-center p-8 text-center text-ink">
         <div>
           <p className="t-title">{error ?? 'Loading'}</p>
           <Link href="/practice" className="btn btn-primary mt-6">
@@ -137,7 +136,7 @@ export function CallScreen(props: Props) {
   }
 
   return (
-    <div data-theme="dark" className="relative min-h-dvh overflow-hidden bg-[#000] text-[#f5f5f7]">
+    <div className="relative min-h-dvh overflow-hidden text-ink">
       {controller ? (
         <LiveCall
           controller={controller}
@@ -154,7 +153,7 @@ export function CallScreen(props: Props) {
         />
       ) : (
         <div className="grid min-h-dvh place-items-center">
-          <div className="h-2 w-24 animate-pulse rounded-full bg-[#2c2c2e]" />
+          <div className="h-2 w-24 animate-pulse rounded-full bg-surface-3" />
         </div>
       )}
     </div>
@@ -204,6 +203,9 @@ function statusLine(st: CallState, first: string, typing: boolean) {
   }
 }
 
+/** Round glass control used for the secondary call buttons. */
+const ROUND = 'grid place-items-center rounded-full btn-glass text-ink-2 hover:text-ink';
+
 function LiveCall({
   controller,
   spec,
@@ -240,16 +242,17 @@ function LiveCall({
 
   const speaking = st.status === 'customer' && st.customerSpeaking;
   const listening = st.status === 'listening' || st.status === 'hold';
+  const showCaptions = live && settings.captions && (lastCaptions.length > 0 || !!st.interim);
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-[920px] flex-col px-5 pt-[max(16px,env(safe-area-inset-top))]">
       {/* Top bar */}
-      <div className="flex h-12 items-center justify-between">
+      <div className="flex h-12 items-center justify-between gap-3">
         {live ? (
           <button
             type="button"
             onClick={() => controller.hangUp()}
-            className="btn btn-sm bg-[#ff453a] text-white"
+            className="btn btn-sm btn-danger"
             disabled={st.status === 'ended'}
           >
             <PhoneOff size={16} /> End
@@ -257,18 +260,18 @@ function LiveCall({
         ) : (
           <Link
             href={spec.drill ? `/drills/${spec.drill.id}` : `/practice/${spec.scenario.id}`}
-            className="btn btn-sm bg-[#1d1d1f] text-[#f5f5f7]"
+            className="btn btn-sm btn-glass"
           >
             <ArrowLeft size={16} /> Back
           </Link>
         )}
-        <div className="flex items-center gap-2 text-[13px] text-[#a1a1a6]">
+        <div className="flex items-center gap-2 text-[13px] text-ink-3">
           {live && <Timer since={st.startedAt} />}
-          <span className="flex items-center gap-1.5 rounded-pill bg-[#1d1d1f] px-2.5 py-1">
+          <span className="flex items-center gap-1.5 rounded-pill bg-glass-strong px-2.5 py-1 text-ink-2 shadow-ring">
             <span
               className={cn(
                 'h-1.5 w-1.5 rounded-full',
-                st.mode === 'brain' ? 'bg-voice' : 'bg-[#86868b]',
+                st.mode === 'brain' ? 'bg-ink' : 'bg-ink-4',
               )}
             />
             {st.mode === 'brain' ? 'Claude' : 'Demo'}
@@ -278,7 +281,7 @@ function LiveCall({
         <button
           type="button"
           onClick={() => setSettings({ captions: !settings.captions })}
-          className="rounded-full p-2 text-[#a1a1a6] hover:text-white"
+          className="grid h-10 w-10 place-items-center rounded-full text-ink-3 hover:bg-surface-2 hover:text-ink"
           aria-label={settings.captions ? 'Hide captions' : 'Show captions'}
         >
           {settings.captions ? <Captions size={20} /> : <CaptionsOff size={20} />}
@@ -288,62 +291,62 @@ function LiveCall({
       {/* Customer */}
       <div className="flex flex-1 flex-col items-center justify-center py-6 text-center">
         <Orb
+          size={tv ? 220 : 168}
           speaking={speaking}
           listening={listening && st.micOn}
           techSpeaking={st.techSpeaking}
           thinking={st.status === 'thinking' || st.status === 'connecting'}
           away={st.status === 'hold' && st.holdKind === 'away'}
-        >
-          <Avatar name={p.name} seed={p.id} size={tv ? 168 : 128} />
-        </Orb>
+        />
         <h1
           className={cn(
-            'mt-8 font-semibold tracking-[-0.02em]',
-            tv ? 'text-[44px]' : 'text-[28px]',
+            'mt-10 font-light tracking-[-0.022em] text-ink',
+            tv ? 'text-[56px] leading-none' : 'text-[34px] leading-tight',
           )}
         >
           {p.name}
         </h1>
-        <p className={cn('mt-1 text-[#a1a1a6]', tv ? 'text-[22px]' : 'text-[15px]')}>
+        <p className={cn('mt-2 min-h-[1.4em] text-ink-3', tv ? 'text-[22px]' : 'text-[15px]')}>
           {st.status === 'thinking' ? <Dots /> : statusLine(st, first, typing)}
         </p>
         {!live && (
           <div className="reveal mt-8 max-w-md">
-            <p className="text-[15px] text-[#a1a1a6]">
+            <p className="text-[15px] text-ink-3">
               {spec.drill ? spec.drill.title : spec.scenario.title} ·{' '}
               {jobLabel(spec.scenario.jobType)} · {DIFFICULTY_LABEL[spec.difficulty]}
             </p>
-            {spec.drill && (
-              <p className="mt-3 text-[17px] text-[#f5f5f7]">{spec.drill.techPrompt}</p>
-            )}
-            {spec.job && <p className="mt-3 text-[17px] text-[#f5f5f7]">{spec.job.summary}</p>}
+            {spec.drill && <p className="mt-3 text-[17px] text-ink-2">{spec.drill.techPrompt}</p>}
+            {spec.job && <p className="mt-3 text-[17px] text-ink-2">{spec.job.summary}</p>}
           </div>
         )}
       </div>
 
-      {/* Captions */}
-      {live && settings.captions && (
+      {/* Captions, on a pane of glass */}
+      {showCaptions && (
         <div
           ref={captionsRef}
-          className={cn('no-scrollbar mb-4 max-h-[30vh] overflow-y-auto', tv && 'max-h-[36vh]')}
+          className={cn(
+            'card no-scrollbar mb-4 max-h-[30vh] overflow-y-auto px-5 py-4',
+            tv && 'max-h-[36vh] px-8 py-6',
+          )}
           aria-live="polite"
         >
           <div className="space-y-3">
             {lastCaptions.map((c) => (
               <div key={c.id} className="fade">
                 {c.who === 'cue' ? (
-                  <p className="text-center text-[13px] text-[#86868b] italic">{c.text}</p>
+                  <p className="text-center text-[13px] text-ink-3 italic">{c.text}</p>
                 ) : (
                   <p
                     className={cn(
                       tv ? 'text-[30px] leading-snug' : 'text-[19px] leading-normal',
-                      c.who === 'tech' ? 'text-[#a1a1a6]' : 'text-[#f5f5f7]',
+                      c.who === 'tech' ? 'text-ink-3' : 'text-ink',
                     )}
                   >
                     <span
                       className={cn(
                         'mr-2 font-semibold',
-                        c.who === 'tech' ? 'text-[#2997ff]' : 'text-voice',
+                        c.who === 'tech' ? 'text-ink-3' : 'text-ink',
                       )}
                     >
                       {c.name}
@@ -354,8 +357,8 @@ function LiveCall({
               </div>
             ))}
             {st.interim && (
-              <p className={cn('text-[#86868b]', tv ? 'text-[30px]' : 'text-[19px]')}>
-                <span className="mr-2 font-semibold text-[#2997ff]">You</span>
+              <p className={cn('text-ink-4', tv ? 'text-[30px]' : 'text-[19px]')}>
+                <span className="mr-2 font-semibold text-ink-3">You</span>
                 {st.interim}
               </p>
             )}
@@ -364,10 +367,13 @@ function LiveCall({
       )}
 
       {st.notice && !(typing && st.notice.startsWith('Tap the mic')) && (
-        <p className="mb-3 text-center text-[13px] text-[#ffb340]">{st.notice}</p>
+        <p className="mx-auto mb-3 flex w-fit max-w-full items-center gap-2 rounded-pill bg-glass-strong px-3.5 py-1.5 text-[13px] text-ink-2 shadow-ring">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-caution-fill" />
+          {st.notice}
+        </p>
       )}
       {st.error && (
-        <div className="mb-3 text-center text-[14px] text-[#ff6961]">
+        <div className="mb-3 text-center text-[14px] text-negative">
           {st.error}{' '}
           <button type="button" className="underline" onClick={() => controller.hangUp()}>
             End and score what we have
@@ -386,7 +392,7 @@ function LiveCall({
             >
               Start the call
             </button>
-            <div className="flex items-center gap-2 text-[13px] text-[#a1a1a6]">
+            <div className="flex items-center gap-2 text-[13px] text-ink-3">
               <button
                 type="button"
                 onClick={() =>
@@ -394,7 +400,7 @@ function LiveCall({
                     inputMode: settings.inputMode === 'hands-free' ? 'push' : 'hands-free',
                   })
                 }
-                className="rounded-pill bg-[#1d1d1f] px-3 py-1.5"
+                className="chip"
               >
                 {settings.inputMode === 'hands-free' ? 'Hands-free' : 'Tap to talk'}
               </button>
@@ -402,12 +408,12 @@ function LiveCall({
               <span>{st.micAvailable ? 'Mic ready' : 'Typing mode'}</span>
             </div>
             {liveHref && (
-              <Link href={liveHref} className="text-[13px] text-[#c8a0ff] hover:underline">
+              <Link href={liveHref} className="link text-[13px]">
                 Try Live mode (instant voice)
               </Link>
             )}
             {!st.micAvailable && (
-              <p className="max-w-sm text-center text-[13px] text-[#86868b]">
+              <p className="max-w-sm text-center text-[13px] text-ink-3">
                 This browser cannot listen. Use Chrome or Safari for voice, or type your replies.
               </p>
             )}
@@ -425,7 +431,7 @@ function LiveCall({
               <button
                 type="button"
                 onClick={() => setTyping(false)}
-                className="rounded-full bg-[#1d1d1f] p-3"
+                className={cn(ROUND, 'h-12 w-12 shrink-0')}
                 aria-label="Use voice"
               >
                 <Mic size={20} />
@@ -438,12 +444,12 @@ function LiveCall({
               placeholder={
                 st.status === 'thinking' ? `${first} is responding...` : `Say something to ${first}`
               }
-              className="min-w-0 flex-1 rounded-pill bg-[#1d1d1f] px-5 py-3.5 text-[17px] text-white outline-none placeholder:text-[#6e6e73] focus:ring-2 focus:ring-[#2997ff]"
+              className="h-12 min-w-0 flex-1 rounded-pill bg-surface px-5 text-[17px] text-ink shadow-ring outline-none focus:shadow-[inset_0_0_0_1.5px_var(--sc-color-ink)]"
               disabled={st.status === 'ended'}
             />
             <button
               type="submit"
-              className="rounded-full bg-[#2997ff] p-3.5 text-white disabled:opacity-40"
+              className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent text-accent-ink disabled:opacity-30"
               disabled={!draft.trim() || st.status === 'thinking'}
               aria-label="Send"
             >
@@ -455,7 +461,7 @@ function LiveCall({
             <button
               type="button"
               onClick={() => setTyping(true)}
-              className="rounded-full bg-[#1d1d1f] p-4 text-[#a1a1a6]"
+              className={cn(ROUND, 'h-14 w-14')}
               aria-label="Type instead"
             >
               <Keyboard size={22} />
@@ -472,7 +478,7 @@ function LiveCall({
               type="button"
               onClick={() => controller.commitNow()}
               className={cn(
-                'rounded-pill bg-[#1d1d1f] px-5 py-4 text-[15px] font-medium transition-opacity',
+                'btn btn-glass h-14 px-5 transition-opacity',
                 st.techSpeaking ? 'opacity-100' : 'pointer-events-none opacity-0',
               )}
             >
@@ -483,10 +489,10 @@ function LiveCall({
       </div>
 
       {saving && (
-        <div className="fade fixed inset-0 z-50 grid place-items-center bg-black/80 backdrop-blur-xl">
+        <div className="fade fixed inset-0 z-50 grid place-items-center bg-glass-strong backdrop-blur-2xl">
           <div className="text-center">
-            <div className="mx-auto h-12 w-12 animate-[spin-slow_1.2s_linear_infinite] rounded-full border-2 border-[#2c2c2e] border-t-[#c8a0ff]" />
-            <p className="mt-5 text-[19px]">Scoring your call</p>
+            <div className="mx-auto h-12 w-12 animate-[spin-slow_1.2s_linear_infinite] rounded-full border-2 border-surface-3 border-t-ink" />
+            <p className="mt-5 text-[19px] text-ink">Scoring your call</p>
           </div>
         </div>
       )}
@@ -503,13 +509,13 @@ function MicButton({ st, onPress }: { st: CallState; onPress: () => void }) {
       disabled={st.status === 'thinking' || st.status === 'connecting' || st.status === 'ended'}
       className={cn(
         'relative grid h-[76px] w-[76px] place-items-center rounded-full transition-all duration-300',
-        on ? 'bg-[#f5f5f7] text-black' : 'bg-[#2c2c2e] text-[#f5f5f7]',
+        on ? 'bg-accent text-accent-ink shadow-float' : 'btn-glass text-ink-2',
         'disabled:opacity-40',
       )}
       aria-label={on ? 'Finish talking' : 'Start talking'}
     >
       {on && st.techSpeaking && (
-        <span className="absolute inset-0 animate-[ripple_1.4s_ease-out_infinite] rounded-full bg-[#f5f5f7]" />
+        <span className="absolute inset-0 animate-[ripple_1.4s_ease-out_infinite] rounded-full border border-ink/40" />
       )}
       {on ? <Mic size={28} /> : <MicOff size={28} />}
     </button>
@@ -522,7 +528,7 @@ function Dots() {
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="inline-block h-1.5 w-1.5 rounded-full bg-[#a1a1a6]"
+          className="inline-block h-1.5 w-1.5 rounded-full bg-ink-3"
           style={{ animation: `dots 1.2s ${i * 0.16}s infinite` }}
         />
       ))}
@@ -530,55 +536,67 @@ function Dots() {
   );
 }
 
+/** The customer, as a pearl. It breathes while waiting, swells as they talk, and dims when they step away. */
 function Orb({
-  children,
+  size,
   speaking,
   listening,
   techSpeaking,
   thinking,
   away,
 }: {
-  children: ReactNode;
+  size: number;
   speaking: boolean;
   listening: boolean;
   techSpeaking: boolean;
   thinking: boolean;
   away: boolean;
 }) {
+  const ring = size + 28;
   return (
-    <div className="relative grid place-items-center">
-      <div
-        className={cn(
-          'absolute h-[260px] w-[260px] rounded-full bg-voice blur-3xl transition-opacity duration-700',
-          speaking ? 'opacity-55' : thinking ? 'opacity-25' : 'opacity-15',
-        )}
-        style={{
-          animation: speaking
-            ? 'speak 1.1s ease-in-out infinite'
-            : 'breathe 4s ease-in-out infinite',
-        }}
-      />
+    <div className="relative grid place-items-center" style={{ width: ring, height: ring }}>
       {speaking && (
         <>
-          <span className="absolute h-[150px] w-[150px] animate-[ripple_1.6s_ease-out_infinite] rounded-full border border-[#c8a0ff]/60" />
-          <span className="absolute h-[150px] w-[150px] animate-[ripple_1.6s_0.5s_ease-out_infinite] rounded-full border border-[#7ab8ff]/50" />
+          <span
+            className="absolute animate-[ripple_1.8s_ease-out_infinite] rounded-full border border-ink/15"
+            style={{ width: size, height: size }}
+          />
+          <span
+            className="absolute animate-[ripple_1.8s_0.6s_ease-out_infinite] rounded-full border border-ink/10"
+            style={{ width: size, height: size }}
+          />
         </>
       )}
       {listening && (
         <span
           className={cn(
-            'absolute h-[156px] w-[156px] rounded-full border-2 transition-colors duration-300',
-            techSpeaking ? 'border-[#2997ff]' : 'border-[#2997ff]/30',
+            'absolute rounded-full border-[1.5px] transition-colors duration-300',
+            techSpeaking ? 'border-ink' : 'border-ink/15',
           )}
-          style={{ animation: techSpeaking ? 'breathe 0.9s ease-in-out infinite' : undefined }}
+          style={{
+            width: ring,
+            height: ring,
+            animation: techSpeaking ? 'breathe 0.9s ease-in-out infinite' : undefined,
+          }}
         />
       )}
-      <div
-        className={cn('relative transition-all duration-700', away && 'opacity-40 grayscale')}
-        style={{ animation: speaking ? 'speak 1.1s ease-in-out infinite' : undefined }}
-      >
-        {children}
-      </div>
+      <span
+        aria-hidden
+        className={cn(
+          'pearl pearl-live block transition-[opacity,transform] duration-700',
+          away && 'scale-[0.94] opacity-40',
+          thinking && 'opacity-80',
+        )}
+        style={{
+          width: size,
+          height: size,
+          animation: speaking
+            ? 'speak 1.1s ease-in-out infinite'
+            : away
+              ? undefined
+              : 'breathe 4s ease-in-out infinite',
+        }}
+      />
     </div>
   );
 }

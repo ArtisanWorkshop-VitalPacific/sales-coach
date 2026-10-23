@@ -1,7 +1,16 @@
 @import "tailwindcss";
 @import "../../../packages/design/generated/tokens.css";
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where([data-theme="device"], [data-theme="device"] *) {
+      @slot;
+    }
+  }
+}
 
 @theme inline {
   --color-bg: var(--sc-color-bg);
@@ -29,6 +38,7 @@
   --color-negative-fill: var(--sc-color-negative-fill);
   --color-negative-soft: var(--sc-color-negative-soft);
   --color-glass: var(--sc-color-glass);
+  --color-glass-strong: var(--sc-color-glass-strong);
   --color-scrim: var(--sc-color-scrim);
 
   --font-sans: var(--sc-font-text);
@@ -41,10 +51,16 @@
   --radius-xl: var(--sc-radius-xl);
   --radius-pill: var(--sc-radius-pill);
 
+  --shadow-ring: var(--sc-shadow-ring);
   --shadow-card: var(--sc-shadow-card);
   --shadow-float: var(--sc-shadow-float);
 
   --ease-apple: var(--sc-motion-ease-out);
+}
+
+/* The bright inner edge that makes a translucent panel read as glass. */
+:root {
+  --sc-edge: inset 0 0 0 1px var(--sc-color-glass-edge);
 }
 
 @layer base {
@@ -53,9 +69,10 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
   }
   body {
-    background: var(--sc-color-bg);
+    background-color: var(--sc-color-bg);
     color: var(--sc-color-ink);
     font-family: var(--sc-font-text);
     font-size: var(--sc-type-body-size);
@@ -63,11 +80,20 @@
     letter-spacing: var(--sc-type-body-tracking);
     min-height: 100dvh;
   }
+  /* Soft pools of stone light behind everything, so glass has something to frost. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--sc-ambient);
+  }
   ::selection {
-    background: var(--sc-color-accent-soft);
+    background: var(--sc-color-surface-3);
   }
   :focus-visible {
-    outline: 2px solid var(--sc-color-accent);
+    outline: 2px solid var(--sc-color-ink);
     outline-offset: 2px;
     border-radius: 6px;
   }
@@ -77,15 +103,20 @@
   button:disabled {
     cursor: default;
   }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--sc-color-ink-4);
+  }
 }
 
-/* Type scale */
+/* Type scale. Headlines are light and tight; Inter switches to its display cut at large sizes. */
 @utility t-hero {
   font-family: var(--sc-font-display);
   font-size: var(--sc-type-hero-size);
   line-height: var(--sc-type-hero-line);
   letter-spacing: var(--sc-type-hero-tracking);
   font-weight: var(--sc-type-hero-weight);
+  text-wrap: balance;
 }
 @utility t-display {
   font-family: var(--sc-font-display);
@@ -93,6 +124,7 @@
   line-height: var(--sc-type-display-line);
   letter-spacing: var(--sc-type-display-tracking);
   font-weight: var(--sc-type-display-weight);
+  text-wrap: balance;
 }
 @utility t-title {
   font-family: var(--sc-font-display);
@@ -100,6 +132,7 @@
   line-height: var(--sc-type-title-line);
   letter-spacing: var(--sc-type-title-tracking);
   font-weight: var(--sc-type-title-weight);
+  text-wrap: balance;
 }
 @utility t-headline {
   font-size: var(--sc-type-headline-size);
@@ -134,15 +167,38 @@
 }
 
 /* Surfaces */
+
+/* A frosted panel: white glass, a bright inner edge, a hairline ring, a soft lift. */
 @utility card {
-  background: var(--sc-color-surface);
-  border-radius: var(--sc-radius-lg);
-  box-shadow: var(--sc-shadow-card);
-}
-@utility glass {
   background: var(--sc-color-glass);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: var(--sc-blur-glass);
+  backdrop-filter: var(--sc-blur-glass);
+  border-radius: var(--sc-radius-lg);
+  box-shadow: var(--sc-edge), var(--sc-shadow-card);
+}
+/* The big panel at the top of a page. */
+@utility hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--sc-color-glass);
+  -webkit-backdrop-filter: var(--sc-blur-glass);
+  backdrop-filter: var(--sc-blur-glass);
+  border-radius: var(--sc-radius-xl);
+  box-shadow: var(--sc-edge), var(--sc-shadow-float);
+}
+/* Floating chrome: the nav, the tab bar, call controls. Denser so text stays crisp over anything. */
+@utility glass {
+  background: var(--sc-color-glass-strong);
+  -webkit-backdrop-filter: var(--sc-blur-glass-strong);
+  backdrop-filter: var(--sc-blur-glass-strong);
+  box-shadow: var(--sc-edge), var(--sc-shadow-float);
+}
+/* A stone well inside a panel: tracks, grouped rows, quiet callouts. */
+@utility well {
+  background: var(--sc-color-surface-2);
+  border-radius: var(--sc-radius-md);
+  box-shadow: inset 0 0 0 0.5px var(--sc-color-line);
 }
 @utility hairline {
   border-color: var(--sc-color-line);
@@ -157,7 +213,49 @@
   background: var(--sc-gradient-voice);
 }
 @utility bg-coach {
-  background: var(--sc-gradient-coach);
+  background: var(--sc-gradient-voice);
+}
+
+/* The pearl: every customer is one. Greys only, with a slow sheen that turns while it lives. */
+@utility pearl {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: var(--sc-gradient-pearl);
+  box-shadow:
+    inset 0 -14px 30px rgba(68, 64, 59, 0.16),
+    inset 0 10px 22px rgba(255, 255, 255, 0.9),
+    0 0 0 0.5px rgba(0, 0, 0, 0.06),
+    0 18px 40px rgba(0, 0, 0, 0.07);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    border-radius: inherit;
+    background: var(--sc-gradient-sheen);
+    mix-blend-mode: soft-light;
+    opacity: 0.75;
+    pointer-events: none;
+  }
+}
+/* The sheen turns. Only for a pearl that stands for someone in the room right now. */
+@utility pearl-live {
+  &::after {
+    animation: spin-slow 22s linear infinite;
+  }
+}
+
+@utility link {
+  color: var(--sc-color-ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--sc-color-line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--sc-motion-fast) var(--sc-motion-ease-out);
+  &:hover {
+    text-decoration-color: currentColor;
+  }
 }
 @utility no-scrollbar {
   scrollbar-width: none;
@@ -169,20 +267,21 @@
   padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
 
-/* Buttons: pills only. */
+/* Buttons: pills only. Black is the action; white with a hairline ring is the alternative. */
 @utility btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border-radius: var(--sc-radius-pill);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
-  letter-spacing: -0.01em;
-  padding: 12px 22px;
+  letter-spacing: -0.006em;
+  padding: 10px 20px;
   min-height: 44px;
   transition:
     background-color var(--sc-motion-fast) var(--sc-motion-ease-out),
+    box-shadow var(--sc-motion-fast) var(--sc-motion-ease-out),
     transform var(--sc-motion-fast) var(--sc-motion-ease-out),
     opacity var(--sc-motion-fast) var(--sc-motion-ease-out);
   white-space: nowrap;
@@ -202,19 +301,32 @@
   }
 }
 @utility btn-secondary {
-  background: var(--sc-color-surface-3);
+  background: var(--sc-color-surface);
   color: var(--sc-color-ink);
+  box-shadow: var(--sc-edge), var(--sc-shadow-ring);
   &:hover {
-    filter: brightness(0.97);
+    background: var(--sc-color-surface-2);
+  }
+}
+@utility btn-glass {
+  background: var(--sc-color-glass-strong);
+  -webkit-backdrop-filter: var(--sc-blur-glass);
+  backdrop-filter: var(--sc-blur-glass);
+  color: var(--sc-color-ink);
+  box-shadow: var(--sc-edge), var(--sc-shadow-ring);
+  &:hover {
+    background: var(--sc-color-surface);
   }
 }
 @utility btn-ghost {
   background: transparent;
-  color: var(--sc-color-accent);
+  color: var(--sc-color-ink);
   padding-left: 8px;
   padding-right: 8px;
+  text-decoration-color: var(--sc-color-line-strong);
+  text-underline-offset: 3px;
   &:hover {
-    text-decoration: underline;
+    text-decoration-line: underline;
   }
 }
 @utility btn-danger {
@@ -222,14 +334,14 @@
   color: #fff;
 }
 @utility btn-lg {
-  font-size: 19px;
-  padding: 16px 30px;
-  min-height: 56px;
+  font-size: 17px;
+  padding: 12px 28px;
+  min-height: 52px;
 }
 @utility btn-sm {
   font-size: 14px;
-  padding: 7px 14px;
-  min-height: 32px;
+  padding: 6px 14px;
+  min-height: 34px;
 }
 
 /* Chips */
@@ -241,8 +353,9 @@
   font-size: 13px;
   font-weight: 500;
   padding: 4px 10px;
-  background: var(--sc-color-surface-3);
+  background: var(--sc-color-surface-2);
   color: var(--sc-color-ink-2);
+  box-shadow: inset 0 0 0 0.5px var(--sc-color-line);
   white-space: nowrap;
 }
 
@@ -271,7 +384,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.045);
+    transform: scale(1.035);
   }
 }
 @keyframes speak {
@@ -280,13 +393,13 @@
     transform: scale(1);
   }
   25% {
-    transform: scale(1.09);
+    transform: scale(1.07);
   }
   55% {
-    transform: scale(0.98);
+    transform: scale(0.985);
   }
   80% {
-    transform: scale(1.06);
+    transform: scale(1.045);
   }
 }
 @keyframes spin-slow {
@@ -296,11 +409,11 @@
 }
 @keyframes ripple {
   from {
-    transform: scale(0.9);
-    opacity: 0.55;
+    transform: scale(0.92);
+    opacity: 0.5;
   }
   to {
-    transform: scale(1.6);
+    transform: scale(1.55);
     opacity: 0;
   }
 }
@@ -329,5 +442,13 @@
     animation-duration: 1ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
+  }
+}
+
+/* Browsers without backdrop blur get solid panels instead of see-through ones. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --sc-color-glass: var(--sc-color-surface);
+    --sc-color-glass-strong: var(--sc-color-bg-elevated);
   }
 }

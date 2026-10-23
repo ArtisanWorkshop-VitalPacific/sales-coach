@@ -37,7 +37,7 @@ Built overnight on October 22, 2026. This is the honest state of the product: wh
 
 ## Decisions I made without you
 
-1. **Name and brand.** "Sales Coach" as asked. The mark (a rising voice wave) and palette are placeholders pending SRV LAB brand review. Apple-style system: black, white, gray, one blue accent, a soft violet-to-blue gradient only for the customer's voice.
+1. **Name and brand.** "Sales Coach" as asked. The mark (a rising voice wave) is a placeholder pending SRV LAB brand review. Since October 23 the look is white, grey, and white glass, with the palette, type sizes, radii, and shadows taken from elevenlabs.io: eggshell #FDFCFC, stone #F5F3F1 and #EBE8E4, text from black to #A59F97, and black for every action. Inter stands in for ElevenLabs' licensed Waldenburg, with headlines in Inter Light. Every customer is a pearl. Orange #FF4704 marks work to do and red #F41A2F marks a miss. Light is the default; Dark and Match device are in Settings.
 2. **Next.js 16** (current) instead of 15 from the plan. Same architecture.
 3. **One engine, in TypeScript, everywhere.** The browser demo, the server, the LiveKit agent, and the test bench all drive the same `CustomerSession`. That is why the Live mode agent is TypeScript (LiveKit Agents for Node) instead of Python.
 4. **The customer's mind is rules, not vibes.** Trust, understanding, urgency, objections, and the hidden real concern change by readable rules. Claude perceives and speaks; it does not decide whether the customer buys. Customers stay consistent, scores stay fair, and the test bench can prove it.

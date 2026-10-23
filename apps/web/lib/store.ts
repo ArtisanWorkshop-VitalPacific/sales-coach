@@ -96,7 +96,8 @@ export interface Settings {
   brain: 'auto' | 'demo';
   /** Silence before your turn is sent, in ms. */
   endpointMs: number;
-  theme: 'system' | 'light' | 'dark';
+  /** Light is the design. 'device' follows the phone. Older saves may hold 'system', read as light. */
+  theme: 'light' | 'dark' | 'device';
 }
 
 export const DEFAULT_PROFILE: Profile = {
@@ -112,7 +113,7 @@ export const DEFAULT_SETTINGS: Settings = {
   voice: 'auto',
   brain: 'auto',
   endpointMs: 1100,
-  theme: 'system',
+  theme: 'light',
 };
 
 function localStore<T extends object>(key: string, fallback: T) {
